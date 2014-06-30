@@ -60,8 +60,10 @@ var Editor = React.createClass({
     }.bind(this);
 
     global.cmClearHighlight = function(from, to) {
+      this._markerRange = null;
       if (this.mark) {
         this.mark.clear();
+        this.mark = null;
       }
     }.bind(this);
   },
