@@ -32,6 +32,7 @@ html {
 }
 
 #AST {
+  cursor: default;
   padding-top: 15px;
   box-sizing: border-box;
   font-family: monospace;
@@ -41,6 +42,12 @@ html {
   right: 0;
   top: 0;
   bottom: 25px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #Editor {
@@ -67,7 +74,6 @@ html {
   position: absolute;;
   left: 0px;
   text-decoration: none;
-  font-weight: bold;
   color: green;
 }
 
@@ -75,8 +81,24 @@ html {
   color: red;
 }
 
+.toggler:hover {
+  font-weight: bold;
+}
+
 .placeholder {
   font-size: 0.9em;
+}
+
+.tokenName {
+  cursor: pointer;
+}
+
+.tokenName:hover {
+  text-decoration: underline;
+}
+
+.CodeMirror .marked {
+  background-color: yellow;
 }
 
 .CodeMirror {
@@ -89,6 +111,6 @@ html {
 }
 
 .CodeMirror-gutters {
-  background-color: transparent;
+  background-color: white;
   border: none;
 }

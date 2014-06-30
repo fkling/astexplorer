@@ -13,7 +13,7 @@ var ASTOutput = React.createClass({
     /* jshint ignore:start */
     var tree = null;
     if (this.props.ast) {
-      tree = <Element value={this.props.ast} />;
+      tree = <Element value={this.props.ast} open={true}/>;
     }
     return (
       <div id="AST" className="highlight">

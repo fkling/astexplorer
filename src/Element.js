@@ -7,6 +7,7 @@ var ArrayElements = require('./ArrayElements');
 var PropertyList = require('./PropertyList');
 var ArrayFormatter = require('./ArrayFormatter');
 var ObjectFormatter = require('./ObjectFormatter');
+var TokenName = require('./TokenName');
 
 function isArray(v) {
   return Object.prototype.toString.call(v) === '[object Array]';
@@ -19,8 +20,10 @@ var Element = React.createClass({
   },
 
   getInitialState: function() {
+    // Some elements should be open by default
+    var open = this.props.name === 'body' || this.props.open;
     return {
-      open: false
+      open: open
     };
   },
 
@@ -54,9 +57,9 @@ var Element = React.createClass({
       content = <PropertyList object={value} />;
       if (this.state.open) {
         if (value.type) {
-          value_output = <span className="nc">{value.type} </span>;
+          value_output = <TokenName object={value} />;
         }
-        prefix = '{';
+        prefix = ' {';
         suffix = '}';
       }
       else {
@@ -64,27 +67,27 @@ var Element = React.createClass({
       }
     }
     else {
-      value_output = <span className="l">{JSON.stringify(value)}</span>;
+      value_output = <span className="s">{JSON.stringify(value)}</span>;
       showToggler = false;
     }
     if (showToggler) {
-    toggler =
-      <a href="#"
-        className={"toggler" + (this.state.open ? " open" : '')}
-        onClick={this._toggleClick}>
-        {this.state.open ? '-' : '+'}
-      </a>;
+      toggler =
+        <a href="#"
+          className={"toggler" + (this.state.open ? " open" : '')}
+          onClick={this._toggleClick}>
+          {this.state.open ? '-' : '+'}
+        </a>;
     }
 
     var name = this.props.name ?
-      <span className="k">{this.props.name}<span className="p">: </span></span> :
+      <span className="nb">{this.props.name}<span className="p">: </span></span> :
       null;
 
     return (
-      <div className="entry" onMousover={this.onMouseover}>
+      <div className="entry">
         <div>
           {toggler}
-          <span className="name k">{name}</span>
+          <span className="name">{name}</span>
           <span className="value">{value_output}</span>
           {prefix ? <span className="prefix p">{prefix}</span> : null}
         </div>

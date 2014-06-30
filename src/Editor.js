@@ -2,11 +2,14 @@
 /*jshint browser:true, newcap:false, expr:true*/
 /*global CodeMirror */
 "use strict";
+var fs = require('fs');
+
+var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
 
 var Editor = React.createClass({
   getDefaultProps: function() {
     return {
-      value: "function foo() {\n  alert('Hello World!');\n}\n"
+      value: initialCode
     };
   },
 
@@ -24,7 +27,7 @@ var Editor = React.createClass({
   },
 
   componentDidMount: function() {
-    this.codeMirror = CodeMirror(
+    global.cm = this.codeMirror = CodeMirror(
       this.refs.container.getDOMNode(),
       {
         value: this.props.value,
@@ -39,6 +42,18 @@ var Editor = React.createClass({
     this.codeMirror.on('keyup', function(cm, event) {
       event.stopPropagation();
     });
+
+    this.codeMirror.on('focus', function(cm, event) {
+      this.mark && this.mark.clear();
+    }.bind(this));
+
+    // This is some really ugly hack to change the highlight in the editor from
+    // anywhere - don't do this in a real React app!
+    global.cmHighlight = function(from, to) {
+      if (this.mark) this.mark.clear();
+      this.mark = this.codeMirror.markText(from, to, {className: 'marked'});
+      console.log(this.mark.find());
+    }.bind(this);
   },
 
   onContentChange: function() {

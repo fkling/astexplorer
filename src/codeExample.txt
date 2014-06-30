@@ -1,0 +1,13 @@
+var welomeMessage =
+`Hi! Paste some code here and explore the syntax tree
+that esprima creates. We use the harmony version from
+Facebook, so you can use all the cool new features from
+ES6. Enjoy!`;
+
+var tip =
+`Click on any type name (blue) in the syntax tree to
+highlight the corresponding source text`;
+
+function sayHello() {
+  alert(welomeMessage);
+}

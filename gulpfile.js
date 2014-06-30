@@ -29,6 +29,7 @@ function transform(filename) {
 gulp.task('build', function() {
   browserify(SRC)
     .transform(transform)
+    .transform('brfs')
     .bundle()
     .pipe(source(OUT))
     .pipe(streamify(uglify({output: {ascii_only:true}})))
@@ -38,6 +39,7 @@ gulp.task('build', function() {
 gulp.task('watch', function() {
   var bundler = watchify(SRC)
     .transform(transform)
+    .transform('brfs')
     .on('update', rebundle);
 
   function rebundle () {
