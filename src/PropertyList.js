@@ -2,7 +2,6 @@
  * @jsx React.DOM
  */
 
-
 var PropertyList = React.createClass({
   getDefaultProps: function() {
     return {

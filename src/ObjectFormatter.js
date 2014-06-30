@@ -17,7 +17,7 @@ var ObjectFormatter = React.createClass({
     else {
       return (
         <span>
-          {object.type ? <TokenName object={object} /> : null}
+          {object.type ? <TokenName onClick={this.props.onClick} object={object} /> : null}
           <span className="p">{" {"}</span>
           <span className="placeholder ge">{keys.join(', ')}</span>
           <span className="p">{"}"}</span>

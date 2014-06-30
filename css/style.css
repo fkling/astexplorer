@@ -85,6 +85,14 @@ html {
   font-weight: bold;
 }
 
+.toggler + .key .name {
+  cursor: pointer;
+}
+
+.toggler + .key .name:hover {
+  text-decoration: underline;
+}
+
 .placeholder {
   font-size: 0.9em;
 }

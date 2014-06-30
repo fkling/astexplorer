@@ -1,6 +1,6 @@
 {
   "name": "esprima_harmony_demo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Online demo of FB's esprima harmony branch",
   "main": "index.js",
   "scripts": {

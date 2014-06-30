@@ -3,6 +3,8 @@
 /*global CodeMirror */
 "use strict";
 var fs = require('fs');
+var isEqual = require('lodash.isEqual');
+
 
 var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
 
@@ -49,10 +51,18 @@ var Editor = React.createClass({
 
     // This is some really ugly hack to change the highlight in the editor from
     // anywhere - don't do this in a real React app!
+    this._markerRange = null;
     global.cmHighlight = function(from, to) {
+      if (isEqual([from, to], this._markerRange)) return;
+      this._markerRange = [from, to];
       if (this.mark) this.mark.clear();
       this.mark = this.codeMirror.markText(from, to, {className: 'marked'});
-      console.log(this.mark.find());
+    }.bind(this);
+
+    global.cmClearHighlight = function(from, to) {
+      if (this.mark) {
+        this.mark.clear();
+      }
     }.bind(this);
   },
 

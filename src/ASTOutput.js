@@ -16,7 +16,10 @@ var ASTOutput = React.createClass({
       tree = <Element value={this.props.ast} open={true}/>;
     }
     return (
-      <div id="AST" className="highlight">
+      <div
+        id="AST"
+        className="highlight"
+        onMouseLeave={function() {global.cmClearHighlight()}}>
         {tree}
       </div>
     );
