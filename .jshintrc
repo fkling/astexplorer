@@ -1,0 +1,6 @@
+{
+  "predef": [
+    "React"
+  ],
+  "node": true
+}

@@ -1,0 +1,22 @@
+{
+  "name": "esprima_harmony_demo",
+  "version": "0.0.1",
+  "description": "Online demo of FB's esprima harmony branch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Felix Kling",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^4.2.0",
+    "esprima-fb": "^4001.1001.0-dev-harmony-fb",
+    "gulp": "^3.8.5",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^0.3.1",
+    "react-tools": "^0.10.0",
+    "through": "^2.3.4",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^0.10.2"
+  }
+}

@@ -1,0 +1,94 @@
+html {
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+#Error {
+  font-size: 0.9em;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 50%;
+  background-color: #A00;
+  color: white;
+  text-align: center;
+  font-family: Verdana, non-serif;
+}
+
+#contribution {
+  font-size: 0.9em;
+  font-family: Verdana, non-serif;
+  color: #555;
+  position: absolute;
+  height: 25px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 25px;
+  background-color: #efefef;
+  border-top: 1px solid #ddd;
+}
+
+#AST {
+  padding-top: 15px;
+  box-sizing: border-box;
+  font-family: monospace;
+  width: 50%;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 25px;
+}
+
+#Editor {
+  padding-top: 15px;
+  position: absolute;
+  width: 50%;
+  top: 0;
+  left: 0;
+  bottom: 25px;
+  overflow: auto;
+}
+
+.entry {
+  padding: 5px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.entry.over {
+  background-color: rgba(200,200,200,0.7);
+}
+
+.toggler {
+  position: absolute;;
+  left: 0px;
+  text-decoration: none;
+  font-weight: bold;
+  color: green;
+}
+
+.toggler.open {
+  color: red;
+}
+
+.placeholder {
+  font-size: 0.9em;
+}
+
+.CodeMirror {
+  height: auto;
+}
+
+.CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.CodeMirror-gutters {
+  background-color: transparent;
+  border: none;
+}
