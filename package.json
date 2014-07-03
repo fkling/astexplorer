@@ -23,5 +23,8 @@
     "through": "^2.3.4",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^0.10.2"
+  },
+  "dependencies": {
+    "lodash.debounce": "^2.4.1"
   }
 }

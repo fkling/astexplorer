@@ -4,6 +4,7 @@
 "use strict";
 var fs = require('fs');
 var isEqual = require('lodash.isEqual');
+var debounce = require('lodash.debounce');
 
 
 var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
@@ -48,6 +49,10 @@ var Editor = React.createClass({
     this.codeMirror.on('focus', function(cm, event) {
       this.mark && this.mark.clear();
     }.bind(this));
+
+    this.codeMirror.on('cursorActivity', debounce(function(cm) {
+       this.props.onActivity && this.props.onActivity(cm.getCursor());
+    }.bind(this), 250));
 
     // This is some really ugly hack to change the highlight in the editor from
     // anywhere - don't do this in a real React app!

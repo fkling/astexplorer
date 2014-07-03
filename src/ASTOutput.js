@@ -8,12 +8,19 @@ var Element = require('./Element');
 var ASTOutput = React.createClass({
   propTypes: {
     ast: React.PropTypes.object,
+    focusPath: React.PropTypes.array,
   },
   render: function() {
     /* jshint ignore:start */
     var tree = null;
     if (this.props.ast) {
-      tree = <Element value={this.props.ast} open={true}/>;
+      tree =
+        <Element
+          focusPath={this.props.focusPath}
+          value={this.props.ast}
+          open={true}
+          level={0}
+        />;
     }
     return (
       <div

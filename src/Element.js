@@ -16,15 +16,29 @@ function isArray(v) {
 var Element = React.createClass({
   propTypes: {
     name: React.PropTypes.string,
-    value: React.PropTypes.any
+    value: React.PropTypes.any,
+    open: React.PropTypes.bool,
+    focused: React.PropTypes.bool,
+    focusPath: React.PropTypes.array,
+    level: React.PropTypes.number,
   },
 
   getInitialState: function() {
     // Some elements should be open by default
-    var open = this.props.name === 'body' || this.props.open;
+    var open = this.props.open || this.props.name === 'body';
     return {
       open: open
     };
+  },
+
+  componentWillReceiveProps: function(props) {
+    this.setState({
+      open: props.open
+    });
+  },
+
+  componentDidUpdate: function() {
+    this.getDOMNode().scrollIntoView();
   },
 
   _toggleClick: function() {
@@ -57,9 +71,17 @@ var Element = React.createClass({
     var showToggler = true;
     var isType = this.props.value && this.props.value.type;
     var enableHighlight = isType && this.props.value.type !== 'Program';
+    var focusPath = this.props.focusPath;
+    var level = this.props.level;
+    var open = this.state.open;
 
     if (isArray(value)) {
-      content = <ArrayElements array={value} />;
+      content =
+        <ArrayElements
+          focusPath={focusPath}
+          array={value}
+          level={level}
+        />;
       if (value.length > 0 && this.state.open) {
         prefix = "[";
         suffix = "]";
@@ -70,7 +92,12 @@ var Element = React.createClass({
     }
     else if (value && typeof value === "object") {
       var valueIsType = !!value.type;
-      content = <PropertyList object={value} />;
+      content =
+        <PropertyList
+          focusPath={focusPath}
+          object={value}
+          level={level}
+        />;
       if (this.state.open) {
         if (value.type) {
           value_output =
@@ -109,9 +136,15 @@ var Element = React.createClass({
     ] :
     null;
 
+    var classNames = 'entry';
+    if (this.props.focused) {
+      classNames += ' focused';
+    }
+
     return (
       <div
-        className="entry"
+        ref="container"
+        className={classNames}
         onMouseOver={enableHighlight ? this._onMouseOver : null}
         onMouseOut={enableHighlight ? this._onMouseOut : null}
       >

@@ -66,8 +66,8 @@ html {
   padding-left: 15px;
 }
 
-.entry.over {
-  background-color: rgba(200,200,200,0.7);
+.entry.focused {
+  border-right: 2px solid #555;
 }
 
 .toggler {
