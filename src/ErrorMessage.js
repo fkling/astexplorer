@@ -3,6 +3,8 @@
  */
 "use strict";
 
+var React = require('react/addons');
+
 var ErrorMessage = React.createClass({
   render: function() {
     /* jshint ignore:start */

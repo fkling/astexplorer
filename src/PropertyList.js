@@ -2,6 +2,8 @@
  * @jsx React.DOM
  */
 
+var React = require('react/addons');
+
 var PropertyList = React.createClass({
   getDefaultProps: function() {
     return {

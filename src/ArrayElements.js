@@ -3,6 +3,8 @@
  */
 "use strict";
 
+var React = require('react/addons');
+
 var ArrayElements = React.createClass({
   getDefaultProps: function() {
     return {

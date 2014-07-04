@@ -3,6 +3,8 @@
  */
 "use strict";
 
+var React = require('react/addons');
+
 var ArrayFormatter = React.createClass({
   render: function() {
     var array = this.props.array;

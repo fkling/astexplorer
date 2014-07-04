@@ -3,6 +3,7 @@
  */
 "use strict";
 
+var React = require('react/addons');
 var TokenName = require('./TokenName');
 
 var ObjectFormatter = React.createClass({

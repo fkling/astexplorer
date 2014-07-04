@@ -2,6 +2,9 @@
 /*jshint browser:true, newcap:false, expr:true*/
 /*global CodeMirror */
 "use strict";
+
+var React = require('react/addons');
+
 var fs = require('fs');
 var isEqual = require('lodash.isEqual');
 var debounce = require('lodash.debounce');

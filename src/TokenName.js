@@ -3,6 +3,8 @@
  */
 "use strict";
 
+var React = require('react/addons');
+
 var TokenName = React.createClass({
   render: function() {
     return (

@@ -6,8 +6,9 @@
 var ASTOutput = require('./ASTOutput');
 var Editor = require('./Editor');
 var ErrorMessage = require('./ErrorMessage');
-var getFocusPath = require('./getFocusPath');
+var React = require('react/addons');
 
+var getFocusPath = require('./getFocusPath');
 var esprima = require('esprima-fb');
 
 var App = React.createClass({

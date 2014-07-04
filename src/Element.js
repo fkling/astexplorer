@@ -8,6 +8,7 @@ var PropertyList = require('./PropertyList');
 var ArrayFormatter = require('./ArrayFormatter');
 var ObjectFormatter = require('./ObjectFormatter');
 var TokenName = require('./TokenName');
+var React = require('react/addons');
 
 var cx = React.addons.classSet;
 

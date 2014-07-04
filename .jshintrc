@@ -1,6 +1,3 @@
 {
-  "predef": [
-    "React"
-  ],
   "node": true
 }

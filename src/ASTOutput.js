@@ -4,6 +4,7 @@
 "use strict";
 
 var Element = require('./Element');
+var React = require('react/addons');
 
 var ASTOutput = React.createClass({
   propTypes: {
