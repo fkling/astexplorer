@@ -118,7 +118,10 @@ var Element = React.createClass({
       }
     }
     else {
-      value_output = <span className="s">{JSON.stringify(value)}</span>;
+      value_output =
+        <span className="s">
+          {typeof value === 'undefined' ? 'undefined' : JSON.stringify(value)}
+      </span>;
       showToggler = false;
     }
 
