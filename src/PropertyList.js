@@ -12,8 +12,7 @@ var PropertyList = React.createClass({
   render: function() {
     var Element = require('./Element');
     var focusPath = this.props.focusPath;
-    var level = this.props.level + 1;
-    var focusElement = focusPath[level];
+    var level = this.props.level;
     var lastFocusElement = focusPath[focusPath.length - 1];
 
     /* jshint ignore:start */
@@ -22,9 +21,7 @@ var PropertyList = React.createClass({
       var v = this.props.object[key];
       return <Element
         name={key}
-        open={v === focusElement}
         focusPath={focusPath}
-        focused={v === lastFocusElement}
         value={v}
         level={level}
       />;

@@ -36,6 +36,7 @@ html {
   padding-top: 15px;
   box-sizing: border-box;
   font-family: monospace;
+  margin: 0;
   width: 50%;
   overflow: auto;
   position: absolute;
@@ -60,36 +61,48 @@ html {
   overflow: auto;
 }
 
-.entry {
-  padding: 5px;
-  position: relative;
+#AST ul {
+  margin: 0;
   padding-left: 15px;
 }
 
-.entry.focused {
-  border-right: 2px solid #555;
+li.entry {
+  margin: 0;
+  list-style: none;
+  padding: 5px;
+  position: relative;
 }
 
-.toggler {
-  position: absolute;;
-  left: 0px;
-  text-decoration: none;
+.entry.focused.lastFocused > .value,
+.entry.focused:not(.open) > .key,
+.entry.focused:not(.open) > .value {
+}
+
+.entry.focused.lastFocused,
+.entry.focused:not(.open) {
+  border-radius: 2px;
+  border-right: 5px solid #555;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.entry.toggable::before {
+  content: '+';
   color: green;
+  position: absolute;
+  left: -10px;
 }
 
-.toggler.open {
+.entry.toggable.open::before {
+  content: '-';
   color: red;
 }
 
-.toggler:hover {
-  font-weight: bold;
-}
 
-.toggler + .key .name {
+.entry.toggable > .key .name {
   cursor: pointer;
 }
 
-.toggler + .key .name:hover {
+.entry.toggable > .key .name:hover {
   text-decoration: underline;
 }
 
@@ -106,7 +119,7 @@ html {
 }
 
 .CodeMirror .marked {
-  background-color: yellow;
+  background-color: #fff206;
 }
 
 .CodeMirror {

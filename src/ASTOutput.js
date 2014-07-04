@@ -23,12 +23,12 @@ var ASTOutput = React.createClass({
         />;
     }
     return (
-      <div
+      <ul
         id="AST"
         className="highlight"
         onMouseLeave={function() {global.cmClearHighlight()}}>
         {tree}
-      </div>
+      </ul>
     );
     /* jshint ignore:end */
   }

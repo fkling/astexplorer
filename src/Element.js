@@ -9,6 +9,8 @@ var ArrayFormatter = require('./ArrayFormatter');
 var ObjectFormatter = require('./ObjectFormatter');
 var TokenName = require('./TokenName');
 
+var cx = React.addons.classSet;
+
 function isArray(v) {
   return Object.prototype.toString.call(v) === '[object Array]';
 }
@@ -33,12 +35,8 @@ var Element = React.createClass({
 
   componentWillReceiveProps: function(props) {
     this.setState({
-      open: props.open
+      open: this.state.open || props.open
     });
-  },
-
-  componentDidUpdate: function() {
-    this.getDOMNode().scrollIntoView();
   },
 
   _toggleClick: function() {
@@ -67,12 +65,13 @@ var Element = React.createClass({
     var content = null;
     var prefix = null;
     var suffix = null;
-    var toggler = null;
     var showToggler = true;
-    var isType = this.props.value && this.props.value.type;
-    var enableHighlight = isType && this.props.value.type !== 'Program';
-    var focusPath = this.props.focusPath;
+    var isType = value && value.type;
+    var enableHighlight = isType && value.type !== 'Program';
     var level = this.props.level;
+    var focusPath = this.props.focusPath;
+    var focused = level < focusPath.length && value === focusPath[level];
+    var isLastElementInPath = isType && value === focusPath[focusPath.length- 1];
     var open = this.state.open;
 
     if (isArray(value)) {
@@ -80,9 +79,9 @@ var Element = React.createClass({
         <ArrayElements
           focusPath={focusPath}
           array={value}
-          level={level}
+          level={level + 1}
         />;
-      if (value.length > 0 && this.state.open) {
+      if (value.length > 0 && open) {
         prefix = "[";
         suffix = "]";
       } else {
@@ -96,7 +95,7 @@ var Element = React.createClass({
         <PropertyList
           focusPath={focusPath}
           object={value}
-          level={level}
+          level={level + 1}
         />;
       if (this.state.open) {
         if (value.type) {
@@ -121,46 +120,36 @@ var Element = React.createClass({
       value_output = <span className="s">{JSON.stringify(value)}</span>;
       showToggler = false;
     }
-    if (showToggler) {
-      toggler =
-        <a href="#"
-          className={"toggler" + (this.state.open ? " open" : '')}
-          onClick={this._toggleClick}>
-          {this.state.open ? '-' : '+'}
-        </a>;
-    }
 
-    var name = this.props.name ? [
-      <span className="name nb">{this.props.name}</span>,
-      <span className="p">: </span>
-    ] :
-    null;
+    var name = this.props.name ?
+      <span
+        className="key"
+        onClick={showToggler ? this._toggleClick : null}>
+        <span className="name nb">{this.props.name}</span>
+        <span className="p">: </span>
+      </span> :
+      null;
 
-    var classNames = 'entry';
-    if (this.props.focused) {
-      classNames += ' focused';
-    }
+    var classNames = cx({
+      entry: true,
+      focused: focused,
+      lastFocused: isLastElementInPath,
+      toggable: showToggler,
+      open: open
+    });
 
     return (
-      <div
+      <li
         ref="container"
         className={classNames}
         onMouseOver={enableHighlight ? this._onMouseOver : null}
-        onMouseOut={enableHighlight ? this._onMouseOut : null}
-      >
-        <div>
-          {toggler}
-          <span
-            className="key"
-            onClick={showToggler ? this._toggleClick : null}>
-            {name}
-          </span>
-          <span className="value">{value_output}</span>
-          {prefix ? <span className="prefix p">{prefix}</span> : null}
-        </div>
-        <div className="value-body" style={{display: this.state.open ? 'block' : 'none'}}>{content}</div>
+        onMouseOut={enableHighlight ? this._onMouseOut : null}>
+        {name}
+        <span className="value">{value_output}</span>
+        {prefix ? <span className="prefix p">{prefix}</span> : null}
+        <ul className="value-body" style={{display: this.state.open ? 'block' : 'none'}}>{content}</ul>
         {suffix ? <div className="suffix p">{suffix}</div> : null}
-      </div>
+      </li>
     );
     /* jshint ignore:end */
   }

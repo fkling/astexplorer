@@ -25,6 +25,7 @@
     "watchify": "^0.10.2"
   },
   "dependencies": {
-    "lodash.debounce": "^2.4.1"
+    "lodash.debounce": "^2.4.1",
+    "react": "^0.10.0"
   }
 }
