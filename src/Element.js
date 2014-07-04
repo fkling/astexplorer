@@ -4,11 +4,12 @@
 "use strict";
 
 var ArrayElements = require('./ArrayElements');
-var PropertyList = require('./PropertyList');
 var ArrayFormatter = require('./ArrayFormatter');
 var ObjectFormatter = require('./ObjectFormatter');
-var TokenName = require('./TokenName');
+var PropertyList = require('./PropertyList');
+var PubSub = require('pubsub-js');
 var React = require('react/addons');
+var TokenName = require('./TokenName');
 
 var cx = React.addons.classSet;
 
@@ -45,18 +46,17 @@ var Element = React.createClass({
   },
 
   _onMouseOver: function(e) {
-    var loc = this.props.value.loc;
-    global.cmHighlight(
-      {line: loc.start.line - 1, ch: loc.start.column},
-      {line: loc.end.line - 1, ch: loc.end.column}
-    );
     e.stopPropagation();
+    var loc = this.props.value.loc;
+    PubSub.publish('CM.HIGHLIGHT', {
+      from: {line: loc.start.line - 1, ch: loc.start.column},
+      to: {line: loc.end.line - 1, ch: loc.end.column}
+    });
   },
 
   _onMouseOut: function(e) {
-    if (this.getDOMNode().contains(e.target)) return;
-    global.cmClearHighlight();
     e.stopPropagation();
+    PubSub.publish('CM.CLEAR_HIGHLIGHT');
   },
 
   render: function() {

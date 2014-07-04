@@ -4,6 +4,7 @@
 "use strict";
 
 var Element = require('./Element');
+var PubSub = require('pubsub-js');
 var React = require('react/addons');
 
 var ASTOutput = React.createClass({
@@ -27,7 +28,7 @@ var ASTOutput = React.createClass({
       <ul
         id="AST"
         className="highlight"
-        onMouseLeave={function() {global.cmClearHighlight()}}>
+        onMouseLeave={function() {PubSub.publish('CM.CLEAR_HIGHLIGHT');}}>
         {tree}
       </ul>
     );

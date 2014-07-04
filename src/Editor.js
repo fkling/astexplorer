@@ -3,6 +3,7 @@
 /*global CodeMirror */
 "use strict";
 
+var PubSub = require('pubsub-js');
 var React = require('react/addons');
 
 var fs = require('fs');
@@ -33,7 +34,7 @@ var Editor = React.createClass({
   },
 
   componentDidMount: function() {
-    global.cm = this.codeMirror = CodeMirror(
+    this.codeMirror = CodeMirror(
       this.refs.container.getDOMNode(),
       {
         value: this.props.value,
@@ -42,16 +43,9 @@ var Editor = React.createClass({
     );
 
     if (this.props.onContentChange) {
-      this.codeMirror.on('change', this.onContentChange);
+      this.codeMirror.on('change', debounce(this.onContentChange, 200));
       this.onContentChange();
     }
-    this.codeMirror.on('keyup', function(cm, event) {
-      event.stopPropagation();
-    });
-
-    this.codeMirror.on('focus', function(cm, event) {
-      this.mark && this.mark.clear();
-    }.bind(this));
 
     this.codeMirror.on('cursorActivity', debounce(function(cm) {
        this.props.onActivity && this.props.onActivity(cm.getCursor());
@@ -60,27 +54,25 @@ var Editor = React.createClass({
     // This is some really ugly hack to change the highlight in the editor from
     // anywhere - don't do this in a real React app!
     this._markerRange = null;
-    global.cmHighlight = function(from, to) {
-      if (isEqual([from, to], this._markerRange)) return;
-      this._markerRange = [from, to];
+    this._mark = null;
+    PubSub.subscribe('CM.HIGHLIGHT', function(_, loc) {
+      if (isEqual(loc, this._markerRange)) return;
+      this._markerRange = loc;
       if (this.mark) this.mark.clear();
-      this.mark = this.codeMirror.markText(from, to, {className: 'marked'});
-    }.bind(this);
+      this._mark = this.codeMirror.markText(loc.from, loc.to, {className: 'marked'});
+    }.bind(this));
 
-    global.cmClearHighlight = function(from, to) {
+    PubSub.subscribe('CM.CLEAR_HIGHLIGHT', function() {
       this._markerRange = null;
-      if (this.mark) {
-        this.mark.clear();
-        this.mark = null;
+      if (this._mark) {
+        this._mark.clear();
+        this._mark = null;
       }
-    }.bind(this);
+    }.bind(this));
   },
 
   onContentChange: function() {
-    clearTimeout(this.timer);
-    this.timer = setTimeout(function() {
-      this.props.onContentChange(this.codeMirror.getValue());
-    }.bind(this), 200);
+    this.props.onContentChange(this.codeMirror.getValue());
   },
 
   onReset: function() {

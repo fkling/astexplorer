@@ -22,6 +22,7 @@ var PropertyList = React.createClass({
       if (key === 'loc') return;
       var v = this.props.object[key];
       return <Element
+        key={key}
         name={key}
         focusPath={focusPath}
         value={v}
