@@ -99,7 +99,7 @@ var Element = React.createClass({
           level={level + 1}
         />;
       if (this.state.open) {
-        if (value.type) {
+        if (isType) {
           value_output =
             <TokenName
               onClick={this._toggleClick}

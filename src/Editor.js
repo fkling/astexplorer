@@ -34,6 +34,8 @@ var Editor = React.createClass({
   },
 
   componentDidMount: function() {
+    this._CMHandlers = [];
+    this._subscriptions = [];
     this.codeMirror = CodeMirror(
       this.refs.container.getDOMNode(),
       {
@@ -43,36 +45,66 @@ var Editor = React.createClass({
     );
 
     if (this.props.onContentChange) {
-      this.codeMirror.on('change', debounce(this.onContentChange, 200));
       this.onContentChange();
     }
-
-    this.codeMirror.on('cursorActivity', debounce(function(cm) {
-       this.props.onActivity && this.props.onActivity(cm.getCursor());
-    }.bind(this), 250));
+    this._bindCMHandler('change', debounce(this.onContentChange, 200));
+    this._bindCMHandler('cursorActivity', debounce(this.onActivity, 200));
 
     // This is some really ugly hack to change the highlight in the editor from
     // anywhere - don't do this in a real React app!
     this._markerRange = null;
     this._mark = null;
-    PubSub.subscribe('CM.HIGHLIGHT', function(_, loc) {
-      if (isEqual(loc, this._markerRange)) return;
-      this._markerRange = loc;
-      if (this.mark) this.mark.clear();
-      this._mark = this.codeMirror.markText(loc.from, loc.to, {className: 'marked'});
-    }.bind(this));
+    this._subscriptions.push(
+      PubSub.subscribe('CM.HIGHLIGHT', function(_, loc) {
+        if (isEqual(loc, this._markerRange)) return;
+        this._markerRange = loc;
+        if (this.mark) this.mark.clear();
+        this._mark =
+          this.codeMirror.markText(loc.from, loc.to, {className: 'marked'});
+      }.bind(this)),
 
-    PubSub.subscribe('CM.CLEAR_HIGHLIGHT', function() {
-      this._markerRange = null;
-      if (this._mark) {
-        this._mark.clear();
-        this._mark = null;
-      }
-    }.bind(this));
+      PubSub.subscribe('CM.CLEAR_HIGHLIGHT', function() {
+        this._markerRange = null;
+        if (this._mark) {
+          this._mark.clear();
+          this._mark = null;
+        }
+      }.bind(this))
+    );
+  },
+
+  componentWillUnmount: function() {
+    this._unbindHandlers();
+    this._markerRange = null;
+    this._mark = null;
+    var container = this.refs.container.getDOMNode();
+    container.removeChild(container.children[0]);
+    this.codeMirror = null;
+  },
+
+  _bindCMHandler: function(event, handler) {
+    this._CMHandlers.push(event, handler);
+    this.codeMirror.on(event, handler);
+  },
+
+  _unbindHandlers: function() {
+    var cmHandlers = this._CMHandlers;
+    for (var i = 0; i < cmHandlers.length; i += 2) {
+      this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
+    }
+    this._subscriptions.forEach(function(token) {
+      PubSub.unsubscribe(token);
+    });
   },
 
   onContentChange: function() {
-    this.props.onContentChange(this.codeMirror.getValue());
+    this.props.onContentChange && this.props.onContentChange(
+      this.codeMirror.getValue()
+    );
+  },
+
+  onActivity: function() {
+    this.props.onActivity && this.props.onActivity(this.codeMirror.getCursor());
   },
 
   onReset: function() {
