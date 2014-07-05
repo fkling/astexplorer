@@ -25,6 +25,7 @@
     "watchify": "^0.10.2"
   },
   "dependencies": {
+    "codemirror": "^4.3.0",
     "lodash.debounce": "^2.4.1",
     "pubsub-js": "^1.4.2",
     "react": "^0.10.0"
