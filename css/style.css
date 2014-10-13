@@ -29,7 +29,7 @@ html {
 #Toolbar > button {
   margin: 0;
   height: 100%;
-  width: 80px;
+  min-width: 90px;
   border: 1px solid transparent;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
