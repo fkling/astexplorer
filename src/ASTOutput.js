@@ -12,6 +12,17 @@ var ASTOutput = React.createClass({
     ast: React.PropTypes.object,
     focusPath: React.PropTypes.array,
   },
+
+  shouldComponentUpdate: function(nextProps) {
+    var newFocusPath = nextProps.focusPath;
+
+    return this.props.ast !== nextProps.ast ||
+      this.props.focusPath.length !== newFocusPath.length ||
+      this.props.focusPath.some(function(obj, i) {
+        return obj !== newFocusPath[i];
+      });
+  },
+
   render: function() {
     /* jshint ignore:start */
     var tree = null;

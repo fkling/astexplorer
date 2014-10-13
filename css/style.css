@@ -3,16 +3,72 @@ html {
   box-sizing: border-box;
 }
 
+#Toolbar {
+  font-family: monospace;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #ddd;
+  color: #454545;
+  padding-left: 10px;
+  background-color: #efefef;
+}
+
+#Toolbar > h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: top;
+}
+
+#Toolbar > button {
+  margin: 0;
+  height: 100%;
+  width: 80px;
+  border: 1px solid transparent;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  font-size: 16px;
+  background-color: transparent;
+  display: inline-block;
+  vertical-align: top;
+  outline: none;
+  cursor: pointer;
+}
+
+#Toolbar > button:disabled,
+#Toolbar > button:disabled:hover,
+#Toolbar > button:disabled:active {
+  background-color: transparent;
+  color: #888;
+  cursor: default;
+}
+
+#Toolbar > button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#Toolbar > button:active {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+
 #Error {
-  font-size: 0.9em;
   position: absolute;
   z-index: 100;
   top: 0;
   left: 0;
-  width: 50%;
-  background-color: #A00;
+  right: 0;
+  background-color: #C00;
   color: white;
   text-align: center;
+  height: 35px;
+  line-height: 35px;
   font-family: Verdana, non-serif;
 }
 
@@ -33,15 +89,16 @@ html {
 
 #AST {
   cursor: default;
-  padding-top: 15px;
+  padding-top: 10px;
   box-sizing: border-box;
   font-family: monospace;
   margin: 0;
+  padding-left: 15px;
   width: 50%;
   overflow: auto;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 35px;
   bottom: 25px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -52,10 +109,9 @@ html {
 }
 
 #Editor {
-  padding-top: 15px;
   position: absolute;
   width: 50%;
-  top: 0;
+  top: 45px;
   left: 0;
   bottom: 25px;
   overflow: auto;

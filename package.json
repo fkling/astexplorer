@@ -19,7 +19,7 @@
     "gulp": "^3.8.5",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^0.3.1",
-    "react-tools": "^0.10.0",
+    "react-tools": "^0.11.2",
     "through": "^2.3.4",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^0.10.2"
@@ -28,7 +28,6 @@
     "codemirror": "^4.3.0",
     "lodash.debounce": "^2.4.1",
     "lodash.isequal": "^2.4.1",
-    "pubsub-js": "^1.4.2",
-    "react": "^0.10.0"
+    "pubsub-js": "^1.4.2"
   }
 }

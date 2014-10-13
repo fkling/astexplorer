@@ -7,30 +7,22 @@ require('codemirror/mode/javascript/javascript');
 var PubSub = require('pubsub-js');
 var React = require('react/addons');
 
-var fs = require('fs');
 var isEqual = require('lodash.isEqual');
 var debounce = require('lodash.debounce');
 
-
-var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
-
 var Editor = React.createClass({
-  getDefaultProps: function() {
-    return {
-      value: initialCode
-    };
+
+  getValue: function() {
+    return this.codeMirror && this.codeMirror.getValue();
   },
 
   componentWillReceiveProps: function(nextProps) {
-    /*
-    var value = this.codeMirror.getValue();
-    if (nextProps.value !== value) {
+    if (nextProps.value !== this.codeMirror.getValue()) {
       this.codeMirror.setValue(nextProps.value);
     }
-    */
   },
 
-  shouldComponentUpdate: function() {
+  shouldComponentUpdate: function(nextProps) {
     return false;
   },
 
@@ -46,10 +38,15 @@ var Editor = React.createClass({
     );
 
     if (this.props.onContentChange) {
-      this.onContentChange();
+      this._onContentChange();
     }
-    this._bindCMHandler('change', debounce(this.onContentChange, 200));
-    this._bindCMHandler('cursorActivity', debounce(this.onActivity, 200));
+    var debouncedActivityHandler = debounce(function(contentChange) {
+      this._onContentChange();
+      this._onActivity();
+    }.bind(this), 200);
+
+    this._bindCMHandler('change', debouncedActivityHandler);
+    this._bindCMHandler('cursorActivity', debouncedActivityHandler);
 
     // This is some really ugly hack to change the highlight in the editor from
     // anywhere - don't do this in a real React app!
@@ -98,13 +95,13 @@ var Editor = React.createClass({
     });
   },
 
-  onContentChange: function() {
+  _onContentChange: function() {
     this.props.onContentChange && this.props.onContentChange(
       this.codeMirror.getValue()
     );
   },
 
-  onActivity: function() {
+  _onActivity: function() {
     this.props.onActivity && this.props.onActivity(this.codeMirror.getCursor());
   },
 

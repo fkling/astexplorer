@@ -8,11 +8,7 @@ var React = require('react/addons');
 var ErrorMessage = React.createClass({
   render: function() {
     /* jshint ignore:start */
-    return (
-      <div id="Error">
-        Syntax error: {this.props.message}
-      </div>
-    );
+    return <div id="Error">{this.props.message}</div>;
     /* jshint ignore:end */
   }
 });
