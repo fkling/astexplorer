@@ -134,16 +134,10 @@ li.entry {
   position: relative;
 }
 
-.entry.focused.lastFocused > .value,
-.entry.focused:not(.open) > .key,
-.entry.focused:not(.open) > .value {
-}
-
-.entry.focused.lastFocused,
-.entry.focused:not(.open) {
+.CodeMirror .marked,
+.entry.focused {
   border-radius: 2px;
-  border-right: 5px solid #555;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,240,6,0.4);
 }
 
 .entry.toggable::before {
@@ -177,10 +171,6 @@ li.entry {
 
 .tokenName:hover {
   text-decoration: underline;
-}
-
-.CodeMirror .marked {
-  background-color: #fff206;
 }
 
 .CodeMirror {

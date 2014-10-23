@@ -4,7 +4,7 @@ var streamify = require('gulp-streamify');
 var uglify = require('gulp-uglify');
 var source = require('vinyl-source-stream');
 var watchify = require('watchify');
-var through = require('through');
+var through2 = require('through2');
 var reactTransform = require('react-tools').transform;
 
 var SRC = './src/app.js';
@@ -13,17 +13,16 @@ var DEST = './';
 
 function transform(filename) {
   var code = '';
-  return through(
-    function(data) { code += data;},
-    function() {
+  return through2(
+    function(chunk, _, cb) { code += chunk.toString(); cb(); },
+    function(cb) {
       try {
-        this.queue(reactTransform(code));
+        this.push(reactTransform(code.toString(), {harmony: true}));
       } catch(e) {
         console.log('Error:', filename, e);
       }
-      this.queue(null);
-    }
-  );
+      cb();
+  });
 }
 
 gulp.task('build', function() {
@@ -37,7 +36,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('watch', function() {
-  var bundler = watchify(SRC)
+  var bundler = watchify(browserify(watchify.args).add(SRC))
     .transform(transform)
     .transform('brfs')
     .on('update', rebundle);

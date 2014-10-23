@@ -11,7 +11,6 @@ var ObjectFormatter = React.createClass({
     var object = this.props.object;
     var keys = Object.keys(object).filter(function(k) { return k !== 'loc';});
 
-    /* jshint ignore:start */
     if (keys.length === 0) {
       return <span className="p">{"{ }"}</span>;
     }
@@ -25,7 +24,6 @@ var ObjectFormatter = React.createClass({
         </span>
       );
     }
-    /* jshint ignore:end */
   }
 });
 

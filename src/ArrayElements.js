@@ -8,6 +8,7 @@ var React = require('react/addons');
 var ArrayElements = React.createClass({
   getDefaultProps: function() {
     return {
+      deepOpen: false,
       array: [],
     };
   },
@@ -17,16 +18,17 @@ var ArrayElements = React.createClass({
     var focusPath = this.props.focusPath;
     var level = this.props.level;
 
-    /* jshint ignore:start */
-    var elements = this.props.array.map(function(v) {
-      return <Element
-        focusPath={focusPath}
-        value={v}
-        level={level}
-      />;
-    }, this);
+    var elements = this.props.array.map(
+      (v, i) =>
+        <Element
+          key={i}
+          focusPath={focusPath}
+          deepOpen={this.props.deepOpen}
+          value={v}
+          level={level}
+        />
+    );
     return <div>{elements}</div>;
-    /* jshint ignore:end */
   }
 });
 

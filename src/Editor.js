@@ -22,7 +22,7 @@ var Editor = React.createClass({
     }
   },
 
-  shouldComponentUpdate: function(nextProps) {
+  shouldComponentUpdate: function() {
     return false;
   },
 
@@ -40,7 +40,7 @@ var Editor = React.createClass({
     if (this.props.onContentChange) {
       this._onContentChange();
     }
-    var debouncedActivityHandler = debounce(function(contentChange) {
+    var debouncedActivityHandler = debounce(function() {
       this._onContentChange();
       this._onActivity();
     }.bind(this), 200);
@@ -110,11 +110,9 @@ var Editor = React.createClass({
   },
 
   render: function() {
-    /* jshint ignore:start */
     return (
       <div id="Editor" ref="container" />
     );
-    /* jshint ignore:end */
   }
 });
 

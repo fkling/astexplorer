@@ -21,7 +21,7 @@ var Element = React.createClass({
   propTypes: {
     name: React.PropTypes.string,
     value: React.PropTypes.any,
-    open: React.PropTypes.bool,
+    deepOpen: React.PropTypes.bool,
     focused: React.PropTypes.bool,
     focusPath: React.PropTypes.array,
     level: React.PropTypes.number,
@@ -29,20 +29,35 @@ var Element = React.createClass({
 
   getInitialState: function() {
     // Some elements should be open by default
-    var open = this.props.open || this.props.name === 'body';
+    var open =
+      this.props.level === 0 ||
+      this.props.deepOpen ||
+      this.props.name === 'body';
+
     return {
-      open: open
+      open: open,
+      deepOpen: this.props.deepOpen,
+      over: false,
     };
   },
 
-  componentWillReceiveProps: function(props) {
+  componentWillReceiveProps: function(nextProps) {
     this.setState({
-      open: this.state.open || props.open
+      open: nextProps.deepOpen || this.state.open,
+      deepOpen: nextProps.deepOpen,
     });
   },
 
-  _toggleClick: function() {
-    this.setState({open: !this.state.open});
+  _toggleClick: function(event) {
+    this.setState({
+      open: event.shiftKey  || !this.state.open,
+      deepOpen: event.shiftKey,
+    }, () => {
+      // this is necessary to preserve state of child nodes on rerender
+      this.setState({
+        deepOpen: false
+      });
+    });
   },
 
   _onMouseOver: function(e) {
@@ -54,50 +69,42 @@ var Element = React.createClass({
     });
   },
 
-  _onMouseOut: function(e) {
-    e.stopPropagation();
+  _onMouseLeave: function() {
     PubSub.publish('CM.CLEAR_HIGHLIGHT');
   },
 
   render: function() {
-    /* jshint ignore:start */
     var value = this.props.value;
     var value_output = null;
     var content = null;
     var prefix = null;
     var suffix = null;
-    var showToggler = true;
+    var showToggler = false;
     var isType = value && value.type;
     var enableHighlight = isType && value.type !== 'Program';
-    var level = this.props.level;
     var focusPath = this.props.focusPath;
-    var focused = level < focusPath.length && value === focusPath[level];
-    var isLastElementInPath = isType && value === focusPath[focusPath.length- 1];
     var open = this.state.open;
+    var indexInPath = focusPath.indexOf(value);
+    var focused = value && value.type !== 'Program' &&
+      indexInPath > -1 &&
+      (!open || indexInPath === focusPath.length - 1);
 
     if (isArray(value)) {
-      content =
-        <ArrayElements
-          focusPath={focusPath}
-          array={value}
-          level={level + 1}
-        />;
       if (value.length > 0 && open) {
         prefix = "[";
         suffix = "]";
+        content =
+          <ArrayElements
+            focusPath={focusPath}
+            array={value}
+            deepOpen={this.state.deepOpen}
+          />;
       } else {
         value_output = <ArrayFormatter array={value} />;
-        showToggler = value.length > 0;
       }
+      showToggler = value.length > 0;
     }
     else if (value && typeof value === "object") {
-      var valueIsType = !!value.type;
-      content =
-        <PropertyList
-          focusPath={focusPath}
-          object={value}
-          level={level + 1}
-        />;
       if (this.state.open) {
         if (isType) {
           value_output =
@@ -108,6 +115,12 @@ var Element = React.createClass({
         }
         prefix = ' {';
         suffix = '}';
+        content =
+          <PropertyList
+            focusPath={focusPath}
+            object={value}
+            deepOpen={this.state.deepOpen}
+          />;
       }
       else {
         value_output =
@@ -116,6 +129,7 @@ var Element = React.createClass({
             object={value}
           />;
       }
+      showToggler = Object.keys(value).length > 0;
     }
     else {
       value_output =
@@ -137,7 +151,6 @@ var Element = React.createClass({
     var classNames = cx({
       entry: true,
       focused: focused,
-      lastFocused: isLastElementInPath,
       toggable: showToggler,
       open: open
     });
@@ -147,15 +160,14 @@ var Element = React.createClass({
         ref="container"
         className={classNames}
         onMouseOver={enableHighlight ? this._onMouseOver : null}
-        onMouseOut={enableHighlight ? this._onMouseOut : null}>
+        onMouseLeave={enableHighlight ? this._onMouseLeave : null}>
         {name}
         <span className="value">{value_output}</span>
         {prefix ? <span className="prefix p">{prefix}</span> : null}
-        <ul className="value-body" style={{display: this.state.open ? 'block' : 'none'}}>{content}</ul>
+        <ul className="value-body">{content}</ul>
         {suffix ? <div className="suffix p">{suffix}</div> : null}
       </li>
     );
-    /* jshint ignore:end */
   }
 });
 

@@ -9,7 +9,6 @@ var ASTOutput = require('./ASTOutput');
 var Editor = require('./Editor');
 var ErrorMessage = require('./ErrorMessage');
 var React = require('react/addons');
-var Parse = require('./Parse');
 var Snippet = require('./Snippet');
 var Toolbar = require('./Toolbar');
 
@@ -163,9 +162,7 @@ var App = React.createClass({
    },
 
   render: function() {
-    /* jshint ignore:start */
     var revision = this.state.revision;
-    console.log(this.state.content == initialCode);
     return (
       <div>
         <Toolbar
@@ -189,16 +186,13 @@ var App = React.createClass({
         <ASTOutput focusPath={this.state.focusPath} ast={this.state.ast} />
       </div>
     );
-    /* jshint ignore:end */
   }
 });
 
 function render(props) {
-  React.renderComponent(
-    /* jshint ignore:start */
+  React.render(
     <App {...props} />,
     document.getElementById('container')
-    /* jshint ignore:end */
   );
 }
 

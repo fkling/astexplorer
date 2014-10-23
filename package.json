@@ -14,13 +14,13 @@
   "license": "MIT",
   "devDependencies": {
     "brfs": "^1.1.1",
-    "browserify": "^4.2.0",
+    "browserify": "^7.0.0",
     "gulp": "^3.8.5",
     "gulp-streamify": "0.0.5",
-    "gulp-uglify": "^0.3.1",
-    "through": "^2.3.4",
-    "vinyl-source-stream": "^0.1.1",
-    "watchify": "^0.10.2"
+    "gulp-uglify": "^1.0.0",
+    "through2": "^0.6.3",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.1.1"
   },
   "dependencies": {
     "codemirror": "^4.3.0",

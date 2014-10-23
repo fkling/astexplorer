@@ -24,14 +24,12 @@ var ASTOutput = React.createClass({
   },
 
   render: function() {
-    /* jshint ignore:start */
     var tree = null;
     if (this.props.ast) {
       tree =
         <Element
           focusPath={this.props.focusPath}
           value={this.props.ast}
-          open={true}
           level={0}
         />;
     }
@@ -43,7 +41,6 @@ var ASTOutput = React.createClass({
         {tree}
       </ul>
     );
-    /* jshint ignore:end */
   }
 });
 

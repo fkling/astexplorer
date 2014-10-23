@@ -10,7 +10,6 @@ var ArrayFormatter = React.createClass({
     var array = this.props.array;
     var count = array.length;
 
-    /* jshint ignore:start */
     if (count === 0) {
       return <span className="p">{"[ ]"}</span>;
     }
@@ -25,7 +24,6 @@ var ArrayFormatter = React.createClass({
         </span>
       );
     }
-    /* jshint ignore:end */
   }
 });
 
