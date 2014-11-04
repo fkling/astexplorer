@@ -5,6 +5,7 @@
 
 var React = require('react/addons');
 var cx = React.addons.classSet;
+var esprima = require('esprima-fb');
 
 var Toolbar = React.createClass({
   propTypes: {
@@ -50,6 +51,9 @@ var Toolbar = React.createClass({
           />
           Fork
         </button>
+        <div id="parser">
+          Parser: esprima-fb-{esprima.version}
+        </div>
       </div>
     );
   },
