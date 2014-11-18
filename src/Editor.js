@@ -56,7 +56,7 @@ var Editor = React.createClass({
       PubSub.subscribe('CM.HIGHLIGHT', function(_, loc) {
         if (isEqual(loc, this._markerRange)) return;
         this._markerRange = loc;
-        if (this.mark) this.mark.clear();
+        if (this._mark) this._mark.clear();
         this._mark =
           this.codeMirror.markText(loc.from, loc.to, {className: 'marked'});
       }.bind(this)),
