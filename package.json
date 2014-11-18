@@ -15,19 +15,20 @@
   "devDependencies": {
     "brfs": "^1.1.1",
     "browserify": "^4.2.0",
-    "esprima-fb": "^7001.1.0-dev-harmony-fb",
     "gulp": "^3.8.5",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^0.3.1",
-    "react-tools": "^0.11.2",
     "through": "^2.3.4",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^0.10.2"
   },
   "dependencies": {
     "codemirror": "^4.3.0",
+    "esprima-fb": "^8001.1001.0-dev-harmony-fb",
     "lodash.debounce": "^2.4.1",
     "lodash.isequal": "^2.4.1",
-    "pubsub-js": "^1.4.2"
+    "pubsub-js": "^1.4.2",
+    "react": "^0.12.1",
+    "react-tools": "^0.12.x"
   }
 }
