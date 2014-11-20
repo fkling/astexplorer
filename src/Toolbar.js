@@ -38,7 +38,9 @@ var Toolbar = React.createClass({
         </button>
         <button
           type="button"
-          disabled={this.props.saving || this.props.forking}
+          disabled={
+            !this.props.canFork || this.props.saving || this.props.forking
+          }
           onClick={this.props.onFork}>
           <i
             className={cx({

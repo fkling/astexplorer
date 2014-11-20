@@ -165,6 +165,7 @@ var App = React.createClass({
   render: function() {
     /* jshint ignore:start */
     var revision = this.state.revision;
+    console.log(this.state.content == initialCode);
     return (
       <div>
         <Toolbar
@@ -172,7 +173,11 @@ var App = React.createClass({
           saving={this.state.saving}
           onSave={this._onSave}
           onFork={this._onFork}
-          canSave={!revision || revision.get('code') !== this.state.content}
+          canSave={
+            this.state.content !== initialCode && !revision ||
+            revision && revision.get('code') !== this.state.content
+          }
+          canFork={!!revision}
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
         <Editor
