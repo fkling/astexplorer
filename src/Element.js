@@ -5,6 +5,7 @@
 
 var ArrayElements = require('./ArrayElements');
 var ArrayFormatter = require('./ArrayFormatter');
+var Immutable = require('immutable');
 var ObjectFormatter = require('./ObjectFormatter');
 var PropertyList = require('./PropertyList');
 var PubSub = require('pubsub-js');
@@ -12,6 +13,12 @@ var React = require('react/addons');
 var TokenName = require('./TokenName');
 
 var cx = React.addons.classSet;
+
+var RangeRecord = Immutable.Record({line: 0, ch: 0});
+var LocRecord = Immutable.Record({
+  from: new RangeRecord(),
+  to: new RangeRecord()
+});
 
 function isArray(v) {
   return Object.prototype.toString.call(v) === '[object Array]';
@@ -22,7 +29,6 @@ var Element = React.createClass({
     name: React.PropTypes.string,
     value: React.PropTypes.any,
     deepOpen: React.PropTypes.bool,
-    focused: React.PropTypes.bool,
     focusPath: React.PropTypes.array,
     level: React.PropTypes.number,
   },
@@ -36,9 +42,41 @@ var Element = React.createClass({
 
     return {
       open: open,
-      deepOpen: this.props.deepOpen,
-      over: false,
+      deepOpen: this.props.deepOpen
     };
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    var thisValue = this.props.value;
+    var nextValue = nextProps.value;
+
+    var toggleChange = this.state.open !== nextState.open ||
+      this.state.deepOpen !== nextState.deepOpen;
+    if (toggleChange) {
+      return true;
+    }
+
+    var possibleFocusChange =
+      this.state.open && this.props.focusPath.indexOf(thisValue) > -1 ||
+      nextProps.focusPath.indexOf(nextValue) > -1 !==
+      this.props.focusPath.indexOf(thisValue) > -1;
+
+    if (possibleFocusChange) {
+      return true;
+    }
+
+    var noVisualChanges =
+      this.props.name === nextProps.name &&
+      (thisValue === nextValue || thisValue.type === nextValue.type);
+
+    if (noVisualChanges) {
+      return false;
+    }
+
+    return this.props.name !== nextProps.name ||
+      this.state.open !== nextState.open ||
+      this.props.deepOpen !== nextProps.deepOpen ||
+      thisValue !== nextValue;
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -52,25 +90,32 @@ var Element = React.createClass({
     this.setState({
       open: event.shiftKey  || !this.state.open,
       deepOpen: event.shiftKey,
-    }, () => {
-      // this is necessary to preserve state of child nodes on rerender
-      this.setState({
-        deepOpen: false
-      });
     });
   },
 
   _onMouseOver: function(e) {
     e.stopPropagation();
     var loc = this.props.value.loc;
-    PubSub.publish('CM.HIGHLIGHT', {
-      from: {line: loc.start.line - 1, ch: loc.start.column},
-      to: {line: loc.end.line - 1, ch: loc.end.column}
-    });
+    PubSub.publish('CM.HIGHLIGHT', new LocRecord({
+      from: new RangeRecord({
+        line: loc.start.line - 1,
+        ch: loc.start.column
+      }),
+      to: new RangeRecord({
+        line: loc.end.line - 1,
+        ch: loc.end.column
+      })
+    }));
   },
 
   _onMouseLeave: function() {
     PubSub.publish('CM.CLEAR_HIGHLIGHT');
+  },
+
+  _isFocused: function(level, path, value, open) {
+    return level !== 0 &&
+      path.indexOf(value) > -1 &&
+      (!open || Immutable.is(path[path.length - 1], value));
   },
 
   render: function() {
@@ -84,10 +129,7 @@ var Element = React.createClass({
     var enableHighlight = isType && value.type !== 'Program';
     var focusPath = this.props.focusPath;
     var open = this.state.open;
-    var indexInPath = focusPath.indexOf(value);
-    var focused = value && value.type !== 'Program' &&
-      indexInPath > -1 &&
-      (!open || indexInPath === focusPath.length - 1);
+    var focused = this._isFocused(this.props.level, focusPath, value, open);
 
     if (isArray(value)) {
       if (value.length > 0 && open) {
@@ -97,7 +139,7 @@ var Element = React.createClass({
           <ArrayElements
             focusPath={focusPath}
             array={value}
-            deepOpen={this.state.deepOpen}
+            deepOpen={this.props.deepOpen}
           />;
       } else {
         value_output = <ArrayFormatter array={value} />;

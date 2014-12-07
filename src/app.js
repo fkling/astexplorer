@@ -75,7 +75,7 @@ var App = React.createClass({
         snippet: snippet,
         revision: revision,
         content: revision.get('code'),
-        focusPath: [],
+        focusPath: []
       });
     }
   },
@@ -90,7 +90,9 @@ var App = React.createClass({
     });
   },
 
-  onContentChange: function(content) {
+  onContentChange: function(data) {
+    var content = data.value;
+    var cursor = data.cursor;
     if (this.state.ast && this.state.content === content) {
       return;
     }
@@ -110,16 +112,21 @@ var App = React.createClass({
       this.setState({
         content: content,
         ast: ast,
+        focusPath: this._getFocusPath(ast, cursor),
         error: null
       });
     }
   },
 
   onActivity: function(cursorPos) {
-    var focus = {line: cursorPos.line + 1, column: cursorPos.ch};
     this.setState({
-      focusPath: getFocusPath(this.state.ast, focus)
+      focusPath: this._getFocusPath(this.state.ast, cursorPos)
     });
+  },
+
+  _getFocusPath: function(ast, cursorPos) {
+    var focus = {line: cursorPos.line + 1, column: cursorPos.ch};
+    return getFocusPath(ast, focus);
   },
 
   _showError: function(msg) {
