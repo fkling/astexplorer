@@ -23,8 +23,11 @@ var ASTOutput = React.createClass({
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
+    var newFocusPath = nextProps.focusPath;
+
     return this.props.ast !== nextProps.ast ||
-      this.props.cursorPos !== nextProps.cursorPos ||
+      this.props.focusPath.length !== newFocusPath.length ||
+      this.props.focusPath.some((obj, i) => obj !== newFocusPath[i]) ||
       this.state.output !== nextState.output;
   },
 
@@ -41,9 +44,9 @@ var ASTOutput = React.createClass({
             <ul
               id="tree"
               className="container"
-              onMouseLeave={function() {PubSub.publish('CM.CLEAR_HIGHLIGHT');}}>
+              onMouseLeave={function() {PubSub.publish('CLEAR_HIGHLIGHT');}}>
               <Element
-                cursorPos={this.props.cursorPos}
+                focusPath={this.props.focusPath}
                 value={this.props.ast}
                 level={0}
               />
@@ -53,11 +56,7 @@ var ASTOutput = React.createClass({
           output =
             <JSONEditor
               className="container"
-              value={JSON.stringify(
-                this.props.ast,
-                (k,v) => k !== 'loc' ? v : undefined,
-                2
-              )}
+              value={JSON.stringify(this.props.ast, null, 2)}
             />;
           break;
       }

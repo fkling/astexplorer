@@ -1,7 +1,7 @@
 "use strict";
 
 function isInRange(range, pos) {
-  return range[0] >= pos && range[1] <= pos;
+  return pos >= range[0] && pos <= range[1];
 }
 
 function getFocusPath(node, pos, path) {
@@ -18,8 +18,8 @@ function getFocusPath(node, pos, path) {
     }
   }
   for (var prop in node) {
-    if (prop !== 'loc' && node[prop] && typeof node[prop] === 'object') {
-      var childPath = getFocusPath(node[prop], focus);
+    if (prop !== 'range' && node[prop] && typeof node[prop] === 'object') {
+      var childPath = getFocusPath(node[prop], pos);
       if (childPath.length > 0) {
         if (!nodePushed) {
           path.push(node);

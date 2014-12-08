@@ -66,7 +66,7 @@ var App = React.createClass({
       PubSub.publish('CM.HIGHLIGHT', astNode.range);
     });
     PubSub.subscribe('CLEAR_HIGHLIGHT', function(_, astNode) {
-      PubSub.publish('CM.CLEAR_HIGHLIGHT', astNode.range);
+      PubSub.publish('CM.CLEAR_HIGHLIGHT', astNode && astNode.range);
     });
   },
 
@@ -119,7 +119,7 @@ var App = React.createClass({
       this.setState({
         content: content,
         ast: ast,
-        focusPath: this._getFocusPath(ast, cursor),
+        focusPath: getFocusPath(ast, cursor),
         error: null
       });
     }
@@ -127,13 +127,8 @@ var App = React.createClass({
 
   onActivity: function(cursorPos) {
     this.setState({
-      focusPath: this._getFocusPath(this.state.ast, cursorPos)
+      focusPath: getFocusPath(this.state.ast, cursorPos)
     });
-  },
-
-  _getFocusPath: function(ast, cursorPos) {
-    var focus = {line: cursorPos.line + 1, column: cursorPos.ch};
-    return getFocusPath(ast, focus);
   },
 
   _showError: function(msg) {
