@@ -23,7 +23,6 @@ var Editor = React.createClass({
       var info = this.codeMirror.getScrollInfo();
       this.codeMirror.setValue(nextProps.value);
       this.codeMirror.scrollTo(info.left, info.top);
-      this._updateFolds();
     }
   },
 
@@ -32,7 +31,6 @@ var Editor = React.createClass({
   },
 
   componentDidMount: function() {
-    this._folds = [];
     this._CMHandlers = [];
     this._subscriptions = [];
     this.codeMirror = CodeMirror(
@@ -40,6 +38,7 @@ var Editor = React.createClass({
       {
         value: this.props.value,
         mode: {name: "javascript", json: true},
+        readOnly: true,
         lineNumbers: true,
         foldGutter: true,
         gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
@@ -49,21 +48,6 @@ var Editor = React.createClass({
     if (this.props.onContentChange) {
       this._onContentChange();
     }
-    var debouncedActivityHandler = debounce(function() {
-      this._onContentChange();
-      this._onActivity();
-    }.bind(this), 200);
-
-    this._bindCMHandler('change', () => {
-      debouncedActivityHandler();
-      this._folds = [];
-      this._updateFolds();
-    });
-    this._bindCMHandler('cursorActivity', debouncedActivityHandler);
-    this._bindCMHandler('viewportChange', this._updateFolds);
-    this._bindCMHandler('fold', this._updateFolds);
-
-    this._updateFolds();
   },
 
   componentWillUnmount: function() {
@@ -71,25 +55,6 @@ var Editor = React.createClass({
     var container = this.refs.container.getDOMNode();
     container.removeChild(container.children[0]);
     this.codeMirror = null;
-    this._folds = null;
-  },
-
-  _updateFolds: debounce(function() {
-    var vp = this.codeMirror.getViewport();
-    this._foldLocs(vp.from, vp.to);
-  }, 90),
-
-  _foldLocs: function(from, to) {
-    var cur = from;
-    this.codeMirror.operation(() => {
-      this.codeMirror.eachLine(from, to, line => {
-        if (line.text.indexOf('"loc":') > -1 && !this._folds[cur]) {
-          this._folds[cur] = true;
-          this.codeMirror.foldCode(cur);
-        }
-        cur += 1;
-      });
-    });
   },
 
   _bindCMHandler: function(event, handler) {

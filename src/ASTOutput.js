@@ -58,7 +58,11 @@ var ASTOutput = React.createClass({
           output =
             <JSONEditor
               className="container"
-              value={JSON.stringify(this.props.ast, null, 2)}
+              value={JSON.stringify(
+                this.props.ast,
+                (k,v) => k !== 'loc' ? v : undefined,
+                2
+              )}
             />;
           break;
       }
