@@ -4,7 +4,6 @@
 
 var CodeMirror = require('codemirror');
 require('codemirror/mode/javascript/javascript');
-var Immutable = require('immutable');
 var PubSub = require('pubsub-js');
 var React = require('react/addons');
 
@@ -48,30 +47,34 @@ var Editor = React.createClass({
       this._updateTimer = setTimeout(this._onActivity, 100);
     });
 
-    // This is some really ugly hack to change the highlight in the editor from
-    // anywhere - don't do this in a real React app!
     this._markerRange = null;
     this._mark = null;
     this._subscriptions.push(
-      PubSub.subscribe('CM.HIGHLIGHT', function(_, loc) {
-        if (Immutable.is(loc, this._markerRange)) return;
-        this._markerRange = loc;
+      PubSub.subscribe('CM.HIGHLIGHT', (_, range) => {
+        var doc = this.codeMirror.getDoc();
+        this._markerRange = range;
+        // We only want one mark at a time.
         if (this._mark) this._mark.clear();
-        this._mark =
-          this.codeMirror.markText(
-            loc.from,
-            loc.to,
-            {className: 'marked'}
-          );
-      }.bind(this)),
+        this._mark = this.codeMirror.markText(
+          doc.posFromIndex(range[0]),
+          doc.posFromIndex(range[1]),
+          {className: 'marked'}
+        );
+      }),
 
-      PubSub.subscribe('CM.CLEAR_HIGHLIGHT', function() {
-        this._markerRange = null;
-        if (this._mark) {
-          this._mark.clear();
-          this._mark = null;
+      PubSub.subscribe('CM.CLEAR_HIGHLIGHT', (_, range) => {
+        if (!range ||
+          this._markerRange &&
+          range[0] === this._markerRange[0] &&
+          range[1] === this._markerRange[1]
+        ) {
+          this._markerRange = null;
+          if (this._mark) {
+            this._mark.clear();
+            this._mark = null;
+          }
         }
-      }.bind(this))
+      })
     );
   },
 
@@ -100,14 +103,17 @@ var Editor = React.createClass({
   },
 
   _onContentChange: function() {
+    var doc = this.codeMirror.getDoc();
     this.props.onContentChange && this.props.onContentChange({
-      value: this.codeMirror.getValue(),
-      cursor: this.codeMirror.getCursor()
+      value: doc.getValue(),
+      cursor: doc.indexFromPos(doc.getCursor())
     });
   },
 
   _onActivity: function() {
-    this.props.onActivity && this.props.onActivity(this.codeMirror.getCursor());
+    this.props.onActivity && this.props.onActivity(
+      this.codeMirror.getDoc().indexFromPos(this.codeMirror.getCursor())
+    );
   },
 
   onReset: function() {

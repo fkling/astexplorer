@@ -9,7 +9,7 @@ var TokenName = require('./TokenName');
 var ObjectFormatter = React.createClass({
   render: function() {
     var object = this.props.object;
-    var keys = Object.keys(object).filter(function(k) { return k !== 'loc';});
+    var keys = Object.keys(object).filter(k => k !== 'range');
 
     if (keys.length === 0) {
       return <span className="p">{"{ }"}</span>;

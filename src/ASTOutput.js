@@ -23,13 +23,8 @@ var ASTOutput = React.createClass({
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
-    var newFocusPath = nextProps.focusPath;
-
     return this.props.ast !== nextProps.ast ||
-      this.props.focusPath.length !== newFocusPath.length ||
-      this.props.focusPath.some(function(obj, i) {
-        return obj !== newFocusPath[i];
-      }) ||
+      this.props.cursorPos !== nextProps.cursorPos ||
       this.state.output !== nextState.output;
   },
 
@@ -48,7 +43,7 @@ var ASTOutput = React.createClass({
               className="container"
               onMouseLeave={function() {PubSub.publish('CM.CLEAR_HIGHLIGHT');}}>
               <Element
-                focusPath={this.props.focusPath}
+                cursorPos={this.props.cursorPos}
                 value={this.props.ast}
                 level={0}
               />

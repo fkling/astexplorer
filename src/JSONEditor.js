@@ -9,8 +9,6 @@ require('codemirror/addon/fold/foldcode');
 require('codemirror/addon/fold/brace-fold');
 var React = require('react/addons');
 
-var debounce = require('lodash.debounce');
-
 var Editor = React.createClass({
 
   getValue: function() {

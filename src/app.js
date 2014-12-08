@@ -8,6 +8,7 @@ require('./Object.es7.shim');
 var ASTOutput = require('./ASTOutput');
 var Editor = require('./Editor');
 var ErrorMessage = require('./ErrorMessage');
+var PubSub = require('pubsub-js');
 var React = require('react/addons');
 var Snippet = require('./Snippet');
 var Toolbar = require('./Toolbar');
@@ -40,7 +41,6 @@ var App = React.createClass({
     };
   },
 
-
   componentDidMount: function() {
     if (this.props.error) {
       this._showError(this.props.error);
@@ -61,6 +61,13 @@ var App = React.createClass({
         );
       }
     }.bind(this);
+
+    PubSub.subscribe('HIGHLIGHT', function(_, astNode) {
+      PubSub.publish('CM.HIGHLIGHT', astNode.range);
+    });
+    PubSub.subscribe('CLEAR_HIGHLIGHT', function(_, astNode) {
+      PubSub.publish('CM.CLEAR_HIGHLIGHT', astNode.range);
+    });
   },
 
   _setRevision: function(snippet, revision) {
@@ -82,7 +89,7 @@ var App = React.createClass({
 
   _clearRevision: function() {
     this.setState({
-      ast: esprima.parse(initialCode, {loc: true}),
+      ast: esprima.parse(initialCode, {range: true}),
       focusPath: [],
       content: initialCode,
       snippet: null,
@@ -99,7 +106,7 @@ var App = React.createClass({
 
     var ast;
     try {
-      ast = esprima.parse(content, {loc: true});
+      ast = esprima.parse(content, {range: true});
     }
     catch(e) {
       this.setState({

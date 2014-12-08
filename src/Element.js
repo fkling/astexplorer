@@ -5,7 +5,6 @@
 
 var ArrayElements = require('./ArrayElements');
 var ArrayFormatter = require('./ArrayFormatter');
-var Immutable = require('immutable');
 var ObjectFormatter = require('./ObjectFormatter');
 var PropertyList = require('./PropertyList');
 var PubSub = require('pubsub-js');
@@ -13,12 +12,6 @@ var React = require('react/addons');
 var TokenName = require('./TokenName');
 
 var cx = React.addons.classSet;
-
-var RangeRecord = Immutable.Record({line: 0, ch: 0});
-var LocRecord = Immutable.Record({
-  from: new RangeRecord(),
-  to: new RangeRecord()
-});
 
 function isArray(v) {
   return Object.prototype.toString.call(v) === '[object Array]';
@@ -95,27 +88,17 @@ var Element = React.createClass({
 
   _onMouseOver: function(e) {
     e.stopPropagation();
-    var loc = this.props.value.loc;
-    PubSub.publish('CM.HIGHLIGHT', new LocRecord({
-      from: new RangeRecord({
-        line: loc.start.line - 1,
-        ch: loc.start.column
-      }),
-      to: new RangeRecord({
-        line: loc.end.line - 1,
-        ch: loc.end.column
-      })
-    }));
+    PubSub.publish('HIGHLIGHT', this.props.value);
   },
 
   _onMouseLeave: function() {
-    PubSub.publish('CM.CLEAR_HIGHLIGHT');
+    PubSub.publish('CLEAR_HIGHLIGHT', this.props.value);
   },
 
   _isFocused: function(level, path, value, open) {
     return level !== 0 &&
       path.indexOf(value) > -1 &&
-      (!open || Immutable.is(path[path.length - 1], value));
+      (!open || path[path.length - 1] === value);
   },
 
   render: function() {

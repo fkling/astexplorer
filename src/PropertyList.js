@@ -18,7 +18,7 @@ var PropertyList = React.createClass({
     var level = this.props.level;
 
     var properties = Object.keys(this.props.object).map(key => {
-      if (key === 'loc') return;
+      if (key === 'range') return;
       var v = this.props.object[key];
       return (
         <Element

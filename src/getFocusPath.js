@@ -1,26 +1,15 @@
 "use strict";
 
-function isInRange(loc, focus) {
-  return loc.start.line < focus.line &&
-         loc.end.line > focus.line ||
-         loc.start.line === focus.line &&
-         loc.end.line !== focus.line &&
-         loc.start.column <= focus.column ||
-         loc.start.line !== focus.line &&
-         loc.end.line === focus.line &&
-         loc.end.column >= focus.column ||
-         loc.start.line === focus.line &&
-         loc.end.line === focus.line &&
-         loc.start.column <= focus.column &&
-         loc.end.column >= focus.column;
+function isInRange(range, pos) {
+  return range[0] >= pos && range[1] <= pos;
 }
 
-function getFocusPath(node, focus, path) {
+function getFocusPath(node, pos, path) {
   path = path || [];
   var nodePushed = false;
 
-  if (node.loc) {
-    if (isInRange(node.loc, focus)) {
+  if (node.range) {
+    if (isInRange(node.range, pos)) {
       path.push(node);
       nodePushed = true;
     }
