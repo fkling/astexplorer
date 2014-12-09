@@ -18,6 +18,11 @@ developers who want to create AST transforms, e.g. with
 ### Features
 
 - Save and fork code snippets. Copy the URL to share them.
+- Copying an AST or dropping a file containing an AST into the window will
+parse the AST and update the code using [escodegen](https://github.com/estools/escodegen).
+- Otherwise, the content of texteditor will be replaced with the content of the file (i.e.
+you can drag and drop JS files).
+- shift+click on a node expands the full subtree.
 - Hovering over a node highlights the corresponding text in the source code:
 ![source highlight](assets/source.png)
 - Editing the source or moving the cursor around will automatically highlight the

@@ -15,6 +15,7 @@ var SplitPane = require('./SplitPane');
 var Toolbar = require('./Toolbar');
 
 var getFocusPath = require('./getFocusPath');
+var escodegen = require('escodegen');
 var esprima = require('esprima-fb');
 var fs = require('fs');
 
@@ -29,7 +30,7 @@ var App = React.createClass({
     var snippet = this.props.snippet;
     var revision = this.props.revision;
     if ((snippet && !revision) || (!snippet && revision)) {
-      throw Error('Most set both, snippet and revision');
+      throw Error('Must set both, snippet and revision');
     }
     return {
       forking: false,
@@ -69,6 +70,75 @@ var App = React.createClass({
     PubSub.subscribe('CLEAR_HIGHLIGHT', function(_, astNode) {
       PubSub.publish('CM.CLEAR_HIGHLIGHT', astNode && astNode.range);
     });
+
+    // Handle pastes
+    global.document.addEventListener('paste', event => {
+      if (!event.clipboardData) {
+        // No browser support? :(
+        return;
+      }
+      var cbdata = event.clipboardData;
+      // Plain text
+      if (cbdata.types.indexOf('text/plain') > -1) {
+        try {
+          this._handlePastedText(cbdata.getData('text/plain'));
+          event.preventDefault();
+          event.stopPropagation();
+        } catch(ex) {
+          if (event.target.nodeName !== 'TEXTAREA') {
+            this._showError('Cannot process pasted AST: ' + ex.message);
+            throw ex;
+          }
+        }
+      }
+    });
+
+    var acceptedFileTypes = {
+      'text/javascript': true,
+      'application/json': true,
+      'text/plain': true
+    };
+
+    // Handle file drops
+    global.document.body.addEventListener('dragover', event => {
+      event.preventDefault();
+    });
+    global.document.body.addEventListener('drop', event => {
+      var files = event.dataTransfer.files;
+      var type = files[0].type;
+      if (!acceptedFileTypes[type]) {
+        return;
+      }
+      event.preventDefault();
+      var reader = new FileReader();
+      reader.onload = event => {
+        var text = event.target.result;
+        switch (type) {
+          case 'text/javascipt':
+            this.onContentChange({value: text});
+            break;
+          case 'application/json':
+            this._handlePastedText(text);
+            break;
+          default:
+            // JSON AST ?
+            try {
+              this._handlePastedText(event.target.result);
+            } catch(e) {
+              // Just replace the content with whatever it's in the file
+              this.onContentChange({value: event.target.result});
+            }
+            break;
+        }
+      };
+      reader.readAsText(files[0]);
+    });
+  },
+
+  _handlePastedText: function(text) {
+    var ast = JSON.parse(text);
+    var code = escodegen.generate(ast, {format:{indent:{ style: '  '}}});
+    this.onContentChange({value: code});
   },
 
   _setRevision: function(snippet, revision) {
@@ -120,7 +190,7 @@ var App = React.createClass({
       this.setState({
         content: content,
         ast: ast,
-        focusPath: getFocusPath(ast, cursor),
+        focusPath: cursor ? getFocusPath(ast, cursor): [],
         error: null
       });
     }
