@@ -122,7 +122,7 @@ var Element = React.createClass({
           <ArrayElements
             focusPath={focusPath}
             array={value}
-            deepOpen={this.props.deepOpen}
+            deepOpen={this.state.deepOpen}
           />;
       } else {
         value_output = <ArrayFormatter array={value} />;
