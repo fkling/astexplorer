@@ -59,6 +59,7 @@ var Element = React.createClass({
     }
 
     var noVisualChanges =
+      !this.state.open &&
       this.props.name === nextProps.name &&
       (thisValue === nextValue || thisValue.type === nextValue.type);
 
