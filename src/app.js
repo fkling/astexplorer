@@ -11,6 +11,7 @@ var ErrorMessage = require('./ErrorMessage');
 var PubSub = require('pubsub-js');
 var React = require('react/addons');
 var Snippet = require('./Snippet');
+var SplitPane = require('./SplitPane');
 var Toolbar = require('./Toolbar');
 
 var getFocusPath = require('./getFocusPath');
@@ -164,11 +165,15 @@ var App = React.createClass({
 
   _onSave: function() {
     this._save();
-   },
+  },
 
   _onFork: function() {
     this._save(true);
-   },
+  },
+
+  _onResize: function() {
+    PubSub.publish('PANEL_RESIZE');
+  },
 
   render: function() {
     var revision = this.state.revision;
@@ -186,13 +191,17 @@ var App = React.createClass({
           canFork={!!revision}
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
-        <Editor
-          ref="editor"
-          value={this.state.content}
-          onContentChange={this.onContentChange}
-          onActivity={this.onActivity}
-        />
-        <ASTOutput focusPath={this.state.focusPath} ast={this.state.ast} />
+        <SplitPane
+          className="splitpane"
+          onResize={this._onResize}>
+          <Editor
+            ref="editor"
+            value={this.state.content}
+            onContentChange={this.onContentChange}
+            onActivity={this.onActivity}
+          />
+          <ASTOutput focusPath={this.state.focusPath} ast={this.state.ast} />
+        </SplitPane>
       </div>
     );
   }

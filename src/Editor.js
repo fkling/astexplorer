@@ -74,6 +74,12 @@ var Editor = React.createClass({
             this._mark = null;
           }
         }
+      }),
+
+      PubSub.subscribe('PANEL_RESIZE', () => {
+        if (this.codeMirror) {
+          this.codeMirror.refresh();
+        }
       })
     );
   },
@@ -114,10 +120,6 @@ var Editor = React.createClass({
     this.props.onActivity && this.props.onActivity(
       this.codeMirror.getDoc().indexFromPos(this.codeMirror.getCursor())
     );
-  },
-
-  onReset: function() {
-    this.props.onReset && this.props.onReset();
   },
 
   render: function() {

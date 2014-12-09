@@ -92,14 +92,32 @@ html {
   border-top: 1px solid #ddd;
 }
 
+.splitpane {
+  position: absolute;
+  top: 36px;
+  bottom: 26px;
+  left: 0;
+  right: 0;
+}
+
+.splitpane > .splitpane-divider {
+  background-color: #ddd;
+}
+
+.splitpane > .splitpane-divider:hover {
+  background-color: #999;
+  cursor: col-resize;
+}
+
 #output {
   box-sizing: border-box;
-  width: 50%;
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
   right: 0;
-  top: 35px;
-  bottom: 25px;
   padding: 0;
+  border: none;
 }
 
 #output > .toolbar {
@@ -165,10 +183,10 @@ html {
 
 #Editor {
   position: absolute;
-  width: 50%;
-  top: 45px;
   left: 0;
-  bottom: 25px;
+  right: 0;
+  bottom: 0;
+  top: 0;
 }
 
 #tree ul {

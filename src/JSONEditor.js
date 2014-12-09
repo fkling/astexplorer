@@ -7,6 +7,7 @@ require('codemirror/mode/javascript/javascript');
 require('codemirror/addon/fold/foldgutter');
 require('codemirror/addon/fold/foldcode');
 require('codemirror/addon/fold/brace-fold');
+var PubSub = require('pubsub-js');
 var React = require('react/addons');
 
 var Editor = React.createClass({
@@ -46,6 +47,14 @@ var Editor = React.createClass({
     if (this.props.onContentChange) {
       this._onContentChange();
     }
+
+    this._subscriptions.push(
+      PubSub.subscribe('PANEL_RESIZE', () => {
+        if (this.codeMirror) {
+          this.codeMirror.refresh();
+        }
+      })
+    );
   },
 
   componentWillUnmount: function() {
@@ -65,20 +74,6 @@ var Editor = React.createClass({
     for (var i = 0; i < cmHandlers.length; i += 2) {
       this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
     }
-  },
-
-  _onContentChange: function() {
-    this.props.onContentChange && this.props.onContentChange(
-      this.codeMirror.getValue()
-    );
-  },
-
-  _onActivity: function() {
-    this.props.onActivity && this.props.onActivity(this.codeMirror.getCursor());
-  },
-
-  onReset: function() {
-    this.props.onReset && this.props.onReset();
   },
 
   render: function() {
