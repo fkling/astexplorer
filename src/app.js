@@ -8,6 +8,7 @@ require('./Object.es7.shim');
 var ASTOutput = require('./ASTOutput');
 var Editor = require('./Editor');
 var ErrorMessage = require('./ErrorMessage');
+var PasteDropTarget = require('./PasteDropTarget');
 var PubSub = require('pubsub-js');
 var React = require('react/addons');
 var Snippet = require('./Snippet');
@@ -15,7 +16,6 @@ var SplitPane = require('./SplitPane');
 var Toolbar = require('./Toolbar');
 
 var getFocusPath = require('./getFocusPath');
-var escodegen = require('escodegen');
 var esprima = require('esprima-fb');
 var fs = require('fs');
 
@@ -70,75 +70,6 @@ var App = React.createClass({
     PubSub.subscribe('CLEAR_HIGHLIGHT', function(_, astNode) {
       PubSub.publish('CM.CLEAR_HIGHLIGHT', astNode && astNode.range);
     });
-
-    // Handle pastes
-    global.document.addEventListener('paste', event => {
-      if (!event.clipboardData) {
-        // No browser support? :(
-        return;
-      }
-      var cbdata = event.clipboardData;
-      // Plain text
-      if (cbdata.types.indexOf('text/plain') > -1) {
-        try {
-          this._handlePastedText(cbdata.getData('text/plain'));
-          event.preventDefault();
-          event.stopPropagation();
-        } catch(ex) {
-          if (event.target.nodeName !== 'TEXTAREA') {
-            this._showError('Cannot process pasted AST: ' + ex.message);
-            throw ex;
-          }
-        }
-      }
-    });
-
-    var acceptedFileTypes = {
-      'text/javascript': true,
-      'application/json': true,
-      'text/plain': true
-    };
-
-    // Handle file drops
-    global.document.body.addEventListener('dragover', event => {
-      event.preventDefault();
-    });
-    global.document.body.addEventListener('drop', event => {
-      var files = event.dataTransfer.files;
-      var type = files[0].type;
-      if (!acceptedFileTypes[type]) {
-        return;
-      }
-      event.preventDefault();
-      var reader = new FileReader();
-      reader.onload = event => {
-        var text = event.target.result;
-        switch (type) {
-          case 'text/javascipt':
-            this.onContentChange({value: text});
-            break;
-          case 'application/json':
-            this._handlePastedText(text);
-            break;
-          default:
-            // JSON AST ?
-            try {
-              this._handlePastedText(event.target.result);
-            } catch(e) {
-              // Just replace the content with whatever it's in the file
-              this.onContentChange({value: event.target.result});
-            }
-            break;
-        }
-      };
-      reader.readAsText(files[0]);
-    });
-  },
-
-  _handlePastedText: function(text) {
-    var ast = JSON.parse(text);
-    var code = escodegen.generate(ast, {format:{indent:{ style: '  '}}});
-    this.onContentChange({value: code});
   },
 
   _setRevision: function(snippet, revision) {
@@ -245,10 +176,26 @@ var App = React.createClass({
     PubSub.publish('PANEL_RESIZE');
   },
 
+  _onDropText: function(type, event, text) {
+    this.onContentChange({value: text});
+  },
+
+  _onDropError: function(type, event, msg) {
+    this._showError(msg);
+  },
+
   render: function() {
     var revision = this.state.revision;
     return (
-      <div>
+      <PasteDropTarget
+        className="dropTarget"
+        dropindicator={
+          <div className="dropIndicator">
+            <div>Drop a JavaScript or (JSON-encoded) AST file here</div>
+          </div>
+        }
+        onText={this._onDropText}
+        onError={this._onDropError}>
         <Toolbar
           forking={this.state.forking}
           saving={this.state.saving}
@@ -272,7 +219,7 @@ var App = React.createClass({
           />
           <ASTOutput focusPath={this.state.focusPath} ast={this.state.ast} />
         </SplitPane>
-      </div>
+      </PasteDropTarget>
     );
   }
 });

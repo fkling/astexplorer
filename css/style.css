@@ -4,6 +4,36 @@ html {
   font-family: Verdana, non-serif;
 }
 
+.dropTarget {
+  position: absolute;
+  top: 0;
+  bottom: 26px;
+  left: 0;
+  right: 0;
+}
+
+.dropIndicator {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 3px dashed #888;
+  border-radius: 10px;
+}
+
+.dropIndicator > div {
+  max-width: 90%;
+  color: #888;
+  font-size: 32px;
+}
+
 #Toolbar {
   font-family: monospace;
   position: absolute;
@@ -95,7 +125,7 @@ html {
 .splitpane {
   position: absolute;
   top: 36px;
-  bottom: 26px;
+  bottom: 0;
   left: 0;
   right: 0;
 }
