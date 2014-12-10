@@ -22,6 +22,7 @@
   "dependencies": {
     "codemirror": "^4.3.0",
     "esprima-fb": "^8001.1001.0-dev-harmony-fb",
+    "keypress": "git://github.com/dmauro/Keypress",
     "pubsub-js": "^1.4.2",
     "react": "^0.12.1",
     "react-tools": "^0.12.x"

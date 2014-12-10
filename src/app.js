@@ -18,6 +18,7 @@ var Toolbar = require('./Toolbar');
 var getFocusPath = require('./getFocusPath');
 var esprima = require('esprima-fb');
 var fs = require('fs');
+var keypress = require('keypress').keypress;
 
 var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
 
@@ -63,6 +64,20 @@ var App = React.createClass({
         );
       }
     }.bind(this);
+
+    var listener = new keypress.Listener();
+    listener.simple_combo('meta s', (event) => {
+      event.preventDefault();
+      this._onSave();
+    });
+    listener.simple_combo('cmd shift s', (event) => {
+      event.preventDefault();
+      this._onFork();
+    });
+    listener.simple_combo('ctrl alt s', (event) => {
+      event.preventDefault();
+      this._onFork();
+    });
 
     PubSub.subscribe('HIGHLIGHT', function(_, astNode) {
       PubSub.publish('CM.HIGHLIGHT', astNode.range);
@@ -165,11 +180,17 @@ var App = React.createClass({
   },
 
   _onSave: function() {
-    this._save();
+    var revision = this.state.revision;
+    if (this.state.content !== initialCode && !revision ||
+        revision && revision.get('code') !== this.state.content) {
+      this._save();
+    }
   },
 
   _onFork: function() {
-    this._save(true);
+    if (!!this.state.revision) {
+      this._save(true);
+    }
   },
 
   _onResize: function() {

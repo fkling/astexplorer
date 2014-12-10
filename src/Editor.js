@@ -6,6 +6,7 @@ var CodeMirror = require('codemirror');
 require('codemirror/mode/javascript/javascript');
 var PubSub = require('pubsub-js');
 var React = require('react/addons');
+var keypress = require('keypress').keypress;
 
 var Editor = React.createClass({
 
@@ -45,6 +46,13 @@ var Editor = React.createClass({
     this._bindCMHandler('cursorActivity', () => {
       clearTimeout(this._updateTimer);
       this._updateTimer = setTimeout(this._onActivity, 100);
+    });
+
+    this._keyListener = new keypress.Listener();
+    this._keyListener.simple_combo('meta z', event => {
+      if (event.target !== 'TEXTAREA') {
+        this.codeMirror.execCommand('undo');
+      }
     });
 
     this._markerRange = null;
