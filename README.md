@@ -36,6 +36,7 @@ as possible!
 
 #### Build your own version
 
-Install gulp with `npm install -g gulp` and all dependencies with `npm install`.
-Run `gulp watch` for incremental builds (while hacking the code), and
-`gulp build` for the final minimized version.
+Install all dependencies with `npm install`.
+
+Run `npm run watch` for incremental builds (while hacking the code), and
+`npm run build` for the final minimized version.

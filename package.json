@@ -11,20 +11,31 @@
   "devDependencies": {
     "brfs": "^1.1.1",
     "browserify": "^7.0.0",
-    "escodegen": "^1.4.1",
-    "gulp": "^3.8.5",
-    "gulp-streamify": "0.0.5",
-    "gulp-uglify": "^1.0.0",
-    "through2": "^0.6.3",
-    "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.1.1"
+    "reactify": "^1.0.0",
+    "uglify-js": "^2.4.16"
   },
   "dependencies": {
     "codemirror": "^4.3.0",
+    "escodegen": "^1.4.1",
     "esprima-fb": "^10001.1.0-dev-harmony-fb",
     "keypress": "git://github.com/dmauro/Keypress",
     "pubsub-js": "^1.4.2",
     "react": "^0.12.1",
     "react-tools": "^0.12.x"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "reactify",
+        {
+          "harmony": true
+        }
+      ],
+      "brfs"
+    ]
+  },
+  "scripts": {
+    "build": "browserify src/app.js | uglifyjs -mc -b beautify=false,ascii-only=true > app.js",
+    "watch": "watchify src/app.js -o app.js"
   }
 }
