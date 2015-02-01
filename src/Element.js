@@ -12,9 +12,14 @@ var React = require('react/addons');
 var TokenName = require('./TokenName');
 
 var cx = React.addons.classSet;
+var isArray = require('./isArray');
 
-function isArray(v) {
-  return Object.prototype.toString.call(v) === '[object Array]';
+function log(f) {
+  return function(a, b) {
+    var result = f.call(this, a,b);
+    console.log(a.name || a.value && a.value.type, 'Updates', result);
+    return result;
+  };
 }
 
 var Element = React.createClass({
@@ -39,39 +44,54 @@ var Element = React.createClass({
     };
   },
 
-  shouldComponentUpdate: function(nextProps, nextState) {
+  shouldComponentUpdate: log(function(nextProps, nextState) {
+    // There are two reasons why an AST could be rerendered
+    //
+    // 1. The node was clicked and it has to either expand or collapse
+    // 2. The code was edited and it lies "in the path" of that edit.
     var thisValue = this.props.value;
     var nextValue = nextProps.value;
+    var thisName = this.props.name;
+    var nextName = nextProps.name;
 
+    // In both cases there is no need to rerender the node if it is a leaf,
+    // i.e. a primitive value, and has the same value and name
+    if (thisValue == null || typeof thisValue !== 'object') {
+      return thisValue !== nextValue || thisName !== nextName;
+    }
+
+    // 1. Node was clicked
+    // Either the node itself was clicked or one of its ancestors
     var toggleChange = this.state.open !== nextState.open ||
       this.state.deepOpen !== nextState.deepOpen;
     if (toggleChange) {
       return true;
     }
 
+    // 2. Code was edited. We have to rerender a node if the cursor was or
+    // is "in" it.
+    var possibleInnerValueChange = nextProps.focusPath.indexOf(nextValue) > -1;
+    if (possibleInnerValueChange) {
+      return true;
+    }
+
     var possibleFocusChange =
-      this.state.open && this.props.focusPath.indexOf(thisValue) > -1 ||
       nextProps.focusPath.indexOf(nextValue) > -1 !==
       this.props.focusPath.indexOf(thisValue) > -1;
-
     if (possibleFocusChange) {
       return true;
     }
 
-    var noVisualChanges =
-      !this.state.open &&
-      this.props.name === nextProps.name &&
-      (thisValue === nextValue || thisValue.type === nextValue.type);
-
-    if (noVisualChanges) {
-      return false;
+    // The above two tests don't always capture new nodes, because the cursor
+    // is just after the new node, i.e. the new node is not in the focus path
+    if (this.props.name !== nextProps.name ||
+        Boolean(this.props.value) !== Boolean(nextProps.value) ||
+        (this.props.value && this.props.value.type !== nextProps.type)) {
+      return true;
     }
 
-    return this.props.name !== nextProps.name ||
-      this.state.open !== nextState.open ||
-      this.props.deepOpen !== nextProps.deepOpen ||
-      thisValue !== nextValue;
-  },
+    return false;
+  }),
 
   componentWillReceiveProps: function(nextProps) {
     this.setState({
@@ -126,7 +146,11 @@ var Element = React.createClass({
             deepOpen={this.state.deepOpen}
           />;
       } else {
-        value_output = <ArrayFormatter array={value} />;
+        value_output =
+          <ArrayFormatter
+            array={value}
+            onClick={this._toggleClick}
+          />;
       }
       showToggler = value.length > 0;
     }
@@ -190,7 +214,7 @@ var Element = React.createClass({
         {name}
         <span className="value">{value_output}</span>
         {prefix ? <span className="prefix p">{prefix}</span> : null}
-        <ul className="value-body">{content}</ul>
+        {content}
         {suffix ? <div className="suffix p">{suffix}</div> : null}
       </li>
     );

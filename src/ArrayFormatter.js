@@ -6,6 +6,18 @@
 var React = require('react/addons');
 
 var ArrayFormatter = React.createClass({
+  propTypes: {
+    /**
+     * The array of elements to represent.
+     */
+    array: React.PropTypes.array.isRequired,
+    onClick: React.PropTypes.func,
+  },
+
+  shouldComponentUpdate: function(nextProps) {
+    return nextProps.array.length !== this.props.array.length;
+  },
+
   render: function() {
     var array = this.props.array;
     var count = array.length;
@@ -17,7 +29,7 @@ var ArrayFormatter = React.createClass({
       return (
         <span>
           <span className="p">{"["}</span>
-          <span className="placeholder ge">
+          <span className="array placeholder ge" onClick={this.props.onClick}>
             {count + ' element' + (count > 1 ? 's' : '')}
           </span>
           <span className="p">{"]"}</span>

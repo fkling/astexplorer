@@ -28,7 +28,7 @@ var ArrayElements = React.createClass({
           level={level}
         />
     );
-    return <div>{elements}</div>;
+    return <ul className="value-body">{elements}</ul>;
   }
 });
 

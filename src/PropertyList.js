@@ -31,7 +31,7 @@ var PropertyList = React.createClass({
         />
       );
     });
-    return <div>{properties}</div>;
+    return <ul className="value-body">{properties}</ul>;
   }
 });
 

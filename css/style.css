@@ -262,10 +262,12 @@ li.entry {
   font-size: 0.9em;
 }
 
+.array,
 .tokenName {
   cursor: pointer;
 }
 
+.array:hover,
 .tokenName:hover {
   text-decoration: underline;
 }
