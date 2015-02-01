@@ -87,7 +87,9 @@ var Element = React.createClass({
 
     // The above two tests don't always capture new nodes, because the cursor
     // is just after the new node, i.e. the new node is not in the focus path
-    if (thisName !== nextName || thisValue.type !== nextValue.type) {
+    if (thisName !== nextName ||
+        Boolean(thisValue) !== Boolean(nextValue) ||
+        (thisValue && thisValue.type !== nextValue.type)) {
       return true;
     }
 
