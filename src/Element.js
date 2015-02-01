@@ -14,6 +14,7 @@ var TokenName = require('./TokenName');
 var cx = React.addons.classSet;
 var isArray = require('./isArray');
 
+/* For debugging
 function log(f) {
   return function(a, b) {
     var result = f.call(this, a,b);
@@ -21,6 +22,7 @@ function log(f) {
     return result;
   };
 }
+*/
 
 var Element = React.createClass({
   propTypes: {
@@ -36,7 +38,9 @@ var Element = React.createClass({
     var open =
       this.props.level === 0 ||
       this.props.deepOpen ||
-      this.props.name === 'body';
+      this.props.name === 'body' ||
+      this.props.name === 'elements' || // array literals
+      this.props.name === 'declarations'; // variable declarations
 
     return {
       open: open,
@@ -44,7 +48,7 @@ var Element = React.createClass({
     };
   },
 
-  shouldComponentUpdate: log(function(nextProps, nextState) {
+  shouldComponentUpdate: function(nextProps, nextState) {
     // There are two reasons why an AST could be rerendered
     //
     // 1. The node was clicked and it has to either expand or collapse
@@ -61,37 +65,34 @@ var Element = React.createClass({
     }
 
     // 1. Node was clicked
-    // Either the node itself was clicked or one of its ancestors
-    var toggleChange = this.state.open !== nextState.open ||
-      this.state.deepOpen !== nextState.deepOpen;
+    // Either the node itself was clicked or one of its ancestors with shift
+    // We always updated when deepOpen is in the next state, since we don't know
+    // whether
+    var toggleChange = this.state.open !== nextState.open || nextState.deepOpen;
     if (toggleChange) {
       return true;
     }
 
     // 2. Code was edited. We have to rerender a node if the cursor was or
     // is "in" it.
-    var possibleInnerValueChange = nextProps.focusPath.indexOf(nextValue) > -1;
-    if (possibleInnerValueChange) {
+    if (nextProps.focusPath.indexOf(nextValue) > -1) {
       return true;
     }
 
-    var possibleFocusChange =
-      nextProps.focusPath.indexOf(nextValue) > -1 !==
-      this.props.focusPath.indexOf(thisValue) > -1;
-    if (possibleFocusChange) {
+    // Possible change of focus
+    if (nextProps.focusPath.indexOf(nextValue) > -1 !==
+      this.props.focusPath.indexOf(thisValue) > -1) {
       return true;
     }
 
     // The above two tests don't always capture new nodes, because the cursor
     // is just after the new node, i.e. the new node is not in the focus path
-    if (this.props.name !== nextProps.name ||
-        Boolean(this.props.value) !== Boolean(nextProps.value) ||
-        (this.props.value && this.props.value.type !== nextProps.type)) {
+    if (thisName !== nextName || thisValue.type !== nextValue.type) {
       return true;
     }
 
     return false;
-  }),
+  },
 
   componentWillReceiveProps: function(nextProps) {
     this.setState({
