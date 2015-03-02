@@ -19,7 +19,7 @@
   "dependencies": {
     "codemirror": "^4.3.0",
     "escodegen": "^1.4.1",
-    "esprima-fb": "^12001.1.0-dev-harmony-fb",
+    "esprima-fb": "^13001.1.0-dev-harmony-fb",
     "keypress": "git://github.com/dmauro/Keypress",
     "pubsub-js": "^1.4.2",
     "react": "^0.12.1",
