@@ -106,7 +106,7 @@ var App = React.createClass({
 
   _clearRevision: function() {
     this.setState({
-      ast: esprima.parse(initialCode, {range: true}),
+      ast: esprima.parse(initialCode, {range: true, sourceType: 'module'}),
       focusPath: [],
       content: initialCode,
       snippet: null,
@@ -123,7 +123,7 @@ var App = React.createClass({
 
     var ast;
     try {
-      ast = esprima.parse(content, {range: true});
+      ast = esprima.parse(content, {range: true, sourceType: 'module'});
     }
     catch(e) {
       this.setState({
