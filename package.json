@@ -12,6 +12,7 @@
     "brfs": "^1.1.1",
     "browserify": "^8.0.0",
     "envify": "^3.2.0",
+    "http-server": "^0.8.0",
     "reactify": "^1.0.0",
     "uglify-js": "^2.4.16",
     "watchify": "^2.3.0"
@@ -38,6 +39,7 @@
     ]
   },
   "scripts": {
+    "start": "http-server",
     "build": "NODE_ENV=production browserify src/app.js | uglifyjs -mc -b beautify=false,ascii-only=true > app.js",
     "watch": "NODE_ENV=development watchify src/app.js -o app.js"
   }
