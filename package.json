@@ -10,7 +10,7 @@
   "license": "MIT",
   "devDependencies": {
     "brfs": "^1.1.1",
-    "browserify": "^8.0.0",
+    "browserify": "^9.0.3",
     "envify": "^3.2.0",
     "http-server": "^0.8.0",
     "reactify": "^1.0.0",
@@ -18,9 +18,9 @@
     "watchify": "^2.3.0"
   },
   "dependencies": {
-    "codemirror": "^4.3.0",
+    "codemirror": "^5.1.0",
     "escodegen": "^1.4.1",
-    "esprima-fb": "^13001.1.0-dev-harmony-fb",
+    "esprima-fb": "^13001.1001.0-dev-harmony-fb",
     "keypress": "git://github.com/dmauro/Keypress",
     "pubsub-js": "^1.4.2",
     "react": "^0.12.1",
