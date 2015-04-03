@@ -14,6 +14,7 @@ var React = require('react/addons');
 var Snippet = require('./Snippet');
 var SplitPane = require('./SplitPane');
 var Toolbar = require('./Toolbar');
+var TransformOutput = require('./TransformOutput');
 
 var babel;
 var getFocusPath = require('./getFocusPath');
@@ -22,6 +23,8 @@ var fs = require('fs');
 var keypress = require('keypress').keypress;
 
 var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
+var initialTransform =
+  fs.readFileSync(__dirname + '/transformExample.txt', 'utf8');
 
 function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
@@ -41,6 +44,8 @@ var App = React.createClass({
       focusPath: [],
       content: revision && revision.get('code') || initialCode,
       snippet: snippet,
+      showTransformPanel: false,
+      transformContent: initialTransform,
       revision: revision,
       parser: 'esprima-fb',
     };
@@ -166,6 +171,13 @@ var App = React.createClass({
     );
   },
 
+  onTransformContentChange: function(data) {
+    var content = data.value;
+    this.setState({
+      transformContent: content
+    });
+  },
+
   onActivity: function(cursorPos) {
     this.setState({
       focusPath: getFocusPath(this.state.ast, cursorPos)
@@ -250,8 +262,16 @@ var App = React.createClass({
     return this.state.parser === 'esprima-fb' ? esprima : babel;
   },
 
+  _onToggleTransform: function() {
+    this.setState({
+      showTransformPanel: !this.state.showTransformPanel,
+    });
+  },
+
   render: function() {
     var revision = this.state.revision;
+    var splitPaneClassName =
+      'splitpane' + (this.state.showTransformPanel ? ' splitpane-top' : '');
     return (
       <PasteDropTarget
         className="dropTarget"
@@ -268,6 +288,7 @@ var App = React.createClass({
           onSave={this._onSave}
           onFork={this._onFork}
           onParserChange={this._onParserChange}
+          onToggleTransform={this._onToggleTransform}
           canSave={
             this.state.content !== initialCode && !revision ||
             revision && revision.get('code') !== this.state.content
@@ -275,10 +296,11 @@ var App = React.createClass({
           canFork={!!revision}
           parserName={this.state.parser}
           parserVersion={this._getParser().version}
+          transformPanelIsEnabled={this.state.showTransformPanel}
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
         <SplitPane
-          className="splitpane"
+          className={splitPaneClassName}
           onResize={this._onResize}>
           <Editor
             ref="editor"
@@ -292,6 +314,19 @@ var App = React.createClass({
             ast={this.state.ast}
           />
         </SplitPane>
+        {this.state.showTransformPanel ? <SplitPane
+          className="splitpane splitpane-bottom"
+          onResize={this._onResize}>
+          <Editor
+            highlight={false}
+            value={this.state.transformContent}
+            onContentChange={this.onTransformContentChange}
+          />
+          <TransformOutput
+            transform={this.state.transformContent}
+            code={this.state.content}
+          />
+        </SplitPane> : null}
       </PasteDropTarget>
     );
   }

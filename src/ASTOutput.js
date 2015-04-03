@@ -63,7 +63,7 @@ var ASTOutput = React.createClass({
     }
 
     return (
-      <div id="output" className="highlight">
+      <div className="output highlight">
         <div className="toolbar">
           <button
             onClick={this._changeOutput}

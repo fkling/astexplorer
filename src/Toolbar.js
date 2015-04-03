@@ -69,6 +69,20 @@ var Toolbar = React.createClass({
           />
           &nbsp;{this.props.parserName}
         </button>
+        <button
+          type="button"
+          onClick={this.props.onToggleTransform}>
+          <i
+            className={cx({
+              fa: true,
+              'fa-lg': true,
+              'fa-toggle-off': !this.props.transformPanelIsEnabled,
+              'fa-toggle-on': this.props.transformPanelIsEnabled,
+              'fa-fw': true,
+            })}
+          />
+          Transform
+        </button>
         <div id="parser">
           Parser: {this.props.parserName}-{this.props.parserVersion}
         </div>

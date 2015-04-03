@@ -139,7 +139,17 @@ html {
   cursor: col-resize;
 }
 
-#output {
+.splitpane.splitpane-top {
+  bottom: 50%;
+}
+
+.splitpane.splitpane-bottom {
+  border-top: solid 2px #ddd;
+  top: 50%;
+  bottom: 0;
+}
+
+.output {
   box-sizing: border-box;
   position: absolute;
   top: 0;
@@ -150,13 +160,13 @@ html {
   border: none;
 }
 
-#output > .toolbar {
+.output > .toolbar {
   font-size: 14px;
   margin-left: -1px;
   border-bottom: 1px solid #ddd;
 }
 
-#output > .toolbar > button {
+.output > .toolbar > button {
   margin: 0;
   height: 100%;
   min-width: 90px;
@@ -171,13 +181,13 @@ html {
   cursor: pointer;
 }
 
-#output > .toolbar > button.active {
+.output > .toolbar > button.active {
   border-color: #999;
   background-color: #999;
   color: #f5f5f5;
 }
 
-#output > .container {
+.output > .container {
   overflow: auto;
   position: absolute;
   top: 25px;
@@ -211,7 +221,7 @@ html {
   background-color: #efefef;
 }
 
-#Editor {
+.editor {
   position: absolute;
   left: 0;
   right: 0;
@@ -280,7 +290,7 @@ li.entry {
   overflow: auto;
 }
 
-#Editor .CodeMirror-gutters {
+.editor .CodeMirror-gutters {
   background-color: white;
   border: none;
 }
