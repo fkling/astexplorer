@@ -18,6 +18,7 @@
     "watchify": "^2.3.0"
   },
   "dependencies": {
+    "babel-core": "^5.1.11",
     "codemirror": "^5.1.0",
     "escodegen": "^1.4.1",
     "esprima-fb": "^14001.1.0-dev-harmony-fb",

@@ -5,7 +5,7 @@
 
 var React = require('react/addons');
 var cx = React.addons.classSet;
-var esprima = require('esprima-fb');
+var babel = require('babel-core');
 
 var Toolbar = React.createClass({
   propTypes: {
@@ -54,7 +54,7 @@ var Toolbar = React.createClass({
           Fork
         </button>
         <div id="parser">
-          Parser: esprima-fb-{esprima.version}
+          Parser: babel-{babel.version}
         </div>
       </div>
     );

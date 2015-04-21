@@ -16,7 +16,7 @@ var SplitPane = require('./SplitPane');
 var Toolbar = require('./Toolbar');
 
 var getFocusPath = require('./getFocusPath');
-var esprima = require('esprima-fb');
+var babel = require('babel-core');
 var fs = require('fs');
 var keypress = require('keypress').keypress;
 
@@ -24,6 +24,12 @@ var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
 
 function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
+}
+
+function parse(source) {
+  return babel.parse(source, {
+    ranges: true
+  });
 }
 
 var App = React.createClass({
@@ -106,7 +112,7 @@ var App = React.createClass({
 
   _clearRevision: function() {
     this.setState({
-      ast: esprima.parse(initialCode, {range: true, sourceType: 'module'}),
+      ast: parse(initialCode),
       focusPath: [],
       content: initialCode,
       snippet: null,
@@ -123,7 +129,7 @@ var App = React.createClass({
 
     var ast;
     try {
-      ast = esprima.parse(content, {range: true, sourceType: 'module'});
+      ast = parse(content);
     }
     catch(e) {
       this.setState({

@@ -2,7 +2,8 @@
 
 Paste JavaScript code into the editor and inspect the generated AST.
 
-The JS AST explorer uses [esprima-fb](https://github.com/facebook/esprima) to parse the
+The JS AST explorer uses
+[babel (acorn)](https://github.com/babel/babel/) to parse the
 code, so it not only supports current JS (ES5), but also
 
 - ES6: [arrow functions](https://github.com/lukehoban/es6features#arrows), [destructuring](https://github.com/lukehoban/es6features#destructuring),
