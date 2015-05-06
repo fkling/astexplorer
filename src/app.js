@@ -15,6 +15,7 @@ var Snippet = require('./Snippet');
 var SplitPane = require('./SplitPane');
 var Toolbar = require('./Toolbar');
 
+var estraverse = require("estraverse");
 var getFocusPath = require('./getFocusPath');
 var babel = require('babel-core');
 var fs = require('fs');
@@ -27,9 +28,15 @@ function updateHashWithIDAndRevision(id, rev) {
 }
 
 function parse(source) {
-  return babel.parse(source, {
+  var comments = [];
+  var tokens   = [];
+  var ast = babel.parse(source, {
+    onComment: comments,
+    onToken: tokens,
     ranges: true
   });
+  estraverse.attachComments(ast, comments, tokens);
+  return ast;
 }
 
 var App = React.createClass({
