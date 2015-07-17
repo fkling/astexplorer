@@ -15,7 +15,7 @@ var Snippet = require('./Snippet');
 var SplitPane = require('./SplitPane');
 var Toolbar = require('./Toolbar');
 
-var babel = require('babel-core');
+var babel;
 var getFocusPath = require('./getFocusPath');
 var esprima = require('esprima-fb');
 var fs = require('fs');
@@ -107,13 +107,13 @@ var App = React.createClass({
   },
 
   _clearRevision: function() {
-    this.setState({
-      ast: this.parse(initialCode),
+    this.parse(initialCode).then(ast => this.setState({
+      ast: ast,
       focusPath: [],
       content: initialCode,
       snippet: null,
       revision: null,
-    });
+    }));
   },
 
   parse: function(code, parser) {
@@ -121,11 +121,28 @@ var App = React.createClass({
       parser = this.state.parser;
     }
 
-    if (parser === 'esprima-fb') {
-      return esprima.parse(code, {range: true, sourceType: 'module'});
-    } else {
-      return babel.parse(code, {ranges: true, sourceType: 'module'});
-    }
+    return new Promise((resolve, reject) => {
+      if (parser === 'esprima-fb') {
+        try {
+          resolve(
+            esprima.parse(code, {range: true, sourceType: 'module'})
+          );
+        } catch(e) {
+          reject(e);
+        }
+      } else {
+        loadjs(['./src/babel'], b => {
+          babel = b;
+          try {
+            resolve(
+              babel.parse(code, {ranges: true, sourceType: 'module'})
+            );
+          } catch(e) {
+            reject(e);
+          }
+        }, reject);
+      }
+    });
   },
 
   onContentChange: function(data) {
@@ -135,25 +152,18 @@ var App = React.createClass({
       return;
     }
 
-    var ast;
-    try {
-      ast = this.parse(content);
-    }
-    catch(e) {
-      this.setState({
-        error: 'Syntax error: ' + e.message,
-        content: content,
-      });
-    }
-
-    if (ast) {
-      this.setState({
+    this.parse(content).then(
+      ast => this.setState({
         content: content,
         ast: ast,
         focusPath: cursor ? getFocusPath(ast, cursor): [],
         error: null
-      });
-    }
+      }),
+      e => this.setState({
+        error: 'Syntax error: ' + e.message,
+        content: content,
+      })
+    );
   },
 
   onActivity: function(cursorPos) {
@@ -220,26 +230,20 @@ var App = React.createClass({
   },
 
   _onParserChange: function() {
-    var ast;
     var parser = this.state.parser === 'esprima-fb' ? 'babel' : 'esprima-fb';
 
-    try {
-      ast = this.parse(this.state.content, parser);
-    } catch(e) {
-      this.setState({
-        error: 'Syntax error: ' + e.message,
-        parser: parser
-      });
-    }
-
-    if (ast) {
-      this.setState({
+    this.parse(this.state.content, parser).then(
+      ast => this.setState({
         ast: ast,
         parser: parser,
         focusPath: [],
         error: null
-      });
-    }
+      }),
+      e => this.setState({
+        error: 'Syntax error: ' + e.message,
+        parser: parser,
+      })
+    );
   },
 
   _getParser: function() {
