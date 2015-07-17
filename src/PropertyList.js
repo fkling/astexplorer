@@ -3,6 +3,7 @@
  */
 
 var React = require('react/addons');
+var BLACKLIST = require('./NodeBlacklist');
 
 var PropertyList = React.createClass({
   getDefaultProps: function() {
@@ -18,8 +19,8 @@ var PropertyList = React.createClass({
     var level = this.props.level;
 
     var properties = Object.keys(this.props.object).map(key => {
-      if (key === 'range') return;
       var v = this.props.object[key];
+      if (BLACKLIST[key]) return;
       return (
         <Element
           key={key}

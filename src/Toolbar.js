@@ -5,7 +5,6 @@
 
 var React = require('react/addons');
 var cx = React.addons.classSet;
-var esprima = require('esprima-fb');
 
 var Toolbar = React.createClass({
   propTypes: {
@@ -13,6 +12,9 @@ var Toolbar = React.createClass({
     forking: React.PropTypes.bool,
     onSave: React.PropTypes.func,
     onFork: React.PropTypes.func,
+    onParserChange: React.PropTypes.func,
+    parserName: React.PropTypes.string,
+    parserVersion: React.PropTypes.string,
   },
 
   render: function() {
@@ -53,8 +55,22 @@ var Toolbar = React.createClass({
           />
           Fork
         </button>
+        <button
+          title="Click to toggle between esprima-fb and babel"
+          type="button"
+          onClick={this.props.onParserChange}>
+          <i
+            className={cx({
+              fa: true,
+              'fa-lg': true,
+              'fa-code': true,
+              'fa-fw': true,
+            })}
+          />
+          &nbsp;{this.props.parserName}
+        </button>
         <div id="parser">
-          Parser: esprima-fb-{esprima.version}
+          Parser: {this.props.parserName}-{this.props.parserVersion}
         </div>
       </div>
     );

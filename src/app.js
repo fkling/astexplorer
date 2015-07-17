@@ -15,6 +15,7 @@ var Snippet = require('./Snippet');
 var SplitPane = require('./SplitPane');
 var Toolbar = require('./Toolbar');
 
+var babel = require('babel-core');
 var getFocusPath = require('./getFocusPath');
 var esprima = require('esprima-fb');
 var fs = require('fs');
@@ -41,6 +42,7 @@ var App = React.createClass({
       content: revision && revision.get('code') || initialCode,
       snippet: snippet,
       revision: revision,
+      parser: 'esprima-fb',
     };
   },
 
@@ -106,12 +108,24 @@ var App = React.createClass({
 
   _clearRevision: function() {
     this.setState({
-      ast: esprima.parse(initialCode, {range: true, sourceType: 'module'}),
+      ast: this.parse(initialCode),
       focusPath: [],
       content: initialCode,
       snippet: null,
       revision: null,
     });
+  },
+
+  parse: function(code, parser) {
+    if (!parser) {
+      parser = this.state.parser;
+    }
+
+    if (parser === 'esprima-fb') {
+      return esprima.parse(code, {range: true, sourceType: 'module'});
+    } else {
+      return babel.parse(code, {ranges: true, sourceType: 'module'});
+    }
   },
 
   onContentChange: function(data) {
@@ -123,7 +137,7 @@ var App = React.createClass({
 
     var ast;
     try {
-      ast = esprima.parse(content, {range: true, sourceType: 'module'});
+      ast = this.parse(content);
     }
     catch(e) {
       this.setState({
@@ -205,6 +219,33 @@ var App = React.createClass({
     this._showError(msg);
   },
 
+  _onParserChange: function() {
+    var ast;
+    var parser = this.state.parser === 'esprima-fb' ? 'babel' : 'esprima-fb';
+
+    try {
+      ast = this.parse(this.state.content, parser);
+    } catch(e) {
+      this.setState({
+        error: 'Syntax error: ' + e.message,
+        parser: parser
+      });
+    }
+
+    if (ast) {
+      this.setState({
+        ast: ast,
+        parser: parser,
+        focusPath: [],
+        error: null
+      });
+    }
+  },
+
+  _getParser: function() {
+    return this.state.parser === 'esprima-fb' ? esprima : babel;
+  },
+
   render: function() {
     var revision = this.state.revision;
     return (
@@ -222,11 +263,14 @@ var App = React.createClass({
           saving={this.state.saving}
           onSave={this._onSave}
           onFork={this._onFork}
+          onParserChange={this._onParserChange}
           canSave={
             this.state.content !== initialCode && !revision ||
             revision && revision.get('code') !== this.state.content
           }
           canFork={!!revision}
+          parserName={this.state.parser}
+          parserVersion={this._getParser().version}
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
         <SplitPane
@@ -238,7 +282,11 @@ var App = React.createClass({
             onContentChange={this.onContentChange}
             onActivity={this.onActivity}
           />
-          <ASTOutput focusPath={this.state.focusPath} ast={this.state.ast} />
+          <ASTOutput
+            key={this.state.parser}
+            focusPath={this.state.focusPath}
+            ast={this.state.ast}
+          />
         </SplitPane>
       </PasteDropTarget>
     );
