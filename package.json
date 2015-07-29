@@ -43,6 +43,6 @@
   },
   "scripts": {
     "start": "http-server",
-    "build": "NODE_ENV=production browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g [uglifyify -b beautify=false,ascii-only=true]",
+    "build": "NODE_ENV=production browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g [uglifyify -b beautify=false,ascii-only=true]"
   }
 }
