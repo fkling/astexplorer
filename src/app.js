@@ -55,16 +55,14 @@ var App = React.createClass({
     global.onhashchange = () => {
       if (!this.state.saving || !this.state.forking) {
         Snippet.fetchFromURL().then(
-          function(data) {
+          data => {
             if (data) {
               this._setRevision(data.snippet, data.revision);
             } else {
               this._clearRevision();
             }
-          }.bind(this),
-          function(error) {
-            this._showError('Failed to fetch revision: ' + error.message);
-          }.bind(this)
+          },
+          error => this._showError('Failed to fetch revision: ' + error.message)
         );
       }
     };
@@ -100,18 +98,34 @@ var App = React.createClass({
     if (!snippet || !revision) {
       this.setError('Something went wrong fetching the revision. Try to refresh!');
     }
+
+    const code = revision.get('code') || initialCode;
+    const transform = revision.get('transform') || initialTransform;
+
+    const update = data => { // eslint-disable-line no-shadow
+      this.setState({
+        ...data,
+        snippet,
+        revision,
+        content: code,
+        transform,
+        focusPath: [],
+      });
+    };
+
     if (!this.state.snippet ||
         snippet.id !== this.state.snippet.id ||
         revision.id !== this.state.revision.id ||
         revision.get('code') !== this.state.revision.get('code') ||
         revision.get('transform') !== this.state.revision.get('transform')) {
-      this.setState({
-        snippet,
-        revision,
-        content: revision.get('code') || initialCode,
-        transform: revision.get('transform') || initialTransform,
-        focusPath: [],
-      });
+      if (this.state.revision && code !== this.state.revision.get('code')) {
+        this.parse(code).then(
+          ast => update({ast}),
+          e => update({error: 'Syntax error: ' + e.message})
+        );
+      } else {
+        update(this.state.ast);
+      }
     }
   },
 

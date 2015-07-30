@@ -8,11 +8,12 @@ import TokenName from './TokenName';
 
 import cx from 'classnames';
 
-/* For debugging
+/*
+// For debugging
 function log(f) {
   return function(a, b) {
     var result = f.call(this, a,b);
-    console.log(a.name || a.value && a.value.type, 'Updates', result);
+    console.log(a.name, a.name || a.value && a.value.type, 'Updates', result);
     return result;
   };
 }
@@ -52,6 +53,16 @@ export default React.createClass({
     var thisName = this.props.name;
     var nextName = nextProps.name;
 
+    // Always rerender program
+    if (nextValue && nextValue.type === 'Program') {
+      return true;
+    }
+
+    // Always rerender an open body
+    if (this.props.open && nextValue && nextValue.name === 'body') {
+      return true;
+    }
+
     // In both cases there is no need to rerender the node if it is a leaf,
     // i.e. a primitive value, and has the same value and name
     if (thisValue == null || typeof thisValue !== 'object') {
@@ -83,7 +94,8 @@ export default React.createClass({
     // is just after the new node, i.e. the new node is not in the focus path
     if (thisName !== nextName ||
         Boolean(thisValue) !== Boolean(nextValue) ||
-        (thisValue && thisValue.type !== nextValue.type)) {
+        (thisValue && thisValue.type !== nextValue.type) ||
+        (thisValue && thisValue.length !== nextValue.length)) {
       return true;
     }
 
