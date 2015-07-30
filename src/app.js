@@ -10,7 +10,7 @@ import Toolbar from './Toolbar';
 import TransformOutput from './TransformOutput';
 
 import getFocusPath from './getFocusPath';
-import esprima from 'esprima-fb';
+import esprima from 'esprima';
 import {keypress} from 'keypress';
 
 var fs = require('fs');
@@ -44,7 +44,7 @@ var App = React.createClass({
       snippet: snippet,
       showTransformPanel: transform !== initialTransform,
       revision: revision,
-      parser: showTransform ? 'babel' : 'esprima-fb',
+      parser: showTransform ? 'babel' : 'esprima',
     };
   },
 
@@ -146,7 +146,7 @@ var App = React.createClass({
     }
 
     return new Promise((resolve, reject) => {
-      if (parser === 'esprima-fb') {
+      if (parser === 'esprima') {
         try {
           resolve(
             esprima.parse(code, {range: true, sourceType: 'module'})
@@ -277,7 +277,7 @@ var App = React.createClass({
   },
 
   _onParserChange: function() {
-    var parser = this.state.parser === 'esprima-fb' ? 'babel' : 'esprima-fb';
+    var parser = this.state.parser === 'esprima' ? 'babel' : 'esprima';
 
     this.parse(this.state.content, parser).then(
       ast => this.setState({
@@ -295,7 +295,7 @@ var App = React.createClass({
   },
 
   _getParserVersion: function() {
-    const parser = this.state.parser === 'esprima-fb' ? esprima : babel;
+    const parser = this.state.parser === 'esprima' ? esprima : babel;
     return parser && parser.version;
   },
 

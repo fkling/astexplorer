@@ -51,7 +51,7 @@ export default class Toolbar {
           Fork
         </button>
         <button
-          title="Click to toggle between esprima-fb and babel"
+          title="Click to toggle between esprima and babel"
           type="button"
           onClick={this.props.onParserChange}>
           <i
