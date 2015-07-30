@@ -16,8 +16,8 @@ import {keypress} from 'keypress';
 var fs = require('fs');
 
 var babel;
-var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
-var initialTransform =
+var defaultCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
+var defaultTransform =
   fs.readFileSync(__dirname + '/transformExample.txt', 'utf8');
 
 function updateHashWithIDAndRevision(id, rev) {
@@ -31,18 +31,19 @@ var App = React.createClass({
     if ((snippet && !revision) || (!snippet && revision)) {
       throw Error('Must set both, snippet and revision');
     }
-    const code = revision && revision.get('code') || initialCode;
-    const transform = revision && revision.get('transform') || initialTransform;
-    const showTransform = transform !== initialTransform;
+    const initialCode = revision && revision.get('code') || defaultCode;
+    const initialTransform =
+      revision && revision.get('transform') || defaultTransform;
+    const showTransform = defaultTransform !== initialTransform;
     return {
       forking: false,
       saving: false,
       ast: null,
       focusPath: [],
-      content: code,
-      transform,
+      ...this._setCode(initialCode),
+      ...this._setTransform(initialTransform),
       snippet: snippet,
-      showTransformPanel: transform !== initialTransform,
+      showTransformPanel: defaultTransform !== initialTransform,
       revision: revision,
       parser: showTransform ? 'babel' : 'esprima',
     };
@@ -94,30 +95,36 @@ var App = React.createClass({
    );
   },
 
+  _setCode(code) {
+    return {initialCode: code, currentCode: code};
+  },
+
+  _setTransform(transform) {
+    return {initialTransform: transform, currentTransform: transform};
+  },
+
   _setRevision: function(snippet, revision) {
     if (!snippet || !revision) {
       this.setError('Something went wrong fetching the revision. Try to refresh!');
     }
 
-    const code = revision.get('code') || initialCode;
-    const transform = revision.get('transform') || initialTransform;
+    const code = revision.get('code') || defaultCode;
+    const transform = revision.get('transform') || defaultTransform;
 
     const update = data => { // eslint-disable-line no-shadow
       this.setState({
         ...data,
         snippet,
         revision,
-        content: code,
-        transform,
+        ...this._setCode(code),
+        ...this._setTransform(transform),
         focusPath: [],
       });
     };
 
     if (!this.state.snippet ||
         snippet.id !== this.state.snippet.id ||
-        revision.id !== this.state.revision.id ||
-        revision.get('code') !== this.state.revision.get('code') ||
-        revision.get('transform') !== this.state.revision.get('transform')) {
+        revision.id !== this.state.revision.id) {
       if (this.state.revision && code !== this.state.revision.get('code')) {
         this.parse(code).then(
           ast => update({ast, editorError: null}),
@@ -130,11 +137,11 @@ var App = React.createClass({
   },
 
   _clearRevision: function() {
-    this.parse(initialCode).then(ast => this.setState({
+    this.parse(defaultCode).then(ast => this.setState({
       ast: ast,
       focusPath: [],
-      content: initialCode,
-      transform: initialTransform,
+      ...this._setCode(defaultCode),
+      ...this._setTransform(defaultTransform),
       snippet: null,
       revision: null,
     }));
@@ -169,31 +176,29 @@ var App = React.createClass({
     });
   },
 
-  onContentChange: function(data) {
-    var content = data.value;
-    var cursor = data.cursor;
-    if (this.state.ast && this.state.content === content) {
+  onContentChange: function({value: code, cursor}) {
+    if (this.state.ast && this.state.currentCode === code) {
       return;
     }
 
-    this.parse(content).then(
+    this.parse(code).then(
       ast => this.setState({
-        content: content,
         ast: ast,
+        currentCode: code,
         focusPath: cursor ? getFocusPath(ast, cursor): [],
         editorError: null,
       }),
       error => this.setState({
         ast: null,
+        currentCode: code,
         editorError: error,
-        content: content,
       })
     );
   },
 
-  onTransformContentChange: function(data) {
+  onTransformContentChange: function({value: transform}) {
     this.setState({
-      transform: data.value,
+      currentTransform: transform,
     });
   },
 
@@ -216,14 +221,10 @@ var App = React.createClass({
     var snippet = !fork && this.state.snippet || new Snippet();
     var code = this.refs.editor.getValue();
     var transform = this.refs.transformEditor.getValue();
-    if (snippet.get('code') === code &&
-        snippet.get('transform') === transform) {
-      return;
-    }
-    if (code === initialCode) {
+    if (code === defaultCode) {
       code = '';
     }
-    if (transform === initialTransform) {
+    if (transform === defaultTransform) {
       transform = '';
     }
     this.setState({saving: !fork, forking: fork});
@@ -247,11 +248,11 @@ var App = React.createClass({
   _onSave: function() {
     const {revision} = this.state;
     var isNewRevision = !revision &&
-      (this.state.content !== initialCode ||
-       this.state.transform !== initialTransform);
+      (this.state.currentCode !== defaultCode ||
+       this.state.currentTransform !== defaultTransform);
     var isModified = revision &&
-       (revision.get('code') !== this.state.content ||
-        revision.get('transform') !== this.state.transform);
+       (this.state.initalCode !== this.state.currentCode ||
+        this.state.initialTransform !== this.state.currentTransform);
 
     if (isNewRevision || isModified) {
       this._save();
@@ -269,7 +270,19 @@ var App = React.createClass({
   },
 
   _onDropText: function(type, event, text) {
-    this.onContentChange({value: text});
+    this.parse(text).then(
+      ast => this.setState({
+        ...this._setCode(text),
+        ast: ast,
+        focusPath: [],
+        editorError: null,
+      }),
+      error => this.setState({
+        ...this._setCode(text),
+        ast: null,
+        editorError: error,
+      })
+    );
   },
 
   _onDropError: function(type, event, msg) {
@@ -279,7 +292,7 @@ var App = React.createClass({
   _onParserChange: function() {
     var parser = this.state.parser === 'esprima' ? 'babel' : 'esprima';
 
-    this.parse(this.state.content, parser).then(
+    this.parse(this.state.currentCode, parser).then(
       ast => this.setState({
         ast: ast,
         parser: parser,
@@ -309,7 +322,7 @@ var App = React.createClass({
       this.state.parser;
 
     if (parser !== this.state.parser) {
-      this.parse(this.state.content, parser).then(
+      this.parse(this.state.currentCode, parser).then(
         ast => this.setState({
           ast,
           parser,
@@ -334,12 +347,13 @@ var App = React.createClass({
   },
 
   render: function() {
-    var revision = this.state.revision;
-    var revisionCode = revision && revision.get('code') || initialCode;
-    var revisionTransform = revision && revision.get('transform') ||
-      initialTransform;
-    const canSave = revisionCode !== this.state.content ||
-      revisionTransform !== this.state.transform;
+    const revision = this.state.revision;
+    const revisionCode = revision && revision.get('code') || defaultCode;
+    const revisionTransform = revision && revision.get('transform') ||
+      defaultTransform;
+    const canSave = revisionCode !== this.state.currentCode ||
+      revisionTransform !== this.state.currentTransform;
+
     return (
       <PasteDropTarget
         className="dropTarget"
@@ -373,7 +387,7 @@ var App = React.createClass({
             onResize={this._onResize}>
             <Editor
               ref="editor"
-              value={this.state.content}
+              defaultValue={this.state.initialCode}
               error={this.state.editorError}
               onContentChange={this.onContentChange}
               onActivity={this.onActivity}
@@ -391,12 +405,12 @@ var App = React.createClass({
             <Editor
               ref="transformEditor"
               highlight={false}
-              value={this.state.transform}
+              defaultValue={this.state.initialTransform}
               onContentChange={this.onTransformContentChange}
             />
             <TransformOutput
-              transform={this.state.transform}
-              code={this.state.content}
+              transform={this.state.currentTransform}
+              code={this.state.currentCode}
             />
           </SplitPane> : null}
         </SplitPane>

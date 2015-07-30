@@ -33,6 +33,9 @@ export default class TransformOutput extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.transform !== nextProps.transform ||
         this.props.code !== nextProps.code) {
+      if (console.clear) {
+        console.clear();
+      }
       this.transform(nextProps).then(
         result => this.setState({result, error: null}),
         error => this.setState({error})
@@ -77,13 +80,13 @@ export default class TransformOutput extends React.Component {
             key="error"
             lineNumbers={false}
             readOnly={true}
-            value={this.state.error.message}
+            defaultValue={this.state.error.message}
           /> :
           <Editor
             highlight={false}
             key="output"
             readOnly={true}
-            value={this.state.result}
+            defaultValue={this.state.result}
           />
         }
       </div>

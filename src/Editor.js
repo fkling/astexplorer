@@ -6,6 +6,7 @@ import {keypress} from 'keypress';
 
 export default class Editor {
   static propTypes = {
+    defaultValue: React.PropTypes.string,
     highlight: React.PropTypes.bool,
     lineNumbers: React.PropTypes.bool,
     readOnly: React.PropTypes.bool,
@@ -40,11 +41,10 @@ export default class Editor {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.codeMirror.getValue()) {
-      this.codeMirror.setValue(nextProps.value);
+    if (nextProps.defaultValue !== this.props.defaultValue) {
+      this.codeMirror.setValue(nextProps.defaultValue);
     }
     this._setError(nextProps.error);
-
   }
 
   shouldComponentUpdate() {
@@ -57,7 +57,7 @@ export default class Editor {
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
       React.findDOMNode(this.refs.container),
       {
-        value: this.props.value,
+        value: this.props.defaultValue,
         lineNumbers: this.props.lineNumbers,
         readOnly: this.props.readOnly,
       }
