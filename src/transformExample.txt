@@ -1,10 +1,8 @@
-module.exports = function(file, api) {
-  var j = api.jscodeshift;
-  var root = j(file.source);
-  root.find(j.Identifier).forEach(function(p) {
-    var reverseName = p.value.name.split('').reverse().join('');
-    j(p).replaceWith(j.identifier(reverseName));
-  });
-
-  return root.toSource();
+module.exports = function({source}, {jscodeshift: j}) {
+  return j(source)
+    .find(j.Identifier)
+    .replaceWith(
+      p => j.identifier(p.node.name.split('').reverse().join(''))
+    )
+    .toSource();
 };
