@@ -47,9 +47,14 @@ var Snippet = Parse.Object.extend('Snippet', {
     // we only create a new revision if the code is different from the previous
     // revision
     return this.fetchLatestRevision().then(function(revision) {
-      if (!revision  || revision.get('code') !== data.code) {
+      const isNew = !revision ||
+        revision.get('code') !== data.code ||
+        revision.get('transform') !== data.transform;
+
+      if (isNew) {
         var newRevision = new SnippetRevision();
         newRevision.set('code', data.code);
+        newRevision.set('transform', data.transform);
         this.add('revisions', newRevision);
         return this.save().then(function(snippet) {
           var revisionNumber = snippet.get('revisions').length - 1;

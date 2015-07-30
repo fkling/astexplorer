@@ -31,17 +31,20 @@ var App = React.createClass({
     if ((snippet && !revision) || (!snippet && revision)) {
       throw Error('Must set both, snippet and revision');
     }
+    const code = revision && revision.get('code') || initialCode;
+    const transform = revision && revision.get('transform') || initialTransform;
+    const showTransform = transform !== initialTransform;
     return {
       forking: false,
       saving: false,
       ast: null,
       focusPath: [],
-      content: revision && revision.get('code') || initialCode,
+      content: code,
+      transform,
       snippet: snippet,
-      showTransformPanel: false,
-      transformContent: initialTransform,
+      showTransformPanel: transform !== initialTransform,
       revision: revision,
-      parser: 'esprima-fb',
+      parser: showTransform ? 'babel' : 'esprima-fb',
     };
   },
 
@@ -100,12 +103,14 @@ var App = React.createClass({
     if (!this.state.snippet ||
         snippet.id !== this.state.snippet.id ||
         revision.id !== this.state.revision.id ||
-        revision.get('code') !== this.state.revision.get('code')) {
+        revision.get('code') !== this.state.revision.get('code') ||
+        revision.get('transform') !== this.state.revision.get('transform')) {
       this.setState({
-        snippet: snippet,
-        revision: revision,
-        content: revision.get('code'),
-        focusPath: []
+        snippet,
+        revision,
+        content: revision.get('code') || initialCode,
+        transform: revision.get('transform') || initialTransform,
+        focusPath: [],
       });
     }
   },
@@ -195,10 +200,20 @@ var App = React.createClass({
   _save: function(fork) {
     var snippet = !fork && this.state.snippet || new Snippet();
     var code = this.refs.editor.getValue();
-    if (snippet.get('code') === code) return;
+    var transform = this.refs.transformEditor.getValue();
+    if (snippet.get('code') === code &&
+        snippet.get('transform') === transform) {
+      return;
+    }
+    if (code === initialCode) {
+      code = '';
+    }
+    if (transform === initialTransform) {
+      transform = '';
+    }
     this.setState({saving: !fork, forking: fork});
-    snippet.createNewRevision({code: code}).then(
-      function(response) {
+    snippet.createNewRevision({code, transform}).then(
+      response => {
         if (response) {
           updateHashWithIDAndRevision(snippet.id, response.revisionNumber);
         }
@@ -215,9 +230,15 @@ var App = React.createClass({
   },
 
   _onSave: function() {
-    var revision = this.state.revision;
-    if (this.state.content !== initialCode && !revision ||
-        revision && revision.get('code') !== this.state.content) {
+    const {revision} = this.state;
+    var isNewRevision = !revision &&
+      (this.state.content !== initialCode ||
+       this.state.transform !== initialTransform);
+    var isModified = revision &&
+       (revision.get('code') !== this.state.content ||
+        revision.get('transform') !== this.state.transform);
+
+    if (isNewRevision || isModified) {
       this._save();
     }
   },
@@ -315,8 +336,10 @@ var App = React.createClass({
           onParserChange={this._onParserChange}
           onToggleTransform={this._onToggleTransform}
           canSave={
-            this.state.content !== initialCode && !revision ||
-            revision && revision.get('code') !== this.state.content
+            (this.state.content !== initialCode ||
+             this.state.transform !== initialTransform) && !revision ||
+            revision && revision.get('code') !== this.state.content ||
+            revision && revision.get('transform') !== this.state.transform
           }
           canFork={!!revision}
           parserName={this.state.parser}
