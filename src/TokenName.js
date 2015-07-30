@@ -1,13 +1,11 @@
-var React = require('react/addons');
+import React from 'react';
 
-var TokenName = React.createClass({
-  render: function() {
+export default class TokenName {
+  render() {
     return (
       <span className="tokenName nc" onClick={this.props.onClick}>
         {this.props.object.type}
       </span>
     );
   }
-});
-
-module.exports = TokenName;
+}

@@ -1,9 +1,7 @@
-var React = require('react/addons');
+import React from 'react';
 
-var ErrorMessage = React.createClass({
-  render: function() {
+export default class ErrorMessage {
+  render() {
     return <div id="Error">{this.props.message}</div>;
   }
-});
-
-module.exports = ErrorMessage;
+}

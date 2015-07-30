@@ -1,14 +1,12 @@
-var React = require('react/addons');
+import React from 'react';
 
-var ArrayElements = React.createClass({
-  getDefaultProps: function() {
-    return {
-      deepOpen: false,
-      array: [],
-    };
-  },
+export default class ArrayElements {
+  static defaultProps = {
+    deepOpen: false,
+    array: [],
+  };
 
-  render: function() {
+  render() {
     var Element = require('./Element');
     var focusPath = this.props.focusPath;
     var level = this.props.level;
@@ -25,6 +23,4 @@ var ArrayElements = React.createClass({
     );
     return <ul className="value-body">{elements}</ul>;
   }
-});
-
-module.exports = ArrayElements;
+}

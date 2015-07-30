@@ -1,28 +1,26 @@
-var React = require('react/addons');
-
-var cloneWithProps = React.addons.cloneWithProps;
+import React from 'react';
 
 var baseStyleHorizontal = {
   position: 'absolute',
   top: 0,
   bottom: 0,
-  boxSizing: 'border-box'
+  boxSizing: 'border-box',
 };
 
 var baseStyleVertical = {
   position: 'absolute',
   left: 0,
   right: 0,
-  boxSizing: 'border-box'
+  boxSizing: 'border-box',
 };
 
 /**
  * Creates a left-right split pane inside its container.
  */
-var SplitPane = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {
-      dividerPosition: 50
+      dividerPosition: 50,
     };
   },
 
@@ -72,21 +70,21 @@ var SplitPane = React.createClass({
         ...baseStyleVertical,
         top: 0,
         height: dividerPos + '%',
-        paddingBottom: 3
+        paddingBottom: 3,
       };
       // bottom
       styleB = {
         ...baseStyleVertical,
         bottom: 0,
         height: (100 - dividerPos) + '%',
-        paddingTop: 3
+        paddingTop: 3,
       };
       dividerStyle = {
         ...baseStyleVertical,
         top: dividerPos + '%',
         height: 5,
         marginTop: -2.5,
-        zIndex: 100
+        zIndex: 100,
       };
     } else {
       // left
@@ -94,21 +92,21 @@ var SplitPane = React.createClass({
         ...baseStyleHorizontal,
         left: 0,
         width: dividerPos + '%',
-        paddingRight: 3
+        paddingRight: 3,
       };
       // right
       styleB = {
         ...baseStyleHorizontal,
         right: 0,
         width: (100 - dividerPos) + '%',
-        paddingLeft: 3
+        paddingLeft: 3,
       };
       dividerStyle = {
         ...baseStyleHorizontal,
         left: dividerPos + '%',
         width: 5,
         marginLeft: -2.5,
-        zIndex: 100
+        zIndex: 100,
       };
     }
 
@@ -129,7 +127,5 @@ var SplitPane = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
-
-module.exports = SplitPane;

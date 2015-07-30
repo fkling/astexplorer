@@ -1,6 +1,5 @@
-"use strict";
-var Parse = require('./Parse');
-var SnippetRevision = require('./SnippetRevision');
+import Parse from './Parse';
+import SnippetRevision from './SnippetRevision';
 var snippetQuery;
 var cache = {};
 global.__cache = cache;
@@ -10,7 +9,7 @@ function getIDAndRevisionFromHash() {
   if (match) {
     return {
       id: match[1],
-      rev: match[2] || 0
+      rev: match[2] || 0,
     };
   }
   return null;
@@ -20,11 +19,11 @@ function getFromCache(snippetID, rev) {
   var cacheEntry = cache[snippetID];
   return {
     snippet: cacheEntry && cacheEntry.snippet || null,
-    revision: cacheEntry && cacheEntry[rev] || null
+    revision: cacheEntry && cacheEntry[rev] || null,
   };
 }
 
-function setInCache(snippet, revision,rev) {
+function setInCache(snippet, revision, rev) {
   var cacheEntry = cache[snippet.id] || (cache[snippet.id] = {});
   cacheEntry.snippet = snippet;
   cacheEntry[rev] = revision;
@@ -57,15 +56,15 @@ var Snippet = Parse.Object.extend('Snippet', {
           this._latestRevision = newRevision;
           setInCache(snippet, newRevision, revisionNumber);
           return {
-            snippet: snippet,
+            snippet,
             revision: newRevision,
-            revisionNumber: revisionNumber
+            revisionNumber: revisionNumber,
           };
         }.bind(this));
       }
       return null;
     }.bind(this));
-  }
+  },
 }, {
   fetch: function(snippetID, rev) {
     if (!snippetQuery) {
@@ -105,4 +104,4 @@ var Snippet = Parse.Object.extend('Snippet', {
   },
 });
 
-module.exports = Snippet;
+export default Snippet;

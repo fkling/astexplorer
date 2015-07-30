@@ -1,16 +1,10 @@
-/**
- * @jsx React.DOM
- */
-"use strict";
+import JSONEditor from './JSONEditor';
+import Element from './Element';
+import PubSub from 'pubsub-js';
+import React from 'react/addons';
+import cx from 'classnames';
 
-var JSONEditor = require('./JSONEditor');
-var Element = require('./Element');
-var PubSub = require('pubsub-js');
-var React = require('react/addons');
-
-var cx = React.addons.classSet;
-
-var ASTOutput = React.createClass({
+export default React.createClass({
   propTypes: {
     ast: React.PropTypes.object,
     focusPath: React.PropTypes.array,
@@ -18,7 +12,7 @@ var ASTOutput = React.createClass({
 
   getInitialState: function() {
     return {
-      output: 'tree'
+      output: 'tree',
     };
   },
 
@@ -69,7 +63,7 @@ var ASTOutput = React.createClass({
             onClick={this._changeOutput}
             value="tree"
             className={cx({
-              active: this.state.output === 'tree'
+              active: this.state.output === 'tree',
             })}>
             Tree
           </button>
@@ -77,7 +71,7 @@ var ASTOutput = React.createClass({
             onClick={this._changeOutput}
             value="json"
             className={cx({
-              active: this.state.output === 'json'
+              active: this.state.output === 'json',
             })}>
             JSON
           </button>
@@ -85,7 +79,5 @@ var ASTOutput = React.createClass({
         {output}
       </div>
     );
-  }
+  },
 });
-
-module.exports = ASTOutput;

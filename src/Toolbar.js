@@ -1,8 +1,8 @@
-var React = require('react/addons');
-var cx = React.addons.classSet;
+import React from 'react';
+import cx from 'classnames';
 
-var Toolbar = React.createClass({
-  propTypes: {
+export default class Toolbar {
+  static propTypes = {
     saving: React.PropTypes.bool,
     forking: React.PropTypes.bool,
     onSave: React.PropTypes.func,
@@ -10,9 +10,9 @@ var Toolbar = React.createClass({
     onParserChange: React.PropTypes.func,
     parserName: React.PropTypes.string,
     parserVersion: React.PropTypes.string,
-  },
+  };
 
-  render: function() {
+  render() {
     return (
       <div id="Toolbar">
         <h1>JS AST Explorer</h1>
@@ -83,7 +83,5 @@ var Toolbar = React.createClass({
         </div>
       </div>
     );
-  },
-});
-
-module.exports = Toolbar;
+  }
+}

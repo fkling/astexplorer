@@ -1,9 +1,9 @@
-var BLACKLIST = require('./NodeBlacklist');
-var React = require('react/addons');
-var TokenName = require('./TokenName');
+import BLACKLIST from './NodeBlacklist';
+import React from 'react';
+import TokenName from './TokenName';
 
-var ObjectFormatter = React.createClass({
-  render: function() {
+export default class ObjectFormatter {
+  render() {
     var object = this.props.object;
     var keys = Object.keys(object).filter(k => !BLACKLIST[k]);
 
@@ -13,7 +13,10 @@ var ObjectFormatter = React.createClass({
     else {
       return (
         <span>
-          {object.type ? <TokenName onClick={this.props.onClick} object={object} /> : null}
+          {object.type ?
+            <TokenName onClick={this.props.onClick} object={object} /> :
+            null
+          }
           <span className="p">{" {"}</span>
           <span className="placeholder ge">{keys.join(', ')}</span>
           <span className="p">{"}"}</span>
@@ -21,6 +24,4 @@ var ObjectFormatter = React.createClass({
       );
     }
   }
-});
-
-module.exports = ObjectFormatter;
+}

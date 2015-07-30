@@ -1,13 +1,12 @@
-var ArrayElements = require('./ArrayElements');
-var ArrayFormatter = require('./ArrayFormatter');
-var ObjectFormatter = require('./ObjectFormatter');
-var PropertyList = require('./PropertyList');
-var PubSub = require('pubsub-js');
-var React = require('react/addons');
-var TokenName = require('./TokenName');
+import ArrayElements from './ArrayElements';
+import ArrayFormatter from './ArrayFormatter';
+import ObjectFormatter from './ObjectFormatter';
+import PropertyList from './PropertyList';
+import PubSub from 'pubsub-js';
+import React from 'react';
+import TokenName from './TokenName';
 
-var cx = React.addons.classSet;
-var isArray = require('./isArray');
+import cx from 'classnames';
 
 /* For debugging
 function log(f) {
@@ -19,7 +18,7 @@ function log(f) {
 }
 */
 
-var Element = React.createClass({
+export default React.createClass({
   propTypes: {
     name: React.PropTypes.string,
     value: React.PropTypes.any,
@@ -39,7 +38,7 @@ var Element = React.createClass({
 
     return {
       open: open,
-      deepOpen: this.props.deepOpen
+      deepOpen: this.props.deepOpen,
     };
   },
 
@@ -100,7 +99,7 @@ var Element = React.createClass({
 
   _toggleClick: function(event) {
     this.setState({
-      open: event.shiftKey  || !this.state.open,
+      open: event.shiftKey || !this.state.open,
       deepOpen: event.shiftKey,
     });
   },
@@ -122,7 +121,7 @@ var Element = React.createClass({
 
   render: function() {
     var value = this.props.value;
-    var value_output = null;
+    var valueOutput = null;
     var content = null;
     var prefix = null;
     var suffix = null;
@@ -133,10 +132,10 @@ var Element = React.createClass({
     var open = this.state.open;
     var focused = this._isFocused(this.props.level, focusPath, value, open);
 
-    if (isArray(value)) {
+    if (Array.isArray(value)) {
       if (value.length > 0 && open) {
-        prefix = "[";
-        suffix = "]";
+        prefix = '[';
+        suffix = ']';
         content =
           <ArrayElements
             focusPath={focusPath}
@@ -144,7 +143,7 @@ var Element = React.createClass({
             deepOpen={this.state.deepOpen}
           />;
       } else {
-        value_output =
+        valueOutput =
           <ArrayFormatter
             array={value}
             onClick={this._toggleClick}
@@ -152,10 +151,10 @@ var Element = React.createClass({
       }
       showToggler = value.length > 0;
     }
-    else if (value && typeof value === "object") {
+    else if (value && typeof value === 'object') {
       if (this.state.open) {
         if (isType) {
-          value_output =
+          valueOutput =
             <TokenName
               onClick={this._toggleClick}
               object={value}
@@ -171,7 +170,7 @@ var Element = React.createClass({
           />;
       }
       else {
-        value_output =
+        valueOutput =
           <ObjectFormatter
             onClick={this._toggleClick}
             object={value}
@@ -180,7 +179,7 @@ var Element = React.createClass({
       showToggler = Object.keys(value).length > 0;
     }
     else {
-      value_output =
+      valueOutput =
         <span className="s">
           {typeof value === 'undefined' ? 'undefined' : JSON.stringify(value)}
       </span>;
@@ -200,7 +199,7 @@ var Element = React.createClass({
       entry: true,
       focused: focused,
       toggable: showToggler,
-      open: open
+      open: open,
     });
 
     return (
@@ -210,13 +209,11 @@ var Element = React.createClass({
         onMouseOver={enableHighlight ? this._onMouseOver : null}
         onMouseLeave={enableHighlight ? this._onMouseLeave : null}>
         {name}
-        <span className="value">{value_output}</span>
+        <span className="value">{valueOutput}</span>
         {prefix ? <span className="prefix p">{prefix}</span> : null}
         {content}
         {suffix ? <div className="suffix p">{suffix}</div> : null}
       </li>
     );
-  }
+  },
 });
-
-module.exports = Element;

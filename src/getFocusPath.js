@@ -1,12 +1,8 @@
-"use strict";
-
-var isArray = require('./isArray');
-
 function isInRange(range, pos) {
   return pos >= range[0] && pos <= range[1];
 }
 
-function getFocusPath(node, pos, path) {
+export default function getFocusPath(node, pos, path) {
   path = path || [];
 
   if (node.range) {
@@ -17,7 +13,7 @@ function getFocusPath(node, pos, path) {
       return [];
     }
   }
-  else if (isArray(node) && node.length > 0) {
+  else if (Array.isArray(node) && node.length > 0) {
     // check first and last child
     if (isInRange([node[0].range[0], node[node.length - 1].range[1]], pos)) {
       path.push(node);
@@ -30,12 +26,10 @@ function getFocusPath(node, pos, path) {
     if (prop !== 'range' && node[prop] && typeof node[prop] === 'object') {
       var childPath = getFocusPath(node[prop], pos);
       if (childPath.length > 0) {
-        path.push.apply(path, childPath);
+        path.push(...childPath);
         break;
       }
     }
   }
   return path;
 }
-
-module.exports = getFocusPath;

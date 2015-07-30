@@ -1,70 +1,74 @@
-var Editor = require('./Editor');
-var React = require('react/addons');
+/*eslint no-new-func: 0*/
+import Editor from './Editor';
+import React from 'react';
 
-var TransformOutput = React.createClass({
-  propTypes: {
+function module(code) {
+  var m = {};
+  var f = new Function('module', `(function() {${code}}())`);
+  f(m);
+  return m.exports;
+}
+
+export default class TransformOutput extends React.Component {
+  static propTypes = {
     transform: React.PropTypes.string,
     code: React.PropTypes.string,
-  },
+  };
 
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       result: '',
       error: null,
     };
-  },
+  }
 
   componentDidMount() {
     this.transform(this.props).then(
       result => this.setState({result: result}),
       error => this.setState({error: error})
     );
-  },
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.transform !== nextProps.transform ||
         this.props.code !== nextProps.code) {
       this.transform(nextProps).then(
-        result => this.setState({result: result, error: null}),
-        error => this.setState({error: error})
+        result => this.setState({result, error: null}),
+        error => this.setState({error})
       );
     }
-  },
+  }
 
-  shouldComponentUpdate: function(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) {
     return this.state.result !== nextState.result ||
       this.state.error !== nextState.error;
-  },
+  }
 
-  transform: function(props) {
+  transform(props) {
     return new Promise((resolve, reject) => {
       loadjs(['babel-core', 'jscodeshift'], (babel, jscodeshift) => {
         try {
           // This might throw
-          var transform = babel.transform(props.transform).code;
-          var module = {};
-          var args = [
+          var transform = module(
+              babel.transform(props.transform).code
+          );
+          resolve(transform(
             {
               path: 'Live.js',
               source: props.code,
             },
             {jscodeshift},
-            {},
-          ];
-          resolve(eval([
-            '(function() {',
-            transform,
-            '})();',
-            'module.exports.apply(module.exports, args);',
-          ].join('\n')));
+            {}
+          ));
         } catch(ex) {
           reject(ex);
         }
       });
     });
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="output highlight">
         {this.state.error ?
@@ -84,7 +88,5 @@ var TransformOutput = React.createClass({
         }
       </div>
     );
-  },
-});
-
-module.exports = TransformOutput;
+  }
+}

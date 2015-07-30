@@ -1,19 +1,19 @@
-var React = require('react/addons');
+import React from 'react';
 
-var ArrayFormatter = React.createClass({
-  propTypes: {
+export default class ArrayFormatter {
+  static propTypes = {
     /**
      * The array of elements to represent.
      */
     array: React.PropTypes.array.isRequired,
     onClick: React.PropTypes.func,
-  },
+  };
 
-  shouldComponentUpdate: function(nextProps) {
+  shouldComponentUpdate(nextProps) {
     return nextProps.array.length !== this.props.array.length;
-  },
+  }
 
-  render: function() {
+  render() {
     var array = this.props.array;
     var count = array.length;
 
@@ -32,6 +32,4 @@ var ArrayFormatter = React.createClass({
       );
     }
   }
-});
-
-module.exports = ArrayFormatter;
+}

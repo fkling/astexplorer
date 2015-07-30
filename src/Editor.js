@@ -1,48 +1,47 @@
-var CodeMirror = require('codemirror');
-require('codemirror/mode/javascript/javascript');
-var PubSub = require('pubsub-js');
-var React = require('react/addons');
-var keypress = require('keypress').keypress;
+import CodeMirror from 'codemirror';
+import 'codemirror/mode/javascript/javascript';
+import PubSub from 'pubsub-js';
+import React from 'react/addons';
+import {keypress} from 'keypress';
 
-var Editor = React.createClass({
-
-  propTypes: {
+export default class Editor {
+  static propTypes = {
     highlight: React.PropTypes.bool,
     lineNumbers: React.PropTypes.bool,
     readOnly: React.PropTypes.bool,
-  },
+  }
 
-  getDefaultProps: function() {
-    return {
-      highlight: true,
-      lineNumbers: true,
-      readOnly: false,
-    }
-  },
+  static defaultProps = {
+    highlight: true,
+    lineNumbers: true,
+    readOnly: false,
+    onContentChange: () => {},
+    onActivity: () => {}
+  };
 
-  getValue: function() {
+  getValue() {
     return this.codeMirror && this.codeMirror.getValue();
-  },
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.value !== this.codeMirror.getValue()) {
       this.codeMirror.setValue(nextProps.value);
     }
-  },
+  }
 
-  shouldComponentUpdate: function() {
+  shouldComponentUpdate() {
     return false;
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._CMHandlers = [];
     this._subscriptions = [];
-    this.codeMirror = CodeMirror(
-      this.refs.container.getDOMNode(),
+    this.codeMirror = CodeMirror( // eslint-disable-line new-cap
+      React.findDOMNode(this.refs.container),
       {
         value: this.props.value,
         lineNumbers: this.props.lineNumbers,
-        readOnly: this.props.readOnly
+        readOnly: this.props.readOnly,
       }
     );
 
@@ -52,11 +51,11 @@ var Editor = React.createClass({
 
     this._bindCMHandler('changes', () => {
       clearTimeout(this._updateTimer);
-      this._updateTimer = setTimeout(this._onContentChange, 200);
+      this._updateTimer = setTimeout(this._onContentChange.bind(this), 200);
     });
     this._bindCMHandler('cursorActivity', () => {
       clearTimeout(this._updateTimer);
-      this._updateTimer = setTimeout(this._onActivity, 100);
+      this._updateTimer = setTimeout(this._onActivity.bind(this), 100);
     });
 
     this._keyListener = new keypress.Listener();
@@ -82,7 +81,9 @@ var Editor = React.createClass({
           var doc = this.codeMirror.getDoc();
           this._markerRange = range;
           // We only want one mark at a time.
-          if (this._mark) this._mark.clear();
+          if (this._mark) {
+            this._mark.clear();
+          }
           this._mark = this.codeMirror.markText(
             doc.posFromIndex(range[0]),
             doc.posFromIndex(range[1]),
@@ -105,23 +106,23 @@ var Editor = React.createClass({
         })
       );
     }
-  },
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     this._unbindHandlers();
     this._markerRange = null;
     this._mark = null;
     var container = this.refs.container.getDOMNode();
     container.removeChild(container.children[0]);
     this.codeMirror = null;
-  },
+  }
 
-  _bindCMHandler: function(event, handler) {
+  _bindCMHandler(event, handler) {
     this._CMHandlers.push(event, handler);
     this.codeMirror.on(event, handler);
-  },
+  }
 
-  _unbindHandlers: function() {
+  _unbindHandlers() {
     var cmHandlers = this._CMHandlers;
     for (var i = 0; i < cmHandlers.length; i += 2) {
       this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
@@ -129,27 +130,27 @@ var Editor = React.createClass({
     this._subscriptions.forEach(function(token) {
       PubSub.unsubscribe(token);
     });
-  },
+  }
 
-  _onContentChange: function() {
+  _onContentChange() {
     var doc = this.codeMirror.getDoc();
-    this.props.onContentChange && this.props.onContentChange({
+    this.props.onContentChange({
       value: doc.getValue(),
-      cursor: doc.indexFromPos(doc.getCursor())
+      cursor: doc.indexFromPos(doc.getCursor()),
     });
-  },
+  }
 
-  _onActivity: function() {
-    this.props.onActivity && this.props.onActivity(
+  _onActivity() {
+    this.props.onActivity(
       this.codeMirror.getDoc().indexFromPos(this.codeMirror.getCursor())
     );
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="editor" ref="container" />
     );
   }
-});
+}
 
 module.exports = Editor;

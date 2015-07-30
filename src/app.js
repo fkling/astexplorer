@@ -1,20 +1,21 @@
-var ASTOutput = require('./ASTOutput');
-var Editor = require('./Editor');
-var ErrorMessage = require('./ErrorMessage');
-var PasteDropTarget = require('./PasteDropTarget');
-var PubSub = require('pubsub-js');
-var React = require('react/addons');
-var Snippet = require('./Snippet');
-var SplitPane = require('./SplitPane');
-var Toolbar = require('./Toolbar');
-var TransformOutput = require('./TransformOutput');
+import ASTOutput from './ASTOutput';
+import Editor from './Editor';
+import ErrorMessage from './ErrorMessage';
+import PasteDropTarget from './PasteDropTarget';
+import PubSub from 'pubsub-js';
+import React from 'react';
+import Snippet from './Snippet';
+import SplitPane from './SplitPane';
+import Toolbar from './Toolbar';
+import TransformOutput from './TransformOutput';
+
+import getFocusPath from './getFocusPath';
+import esprima from 'esprima-fb';
+import {keypress} from 'keypress';
+
+var fs = require('fs');
 
 var babel;
-var getFocusPath = require('./getFocusPath');
-var esprima = require('esprima-fb');
-var fs = require('fs');
-var keypress = require('keypress').keypress;
-
 var initialCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
 var initialTransform =
   fs.readFileSync(__dirname + '/transformExample.txt', 'utf8');
@@ -48,7 +49,7 @@ var App = React.createClass({
     if (this.props.error) {
       this._showError(this.props.error);
     }
-    global.onhashchange = function() {
+    global.onhashchange = () => {
       if (!this.state.saving || !this.state.forking) {
         Snippet.fetchFromURL().then(
           function(data) {
@@ -63,7 +64,7 @@ var App = React.createClass({
           }.bind(this)
         );
       }
-    }.bind(this);
+    };
 
     var listener = new keypress.Listener();
     listener.simple_combo('meta s', (event) => {
@@ -79,12 +80,17 @@ var App = React.createClass({
       this._onFork();
     });
 
-    PubSub.subscribe('HIGHLIGHT', function(_, astNode) {
-      PubSub.publish('CM.HIGHLIGHT', astNode.range);
-    });
-    PubSub.subscribe('CLEAR_HIGHLIGHT', function(_, astNode) {
-      PubSub.publish('CM.CLEAR_HIGHLIGHT', astNode && astNode.range);
-    });
+    PubSub.subscribe(
+      'HIGHLIGHT',
+      (_, astNode) => PubSub.publish('CM.HIGHLIGHT', astNode.range)
+    );
+    PubSub.subscribe(
+      'CLEAR_HIGHLIGHT',
+     (_, astNode) => PubSub.publish(
+       'CM.CLEAR_HIGHLIGHT',
+       astNode && astNode.range
+     )
+   );
   },
 
   _setRevision: function(snippet, revision) {
@@ -109,6 +115,7 @@ var App = React.createClass({
       ast: ast,
       focusPath: [],
       content: initialCode,
+      transform: initialTransform,
       snippet: null,
       revision: null,
     }));
@@ -155,7 +162,7 @@ var App = React.createClass({
         content: content,
         ast: ast,
         focusPath: cursor ? getFocusPath(ast, cursor): [],
-        error: null
+        error: null,
       }),
       e => this.setState({
         error: 'Syntax error: ' + e.message,
@@ -165,25 +172,24 @@ var App = React.createClass({
   },
 
   onTransformContentChange: function(data) {
-    var content = data.value;
     this.setState({
-      transformContent: content
+      transform: data.value,
     });
   },
 
   onActivity: function(cursorPos) {
     this.setState({
-      focusPath: getFocusPath(this.state.ast, cursorPos)
+      focusPath: getFocusPath(this.state.ast, cursorPos),
     });
   },
 
   _showError: function(msg) {
     this.setState({error: msg});
-    setTimeout(function() {
+    setTimeout(() => {
       if (msg === this.state.error) {
         this.setState({error: false});
       }
-    }.bind(this), 3000);
+    }, 3000);
   },
 
   _save: function(fork) {
@@ -200,11 +206,11 @@ var App = React.createClass({
           saving: false,
           forking: false,
         });
-      }.bind(this),
-      function(snippet, error) {
+      },
+      (_, error) => {
         this._showError('Could not save: ' + error.message);
         this.setState({saving: false, forking: false});
-      }.bind(this)
+      }
     );
   },
 
@@ -217,7 +223,7 @@ var App = React.createClass({
   },
 
   _onFork: function() {
-    if (!!this.state.revision) {
+    if (this.state.revision) {
       this._save(true);
     }
   },
@@ -242,7 +248,7 @@ var App = React.createClass({
         ast: ast,
         parser: parser,
         focusPath: [],
-        error: null
+        error: null,
       }),
       e => this.setState({
         error: 'Syntax error: ' + e.message,
@@ -251,20 +257,46 @@ var App = React.createClass({
     );
   },
 
-  _getParser: function() {
-    return this.state.parser === 'esprima-fb' ? esprima : babel;
+  _getParserVersion: function() {
+    const parser = this.state.parser === 'esprima-fb' ? esprima : babel;
+    return parser && parser.version;
   },
 
   _onToggleTransform: function() {
-    this.setState({
-      showTransformPanel: !this.state.showTransformPanel,
-    });
+    const showTransformPanel = !this.state.showTransformPanel;
+    // Switch to Babel if we open the transform, since jscodeshift uses Babel
+    // as well
+    const parser =
+      this.state.parser !== 'babel' && showTransformPanel ?
+      'babel' :
+      this.state.parser;
+
+    if (parser !== this.state.parser) {
+      this.parse(this.state.content, parser).then(
+        ast => this.setState({
+          ast,
+          parser,
+          focusPath: [],
+          error: null,
+          showTransformPanel,
+        }),
+        error => this.setState({
+          error: 'Syntax error: ' + error.message,
+          parser,
+          showTransformPanel,
+        })
+      );
+    } else {
+      this.setState({
+        showTransformPanel,
+        parser,
+      });
+    }
+    this._onResize();
   },
 
   render: function() {
     var revision = this.state.revision;
-    var splitPaneClassName =
-      'splitpane' + (this.state.showTransformPanel ? ' splitpane-top' : '');
     return (
       <PasteDropTarget
         className="dropTarget"
@@ -288,7 +320,7 @@ var App = React.createClass({
           }
           canFork={!!revision}
           parserName={this.state.parser}
-          parserVersion={this._getParser().version}
+          parserVersion={this._getParserVersion()}
           transformPanelIsEnabled={this.state.showTransformPanel}
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
@@ -315,19 +347,20 @@ var App = React.createClass({
             className="splitpane"
             onResize={this._onResize}>
             <Editor
+              ref="transformEditor"
               highlight={false}
-              value={this.state.transformContent}
+              value={this.state.transform}
               onContentChange={this.onTransformContentChange}
             />
             <TransformOutput
-              transform={this.state.transformContent}
+              transform={this.state.transform}
               code={this.state.content}
             />
           </SplitPane> : null}
         </SplitPane>
       </PasteDropTarget>
     );
-  }
+  },
 });
 
 function render(props) {
@@ -338,10 +371,6 @@ function render(props) {
 }
 
 Snippet.fetchFromURL().then(
-  function(data) {
-    render(data);
-  },
-  function(error) {
-    render({error: 'Failed to fetch revision: ' + error.message});
-  }
+  data => render(data),
+  error => render({error: 'Failed to fetch revision: ' + error.message})
 );

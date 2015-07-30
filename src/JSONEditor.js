@@ -1,42 +1,42 @@
-var CodeMirror = require('codemirror');
-require('codemirror/mode/javascript/javascript');
-require('codemirror/addon/fold/foldgutter');
-require('codemirror/addon/fold/foldcode');
-require('codemirror/addon/fold/brace-fold');
-var PubSub = require('pubsub-js');
-var React = require('react/addons');
+import CodeMirror from 'codemirror';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/addon/fold/foldgutter';
+import 'codemirror/addon/fold/foldcode';
+import 'codemirror/addon/fold/brace-fold';
+import PubSub from 'pubsub-js';
+import React from 'react/addons';
 
-var Editor = React.createClass({
+export default class Editor {
 
-  getValue: function() {
+  getValue() {
     return this.codeMirror && this.codeMirror.getValue();
-  },
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.codeMirror.getValue()) {
       // preserve scroll position
       var info = this.codeMirror.getScrollInfo();
       this.codeMirror.setValue(nextProps.value);
       this.codeMirror.scrollTo(info.left, info.top);
     }
-  },
+  }
 
-  shouldComponentUpdate: function() {
+  shouldComponentUpdate() {
     return false;
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._CMHandlers = [];
     this._subscriptions = [];
-    this.codeMirror = CodeMirror(
+    this.codeMirror = CodeMirror( // eslint-disable-line new-cap
       this.refs.container.getDOMNode(),
       {
         value: this.props.value,
-        mode: {name: "javascript", json: true},
+        mode: {name: 'javascript', json: true},
         readOnly: true,
         lineNumbers: true,
         foldGutter: true,
-        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
       }
     );
 
@@ -51,32 +51,30 @@ var Editor = React.createClass({
         }
       })
     );
-  },
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     this._unbindHandlers();
     var container = this.refs.container.getDOMNode();
     container.removeChild(container.children[0]);
     this.codeMirror = null;
-  },
+  }
 
-  _bindCMHandler: function(event, handler) {
+  _bindCMHandler(event, handler) {
     this._CMHandlers.push(event, handler);
     this.codeMirror.on(event, handler);
-  },
+  }
 
-  _unbindHandlers: function() {
+  _unbindHandlers() {
     var cmHandlers = this._CMHandlers;
     for (var i = 0; i < cmHandlers.length; i += 2) {
       this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
     }
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div id="JSONEditor" className={this.props.className} ref="container" />
     );
   }
-});
-
-module.exports = Editor;
+}
