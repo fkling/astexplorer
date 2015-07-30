@@ -57,6 +57,12 @@ html {
   vertical-align: top;
 }
 
+#Toolbar > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#Toolbar > a,
 #Toolbar > button {
   margin: 0;
   height: 100%;
@@ -80,10 +86,12 @@ html {
   cursor: default;
 }
 
+#Toolbar > a:hover,
 #Toolbar > button:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+#Toolbar > a:active,
 #Toolbar > button:active {
   background-color: rgba(0, 0, 0, 0.3);
 }

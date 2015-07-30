@@ -78,6 +78,19 @@ export default class Toolbar {
           />
           &nbsp;Transform
         </button>
+        <a
+          target="_blank"
+          href="https://github.com/fkling/esprima_ast_explorer#features">
+          <i
+            className={cx({
+              fa: true,
+              'fa-lg': true,
+              'fa-question': true,
+              'fa-fw': true,
+            })}
+          />
+          &nbsp;Help
+        </a>
         <div id="parser">
           Parser: {this.props.parserName}-{this.props.parserVersion}
         </div>
