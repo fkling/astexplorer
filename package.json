@@ -51,6 +51,6 @@
   "scripts": {
     "start": "http-server",
     "build": "NODE_ENV=production browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g uglifyify",
-    "dev": "NODE_ENV=devlepment browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g uglifyify"
+    "dev": "browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g [uglifyify --no-mangle]"
   }
 }
