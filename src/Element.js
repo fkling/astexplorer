@@ -1,8 +1,3 @@
-/**
- * @jsx React.DOM
- */
-"use strict";
-
 var ArrayElements = require('./ArrayElements');
 var ArrayFormatter = require('./ArrayFormatter');
 var ObjectFormatter = require('./ObjectFormatter');

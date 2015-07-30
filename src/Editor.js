@@ -1,7 +1,3 @@
-/**@jsx React.DOM */
-/*jshint browser:true, newcap:false, expr:true*/
-"use strict";
-
 var CodeMirror = require('codemirror');
 require('codemirror/mode/javascript/javascript');
 var PubSub = require('pubsub-js');

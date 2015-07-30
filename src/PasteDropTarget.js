@@ -1,5 +1,3 @@
-"use strict";
-
 var React = require('react/addons');
 
 var escodegen = require('escodegen');

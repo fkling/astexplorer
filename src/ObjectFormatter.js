@@ -1,8 +1,3 @@
-/**
- * @jsx React.DOM
- */
-"use strict";
-
 var BLACKLIST = require('./NodeBlacklist');
 var React = require('react/addons');
 var TokenName = require('./TokenName');

@@ -1,8 +1,3 @@
-/**
- * @jsx React.DOM
- */
-"use strict";
-
 var React = require('react/addons');
 
 var ArrayFormatter = React.createClass({

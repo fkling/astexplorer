@@ -1,8 +1,3 @@
-/**
- * @jsx React.DOM
- */
-"use strict";
-
 var Editor = require('./Editor');
 var React = require('react/addons');
 

@@ -1,10 +1,3 @@
-/**
- * @jsx React.DOM
- */
-"use strict";
-
-require('./Object.es7.shim');
-
 var ASTOutput = require('./ASTOutput');
 var Editor = require('./Editor');
 var ErrorMessage = require('./ErrorMessage');

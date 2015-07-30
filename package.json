@@ -9,6 +9,7 @@
   "author": "Felix Kling",
   "license": "MIT",
   "devDependencies": {
+    "babelify": "^6.1.3",
     "brfs": "^1.1.1",
     "browserify": "^11.0.0",
     "envify": "^3.2.0",
@@ -21,21 +22,24 @@
   },
   "dependencies": {
     "babel-core": "^5.7.3",
+    "babel-runtime": "^5.8.19",
     "codemirror": "^5.1.0",
     "escodegen": "^1.4.1",
     "esprima-fb": "^15001.1.0-dev-harmony-fb",
     "jscodeshift": "^0.3",
     "keypress": "git://github.com/dmauro/Keypress",
     "pubsub-js": "^1.4.2",
-    "react": "^0.13.1",
-    "react-tools": "^0.12.x"
+    "react": "^0.13.1"
   },
   "browserify": {
     "transform": [
       [
-        "reactify",
+        "babelify",
         {
-          "harmony": true
+          "stage": 0,
+          "optional": [
+            "runtime"
+          ]
         }
       ],
       "envify",
