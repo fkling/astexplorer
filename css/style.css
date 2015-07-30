@@ -122,7 +122,7 @@ html {
   border-top: 1px solid #ddd;
 }
 
-.splitpane {
+.splitpane-content {
   position: absolute;
   top: 36px;
   bottom: 0;
@@ -130,23 +130,25 @@ html {
   right: 0;
 }
 
-.splitpane > .splitpane-divider {
+.splitpane {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.splitpane-divider {
   background-color: #ddd;
 }
 
-.splitpane > .splitpane-divider:hover {
+.splitpane-divider:hover {
   background-color: #999;
   cursor: col-resize;
 }
 
-.splitpane.splitpane-top {
-  bottom: 50%;
-}
-
-.splitpane.splitpane-bottom {
-  border-top: solid 2px #ddd;
-  top: 50%;
-  bottom: 0;
+.splitpane-divider.vertical:hover {
+  cursor: row-resize;
 }
 
 .output {

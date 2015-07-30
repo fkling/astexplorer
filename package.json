@@ -14,7 +14,7 @@
     "browserify": "^11.0.0",
     "envify": "^3.2.0",
     "http-server": "^0.8.0",
-    "partition-bundle": "^1.3.0",
+    "partition-bundle": "^2.0.0",
     "reactify": "^1.0.0",
     "uglify-js": "^2.4.16",
     "uglifyify": "^3.0.1",
@@ -48,6 +48,7 @@
   },
   "scripts": {
     "start": "http-server",
-    "build": "NODE_ENV=production browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g [uglifyify -b beautify=false,ascii-only=true]"
+    "build": "NODE_ENV=production browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g uglifyify",
+    "dev": "NODE_ENV=devlepment browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g uglifyify"
   }
 }

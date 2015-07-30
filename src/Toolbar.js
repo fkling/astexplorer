@@ -76,7 +76,7 @@ var Toolbar = React.createClass({
               'fa-fw': true,
             })}
           />
-          Transform
+          &nbsp;Transform
         </button>
         <div id="parser">
           Parser: {this.props.parserName}-{this.props.parserVersion}

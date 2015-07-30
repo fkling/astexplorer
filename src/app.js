@@ -129,7 +129,7 @@ var App = React.createClass({
           reject(e);
         }
       } else {
-        loadjs(['./src/babel'], b => {
+        loadjs(['babel-core'], b => {
           babel = b;
           try {
             resolve(
@@ -293,33 +293,38 @@ var App = React.createClass({
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
         <SplitPane
-          className={splitPaneClassName}
+          className="splitpane-content"
+          vertical={true}
           onResize={this._onResize}>
-          <Editor
-            ref="editor"
-            value={this.state.content}
-            onContentChange={this.onContentChange}
-            onActivity={this.onActivity}
-          />
-          <ASTOutput
-            key={this.state.parser}
-            focusPath={this.state.focusPath}
-            ast={this.state.ast}
-          />
+          <SplitPane
+            className="splitpane"
+            onResize={this._onResize}>
+            <Editor
+              ref="editor"
+              value={this.state.content}
+              onContentChange={this.onContentChange}
+              onActivity={this.onActivity}
+            />
+            <ASTOutput
+              key={this.state.parser}
+              focusPath={this.state.focusPath}
+              ast={this.state.ast}
+            />
+          </SplitPane>
+          {this.state.showTransformPanel ? <SplitPane
+            className="splitpane"
+            onResize={this._onResize}>
+            <Editor
+              highlight={false}
+              value={this.state.transformContent}
+              onContentChange={this.onTransformContentChange}
+            />
+            <TransformOutput
+              transform={this.state.transformContent}
+              code={this.state.content}
+            />
+          </SplitPane> : null}
         </SplitPane>
-        {this.state.showTransformPanel ? <SplitPane
-          className="splitpane splitpane-bottom"
-          onResize={this._onResize}>
-          <Editor
-            highlight={false}
-            value={this.state.transformContent}
-            onContentChange={this.onTransformContentChange}
-          />
-          <TransformOutput
-            transform={this.state.transformContent}
-            code={this.state.content}
-          />
-        </SplitPane> : null}
       </PasteDropTarget>
     );
   }

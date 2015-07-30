@@ -1,69 +1,90 @@
 var Editor = require('./Editor');
 var React = require('react/addons');
 
-var babel = require('babel');
-var jscodeshift = require('jscodeshift');
-
-var cx = React.addons.classSet;
-
 var TransformOutput = React.createClass({
-  mixins: [React.addons.PureRenderMixin],
-
   propTypes: {
     transform: React.PropTypes.string,
     code: React.PropTypes.string,
   },
 
-  transform: function() {
-    // This might throw
-    var transform = babel.transform(this.props.transform).code;
-    var module = {};
-    var args = [
-      {
-        path: 'Live.js',
-        source: this.props.code,
-      },
-      {jscodeshift},
-      {}
-    ];
-    return eval([
-      "(function() {",
-      transform,
-      "})();",
-      "module.exports.apply(module.exports, args);"
-    ].join("\n"));
+  getInitialState: function() {
+    return {
+      result: '',
+      error: null,
+    };
   },
 
-  renderTransform: function() {
-    try {
-      return (
-        <Editor
-          highlight={false}
-          key="output"
-          readOnly={true}
-          value={this.transform()}
-        />
-      );
-    } catch (e) {
-      return (
-        <Editor
-          highlight={false}
-          key="error"
-          lineNumbers={false}
-          readOnly={true}
-          value={e.message}
-        />
+  componentDidMount() {
+    this.transform(this.props).then(
+      result => this.setState({result: result}),
+      error => this.setState({error: error})
+    );
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (this.props.transform !== nextProps.transform ||
+        this.props.code !== nextProps.code) {
+      this.transform(nextProps).then(
+        result => this.setState({result: result, error: null}),
+        error => this.setState({error: error})
       );
     }
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return this.state.result !== nextState.result ||
+      this.state.error !== nextState.error;
+  },
+
+  transform: function(props) {
+    return new Promise((resolve, reject) => {
+      loadjs(['babel-core', 'jscodeshift'], (babel, jscodeshift) => {
+        try {
+          // This might throw
+          var transform = babel.transform(props.transform).code;
+          var module = {};
+          var args = [
+            {
+              path: 'Live.js',
+              source: props.code,
+            },
+            {jscodeshift},
+            {},
+          ];
+          resolve(eval([
+            '(function() {',
+            transform,
+            '})();',
+            'module.exports.apply(module.exports, args);',
+          ].join('\n')));
+        } catch(ex) {
+          reject(ex);
+        }
+      });
+    });
   },
 
   render: function() {
     return (
       <div className="output highlight">
-        {this.renderTransform()}
+        {this.state.error ?
+          <Editor
+            highlight={false}
+            key="error"
+            lineNumbers={false}
+            readOnly={true}
+            value={this.state.error.message}
+          /> :
+          <Editor
+            highlight={false}
+            key="output"
+            readOnly={true}
+            value={this.state.result}
+          />
+        }
       </div>
     );
-  }
+  },
 });
 
 module.exports = TransformOutput;
