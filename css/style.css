@@ -296,3 +296,11 @@ li.entry {
   background-color: white;
   border: none;
 }
+
+.CodeMirror .ErrorGutter {
+  width: .7em;
+}
+
+.CodeMirror pre.errorMarker {
+  background-color: #EB9494;
+}

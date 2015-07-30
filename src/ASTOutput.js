@@ -19,7 +19,8 @@ export default React.createClass({
   shouldComponentUpdate: function(nextProps, nextState) {
     var newFocusPath = nextProps.focusPath;
 
-    return this.props.ast !== nextProps.ast ||
+    return this.props.editorError !== nextProps.editorError ||
+      this.props.ast !== nextProps.ast ||
       this.props.focusPath.length !== newFocusPath.length ||
       this.props.focusPath.some((obj, i) => obj !== newFocusPath[i]) ||
       this.state.output !== nextState.output;
@@ -54,6 +55,11 @@ export default React.createClass({
             />;
           break;
       }
+    } else if (this.props.editorError) {
+      output =
+        <div style={{padding: 20}}>
+          {this.props.editorError.message}
+        </div>;
     }
 
     return (

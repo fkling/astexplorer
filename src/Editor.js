@@ -23,10 +23,28 @@ export default class Editor {
     return this.codeMirror && this.codeMirror.getValue();
   }
 
-  componentWillReceiveProps (nextProps) {
+  _setError(error) {
+    if (this.codeMirror) {
+      if (this.props.error) {
+        let lineNumber = this.props.error.loc ?
+          this.props.error.loc.line :
+          this.props.error.lineNumber;
+        this.codeMirror.removeLineClass(lineNumber-1, 'text', 'errorMarker');
+      }
+
+      if (error) {
+        let lineNumber = error.loc ? error.loc.line : error.lineNumber;
+        this.codeMirror.addLineClass(lineNumber-1, 'text', 'errorMarker');
+      }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.codeMirror.getValue()) {
       this.codeMirror.setValue(nextProps.value);
     }
+    this._setError(nextProps.error);
+
   }
 
   shouldComponentUpdate() {
@@ -105,6 +123,10 @@ export default class Editor {
           }
         })
       );
+    }
+
+    if (this.props.error) {
+      this._setError(this.props.error);
     }
   }
 

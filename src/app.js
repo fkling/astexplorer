@@ -120,11 +120,11 @@ var App = React.createClass({
         revision.get('transform') !== this.state.revision.get('transform')) {
       if (this.state.revision && code !== this.state.revision.get('code')) {
         this.parse(code).then(
-          ast => update({ast}),
-          e => update({error: 'Syntax error: ' + e.message})
+          ast => update({ast, editorError: null}),
+          error => update({ast: null, editorError: error})
         );
       } else {
-        update(this.state.ast);
+        update({ast: this.state.ast, editorError: null});
       }
     }
   },
@@ -181,10 +181,11 @@ var App = React.createClass({
         content: content,
         ast: ast,
         focusPath: cursor ? getFocusPath(ast, cursor): [],
-        error: null,
+        editorError: null,
       }),
-      e => this.setState({
-        error: 'Syntax error: ' + e.message,
+      error => this.setState({
+        ast: null,
+        editorError: error,
         content: content,
       })
     );
@@ -283,10 +284,11 @@ var App = React.createClass({
         ast: ast,
         parser: parser,
         focusPath: [],
-        error: null,
+        editorError: null,
       }),
-      e => this.setState({
-        error: 'Syntax error: ' + e.message,
+      error => this.setState({
+        ast: null,
+        editorError: error,
         parser: parser,
       })
     );
@@ -312,11 +314,12 @@ var App = React.createClass({
           ast,
           parser,
           focusPath: [],
-          error: null,
+          editorError: null,
           showTransformPanel,
         }),
         error => this.setState({
-          error: 'Syntax error: ' + error.message,
+          ast: null,
+          editError: error,
           parser,
           showTransformPanel,
         })
@@ -332,6 +335,11 @@ var App = React.createClass({
 
   render: function() {
     var revision = this.state.revision;
+    var revisionCode = revision && revision.get('code') || initialCode;
+    var revisionTransform = revision && revision.get('transform') ||
+      initialTransform;
+    const canSave = revisionCode !== this.state.content ||
+      revisionTransform !== this.state.transform;
     return (
       <PasteDropTarget
         className="dropTarget"
@@ -349,12 +357,7 @@ var App = React.createClass({
           onFork={this._onFork}
           onParserChange={this._onParserChange}
           onToggleTransform={this._onToggleTransform}
-          canSave={
-            (this.state.content !== initialCode ||
-             this.state.transform !== initialTransform) && !revision ||
-            revision && revision.get('code') !== this.state.content ||
-            revision && revision.get('transform') !== this.state.transform
-          }
+          canSave={canSave}
           canFork={!!revision}
           parserName={this.state.parser}
           parserVersion={this._getParserVersion()}
@@ -371,6 +374,7 @@ var App = React.createClass({
             <Editor
               ref="editor"
               value={this.state.content}
+              error={this.state.editorError}
               onContentChange={this.onContentChange}
               onActivity={this.onActivity}
             />
@@ -378,6 +382,7 @@ var App = React.createClass({
               key={this.state.parser}
               focusPath={this.state.focusPath}
               ast={this.state.ast}
+              editorError={this.state.editorError}
             />
           </SplitPane>
           {this.state.showTransformPanel ? <SplitPane
