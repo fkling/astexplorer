@@ -1,5 +1,6 @@
-module.exports = function({source}, {jscodeshift: j}) {
-  return j(source)
+module.exports = function(file, api) {
+  var j = api.jscodeshift;
+  return j(file.source)
     .find(j.Identifier)
     .replaceWith(
       p => j.identifier(p.node.name.split('').reverse().join(''))
