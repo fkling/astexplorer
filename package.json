@@ -50,7 +50,7 @@
   },
   "scripts": {
     "start": "http-server",
-    "build": "NODE_ENV=production browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g uglifyify",
+    "build": "NODE_ENV=production browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g [uglifyify --ignore '**/node_modules/babel*/**/plugin.js']",
     "dev": "browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g [uglifyify --no-mangle]"
   }
 }
