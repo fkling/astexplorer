@@ -68,6 +68,12 @@ var App = React.createClass({
       }
     };
 
+    global.onbeforeunload = () => {
+      if (this.state.initialTransform !== this.state.currentTransform) {
+        return 'You have unsaved transform code. Do you really want to leave?';
+      }
+    };
+
     var listener = new keypress.Listener();
     listener.simple_combo('meta s', (event) => {
       event.preventDefault();
