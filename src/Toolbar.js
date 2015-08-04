@@ -89,7 +89,7 @@ export default class Toolbar {
               'fa-fw': true,
             })}
           />
-          &nbsp;Help
+          Help
         </a>
         <div id="parser">
           Parser: {this.props.parserName}-{this.props.parserVersion}

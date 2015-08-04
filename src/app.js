@@ -24,6 +24,16 @@ function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
 }
 
+function getSourceLocationFromASTNode(node) {
+  var range = [0, 0];
+  if (node.range) {
+    range = node.range;
+  } else if (node.start || node.end) {
+    range = [node.start, node.end];
+  }
+  return range;
+}
+
 var App = React.createClass({
   getInitialState: function() {
     var snippet = this.props.snippet;
@@ -90,14 +100,17 @@ var App = React.createClass({
 
     PubSub.subscribe(
       'HIGHLIGHT',
-      (_, astNode) => PubSub.publish('CM.HIGHLIGHT', astNode.range)
+      (_, astNode) => PubSub.publish(
+        'CM.HIGHLIGHT',
+        getSourceLocationFromASTNode(astNode)
+      )
     );
     PubSub.subscribe(
       'CLEAR_HIGHLIGHT',
-     (_, astNode) => PubSub.publish(
-       'CM.CLEAR_HIGHLIGHT',
-       astNode && astNode.range
-     )
+      (_, astNode) => PubSub.publish(
+        'CM.CLEAR_HIGHLIGHT',
+        astNode && getSourceLocationFromASTNode(astNode)
+      )
    );
   },
 
