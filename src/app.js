@@ -10,6 +10,7 @@ import Toolbar from './Toolbar';
 import TransformOutput from './TransformOutput';
 
 import getFocusPath from './getFocusPath';
+import getSourceLocationFromASTNode from './getSourceLocationFromASTNode';
 import esprima from 'esprima';
 import {keypress} from 'keypress';
 
@@ -22,16 +23,6 @@ var defaultTransform =
 
 function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
-}
-
-function getSourceLocationFromASTNode(node) {
-  var range = [0, 0];
-  if (node.range) {
-    range = node.range;
-  } else if (node.start || node.end) {
-    range = [node.start, node.end];
-  }
-  return range;
 }
 
 var App = React.createClass({
@@ -222,9 +213,11 @@ var App = React.createClass({
   },
 
   onActivity: function(cursorPos) {
-    this.setState({
-      focusPath: getFocusPath(this.state.ast, cursorPos),
-    });
+    if (this.state.ast) {
+      this.setState({
+        focusPath: getFocusPath(this.state.ast, cursorPos),
+      });
+    }
   },
 
   _showError: function(msg) {
