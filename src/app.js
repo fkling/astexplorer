@@ -232,11 +232,12 @@ var App = React.createClass({
   _save: function(fork) {
     var snippet = !fork && this.state.snippet || new Snippet();
     var code = this.refs.editor.getValue();
-    var transform = this.refs.transformEditor.getValue();
+    var transform = this.refs.transformEditor &&
+      this.refs.transformEditor.getValue();
     if (code === defaultCode) {
       code = '';
     }
-    if (transform === defaultTransform) {
+    if (!transform || transform === defaultTransform) {
       transform = '';
     }
     this.setState({saving: !fork, forking: fork});
