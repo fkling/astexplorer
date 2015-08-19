@@ -33,6 +33,7 @@ export default React.createClass({
     var open =
       this.props.level === 0 ||
       this.props.deepOpen ||
+      this.props.name === 'program' ||
       this.props.name === 'body' ||
       this.props.name === 'elements' || // array literals
       this.props.name === 'declarations'; // variable declarations

@@ -8,6 +8,6 @@ fi
 npm run build
 git add -f app.js
 git add -f babel.js
-git add -f jscodeshift.js
+git add -f transform.js
 
 git commit -m"Update site"
