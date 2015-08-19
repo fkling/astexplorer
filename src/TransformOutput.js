@@ -38,7 +38,10 @@ export default class TransformOutput extends React.Component {
       }
       this.transform(nextProps).then(
         result => this.setState({result, error: null}),
-        error => this.setState({error})
+        error => {
+          console.error(error);
+          this.setState({error});
+        }
       );
     }
   }
