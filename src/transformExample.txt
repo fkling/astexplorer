@@ -1,5 +1,7 @@
 module.exports = function(file, api) {
-  var j = api.jscodeshift;
+  const j = api.jscodeshift;
+  const {expression, statement, statements} = j.template;
+
   return j(file.source)
     .find(j.Identifier)
     .replaceWith(
