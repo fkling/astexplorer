@@ -1,5 +1,5 @@
 {
   "app.js": ["./src/app"],
-  "babel.js": ["babylon"],
+  "babel.js": ["./src/babylon"],
   "transform.js": ["babel-core", "jscodeshift"]
 }

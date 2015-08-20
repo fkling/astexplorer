@@ -172,7 +172,7 @@ var App = React.createClass({
           reject(e);
         }
       } else {
-        loadjs(['babylon'], b => {
+        loadjs(['./src/babylon'], b => {
           babel = b;
           try {
             resolve(
