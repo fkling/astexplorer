@@ -76,13 +76,6 @@ export default class Editor {
       this._updateTimer = setTimeout(this._onActivity.bind(this), 100);
     });
 
-    this._keyListener = new keypress.Listener();
-    this._keyListener.simple_combo('meta z', event => {
-      if (event.target !== 'TEXTAREA') {
-        this.codeMirror.execCommand('undo');
-      }
-    });
-
     this._subscriptions.push(
       PubSub.subscribe('PANEL_RESIZE', () => {
         if (this.codeMirror) {
