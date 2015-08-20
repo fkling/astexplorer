@@ -10,4 +10,4 @@ git add -f app.js
 git add -f babel.js
 git add -f transform.js
 
-git commit -m"Update site"
+git commit -m"${1:-'Update site'}"
