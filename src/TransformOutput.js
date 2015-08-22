@@ -37,7 +37,14 @@ export default class TransformOutput extends React.Component {
         console.clear();
       }
       this.transform(nextProps).then(
-        result => this.setState({result, error: null}),
+        result => {
+          let error = null;
+          if (typeof result !== 'string') {
+            result = '';
+            error = new Error('Transform did not return a string.');
+          }
+          this.setState({result, error});
+        },
         error => {
           console.error(error);
           this.setState({error});
@@ -47,6 +54,7 @@ export default class TransformOutput extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps, nextState);
     return this.state.result !== nextState.result ||
       this.state.error !== nextState.error;
   }
