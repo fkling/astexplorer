@@ -1,13 +1,13 @@
-import getSourceLocationFromASTNode from './getSourceLocationFromASTNode';
+import * as parsers from './parsers';
 
 function isInRange(range, pos) {
   return pos >= range[0] && pos <= range[1];
 }
 
-export default function getFocusPath(node, pos, path) {
+export default function getFocusPath(node, pos, parserName, path) {
+  let parser = parsers[parserName];
   path = path || [];
-  let range = getSourceLocationFromASTNode(node);
-
+  let range = parser.nodeToRange(node);
   if (range) {
     if (isInRange(range, pos)) {
       path.push(node);
@@ -18,8 +18,8 @@ export default function getFocusPath(node, pos, path) {
   }
   else if (Array.isArray(node) && node.length > 0) {
     // check first and last child
-    let rangeFirst = getSourceLocationFromASTNode(node[0]);
-    let rangeLast = getSourceLocationFromASTNode(node[node.length - 1]);
+    let rangeFirst = parser.nodeToRange(node[0]);
+    let rangeLast = parser.nodeToRange(node[node.length - 1]);
     if (isInRange([rangeFirst[0], rangeLast[1]], pos)) {
       path.push(node);
     }
@@ -30,7 +30,7 @@ export default function getFocusPath(node, pos, path) {
   for (var prop in node) {
     if (prop !== 'range' && prop !== 'loc' &&
         node[prop] && typeof node[prop] === 'object') {
-      var childPath = getFocusPath(node[prop], pos);
+      var childPath = getFocusPath(node[prop], pos, parserName);
       if (childPath.length > 0) {
         path.push(...childPath);
         break;

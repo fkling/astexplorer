@@ -10,13 +10,11 @@ import Toolbar from './Toolbar';
 import TransformOutput from './TransformOutput';
 
 import getFocusPath from './getFocusPath';
-import getSourceLocationFromASTNode from './getSourceLocationFromASTNode';
-import esprima from 'esprima';
 import {keypress} from 'keypress';
+import * as parsers from './parsers';
 
 var fs = require('fs');
 
-var babel;
 var defaultCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
 var defaultTransform =
   fs.readFileSync(__dirname + '/transformExample.txt', 'utf8');
@@ -46,7 +44,7 @@ var App = React.createClass({
       snippet: snippet,
       showTransformPanel: defaultTransform !== initialTransform,
       revision: revision,
-      parser: showTransform ? 'babel' : 'esprima',
+      parser: showTransform ? 'babylon' : 'esprima',
     };
   },
 
@@ -93,14 +91,14 @@ var App = React.createClass({
       'HIGHLIGHT',
       (_, astNode) => PubSub.publish(
         'CM.HIGHLIGHT',
-        getSourceLocationFromASTNode(astNode)
+        parsers[this.state.parser].nodeToRange(astNode)
       )
     );
     PubSub.subscribe(
       'CLEAR_HIGHLIGHT',
       (_, astNode) => PubSub.publish(
         'CM.CLEAR_HIGHLIGHT',
-        astNode && getSourceLocationFromASTNode(astNode)
+        astNode && parsers[this.state.parser].nodeToRange(astNode)
       )
    );
   },
@@ -161,29 +159,8 @@ var App = React.createClass({
     if (!parser) {
       parser = this.state.parser;
     }
-
-    return new Promise((resolve, reject) => {
-      if (parser === 'esprima') {
-        try {
-          resolve(
-            esprima.parse(code, {range: true, sourceType: 'module'})
-          );
-        } catch(e) {
-          reject(e);
-        }
-      } else {
-        loadjs(['./src/babylon'], b => {
-          babel = b;
-          try {
-            resolve(
-              babel.parse(code, {ranges: true, sourceType: 'module'})
-            );
-          } catch(e) {
-            reject(e);
-          }
-        }, reject);
-      }
-    });
+    return parsers[parser]
+      .parse(code);
   },
 
   onContentChange: function({value: code, cursor}) {
@@ -195,7 +172,7 @@ var App = React.createClass({
       ast => this.setState({
         ast: ast,
         currentCode: code,
-        focusPath: cursor ? getFocusPath(ast, cursor): [],
+        focusPath: cursor ? getFocusPath(ast, cursor, this.state.parser) : [],
         editorError: null,
       }),
       error => this.setState({
@@ -215,7 +192,7 @@ var App = React.createClass({
   onActivity: function(cursorPos) {
     if (this.state.ast) {
       this.setState({
-        focusPath: getFocusPath(this.state.ast, cursorPos),
+        focusPath: getFocusPath(this.state.ast, cursorPos, this.state.parser),
       });
     }
   },
@@ -302,9 +279,7 @@ var App = React.createClass({
     this._showError(msg);
   },
 
-  _onParserChange: function() {
-    var parser = this.state.parser === 'esprima' ? 'babel' : 'esprima';
-
+  _onParserChange: function(parser) {
     this.parse(this.state.currentCode, parser).then(
       ast => this.setState({
         ast: ast,
@@ -321,8 +296,7 @@ var App = React.createClass({
   },
 
   _getParserVersion: function() {
-    const parser = this.state.parser === 'esprima' ? esprima : babel;
-    return parser && parser.version;
+    return parsers[this.state.parser].version;
   },
 
   _onToggleTransform: function() {
@@ -330,8 +304,8 @@ var App = React.createClass({
     // Switch to Babel if we open the transform, since jscodeshift uses Babel
     // as well
     const parser =
-      this.state.parser !== 'babel' && showTransformPanel ?
-      'babel' :
+      this.state.parser !== 'babylon' && showTransformPanel ?
+      'babylon' :
       this.state.parser;
 
     if (parser !== this.state.parser) {

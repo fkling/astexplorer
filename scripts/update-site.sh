@@ -6,8 +6,6 @@ if ! git diff-index --quiet HEAD --; then
 fi
 
 npm run build
-git add -f app.js
-git add -f babel.js
-git add -f transform.js
+git add -f dist/
 
 git commit -m"${1:-'Update site'}"

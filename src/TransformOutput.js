@@ -54,7 +54,6 @@ export default class TransformOutput extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps, nextState);
     return this.state.result !== nextState.result ||
       this.state.error !== nextState.error;
   }

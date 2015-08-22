@@ -41,6 +41,18 @@ corresponding AST node (or its ancestors of it isn't expanded):
 I'm happy about any feedback, feature request or PR to make this tool as useful
 as possible!
 
+#### How to add a new parser
+
+1. Install the new parser as dependency: `npm install -S theParser`
+2. Copy one of the existing examples in `src/parsers/`.
+3. Adjust the code as necessary:
+  - Load the right parser.
+  - Call the right parsing method with the right/necessary options.
+  - Implement the `nodeToRange` method (this is for highlighting).
+4. Add a new import to `src/parser/index.js`.
+5. Add the module to `parition-bundle.js` (either as new bundle or to an
+   existing one of there are cross-dependencies).
+
 #### Build your own version
 
 Install all dependencies with `npm install`.

@@ -1,5 +1,8 @@
 {
-  "app.js": ["./src/app"],
-  "babel.js": ["./src/babylon", "babel-core"],
-  "transform.js": ["jscodeshift"]
+  "dist/app.js": ["./src/app"],
+  "dist/parsers/acorn.js": ["acorn"],
+  "dist/parsers/babel.js": ["babylon", "babel-core"],
+  "dist/parsers/esprima.js": ["esprima"],
+  "dist/parsers/espree.js": ["espree"],
+  "dist/transform.js": ["jscodeshift"]
 }

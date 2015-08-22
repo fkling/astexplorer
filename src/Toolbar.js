@@ -1,5 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
+import ParserButton from './ParserButton';
+import * as parsers from './parsers';
 
 export default class Toolbar {
   static propTypes = {
@@ -9,10 +11,20 @@ export default class Toolbar {
     onFork: React.PropTypes.func,
     onParserChange: React.PropTypes.func,
     parserName: React.PropTypes.string,
-    parserVersion: React.PropTypes.string,
   };
 
   render() {
+    let parser = parsers[this.props.parserName];
+    let parserInfo = this.props.parserName;
+    if (parser) {
+      if (parser.version) {
+        parserInfo += '-' + parser.version;
+      }
+      if (parser.homepage) {
+        parserInfo =
+          <a href={parser.homepage} target="_blank">{parserInfo}</a>;
+      }
+    }
     return (
       <div id="Toolbar">
         <h1>JS AST Explorer</h1>
@@ -50,20 +62,7 @@ export default class Toolbar {
           />
           Fork
         </button>
-        <button
-          title="Click to toggle between esprima and babel"
-          type="button"
-          onClick={this.props.onParserChange}>
-          <i
-            className={cx({
-              fa: true,
-              'fa-lg': true,
-              'fa-code': true,
-              'fa-fw': true,
-            })}
-          />
-          &nbsp;{this.props.parserName}
-        </button>
+        <ParserButton {...this.props} />
         <button
           type="button"
           onClick={this.props.onToggleTransform}>
@@ -92,7 +91,7 @@ export default class Toolbar {
           Help
         </a>
         <div id="parser">
-          Parser: {this.props.parserName}-{this.props.parserVersion}
+          Parser: {parserInfo}
         </div>
       </div>
     );

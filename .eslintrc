@@ -6,6 +6,7 @@
   "rules": {
     "comma-dangle": [1, "always-multiline"],
     "no-underscore-dangle": 0,
+    "no-path-concat": 0,
     "quotes": [2, "single", "avoid-escape"],
     "strict": 0
   },

@@ -46,9 +46,36 @@ html {
   color: #454545;
   padding-left: 10px;
   background-color: #efefef;
+  z-index: 100;
+}
+
+#Toolbar,
+#Toolbar .parserButton ul {
+  background-color: #efefef;
+}
+
+#Toolbar > *,
+#Toolbar button {
+  box-sizing: border-box;
+  background-color: transparent;
+  margin: 0;
+  min-width: 90px;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-block;
+}
+
+#Toolbar > * {
+  height: 35px;
+  border: 1px solid transparent;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  vertical-align: top;
 }
 
 #Toolbar > h1 {
+  border: none;
   padding: 0;
   margin: 0;
   font-size: 18px;
@@ -62,20 +89,30 @@ html {
   text-decoration: none;
 }
 
-#Toolbar > a,
-#Toolbar > button {
-  margin: 0;
+#Toolbar .parserButton {
+  height: auto;
+}
+
+#Toolbar .parserButton button {
   height: 100%;
-  min-width: 90px;
-  border: 1px solid transparent;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  font-size: 16px;
-  background-color: transparent;
-  display: inline-block;
-  vertical-align: top;
-  outline: none;
-  cursor: pointer;
+  border: none;
+}
+
+
+#Toolbar .parserButton:hover > ul {
+  display: block;
+}
+
+#Toolbar .parserButton ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#Toolbar .parserButton ul li {
+  padding-left: 10px;
 }
 
 #Toolbar > button:disabled,
@@ -86,6 +123,7 @@ html {
   cursor: default;
 }
 
+#Toolbar .parserButton li:hover,
 #Toolbar > a:hover,
 #Toolbar > button:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -98,8 +136,10 @@ html {
 
 #parser {
   color: #898989;
+  cursor: default;
   float: right;
   padding-right: 20px;
+  border: none;
 }
 
 #Error {
