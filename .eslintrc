@@ -8,6 +8,8 @@
     "no-underscore-dangle": 0,
     "no-path-concat": 0,
     "quotes": [2, "single", "avoid-escape"],
+    "no-use-before-define": 0,
+    "new-cap": 0,
     "strict": 0
   },
   "env": {

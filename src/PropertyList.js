@@ -1,4 +1,3 @@
-import BLACKLIST from './NodeBlacklist';
 import Element from './Element';
 import React from 'react';
 
@@ -14,9 +13,6 @@ export default class PropertyList {
 
     var properties = Object.keys(this.props.object).map(key => {
       var v = this.props.object[key];
-      if (BLACKLIST[key]) {
-        return;
-      }
       return ( // eslint-disable-line consistent-return
         <Element
           key={key}

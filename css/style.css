@@ -74,6 +74,11 @@ html {
   vertical-align: top;
 }
 
+#Toolbar > *  button {
+  height: 100%;
+  border: none;
+}
+
 #Toolbar > h1 {
   border: none;
   padding: 0;
@@ -92,12 +97,6 @@ html {
 #Toolbar .parserButton {
   height: auto;
 }
-
-#Toolbar .parserButton button {
-  height: 100%;
-  border: none;
-}
-
 
 #Toolbar .parserButton:hover > ul {
   display: block;
@@ -351,4 +350,55 @@ li.entry {
 
 .CodeMirror pre.errorMarker {
   background-color: #EB9494;
+}
+
+/* Dialog */
+#SettingsDialog {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  bottom: 0;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+#SettingsDialog .inner {
+  max-height: 90vh;
+  background-color: white;
+  box-shadow: 0px 0px 10px #555;
+  border-radius: 3px;
+  min-width: 40vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#SettingsDialog .header {
+  flex-shrink: 0;
+  padding: 10px 10px 0px 10px;
+}
+
+#SettingsDialog .body {
+  overflow: auto;
+  flex: 1;
+  padding: 10px;
+}
+
+#SettingsDialog .inner h3 {
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+#SettingsDialog ul.settings {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#SettingsDialog ul.settings li {
+  padding: 3px 0;
 }

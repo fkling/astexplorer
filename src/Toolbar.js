@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import ParserButton from './ParserButton';
+import ParserSettingsButton from './ParserSettingsButton';
 import * as parsers from './parsers';
 
 export default class Toolbar {
@@ -63,6 +64,7 @@ export default class Toolbar {
           Fork
         </button>
         <ParserButton {...this.props} />
+        <ParserSettingsButton {...this.props} />
         <button
           type="button"
           onClick={this.props.onToggleTransform}>

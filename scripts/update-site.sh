@@ -8,4 +8,4 @@ fi
 npm run build
 git add -f dist/
 
-git commit -m"${1:-'Update site'}"
+git commit -m"${1:-Update site}"

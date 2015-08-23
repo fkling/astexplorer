@@ -1,117 +1,104 @@
+import React from 'react';
 import pkg from 'espree/package.json';
+import loadAndExectue from './utils/loadAndExecute';
+import * as LocalStorage from '../LocalStorage';
+import SettingsRenderer from './utils/SettingsRenderer';
 
-const options = {
-    // attach range information to each node
+const ID = 'espree';
+const options = Object.assign(
+  {
     range: true,
-
-    // create a top-level comments array containing all comments
-    comments: true,
-
-    // attach comments to the closest relevant node as leadingComments and
-    // trailingComments
-    attachComment: true,
-
-    // create a top-level tokens array containing all tokens
-    tokens: true,
-
-    // specify parsing features (default only has blockBindings: true)
-    // setting this option replaces the default values
+    loc: false,
+    comments: false,
+    attachComment: false,
+    tokens: false,
+    tolerant: true,
     ecmaFeatures: {
-
-        // enable parsing of arrow functions
-        arrowFunctions: true,
-
-        // enable parsing of let/const
-        blockBindings: true,
-
-        // enable parsing of destructured arrays and objects
-        destructuring: true,
-
-        // enable parsing of regular expression y flag
-        regexYFlag: true,
-
-        // enable parsing of regular expression u flag
-        regexUFlag: true,
-
-        // enable parsing of template strings
-        templateStrings: true,
-
-        // enable parsing of binary literals
-        binaryLiterals: true,
-
-        // enable parsing of ES6 octal literals
-        octalLiterals: true,
-
-        // enable parsing unicode code point escape sequences
-        unicodeCodePointEscapes: true,
-
-        // enable parsing of default parameters
-        defaultParams: true,
-
-        // enable parsing of rest parameters
-        restParams: true,
-
-        // enable parsing of for-of statement
-        forOf: true,
-
-        // enable parsing computed object literal properties
-        objectLiteralComputedProperties: true,
-
-        // enable parsing of shorthand object literal methods
-        objectLiteralShorthandMethods: true,
-
-        // enable parsing of shorthand object literal properties
-        objectLiteralShorthandProperties: true,
-
-        // Allow duplicate object literal properties (except '__proto__')
-        objectLiteralDuplicateProperties: true,
-
-        // enable parsing of generators/yield
-        generators: true,
-
-        // enable parsing spread operator
-        spread: true,
-
-        // enable super in functions
-        superInFunctions: true,
-
-        // enable parsing classes
-        classes: true,
-
-        // enable parsing of new.target
-        newTarget: false,
-
-        // enable parsing of modules
-        modules: true,
-
-        // enable React JSX parsing
-        jsx: true,
-
-        // enable return in global scope
-        globalReturn: true,
-
-        // allow experimental object rest/spread
-        experimentalObjectRestSpread: true,
+      arrowFunctions: true,
+      blockBindings: true,
+      destructuring: true,
+      regexYFlag: true,
+      regexUFlag: true,
+      templateStrings: true,
+      binaryLiterals: true,
+      octalLiterals: true,
+      unicodeCodePointEscapes: true,
+      defaultParams: true,
+      restParams: true,
+      forOf: true,
+      objectLiteralComputedProperties: true,
+      objectLiteralShorthandMethods: true,
+      objectLiteralShorthandProperties: true,
+      objectLiteralDuplicateProperties: true,
+      generators: true,
+      spread: true,
+      superInFunctions: true,
+      classes: true,
+      newTarget: false,
+      modules: true,
+      jsx: true,
+      globalReturn: true,
+      experimentalObjectRestSpread: true,
     },
-};
+  },
+  LocalStorage.getParserSettings(ID)
+);
 
 export default {
+  name: ID,
+  version: pkg.version,
+  homepage: pkg.homepage,
+
   parse(code) {
-    return new Promise((resolve, reject) => {
-      loadjs(['espree'], parser => {
-        try {
-          resolve(parser.parse(code, options));
-        } catch(error) {
-          reject(error);
-        }
-      }, error => (resolve(null), console.error(error)));
-    });
+    return loadAndExectue(
+      ['espree'],
+      parser => parser.parse(code, options)
+    );
   },
 
   nodeToRange(node) {
     return node.range;
   },
 
-  version: pkg.version,
-  homepage: pkg.homepage,
+  renderSettings() {
+    return Settings();
+  },
 };
+
+let parserSettings = Object.keys(options).filter(v => v !== 'ecmaFeatures');
+let ecmaFeatures = Object.keys(options.ecmaFeatures);
+
+function changeOption(name, {target}) {
+  if (parserSettings.indexOf(name) > -1) {
+    options[name] = target.checked;
+  } else {
+    options.ecmaFeatures[name] = target.checked;
+  }
+  LocalStorage.setParserSettings(ID, options);
+}
+
+function Settings() {
+  return (
+    <div>
+      <p>
+        <a
+          href="https://github.com/eslint/espree#usage"
+          target="_blank">
+          Option descriptions
+        </a>
+      </p>
+      {SettingsRenderer({
+        settings: parserSettings,
+        values: options,
+        required: new Set(['range']),
+        onChange: changeOption,
+      })}
+      <h4>ecmaFeatures</h4>
+      {SettingsRenderer({
+        settings: ecmaFeatures,
+        values: options.ecmaFeatures,
+        onChange: changeOption,
+      })}
+    </div>
+  );
+}

@@ -1,11 +1,10 @@
-import BLACKLIST from './NodeBlacklist';
 import React from 'react';
 import TokenName from './TokenName';
 
 export default class ObjectFormatter {
   render() {
     var object = this.props.object;
-    var keys = Object.keys(object).filter(k => !BLACKLIST[k]);
+    var keys = Object.keys(object);
 
     if (keys.length === 0) {
       return <span className="p">{"{ }"}</span>;

@@ -58,16 +58,15 @@ export default React.createClass({
     if (nextValue && nextValue.type === 'Program') {
       return true;
     }
-
-    // Always rerender an open body
-    if (this.props.open && nextValue && nextValue.name === 'body') {
-      return true;
-    }
-
     // In both cases there is no need to rerender the node if it is a leaf,
     // i.e. a primitive value, and has the same value and name
     if (thisValue == null || typeof thisValue !== 'object') {
       return thisValue !== nextValue || thisName !== nextName;
+    }
+
+    // Always rerender if open
+    if (this.state.open) {
+      return true;
     }
 
     // 1. Node was clicked
@@ -96,7 +95,9 @@ export default React.createClass({
     if (thisName !== nextName ||
         Boolean(thisValue) !== Boolean(nextValue) ||
         (thisValue && thisValue.type !== nextValue.type) ||
-        (thisValue && thisValue.length !== nextValue.length)) {
+        (thisValue && thisValue.length !== nextValue.length) ||
+        (thisValue && Object.keys(thisValue).length !==
+           Object.keys(nextValue).length)) {
       return true;
     }
 

@@ -1,25 +1,69 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import pkg from 'esprima/package.json';
+import loadAndExectue from './utils/loadAndExecute';
+import SettingsRenderer from './utils/SettingsRenderer';
+import * as LocalStorage from '../LocalStorage';
 
-const options = {range: true, sourceType: 'module'};
+const ID = 'esprima';
+const options = Object.assign(
+  {
+    loc: false,
+    range: true,
+    tokens: false,
+    comment: false,
+    attachComment: false,
+    tolerant: false,
+    sourceType: 'module',
+  },
+  LocalStorage.getParserSettings(ID)
+);
+
+const settings = [
+  'range',
+  'loc',
+  'attachComment',
+  'comment',
+  'tokens',
+  'tolerant',
+  ['sourceType', ['script', 'module']],
+];
 
 export default {
   name: 'esprima',
+  version: pkg.version,
+  homepage: pkg.homepage,
+
   parse(code) {
-    return new Promise((resolve, reject) => {
-      loadjs(['esprima'], parser => {
-        try {
-          resolve(parser.parse(code, options));
-        } catch(error) {
-          reject(error);
-        }
-      }, error => (resolve(null), console.error(error)));
-    });
+    return loadAndExectue(
+      ['esprima'],
+      parser => parser.parse(code, options)
+    );
   },
 
   nodeToRange(node) {
     return node.range;
   },
 
-  version: pkg.version,
-  homepage: pkg.homepage,
+  renderSettings() {
+    return SettingsRenderer({
+      settings,
+      required: new Set(['range']),
+      values: options,
+      onChange: changeOption,
+    });
+
+  },
 };
+
+function changeOption(name, {target}) {
+  let value;
+  switch (name) {
+    case 'sourceType':
+      value = target.value;
+      break;
+    default:
+      value = target.checked;
+  }
+  options[name] = value;
+  LocalStorage.setParserSettings(ID, options);
+}

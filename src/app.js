@@ -8,6 +8,8 @@ import Snippet from './Snippet';
 import SplitPane from './SplitPane';
 import Toolbar from './Toolbar';
 import TransformOutput from './TransformOutput';
+import SettingsDialog from './SettingsDialog';
+import * as LocalStorage from './LocalStorage';
 
 import getFocusPath from './getFocusPath';
 import {keypress} from 'keypress';
@@ -44,7 +46,9 @@ var App = React.createClass({
       snippet: snippet,
       showTransformPanel: defaultTransform !== initialTransform,
       revision: revision,
-      parser: showTransform ? 'babylon' : 'esprima',
+      parser: showTransform ?
+        'babylon' :
+        LocalStorage.getParser() || parsers.defaultParser,
     };
   },
 
@@ -280,6 +284,7 @@ var App = React.createClass({
   },
 
   _onParserChange: function(parser) {
+    LocalStorage.setParser(parser);
     this.parse(this.state.currentCode, parser).then(
       ast => this.setState({
         ast: ast,
@@ -293,6 +298,10 @@ var App = React.createClass({
         parser: parser,
       })
     );
+  },
+
+  _onSettingsChange: function() {
+    this._onParserChange(this.state.parser);
   },
 
   _getParserVersion: function() {
@@ -401,6 +410,10 @@ var App = React.createClass({
             />
           </SplitPane> : null}
         </SplitPane>
+        <SettingsDialog
+          parserName={this.state.parser}
+          onChange={this._onSettingsChange}
+        />
       </PasteDropTarget>
     );
   },
