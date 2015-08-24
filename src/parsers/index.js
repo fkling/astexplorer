@@ -3,6 +3,7 @@ import espree from './espree';
 import acorn from './acorn';
 import babylon from './babylon';
 import recast from './recast';
+import babelEslint from './babel-eslint';
 
 export var parsers = [
   esprima,
@@ -10,6 +11,7 @@ export var parsers = [
   acorn,
   babylon,
   recast,
+  babelEslint
 ];
 
 export function getDefaultParser() {
