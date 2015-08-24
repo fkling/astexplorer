@@ -10,6 +10,7 @@ The JavaScript AST explorer provides
 - [babylon][]
 - [recast][]
 - [shift][]
+- [babel-eslint][]
 
 to parse the code. Depending on the parser settings, it not only supports ES5
 but also
@@ -48,6 +49,7 @@ corresponding AST node (or its ancestors of it isn't expanded):
 [acorn]: https://github.com/marijnh/acorn
 [recast]: https://github.com/benjamn/recast
 [shift]: https://github.com/shapesecurity/shift-parser-js
+[babel-eslint]: https://github.com/babel/babel-eslint
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [escodegen]: https://github.com/estools/escodegen
 

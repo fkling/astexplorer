@@ -4,9 +4,11 @@ import acorn from './acorn';
 import babylon from './babylon';
 import recast from './recast';
 import shift from './shift';
+import babelEslint from './babel-eslint';
 
 export var parsers = [
   acorn,
+  babelEslint,
   babylon,
   espree,
   esprima,
