@@ -63,7 +63,7 @@ as possible!
   - Implement the `nodeToRange` method (this is for highlighting).
   - Provide a `renderSettings` method if applicable.
 4. Add a new import to `src/parser/index.js`.
-5. Add the module to `parition-bundle.js` (either as new bundle or to an
+5. Add the module to `partition.json` (either as new bundle or to an
    existing one of there are cross-dependencies).
 
 #### Build your own version
