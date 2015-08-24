@@ -8,6 +8,7 @@ The JavaScript AST explorer provides
 - [espree][]
 - [acorn][]
 - [babylon][]
+- [recast][]
 
 to parse the code. Depending on the parser settings, it not only supports ES5
 but also
@@ -20,7 +21,7 @@ but also
 
 Since future syntax is supported, the JavaScript AST explorer is a useful tool
 for developers who want to create AST transforms, e.g. with
-[recast](https://github.com/benjamn/recast).
+[recast][].
 In fact, [jscodeshift][] is included so you can prototype codemodding scripts.
 
 ### Features
@@ -43,6 +44,7 @@ corresponding AST node (or its ancestors of it isn't expanded):
 [babylon]: https://babeljs.io/
 [espree]: https://github.com/eslint/espree
 [acorn]: https://github.com/marijnh/acorn
+[recast]: https://github.com/benjamn/recast
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [escodegen]: https://github.com/estools/escodegen
 
