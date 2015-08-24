@@ -47,7 +47,7 @@ var App = React.createClass({
       showTransformPanel: defaultTransform !== initialTransform,
       revision: revision,
       parser: showTransform ?
-        'babylon' :
+        'recast' :
         LocalStorage.getParser() || parsers.defaultParser,
     };
   },
@@ -93,10 +93,12 @@ var App = React.createClass({
 
     PubSub.subscribe(
       'HIGHLIGHT',
-      (_, astNode) => PubSub.publish(
-        'CM.HIGHLIGHT',
-        parsers[this.state.parser].nodeToRange(astNode)
-      )
+      (_, astNode) => {
+        let range = parsers[this.state.parser].nodeToRange(astNode);
+        if (range) {
+          PubSub.publish('CM.HIGHLIGHT', range);
+        }
+      }
     );
     PubSub.subscribe(
       'CLEAR_HIGHLIGHT',
@@ -313,8 +315,8 @@ var App = React.createClass({
     // Switch to Babel if we open the transform, since jscodeshift uses Babel
     // as well
     const parser =
-      this.state.parser !== 'babylon' && showTransformPanel ?
-      'babylon' :
+      this.state.parser !== 'recast' && showTransformPanel ?
+      'recast' :
       this.state.parser;
 
     if (parser !== this.state.parser) {

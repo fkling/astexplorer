@@ -372,7 +372,7 @@ li.entry {
   background-color: white;
   box-shadow: 0px 0px 10px #555;
   border-radius: 3px;
-  min-width: 40vw;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
 }

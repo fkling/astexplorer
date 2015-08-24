@@ -20,11 +20,13 @@ export default function getFocusPath(node, pos, parserName, path) {
     // check first and last child
     let rangeFirst = parser.nodeToRange(node[0]);
     let rangeLast = parser.nodeToRange(node[node.length - 1]);
-    if (isInRange([rangeFirst[0], rangeLast[1]], pos)) {
-      path.push(node);
-    }
-    else {
-      return [];
+    if (rangeFirst && rangeLast) {
+      if (isInRange([rangeFirst[0], rangeLast[1]], pos)) {
+        path.push(node);
+      }
+      else {
+        return [];
+      }
     }
   }
   for (var prop in node) {
