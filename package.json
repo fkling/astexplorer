@@ -33,7 +33,8 @@
     "keypress": "git://github.com/dmauro/Keypress",
     "pubsub-js": "^1.4.2",
     "react": "^0.13.1",
-    "recast": "^0.10.32"
+    "recast": "^0.10.32",
+    "shift-parser": "^3.0.4"
   },
   "browserify": {
     "transform": [
