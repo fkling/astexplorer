@@ -30,12 +30,16 @@ export default class Editor {
         let lineNumber = this.props.error.loc ?
           this.props.error.loc.line :
           this.props.error.lineNumber;
-        this.codeMirror.removeLineClass(lineNumber-1, 'text', 'errorMarker');
+        if (lineNumber) {
+          this.codeMirror.removeLineClass(lineNumber-1, 'text', 'errorMarker');
+        }
       }
 
       if (error) {
         let lineNumber = error.loc ? error.loc.line : error.lineNumber;
-        this.codeMirror.addLineClass(lineNumber-1, 'text', 'errorMarker');
+        if (lineNumber) {
+          this.codeMirror.addLineClass(lineNumber-1, 'text', 'errorMarker');
+        }
       }
     }
   }
