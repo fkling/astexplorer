@@ -13,13 +13,13 @@ import * as LocalStorage from './LocalStorage';
 
 import getFocusPath from './getFocusPath';
 import {keypress} from 'keypress';
+import * as transformers from './transformers';
 import * as parsers from './parsers';
 
 var fs = require('fs');
 
+var defaultTransformCode = transformers.jscodeshift.defaultTransform;
 var defaultCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
-var defaultTransform =
-  fs.readFileSync(__dirname + '/transformExample.txt', 'utf8');
 
 function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
@@ -34,17 +34,18 @@ var App = React.createClass({
     }
     const initialCode = revision && revision.get('code') || defaultCode;
     const initialTransform =
-      revision && revision.get('transform') || defaultTransform;
-    const showTransform = defaultTransform !== initialTransform;
+      revision && revision.get('transform') || defaultTransformCode;
+    const showTransform = defaultTransformCode !== initialTransform;
     return {
       forking: false,
       saving: false,
       ast: null,
+      transformPlugin: null,
       focusPath: [],
       ...this._setCode(initialCode),
       ...this._setTransform(initialTransform),
       snippet: snippet,
-      showTransformPanel: defaultTransform !== initialTransform,
+      showTransformPanel: defaultTransformCode !== initialTransform,
       revision: revision,
       parser: showTransform ?
         'recast' :
@@ -123,7 +124,7 @@ var App = React.createClass({
     }
 
     const code = revision.get('code') || defaultCode;
-    const transform = revision.get('transform') || defaultTransform;
+    const transform = revision.get('transform') || defaultTransformCode;
 
     const update = data => { // eslint-disable-line no-shadow
       this.setState({
@@ -155,7 +156,7 @@ var App = React.createClass({
       ast: ast,
       focusPath: [],
       ...this._setCode(defaultCode),
-      ...this._setTransform(defaultTransform),
+      ...this._setTransform(defaultTransformCode),
       snippet: null,
       revision: null,
     }));
@@ -195,6 +196,57 @@ var App = React.createClass({
     });
   },
 
+  onTransformChange: function(transform) {
+    var transformPlugin = transformers[transform];
+    const showTransformPanel = transformPlugin !== this.state.transformPlugin;
+    // Switch to Babel if we open the transform, since jscodeshift uses Babel
+    // as well
+    const parser =
+      this.state.parser !== 'recast' && showTransformPanel ?
+      'recast' :
+      this.state.parser;
+
+    var transformCode = this.state.currentTransform;
+    if (transformCode == defaultTransformCode) {
+      defaultTransformCode = transformCode = transformPlugin.defaultTransform;
+    }
+
+    // Unset transformPlugin when hiding the panel
+    if (!showTransformPanel) {
+      transformPlugin = null;
+    }
+
+    if (parser !== this.state.parser) {
+      this.parse(this.state.currentCode, parser).then(
+        ast => this.setState({
+          ast,
+          parser,
+          transformPlugin,
+          ...this._setTransform(transformCode),
+          focusPath: [],
+          editorError: null,
+          showTransformPanel,
+        }),
+        error => this.setState({
+          ast: null,
+          editError: error,
+          parser,
+          transformPlugin,
+          ...this._setTransform(transformCode),
+          showTransformPanel,
+        })
+      );
+    } else {
+      this.setState({
+        showTransformPanel,
+        parser,
+        transformPlugin,
+        ...this._setTransform(transformCode),
+      });
+    }
+    this._onResize();
+  },
+
   onActivity: function(cursorPos) {
     if (this.state.ast) {
       this.setState({
@@ -220,7 +272,7 @@ var App = React.createClass({
     if (code === defaultCode) {
       code = '';
     }
-    if (!transform || transform === defaultTransform) {
+    if (!transform || transform === defaultTransformCode) {
       transform = '';
     }
     this.setState({saving: !fork, forking: fork});
@@ -245,7 +297,7 @@ var App = React.createClass({
     const {revision} = this.state;
     var isNewRevision = !revision &&
       (this.state.currentCode !== defaultCode ||
-       this.state.currentTransform !== defaultTransform);
+       this.state.currentTransform !== defaultTransformCode);
     var isModified = revision &&
        (this.state.initalCode !== this.state.currentCode ||
         this.state.initialTransform !== this.state.currentTransform);
@@ -310,48 +362,13 @@ var App = React.createClass({
     return parsers[this.state.parser].version;
   },
 
-  _onToggleTransform: function() {
-    const showTransformPanel = !this.state.showTransformPanel;
-    // Switch to Babel if we open the transform, since jscodeshift uses Babel
-    // as well
-    const parser =
-      this.state.parser !== 'recast' && showTransformPanel ?
-      'recast' :
-      this.state.parser;
-
-    if (parser !== this.state.parser) {
-      this.parse(this.state.currentCode, parser).then(
-        ast => this.setState({
-          ast,
-          parser,
-          focusPath: [],
-          editorError: null,
-          showTransformPanel,
-        }),
-        error => this.setState({
-          ast: null,
-          editError: error,
-          parser,
-          showTransformPanel,
-        })
-      );
-    } else {
-      this.setState({
-        showTransformPanel,
-        parser,
-      });
-    }
-    this._onResize();
-  },
-
   render: function() {
     const revision = this.state.revision;
     const revisionCode = revision && revision.get('code') || defaultCode;
     const revisionTransform = revision && revision.get('transform') ||
-      defaultTransform;
+      defaultTransformCode;
     const canSave = revisionCode !== this.state.currentCode ||
       revisionTransform !== this.state.currentTransform;
-
     return (
       <PasteDropTarget
         className="dropTarget"
@@ -368,7 +385,7 @@ var App = React.createClass({
           onSave={this._onSave}
           onFork={this._onFork}
           onParserChange={this._onParserChange}
-          onToggleTransform={this._onToggleTransform}
+          onTransformChange={this.onTransformChange}
           canSave={canSave}
           canFork={!!revision}
           parserName={this.state.parser}
@@ -407,7 +424,8 @@ var App = React.createClass({
               onContentChange={this.onTransformContentChange}
             />
             <TransformOutput
-              transform={this.state.currentTransform}
+              transformPlugin={this.state.transformPlugin}
+              transformCode={this.state.currentTransform}
               code={this.state.currentCode}
             />
           </SplitPane> : null}

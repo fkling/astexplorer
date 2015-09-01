@@ -2,16 +2,10 @@
 import Editor from './Editor';
 import React from 'react';
 
-function module(code) {
-  var m = {};
-  var f = new Function('module', `(function() {${code}}())`);
-  f(m);
-  return m.exports;
-}
-
 export default class TransformOutput extends React.Component {
   static propTypes = {
-    transform: React.PropTypes.string,
+    transformPlugin: React.PropTypes.object,
+    transformCode: React.PropTypes.string,
     code: React.PropTypes.string,
   };
 
@@ -24,19 +18,19 @@ export default class TransformOutput extends React.Component {
   }
 
   componentDidMount() {
-    this.transform(this.props).then(
+    this.props.transformPlugin.transform(this.props).then(
       result => this.setState({result: result}),
       error => this.setState({error: error})
     );
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.transform !== nextProps.transform ||
+    if (this.props.transformCode !== nextProps.transformCode ||
         this.props.code !== nextProps.code) {
       if (console.clear) {
         console.clear();
       }
-      this.transform(nextProps).then(
+      nextProps.transformPlugin.transform(nextProps).then(
         result => {
           let error = null;
           if (typeof result !== 'string') {
@@ -56,29 +50,6 @@ export default class TransformOutput extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.result !== nextState.result ||
       this.state.error !== nextState.error;
-  }
-
-  transform(props) {
-    return new Promise((resolve, reject) => {
-      loadjs(['babel-core', 'jscodeshift'], (babel, jscodeshift) => {
-        try {
-          // This might throw
-          var transform = module(
-              babel.transform(props.transform).code
-          );
-          resolve(transform(
-            {
-              path: 'Live.js',
-              source: props.code,
-            },
-            {jscodeshift},
-            {}
-          ));
-        } catch(ex) {
-          reject(ex);
-        }
-      });
-    });
   }
 
   render() {
