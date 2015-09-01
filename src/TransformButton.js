@@ -1,41 +1,41 @@
 import React from 'react';
 import cx from 'classnames';
-import * as parsers from './parsers';
+import * as transformers from './transformers';
 
-export default class ParserButton extends React.Component {
+export default class TransformButton extends React.Component {
   constructor(props) {
     super(props);
     this._onClick = this._onClick.bind(this);
   }
 
   _onClick({target}) {
-    let parser;
+    let transform;
     if (target.nodeName.toLowerCase() === 'li') {
-      parser = target.children[0].value;
+      transform = target.children[0].value;
     } else {
-      parser = target.value;
+      transform = target.value;
     }
-    this.props.onParserChange(parser);
+    this.props.onTransformChange(transform);
   }
 
   render() {
     return (
       <div
         className="button parserButton">
-        <button
-          type="button">
+        <button type="button">
           <i
             className={cx({
               fa: true,
               'fa-lg': true,
-              'fa-code': true,
+              'fa-toggle-off': !this.props.transformPanelIsEnabled,
+              'fa-toggle-on': this.props.transformPanelIsEnabled,
               'fa-fw': true,
             })}
           />
-          &nbsp;{this.props.parserName}
+          &nbsp;Transform
         </button>
         <ul>
-          {Object.keys(parsers).filter(p => p !== 'defaultParser').map(name => (
+          {Object.keys(transformers).map(name => (
             <li key={name} onClick={this._onClick}>
               <button value={name} type="button" >
                 {name}

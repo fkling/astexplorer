@@ -1,0 +1,9 @@
+export default function ({Plugin, types: t}) {
+  return new Plugin('ast-transform', {
+    visitor: {
+      Identifier(node) {
+        return t.identifier(node.name.split('').reverse().join(''));
+      }
+    }
+  });
+}
