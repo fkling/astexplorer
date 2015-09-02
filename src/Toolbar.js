@@ -3,7 +3,6 @@ import cx from 'classnames';
 import ParserButton from './ParserButton';
 import TransformButton from './TransformButton';
 import ParserSettingsButton from './ParserSettingsButton';
-import * as parsers from './parsers';
 
 export default class Toolbar {
   static propTypes = {
@@ -13,12 +12,12 @@ export default class Toolbar {
     onFork: React.PropTypes.func,
     onParserChange: React.PropTypes.func,
     onTransformChange: React.PropTypes.func,
-    parserName: React.PropTypes.string,
+    parser: React.PropTypes.object,
   };
 
   render() {
-    let parser = parsers[this.props.parserName];
-    let parserInfo = this.props.parserName;
+    let {parser} = this.props;
+    let parserInfo = parser.id;
     if (parser) {
       if (parser.version) {
         parserInfo += '-' + parser.version;

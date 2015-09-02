@@ -1,5 +1,4 @@
 import React from 'react';
-import * as parsers from './parsers';
 import pubSub from 'pubsub-js';
 
 function noop() {}
@@ -38,12 +37,12 @@ export default class SettingsDialog extends React.Component {
 
   render() {
     if (this.state.show) {
-      let settings = (parsers[this.props.parserName].renderSettings || noop)();
+      let settings = (this.props.parser.renderSettings || noop)();
       return (
         <div id="SettingsDialog" onClick={this._outerClick}>
           <div className="inner">
             <div className="header">
-              <h3>{this.props.parserName} Settings</h3>
+              <h3>{this.props.parser.displayName} Settings</h3>
             </div>
             <div className="body">
               {settings}

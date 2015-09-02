@@ -21,7 +21,8 @@ const settings = [
 ];
 
 export default {
-  name: ID,
+  id: ID,
+  displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
 

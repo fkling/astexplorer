@@ -8,7 +8,7 @@ export default class ParserSettingsButton extends React.Component {
   }
 
   render() {
-    let settings = parsers[this.props.parserName].renderSettings;
+    let settings = this.props.parser.renderSettings;
     return (
       <button
         type="button"

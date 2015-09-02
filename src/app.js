@@ -14,7 +14,7 @@ import * as LocalStorage from './LocalStorage';
 import getFocusPath from './getFocusPath';
 import {keypress} from 'keypress';
 import * as transformers from './transformers';
-import * as parsers from './parsers';
+import {getDefaultParser, getParserByID} from './parsers';
 
 var fs = require('fs');
 
@@ -49,7 +49,7 @@ var App = React.createClass({
       revision: revision,
       parser: showTransform ?
         'recast' :
-        LocalStorage.getParser() || parsers.defaultParser,
+        getParserByID(LocalStorage.getParser()) || getDefaultParser(),
     };
   },
 
@@ -95,7 +95,7 @@ var App = React.createClass({
     PubSub.subscribe(
       'HIGHLIGHT',
       (_, astNode) => {
-        let range = parsers[this.state.parser].nodeToRange(astNode);
+        let range = this.state.parser.nodeToRange(astNode);
         if (range) {
           PubSub.publish('CM.HIGHLIGHT', range);
         }
@@ -105,7 +105,7 @@ var App = React.createClass({
       'CLEAR_HIGHLIGHT',
       (_, astNode) => PubSub.publish(
         'CM.CLEAR_HIGHLIGHT',
-        astNode && parsers[this.state.parser].nodeToRange(astNode)
+        astNode && this.state.parser.nodeToRange(astNode)
       )
    );
   },
@@ -166,8 +166,7 @@ var App = React.createClass({
     if (!parser) {
       parser = this.state.parser;
     }
-    return parsers[parser]
-      .parse(code);
+    return parser.parse(code);
   },
 
   onContentChange: function({value: code, cursor}) {
@@ -202,12 +201,12 @@ var App = React.createClass({
     // Switch to Babel if we open the transform, since jscodeshift uses Babel
     // as well
     const parser =
-      this.state.parser !== 'recast' && showTransformPanel ?
-      'recast' :
+      this.state.parser.id !== 'recast' && showTransformPanel ?
+      getParserByID('recast') :
       this.state.parser;
 
     var transformCode = this.state.currentTransform;
-    if (transformCode == defaultTransformCode) {
+    if (transformCode === defaultTransformCode) {
       defaultTransformCode = transformCode = transformPlugin.defaultTransform;
     }
 
@@ -216,7 +215,7 @@ var App = React.createClass({
       transformPlugin = null;
     }
 
-    if (parser !== this.state.parser) {
+    if (parser.id !== this.state.parser.id) {
       this.parse(this.state.currentCode, parser).then(
         ast => this.setState({
           ast,
@@ -338,7 +337,7 @@ var App = React.createClass({
   },
 
   _onParserChange: function(parser) {
-    LocalStorage.setParser(parser);
+    LocalStorage.setParser(parser.id);
     this.parse(this.state.currentCode, parser).then(
       ast => this.setState({
         ast: ast,
@@ -356,10 +355,6 @@ var App = React.createClass({
 
   _onSettingsChange: function() {
     this._onParserChange(this.state.parser);
-  },
-
-  _getParserVersion: function() {
-    return parsers[this.state.parser].version;
   },
 
   render: function() {
@@ -388,8 +383,7 @@ var App = React.createClass({
           onTransformChange={this.onTransformChange}
           canSave={canSave}
           canFork={!!revision}
-          parserName={this.state.parser}
-          parserVersion={this._getParserVersion()}
+          parser={this.state.parser}
           transformPanelIsEnabled={this.state.showTransformPanel}
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
@@ -408,7 +402,7 @@ var App = React.createClass({
               onActivity={this.onActivity}
             />
             <ASTOutput
-              key={this.state.parser}
+              key={this.state.parser.id}
               focusPath={this.state.focusPath}
               ast={this.state.ast}
               editorError={this.state.editorError}
@@ -431,7 +425,7 @@ var App = React.createClass({
           </SplitPane> : null}
         </SplitPane>
         <SettingsDialog
-          parserName={this.state.parser}
+          parser={this.state.parser}
           onChange={this._onSettingsChange}
         />
       </PasteDropTarget>

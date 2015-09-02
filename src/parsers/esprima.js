@@ -29,7 +29,8 @@ const settings = [
 ];
 
 export default {
-  name: 'esprima',
+  id: ID,
+  displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
 

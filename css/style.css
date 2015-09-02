@@ -46,11 +46,11 @@ html {
   color: #454545;
   padding-left: 10px;
   background-color: #efefef;
-  z-index: 100;
+  z-index: 200;
 }
 
 #Toolbar,
-#Toolbar .parserButton ul {
+#Toolbar .menuButton ul {
   background-color: #efefef;
 }
 
@@ -94,15 +94,15 @@ html {
   text-decoration: none;
 }
 
-#Toolbar .parserButton {
+#Toolbar .menuButton {
   height: auto;
 }
 
-#Toolbar .parserButton:hover > ul {
+#Toolbar .menuButton:hover > ul {
   display: block;
 }
 
-#Toolbar .parserButton ul {
+#Toolbar .menuButton ul {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -110,7 +110,7 @@ html {
   border-bottom: 1px solid #ddd;
 }
 
-#Toolbar .parserButton ul li {
+#Toolbar .menuButton ul li {
   padding-left: 10px;
 }
 
@@ -122,7 +122,7 @@ html {
   cursor: default;
 }
 
-#Toolbar .parserButton li:hover,
+#Toolbar .menuButton li:hover,
 #Toolbar > a:hover,
 #Toolbar > button:hover {
   background-color: rgba(0, 0, 0, 0.1);

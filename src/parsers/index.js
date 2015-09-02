@@ -1,7 +1,30 @@
-export {default as esprima} from './esprima';
-export {default as espree} from './espree';
-export {default as acorn} from './acorn';
-export {default as babylon} from './babylon';
-export {default as recast} from './recast';
+import esprima from './esprima';
+import espree from './espree';
+import acorn from './acorn';
+import babylon from './babylon';
+import recast from './recast';
 
-export const defaultParser = 'esprima';
+export var parsers = [
+  esprima,
+  espree,
+  acorn,
+  babylon,
+  recast,
+];
+
+export function getDefaultParser() {
+  return parsers[0];
+}
+
+let byID = Object.keys(parsers).reduce(
+  (map, name) => {
+    let parser = parsers[name];
+    map[parser.id] = parser;
+    return map;
+  },
+  {}
+);
+
+export function getParserByID(id) {
+  return byID[id];
+}
