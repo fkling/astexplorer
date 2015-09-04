@@ -20,9 +20,9 @@ but also
 - Typed JavaScript ([Flow](http://flowtype.org/))
 
 Since future syntax is supported, the JavaScript AST explorer is a useful tool
-for developers who want to create AST transforms, e.g. with
-[recast][].
-In fact, [jscodeshift][] is included so you can prototype codemodding scripts.
+for developers who want to create AST transforms.
+In fact, [jscodeshift][] and [babel][] are included so you can prototype 
+codemodding scripts and babel plugins.
 
 ### Features
 
@@ -32,7 +32,7 @@ parse the AST and update the code using [escodegen][].
 - Otherwise, the content of texteditor will be replaced with the content of the file (i.e.
 you can drag and drop JS files).
 - Choose between multiple parsers and configure them.
-- Toggle Transform mode with [jscodeshift][].
+- Toggle Transform mode with [jscodeshift][] and [babel][].
 - shift+click on a node expands the full subtree.
 - Hovering over a node highlights the corresponding text in the source code:
 ![source highlight](assets/source.png)
@@ -42,6 +42,7 @@ corresponding AST node (or its ancestors of it isn't expanded):
 
 [esprima]: https://github.com/jQuery/esprima
 [babylon]: https://babeljs.io/
+[babel]: https://babeljs.io/docs/advanced/plugins/
 [espree]: https://github.com/eslint/espree
 [acorn]: https://github.com/marijnh/acorn
 [recast]: https://github.com/benjamn/recast
