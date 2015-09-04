@@ -1,2 +1,2 @@
 import Parse from './Parse';
-export default Parse.Object.extend('SnippetRevision');
+export default ((typeof Parse === 'function') ? Parse.Object.extend('SnippetRevision') : void 0);

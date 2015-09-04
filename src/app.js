@@ -480,8 +480,11 @@ function render(props) {
     document.getElementById('container')
   );
 }
-
+if (typeof Snippet === 'function') {
 Snippet.fetchFromURL().then(
   data => render(data),
   error => render({error: 'Failed to fetch revision: ' + error.message})
 );
+} else {
+  render({});
+}
