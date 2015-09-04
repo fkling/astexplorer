@@ -30,6 +30,6 @@ export function getParserByID(id) {
 }
 
 export function getParser(idOrObject) {
-  let parserID = typeof idOrObject === 'string' ? idOrObject : idOrObject.id;
-  return getParserByID(parserID);
+  let parserID = typeof idOrObject === 'object' ? idOrObject.id : idOrObject;
+  return parserID ? getParserByID(parserID) : null;
 }
