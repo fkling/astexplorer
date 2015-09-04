@@ -21,11 +21,12 @@ export default React.createClass({
   getInitialState: function() {
     return {
       dividerPosition: 50,
+      vertical: this.props.vertical,
     };
   },
 
   _onMouseDown: function() {
-    var vertical = this.props.vertical;
+    var vertical = this.state.vertical;
     var max = vertical ? global.innerHeight : global.innerWidth;
     global.document.body.style.cursor = vertical ? 'row-resize' : 'col-resize';
     var moveHandler = function(event) {
@@ -47,6 +48,10 @@ export default React.createClass({
     document.addEventListener('mouseup', upHandler);
   },
 
+  _onDoubleClick: function() {
+    this.setState({vertical: !this.state.vertical});
+  },
+
   render: function() {
     var children = this.props.children;
     var dividerPos = this.state.dividerPosition;
@@ -64,7 +69,7 @@ export default React.createClass({
       );
     }
 
-    if (this.props.vertical) {
+    if (this.state.vertical) {
       // top
       styleA = {
         ...baseStyleVertical,
@@ -117,9 +122,10 @@ export default React.createClass({
         </div>
         <div
           className={
-            'splitpane-divider' + (this.props.vertical ? ' vertical' : '')
+            'splitpane-divider' + (this.state.vertical ? ' vertical' : '')
           }
           onMouseDown={this._onMouseDown}
+          onDoubleClick={this._onDoubleClick}
           style={dividerStyle}
         />
         <div style={styleB}>
