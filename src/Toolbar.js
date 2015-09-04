@@ -13,11 +13,13 @@ export default class Toolbar {
     onParserChange: React.PropTypes.func,
     onTransformChange: React.PropTypes.func,
     parser: React.PropTypes.object,
+    transformer: React.PropTypes.object,
   };
 
   render() {
-    let {parser} = this.props;
+    let {parser, transformer, transformPanelIsEnabled} = this.props;
     let parserInfo = parser.id;
+    let transformerInfo = '';
     if (parser) {
       if (parser.version) {
         parserInfo += '-' + parser.version;
@@ -27,6 +29,18 @@ export default class Toolbar {
           <a href={parser.homepage} target="_blank">{parserInfo}</a>;
       }
     }
+    if (transformPanelIsEnabled) {
+      transformerInfo = transformer.displayName;
+      if (transformer.version) {
+        transformerInfo += '-' + transformer.version;
+      }
+      if (transformer.homepage) {
+        transformerInfo =
+          <a href={transformer.homepage} target="_blank">{transformerInfo}</a>;
+      }
+      transformerInfo = <span>Transformer: {transformerInfo}</span>;
+    }
+
     return (
       <div id="Toolbar">
         <h1>JS AST Explorer</h1>
@@ -80,8 +94,9 @@ export default class Toolbar {
           />
           Help
         </a>
-        <div id="parser">
-          Parser: {parserInfo}
+        <div id="info" className={transformerInfo ? 'small' : ''}>
+          Parser: {parserInfo}<br />
+          {transformerInfo}
         </div>
       </div>
     );

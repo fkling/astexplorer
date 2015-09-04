@@ -13,12 +13,11 @@ import * as LocalStorage from './LocalStorage';
 
 import getFocusPath from './getFocusPath';
 import {keypress} from 'keypress';
-import * as transformers from './transformers';
-import {getDefaultParser, getParserByID} from './parsers';
+import {getTransformerByID} from './transformers';
+import {getDefaultParser, getParser} from './parsers';
 
 var fs = require('fs');
 
-var defaultTransformCode = transformers.jscodeshift.defaultTransform;
 var defaultCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
 
 function updateHashWithIDAndRevision(id, rev) {
@@ -33,23 +32,31 @@ var App = React.createClass({
       throw Error('Must set both, snippet and revision');
     }
     const initialCode = revision && revision.get('code') || defaultCode;
-    const initialTransform =
-      revision && revision.get('transform') || defaultTransformCode;
-    const showTransform = defaultTransformCode !== initialTransform;
+    const transformerID = revision && revision.get('toolID');
+    let transformer = transformerID && getTransformerByID(transformerID);
+    const initialTransformCode = revision && revision.get('transform');
+    if (initialTransformCode && !transformer) {
+      // jscodeshift was the first transformer tool. Instead of updating
+      // existing rows in the DB, we do this
+      transformer = getTransformerByID('jscodeshift');
+    }
+
+    const parser = getParser(
+      transformer ? transformer.defaultParser : LocalStorage.getParser()
+    ) || getDefaultParser();
+
     return {
       forking: false,
       saving: false,
       ast: null,
-      transformPlugin: null,
+      transformer,
       focusPath: [],
       ...this._setCode(initialCode),
-      ...this._setTransform(initialTransform),
+      ...this._setTransformCode(initialTransformCode),
       snippet: snippet,
-      showTransformPanel: defaultTransformCode !== initialTransform,
+      showTransformPanel: !!transformer,
       revision: revision,
-      parser: showTransform ?
-        'recast' :
-        getParserByID(LocalStorage.getParser()) || getDefaultParser(),
+      parser,
     };
   },
 
@@ -73,7 +80,7 @@ var App = React.createClass({
     };
 
     global.onbeforeunload = () => {
-      if (this.state.initialTransform !== this.state.currentTransform) {
+      if (this.state.initialTransformCode !== this.state.currentTransformCode) {
         return 'You have unsaved transform code. Do you really want to leave?';
       }
     };
@@ -114,8 +121,11 @@ var App = React.createClass({
     return {initialCode: code, currentCode: code};
   },
 
-  _setTransform(transform) {
-    return {initialTransform: transform, currentTransform: transform};
+  _setTransformCode(transformCode) {
+    return {
+      initialTransformCode: transformCode,
+      currentTransformCode: transformCode,
+    };
   },
 
   _setRevision: function(snippet, revision) {
@@ -124,23 +134,40 @@ var App = React.createClass({
     }
 
     const code = revision.get('code') || defaultCode;
-    const transform = revision.get('transform') || defaultTransformCode;
+    const transformerID = revision.get('toolID');
+    let transformer = transformerID && getTransformerByID(transformerID);
+    let transformCode = revision.get('transform');
+
+    if (transformCode && !transformer) {
+      transformer = getTransformerByID('jscodeshift');
+    } else if (transformer && !transformCode) {
+      transformCode = transformer.defaultTransform;
+    }
+    const parser = getParser(
+      transformer ? transformer.defaultParser : LocalStorage.getParser()
+    ) || this.state.parser;
 
     const update = data => { // eslint-disable-line no-shadow
       this.setState({
         ...data,
         snippet,
         revision,
+        transformer,
         ...this._setCode(code),
-        ...this._setTransform(transform),
+        ...this._setTransformCode(transformCode),
         focusPath: [],
+        parser,
       });
     };
 
     if (!this.state.snippet ||
         snippet.id !== this.state.snippet.id ||
         revision.id !== this.state.revision.id) {
-      if (this.state.revision && code !== this.state.revision.get('code')) {
+      if (this.state.revision && (
+            code !== this.state.revision.get('code') ||
+            transformCode !== this.state.revision.get('transform')
+          ) ||
+          parser !== this.state.parser) {
         this.parse(code).then(
           ast => update({ast, editorError: null}),
           error => update({ast: null, editorError: error})
@@ -156,7 +183,10 @@ var App = React.createClass({
       ast: ast,
       focusPath: [],
       ...this._setCode(defaultCode),
-      ...this._setTransform(defaultTransformCode),
+      ...this._setTransformCode(this.state.transformer ?
+        this.state.transformer.defaultTransform :
+        ''
+      ),
       snippet: null,
       revision: null,
     }));
@@ -189,39 +219,33 @@ var App = React.createClass({
     );
   },
 
-  onTransformContentChange: function({value: transform}) {
+  onTransformCodeChange: function({value: transformCode}) {
     this.setState({
-      currentTransform: transform,
+      currentTransformCode: transformCode,
     });
   },
 
-  onTransformChange: function(transform) {
-    var transformPlugin = transformers[transform];
-    const showTransformPanel = transformPlugin !== this.state.transformPlugin;
-    // Switch to Babel if we open the transform, since jscodeshift uses Babel
-    // as well
+  onTransformChange: function(transformer) {
+    const showTransformPanel = !this.state.showTransformPanel ||
+      transformer !== this.state.transformer;
     const parser =
-      this.state.parser.id !== 'recast' && showTransformPanel ?
-      getParserByID('recast') :
+      showTransformPanel &&
+      this.state.parser !== getParser(transformer.defaultParser) ?
+      getParser(transformer.defaultParser) :
       this.state.parser;
 
-    var transformCode = this.state.currentTransform;
-    if (transformCode === defaultTransformCode) {
-      defaultTransformCode = transformCode = transformPlugin.defaultTransform;
+    var transformCode = this.state.currentTransformCode;
+    if (transformer !== this.state.transformer) {
+      transformCode = transformer.defaultTransform;
     }
 
-    // Unset transformPlugin when hiding the panel
-    if (!showTransformPanel) {
-      transformPlugin = null;
-    }
-
-    if (parser.id !== this.state.parser.id) {
+    if (parser !== this.state.parser) {
       this.parse(this.state.currentCode, parser).then(
         ast => this.setState({
           ast,
           parser,
-          transformPlugin,
-          ...this._setTransform(transformCode),
+          transformer,
+          ...this._setTransformCode(transformCode),
           focusPath: [],
           editorError: null,
           showTransformPanel,
@@ -230,8 +254,8 @@ var App = React.createClass({
           ast: null,
           editError: error,
           parser,
-          transformPlugin,
-          ...this._setTransform(transformCode),
+          transformer,
+          ...this._setTransformCode(transformCode),
           showTransformPanel,
         })
       );
@@ -239,8 +263,8 @@ var App = React.createClass({
       this.setState({
         showTransformPanel,
         parser,
-        transformPlugin,
-        ...this._setTransform(transformCode),
+        transformer,
+        ...this._setTransformCode(transformCode),
       });
     }
     this._onResize();
@@ -266,16 +290,23 @@ var App = React.createClass({
   _save: function(fork) {
     var snippet = !fork && this.state.snippet || new Snippet();
     var code = this.refs.editor.getValue();
-    var transform = this.refs.transformEditor &&
+    var transformer = this.state.transformer;
+    var transformerID = transformer && transformer.id;
+    var transformCode = this.refs.transformEditor &&
       this.refs.transformEditor.getValue();
-    if (code === defaultCode) {
-      code = '';
+
+    var data = {};
+    if (code !== defaultCode) {
+      data.code = code;
     }
-    if (!transform || transform === defaultTransformCode) {
-      transform = '';
+    if (this.state.showTransformPanel && transformCode &&
+        transformCode !== transformer.defaultTransform) {
+      data.transform = transformCode;
+      data.toolID = transformerID;
     }
+
     this.setState({saving: !fork, forking: fork});
-    snippet.createNewRevision({code, transform}).then(
+    snippet.createNewRevision(data).then(
       response => {
         if (response) {
           updateHashWithIDAndRevision(snippet.id, response.revisionNumber);
@@ -296,10 +327,13 @@ var App = React.createClass({
     const {revision} = this.state;
     var isNewRevision = !revision &&
       (this.state.currentCode !== defaultCode ||
-       this.state.currentTransform !== defaultTransformCode);
+       this.state.showTransformPanel &&
+       this.state.currentTransformCode !==
+       this.state.transformer.defaultTransform);
     var isModified = revision &&
        (this.state.initalCode !== this.state.currentCode ||
-        this.state.initialTransform !== this.state.currentTransform);
+        this.state.showTransformPanel &&
+        this.state.initialTransformCode !== this.state.currentTransformCode);
 
     if (isNewRevision || isModified) {
       this._save();
@@ -358,12 +392,18 @@ var App = React.createClass({
   },
 
   render: function() {
-    const revision = this.state.revision;
+    const {
+      revision,
+      showTransformPanel,
+      currentTransformCode,
+      initialTransformCode,
+    } = this.state;
     const revisionCode = revision && revision.get('code') || defaultCode;
-    const revisionTransform = revision && revision.get('transform') ||
-      defaultTransformCode;
     const canSave = revisionCode !== this.state.currentCode ||
-      revisionTransform !== this.state.currentTransform;
+       showTransformPanel &&
+       currentTransformCode !== initialTransformCode &&
+       currentTransformCode !== this.state.transformer.defaultTransform;
+
     return (
       <PasteDropTarget
         className="dropTarget"
@@ -384,6 +424,7 @@ var App = React.createClass({
           canSave={canSave}
           canFork={!!revision}
           parser={this.state.parser}
+          transformer={this.state.transformer}
           transformPanelIsEnabled={this.state.showTransformPanel}
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
@@ -414,12 +455,12 @@ var App = React.createClass({
             <Editor
               ref="transformEditor"
               highlight={false}
-              defaultValue={this.state.initialTransform}
-              onContentChange={this.onTransformContentChange}
+              defaultValue={this.state.initialTransformCode}
+              onContentChange={this.onTransformCodeChange}
             />
             <TransformOutput
-              transformPlugin={this.state.transformPlugin}
-              transformCode={this.state.currentTransform}
+              transformer={this.state.transformer}
+              transformCode={this.state.currentTransformCode}
               code={this.state.currentCode}
             />
           </SplitPane> : null}

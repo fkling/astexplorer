@@ -4,7 +4,7 @@ import React from 'react';
 
 export default class TransformOutput extends React.Component {
   static propTypes = {
-    transformPlugin: React.PropTypes.object,
+    transformer: React.PropTypes.object,
     transformCode: React.PropTypes.string,
     code: React.PropTypes.string,
   };
@@ -18,7 +18,7 @@ export default class TransformOutput extends React.Component {
   }
 
   componentDidMount() {
-    this.props.transformPlugin.transform(this.props).then(
+    this.props.transformer.transform(this.props).then(
       result => this.setState({result: result}),
       error => this.setState({error: error})
     );
@@ -30,7 +30,7 @@ export default class TransformOutput extends React.Component {
       if (console.clear) {
         console.clear();
       }
-      nextProps.transformPlugin.transform(nextProps).then(
+      nextProps.transformer.transform(nextProps).then(
         result => {
           let error = null;
           if (typeof result !== 'string') {

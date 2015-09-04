@@ -1,4 +1,5 @@
 import compileModule from './utils/compileModule';
+import pkg from 'babel-core/package.json';
 
 var fs = require('fs');
 
@@ -28,7 +29,13 @@ function transform({transformCode, code}) {
 }
 
 export default {
-  name: ID,
+  id: ID,
+  displayName: ID,
+  version: pkg.version,
+  homepage: pkg.homepage,
+  defaultParser: {
+    id: 'babylon',
+  },
   defaultTransform,
   transform,
 };

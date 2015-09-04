@@ -122,6 +122,10 @@ html {
   cursor: default;
 }
 
+#Toolbar .menuButton li.selected {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
 #Toolbar .menuButton li:hover,
 #Toolbar > a:hover,
 #Toolbar > button:hover {
@@ -133,7 +137,7 @@ html {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-#parser {
+#info {
   color: #898989;
   cursor: default;
   float: right;
@@ -141,9 +145,14 @@ html {
   border: none;
 }
 
+#info.small {
+  font-size: 14px;
+  line-height: 1.3em;
+}
+
 #Error {
   position: absolute;
-  z-index: 100;
+  z-index: 1000;
   top: 0;
   left: 0;
   right: 0;

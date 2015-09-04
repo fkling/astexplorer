@@ -28,3 +28,8 @@ let byID = Object.keys(parsers).reduce(
 export function getParserByID(id) {
   return byID[id];
 }
+
+export function getParser(idOrObject) {
+  let parserID = typeof idOrObject === 'string' ? idOrObject : idOrObject.id;
+  return getParserByID(parserID);
+}

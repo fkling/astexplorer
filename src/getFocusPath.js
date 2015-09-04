@@ -1,11 +1,8 @@
-import * as parsers from './parsers';
-
 function isInRange(range, pos) {
   return pos >= range[0] && pos <= range[1];
 }
 
-export default function getFocusPath(node, pos, parserName, path) {
-  let parser = parsers[parserName];
+export default function getFocusPath(node, pos, parser, path) {
   path = path || [];
   let range = parser.nodeToRange(node);
   if (range) {
@@ -32,7 +29,7 @@ export default function getFocusPath(node, pos, parserName, path) {
   for (var prop in node) {
     if (prop !== 'range' && prop !== 'loc' &&
         node[prop] && typeof node[prop] === 'object') {
-      var childPath = getFocusPath(node[prop], pos, parserName);
+      var childPath = getFocusPath(node[prop], pos, parser);
       if (childPath.length > 0) {
         path.push(...childPath);
         break;

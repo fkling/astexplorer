@@ -35,10 +35,10 @@ export default class ParserButton extends React.Component {
           &nbsp;{this.props.parser.displayName}
         </button>
         <ul>
-          {Object.keys(parsers).map(name => (
-            <li key={name} onClick={this._onClick}>
-              <button value={parsers[name].id} type="button" >
-                {parsers[name].displayName}
+          {parsers.map(parser => (
+            <li key={parser.id} onClick={this._onClick}>
+              <button value={parser.id} type="button" >
+                {parser.displayName}
               </button>
             </li>
           ))}

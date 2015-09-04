@@ -1,4 +1,5 @@
 import compileModule from './utils/compileModule';
+import pkg from 'jscodeshift/package.json';
 
 var fs = require('fs');
 
@@ -12,7 +13,7 @@ function transform({transformCode, code}) {
     loadjs(['babel-core', 'jscodeshift'], (babel, jscodeshift) => {
       try {
         // This might throw
-        var transform = compileModule(
+        let transform = compileModule( // eslint-disable-line no-shadow
           babel.transform(transformCode).code
         );
         resolve(transform(
@@ -31,7 +32,13 @@ function transform({transformCode, code}) {
 }
 
 export default {
-  name: ID,
+  id: ID,
+  version: pkg.version,
+  homepage: pkg.homepage,
+  defaultParser: {
+    id: 'recast',
+  },
+  displayName: ID,
   defaultTransform,
   transform,
 };

@@ -49,12 +49,14 @@ var Snippet = Parse.Object.extend('Snippet', {
     return this.fetchLatestRevision().then(function(revision) {
       const isNew = !revision ||
         revision.get('code') !== data.code ||
-        revision.get('transform') !== data.transform;
+        revision.get('transform') !== data.transform ||
+        revision.get('toolID') !== data.toolID;
 
       if (isNew) {
         var newRevision = new SnippetRevision();
         newRevision.set('code', data.code);
         newRevision.set('transform', data.transform);
+        newRevision.set('toolID', data.toolID);
         this.add('revisions', newRevision);
         return this.save().then(function(snippet) {
           var revisionNumber = snippet.get('revisions').length - 1;
@@ -79,7 +81,13 @@ var Snippet = Parse.Object.extend('Snippet', {
     if (cacheEntry.snippet && cacheEntry.revision) {
       return Parse.Promise.as(cacheEntry);
     } else if(cacheEntry.snippet) {
-      return cacheEntry.snippet.get('revisions')[rev].fetch().then(
+      let revisions = cacheEntry.snippet.get('revisions');
+      if (!revisions[rev]) {
+        return Promise.reject(
+          new Error(`Revision "${snippetID}/${rev}" does not exist.`)
+        );
+      }
+      return revisions[rev].fetch().then(
         function(revision) {
           setInCache(cacheEntry.snippet, revision, rev);
           return {snippet: cacheEntry.snippet, revision: revision};
@@ -87,7 +95,13 @@ var Snippet = Parse.Object.extend('Snippet', {
       );
     } else {
       return snippetQuery.get(snippetID).then(function(snippet) {
-        return snippet.get('revisions')[rev].fetch().then(function(revision) {
+        let revisions = snippet.get('revisions');
+        if (!revisions[rev]) {
+          return Promise.reject(
+            new Error(`Revision "${snippetID}/${rev}" does not exist.`)
+          );
+        }
+        return revisions[rev].fetch().then(function(revision) {
           setInCache(snippet, revision, rev);
           return {snippet: snippet, revision: revision};
         });
