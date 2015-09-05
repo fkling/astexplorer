@@ -53,6 +53,6 @@
     "start": "http-server",
     "build": "NODE_ENV=production browserify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g [uglifyify --ignore '**/node_modules/babel*/**/plugin.js']",
     "watch": "watchify -p [partition-bundle --map partition.json --output ./ --main ./src/app] -g [uglifyify -c drop_debugger=false --no-mangle] -o /dev/null -v",
-    "commit-site": "./scripts/update-site.sh"
+    "push": "./scripts/push-site.sh"
   }
 }
