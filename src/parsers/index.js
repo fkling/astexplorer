@@ -6,10 +6,10 @@ import recast from './recast';
 import shift from './shift';
 
 export var parsers = [
-  esprima,
-  espree,
   acorn,
   babylon,
+  espree,
+  esprima,
   recast,
   shift,
 ];
