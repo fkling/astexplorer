@@ -7,7 +7,7 @@ import * as LocalStorage from '../LocalStorage';
 const ID = 'shift';
 const options = Object.assign(
   {
-    loc: false,
+    loc: true,
     earlyErrors: false,
     sourceType: 'module',
   },
@@ -40,13 +40,15 @@ export default {
   },
 
   nodeToRange(node) {
-    return node.range;
+    if (node.loc) {
+      return [node.loc.start.offset, node.loc.end.offset];
+    }
   },
 
   renderSettings() {
     return SettingsRenderer({
       settings,
-      required: new Set(['range']),
+      required: new Set(['loc']),
       values: options,
       onChange: changeOption,
     });
