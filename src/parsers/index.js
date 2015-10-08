@@ -2,6 +2,7 @@ import esprima from './esprima';
 import espree from './espree';
 import acorn from './acorn';
 import babylon from './babylon';
+import cst from './cst';
 import recast from './recast';
 import shift from './shift';
 import babelEslint from './babel-eslint';
@@ -10,6 +11,7 @@ export var parsers = [
   acorn,
   babelEslint,
   babylon,
+  cst,
   espree,
   esprima,
   recast,
