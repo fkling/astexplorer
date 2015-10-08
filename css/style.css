@@ -305,6 +305,15 @@ li.entry {
   background-color: rgba(255,240,6,0.4);
 }
 
+.entry > .value .s {
+  cursor: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 .entry.toggable::before {
   content: '+';
   color: green;
