@@ -3,6 +3,7 @@ function isInRange(range, pos) {
 }
 
 export default function getFocusPath(node, pos, parser, path) {
+  if (parser.id === 'cst') { return []; }
   path = path || [];
   let range = parser.nodeToRange(node);
   if (range) {
