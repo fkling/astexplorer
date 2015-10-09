@@ -7,7 +7,7 @@ import SettingsRenderer from './utils/SettingsRenderer';
 const ID = 'cst';
 
 const options = {
-  strictMode: true
+  strictMode: true,
 };
 
 export default {
@@ -24,7 +24,29 @@ export default {
         if (!options.strictMode) {
           parser.disableStrictMode();
         }
-        return parser.parse(code);
+        let ast = parser.parse(code);
+
+        let affixRange = function (node) {
+          for (let child of (node.childElements)) {
+            affixRange(child);
+          }
+          node._range = node.range;
+        };
+        affixRange(ast);
+
+        let removeProps = function(node) {
+          for (let child of (node.childElements)) {
+            removeProps(child);
+          }
+          if ('_firstChild' in node) { delete node._firstChild; }
+          if ('_lastChild' in node) { delete node._lastChild; }
+          if ('_parentElement' in node) { delete node._parentElement; }
+          if ('_previousSibling' in node) { delete node._previousSibling; }
+          if ('_nextSibling' in node) { delete node._nextSibling; }
+        };
+        removeProps(ast);
+
+        return ast;
       }
     );
   },
