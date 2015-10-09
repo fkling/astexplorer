@@ -30,9 +30,7 @@ export default {
   },
 
   nodeToRange(node) {
-    if (typeof node.start !== 'undefined') {
-      return [node.start, node.end];
-    }
+    return node.range;
   },
 
   renderSettings() {
