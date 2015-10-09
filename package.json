@@ -45,6 +45,7 @@
         {
           "stage": 0,
           "optional": [
+            "optimisation.flow.forOf",
             "runtime"
           ]
         }
