@@ -1,6 +1,33 @@
 /*eslint no-new-func: 0*/
 import Editor from './Editor';
 import React from 'react';
+import halts, {loopProtect} from 'halting-problem';
+
+function transform(transformer, transformCode, code) {
+  // Use Promise.resolve(null) to return all errors as rejected promises
+  return Promise.resolve(null).then(function () {
+    // assert that there are no obvious infinite loops
+    halts(transformCode);
+    // guard against non-obvious loops with a timeout of 5 seconds
+    var start = Date.now();
+    transformCode = loopProtect(
+      transformCode,
+      [
+        // this function gets called in all possible loops
+        // it gets passed the line number as its only argument
+        '(function (line) {',
+        'if (Date.now() > ' + (start + 5000) + ') {',
+        '  throw new Error("Infinite loop detected on line " + line);',
+        '}',
+        '})',
+      ].join('')
+    );
+    return transformer.transform(
+      transformCode,
+      code,
+    );
+  });
+}
 
 export default class TransformOutput extends React.Component {
   static propTypes = {
@@ -18,7 +45,11 @@ export default class TransformOutput extends React.Component {
   }
 
   componentDidMount() {
-    this.props.transformer.transform(this.props).then(
+    transform(
+      this.props.transformer,
+      this.props.transformCode,
+      this.props.code,
+    ).then(
       result => this.setState({result: result}),
       error => this.setState({error: error})
     );
@@ -30,7 +61,11 @@ export default class TransformOutput extends React.Component {
       if (console.clear) {
         console.clear();
       }
-      nextProps.transformer.transform(nextProps).then(
+      transform(
+        nextProps.transformer,
+        nextProps.transformCode,
+        nextProps.code,
+      ).then(
         result => {
           let error = null;
           if (typeof result !== 'string') {

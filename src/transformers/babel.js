@@ -12,7 +12,7 @@ const options = {
   stage: 0,
 };
 
-function transform({transformCode, code}) {
+function transform(transformCode, code) {
   return new Promise((resolve, reject) => {
     loadjs(['babel-core'], babel => {
       try {
