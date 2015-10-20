@@ -8,7 +8,7 @@ const ID = 'jscodeshift';
 const defaultTransform =
   fs.readFileSync(__dirname + '/transformJscodeshift.txt', 'utf8');
 
-function transform({transformCode, code}) {
+function transform(transformCode, code) {
   return new Promise((resolve, reject) => {
     loadjs(['babel-core', 'jscodeshift'], (babel, jscodeshift) => {
       try {

@@ -30,6 +30,7 @@
     "escodegen": "^1.4.1",
     "espree": "^2.2.4",
     "esprima": "^2.5",
+    "halting-problem": "^1.0.1",
     "jscodeshift": "^0.3",
     "keypress": "git://github.com/dmauro/Keypress",
     "pubsub-js": "^1.4.2",
