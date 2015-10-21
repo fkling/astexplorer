@@ -877,8 +877,8 @@
       }
     },
     "jscodeshift": {
-      "version": "0.3.7",
-      "from": "jscodeshift@0.3.7",
+      "version": "0.3.8",
+      "from": "jscodeshift@0.3.8",
       "dependencies": {
         "async": {
           "version": "0.9.2",
