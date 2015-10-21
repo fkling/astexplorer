@@ -1552,7 +1552,7 @@ loadjs.d("103",function(require,module,exports){
 },{"../../../types":172});
 
 loadjs.d("792",function(require,module,exports){
-"use strict";function matchNode(e,t){var o=_Object$keys(t);return o.every(function(o){return hasOwn(e,o)?e[o]&&"object"==typeof e[o]&&"object"==typeof t[o]?matchNode(e[o],t[o]):e[o]===t[o]:!1})}var _Object$keys=require("babel-runtime/core-js/object/keys")["default"],hasOwn=Object.prototype.hasOwnProperty.call.bind(Object.prototype.hasOwnProperty);module.exports=matchNode;
+"use strict";function matchNode(e,t){return"function"==typeof t?t(e):isNode(t)&&isNode(e)?_Object$keys(t).every(function(o){return hasOwn(e,o)&&matchNode(e[o],t[o])}):e===t}function isNode(e){return"object"==typeof e&&e}var _Object$keys=require("babel-runtime/core-js/object/keys")["default"],hasOwn=Object.prototype.hasOwnProperty.call.bind(Object.prototype.hasOwnProperty);module.exports=matchNode;
 
 },{"babel-runtime/core-js/object/keys":607});
 
