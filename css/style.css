@@ -402,7 +402,6 @@ li.entry {
 
 #SettingsDialog .body {
   overflow: auto;
-  flex: 1;
   padding: 10px;
 }
 
