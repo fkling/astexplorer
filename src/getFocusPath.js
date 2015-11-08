@@ -26,9 +26,26 @@ export default function getFocusPath(node, pos, parser, path) {
       }
     }
   }
+  let testLater = [];
+  let found = false;
   for (var prop in node) {
     if (prop !== 'range' && prop !== 'loc' &&
+        !/^_?(parent|(next|prev)Sibling)/.test(prop) &&
         node[prop] && typeof node[prop] === 'object') {
+      if (/Elements/.test(prop)) {
+        testLater.push(prop);
+        continue;
+      }
+      var childPath = getFocusPath(node[prop], pos, parser);
+      if (childPath.length > 0) {
+        path.push(...childPath);
+        found = true
+        break;
+      }
+    }
+  }
+  if (!found) {
+    for (var prop of (testLater: Array)) {
       var childPath = getFocusPath(node[prop], pos, parser);
       if (childPath.length > 0) {
         path.push(...childPath);

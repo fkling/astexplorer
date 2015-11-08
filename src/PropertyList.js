@@ -10,9 +10,9 @@ export default class PropertyList {
   render() {
     var focusPath = this.props.focusPath;
     var level = this.props.level;
-
-    var properties = Object.keys(this.props.object).map(key => {
-      var v = this.props.object[key];
+    var object = this.props.object;
+    var properties = Object.keys(object).map(key => {
+      var v = object[key];
       return ( // eslint-disable-line consistent-return
         <Element
           key={key}
