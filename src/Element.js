@@ -36,7 +36,11 @@ export default React.createClass({
       this.props.name === 'program' ||
       this.props.name === 'body' ||
       this.props.name === 'elements' || // array literals
-      this.props.name === 'declarations'; // variable declarations
+      this.props.name === 'declarations' || // variable declarations
+      this.props.name === 'statements' || // typescript statements
+      this.props.name === 'statement' || // typescript statement
+      this.props.name === 'declarationList' || // variable declarations
+      this.props.name === 'children';
 
     return {
       open: open,
@@ -141,7 +145,7 @@ export default React.createClass({
     var suffix = null;
     var showToggler = false;
     var isType = value && value.type;
-    var enableHighlight = isType && value.type !== 'Program';
+    var enableHighlight = isType && value.type !== 'Program' && this.props.level !== 0;
     var focusPath = this.props.focusPath;
     var open = this.state.open;
     var focused = this._isFocused(this.props.level, focusPath, value, open);

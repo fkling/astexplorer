@@ -27,7 +27,7 @@ export default function getFocusPath(node, pos, parser, path) {
     }
   }
   for (var prop in node) {
-    if (prop !== 'range' && prop !== 'loc' &&
+    if (prop !== 'range' && prop !== 'loc' && prop !== 'parent' &&
         node[prop] && typeof node[prop] === 'object') {
       var childPath = getFocusPath(node[prop], pos, parser);
       if (childPath.length > 0) {

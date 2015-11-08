@@ -11,7 +11,7 @@ export default class PropertyList {
     var focusPath = this.props.focusPath;
     var level = this.props.level;
 
-    var properties = Object.keys(this.props.object).map(key => {
+    var properties = Object.keys(this.props.object).filter(key => key !== 'parent').map(key => {
       var v = this.props.object[key];
       return ( // eslint-disable-line consistent-return
         <Element

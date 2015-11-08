@@ -6,5 +6,6 @@
   "dist/parsers/espree.js": ["espree"],
   "dist/parsers/recast.js": ["recast"],
   "dist/parsers/shift.js": ["shift-parser"],
+  "dist/parsers/typescript.js": ["typescript"],
   "dist/transform.js": ["jscodeshift"]
 }
