@@ -31,7 +31,7 @@ export default class PasteDropTarget extends React.Component {
       }
       var cbdata = event.clipboardData;
       // Plain text
-      if (cbdata.types.indexOf('text/plain') > -1) {
+      if (cbdata.types.indexOf && cbdata.types.indexOf('text/plain') > -1) {
         try {
           if (this.props.onText) {
             var code = this._jsonToCode(cbdata.getData('text/plain'));

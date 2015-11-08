@@ -19,7 +19,7 @@ but also
   [classes](https://github.com/lukehoban/es6features#classes), ...
 - ES7 propsals: [async/await](https://github.com/lukehoban/ecmascript-asyncawait), [object rest / spread](https://github.com/sebmarkbage/ecmascript-rest-spread),  ...
 - [JSX](https://facebook.github.io/jsx/), known through [React](https://facebook.github.io/react/).
-- Typed JavaScript ([Flow](http://flowtype.org/))
+- Typed JavaScript ([Flow](http://flowtype.org/) and [TypeScript](http://typescriptlang.org/))
 
 Since future syntax is supported, the JavaScript AST explorer is a useful tool
 for developers who want to create AST transforms.
@@ -49,6 +49,7 @@ corresponding AST node (or its ancestors of it isn't expanded):
 [acorn]: https://github.com/marijnh/acorn
 [recast]: https://github.com/benjamn/recast
 [shift]: https://github.com/shapesecurity/shift-parser-js
+[typescript]: http://typescriptlang.org/
 [babel-eslint]: https://github.com/babel/babel-eslint
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [escodegen]: https://github.com/estools/escodegen
