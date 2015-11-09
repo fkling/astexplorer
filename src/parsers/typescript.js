@@ -90,6 +90,9 @@ export default {
 
         const transformNode = (node) => {
           if (typeof node === 'object' && node.kind) {
+            if (typeof node.type !== 'undefined') {
+              node._typescriptType = node.type;
+            }
             node.type = ts.SyntaxKind[node.kind];
             getComments(node, false);
             getComments(node, true);
