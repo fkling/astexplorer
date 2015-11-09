@@ -28,8 +28,9 @@ function setInCache(snippet, revision, rev) {
   cacheEntry.snippet = snippet;
   cacheEntry[rev] = revision;
 }
-
-var Snippet = Parse.Object.extend('Snippet', {
+var Snippet;
+if (Parse) {
+Snippet = Parse.Object.extend('Snippet', {
   fetchLatestRevision: function() {
     if (this._latestRevision) {
       return Parse.Promise.as(this._latestRevision);
@@ -123,4 +124,5 @@ var Snippet = Parse.Object.extend('Snippet', {
   },
 });
 
+}
 export default Snippet;
