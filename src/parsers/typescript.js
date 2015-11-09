@@ -60,12 +60,44 @@ export default {
           jsx: options.jsx ? 'preserve' : undefined,
         }, compilerHost);
 
+        const sourceFile = program.getSourceFile(filename);
+
+        const getComments = (node, isTrailing) => {
+          if (node.parent) {
+            const nodePos = isTrailing ? node.end : node.pos;
+            const parentPos = isTrailing ? node.parent.end : node.parent.pos;
+
+            if (node.parent.kind === ts.SyntaxKind.SourceFile || nodePos !== parentPos) {
+              let comments = isTrailing ?
+                ts.getTrailingCommentRanges(sourceFile.text, nodePos) :
+                ts.getLeadingCommentRanges(sourceFile.text, nodePos);
+
+              if (Array.isArray(comments)) {
+                comments.forEach((comment) => {
+                  comment.type = ts.SyntaxKind[comment.kind];
+                  comment.text = sourceFile.text.substring(comment.pos, comment.end);
+                });
+
+                if (isTrailing) {
+                  node.trailingComments = comments;
+                } else {
+                  node.leadingComments = comments;
+                }
+              }
+            }
+          }
+        };
+
         const transformNode = (node) => {
-          node.type = ts.SyntaxKind[node.kind];
+          if (typeof node === 'object' && node.kind) {
+            node.type = ts.SyntaxKind[node.kind];
+            getComments(node, false);
+            getComments(node, true);
+          }
+
           ts.forEachChild(node, transformNode);
         };
 
-        const sourceFile = program.getSourceFile(filename);
         transformNode(sourceFile);
 
         return sourceFile;
@@ -76,14 +108,16 @@ export default {
   nodeToRange(node) {
     if (typeof node.getStart === 'function' && typeof node.getEnd === 'function') {
       return [node.getStart(), node.getEnd()];
+    } else if (typeof node.pos !== 'undefined' && typeof node.end !== 'undefined') {
+      return [node.pos, node.end];
     }
   },
 
   renderSettings() {
-     return SettingsRenderer({
-       settings,
-       values: options,
-       onChange: changeOption,
-     });
-   },
+    return SettingsRenderer({
+      settings,
+      values: options,
+      onChange: changeOption,
+    });
+  },
 };
