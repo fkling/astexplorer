@@ -3,6 +3,7 @@ import Element from './Element';
 import PubSub from 'pubsub-js';
 import React from 'react/addons';
 import cx from 'classnames';
+import stringify from 'json-stringify-safe';
 
 export default React.createClass({
   propTypes: {
@@ -51,7 +52,7 @@ export default React.createClass({
           output =
             <JSONEditor
               className="container"
-              value={JSON.stringify(this.props.ast, null, 2)}
+              value={stringify(this.props.ast, null, 2)}
             />;
           break;
       }

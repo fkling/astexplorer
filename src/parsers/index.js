@@ -5,6 +5,7 @@ import babylon from './babylon';
 import recast from './recast';
 import shift from './shift';
 import babelEslint from './babel-eslint';
+import typescript from './typescript';
 
 export var parsers = [
   acorn,
@@ -14,6 +15,7 @@ export var parsers = [
   esprima,
   recast,
   shift,
+  typescript,
 ];
 
 export function getDefaultParser() {
