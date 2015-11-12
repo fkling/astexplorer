@@ -1,4 +1,3 @@
-import React from 'react';
 import pkg from 'acorn-to-esprima/package.json';
 import loadAndExecute from './utils/loadAndExecute';
 
@@ -35,17 +34,6 @@ export default {
         ast.comments = comments;
         acornToEsprima.attachComments(ast, comments, ast.tokens);
         acornToEsprima.toAST(ast, traverse);
-
-        // remove node._paths
-        traverse(ast, {
-          noScope: true,
-          exit: function (node) {
-            if (node._paths) {
-              delete node._paths;
-            }
-          },
-        });
-        delete ast._paths;
 
         return ast;
       }

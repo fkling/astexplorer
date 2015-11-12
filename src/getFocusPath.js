@@ -1,3 +1,5 @@
+import ignoreProperties from './ignoreProperties';
+
 function isInRange(range, pos) {
   return pos >= range[0] && pos <= range[1];
 }
@@ -27,8 +29,13 @@ export default function getFocusPath(node, pos, parser, path) {
     }
   }
   for (var prop in node) {
-    if (prop !== 'range' && prop !== 'loc' && prop !== 'parent' &&
-        node[prop] && typeof node[prop] === 'object') {
+    if (
+      prop !== 'range' &&
+      prop !== 'loc' &&
+      !ignoreProperties.contains(prop) &&
+      node[prop] &&
+      typeof node[prop] === 'object'
+    ) {
       var childPath = getFocusPath(node[prop], pos, parser);
       if (childPath.length > 0) {
         path.push(...childPath);
