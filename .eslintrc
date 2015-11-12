@@ -1,22 +1,22 @@
-{
-  "parser": "babel-eslint",
-  "plugins": [
-    "react"
-  ],
-  "rules": {
-    "comma-dangle": [1, "always-multiline"],
-    "no-underscore-dangle": 0,
-    "no-path-concat": 0,
-    "quotes": [2, "single", "avoid-escape"],
-    "no-use-before-define": 0,
-    "new-cap": 0,
-    "strict": 0
-  },
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "globals": {
-    "loadjs": true
-  }
-}
+parser: babel-eslint
+
+plugins:
+  - react
+
+rules:
+  comma-dangle: [1, "always-multiline"]
+  no-underscore-dangle: 0
+  no-path-concat: 0
+  quotes: [2, "single", "avoid-escape"]
+  no-use-before-define: 0
+  new-cap: 0
+  strict: 0
+  react/react-in-jsx-scope: 1
+  react/jsx-no-undef: 1
+
+env:
+  browser: true
+  node: true
+
+globals:
+  loadjs: true
