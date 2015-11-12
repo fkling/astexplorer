@@ -17,6 +17,11 @@ if [ ! -d "$TARGETPATH" ]; then
   cd - > /dev/null
 fi
 
+# Updating
+cd "$TARGETPATH"
+git pull origin
+cd - > /dev/null
+
 echo "Building..."
 npm run build
 echo "Copying artifacts..."
