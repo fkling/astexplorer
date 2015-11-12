@@ -1,9 +1,0 @@
-{
-  "dist/app.js": ["./src/app"],
-  "dist/parsers/acorn.js": ["acorn"],
-  "dist/parsers/babel.js": ["babylon", "babel-core"],
-  "dist/parsers/esprima.js": ["esprima"],
-  "dist/parsers/espree.js": ["espree"],
-  "dist/parsers/recast.js": ["recast"],
-  "dist/transform.js": ["jscodeshift"]
-}
