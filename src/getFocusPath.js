@@ -32,7 +32,7 @@ export default function getFocusPath(node, pos, parser, path) {
     if (
       prop !== 'range' &&
       prop !== 'loc' &&
-      !ignoreProperties.contains(prop) &&
+      !ignoreProperties.has(prop) &&
       node[prop] &&
       typeof node[prop] === 'object'
     ) {
