@@ -1,9 +1,7 @@
-import JSONEditor from './JSONEditor';
-import Element from './components/ast/Element';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import cx from 'classnames';
-import stringify from 'json-stringify-safe';
+import visualizations from './components/visualization';
 
 const {PropTypes} = React;
 
@@ -16,7 +14,7 @@ export default React.createClass({
 
   getInitialState: function() {
     return {
-      output: 'tree',
+      output: 0,
     };
   },
 
@@ -38,29 +36,10 @@ export default React.createClass({
   render: function() {
     var output;
     if (this.props.ast) {
-      switch (this.state.output) {
-        case 'tree':
-          output =
-            <ul
-              id="tree"
-              className="container"
-              onMouseLeave={function() {PubSub.publish('CLEAR_HIGHLIGHT');}}>
-              <Element
-                focusPath={this.props.focusPath}
-                value={this.props.ast}
-                level={0}
-                parser={this.props.parser}
-              />
-            </ul>;
-          break;
-        case 'json':
-          output =
-            <JSONEditor
-              className="container"
-              value={stringify(this.props.ast, null, 2)}
-            />;
-          break;
-      }
+      output = React.createElement(
+        visualizations[this.state.output],
+        this.props
+      );
     } else if (this.props.editorError) {
       output =
         <div style={{padding: 20}}>
@@ -68,26 +47,22 @@ export default React.createClass({
         </div>;
     }
 
+    var buttons = visualizations.map(
+      (cls, index) =>
+        <button
+          key={index}
+          value={index}
+          onClick={this._changeOutput}
+          className={cx({
+            active: this.state.output == index,
+          })}>
+          {cls.name}
+        </button>
+    );
+
     return (
       <div className="output highlight">
-        <div className="toolbar">
-          <button
-            onClick={this._changeOutput}
-            value="tree"
-            className={cx({
-              active: this.state.output === 'tree',
-            })}>
-            Tree
-          </button>
-          <button
-            onClick={this._changeOutput}
-            value="json"
-            className={cx({
-              active: this.state.output === 'json',
-            })}>
-            JSON
-          </button>
-        </div>
+        <div className="toolbar">{buttons}</div>
         {output}
       </div>
     );
