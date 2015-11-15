@@ -440,10 +440,10 @@ var App = React.createClass({
               onActivity={this.onActivity}
             />
             <ASTOutput
-              key={this.state.parser.id}
-              focusPath={this.state.focusPath}
               ast={this.state.ast}
               editorError={this.state.editorError}
+              focusPath={this.state.focusPath}
+              parser={this.state.parser}
             />
           </SplitPane>
           {this.state.showTransformPanel ? <SplitPane

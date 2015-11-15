@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'recast/package.json';
 import SettingsRenderer from './utils/SettingsRenderer';
 import * as LocalStorage from '../LocalStorage';
@@ -20,6 +21,8 @@ const settings = [
 ];
 
 export default {
+  ...defaultParserInterface,
+
   id: ID,
   displayName: ID,
   version: pkg.version,

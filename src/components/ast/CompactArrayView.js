@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ArrayFormatter {
+export default class CompactArrayView {
   static propTypes = {
     /**
      * The array of elements to represent.

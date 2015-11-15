@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import defaultParserInterface from './utils/defaultParserInterface';
 import pkg from 'shift-parser/package.json';
 import SettingsRenderer from './utils/SettingsRenderer';
 import * as LocalStorage from '../LocalStorage';
@@ -20,6 +21,8 @@ const settings = [
 ];
 
 export default {
+  ...defaultParserInterface,
+
   id: ID,
   displayName: ID,
   version: pkg.version,
@@ -56,6 +59,17 @@ export default {
       onChange: changeOption,
     });
 
+  },
+
+  opensByDefault(node, key) {
+    return (
+      key === 'items' ||
+      key === 'declaration' ||
+      key === 'declarators' ||
+      key === 'statements' ||
+      key === 'expression' ||
+      key === 'body'
+    );
   },
 };
 

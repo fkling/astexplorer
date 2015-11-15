@@ -1,14 +1,17 @@
 import JSONEditor from './JSONEditor';
-import Element from './Element';
+import Element from './components/ast/Element';
 import PubSub from 'pubsub-js';
-import React from 'react/addons';
+import React from 'react';
 import cx from 'classnames';
 import stringify from 'json-stringify-safe';
+
+const {PropTypes} = React;
 
 export default React.createClass({
   propTypes: {
     ast: React.PropTypes.object,
-    focusPath: React.PropTypes.array,
+    focusPath: React.PropTypes.array.isRequired,
+    parser: PropTypes.object.isRequired,
   },
 
   getInitialState: function() {
@@ -24,7 +27,8 @@ export default React.createClass({
       this.props.ast !== nextProps.ast ||
       this.props.focusPath.length !== newFocusPath.length ||
       this.props.focusPath.some((obj, i) => obj !== newFocusPath[i]) ||
-      this.state.output !== nextState.output;
+      this.state.output !== nextState.output ||
+      this.state.parser !== nextState.parser;
   },
 
   _changeOutput: function(event) {
@@ -45,6 +49,7 @@ export default React.createClass({
                 focusPath={this.props.focusPath}
                 value={this.props.ast}
                 level={0}
+                parser={this.props.parser}
               />
             </ul>;
           break;

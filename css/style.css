@@ -335,6 +335,12 @@ li.entry {
   text-decoration: underline;
 }
 
+.entry.func::before {
+  content: 'ƒ';
+  left: -10px;
+  position: absolute;
+}
+
 .placeholder {
   font-size: 0.9em;
 }

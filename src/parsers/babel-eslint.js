@@ -1,9 +1,12 @@
+import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'acorn-to-esprima/package.json';
 
 const ID = 'acorn-to-esprima';
 const name = 'babel-eslint';
 
 export default {
+  ...defaultParserInterface,
+
   id: ID,
   displayName: name,
   version: pkg.version,

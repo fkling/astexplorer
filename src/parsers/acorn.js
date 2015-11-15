@@ -1,4 +1,5 @@
 import React from 'react';
+import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'acorn/package.json';
 import * as LocalStorage from '../LocalStorage';
 import SettingsRenderer from './utils/SettingsRenderer';
@@ -14,6 +15,8 @@ const options = Object.assign(
 );
 
 export default {
+  ...defaultParserInterface,
+
   id: ID,
   displayName: ID,
   version: pkg.version,

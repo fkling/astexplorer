@@ -1,4 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'esprima/package.json';
 import SettingsRenderer from './utils/SettingsRenderer';
 import * as LocalStorage from '../LocalStorage';
@@ -28,6 +29,8 @@ const settings = [
 ];
 
 export default {
+  ...defaultParserInterface,
+
   id: ID,
   displayName: ID,
   version: pkg.version,
@@ -44,10 +47,6 @@ export default {
         }
       });
     });
-  },
-
-  nodeToRange(node) {
-    return node.range;
   },
 
   renderSettings() {

@@ -1,11 +1,11 @@
-import ignoreProperties from './ignoreProperties';
-
 function isInRange(range, pos) {
   return pos >= range[0] && pos <= range[1];
 }
 
-export default function getFocusPath(node, pos, parser, path) {
-  path = path || [];
+export default function getFocusPath(node, pos, parser, seen = new Set()) {
+  seen.add(node);
+
+  let path = [];
   let range = parser.nodeToRange(node);
   if (range) {
     if (isInRange(range, pos)) {
@@ -28,20 +28,17 @@ export default function getFocusPath(node, pos, parser, path) {
       }
     }
   }
-  for (var prop in node) {
-    if (
-      prop !== 'range' &&
-      prop !== 'loc' &&
-      !ignoreProperties.has(prop) &&
-      node[prop] &&
-      typeof node[prop] === 'object'
-    ) {
-      var childPath = getFocusPath(node[prop], pos, parser);
-      if (childPath.length > 0) {
-        path.push(...childPath);
-        break;
+  parser.forEachProperty(
+    node,
+    ({value}) => {
+      if (value && typeof value === 'object' && !seen.has(value)) {
+        var childPath = getFocusPath(value, pos, parser, seen);
+        if (childPath.length > 0) {
+          path.push(...childPath);
+          return false;
+        }
       }
     }
-  }
+  );
   return path;
 }

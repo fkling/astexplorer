@@ -1,4 +1,5 @@
 import React from 'react';
+import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'espree/package.json';
 import * as LocalStorage from '../LocalStorage';
 import SettingsRenderer from './utils/SettingsRenderer';
@@ -44,6 +45,8 @@ const options = Object.assign(
 );
 
 export default {
+  ...defaultParserInterface,
+
   id: ID,
   displayName: ID,
   version: pkg.version,
@@ -60,10 +63,6 @@ export default {
         }
       });
     });
-  },
-
-  nodeToRange(node) {
-    return node.range;
   },
 
   renderSettings() {
