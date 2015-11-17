@@ -26,6 +26,7 @@ const Element = React.createClass({
     focusPath: PropTypes.array.isRequired,
     level: PropTypes.number,
     parser: PropTypes.object.isRequired,
+    settings: PropTypes.object.isRequired,
   },
 
   getInitialState: function() {
@@ -77,7 +78,13 @@ const Element = React.createClass({
       (!open || path[path.length - 1] === value);
   },
 
-  _renderAdditionalInfo() {
+  _getProperties: function(parser, value) {
+    const {hideFunctions, hideEmptyKeys} = this.props.settings;
+    let properties = [];
+    parser.forEachProperty(value, o => properties.push(o));
+    return properties
+      .filter(({value}) => !hideFunctions || typeof value !== 'function')
+      .filter(({value}) => !hideEmptyKeys || value != null);
   },
 
   render: function() {
@@ -86,6 +93,7 @@ const Element = React.createClass({
       focusPath,
       parser,
       level,
+      settings,
     } = this.props;
     const open = this.state.open;
     const focused = this._isFocused(level, focusPath, value, open);
@@ -109,6 +117,7 @@ const Element = React.createClass({
               value={v}
               level={this.props.level + 1}
               parser={parser}
+              settings={settings}
             />
         );
         content = <ul className="value-body">{elements}</ul>;
@@ -135,11 +144,9 @@ const Element = React.createClass({
       if (this.state.open) {
         prefix = ' {';
         suffix = '}';
-        let elements = [];
-        parser.forEachProperty(
-          value,
-          ({value, key}) => {
-            elements.push(
+        let elements = this._getProperties(parser, value)
+          .map(
+            ({value, key}) =>
               <Element
                 key={key}
                 name={key}
@@ -148,14 +155,14 @@ const Element = React.createClass({
                 value={value}
                 level={level + 1}
                 parser={parser}
+                settings={settings}
               />
-            );
-          });
+          );
         content = <ul className="value-body">{elements}</ul>;
         showToggler = elements.length > 0;
       } else {
-        let keys = [];
-        parser.forEachProperty(value, ({key}) => keys.push(key));
+        let keys = this._getProperties(parser, value)
+          .map(({key}) => key);
         valueOutput =
           <span>
             {valueOutput}
@@ -202,21 +209,12 @@ const Element = React.createClass({
       open: open,
       func: typeof value === 'function',
     });
-    var additionalInfo = this._renderAdditionalInfo();
     return (
       <li
         ref="container"
         className={classNames}
         onMouseOver={enableHighlight ? this._onMouseOver : null}
         onMouseLeave={enableHighlight ? this._onMouseLeave : null}>
-        {additionalInfo ?
-          <span className="ge">
-            {' ('}
-            {additionalInfo}
-            {') '}
-          </span> :
-          null
-        }
         {name}
         <span className="value">{valueOutput}</span>
         {prefix ? <span className="prefix p">{prefix}</span> : null}
