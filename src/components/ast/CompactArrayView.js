@@ -24,7 +24,7 @@ export default class CompactArrayView {
       return (
         <span>
           <span className="p">{"["}</span>
-          <span className="array placeholder ge" onClick={this.props.onClick}>
+          <span className="compact placeholder ge" onClick={this.props.onClick}>
             {count + ' element' + (count > 1 ? 's' : '')}
           </span>
           <span className="p">{"]"}</span>

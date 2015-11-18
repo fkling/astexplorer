@@ -4,6 +4,7 @@ import PubSub from 'pubsub-js';
 import React from 'react';
 
 import cx from 'classnames';
+import stringify from '../../utils/stringify';
 
 const {PropTypes} = React;
 
@@ -27,6 +28,7 @@ const Element = React.createClass({
     level: PropTypes.number,
     parser: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired,
+    parent: PropTypes.any.isRequired,
   },
 
   getInitialState: function() {
@@ -40,6 +42,7 @@ const Element = React.createClass({
     return {
       open: open && (!deepOpen || parser.opensOnDeepOpen(value, name)),
       deepOpen,
+      value,
     };
   },
 
@@ -47,17 +50,18 @@ const Element = React.createClass({
     this.setState({
       open: nextProps.deepOpen || this.state.open,
       deepOpen: nextProps.deepOpen,
+      value: nextProps.value,
     });
   },
 
   _toggleClick: function(event) {
     // Make AST node accessible
-    global.$node = this.props.value;
+    global.$node = this.state.value;
 
     this.setState({
       open: event.shiftKey || !this.state.open,
       deepOpen: event.shiftKey && this.props.parser.opensOnDeepOpen(
-        this.props.value,
+        this.state.value,
         this.props.name
       ),
     });
@@ -65,11 +69,11 @@ const Element = React.createClass({
 
   _onMouseOver: function(e) {
     e.stopPropagation();
-    PubSub.publish('HIGHLIGHT', this.props.value);
+    PubSub.publish('HIGHLIGHT', this.state.value);
   },
 
   _onMouseLeave: function() {
-    PubSub.publish('CLEAR_HIGHLIGHT', this.props.value);
+    PubSub.publish('CLEAR_HIGHLIGHT', this.state.value);
   },
 
   _isFocused: function(level, path, value, open) {
@@ -87,15 +91,29 @@ const Element = React.createClass({
       .filter(({value}) => !hideEmptyKeys || value != null);
   },
 
+  _execFunction: function() {
+    let state = {error: null};
+    try {
+      state.value = this.state.value.call(this.props.parent);
+      console.log(state.value);
+    } catch(err) {
+      console.error(`Unable to run "${this.props.name}": `, err.message);
+      state.error = err;
+    }
+    this.setState(state);
+  },
+
   render: function() {
     const {
-      value,
       focusPath,
       parser,
       level,
       settings,
     } = this.props;
-    const open = this.state.open;
+    const {
+      open,
+      value,
+    } = this.state;
     const focused = this._isFocused(level, focusPath, value, open);
     let valueOutput = null;
     let content = null;
@@ -118,6 +136,7 @@ const Element = React.createClass({
               level={this.props.level + 1}
               parser={parser}
               settings={settings}
+              parent={value}
             />
         );
         content = <ul className="value-body">{elements}</ul>;
@@ -146,16 +165,17 @@ const Element = React.createClass({
         suffix = '}';
         let elements = this._getProperties(parser, value)
           .map(
-            ({value, key}) =>
+            ({value: v, key}) =>
               <Element
                 key={key}
                 name={key}
                 focusPath={focusPath}
                 deepOpen={this.state.deepOpen}
-                value={value}
+                value={v}
                 level={level + 1}
                 parser={parser}
                 settings={settings}
+                parent={value}
               />
           );
         content = <ul className="value-body">{elements}</ul>;
@@ -174,29 +194,21 @@ const Element = React.createClass({
         showToggler = keys.length > 0;
       }
     } else {
-      let encodedValue;
-      switch (typeof value) {
-        case 'function':
-          encodedValue = value.toString().match(/function[^(]*\([^)]*\)/)[0];
-          break;
-        case 'undefined':
-          encodedValue = 'undefined';
-          break;
-        default:
-          encodedValue = JSON.stringify(value);
-      }
-
-      valueOutput =
-        <span className="s">
-          {encodedValue}
-        </span>;
+      valueOutput = <span className="s">{stringify(value)}</span>;
       showToggler = false;
     }
 
     var name = this.props.name ?
       <span
         className="key"
-        onClick={showToggler ? this._toggleClick : null}>
+        onClick={
+          showToggler ?
+            this._toggleClick :
+            (typeof value === 'function' ?
+              this._execFunction :
+              null
+            )
+        }>
         <span className="name nb">{this.props.name}</span>
         <span className="p">: </span>
       </span> :
@@ -216,10 +228,24 @@ const Element = React.createClass({
         onMouseOver={enableHighlight ? this._onMouseOver : null}
         onMouseLeave={enableHighlight ? this._onMouseLeave : null}>
         {name}
-        <span className="value">{valueOutput}</span>
+        <span
+          className="value"
+          onClick={typeof value === 'function' ? this._execFunction : null}>
+            {valueOutput}
+        </span>
         {prefix ? <span className="prefix p">{prefix}</span> : null}
         {content}
         {suffix ? <div className="suffix p">{suffix}</div> : null}
+        {this.state.error  ?
+          <span>
+            {' '}
+            <i
+              title={this.state.error.message}
+              className="fa fa-exclamation-triangle"
+            />
+          </span> :
+          null
+        }
       </li>
     );
   },

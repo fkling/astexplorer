@@ -9,7 +9,7 @@ export default class Tree extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = getVisualizationSettings(ID) || {hideFunctions: true};
+    this.state = getVisualizationSettings(ID, {hideFunctions: true});
   }
 
   _setOption(name, event) {

@@ -38,6 +38,6 @@ export function setVisualizationSettings(visualization, settings) {
   writeConfig();
 }
 
-export function getVisualizationSettings(visualization) {
-  return config.visualizationSettings[visualization] || {};
+export function getVisualizationSettings(visualization, def) {
+  return config.visualizationSettings[visualization] || def || {};
 }

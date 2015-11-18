@@ -13,7 +13,9 @@ export default class CompactObjectView {
       return (
         <span>
           <span className="p">{" {"}</span>
-          <span className="placeholder ge">{keys.join(', ')}</span>
+          <span className="compact placeholder ge" onClick={this.props.onClick}>
+            {keys.join(', ')}
+          </span>
           <span className="p">{"}"}</span>
         </span>
       );
