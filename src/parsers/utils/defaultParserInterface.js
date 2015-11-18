@@ -1,4 +1,6 @@
 export default {
+  _ignoredProperties: new Set(),
+
   opensByDefault(node, key) {
     return false;
   },
@@ -17,6 +19,9 @@ export default {
 
   forEachProperty(node, callback) {
     for (var prop in node) {
+      if (this._ignoredProperties.has(prop)) {
+        continue;
+      }
       var result = callback({
         value: node[prop],
         key: prop,

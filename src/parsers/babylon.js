@@ -50,6 +50,10 @@ export default {
     }
   },
 
+  _ignoredProperties: new Set([
+    '__clone',
+  ]),
+
   renderSettings() {
     return Settings();
   },

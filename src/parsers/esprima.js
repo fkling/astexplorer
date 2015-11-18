@@ -49,6 +49,22 @@ export default {
     });
   },
 
+  forEachProperty(node, callback) {
+    for (var prop in node) {
+      if (typeof node[prop] === 'function') {
+        continue;
+      }
+      var result = callback({
+        value: node[prop],
+        key: prop,
+        computed: false,
+      });
+      if (result === false) {
+        break;
+      }
+    }
+  },
+
   renderSettings() {
     return SettingsRenderer({
       settings,

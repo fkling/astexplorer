@@ -52,4 +52,10 @@ export default {
       return [node.start, node.end];
     }
   },
+
+  _ignoredProperties: new Set([
+    '_paths',
+    '_babelType',
+    '__clone',
+  ]),
 };

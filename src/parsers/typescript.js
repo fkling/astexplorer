@@ -111,6 +111,9 @@ export default {
 
   forEachProperty(node, callback) {
     for (var prop in node) {
+      if (prop === 'constructor') {
+        continue;
+      }
       var result = callback({
         value: node[prop],
         key: prop,
