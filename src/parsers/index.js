@@ -1,16 +1,18 @@
-import esprima from './esprima';
-import espree from './espree';
 import acorn from './acorn';
+import babelEslint from './babel-eslint';
 import babylon from './babylon';
+import babylon6 from './babylon6';
+import espree from './espree';
+import esprima from './esprima';
 import recast from './recast';
 import shift from './shift';
-import babelEslint from './babel-eslint';
 import typescript from './typescript';
 
 export var parsers = [
   acorn,
   babelEslint,
   babylon,
+  babylon6,
   espree,
   esprima,
   recast,

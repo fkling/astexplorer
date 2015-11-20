@@ -2,6 +2,8 @@
   "dist/app.js": ["./src/app"],
   "dist/parsers/acorn.js": ["acorn"],
   "dist/parsers/babel.js": ["babylon", "babel-core", "acorn-to-esprima"],
+  "dist/parsers/babylon6.js": ["babylon6"],
+  "dist/parsers/babel6.js": ["babel6", "babel-preset-es2015", "babel-preset-stage-0", "babel-preset-react"],
   "dist/parsers/esprima.js": ["esprima"],
   "dist/parsers/espree.js": ["espree"],
   "dist/parsers/recast.js": ["recast"],
