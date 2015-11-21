@@ -1,6 +1,7 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'acorn/package.json';
+import jsxPkg from 'acorn-jsx/package.json';
 import * as LocalStorage from '../LocalStorage';
 import SettingsRenderer from './utils/SettingsRenderer';
 
@@ -10,6 +11,7 @@ const options = Object.assign(
     ecmaVersion: 6,
     ranges: true,
     sourceType: 'module',
+    'plugins.jsx': true,
   },
   LocalStorage.getParserSettings(ID)
 );
@@ -19,13 +21,19 @@ export default {
 
   id: ID,
   displayName: ID,
-  version: pkg.version,
+  version: `${pkg.version} (acorn-jsx: ${jsxPkg.version})`,
   homepage: pkg.homepage,
 
   parse(code) {
     return new Promise((resolve, reject) => {
-      require.ensure(['acorn'], require => {
+      require.ensure(['acorn', 'acorn-jsx/inject'], require => {
         let acorn = require('acorn');
+        // put deep option into correspondent place
+        options.plugins = {};
+        if (options['plugins.jsx']) {
+          require('acorn-jsx/inject')(acorn);
+          options.plugins.jsx = true;
+        }
         try {
           resolve(acorn.parse(code, options));
         } catch (err) {
@@ -34,6 +42,11 @@ export default {
       });
     });
   },
+
+  _ignoredProperties: new Set([
+    'start',
+    'end',
+  ]),
 
   nodeToRange(node) {
     if (typeof node.start === 'number') {
@@ -56,6 +69,7 @@ const settings = [
   'locations',
   'ranges',
   'preserveParens',
+  'plugins.jsx',
 ];
 
 function changeOption(name, {target}) {

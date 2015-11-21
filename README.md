@@ -6,7 +6,7 @@ The JavaScript AST explorer provides
 
 - [esprima][]
 - [espree][]
-- [acorn][]
+- [acorn][] + [acorn-jsx][]
 - [babylon][]
 - [recast][]
 - [shift][]
@@ -48,7 +48,8 @@ node.
 [babylon]: https://babeljs.io/
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [espree]: https://github.com/eslint/espree
-[acorn]: https://github.com/marijnh/acorn
+[acorn]: https://github.com/ternjs/acorn
+[acorn-jsx]: https://github.com/RReverser/acorn-jsx
 [recast]: https://github.com/benjamn/recast
 [shift]: https://github.com/shapesecurity/shift-parser-js
 [typescript]: http://typescriptlang.org/
