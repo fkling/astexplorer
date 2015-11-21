@@ -11,6 +11,7 @@ The JavaScript AST explorer provides
 - [recast][]
 - [shift][]
 - [babel-eslint][]
+- [traceur][]
 - [typescript][]
 
 to parse the code. Depending on the parser settings, it not only supports ES5
@@ -53,6 +54,7 @@ node.
 [acorn-jsx]: https://github.com/RReverser/acorn-jsx
 [recast]: https://github.com/benjamn/recast
 [shift]: https://github.com/shapesecurity/shift-parser-js
+[traceur]: https://github.com/google/traceur-compiler
 [typescript]: https://github.com/Microsoft/TypeScript/
 [babel-eslint]: https://github.com/babel/babel-eslint
 [jscodeshift]: https://github.com/facebook/jscodeshift

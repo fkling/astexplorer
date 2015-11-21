@@ -6,6 +6,7 @@ import espree from './espree';
 import esprima from './esprima';
 import recast from './recast';
 import shift from './shift';
+import traceur from './traceur';
 import typescript from './typescript';
 
 export var parsers = [
@@ -17,6 +18,7 @@ export var parsers = [
   esprima,
   recast,
   shift,
+  traceur,
   typescript,
 ];
 
