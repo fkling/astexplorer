@@ -1,21 +1,17 @@
 import compileModule from './utils/compileModule';
 import pkg from 'babel-core/package.json';
-
-var fs = require('fs');
+import defaultTransform from './transformBabel.txt';
 
 const ID = 'babel';
-
-const defaultTransform =
-  fs.readFileSync(__dirname + '/transformBabel.txt', 'utf8');
-
 const options = {
   stage: 0,
 };
 
 function transform(transformCode, code) {
   return new Promise((resolve, reject) => {
-    loadjs(['babel-core'], babel => {
+    require.ensure(['babel-core'], require => {
       try {
+        const babel = require('babel-core');
         // This might throw
         let transform = compileModule( // eslint-disable-line no-shadow
           babel.transform(transformCode, options).code

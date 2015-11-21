@@ -1,5 +1,4 @@
 import pkg from 'acorn-to-esprima/package.json';
-import loadAndExecute from './utils/loadAndExecute';
 
 const ID = 'acorn-to-esprima';
 const name = 'babel-eslint';
@@ -11,33 +10,38 @@ export default {
   homepage: pkg.homepage,
 
   parse(code) {
-    return loadAndExecute(
-      ['acorn-to-esprima', 'babel-core'],
-      (acornToEsprima, {acorn, traverse, parse}) => {
-        const opts = {
-          locations: true,
-          ranges: true,
-        };
-
-        const comments = opts.onComment = [];
-        const tokens = opts.onToken = [];
-
-        let ast;
+    return new Promise((resolve, reject) => {
+      require.ensure(['acorn-to-esprima', 'babel-core'], require => {
         try {
-          ast = parse(code, opts);
-        } catch (err) {
-          throw err;
+          const acornToEsprima = require('acorn-to-esprima');
+          const {acorn, traverse, parse} = require('babel-core');
+          const opts = {
+            locations: true,
+            ranges: true,
+          };
+
+          const comments = opts.onComment = [];
+          const tokens = opts.onToken = [];
+
+          let ast;
+          try {
+            ast = parse(code, opts);
+          } catch (err) {
+            throw err;
+          }
+
+          ast.tokens = acornToEsprima.toTokens(tokens, acorn.tokTypes);
+          acornToEsprima.convertComments(comments);
+          ast.comments = comments;
+          acornToEsprima.attachComments(ast, comments, ast.tokens);
+          acornToEsprima.toAST(ast, traverse);
+
+          resolve(ast);
+        } catch(err) {
+          reject(err);
         }
-
-        ast.tokens = acornToEsprima.toTokens(tokens, acorn.tokTypes);
-        acornToEsprima.convertComments(comments);
-        ast.comments = comments;
-        acornToEsprima.attachComments(ast, comments, ast.tokens);
-        acornToEsprima.toAST(ast, traverse);
-
-        return ast;
-      }
-    );
+      });
+    });
   },
 
   nodeToRange(node) {

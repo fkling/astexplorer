@@ -1,6 +1,5 @@
 import React from 'react';
 import pkg from 'acorn/package.json';
-import loadAndExectue from './utils/loadAndExecute';
 import * as LocalStorage from '../LocalStorage';
 import SettingsRenderer from './utils/SettingsRenderer';
 
@@ -21,10 +20,16 @@ export default {
   homepage: pkg.homepage,
 
   parse(code) {
-    return loadAndExectue(
-      ['acorn'],
-      parser => parser.parse(code, options)
-    );
+    return new Promise((resolve, reject) => {
+      require.ensure(['acorn'], require => {
+        let acorn = require('acorn');
+        try {
+          resolve(acorn.parse(code, options));
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
   },
 
   nodeToRange(node) {

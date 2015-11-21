@@ -1,18 +1,16 @@
 import compileModule from './utils/compileModule';
 import pkg from 'jscodeshift/package.json';
-
-var fs = require('fs');
+import defaultTransform from './transformJscodeshift.txt';
 
 const ID = 'jscodeshift';
 
-const defaultTransform =
-  fs.readFileSync(__dirname + '/transformJscodeshift.txt', 'utf8');
-
 function transform(transformCode, code) {
   return new Promise((resolve, reject) => {
-    loadjs(['babel-core', 'jscodeshift'], (babel, jscodeshift) => {
+    require.ensure(['jscodeshift', 'babel-core'], require => {
       try {
-        // This might throw
+        const jscodeshift = require('jscodeshift');
+        const babel = require('babel-core');
+
         let transform = compileModule( // eslint-disable-line no-shadow
           babel.transform(transformCode).code
         );

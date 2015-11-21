@@ -1,6 +1,5 @@
 import React from 'react';
 import pkg from 'espree/package.json';
-import loadAndExectue from './utils/loadAndExecute';
 import * as LocalStorage from '../LocalStorage';
 import SettingsRenderer from './utils/SettingsRenderer';
 
@@ -51,10 +50,16 @@ export default {
   homepage: pkg.homepage,
 
   parse(code) {
-    return loadAndExectue(
-      ['espree'],
-      parser => parser.parse(code, options)
-    );
+    return new Promise((resolve, reject) => {
+      require.ensure(['espree'], require => {
+        try {
+          const espree = require('espree');
+          resolve(espree.parse(code, options));
+        } catch(err) {
+          reject(err);
+        }
+      });
+    });
   },
 
   nodeToRange(node) {

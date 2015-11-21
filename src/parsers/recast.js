@@ -1,6 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import pkg from 'recast/package.json';
-import loadAndExectue from './utils/loadAndExecute';
 import SettingsRenderer from './utils/SettingsRenderer';
 import * as LocalStorage from '../LocalStorage';
 
@@ -27,21 +26,28 @@ export default {
   homepage: pkg.homepage,
 
   parse(code) {
-    let modules = ['recast'];
-    if (options.parser !== 'esprima-fb') {
-      modules[1] = options.parser;
-    }
-    return loadAndExectue(
-      modules,
-      (recast, parser) => {
-        let localOptions = {...options};
-        delete localOptions.parser;
-        if (parser) {
-          localOptions.esprima = parser;
+    return new Promise((resolve, reject) => {
+      require.ensure(
+        ['recast', 'esprima', 'babel-core'],
+        require => {
+          try {
+            const recast = require('recast');
+            const parsers = {
+              esprima: require('esprima'),
+              'babel-core': require('babel-core'),
+            };
+            let localOptions = {...options};
+            delete localOptions.parser;
+            if (options !== 'esprima-fb') {
+              localOptions.esprima = parsers[options.parser];
+            }
+            resolve(recast.parse(code, localOptions));
+          } catch(err) {
+            reject(err);
+          }
         }
-        return recast.parse(code, localOptions);
-      }
-    );
+      );
+    });
   },
 
   nodeToRange(node) {

@@ -1,6 +1,5 @@
 import React from 'react';
 import pkg from 'babylon/package.json';
-import loadAndExectue from './utils/loadAndExecute';
 import * as LocalStorage from '../LocalStorage';
 import SettingsRenderer from './utils/SettingsRenderer';
 
@@ -30,10 +29,16 @@ export default {
   homepage: pkg.homepage,
 
   parse(code) {
-    return loadAndExectue(
-      ['babylon'],
-      parser => parser.parse(code, options)
-    );
+    return new Promise((resolve, reject) => {
+      require.ensure(['babylon'], require => {
+        try {
+          const babylon = require('babylon');
+          resolve(babylon.parse(code, options));
+        } catch(err) {
+          reject(err);
+        }
+      });
+    });
   },
 
   nodeToRange(node) {

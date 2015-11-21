@@ -12,13 +12,10 @@ import SettingsDialog from './SettingsDialog';
 import * as LocalStorage from './LocalStorage';
 
 import getFocusPath from './getFocusPath';
-import {keypress} from 'keypress';
+import keypress from 'keypress';
 import {getTransformerByID} from './transformers';
 import {getDefaultParser, getParser} from './parsers';
-
-var fs = require('fs');
-
-var defaultCode = fs.readFileSync(__dirname + '/codeExample.txt', 'utf8');
+import defaultCode from './codeExample.txt';
 
 function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');

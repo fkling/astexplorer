@@ -1,6 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import pkg from 'shift-parser/package.json';
-import loadAndExecute from './utils/loadAndExecute';
 import SettingsRenderer from './utils/SettingsRenderer';
 import * as LocalStorage from '../LocalStorage';
 
@@ -27,16 +26,20 @@ export default {
   homepage: pkg.homepage,
 
   parse(code) {
-    return loadAndExecute(
-      ['shift-parser'],
-      parser => {
-        if (options.sourceType === 'module') {
-          return parser.parseModule(code, options);
-        } else {
-          return parser.parseScript(code, options);
+    return new Promise((resolve, reject) => {
+      require.ensure(['shift-parser'], require => {
+        try {
+          const shift = require('shift-parser');
+          if (options.sourceType === 'module') {
+            resolve(shift.parseModule(code, options));
+          } else {
+            resolve(shift.parseScript(code, options));
+          }
+        } catch(err) {
+          reject(err);
         }
-      }
-    );
+      });
+    });
   },
 
   nodeToRange(node) {

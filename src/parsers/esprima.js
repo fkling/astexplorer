@@ -1,6 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import pkg from 'esprima/package.json';
-import loadAndExectue from './utils/loadAndExecute';
 import SettingsRenderer from './utils/SettingsRenderer';
 import * as LocalStorage from '../LocalStorage';
 
@@ -35,10 +34,16 @@ export default {
   homepage: pkg.homepage,
 
   parse(code) {
-    return loadAndExectue(
-      ['esprima'],
-      parser => parser.parse(code, options)
-    );
+    return new Promise((resolve, reject) => {
+      require.ensure(['esprima'], require => {
+        try {
+          const esprima = require('esprima');
+          resolve(esprima.parse(code, options));
+        } catch(err) {
+          reject(err);
+        }
+      });
+    });
   },
 
   nodeToRange(node) {

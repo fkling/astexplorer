@@ -1,23 +1,28 @@
 import compileModule from './utils/compileModule';
 import pkg from 'babel6/node_modules/babel-core/package.json';
-
-var fs = require('fs');
+import defaultTransform from './transformBabel6.txt';
 
 const ID = 'babelv6';
 
-const defaultTransform =
-  fs.readFileSync(__dirname + '/transformBabel6.txt', 'utf8');
-
-
 function transform(transformCode, code) {
   return new Promise((resolve, reject) => {
-    loadjs(
-      ['babel-preset-es2015', 'babel-preset-stage-0', 'babel-preset-react', 'babel6'],
-      (es2015, stage0, react, babel) => {
-        const options = {
-          presets: [es2015, stage0, react],
-        };
+    require.ensure(
+      [
+        'babel6',
+        'babel-preset-es2015',
+        'babel-preset-stage-0',
+        'babel-preset-react',
+      ],
+      require => {
         try {
+          const babel = require('babel6');
+          const es2015 = require('babel-preset-es2015');
+          const stage0 = require('babel-preset-stage-0');
+          const react = require('babel-preset-react');
+          const options = {
+            presets: [es2015, stage0, react],
+          };
+
           // This might throw
           let transform = compileModule( // eslint-disable-line no-shadow
             babel.transform(transformCode, options).code
@@ -28,7 +33,7 @@ function transform(transformCode, code) {
               code,
               {
                 ...options,
-                plugins: [(transform['default'] || transform)(babel)],
+                plugins: [(transform.default || transform)(babel)],
               }
             ).code
           );
