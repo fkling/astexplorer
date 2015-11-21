@@ -41,6 +41,8 @@ you can drag and drop JS files).
 - Editing the source or moving the cursor around will automatically highlight the
 corresponding AST node (or its ancestors of it isn't expanded):
 ![source highlight](assets/ast.png)
+- You can use `$node` in the console to refer to the last opened/toggled AST 
+node.
 
 [esprima]: https://github.com/jQuery/esprima
 [babylon]: https://babeljs.io/

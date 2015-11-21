@@ -2,6 +2,7 @@ import CompactArrayView from './CompactArrayView';
 import CompactObjectView from './CompactObjectView';
 import PubSub from 'pubsub-js';
 import React from 'react';
+import RecursiveTreeElement from './RecursiveTreeElement';
 
 import cx from 'classnames';
 import stringify from '../../utils/stringify';
@@ -19,7 +20,7 @@ function log(f) {
 }
 */
 
-const Element = React.createClass({
+const Element = RecursiveTreeElement(React.createClass({
   propTypes: {
     name: PropTypes.string,
     value: PropTypes.any.isRequired,
@@ -40,7 +41,7 @@ const Element = React.createClass({
       (!!value && parser.opensByDefault(value, name));
 
     return {
-      open: open && (!deepOpen || parser.opensOnDeepOpen(value, name)),
+      open,
       deepOpen,
       value,
     };
@@ -60,10 +61,7 @@ const Element = React.createClass({
 
     this.setState({
       open: event.shiftKey || !this.state.open,
-      deepOpen: event.shiftKey && this.props.parser.opensOnDeepOpen(
-        this.state.value,
-        this.props.name
-      ),
+      deepOpen: event.shiftKey,
     });
   },
 
@@ -249,6 +247,6 @@ const Element = React.createClass({
       </li>
     );
   },
-});
+}));
 
 export default Element;

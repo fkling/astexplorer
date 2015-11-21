@@ -5,10 +5,6 @@ export default {
     return false;
   },
 
-  opensOnDeepOpen(node, key) {
-    return true;
-  },
-
   nodeToRange(node) {
     return node.range;
   },

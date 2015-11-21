@@ -111,7 +111,10 @@ export default {
 
   forEachProperty(node, callback) {
     for (var prop in node) {
-      if (prop === 'constructor') {
+      if (
+        prop === 'constructor' ||
+        prop.charAt(0) === '_'
+      ) {
         continue;
       }
       var result = callback({
@@ -147,14 +150,11 @@ export default {
     }
   },
 
-  opensOnDeepOpen(node, key) {
-    return key !== 'parent';
-  },
-
   opensByDefault(node, key) {
     return (
       key === 'statements' ||
-      key === 'declarationList'
+      key === 'declarationList' ||
+      key === 'declarations'
     );
   },
 

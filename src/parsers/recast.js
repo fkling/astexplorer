@@ -41,7 +41,7 @@ export default {
             };
             let localOptions = {...options};
             delete localOptions.parser;
-            if (options !== 'esprima-fb') {
+            if (options.parser !== 'esprima-fb') {
               localOptions.esprima = parsers[options.parser];
             }
             resolve(recast.parse(code, localOptions));
@@ -52,6 +52,8 @@ export default {
       );
     });
   },
+
+  _ignoredProperties: new Set(['__clone']),
 
   nodeToRange(node) {
     if (options.parser === 'babel-core' && typeof node.start === 'number') {
