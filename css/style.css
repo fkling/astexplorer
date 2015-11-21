@@ -218,13 +218,13 @@ html {
   border: none;
 }
 
-.output > .toolbar {
+.output .toolbar {
   font-size: 14px;
   margin-left: -1px;
   border-bottom: 1px solid #ddd;
 }
 
-.output > .toolbar > button {
+.output .toolbar > button {
   margin: 0;
   height: 100%;
   min-width: 90px;
@@ -239,7 +239,7 @@ html {
   cursor: pointer;
 }
 
-.output > .toolbar > button.active {
+.output .toolbar > button.active {
   border-color: #999;
   background-color: #999;
   color: #f5f5f5;
@@ -253,15 +253,30 @@ html {
   right: 0;
   bottom: 0;
 }
+.tree-visualization > .toolbar {
+  padding: 5px;
+}
 
-#tree {
+.tree-visualization > .toolbar > label {
+  cursor: pointer;
+  margin-right: 5px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tree-visualization ul {
   margin: 0;
+  padding-left: 20px;
+}
+
+.tree-visualization > ul {
   cursor: default;
-  padding-left: 15px;
   box-sizing: border-box;
   font-family: monospace;
-  width: 100%;
-  height: 100%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -285,11 +300,6 @@ html {
   right: 0;
   bottom: 0;
   top: 0;
-}
-
-#tree ul {
-  margin: 0;
-  padding-left: 15px;
 }
 
 li.entry {
@@ -326,25 +336,34 @@ li.entry {
   color: red;
 }
 
-
+.entry.func > .value .s,
+.entry.func > .key .name,
 .entry.toggable > .key .name {
   cursor: pointer;
 }
 
+.entry.func > .value:hover,
+.entry.func > .key .name:hover,
 .entry.toggable > .key .name:hover {
   text-decoration: underline;
+}
+
+.entry.func::before {
+  content: 'ƒ';
+  left: -10px;
+  position: absolute;
 }
 
 .placeholder {
   font-size: 0.9em;
 }
 
-.array,
+.compact,
 .tokenName {
   cursor: pointer;
 }
 
-.array:hover,
+.compact:hover,
 .tokenName:hover {
   text-decoration: underline;
 }
