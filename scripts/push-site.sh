@@ -20,12 +20,12 @@ fi
 # Updating
 cd "$TARGETPATH"
 git pull origin
+git rm -rf dist/*
 cd - > /dev/null
 
 echo "Building..."
 npm run build
 echo "Copying artifacts..."
-git rm -rf "$TARGETPATH/dist/*"
 cp -R dist/ "$TARGETPATH/dist/"
 cp -R css/ "$TARGETPATH/css/"
 cp index.html "$TARGETPATH/index.html"
