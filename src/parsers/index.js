@@ -24,9 +24,8 @@ export function getDefaultParser() {
   return parsers[0];
 }
 
-let byID = Object.keys(parsers).reduce(
-  (map, name) => {
-    let parser = parsers[name];
+let byID = parsers.reduce(
+  (map, parser) => {
     map[parser.id] = parser;
     return map;
   },

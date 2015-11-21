@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "acorn": "^2.3.0",
+    "acorn-jsx": "^2.0.1",
     "acorn-to-esprima": "^1.0.2",
     "babel-core": "^5.7.3",
     "babel-preset-es2015": "^6.1.18",
