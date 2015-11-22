@@ -9,7 +9,10 @@ export default class Tree extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = getVisualizationSettings(ID, {hideFunctions: true});
+    this.state = getVisualizationSettings(
+      ID,
+      {autofocus: true, hideFunctions: true}
+    );
   }
 
   _setOption(name, event) {
@@ -23,13 +26,21 @@ export default class Tree extends React.Component {
     return (
       <div className="tree-visualization container">
         <div className="toolbar">
+          <label title="Auto open the node at the cursor in the source code">
+            <input
+              type="checkbox"
+              checked={this.state.autofocus}
+              onChange={this._setOption.bind(this, 'autofocus')}
+            />
+            Autofocus
+          </label>
           <label>
             <input
               type="checkbox"
               checked={this.state.hideFunctions}
               onChange={this._setOption.bind(this, 'hideFunctions')}
             />
-            Hide functions
+            Hide methods
           </label>
           <label>
             <input

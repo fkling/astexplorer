@@ -33,12 +33,13 @@ const Element = RecursiveTreeElement(React.createClass({
   },
 
   getInitialState: function() {
-    const {value, name, deepOpen, parser} = this.props;
+    const {value, name, deepOpen, parser, focusPath, settings} = this.props;
     // Some elements should be open by default
     var open =
       this.props.level === 0 ||
       deepOpen ||
-      (!!value && parser.opensByDefault(value, name));
+      (!!value && parser.opensByDefault(value, name)) ||
+      (!!settings.autofocus && focusPath.indexOf(value) > -1);
 
     return {
       open,
@@ -49,10 +50,45 @@ const Element = RecursiveTreeElement(React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     this.setState({
-      open: nextProps.deepOpen || this.state.open,
+      open: nextProps.deepOpen ||
+        this.state.open ||
+        this._shouldAutoFocus(this.props, nextProps),
       deepOpen: nextProps.deepOpen,
       value: nextProps.value,
     });
+  },
+
+  _shouldAutoFocus(thisProps, nextProps) {
+    const {focusPath: thisFocusPath} = thisProps;
+    const {settings: nextSettings, focusPath: nextFocusPath} = nextProps;
+
+    return (
+      thisFocusPath !== nextFocusPath &&
+      nextFocusPath.indexOf(nextProps.value) > -1 &&
+      nextSettings.autofocus
+    );
+  },
+
+  componentDidMount: function() {
+    if (this.props.settings.autofocus) {
+      this._scrollIntoView();
+    }
+  },
+
+  componentDidUpdate: function(prevProps) {
+    if (this._shouldAutoFocus(prevProps, this.props)) {
+      this._scrollIntoView();
+    }
+  },
+
+  _scrollIntoView: function() {
+    const {focusPath, value} = this.props;
+    if (focusPath.length > 0 && focusPath[focusPath.length -1] === value) {
+      setTimeout(() => {
+        const node = React.findDOMNode(this);
+        node.scrollIntoView();
+      }, 0);
+    }
   },
 
   _toggleClick: function(event) {
