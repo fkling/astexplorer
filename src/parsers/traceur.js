@@ -5,11 +5,8 @@ import * as LocalStorage from '../LocalStorage';
 
 const ID = 'traceur';
 const FILENAME = 'astExplorer.js';
-const options = Object.assign(
-  {
-    SourceType: 'Script',
-    commentCallback: true,
 
+const parseOptionsDefaults = {
     annotations: false,
     arrayComprehension: false,
     arrowFunctions: true,
@@ -35,13 +32,22 @@ const options = Object.assign(
     templateLiterals: true,
     types: false,
     unicodeEscapeSequences: true,
+};
+
+const options = Object.assign(
+  {
+    SourceType: 'Script',
+    TolerateErrors: false,
+    commentCallback: true,
+    ...parseOptionsDefaults
   },
   LocalStorage.getParserSettings(ID)
 );
 
 const settings = [
   ['SourceType', ['script', 'module']],
-  ...Object.keys(options).slice(2)
+  'TolerateErrors',
+  ...Object.keys(parseOptionsDefaults)
 ];
 
 const changeOption = (name, {target}) => {
@@ -63,7 +69,19 @@ export default {
         try {
           require('traceur/bin/traceur');
           let sourceFile = new traceur.syntax.SourceFile(FILENAME, code);
-          let parser = new traceur.syntax.Parser(sourceFile, undefined, new traceur.util.Options(options));
+          let errorReporter = new traceur.util.ErrorReporter();
+          errorReporter.reportMessageInternal = (sourceRange, message) => {
+            if (options.TolerateErrors) return;
+            let { start, end } = sourceRange;
+            if (start.offset < end.offset) {
+              message += `: ${sourceRange}`;
+            }
+            let err = new SyntaxError(message);
+            err.lineNumber = start.line + 1;
+            err.columnNumber = start.column;
+            throw err;
+          };
+          let parser = new traceur.syntax.Parser(sourceFile, errorReporter, new traceur.util.Options(options));
           let comments = [];
           parser.handleComment = sourceRange => {
             comments.push({
