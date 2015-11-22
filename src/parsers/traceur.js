@@ -39,7 +39,7 @@ const options = Object.assign(
     SourceType: 'Script',
     TolerateErrors: false,
     commentCallback: true,
-    ...parseOptionsDefaults
+    ...parseOptionsDefaults,
   },
   LocalStorage.getParserSettings(ID)
 );
@@ -47,7 +47,7 @@ const options = Object.assign(
 const settings = [
   ['SourceType', ['script', 'module']],
   'TolerateErrors',
-  ...Object.keys(parseOptionsDefaults)
+  ...Object.keys(parseOptionsDefaults),
 ];
 
 const changeOption = (name, {target}) => {
@@ -68,10 +68,13 @@ export default {
       require.ensure(['traceur/bin/traceur'], require => {
         try {
           require('traceur/bin/traceur');
+          /*global traceur*/
           let sourceFile = new traceur.syntax.SourceFile(FILENAME, code);
           let errorReporter = new traceur.util.ErrorReporter();
           errorReporter.reportMessageInternal = (sourceRange, message) => {
-            if (options.TolerateErrors) return;
+            if (options.TolerateErrors) {
+              return;
+            }
             let { start, end } = sourceRange;
             if (start.offset < end.offset) {
               message += `: ${sourceRange}`;
@@ -81,16 +84,22 @@ export default {
             err.columnNumber = start.column;
             throw err;
           };
-          let parser = new traceur.syntax.Parser(sourceFile, errorReporter, new traceur.util.Options(options));
+          let parser = new traceur.syntax.Parser(
+            sourceFile,
+            errorReporter,
+            new traceur.util.Options(options)
+          );
           let comments = [];
           parser.handleComment = sourceRange => {
             comments.push({
               comment_: sourceRange.toString(),
               start: sourceRange.start,
-              end: sourceRange.end
+              end: sourceRange.end,
             });
           };
-          let ast = options.SourceType === 'Script' ? parser.parseScript() : parser.parseModule();
+          let ast = options.SourceType === 'Script' ?
+            parser.parseScript() :
+            parser.parseModule();
           ast.comments = comments;
           resolve(ast);
         } catch(err) {
@@ -118,7 +127,7 @@ export default {
       if (prop === 'line_' || prop === 'column_') {
         prop = prop.slice(0, -1);
       }
-      if (prop === 'lineNumberTable' || prop === 'comment_') {
+      if (prop === 'type' || prop === 'lineNumberTable' || prop === 'comment_') {
         continue;
       }
       result = callback({
