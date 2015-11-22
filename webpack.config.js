@@ -9,6 +9,13 @@ var plugins = [
     async: true,
     minChunks: 2,
   }),
+  new webpack.IgnorePlugin(
+    /\.md$/
+  ),
+  new webpack.IgnorePlugin(
+    /node\/nodeLoader.js/,
+    /traceur/
+  ),
 ];
 
 
