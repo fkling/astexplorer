@@ -51,6 +51,15 @@ export default {
     });
   },
 
+  getNodeName(node) {
+    switch (typeof node.type) {
+      case 'string':
+        return node.type;
+      case 'object':
+        return `Token (${node.type.label})`;
+    }
+  },
+
   nodeToRange(node) {
     if (typeof node.start !== 'undefined') {
       return [node.start, node.end];
