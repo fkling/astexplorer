@@ -13,6 +13,7 @@ The JavaScript AST explorer provides
 - [babel-eslint][]
 - [traceur][]
 - [typescript][]
+- [uglify-js][]
 
 to parse the code. Depending on the parser settings, it not only supports ES5
 but also
@@ -56,6 +57,7 @@ node.
 [shift]: https://github.com/shapesecurity/shift-parser-js
 [traceur]: https://github.com/google/traceur-compiler
 [typescript]: https://github.com/Microsoft/TypeScript/
+[uglify-js]: https://github.com/mishoo/UglifyJS2
 [babel-eslint]: https://github.com/babel/babel-eslint
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [escodegen]: https://github.com/estools/escodegen

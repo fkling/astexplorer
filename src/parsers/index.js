@@ -8,6 +8,7 @@ import recast from './recast';
 import shift from './shift';
 import traceur from './traceur';
 import typescript from './typescript';
+import uglify from './uglify';
 
 export var parsers = [
   acorn,
@@ -20,6 +21,7 @@ export var parsers = [
   shift,
   traceur,
   typescript,
+  uglify,
 ];
 
 export function getDefaultParser() {

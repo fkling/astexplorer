@@ -44,7 +44,8 @@
     "recast": "^0.10.32",
     "shift-parser": "^3.0.4",
     "traceur": "0.0.92",
-    "typescript": "^1.6.2"
+    "typescript": "^1.6.2",
+    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"
   },
   "scripts": {
     "start": "http-server",
