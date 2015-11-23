@@ -6,7 +6,7 @@ export default function stringify(value) {
     case 'function':
       return value.toString().match(/function[^(]*\([^)]*\)/)[0];
     case 'object':
-      return JSON.stringify(value, stringify);
+      return value ? JSON.stringify(value, stringify) : 'null';
     case 'undefined':
       return 'undefined';
     case 'number':
