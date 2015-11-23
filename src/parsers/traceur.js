@@ -45,7 +45,7 @@ const options = Object.assign(
 );
 
 const settings = [
-  ['SourceType', ['script', 'module']],
+  ['SourceType', ['Script', 'Module']],
   'TolerateErrors',
   ...Object.keys(parseOptionsDefaults),
 ];
