@@ -1,7 +1,5 @@
 import defaultParserInterface from './utils/defaultParserInterface';
 import pkg from 'uglify-js/package.json';
-import SettingsRenderer from './utils/SettingsRenderer';
-import * as LocalStorage from '../LocalStorage';
 
 const ID = 'uglify-js';
 
