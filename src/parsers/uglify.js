@@ -1,8 +1,5 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import defaultParserInterface from './utils/defaultESTreeParserInterface';
+import defaultParserInterface from './utils/defaultParserInterface';
 import pkg from 'uglify-js/package.json';
-import SettingsRenderer from './utils/SettingsRenderer';
-import * as LocalStorage from '../LocalStorage';
 
 const ID = 'uglify-js';
 
@@ -63,6 +60,15 @@ export default {
         break;
     }
     return [start.pos, end.endpos];
+  },
+
+  opensByDefault(node, key) {
+    return (
+      key === 'body' ||
+      key === 'elements' || // array literals
+      key === 'definitions' || // variable declaration
+      key === 'properties'
+    );
   },
 
   _ignoredProperties: new Set(['_walk', 'CTOR']),
