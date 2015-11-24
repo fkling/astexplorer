@@ -55,6 +55,16 @@ const changeOption = (name, {target}) => {
   LocalStorage.setParserSettings(ID, options);
 };
 
+class Comment {
+  constructor(sourceRange) {
+    this.type = 'COMMENT';
+    Object.defineProperty(this, 'location', {
+      value: sourceRange
+    });
+    this.value = sourceRange.toString();
+  }
+}
+
 export default {
   ...defaultParserInterface,
 
@@ -91,11 +101,7 @@ export default {
           );
           let comments = [];
           parser.handleComment = sourceRange => {
-            comments.push({
-              comment_: sourceRange.toString(),
-              start: sourceRange.start,
-              end: sourceRange.end,
-            });
+            comments.push(new Comment(sourceRange));
           };
           let ast = options.SourceType === 'Script' ?
             parser.parseScript() :
@@ -110,7 +116,7 @@ export default {
   },
 
   getNodeName(node) {
-    return node.comment_ || node.constructor.name;
+    return node.constructor.name;
   },
 
   forEachProperty(node, callback) {
@@ -127,7 +133,7 @@ export default {
       if (prop === 'line_' || prop === 'column_') {
         prop = prop.slice(0, -1);
       }
-      if (prop === 'type' || prop === 'lineNumberTable' || prop === 'comment_') {
+      if (prop === 'type' || prop === 'lineNumberTable') {
         continue;
       }
       result = callback({
@@ -140,8 +146,7 @@ export default {
     }
   },
 
-  nodeToRange(node) {
-    let loc = node.comment_ ? node : node.location;
+  nodeToRange({ location: loc }) {
     if (loc) {
       return [loc.start.offset, loc.end.offset];
     }
