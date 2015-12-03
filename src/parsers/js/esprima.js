@@ -1,8 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'esprima/package.json';
-import SettingsRenderer from './utils/SettingsRenderer';
-import * as LocalStorage from '../LocalStorage';
+import SettingsRenderer from '../utils/SettingsRenderer';
+import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'esprima';
 const options = Object.assign(

@@ -29,7 +29,10 @@ const Element = RecursiveTreeElement(React.createClass({
     level: PropTypes.number,
     parser: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired,
-    parent: PropTypes.any.isRequired,
+    parent: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array,
+    ]),
   },
 
   getInitialState: function() {

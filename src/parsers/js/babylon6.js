@@ -1,24 +1,31 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babylon/package.json';
-import * as LocalStorage from '../LocalStorage';
-import SettingsRenderer from './utils/SettingsRenderer';
+import pkg from 'babylon6/node_modules/babylon/package.json';
+import * as LocalStorage from '../../LocalStorage';
+import SettingsRenderer from '../utils/SettingsRenderer';
 
-const ID = 'babylon';
+const ID = 'babylon6';
+const plugins = [
+  'asyncFunctions',
+  'asyncGenerators',
+  'classConstructorCall',
+  'classProperties',
+  'decorators',
+  'doExpressions',
+  'exponentiationOperator',
+  'exportExtensions',
+  'flow',
+  'functionSent',
+  'jsx',
+  'objectRestSpread',
+  'trailingFunctionCommas',
+];
 const options = Object.assign(
   {
     sourceType: 'module',
-    features: {
-      'es7.asyncFunctions': true,
-      'es7.classProperties': true,
-      'es7.comprehensions': true,
-      'es7.decorators': true,
-      'es7.exportExtensions': true,
-      'es7.functionBind': true,
-      'es7.objectRestSpread': true,
-      'es7.trailingFunctionCommas': true,
-    },
-    plugins: { jsx: true, flow: true },
+    allowImportExportEverywhere: false,
+    allowReturnOutsideFunction: false,
+    plugins: plugins.slice(0),
   },
   LocalStorage.getParserSettings(ID)
 );
@@ -32,7 +39,7 @@ export default {
   homepage: pkg.homepage,
 
   loadParser(callback) {
-    require(['babylon'], callback);
+    require(['babylon6'], callback);
   },
 
   parse(babylon, code) {
@@ -54,10 +61,6 @@ export default {
     }
   },
 
-  _ignoredProperties: new Set([
-    '__clone',
-  ]),
-
   renderSettings() {
     return Settings();
   },
@@ -65,26 +68,23 @@ export default {
 
 let parserSettings = [
   ['sourceType', ['module', 'script']],
-  'allowReserved',
   'allowReturnOutsideFunction',
-  'strictMode',
+  'allowImportExportEverywhere',
 ];
-let features = Object.keys(options.features);
-let plugins = ['jsx', 'flow'];
 
 function changeOption(name, {target}) {
   if (name === 'sourceType') {
     options.sourceType = target.vaue;
-  } else if(parserSettings.indexOf(name) > -1) {
+  } else if (parserSettings.indexOf(name) > -1) {
     options[name] = target.checked;
-  } else if (features.indexOf(name) > -1) {
-    options.features[name] = target.checked;
   } else if (plugins.indexOf(name) > -1) {
+    let plugs = new Set(options.plugins);
     if (target.checked) {
-      options.plugins[name] = true;
+      plugs.add(name);
     } else {
-      delete options.plugins[name];
+      plugs.delete(name);
     }
+    options.plugins = Array.from(plugs);
   }
   LocalStorage.setParserSettings(ID, options);
 }
@@ -97,16 +97,13 @@ function Settings() {
         values: options,
         onChange: changeOption,
       })}
-      <h4>features</h4>
-      {SettingsRenderer({
-        settings: features,
-        values: options.features,
-        onChange: changeOption,
-      })}
       <h4>plugins</h4>
       {SettingsRenderer({
         settings: plugins,
-        values: options.plugins,
+        values: plugins.reduce(
+          (obj, p) => ((obj[p] = options.plugins.indexOf(p) > -1), obj),
+          {}
+        ),
         onChange: changeOption,
       })}
     </div>

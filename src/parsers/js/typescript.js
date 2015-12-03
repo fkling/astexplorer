@@ -1,8 +1,7 @@
-import React from 'react';
-import defaultParserInterface from './utils/defaultParserInterface';
+import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'typescript/package.json';
-import SettingsRenderer from './utils/SettingsRenderer';
-import * as LocalStorage from '../LocalStorage';
+import SettingsRenderer from '../utils/SettingsRenderer';
+import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'typescript';
 const FILENAME = 'astExplorer.ts';

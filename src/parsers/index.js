@@ -1,43 +1,36 @@
-import acorn from './acorn';
-import babelEslint from './babel-eslint';
-import babylon from './babylon';
-import babylon6 from './babylon6';
-import espree from './espree';
-import esprima from './esprima';
-import recast from './recast';
-import shift from './shift';
-import traceur from './traceur';
-import typescript from './typescript';
-import uglify from './uglify';
+import * as js from './js';
+import * as css from './css';
 
-export var parsers = [
-  acorn,
-  babelEslint,
-  babylon,
-  babylon6,
-  espree,
-  esprima,
-  recast,
-  shift,
-  traceur,
-  typescript,
-  uglify,
+export const categories = [
+  js,
+  css,
 ];
 
-export function getDefaultParser() {
-  return parsers[0];
+export function getDefaultCategory() {
+  return categories[0];
 }
 
-let byID = parsers.reduce(
-  (map, parser) => {
-    map[parser.id] = parser;
-    return map;
-  },
-  {}
-);
+export function getDefaultParser() {
+  return getDefaultCategory().getDefaultParser();
+}
+
+let categoryByID = {};
+let parserByID = {};
+
+categories.forEach(category => {
+  categoryByID[category.id] = category;
+  category.parsers.forEach(parser => {
+    parser.category = category;
+    parserByID[parser.id] = parser;
+  });
+});
+
+export function getCategoryByID(id) {
+  return categoryByID[id];
+}
 
 export function getParserByID(id) {
-  return byID[id];
+  return parserByID[id];
 }
 
 export function getParser(idOrObject) {
@@ -46,3 +39,4 @@ export function getParser(idOrObject) {
     idOrObject;
   return parserID ? getParserByID(parserID) : null;
 }
+

@@ -14,8 +14,7 @@ import * as LocalStorage from './LocalStorage';
 import getFocusPath from './getFocusPath';
 import keypress from 'keypress';
 import {getTransformerByID} from './transformers';
-import {getDefaultParser, getParser} from './parsers';
-import defaultCode from './codeExample.txt';
+import {getCategoryByID, getDefaultParser, getParser} from './parsers';
 
 function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
@@ -28,7 +27,6 @@ var App = React.createClass({
     if ((snippet && !revision) || (!snippet && revision)) {
       throw Error('Must set both, snippet and revision');
     }
-    const initialCode = revision && revision.get('code') || defaultCode;
     const transformerID = revision && revision.get('toolID');
     let transformer = transformerID && getTransformerByID(transformerID);
     const initialTransformCode = revision && revision.get('transform');
@@ -41,6 +39,8 @@ var App = React.createClass({
     const parser = getParser(
       transformer ? transformer.defaultParser : LocalStorage.getParser()
     ) || getDefaultParser();
+
+    const initialCode = revision && revision.get('code') || this._getDefaultCode(parser);
 
     return {
       forking: false,
@@ -114,6 +114,10 @@ var App = React.createClass({
    );
   },
 
+  _getDefaultCode(parser = this.state.parser) {
+    return parser.category.codeExample;
+  },
+
   _setCode(code) {
     return {initialCode: code, currentCode: code};
   },
@@ -130,7 +134,7 @@ var App = React.createClass({
       this.setError('Something went wrong fetching the revision. Try to refresh!');
     }
 
-    const code = revision.get('code') || defaultCode;
+    const code = revision.get('code') || this._getDefaultCode();
     const transformerID = revision.get('toolID');
     let transformer = transformerID && getTransformerByID(transformerID);
     let transformCode = revision.get('transform');
@@ -176,8 +180,10 @@ var App = React.createClass({
   },
 
   _clearRevision: function() {
+    const defaultCode = this._getDefaultCode();
     this.parse(defaultCode).then(ast => this.setState({
       ast: ast,
+      editorError: null,
       focusPath: [],
       ...this._setCode(defaultCode),
       ...this._setTransformCode(this.state.transformer ?
@@ -296,7 +302,7 @@ var App = React.createClass({
       this.refs.transformEditor.getValue();
 
     var data = {};
-    if (code !== defaultCode) {
+    if (code !== this._getDefaultCode()) {
       data.code = code;
     }
     if (this.state.showTransformPanel && transformCode &&
@@ -326,7 +332,7 @@ var App = React.createClass({
   _onSave: function() {
     const {revision} = this.state;
     var isNewRevision = !revision &&
-      (this.state.currentCode !== defaultCode ||
+      (this.state.currentCode !== this._getDefaultCode() ||
        this.state.showTransformPanel &&
        this.state.currentTransformCode !==
        this.state.transformer.defaultTransform);
@@ -350,11 +356,16 @@ var App = React.createClass({
     PubSub.publish('PANEL_RESIZE');
   },
 
-  _onDropText: function(type, event, text) {
-    this.parse(text).then(
+  _onDropText: function(type, event, text, categoryId) {
+    let parser = this.state.parser;
+    if (categoryId && categoryId !== parser.category.id) {
+      parser = getCategoryByID(categoryId).getDefaultParser();
+    }
+    this.parse(text, parser).then(
       ast => this.setState({
         ...this._setCode(text),
         ast: ast,
+        parser,
         focusPath: [],
         editorError: null,
       }),
@@ -362,12 +373,21 @@ var App = React.createClass({
         ...this._setCode(text),
         ast: null,
         editorError: error,
+        parser,
       })
     );
   },
 
   _onDropError: function(type, event, msg) {
     this._showError(msg);
+  },
+
+  _onCategoryChange: function(category) {
+    let parser = category.getDefaultParser();
+    LocalStorage.setParser(parser.id);
+    this.setState({ parser }, () => {
+      this._clearRevision();
+    });
   },
 
   _onParserChange: function(parser) {
@@ -398,7 +418,7 @@ var App = React.createClass({
       currentTransformCode,
       initialTransformCode,
     } = this.state;
-    const revisionCode = revision && revision.get('code') || defaultCode;
+    const revisionCode = revision && revision.get('code') || this._getDefaultCode();
     const canSave = revisionCode !== this.state.currentCode ||
        showTransformPanel &&
        currentTransformCode !== initialTransformCode &&
@@ -409,7 +429,7 @@ var App = React.createClass({
         className="dropTarget"
         dropindicator={
           <div className="dropIndicator">
-            <div>Drop a JavaScript or (JSON-encoded) AST file here</div>
+            <div>Drop the code or (JSON-encoded) AST file here</div>
           </div>
         }
         onText={this._onDropText}
@@ -419,10 +439,12 @@ var App = React.createClass({
           saving={this.state.saving}
           onSave={this._onSave}
           onFork={this._onFork}
+          onCategoryChange={this._onCategoryChange}
           onParserChange={this._onParserChange}
           onTransformChange={this.onTransformChange}
           canSave={canSave}
           canFork={!!revision}
+          category={this.state.parser.category}
           parser={this.state.parser}
           transformer={this.state.transformer}
           transformPanelIsEnabled={this.state.showTransformPanel}
@@ -437,6 +459,7 @@ var App = React.createClass({
             onResize={this._onResize}>
             <Editor
               ref="editor"
+              mode={this.state.parser.category.id}
               defaultValue={this.state.initialCode}
               error={this.state.editorError}
               onContentChange={this.onContentChange}

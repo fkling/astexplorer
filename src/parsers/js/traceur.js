@@ -1,7 +1,7 @@
-import defaultParserInterface from './utils/defaultParserInterface';
+import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'traceur/package.json';
-import SettingsRenderer from './utils/SettingsRenderer';
-import * as LocalStorage from '../LocalStorage';
+import SettingsRenderer from '../utils/SettingsRenderer';
+import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'traceur';
 const FILENAME = 'astExplorer.js';

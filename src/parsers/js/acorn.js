@@ -2,8 +2,8 @@ import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'acorn/package.json';
 import jsxPkg from 'acorn-jsx/package.json';
-import * as LocalStorage from '../LocalStorage';
-import SettingsRenderer from './utils/SettingsRenderer';
+import * as LocalStorage from '../../LocalStorage';
+import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'acorn';
 const options = Object.assign(
