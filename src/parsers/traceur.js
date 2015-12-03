@@ -74,10 +74,7 @@ export default {
   homepage: pkg.homepage,
 
   loadParser(callback) {
-    require(['traceur/bin/traceur'], () => {
-      /*global traceur*/
-      callback(traceur);
-    });
+    require(['exports?traceur!traceur/bin/traceur'], callback);
   },
 
   parse(traceur, code) {
