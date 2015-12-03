@@ -19,7 +19,6 @@ export default {
       'raw!uglify-js/lib/parse.js'
     ], (...contents) => {
       contents.push('exports.parse = parse;');
-      contents.push('return exports;');
       callback(compileModule(contents.join('\n\n')));
     });
   },
