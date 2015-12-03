@@ -38,17 +38,12 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['babylon6'], require => {
-        try {
-          const babylon = require('babylon6');
-          resolve(babylon.parse(code, options));
-        } catch(err) {
-          reject(err);
-        }
-      });
-    });
+  loadParser(callback) {
+    require(['babylon6'], callback);
+  },
+
+  parse(babylon, code) {
+    return babylon.parse(code, options);
   },
 
   getNodeName(node) {

@@ -1,5 +1,6 @@
 import defaultParserInterface from './utils/defaultParserInterface';
 import pkg from 'uglify-js/package.json';
+import compileModule from '../utils/compileModule';
 
 const ID = 'uglify-js';
 
@@ -11,32 +12,25 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure([
-        'raw!uglify-js/lib/utils.js',
-        'raw!uglify-js/lib/ast.js',
-        'raw!uglify-js/lib/parse.js',
-      ], require => {
-        try {
-          const contents = [
-            require('raw!uglify-js/lib/utils.js'),
-            require('raw!uglify-js/lib/ast.js'),
-            require('raw!uglify-js/lib/parse.js'),
-            'exports.parse = parse;',
-            'return exports;'
-          ].join('\n\n');
-          const UglifyJS = {};
-          // UglifyJS uses concatenation instead of module system,
-          // so we need to simulate it in browser as well.
-          new Function('exports', contents)(UglifyJS);
-          resolve(UglifyJS.parse(code));
-        } catch(err) {
-          err.lineNumber = err.line;
-          reject(err);
-        }
-      });
+  loadParser(callback) {
+    require([
+      'raw!uglify-js/lib/utils.js',
+      'raw!uglify-js/lib/ast.js',
+      'raw!uglify-js/lib/parse.js'
+    ], (...contents) => {
+      contents.push('exports.parse = parse;');
+      contents.push('return exports;');
+      callback(compileModule(contents.join('\n\n')));
     });
+  },
+
+  parse(UglifyJS, code) {
+    try {
+      return UglifyJS.parse(code);
+    } catch (err) {
+      err.lineNumber = err.line;
+      throw err;
+    }
   },
 
   getNodeName(node) {

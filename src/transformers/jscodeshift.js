@@ -1,4 +1,4 @@
-import compileModule from './utils/compileModule';
+import compileModule from '../utils/compileModule';
 import pkg from 'jscodeshift/package.json';
 import defaultTransform from './transformJscodeshift.txt';
 

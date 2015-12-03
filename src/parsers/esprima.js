@@ -36,17 +36,12 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['esprima'], require => {
-        try {
-          const esprima = require('esprima');
-          resolve(esprima.parse(code, options));
-        } catch(err) {
-          reject(err);
-        }
-      });
-    });
+  loadParser(callback) {
+    require(['esprima'], callback);
+  },
+
+  parse(esprima, code) {
+    return esprima.parse(code, options);
   },
 
   forEachProperty(node, callback) {

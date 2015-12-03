@@ -24,22 +24,17 @@ export default {
   version: `${pkg.version} (acorn-jsx: ${jsxPkg.version})`,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['acorn', 'acorn-jsx/inject'], require => {
-        let acorn = require('acorn');
-        // put deep option into correspondent place
-        options.plugins = {};
-        if (options['plugins.jsx']) {
-          require('acorn-jsx/inject')(acorn);
-          options.plugins.jsx = true;
-        }
-        try {
-          resolve(acorn.parse(code, options));
-        } catch (err) {
-          reject(err);
-        }
-      });
+  loadParser(callback) {
+    require(['acorn', 'acorn-jsx/inject'], (acorn, jsxInject) => {
+      callback(jsxInject(acorn));
+    });
+  },
+
+  parse(acorn, code) {
+    // put deep option into correspondent place
+    return acorn.parse(code, {
+      ...options,
+      plugins: options['plugins.jsx'] ? { jsx: true } : {},
     });
   },
 
