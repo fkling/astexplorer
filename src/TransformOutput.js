@@ -4,8 +4,11 @@ import React from 'react';
 import halts, {loopProtect} from 'halting-problem';
 
 function transform(transformer, transformCode, code) {
+  if (!transformer._promise) {
+    transformer._promise = new Promise(transformer.loadTransformer);
+  }
   // Use Promise.resolve(null) to return all errors as rejected promises
-  return Promise.resolve(null).then(function () {
+  return transformer._promise.then(realTransformer => {
     // assert that there are no obvious infinite loops
     halts(transformCode);
     // guard against non-obvious loops with a timeout of 5 seconds
@@ -23,6 +26,7 @@ function transform(transformer, transformCode, code) {
       ].join('')
     );
     return transformer.transform(
+      realTransformer,
       transformCode,
       code,
     );
