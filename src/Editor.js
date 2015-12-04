@@ -17,6 +17,7 @@ export default class Editor {
     highlight: true,
     lineNumbers: true,
     readOnly: false,
+    mode: 'javascript',
     onContentChange: () => {},
     onActivity: () => {},
   };
