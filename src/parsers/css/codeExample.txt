@@ -1,11 +1,19 @@
-h1 {
-    background-color: green;
+/**
+ * Paste or drop some CSS here and explore
+ * the syntax tree created by chosen parser.
+ * Enjoy!
+ */
+
+@media screen and (min-width: 480px) {
+    body {
+        background-color: lightgreen;
+    }
 }
 
-div {
-    background-color: lightblue;
+#main {
+    border: 1px solid black;
 }
 
-p {
-    background-color: yellow;
+ul li {
+	padding: 5px;
 }
