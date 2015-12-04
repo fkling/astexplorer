@@ -121,8 +121,7 @@ const Element = RecursiveTreeElement(React.createClass({
 
   _getProperties: function(parser, value) {
     const {hideFunctions, hideEmptyKeys} = this.props.settings;
-    let properties = [];
-    parser.forEachProperty(value, o => properties.push(o));
+    let properties = [...parser.forEachProperty(value)];
     return properties
       .filter(({value}) => !hideFunctions || typeof value !== 'function')
       .filter(({value}) => !hideEmptyKeys || value != null);

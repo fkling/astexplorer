@@ -28,17 +28,14 @@ export default function getFocusPath(node, pos, parser, seen = new Set()) {
       }
     }
   }
-  parser.forEachProperty(
-    node,
-    ({value}) => {
-      if (value && typeof value === 'object' && !seen.has(value)) {
-        var childPath = getFocusPath(value, pos, parser, seen);
-        if (childPath.length > 0) {
-          path.push(...childPath);
-          return false;
-        }
+  for (let {value} of parser.forEachProperty(node)) {
+    if (value && typeof value === 'object' && !seen.has(value)) {
+      let childPath = getFocusPath(value, pos, parser, seen);
+      if (childPath.length > 0) {
+        path.push(...childPath);
+        break;
       }
     }
-  );
+  }
   return path;
 }

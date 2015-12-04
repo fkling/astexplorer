@@ -44,19 +44,16 @@ export default {
     return esprima.parse(code, options);
   },
 
-  forEachProperty(node, callback) {
-    for (var prop in node) {
+  *forEachProperty(node) {
+    for (let prop in node) {
       if (typeof node[prop] === 'function') {
         continue;
       }
-      var result = callback({
+      yield {
         value: node[prop],
         key: prop,
         computed: false,
-      });
-      if (result === false) {
-        break;
-      }
+      };
     }
   },
 

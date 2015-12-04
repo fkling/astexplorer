@@ -13,18 +13,15 @@ export default {
     return node.type;
   },
 
-  forEachProperty(node, callback) {
-    for (var prop in node) {
+  *forEachProperty(node) {
+    for (let prop in node) {
       if (this._ignoredProperties.has(prop)) {
         continue;
       }
-      var result = callback({
+      yield {
         value: node[prop],
         key: prop,
         computed: false,
-      });
-      if (result === false) {
-        break;
       }
     }
   },
