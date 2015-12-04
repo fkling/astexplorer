@@ -14,9 +14,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParser: {
-    id: 'babylon',
-  },
+  defaultParserID: 'babylon',
 
   defaultTransform,
 

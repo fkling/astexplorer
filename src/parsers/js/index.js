@@ -1,4 +1,5 @@
 export { default as codeExample } from './codeExample.txt';
+
 import acorn from './acorn';
 import babelEslint from './babel-eslint';
 import babylon from './babylon';
@@ -27,7 +28,3 @@ export const parsers = [
   typescript,
   uglify,
 ];
-
-export function getDefaultParser() {
-  return parsers[0];
-}

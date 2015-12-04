@@ -1,4 +1,5 @@
 export { default as codeExample } from './codeExample.txt';
+
 import rework from './rework';
 import postcss from './postcss';
 
@@ -9,7 +10,3 @@ export const parsers = [
   rework,
   postcss,
 ];
-
-export function getDefaultParser() {
-  return parsers[0];
-}

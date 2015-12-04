@@ -10,9 +10,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParser: {
-    id: 'recast',
-  },
+  defaultParserID: 'recast',
 
   defaultTransform,
 

@@ -14,7 +14,7 @@ import * as LocalStorage from './LocalStorage';
 import getFocusPath from './getFocusPath';
 import keypress from 'keypress';
 import {getTransformerByID} from './transformers';
-import {getCategoryByID, getDefaultParser, getParser} from './parsers';
+import {getCategoryByID, getDefaultParser, getParserByID} from './parsers';
 
 function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
@@ -36,8 +36,8 @@ var App = React.createClass({
       transformer = getTransformerByID('jscodeshift');
     }
 
-    const parser = getParser(
-      transformer ? transformer.defaultParser : LocalStorage.getParser()
+    const parser = getParserByID(
+      transformer ? transformer.defaultParserID : LocalStorage.getParser()
     ) || getDefaultParser();
 
     const initialCode = revision && revision.get('code') || this._getDefaultCode(parser);
@@ -144,8 +144,8 @@ var App = React.createClass({
     } else if (transformer && !transformCode) {
       transformCode = transformer.defaultTransform;
     }
-    const parser = getParser(
-      transformer ? transformer.defaultParser : LocalStorage.getParser()
+    const parser = getParserByID(
+      transformer ? transformer.defaultParserID : LocalStorage.getParser()
     ) || this.state.parser;
 
     const update = data => { // eslint-disable-line no-shadow
@@ -235,10 +235,7 @@ var App = React.createClass({
     const showTransformPanel = !this.state.showTransformPanel ||
       transformer !== this.state.transformer;
     const parser =
-      showTransformPanel &&
-      this.state.parser !== getParser(transformer.defaultParser) ?
-      getParser(transformer.defaultParser) :
-      this.state.parser;
+      showTransformPanel && getParserByID(transformer.defaultParserID);
 
     var transformCode = this.state.currentTransformCode;
     if (transformer !== this.state.transformer) {
@@ -359,7 +356,7 @@ var App = React.createClass({
   _onDropText: function(type, event, text, categoryId) {
     let parser = this.state.parser;
     if (categoryId && categoryId !== parser.category.id) {
-      parser = getCategoryByID(categoryId).getDefaultParser();
+      parser = getDefaultParser(getCategoryByID(categoryId));
     }
     this.parse(text, parser).then(
       ast => this.setState({
@@ -383,7 +380,7 @@ var App = React.createClass({
   },
 
   _onCategoryChange: function(category) {
-    let parser = category.getDefaultParser();
+    let parser = getDefaultParser(category);
     LocalStorage.setParser(parser.id);
     this.setState({ parser }, () => {
       this._clearRevision();

@@ -10,8 +10,8 @@ export function getDefaultCategory() {
   return categories[0];
 }
 
-export function getDefaultParser() {
-  return getDefaultCategory().getDefaultParser();
+export function getDefaultParser(category = getDefaultCategory()) {
+  return category.parsers[0];
 }
 
 let categoryByID = {};
@@ -32,11 +32,3 @@ export function getCategoryByID(id) {
 export function getParserByID(id) {
   return parserByID[id];
 }
-
-export function getParser(idOrObject) {
-  let parserID = idOrObject && typeof idOrObject === 'object' ?
-    idOrObject.id :
-    idOrObject;
-  return parserID ? getParserByID(parserID) : null;
-}
-
