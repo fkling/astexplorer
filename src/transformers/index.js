@@ -1,20 +1,15 @@
-import jscodeshift from './jscodeshift';
-import babel from './babel';
-import babel6 from './babel6';
+const requireTransformer = require.context('./', false, /\.js$/);
 
-export let transformers = [
-  jscodeshift,
-  babel,
-  babel6,
-];
+const byID = {};
 
-let byID = transformers.reduce(
-  (map, tool) => {
-    map[tool.id] = tool;
-    return map;
-  },
-  {}
-);
+export const transformers =
+	requireTransformer.keys()
+	.filter(name => name !== './index.js')
+	.map(name => {
+		let transformer = requireTransformer(name);
+		byID[transformer.id] = transformer;
+		return transformer;
+	});
 
 export function getTransformerByID(id) {
   return byID[id];
