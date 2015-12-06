@@ -26,7 +26,7 @@ const changeOption = (name, {target}) => {
   LocalStorage.setParserSettings(ID, options);
 };
 
-let globalTS;
+let ts;
 let getComments;
 
 export default {
@@ -38,12 +38,10 @@ export default {
   homepage: pkg.homepage,
 
   loadParser(callback) {
-    require(['typescript'], callback);
+    require(['typescript'], _ts => callback(ts = _ts));
   },
 
   parse(ts, code) {
-    globalTS = ts;
-
     const compilerHost: ts.CompilerHost = {
       fileExists: () => true,
       getCanonicalFileName: (filename: string) => filename,
@@ -100,8 +98,8 @@ export default {
   },
 
   getNodeName(node) {
-    if (globalTS && node.kind) {
-      return globalTS.SyntaxKind[node.kind]
+    if (node.kind) {
+      return ts.SyntaxKind[node.kind]
     }
   },
 
