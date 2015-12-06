@@ -234,7 +234,7 @@ var App = React.createClass({
     const showTransformPanel = !this.state.showTransformPanel ||
       transformer !== this.state.transformer;
     const parser =
-      showTransformPanel && getParserByID(transformer.defaultParserID);
+      showTransformPanel ? getParserByID(transformer.defaultParserID) : this.state.parser;
 
     var transformCode = this.state.currentTransformCode;
     if (transformer !== this.state.transformer) {
