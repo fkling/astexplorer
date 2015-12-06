@@ -73,7 +73,11 @@ export default {
   },
 
   getNodeName(node) {
-    return node.type + (node.name ? `(${node.name})` : '');
+    let nodeName = node.type;
+    if (nodeName && node.name) {
+      nodeName += `(${node.name})`;
+    }
+    return nodeName;
   },
 
   renderSettings() {
