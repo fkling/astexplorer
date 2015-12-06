@@ -11,7 +11,7 @@ import TransformOutput from './TransformOutput';
 import SettingsDialog from './SettingsDialog';
 import * as LocalStorage from './LocalStorage';
 
-import getFocusPath from './getFocusPath';
+import getFocusPath, {nodeToRange} from './getFocusPath';
 import keypress from 'keypress';
 import {getTransformerByID} from './transformers';
 import {getCategoryByID, getDefaultParser, getParserByID} from './parsers';
@@ -99,7 +99,7 @@ var App = React.createClass({
     PubSub.subscribe(
       'HIGHLIGHT',
       (_, astNode) => {
-        let range = this.state.parser.nodeToRange(astNode);
+        let range = nodeToRange(this.state.parser, astNode);
         if (range) {
           PubSub.publish('CM.HIGHLIGHT', range);
         }
@@ -109,7 +109,7 @@ var App = React.createClass({
       'CLEAR_HIGHLIGHT',
       (_, astNode) => PubSub.publish(
         'CM.CLEAR_HIGHLIGHT',
-        astNode && this.state.parser.nodeToRange(astNode)
+        astNode && nodeToRange(this.state.parser, astNode)
       )
    );
   },

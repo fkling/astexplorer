@@ -5,7 +5,7 @@ export default class CompactArrayView {
     /**
      * The array of elements to represent.
      */
-    array: React.PropTypes.array.isRequired,
+    array: React.PropTypes.shape({ length: React.PropTypes.number }).isRequired,
     onClick: React.PropTypes.func,
   };
 
