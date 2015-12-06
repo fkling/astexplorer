@@ -180,5 +180,3 @@ export default class Editor {
     );
   }
 }
-
-module.exports = Editor;

@@ -13,8 +13,7 @@ import * as LocalStorage from './LocalStorage';
 
 import getFocusPath, {nodeToRange} from './getFocusPath';
 import keypress from 'keypress';
-import {getTransformerByID} from './transformers';
-import {getCategoryByID, getDefaultParser, getParserByID} from './parsers';
+import {getCategoryByID, getDefaultParser, getParserByID, getTransformerByID} from './parsers';
 
 function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');

@@ -1,6 +1,6 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'uglify-js/package.json';
-import compileModule from '../../utils/compileModule';
+import compileModule from '../utils/compileModule';
 
 const ID = 'uglify-js';
 

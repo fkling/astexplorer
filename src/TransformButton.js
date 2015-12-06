@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import {getTransformerByID, transformers} from './transformers';
+import {getTransformerByID} from './parsers';
 
 export default class TransformButton extends React.Component {
   constructor(props) {
@@ -27,9 +27,12 @@ export default class TransformButton extends React.Component {
 
   render() {
     return (
-      <div
-        className="button menuButton">
-        <button type="button" onClick={this._onToggle}>
+      <div className={cx({
+        button: true,
+        menuButton: true,
+        disabled: !this.props.category.transformers.length,
+      })}>
+        <button type="button" onClick={this._onToggle} disabled={!this.props.category.transformers.length}>
           <i
             className={cx({
               fa: true,
@@ -41,8 +44,8 @@ export default class TransformButton extends React.Component {
           />
           &nbsp;Transform
         </button>
-        <ul>
-          {transformers.map(transformer => (
+        {!!this.props.category.transformers.length && <ul>
+          {this.props.category.transformers.map(transformer => (
             <li
               key={transformer.id}
               className={cx({
@@ -55,7 +58,7 @@ export default class TransformButton extends React.Component {
               </button>
             </li>
           ))}
-        </ul>
+        </ul>}
       </div>
     );
   }

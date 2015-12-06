@@ -1,32 +1,55 @@
-const requireParser = require.context('./', true, /^\.\/(?!utils)[^/]+\/(codeExample\.txt|[^/]+?\.js)$/);
+const localRequire = require.context('./', true, /^\.\/(?!utils)[^/]+\/(transformers\/([^/]+)\/)?(codeExample\.txt|[^/]+?\.js)$/);
 
 const files =
-  requireParser.keys()
-  .map(name => name.match(/\.\/(.*?)\/(.*)/).slice(1));
+  localRequire.keys()
+  .map(name => name.split('/').slice(1));
 
 const categoryByID = {};
 const parserByID = {};
+const transformerByID = {};
+
+const restrictedParserNames = new Set([
+  'index.js',
+  'codeExample.txt',
+  'transformers',
+]);
 
 export const categories =
   files
-  .filter(([, fileName]) => fileName === 'index.js')
+  .filter(name => name[1] === 'index.js')
   .map(([catName]) => {
-    let category = requireParser(`./${catName}/index.js`);
+    let category = localRequire(`./${catName}/index.js`);
+
     categoryByID[category.id] = category;
-    category.codeExample = requireParser(`./${catName}/codeExample.txt`);
-    category.parsers =
+
+    category.codeExample = localRequire(`./${catName}/codeExample.txt`);
+
+    let catFiles =
       files
-      .filter(([curCatName, curFileName]) => (
-        curCatName === catName &&
-        curFileName !== 'index.js' &&
-        curFileName !== 'codeExample.txt'
-      ))
-      .map(([catName, curParserName]) => {
-        let parser = requireParser(`./${catName}/${curParserName}`);
+      .filter(([curCatName]) => curCatName === catName)
+      .map(name => name.slice(1));
+
+    category.parsers =
+      catFiles
+      .filter(([parserName]) => !restrictedParserNames.has(parserName))
+      .map(([parserName]) => {
+        let parser = localRequire(`./${catName}/${parserName}`);
         parserByID[parser.id] = parser;
         parser.category = category;
         return parser;
       });
+
+    category.transformers =
+      catFiles
+      .filter(([dirName, , fileName]) => dirName === 'transformers' && fileName === 'index.js')
+      .map(([, transformerName]) => {
+        let transformerDir = `./${catName}/transformers/${transformerName}`;
+        let transformer = localRequire(`${transformerDir}/index.js`);
+        transformerByID[transformer.id] = transformer;
+        transformer.defaultTransform = localRequire(`${transformerDir}/codeExample.txt`);
+        return transformer;
+      });
+
     return category;
   });
 
@@ -44,4 +67,8 @@ export function getCategoryByID(id) {
 
 export function getParserByID(id) {
   return parserByID[id];
+}
+
+export function getTransformerByID(id) {
+  return transformerByID[id];
 }
