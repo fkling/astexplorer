@@ -58,9 +58,7 @@ const changeOption = (name, {target}) => {
 class Comment {
   constructor(sourceRange) {
     this.type = 'COMMENT';
-    Object.defineProperty(this, 'location', {
-      value: sourceRange
-    });
+    Object.defineProperty(this, 'location', { value: sourceRange });
     this.value = sourceRange.toString();
   }
 }

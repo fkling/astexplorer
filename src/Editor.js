@@ -17,7 +17,7 @@ export default class Editor {
     lineNumbers: true,
     readOnly: false,
     onContentChange: () => {},
-    onActivity: () => {}
+    onActivity: () => {},
   };
 
   getValue() {

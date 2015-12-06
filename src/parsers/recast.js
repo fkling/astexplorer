@@ -14,8 +14,6 @@ const options = Object.assign(
   LocalStorage.getParserSettings(ID)
 );
 
-let parsers;
-
 const settings = [
   'range',
   'tolerant',
@@ -32,15 +30,17 @@ export default {
 
   loadParser(callback) {
     require(['recast', 'esprima', 'babel-core'], (recast, esprima, babelCore) => {
-      parsers = {
-        esprima,
-        'babel-core': babelCore
-      };
-      callback(recast);
+      callback({
+        recast,
+        parsers: {
+          esprima,
+          'babel-core': babelCore,
+        },
+      });
     });
   },
 
-  parse(recast, code) {
+  parse({ recast, parsers }, code) {
     let {parser, ...localOptions} = options;
     if (parser !== 'esprima-fb') {
       localOptions.esprima = parsers[parser];
