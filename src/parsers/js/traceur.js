@@ -22,7 +22,7 @@ const parseOptionsDefaults = {
     forOn: false,
     generatorComprehension: false,
     generators: true,
-    // jsx: false, - master branch, uncomment in upcoming version
+    jsx: true,
     memberVariables: false,
     numericLiterals: true,
     propertyMethods: true,
