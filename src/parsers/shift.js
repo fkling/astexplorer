@@ -28,26 +28,21 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['shift-parser'], require => {
-        try {
-          const shift = require('shift-parser');
-          if (options.sourceType === 'module') {
-            resolve(shift.parseModule(code, options));
-          } else {
-            resolve(shift.parseScript(code, options));
-          }
-        } catch(err) {
-          reject(err);
-        }
-      });
-    });
+  loadParser(callback) {
+    require(['shift-parser'], callback);
   },
 
-  nodeToRange(node) {
-    if (node.loc) {
-      return [node.loc.start.offset, node.loc.end.offset];
+  parse(shift, code) {
+    if (options.sourceType === 'module') {
+      return shift.parseModule(code, options);
+    } else {
+      return shift.parseScript(code, options);
+    }
+  },
+
+  nodeToRange({ loc }) {
+    if (loc) {
+      return [loc.start.offset, loc.end.offset];
     }
   },
 

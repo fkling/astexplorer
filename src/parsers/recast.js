@@ -28,29 +28,24 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(
-        ['recast', 'esprima', 'babel-core'],
-        require => {
-          try {
-            const recast = require('recast');
-            const parsers = {
-              esprima: require('esprima'),
-              'babel-core': require('babel-core'),
-            };
-            let localOptions = {...options};
-            delete localOptions.parser;
-            if (options.parser !== 'esprima-fb') {
-              localOptions.esprima = parsers[options.parser];
-            }
-            resolve(recast.parse(code, localOptions));
-          } catch(err) {
-            reject(err);
-          }
-        }
-      );
+  loadParser(callback) {
+    require(['recast', 'esprima', 'babel-core'], (recast, esprima, babelCore) => {
+      callback({
+        recast,
+        parsers: {
+          esprima,
+          'babel-core': babelCore,
+        },
+      });
     });
+  },
+
+  parse({ recast, parsers }, code) {
+    let {parser, ...localOptions} = options;
+    if (parser !== 'esprima-fb') {
+      localOptions.esprima = parsers[parser];
+    }
+    return recast.parse(code, localOptions);
   },
 
   _ignoredProperties: new Set(['__clone']),

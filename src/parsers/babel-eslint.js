@@ -12,39 +12,35 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['acorn-to-esprima', 'babel-core'], require => {
-        try {
-          const acornToEsprima = require('acorn-to-esprima');
-          const {acorn, traverse, parse} = require('babel-core');
-          const opts = {
-            locations: true,
-            ranges: true,
-          };
-
-          const comments = opts.onComment = [];
-          const tokens = opts.onToken = [];
-
-          let ast;
-          try {
-            ast = parse(code, opts);
-          } catch (err) {
-            throw err;
-          }
-
-          ast.tokens = acornToEsprima.toTokens(tokens, acorn.tokTypes);
-          acornToEsprima.convertComments(comments);
-          ast.comments = comments;
-          acornToEsprima.attachComments(ast, comments, ast.tokens);
-          acornToEsprima.toAST(ast, traverse);
-
-          resolve(ast);
-        } catch(err) {
-          reject(err);
-        }
+  loadParser(callback) {
+    require(['acorn-to-esprima', 'babel-core'], (acornToEsprima, {acorn: {tokTypes}, traverse, parse}) => {
+      callback({
+        ...acornToEsprima,
+        tokTypes,
+        traverse,
+        parse,
       });
     });
+  },
+
+  parse(parser, code) {
+    const opts = {
+      locations: true,
+      ranges: true,
+    };
+
+    const comments = opts.onComment = [];
+    const tokens = opts.onToken = [];
+
+    let ast = parser.parse(code, opts);
+
+    ast.tokens = parser.toTokens(tokens, parser.tokTypes);
+    parser.convertComments(comments);
+    ast.comments = comments;
+    parser.attachComments(ast, comments, ast.tokens);
+    parser.toAST(ast, parser.traverse);
+
+    return ast;
   },
 
   nodeToRange(node) {

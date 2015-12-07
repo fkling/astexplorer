@@ -52,17 +52,12 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['espree'], require => {
-        try {
-          const espree = require('espree');
-          resolve(espree.parse(code, options));
-        } catch(err) {
-          reject(err);
-        }
-      });
-    });
+  loadParser(callback) {
+    require(['espree'], callback);
+  },
+
+  parse(espree, code) {
+    return espree.parse(code, options);
   },
 
   renderSettings() {

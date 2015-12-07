@@ -8,8 +8,9 @@ export default class PasteDropTarget extends React.Component {
     onText: React.PropTypes.func,
     onError: React.PropTypes.func,
   };
+
   static defaultProps = {
-    onError: () => {}
+    onError: () => {},
   };
 
   constructor(props) {

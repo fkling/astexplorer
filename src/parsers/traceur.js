@@ -58,9 +58,7 @@ const changeOption = (name, {target}) => {
 class Comment {
   constructor(sourceRange) {
     this.type = 'COMMENT';
-    Object.defineProperty(this, 'location', {
-      value: sourceRange
-    });
+    Object.defineProperty(this, 'location', { value: sourceRange });
     this.value = sourceRange.toString();
   }
 }
@@ -73,46 +71,40 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['traceur/bin/traceur'], require => {
-        try {
-          require('traceur/bin/traceur');
-          /*global traceur*/
-          let sourceFile = new traceur.syntax.SourceFile(FILENAME, code);
-          let errorReporter = new traceur.util.ErrorReporter();
-          errorReporter.reportMessageInternal = (sourceRange, message) => {
-            if (options.TolerateErrors) {
-              return;
-            }
-            let { start, end } = sourceRange;
-            if (start.offset < end.offset) {
-              message += `: ${sourceRange}`;
-            }
-            let err = new SyntaxError(message);
-            err.lineNumber = start.line + 1;
-            err.columnNumber = start.column;
-            throw err;
-          };
-          let parser = new traceur.syntax.Parser(
-            sourceFile,
-            errorReporter,
-            new traceur.util.Options(options)
-          );
-          let comments = [];
-          parser.handleComment = sourceRange => {
-            comments.push(new Comment(sourceRange));
-          };
-          let ast = options.SourceType === 'Script' ?
-            parser.parseScript() :
-            parser.parseModule();
-          ast.comments = comments;
-          resolve(ast);
-        } catch(err) {
-          reject(err);
-        }
-      });
-    });
+  loadParser(callback) {
+    require(['exports?traceur!traceur/bin/traceur'], callback);
+  },
+
+  parse(traceur, code) {
+    let sourceFile = new traceur.syntax.SourceFile(FILENAME, code);
+    let errorReporter = new traceur.util.ErrorReporter();
+    errorReporter.reportMessageInternal = (sourceRange, message) => {
+      if (options.TolerateErrors) {
+        return;
+      }
+      let { start, end } = sourceRange;
+      if (start.offset < end.offset) {
+        message += `: ${sourceRange}`;
+      }
+      let err = new SyntaxError(message);
+      err.lineNumber = start.line + 1;
+      err.columnNumber = start.column;
+      throw err;
+    };
+    let parser = new traceur.syntax.Parser(
+      sourceFile,
+      errorReporter,
+      new traceur.util.Options(options)
+    );
+    let comments = [];
+    parser.handleComment = sourceRange => {
+      comments.push(new Comment(sourceRange));
+    };
+    let ast = options.SourceType === 'Script' ?
+      parser.parseScript() :
+      parser.parseModule();
+    ast.comments = comments;
+    return ast;
   },
 
   getNodeName(node) {

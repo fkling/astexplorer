@@ -26,7 +26,7 @@ const changeOption = (name, {target}) => {
   LocalStorage.setParserSettings(ID, options);
 };
 
-let globalTS;
+let ts;
 let getComments;
 
 export default {
@@ -37,75 +37,69 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['typescript'], require => {
-        try {
-          let ts = require('typescript');
-          globalTS = ts;
-          const compilerHost: ts.CompilerHost = {
-            fileExists: () => true,
-            getCanonicalFileName: (filename: string) => filename,
-            getCurrentDirectory: () => '',
-            getDefaultLibFileName: () => 'lib.d.ts',
-            getNewLine: () => '\n',
-            getSourceFile: (filename: string) => {
-              return ts.createSourceFile(filename, code, ts.ScriptTarget.Latest, true);
-            },
-            readFile: () => null,
-            useCaseSensitiveFileNames: () => true,
-            writeFile: () => null,
-          };
+  loadParser(callback) {
+    require(['typescript'], _ts => callback(ts = _ts));
+  },
 
-          const filename = FILENAME + (options.jsx ? 'x' : '');
+  parse(ts, code) {
+    const compilerHost: ts.CompilerHost = {
+      fileExists: () => true,
+      getCanonicalFileName: (filename: string) => filename,
+      getCurrentDirectory: () => '',
+      getDefaultLibFileName: () => 'lib.d.ts',
+      getNewLine: () => '\n',
+      getSourceFile: (filename: string) => {
+        return ts.createSourceFile(filename, code, ts.ScriptTarget.Latest, true);
+      },
+      readFile: () => null,
+      useCaseSensitiveFileNames: () => true,
+      writeFile: () => null,
+    };
 
-          const program = ts.createProgram([filename], {
-            noResolve: true,
-            target: ts.ScriptTarget.Latest,
-            experimentalDecorators: options.experimentalDecorators,
-            experimentalAsyncFunctions: options.experimentalAsyncFunctions,
-            jsx: options.jsx ? 'preserve' : undefined,
-          }, compilerHost);
+    const filename = FILENAME + (options.jsx ? 'x' : '');
 
-          const sourceFile = program.getSourceFile(filename);
+    const program = ts.createProgram([filename], {
+      noResolve: true,
+      target: ts.ScriptTarget.Latest,
+      experimentalDecorators: options.experimentalDecorators,
+      experimentalAsyncFunctions: options.experimentalAsyncFunctions,
+      jsx: options.jsx ? 'preserve' : undefined,
+    }, compilerHost);
 
-          getComments = (node, isTrailing) => {
-            if (node.parent) {
-              const nodePos = isTrailing ? node.end : node.pos;
-              const parentPos = isTrailing ? node.parent.end : node.parent.pos;
+    const sourceFile = program.getSourceFile(filename);
 
-              if (node.parent.kind === ts.SyntaxKind.SourceFile || nodePos !== parentPos) {
-                let comments = isTrailing ?
-                  ts.getTrailingCommentRanges(sourceFile.text, nodePos) :
-                  ts.getLeadingCommentRanges(sourceFile.text, nodePos);
+    getComments = (node, isTrailing) => {
+      if (node.parent) {
+        const nodePos = isTrailing ? node.end : node.pos;
+        const parentPos = isTrailing ? node.parent.end : node.parent.pos;
 
-                if (Array.isArray(comments)) {
-                  comments.forEach((comment) => {
-                    comment.type = ts.SyntaxKind[comment.kind];
-                    comment.text = sourceFile.text.substring(comment.pos, comment.end);
-                  });
+        if (node.parent.kind === ts.SyntaxKind.SourceFile || nodePos !== parentPos) {
+          let comments = isTrailing ?
+            ts.getTrailingCommentRanges(sourceFile.text, nodePos) :
+            ts.getLeadingCommentRanges(sourceFile.text, nodePos);
 
-                  if (isTrailing) {
-                    node.trailingComments = comments;
-                  } else {
-                    node.leadingComments = comments;
-                  }
-                }
-              }
+          if (Array.isArray(comments)) {
+            comments.forEach((comment) => {
+              comment.type = ts.SyntaxKind[comment.kind];
+              comment.text = sourceFile.text.substring(comment.pos, comment.end);
+            });
+
+            if (isTrailing) {
+              node.trailingComments = comments;
+            } else {
+              node.leadingComments = comments;
             }
-          };
-
-          resolve(sourceFile);
-        } catch(err) {
-          reject(err);
+          }
         }
-      });
-    });
+      }
+    };
+
+    return sourceFile;
   },
 
   getNodeName(node) {
-    if (globalTS && node.kind) {
-      return globalTS.SyntaxKind[node.kind]
+    if (node.kind) {
+      return ts.SyntaxKind[node.kind]
     }
   },
 

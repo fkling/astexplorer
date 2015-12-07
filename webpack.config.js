@@ -46,6 +46,12 @@ module.exports = {
         loader: 'babel?cacheDirectory&optional[]=runtime&stage=0',
       },
     ],
+
+    noParse: [
+      /traceur\/bin/,
+      /typescript\/lib/,
+      /acorn\/dist/,
+    ],
   },
 
   node: {
@@ -59,6 +65,7 @@ module.exports = {
   entry: {
     app: './src/app.js',
   },
+
   output: {
     path: './dist',
     publicPath: 'dist/',

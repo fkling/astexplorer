@@ -31,17 +31,12 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  parse(code) {
-    return new Promise((resolve, reject) => {
-      require.ensure(['babylon'], require => {
-        try {
-          const babylon = require('babylon');
-          resolve(babylon.parse(code, options));
-        } catch(err) {
-          reject(err);
-        }
-      });
-    });
+  loadParser(callback) {
+    require(['babylon'], callback);
+  },
+
+  parse(babylon, code) {
+    return babylon.parse(code, options);
   },
 
   getNodeName(node) {
