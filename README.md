@@ -1,21 +1,29 @@
-## A JavaScript AST explorer
+## AST explorer
 
-Paste JavaScript code into the editor and inspect the generated AST.
+Paste or drop code into the editor and inspect the generated AST.
 
-The JavaScript AST explorer provides
+The AST explorer provides following code parsers:
 
-- [esprima][]
-- [espree][]
-- [acorn][] + [acorn-jsx][]
-- [babylon][]
-- [recast][]
-- [shift][]
-- [babel-eslint][]
-- [traceur][]
-- [typescript][]
-- [uglify-js][]
+- JavaScript:
+  - [esprima][]
+  - [espree][]
+  - [acorn][] + [acorn-jsx][]
+  - [babylon][]
+  - [recast][]
+  - [shift][]
+  - [babel-eslint][]
+  - [traceur][]
+  - [typescript][]
+  - [uglify-js][]
+- CSS:
+  - [cssom][]
+  - [postcss][] + [postcss-safe-parser][] & [postcss-scss][]
+  - [rework][]
+- HTML:
+  - [htmlparser2][]
+  - [parse5][]
 
-to parse the code. Depending on the parser settings, it not only supports ES5
+Depending on the parser settings, it not only supports ES5/CSS3
 but also
 
 - ES6: [arrow functions](https://github.com/lukehoban/es6features#arrows), [destructuring](https://github.com/lukehoban/es6features#destructuring),
@@ -23,11 +31,18 @@ but also
 - ES7 propsals: [async/await](https://github.com/lukehoban/ecmascript-asyncawait), [object rest / spread](https://github.com/sebmarkbage/ecmascript-rest-spread),  ...
 - [JSX](https://facebook.github.io/jsx/), known through [React](https://facebook.github.io/react/).
 - Typed JavaScript ([Flow](http://flowtype.org/) and [TypeScript](http://typescriptlang.org/))
+- [SASS](http://sass-lang.com/)
 
 Since future syntax is supported, the JavaScript AST explorer is a useful tool
 for developers who want to create AST transforms.
-In fact, [jscodeshift][] and [babel][] are included so you can prototype
-codemodding scripts and babel plugins.
+
+In fact, following transformers are included so you can prototype your own plugins:
+
+- JavaScript
+  - [jscodeshift][]
+  - [babel][]
+- CSS
+  - [postcss][]
 
 ### Features
 
@@ -61,6 +76,13 @@ node.
 [babel-eslint]: https://github.com/babel/babel-eslint
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [escodegen]: https://github.com/estools/escodegen
+[cssom]: https://github.com/NV/CSSOM
+[postcss]: https://github.com/postcss/postcss
+[postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
+[postcss-scss]: https://github.com/postcss/postcss-scss
+[rework]: https://github.com/reworkcss/rework
+[htmlparser2]: https://github.com/fb55/htmlparser2
+[parse5]: https://github.com/inikulin/parse5
 
 ### Contributions
 
@@ -70,13 +92,25 @@ as possible!
 #### How to add a new parser
 
 1. Install the new parser as dependency: `npm install -S theParser`
-2. Copy one of the existing examples in `src/parsers/`.
+2. Copy one of the existing examples in `src/parsers/{language}`.
 3. Adjust the code as necessary:
-  - Load the right parser.
-  - Call the right parsing method with the right/necessary options.
+  - Update metadata.
+  - Load the right parser (`loadParser`).
+  - Call the right parsing method with the right/necessary options in `parse`.
   - Implement the `nodeToRange` method (this is for highlighting).
+  - Implement the `getNodeName` method (this is for quick look through the tree).
+  - Implement `opensByDefault` method for auto-expansion of specific properties.
+  - Define `_ignoredProperties` set or implement `forEachProperty` generator method for filtering.
   - Provide a `renderSettings` method if applicable.
-4. Add a new import to `src/parser/index.js`.
+
+#### How to add a new transformer
+
+1. Install the new transformer as dependency.
+2. Copy one of the existing examples in `src/parsers/{language}/transformers`.
+3. Adjust the code as necessary:
+  - Update metadata and `defaultParserID`.
+  - Load the right transformer (`loadTransformer`).
+  - Call the transformation method in `transform`.
 
 #### Build your own version
 
