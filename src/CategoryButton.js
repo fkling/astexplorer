@@ -5,7 +5,7 @@ import {getCategoryByID, categories} from './parsers';
 const categoryIcon = {
   javascript: 'fa-jsfiddle',
   css: 'fa-css3',
-  html: 'fa-html5',
+  htmlmixed: 'fa-html5',
 };
 
 export default class CategoryButton extends React.Component {

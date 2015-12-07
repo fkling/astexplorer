@@ -1,6 +1,7 @@
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
+import 'codemirror/mode/htmlmixed/htmlmixed';
 import PubSub from 'pubsub-js';
 import React from 'react/addons';
 import {keypress} from 'keypress';
