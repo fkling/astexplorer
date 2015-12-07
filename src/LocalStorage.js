@@ -1,8 +1,9 @@
 let storage = global.localStorage;
 let defaultConfig = {
-  parser: null,
+  parser: {},
   parserSettings: {},
   visualizationSettings: {},
+  category: null,
 };
 
 let config = storage ?
@@ -15,12 +16,31 @@ let writeConfig = storage ?
   () => storage.setItem('explorerSettings', JSON.stringify(config)) :
   () => {};
 
-export function getParser() {
-  return config.parser;
+// Upgrade local storage
+// Since the introduction of categories, we save the last used parser per
+// category.
+const parser = config.parser;
+if (parser == null || typeof parser === 'string') {
+  config.parser = {};
+  config.category = 'javascript'; // default category
+  writeConfig();
+}
+
+export function getParser(category) {
+  return config.parser[category || getCategory()];
 }
 
 export function setParser(parser) {
-  config.parser = parser;
+  config.parser[getCategory()] = parser;
+  writeConfig();
+}
+
+export function getCategory() {
+  return config.category;
+}
+
+export function setCategory(category) {
+  config.category = category;
   writeConfig();
 }
 

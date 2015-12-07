@@ -50,13 +50,15 @@ var Snippet = Parse.Object.extend('Snippet', {
       const isNew = !revision ||
         revision.get('code') !== data.code ||
         revision.get('transform') !== data.transform ||
-        revision.get('toolID') !== data.toolID;
+        revision.get('toolID') !== data.toolID ||
+        revision.get('parserID') !== data.parserID;
 
       if (isNew) {
         var newRevision = new SnippetRevision();
         newRevision.set('code', data.code);
         newRevision.set('transform', data.transform);
         newRevision.set('toolID', data.toolID);
+        newRevision.set('parserID', data.parserID);
         this.add('revisions', newRevision);
         return this.save().then(function(snippet) {
           var revisionNumber = snippet.get('revisions').length - 1;

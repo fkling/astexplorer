@@ -26,21 +26,23 @@ var App = React.createClass({
     if ((snippet && !revision) || (!snippet && revision)) {
       throw Error('Must set both, snippet and revision');
     }
-    const transformerID = revision && revision.get('toolID');
-    let transformer = transformerID && getTransformerByID(transformerID);
-    const initialTransformCode = revision && revision.get('transform');
-    if (initialTransformCode && !transformer) {
-      // jscodeshift was the first transformer tool. Instead of updating
-      // existing rows in the DB, we do this
-      transformer = getTransformerByID('jscodeshift');
+
+    let parser;
+    let transformer;
+    let initialCode;
+    let initialTransformCode;
+
+    if (revision) {
+      ({
+        parser,
+        transformer,
+        code: initialCode,
+        transformCode: initialTransformCode,
+      } = this._getDataFromRevision(revision))
+    } else {
+      parser = getParserByID(LocalStorage.getParser()) || getDefaultParser();
+      initialCode = this._getDefaultCode(parser);
     }
-
-    const parser = getParserByID(
-      transformer ? transformer.defaultParserID : LocalStorage.getParser()
-    ) || getDefaultParser();
-
-    const initialCode = revision && revision.get('code') || this._getDefaultCode(parser);
-
     return {
       forking: false,
       saving: false,
@@ -117,6 +119,38 @@ var App = React.createClass({
     return parser.category.codeExample;
   },
 
+  _getDataFromRevision(revision) {
+    const transformerID = revision.get('toolID');
+    let transformer = transformerID && getTransformerByID(transformerID);
+    let transformCode = revision.get('transform');
+    if (transformCode && !transformer) {
+      // jscodeshift was the first transformer tool. Instead of updating
+      // existing rows in the DB, we do this
+      transformer = getTransformerByID('jscodeshift');
+    } else if (transformer && !transformCode) {
+      transformCode = transformer.defaultTransform;
+    }
+
+    // Get parser from transformer > revision > local storage > default
+    let parser;
+    if (transformer) {
+      parser = getParserByID(transformer.defaultParserID);
+    }
+    if (!parser) {
+      parser = getParserByID(revision.get('parserID'));
+    }
+    if (!parser) {
+      parser = getParserByID(LocalStorage.getParser());
+    }
+    if (!parser) {
+      parser = getDefaultParser();
+    }
+
+    const code = revision.get('code') || this._getDefaultCode(parser);
+
+    return {parser, transformer, code, transformCode};
+  },
+
   _setCode(code) {
     return {initialCode: code, currentCode: code};
   },
@@ -133,19 +167,12 @@ var App = React.createClass({
       this.setError('Something went wrong fetching the revision. Try to refresh!');
     }
 
-    const code = revision.get('code') || this._getDefaultCode();
-    const transformerID = revision.get('toolID');
-    let transformer = transformerID && getTransformerByID(transformerID);
-    let transformCode = revision.get('transform');
-
-    if (transformCode && !transformer) {
-      transformer = getTransformerByID('jscodeshift');
-    } else if (transformer && !transformCode) {
-      transformCode = transformer.defaultTransform;
-    }
-    const parser = getParserByID(
-      transformer ? transformer.defaultParserID : LocalStorage.getParser()
-    ) || this.state.parser;
+    const {
+      parser,
+      transformer,
+      code,
+      transformCode,
+    } = this._getDataFromRevision(revision);
 
     const update = data => { // eslint-disable-line no-shadow
       this.setState({
@@ -297,7 +324,9 @@ var App = React.createClass({
     var transformCode = this.refs.transformEditor &&
       this.refs.transformEditor.getValue();
 
-    var data = {};
+    var data = {
+      parserID: this.state.parser.id,
+    };
     if (code !== this._getDefaultCode()) {
       data.code = code;
     }
@@ -379,8 +408,9 @@ var App = React.createClass({
   },
 
   _onCategoryChange: function(category) {
-    let parser = getDefaultParser(category);
-    LocalStorage.setParser(parser.id);
+    LocalStorage.setCategory(category.id);
+    let parser = getParserByID(LocalStorage.getParser(category.id)) ||
+      getDefaultParser(category);
     this.setState({ parser }, () => {
       this._clearRevision();
     });
@@ -407,6 +437,23 @@ var App = React.createClass({
     this._onParserChange(this.state.parser);
   },
 
+  _canSave: function() {
+    const {
+      revision,
+      showTransformPanel,
+      currentTransformCode,
+      initialTransformCode,
+    } = this.state;
+
+    const revisionCode = revision && revision.get('code') ||
+      this._getDefaultCode();
+
+    return revisionCode !== this.state.currentCode ||
+       showTransformPanel &&
+       currentTransformCode !== initialTransformCode &&
+       currentTransformCode !== this.state.transformer.defaultTransform;
+  },
+
   render: function() {
     const {
       revision,
@@ -414,11 +461,6 @@ var App = React.createClass({
       currentTransformCode,
       initialTransformCode,
     } = this.state;
-    const revisionCode = revision && revision.get('code') || this._getDefaultCode();
-    const canSave = revisionCode !== this.state.currentCode ||
-       showTransformPanel &&
-       currentTransformCode !== initialTransformCode &&
-       currentTransformCode !== this.state.transformer.defaultTransform;
 
     return (
       <PasteDropTarget
@@ -438,7 +480,7 @@ var App = React.createClass({
           onCategoryChange={this._onCategoryChange}
           onParserChange={this._onParserChange}
           onTransformChange={this.onTransformChange}
-          canSave={canSave}
+          canSave={this._canSave()}
           canFork={!!revision}
           category={this.state.parser.category}
           parser={this.state.parser}
