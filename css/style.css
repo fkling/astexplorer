@@ -144,6 +144,10 @@ html {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+#Toolbar .categoryButton > ul button {
+  text-align: left;
+}
+
 #info {
   color: #898989;
   cursor: default;

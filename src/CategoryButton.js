@@ -21,7 +21,7 @@ export default class CategoryButton extends React.Component {
 
   render() {
     return (
-      <div className="button menuButton">
+      <div className="button menuButton categoryButton">
         <button type="button">
           <i
             className={cx(categoryIcon[this.props.category.id], {
