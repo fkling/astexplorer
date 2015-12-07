@@ -56,6 +56,7 @@ export default class PasteDropTarget extends React.Component {
 
     var acceptedFileTypes = {
       'text/javascript': true,
+      'text/css': true,
       'application/json': true,
       'text/plain': true,
     };
@@ -88,12 +89,15 @@ export default class PasteDropTarget extends React.Component {
       reader.onload = readerEvent => {
         var text = readerEvent.target.result;
         switch (type) {
-          case 'text/javascipt':
-            this.props.onText('drop', readerEvent, text);
+          case 'text/javascript':
+            this.props.onText('drop', readerEvent, text, 'javascript');
+            break;
+          case 'text/css':
+            this.props.onText('drop', readerEvent, text, 'css');
             break;
           case 'application/json':
             try {
-              this.props.onText('drop', readerEvent, this._jsonToCode(text));
+              this.props.onText('drop', readerEvent, this._jsonToCode(text), 'javascript');
             }
             catch(ex) {
               this.props.onError(

@@ -1,5 +1,6 @@
 import CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
 import PubSub from 'pubsub-js';
 import React from 'react/addons';
 import {keypress} from 'keypress';
@@ -16,6 +17,7 @@ export default class Editor {
     highlight: true,
     lineNumbers: true,
     readOnly: false,
+    mode: 'javascript',
     onContentChange: () => {},
     onActivity: () => {},
   };
@@ -24,19 +26,22 @@ export default class Editor {
     return this.codeMirror && this.codeMirror.getValue();
   }
 
+  _getErrorLine(error) {
+    return error.loc ? error.loc.line : (error.lineNumber || error.line);
+  }
+
   _setError(error) {
     if (this.codeMirror) {
-      if (this.props.error) {
-        let lineNumber = this.props.error.loc ?
-          this.props.error.loc.line :
-          this.props.error.lineNumber;
+      let oldError = this.props.error;
+      if (oldError) {
+        let lineNumber = this._getErrorLine(oldError);
         if (lineNumber) {
           this.codeMirror.removeLineClass(lineNumber-1, 'text', 'errorMarker');
         }
       }
 
       if (error) {
-        let lineNumber = error.loc ? error.loc.line : error.lineNumber;
+        let lineNumber = this._getErrorLine(error);
         if (lineNumber) {
           this.codeMirror.addLineClass(lineNumber-1, 'text', 'errorMarker');
         }
@@ -47,6 +52,9 @@ export default class Editor {
   componentWillReceiveProps(nextProps) {
     if (nextProps.defaultValue !== this.props.defaultValue) {
       this.codeMirror.setValue(nextProps.defaultValue);
+    }
+    if (nextProps.mode !== this.props.mode) {
+      this.codeMirror.setOption('mode', nextProps.mode);
     }
     this._setError(nextProps.error);
   }
@@ -62,6 +70,7 @@ export default class Editor {
       React.findDOMNode(this.refs.container),
       {
         value: this.props.defaultValue,
+        mode: this.props.mode,
         lineNumbers: this.props.lineNumbers,
         readOnly: this.props.readOnly,
       }
@@ -171,5 +180,3 @@ export default class Editor {
     );
   }
 }
-
-module.exports = Editor;

@@ -1,6 +1,5 @@
-import compileModule from '../utils/compileModule';
+import compileModule from '../../../utils/compileModule';
 import pkg from 'babel6/node_modules/babel-core/package.json';
-import defaultTransform from './transformBabel6.txt';
 
 const ID = 'babelv6';
 
@@ -10,11 +9,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParser: {
-    id: 'babylon6',
-  },
-
-  defaultTransform,
+  defaultParserID: 'babylon6',
 
   loadTransformer(callback) {
     require([

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import {getParserByID, parsers} from './parsers';
+import {getParserByID} from './parsers';
 
 export default class ParserButton extends React.Component {
   constructor(props) {
@@ -8,13 +8,8 @@ export default class ParserButton extends React.Component {
     this._onClick = this._onClick.bind(this);
   }
 
-  _onClick({target}) {
-    let parserID;
-    if (target.nodeName.toLowerCase() === 'li') {
-      parserID = target.children[0].value;
-    } else {
-      parserID = target.value;
-    }
+  _onClick({currentTarget}) {
+    let parserID = currentTarget.getAttribute('data-id');
     this.props.onParserChange(getParserByID(parserID));
   }
 
@@ -35,9 +30,9 @@ export default class ParserButton extends React.Component {
           &nbsp;{this.props.parser.displayName}
         </button>
         <ul>
-          {parsers.map(parser => (
-            <li key={parser.id} onClick={this._onClick}>
-              <button value={parser.id} type="button" >
+          {this.props.category.parsers.map(parser => (
+            <li key={parser.id} onClick={this._onClick} data-id={parser.id}>
+              <button type="button" >
                 {parser.displayName}
               </button>
             </li>

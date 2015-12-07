@@ -1,6 +1,5 @@
-import compileModule from '../utils/compileModule';
+import compileModule from '../../../utils/compileModule';
 import pkg from 'jscodeshift/package.json';
-import defaultTransform from './transformJscodeshift.txt';
 
 const ID = 'jscodeshift';
 
@@ -10,11 +9,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParser: {
-    id: 'recast',
-  },
-
-  defaultTransform,
+  defaultParserID: 'recast',
 
   loadTransformer(callback) {
     require(['jscodeshift', 'babel-core'], (jscodeshift, babel) => {

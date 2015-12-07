@@ -1,8 +1,7 @@
-import React from 'react';
-import defaultParserInterface from './utils/defaultParserInterface';
+import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'typescript/package.json';
-import SettingsRenderer from './utils/SettingsRenderer';
-import * as LocalStorage from '../LocalStorage';
+import SettingsRenderer from '../utils/SettingsRenderer';
+import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'typescript';
 const FILENAME = 'astExplorer.ts';
@@ -103,36 +102,18 @@ export default {
     }
   },
 
-  forEachProperty(node, callback) {
-    for (var prop in node) {
+  *forEachProperty(node) {
+    for (let prop in node) {
       if (
         prop === 'constructor' ||
         prop.charAt(0) === '_'
       ) {
         continue;
       }
-      var result = callback({
+      yield {
         value: node[prop],
         key: prop,
-      });
-      if (result === false) {
-        break;
-      }
-    }
-    let comments = {
-    ...getComments(node, true),
-    ...getComments(node, false),
-    };
-    if (result !== false) {
-      for (var prop in comments) {
-        var result = callback({
-          value: comments[prop],
-          key: prop,
-        });
-        if (result === false) {
-          break;
-        }
-      }
+      };
     }
   },
 

@@ -1,4 +1,4 @@
-import defaultParserInterface from './utils/defaultParserInterface';
+import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'uglify-js/package.json';
 import compileModule from '../utils/compileModule';
 
@@ -16,7 +16,7 @@ export default {
     require([
       'raw!uglify-js/lib/utils.js',
       'raw!uglify-js/lib/ast.js',
-      'raw!uglify-js/lib/parse.js'
+      'raw!uglify-js/lib/parse.js',
     ], (...contents) => {
       contents.push('exports.parse = parse;');
       callback(compileModule(contents.join('\n\n')));
@@ -24,12 +24,7 @@ export default {
   },
 
   parse(UglifyJS, code) {
-    try {
-      return UglifyJS.parse(code);
-    } catch (err) {
-      err.lineNumber = err.line;
-      throw err;
-    }
+    return UglifyJS.parse(code);
   },
 
   getNodeName(node) {

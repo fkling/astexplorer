@@ -1,48 +1,74 @@
-import acorn from './acorn';
-import babelEslint from './babel-eslint';
-import babylon from './babylon';
-import babylon6 from './babylon6';
-import espree from './espree';
-import esprima from './esprima';
-import recast from './recast';
-import shift from './shift';
-import traceur from './traceur';
-import typescript from './typescript';
-import uglify from './uglify';
+const localRequire = require.context('./', true, /^\.\/(?!utils)[^/]+\/(transformers\/([^/]+)\/)?(codeExample\.txt|[^/]+?\.js)$/);
 
-export var parsers = [
-  acorn,
-  babelEslint,
-  babylon,
-  babylon6,
-  espree,
-  esprima,
-  recast,
-  shift,
-  traceur,
-  typescript,
-  uglify,
-];
+const files =
+  localRequire.keys()
+  .map(name => name.split('/').slice(1));
 
-export function getDefaultParser() {
-  return parsers[0];
+const categoryByID = {};
+const parserByID = {};
+const transformerByID = {};
+
+const restrictedParserNames = new Set([
+  'index.js',
+  'codeExample.txt',
+  'transformers',
+]);
+
+export const categories =
+  files
+  .filter(name => name[1] === 'index.js')
+  .map(([catName]) => {
+    let category = localRequire(`./${catName}/index.js`);
+
+    categoryByID[category.id] = category;
+
+    category.codeExample = localRequire(`./${catName}/codeExample.txt`);
+
+    let catFiles =
+      files
+      .filter(([curCatName]) => curCatName === catName)
+      .map(name => name.slice(1));
+
+    category.parsers =
+      catFiles
+      .filter(([parserName]) => !restrictedParserNames.has(parserName))
+      .map(([parserName]) => {
+        let parser = localRequire(`./${catName}/${parserName}`);
+        parserByID[parser.id] = parser;
+        parser.category = category;
+        return parser;
+      });
+
+    category.transformers =
+      catFiles
+      .filter(([dirName, , fileName]) => dirName === 'transformers' && fileName === 'index.js')
+      .map(([, transformerName]) => {
+        let transformerDir = `./${catName}/transformers/${transformerName}`;
+        let transformer = localRequire(`${transformerDir}/index.js`);
+        transformerByID[transformer.id] = transformer;
+        transformer.defaultTransform = localRequire(`${transformerDir}/codeExample.txt`);
+        return transformer;
+      });
+
+    return category;
+  });
+
+export function getDefaultCategory() {
+  return categoryByID.javascript;
 }
 
-let byID = parsers.reduce(
-  (map, parser) => {
-    map[parser.id] = parser;
-    return map;
-  },
-  {}
-);
+export function getDefaultParser(category = getDefaultCategory()) {
+  return category.parsers[0];
+}
+
+export function getCategoryByID(id) {
+  return categoryByID[id];
+}
 
 export function getParserByID(id) {
-  return byID[id];
+  return parserByID[id];
 }
 
-export function getParser(idOrObject) {
-  let parserID = idOrObject && typeof idOrObject === 'object' ?
-    idOrObject.id :
-    idOrObject;
-  return parserID ? getParserByID(parserID) : null;
+export function getTransformerByID(id) {
+  return transformerByID[id];
 }

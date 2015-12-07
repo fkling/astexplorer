@@ -1,7 +1,7 @@
-import defaultParserInterface from './utils/defaultParserInterface';
+import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'traceur/package.json';
-import SettingsRenderer from './utils/SettingsRenderer';
-import * as LocalStorage from '../LocalStorage';
+import SettingsRenderer from '../utils/SettingsRenderer';
+import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'traceur';
 const FILENAME = 'astExplorer.js';
@@ -111,14 +111,11 @@ export default {
     return node.constructor.name;
   },
 
-  forEachProperty(node, callback) {
+  *forEachProperty(node) {
     if ('type' in node) {
-      var result = callback({
+      yield {
         value: node.type,
         key: 'type',
-      });
-      if (result === false) {
-        return;
       }
     }
     for (var prop in node) {
@@ -128,12 +125,9 @@ export default {
       if (prop === 'type' || prop === 'lineNumberTable') {
         continue;
       }
-      result = callback({
+      yield {
         value: node[prop],
         key: prop,
-      });
-      if (result === false) {
-        break;
       }
     }
   },

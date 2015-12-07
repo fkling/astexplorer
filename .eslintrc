@@ -2,6 +2,7 @@ parser: babel-eslint
 
 plugins:
   - react
+  - import
 
 rules:
   comma-dangle: [1, "always-multiline"]
@@ -14,6 +15,15 @@ rules:
   strict: 0
   react/react-in-jsx-scope: 1
   react/jsx-no-undef: 1
+  import/no-unresolved: [2, {commonjs: true, amd: true}]
+  import/named: 2
+  import/default: 2
+  import/namespace: 2
+  import/export: 2
+
+settings:
+  import/parser: "babel-eslint"
+  import/resolver: "webpack"
 
 env:
   browser: true

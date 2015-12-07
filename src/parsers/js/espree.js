@@ -1,8 +1,8 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'espree/package.json';
-import * as LocalStorage from '../LocalStorage';
-import SettingsRenderer from './utils/SettingsRenderer';
+import * as LocalStorage from '../../LocalStorage';
+import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'espree';
 const options = Object.assign(

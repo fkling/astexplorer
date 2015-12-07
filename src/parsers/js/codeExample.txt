@@ -1,7 +1,8 @@
 /**
- * Paste some code here and explore the syntax tree
- * created by esprima or babel. You can use all the
- * cool new features from ES6. Enjoy!
+ * Paste or drop some JavaScript here and explore
+ * the syntax tree created by chosen parser.
+ * You can use all the cool new features from ES6
+ * and even more. Enjoy!
  */
 
 var tips = [

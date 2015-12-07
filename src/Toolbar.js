@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import CategoryButton from './CategoryButton';
 import ParserButton from './ParserButton';
 import TransformButton from './TransformButton';
 import ParserSettingsButton from './ParserSettingsButton';
@@ -43,7 +44,7 @@ export default class Toolbar {
 
     return (
       <div id="Toolbar">
-        <h1>JS AST Explorer</h1>
+        <h1>AST Explorer</h1>
         <button
           type="button"
           disabled={
@@ -78,6 +79,7 @@ export default class Toolbar {
           />
           Fork
         </button>
+        <CategoryButton {...this.props} />
         <ParserButton {...this.props} />
         <ParserSettingsButton {...this.props} />
         <TransformButton {...this.props} />

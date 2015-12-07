@@ -120,9 +120,10 @@ html {
   white-space: nowrap;
 }
 
-#Toolbar > button:disabled,
-#Toolbar > button:disabled:hover,
-#Toolbar > button:disabled:active {
+#Toolbar > *.disabled,
+#Toolbar button:disabled,
+#Toolbar button:disabled:hover,
+#Toolbar button:disabled:active {
   background-color: transparent;
   color: #888;
   cursor: default;

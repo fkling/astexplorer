@@ -29,7 +29,10 @@ const Element = RecursiveTreeElement(React.createClass({
     level: PropTypes.number,
     parser: PropTypes.object.isRequired,
     settings: PropTypes.object.isRequired,
-    parent: PropTypes.any.isRequired,
+    parent: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array,
+    ]),
   },
 
   getInitialState: function() {
@@ -118,8 +121,7 @@ const Element = RecursiveTreeElement(React.createClass({
 
   _getProperties: function(parser, value) {
     const {hideFunctions, hideEmptyKeys} = this.props.settings;
-    let properties = [];
-    parser.forEachProperty(value, o => properties.push(o));
+    let properties = [...parser.forEachProperty(value)];
     return properties
       .filter(({value}) => !hideFunctions || typeof value !== 'function')
       .filter(({value}) => !hideEmptyKeys || value != null);
@@ -135,6 +137,22 @@ const Element = RecursiveTreeElement(React.createClass({
       state.error = err;
     }
     this.setState(state);
+  },
+
+  _createSubElement(key, value, name) {
+    return (
+      <Element
+        key={key}
+        name={name}
+        focusPath={this.props.focusPath}
+        deepOpen={this.state.deepOpen}
+        value={value}
+        level={this.props.level + 1}
+        parser={this.props.parser}
+        settings={this.props.settings}
+        parent={value}
+      />
+    );
   },
 
   render: function() {
@@ -156,76 +174,60 @@ const Element = RecursiveTreeElement(React.createClass({
     let showToggler = false;
     let enableHighlight = false;
 
-    if (Array.isArray(value)) {
-      if (value.length > 0 && open) {
-        prefix = '[';
-        suffix = ']';
-        var elements = value.map(
-          (v, i) =>
-            <Element
-              key={i}
-              focusPath={focusPath}
-              deepOpen={this.state.deepOpen}
-              value={v}
-              level={this.props.level + 1}
-              parser={parser}
-              settings={settings}
-              parent={value}
-            />
-        );
-        content = <ul className="value-body">{elements}</ul>;
+    if (value && typeof value === 'object') {
+      if (!Array.isArray(value)) {
+        const nodeName = parser.getNodeName(value);
+        if (nodeName) {
+          valueOutput =
+            <span className="tokenName nc" onClick={this._toggleClick}>
+              {nodeName}
+            </span>
+        }
+        enableHighlight = parser.nodeToRange(value) && level !== 0;
       } else {
-        valueOutput =
-          <CompactArrayView
-            array={value}
-            onClick={this._toggleClick}
-          />;
-      }
-      showToggler = value.length > 0;
-    } else if (value && typeof value === 'object') {
-      enableHighlight = parser.nodeToRange(value) && this.props.level !== 0;
-
-      const nodeName = parser.getNodeName(value);
-
-      if (nodeName) {
-        valueOutput =
-          <span className="tokenName nc" onClick={this._toggleClick}>
-            {nodeName}
-          </span>
+        enableHighlight = true;
       }
 
-      if (this.state.open) {
-        prefix = ' {';
-        suffix = '}';
-        let elements = this._getProperties(parser, value)
-          .map(
-            ({value: v, key}) =>
-              <Element
-                key={key}
-                name={key}
-                focusPath={focusPath}
-                deepOpen={this.state.deepOpen}
-                value={v}
-                level={level + 1}
-                parser={parser}
-                settings={settings}
-                parent={value}
+      if (typeof value.length === 'number') {
+        if (value.length > 0 && open) {
+          prefix = '[';
+          suffix = ']';
+          let elements = this._getProperties(parser, value)
+            .filter(({key}) => key !== 'length')
+            .map(({key, value}) => this._createSubElement(key, value, Number.isInteger(+key) ? undefined : key));
+          content = <ul className="value-body">{elements}</ul>;
+        } else {
+          valueOutput =
+            <span>
+              {valueOutput}
+              <CompactArrayView
+                array={value}
+                onClick={this._toggleClick}
               />
-          );
-        content = <ul className="value-body">{elements}</ul>;
-        showToggler = elements.length > 0;
+            </span>;
+        }
+        showToggler = value.length > 0;
       } else {
-        let keys = this._getProperties(parser, value)
-          .map(({key}) => key);
-        valueOutput =
-          <span>
-            {valueOutput}
-            <CompactObjectView
-              onClick={this._toggleClick}
-              keys={keys}
-            />
-          </span>;
-        showToggler = keys.length > 0;
+        if (open) {
+          prefix = '{';
+          suffix = '}';
+          let elements = this._getProperties(parser, value)
+            .map(({key, value}) => this._createSubElement(key, value, key));
+          content = <ul className="value-body">{elements}</ul>;
+          showToggler = elements.length > 0;
+        } else {
+          let keys = this._getProperties(parser, value)
+            .map(({key}) => key);
+          valueOutput =
+            <span>
+              {valueOutput}
+              <CompactObjectView
+                onClick={this._toggleClick}
+                keys={keys}
+              />
+            </span>;
+          showToggler = keys.length > 0;
+        }
       }
     } else {
       valueOutput = <span className="s">{stringify(value)}</span>;
@@ -267,7 +269,7 @@ const Element = RecursiveTreeElement(React.createClass({
           onClick={typeof value === 'function' ? this._execFunction : null}>
             {valueOutput}
         </span>
-        {prefix ? <span className="prefix p">{prefix}</span> : null}
+        {prefix ? <span className="prefix p"> {prefix}</span> : null}
         {content}
         {suffix ? <div className="suffix p">{suffix}</div> : null}
         {this.state.error  ?
