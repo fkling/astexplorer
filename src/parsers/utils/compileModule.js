@@ -1,6 +1,9 @@
-export default function compileModule(code) {
-  var m = {exports: {}};
-  var f = new Function('module, exports', code);
-  f(m, m.exports);
-  return m.exports;
+export default function compileModule(code, globals = {}) {
+  let exports = {};
+  let module = { exports };
+  let globalNames = Object.keys(globals);
+  let keys = ['module', 'exports', ...globalNames];
+  let values = [module, exports, ...globalNames.map(key => globals[key])];
+  new Function(keys.join(), code).apply(exports, values);
+  return module.exports;
 }
