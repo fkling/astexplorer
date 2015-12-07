@@ -9,8 +9,9 @@ export function nodeToRange(parser, node) {
   }
   if (node.length > 0) {
     // check first and last child
-    let rangeFirst = parser.nodeToRange(node[0]);
-    let rangeLast = parser.nodeToRange(node[node.length - 1]);
+    let rangeFirst = node[0] && parser.nodeToRange(node[0]);
+    let rangeLast = node[node.length - 1] &&
+      parser.nodeToRange(node[node.length - 1]);
     if (rangeFirst && rangeLast) {
       return [rangeFirst[0], rangeLast[1]];
     }
