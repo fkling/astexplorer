@@ -111,6 +111,7 @@ as possible!
   - Update metadata and `defaultParserID`.
   - Load the right transformer (`loadTransformer`).
   - Call the transformation method in `transform`.
+  - Change sample transformation code in `codeExample.txt`.
 
 #### Build your own version
 
