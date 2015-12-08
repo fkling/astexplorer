@@ -95,6 +95,7 @@ html {
 }
 
 #Toolbar .menuButton {
+  position: relative;
   height: auto;
 }
 
@@ -103,20 +104,26 @@ html {
 }
 
 #Toolbar .menuButton ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
   padding: 0;
   margin: 0;
   list-style: none;
   display: none;
   border-bottom: 1px solid #ddd;
+  min-width: 100%;
 }
 
 #Toolbar .menuButton ul li {
-  padding-left: 10px;
+  padding: 0 10px;
+  white-space: nowrap;
 }
 
-#Toolbar > button:disabled,
-#Toolbar > button:disabled:hover,
-#Toolbar > button:disabled:active {
+#Toolbar > *.disabled,
+#Toolbar button:disabled,
+#Toolbar button:disabled:hover,
+#Toolbar button:disabled:active {
   background-color: transparent;
   color: #888;
   cursor: default;
@@ -135,6 +142,10 @@ html {
 #Toolbar > a:active,
 #Toolbar > button:active {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+#Toolbar .categoryButton > ul button {
+  text-align: left;
 }
 
 #info {
