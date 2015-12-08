@@ -207,18 +207,24 @@ var App = React.createClass({
 
   _clearRevision: function() {
     const defaultCode = this._getDefaultCode();
-    this.parse(defaultCode).then(ast => this.setState({
-      ast: ast,
-      editorError: null,
-      focusPath: [],
-      ...this._setCode(defaultCode),
-      ...this._setTransformCode(this.state.transformer ?
-        this.state.transformer.defaultTransform :
-        ''
-      ),
-      snippet: null,
-      revision: null,
-    }));
+    const update = newState => {
+      this.setState({
+        ...newState,
+        focusPath: [],
+        ...this._setCode(defaultCode),
+        ...this._setTransformCode(this.state.transformer ?
+          this.state.transformer.defaultTransform :
+          ''
+        ),
+        snippet: null,
+        revision: null,
+      });
+    }
+
+    this.parse(defaultCode).then(
+      ast => update({ast}),
+      error => update({ast: null, editorError: error})
+    );
   },
 
   parse: function(code, parser) {
