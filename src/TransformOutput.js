@@ -104,6 +104,7 @@ export default class TransformOutput extends React.Component {
           /> :
           <Editor
             highlight={false}
+            mode={this.props.mode}
             key="output"
             readOnly={true}
             defaultValue={this.state.result}

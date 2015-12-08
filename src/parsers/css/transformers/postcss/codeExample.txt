@@ -1,0 +1,15 @@
+import * as postcss from 'postcss';
+
+export default postcss.plugin('postcss-reverse-props', (options = {}) => {
+    // Work with options here
+    return css => {
+        // Transform CSS AST here
+        css.walkRules(rule => {
+            // Transform each rule here
+            rule.walkDecls(decl => {
+                // Transform each property declaration here
+                decl.prop = decl.prop.split('').reverse().join('');
+            });
+        });
+    };
+});
