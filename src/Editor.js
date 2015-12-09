@@ -3,10 +3,10 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import PubSub from 'pubsub-js';
-import React from 'react/addons';
+import React from 'react';
 import {keypress} from 'keypress';
 
-export default class Editor {
+export default class Editor extends React.Component {
   static propTypes = {
     defaultValue: React.PropTypes.string,
     highlight: React.PropTypes.bool,

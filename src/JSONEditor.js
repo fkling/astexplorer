@@ -4,9 +4,9 @@ import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/fold/foldcode';
 import 'codemirror/addon/fold/brace-fold';
 import PubSub from 'pubsub-js';
-import React from 'react/addons';
+import React from 'react';
 
-export default class Editor {
+export default class Editor extends React.Component {
 
   getValue() {
     return this.codeMirror && this.codeMirror.getValue();

@@ -12,6 +12,7 @@
     "autoprefixer-loader": "^3.1.0",
     "babel-eslint": "^4.1.4",
     "babel-loader": "^5.4.0",
+    "chunk-manifest-webpack-plugin": "0.0.1",
     "css-loader": "^0.23.0",
     "eslint": "^1.9.0",
     "eslint-import-resolver-webpack": "^0.1.4",

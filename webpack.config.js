@@ -1,6 +1,8 @@
+var fs = require('fs');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
 var plugins = [
   new webpack.DefinePlugin({
@@ -8,7 +10,7 @@ var plugins = [
       JSON.stringify(process.env.NODE_ENV || 'development'),
   }),
   new webpack.optimize.CommonsChunkPlugin({
-    children: true,
+    //children: true,
     async: true,
     minChunks: 2,
   }),
@@ -19,13 +21,31 @@ var plugins = [
     /node\/nodeLoader.js/,
     /traceur/
   ),
+  new ExtractTextPlugin("[name]-[chunkhash].css"),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'vendor-[chunkhash].js',
+    minChunks: Infinity,
+  }),
+  new ChunkManifestPlugin({
+    filename: "manifest.json",
+  }),
   new HtmlWebpackPlugin({
-    template: './index.html',
+    templateContent: function(templateParams, compilation) {
+      const manifest = compilation.assets['manifest.json'];
+      templateParams.manifest = manifest ?
+        manifest._value :
+        fs.readFileSync(
+          templateParams.webpack.out.path + '/manifest.json'
+          ,
+          'utf-8'
+        );
+
+      return fs.readFileSync('./index.html', 'utf-8');
+    },
     favicon: './favicon.png',
     inject: 'body',
-    hash: true,
   }),
-  new ExtractTextPlugin("[name].css")
 ];
 
 
@@ -85,6 +105,17 @@ module.exports = {
   plugins: plugins,
 
   entry: {
+    vendor: [
+      'classnames',
+      'codemirror',
+      'escodegen',
+      'halting-problem',
+      'json-stringify-safe',
+      'keypress',
+      'parse',
+      'pubsub-js',
+      'react',
+    ],
     app: './src/app.js',
 		style: './css/style.css',
   },
@@ -92,7 +123,7 @@ module.exports = {
   output: {
     path: './out',
     //publicPath: '',
-    filename: '[name].js',
-    chunkFilename: '[name].[chunkhash].bundle.js',
+    filename: '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js',
   },
 };
