@@ -19,7 +19,7 @@ let writeConfig = storage ?
 // Upgrade local storage
 // Since the introduction of categories, we save the last used parser per
 // category.
-const parser = config.parser;
+const {parser} = config;
 if (parser == null || typeof parser === 'string') {
   config.parser = {};
   writeConfig();

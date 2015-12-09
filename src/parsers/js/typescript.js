@@ -5,14 +5,12 @@ import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'typescript';
 const FILENAME = 'astExplorer.ts';
-const options = Object.assign(
-  {
-    experimentalDecorators: true,
-    experimentalAsyncFunctions: true,
-    jsx: true,
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  experimentalDecorators: true,
+  experimentalAsyncFunctions: true,
+  jsx: true,
+  ...LocalStorage.getParserSettings(ID),
+};
 
 const settings = [
   'experimentalDecorators',

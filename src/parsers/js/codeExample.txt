@@ -5,7 +5,7 @@
  * and even more. Enjoy!
  */
 
-var tips = [
+let tips = [
   "Click on any AST node with a '+' to expand it",
 
   "Hovering over a node highlights the \

@@ -4,14 +4,12 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'shift';
-const options = Object.assign(
-  {
-    loc: true,
-    earlyErrors: false,
-    sourceType: 'module',
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  loc: true,
+  earlyErrors: false,
+  sourceType: 'module',
+  ...LocalStorage.getParserSettings(ID),
+};
 
 const settings = [
   'loc',

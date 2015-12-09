@@ -22,7 +22,7 @@ export default class PasteDropTarget extends React.Component {
 
   componentDidMount() {
     this._listeners = [];
-    var target = React.findDOMNode(this.refs.container);
+    let target = React.findDOMNode(this.refs.container);
 
     // Handle pastes
     this._bindListener(document, 'paste', event => {
@@ -30,12 +30,12 @@ export default class PasteDropTarget extends React.Component {
         // No browser support? :(
         return;
       }
-      var cbdata = event.clipboardData;
+      let cbdata = event.clipboardData;
       // Plain text
       if (cbdata.types.indexOf && cbdata.types.indexOf('text/plain') > -1) {
         try {
           if (this.props.onText) {
-            var code = this._jsonToCode(cbdata.getData('text/plain'));
+            let code = this._jsonToCode(cbdata.getData('text/plain'));
             event.stopPropagation();
             event.preventDefault();
             this.props.onText('paste', event, code);
@@ -54,7 +54,7 @@ export default class PasteDropTarget extends React.Component {
       }
     }, true);
 
-    var acceptedFileTypes = {
+    let acceptedFileTypes = {
       'text/javascript': true,
       'text/css': true,
       'text/html': true,
@@ -62,7 +62,7 @@ export default class PasteDropTarget extends React.Component {
       'text/plain': true,
     };
 
-    var timer;
+    let timer;
 
     // Handle file drops
     this._bindListener(target, 'dragenter', event => {
@@ -79,16 +79,16 @@ export default class PasteDropTarget extends React.Component {
 
     this._bindListener(target, 'drop', event => {
       this.setState({dragging: false});
-      var files = event.dataTransfer.files;
-      var type = files[0].type;
+      let file = event.dataTransfer.files[0];
+      let {type} = file;
       if (!acceptedFileTypes[type] || !this.props.onText) {
         return;
       }
       event.preventDefault();
       event.stopPropagation();
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.onload = readerEvent => {
-        var text = readerEvent.target.result;
+        let text = readerEvent.target.result;
         switch (type) {
           case 'text/javascript':
             this.props.onText('drop', readerEvent, text, 'javascript');
@@ -124,7 +124,7 @@ export default class PasteDropTarget extends React.Component {
             break;
         }
       };
-      reader.readAsText(files[0]);
+      reader.readAsText(file);
     }, true);
 
     this._bindListener(target, 'dragleave', () => {
@@ -134,15 +134,15 @@ export default class PasteDropTarget extends React.Component {
   }
 
   componentWillUnmount() {
-    for (var i = 0; i < this._listeners.length; i += 4) {
-      var [elem, event, listener, capture] = this._listeners[i];
+    for (let i = 0; i < this._listeners.length; i += 4) {
+      let [elem, event, listener, capture] = this._listeners[i];
       elem.removeEventListener(event, listener, capture);
     }
     this._listeners = null;
   }
 
   _jsonToCode(json) {
-    var ast = JSON.parse(json);
+    let ast = JSON.parse(json);
     return escodegen.generate(ast, {format: {indent: {style: '  '}}});
   }
 
@@ -154,7 +154,7 @@ export default class PasteDropTarget extends React.Component {
   }
 
   render() {
-    var {children, dropindicator, ...props} = this.props;
+    let {children, dropindicator, ...props} = this.props;
     if (!this.state.dragging) {
       dropindicator = null;
     }

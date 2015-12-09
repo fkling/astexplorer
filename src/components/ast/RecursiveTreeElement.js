@@ -32,7 +32,7 @@ export default function RecursiveTreeElement(Element) {
   return class extends React.Component {
     constructor(props) {
       super(props);
-      let deepOpen = props.deepOpen;
+      let {deepOpen} = props;
       let open = shouldAutoFocus(props);
       if (props.value && typeof props.value === 'object') {
         if (openValues.has(props.value)) {
@@ -52,7 +52,7 @@ export default function RecursiveTreeElement(Element) {
     }
 
     componentWillReceiveProps(props) {
-      let deepOpen = props.deepOpen;
+      let {deepOpen} = props;
       let open = shouldAutoFocus(props);
       if (!this.props.value !== props.value) {
         if (this.props.value && typeof this.props.value === 'object') {

@@ -4,13 +4,11 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'parse5';
-const options = Object.assign(
-  {
-    treeAdapter: 'default',
-    decodeHtmlEntities: true,
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  treeAdapter: 'default',
+  decodeHtmlEntities: true,
+  ...LocalStorage.getParserSettings(ID),
+};
 
 const settings = [
   ['treeAdapter', ['default', 'htmlparser2']],

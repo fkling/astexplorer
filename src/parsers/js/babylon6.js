@@ -20,15 +20,13 @@ const plugins = [
   'objectRestSpread',
   'trailingFunctionCommas',
 ];
-const options = Object.assign(
-  {
-    sourceType: 'module',
-    allowImportExportEverywhere: false,
-    allowReturnOutsideFunction: false,
-    plugins: plugins.slice(0),
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  sourceType: 'module',
+  allowImportExportEverywhere: false,
+  allowReturnOutsideFunction: false,
+  plugins: plugins.slice(0),
+  ...LocalStorage.getParserSettings(ID),
+};
 
 export default {
   ...defaultParserInterface,

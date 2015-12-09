@@ -1,4 +1,4 @@
-module.exports = function(file, api) {
+export default function(file, api) {
   const j = api.jscodeshift;
   const {expression, statement, statements} = j.template;
 

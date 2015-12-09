@@ -51,7 +51,7 @@ export default class Tree extends React.Component {
             Hide empty keys
           </label>
         </div>
-        <ul onMouseLeave={function() {PubSub.publish('CLEAR_HIGHLIGHT');}}>
+        <ul onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
           <Element
             focusPath={this.props.focusPath}
             value={this.props.ast}

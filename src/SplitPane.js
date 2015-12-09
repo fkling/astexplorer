@@ -1,13 +1,13 @@
 import React from 'react';
 
-var baseStyleHorizontal = {
+let baseStyleHorizontal = {
   position: 'absolute',
   top: 0,
   bottom: 0,
   boxSizing: 'border-box',
 };
 
-var baseStyleVertical = {
+let baseStyleVertical = {
   position: 'absolute',
   left: 0,
   right: 0,
@@ -17,23 +17,26 @@ var baseStyleVertical = {
 /**
  * Creates a left-right split pane inside its container.
  */
-export default React.createClass({
-  getInitialState: function() {
-    return {
+export default class extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this._onMouseDown = this._onMouseDown.bind(this);
+
+    this.state = {
       dividerPosition: 50,
     };
-  },
+  }
 
-  _onMouseDown: function() {
-    var vertical = this.props.vertical;
-    var max = vertical ? global.innerHeight : global.innerWidth;
+  _onMouseDown() {
+    let {vertical} = this.props;
+    let max = vertical ? global.innerHeight : global.innerWidth;
     global.document.body.style.cursor = vertical ? 'row-resize' : 'col-resize';
-    var moveHandler = function(event) {
+    let moveHandler = event => {
       event.preventDefault();
       this.setState({
         dividerPosition: ((vertical ? event.pageY : event.pageX) / max) * 100});
-    }.bind(this);
-    var upHandler = function() {
+    };
+    let upHandler = () => {
       document.removeEventListener('mousemove', moveHandler);
       document.removeEventListener('mouseup', upHandler);
       global.document.body.style.cursor = '';
@@ -41,18 +44,18 @@ export default React.createClass({
       if (this.props.onResize) {
         this.props.onResize();
       }
-    }.bind(this);
+    };
 
     document.addEventListener('mousemove', moveHandler);
     document.addEventListener('mouseup', upHandler);
-  },
+  }
 
-  render: function() {
-    var children = this.props.children;
-    var dividerPos = this.state.dividerPosition;
-    var styleA;
-    var styleB;
-    var dividerStyle;
+  render() {
+    let {children} = this.props;
+    let dividerPos = this.state.dividerPosition;
+    let styleA;
+    let styleB;
+    let dividerStyle;
 
     if (!Array.isArray(children) || children.filter(x => x).length !== 2) {
       return (
@@ -127,5 +130,5 @@ export default React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}

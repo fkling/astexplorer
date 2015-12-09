@@ -13,15 +13,16 @@ const {PropTypes} = React;
 // For debugging
 function log(f) {
   return function(a, b) {
-    var result = f.call(this, a,b);
+    let result = f.call(this, a,b);
     console.log(a.name, a.name || a.value && a.value.type, 'Updates', result);
     return result;
   };
 }
 */
 
-const Element = RecursiveTreeElement(React.createClass({
-  propTypes: {
+@RecursiveTreeElement
+export default class Element extends React.Component {
+  static propTypes = {
     name: PropTypes.string,
     value: PropTypes.any.isRequired,
     deepOpen: PropTypes.bool,
@@ -33,31 +34,36 @@ const Element = RecursiveTreeElement(React.createClass({
       PropTypes.object,
       PropTypes.array,
     ]),
-  },
+  };
 
-  getInitialState: function() {
-    const {value, name, deepOpen, parser, focusPath, settings} = this.props;
+  constructor(props, context) {
+    super(props, context);
+    this._execFunction = this._execFunction.bind(this);
+    this._onMouseLeave = this._onMouseLeave.bind(this);
+    this._onMouseOver = this._onMouseOver.bind(this);
+    this._toggleClick = this._toggleClick.bind(this);
+    const {value, name, deepOpen, parser, focusPath, settings} = props;
     // Some elements should be open by default
-    var open =
-      this.props.open ||
-      this.props.level === 0 ||
+    let open =
+      props.open ||
+      props.level === 0 ||
       deepOpen ||
       (!!value && parser.opensByDefault(value, name));
 
-    return {
+    this.state = {
       open,
       deepOpen,
       value,
     };
-  },
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       open: nextProps.open || nextProps.deepOpen || this.state.open,
       deepOpen: nextProps.deepOpen,
       value: nextProps.value,
     });
-  },
+  }
 
   _shouldAutoFocus(thisProps, nextProps) {
     const {focusPath: thisFocusPath} = thisProps;
@@ -68,21 +74,21 @@ const Element = RecursiveTreeElement(React.createClass({
       nextFocusPath.indexOf(nextProps.value) > -1 &&
       nextSettings.autofocus
     );
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     if (this.props.settings.autofocus) {
       this._scrollIntoView();
     }
-  },
+  }
 
-  componentDidUpdate: function(prevProps) {
+  componentDidUpdate(prevProps) {
     if (this._shouldAutoFocus(prevProps, this.props)) {
       this._scrollIntoView();
     }
-  },
+  }
 
-  _scrollIntoView: function() {
+  _scrollIntoView() {
     const {focusPath, value} = this.props;
     if (focusPath.length > 0 && focusPath[focusPath.length -1] === value) {
       setTimeout(() => {
@@ -90,9 +96,9 @@ const Element = RecursiveTreeElement(React.createClass({
         node.scrollIntoView();
       }, 0);
     }
-  },
+  }
 
-  _toggleClick: function(event) {
+  _toggleClick(event) {
     // Make AST node accessible
     global.$node = this.state.value;
 
@@ -100,32 +106,32 @@ const Element = RecursiveTreeElement(React.createClass({
       open: event.shiftKey || !this.state.open,
       deepOpen: event.shiftKey,
     });
-  },
+  }
 
-  _onMouseOver: function(e) {
+  _onMouseOver(e) {
     e.stopPropagation();
     PubSub.publish('HIGHLIGHT', this.state.value);
-  },
+  }
 
-  _onMouseLeave: function() {
+  _onMouseLeave() {
     PubSub.publish('CLEAR_HIGHLIGHT', this.state.value);
-  },
+  }
 
-  _isFocused: function(level, path, value, open) {
+  _isFocused(level, path, value, open) {
     return level !== 0 &&
       path.indexOf(value) > -1 &&
       (!open || path[path.length - 1] === value);
-  },
+  }
 
-  _getProperties: function(parser, value) {
+  _getProperties(parser, value) {
     const {hideFunctions, hideEmptyKeys} = this.props.settings;
     let properties = [...parser.forEachProperty(value)];
     return properties
       .filter(({value}) => !hideFunctions || typeof value !== 'function')
       .filter(({value}) => !hideEmptyKeys || value != null);
-  },
+  }
 
-  _execFunction: function() {
+  _execFunction() {
     let state = {error: null};
     try {
       state.value = this.state.value.call(this.props.parent);
@@ -135,7 +141,7 @@ const Element = RecursiveTreeElement(React.createClass({
       state.error = err;
     }
     this.setState(state);
-  },
+  }
 
   _createSubElement(key, value, name) {
     return (
@@ -151,9 +157,9 @@ const Element = RecursiveTreeElement(React.createClass({
         parent={value}
       />
     );
-  },
+  }
 
-  render: function() {
+  render() {
     const {
       focusPath,
       parser,
@@ -232,7 +238,7 @@ const Element = RecursiveTreeElement(React.createClass({
       showToggler = false;
     }
 
-    var name = this.props.name ?
+    let name = this.props.name ?
       <span
         className="key"
         onClick={
@@ -248,11 +254,11 @@ const Element = RecursiveTreeElement(React.createClass({
       </span> :
       null;
 
-    var classNames = cx({
+    let classNames = cx({
       entry: true,
-      focused: focused,
+      focused,
       toggable: showToggler,
-      open: open,
+      open,
       func: typeof value === 'function',
     });
     return (
@@ -282,7 +288,5 @@ const Element = RecursiveTreeElement(React.createClass({
         }
       </li>
     );
-  },
-}));
-
-export default Element;
+  }
+}
