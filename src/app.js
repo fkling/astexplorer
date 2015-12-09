@@ -52,7 +52,8 @@ class App extends React.Component {
         transformCode: initialTransformCode,
       } = this._getDataFromRevision(revision))
     } else {
-      parser = getParserByID(LocalStorage.getParser()) || getDefaultParser();
+      parser = getParserByID(LocalStorage.getParser()) ||
+        getDefaultParser(getCategoryByID(LocalStorage.getCategory()));
       initialCode = this._getDefaultCode(parser);
     }
 
