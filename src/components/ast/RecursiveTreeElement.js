@@ -1,5 +1,10 @@
 import React from 'react';
 
+function shouldAutoFocus({deepOpen, value, settings, focusPath}) {
+  return !!settings.autofocus && focusPath.indexOf(value) > -1;
+}
+
+
 /**
  * This is a higher order component the prevents infinite recursion when opening
  * the element tree.
@@ -28,13 +33,15 @@ export default function RecursiveTreeElement(Element) {
     constructor(props) {
       super(props);
       let deepOpen = props.deepOpen;
+      let open = shouldAutoFocus(props);
       if (props.value && typeof props.value === 'object') {
         if (openValues.has(props.value)) {
           deepOpen = false;
+          open = false;
         }
         addValue(props.value);
       }
-      this.state = {deepOpen};
+      this.state = {deepOpen, open};
     }
 
     componentWillUnmount() {
@@ -46,6 +53,7 @@ export default function RecursiveTreeElement(Element) {
 
     componentWillReceiveProps(props) {
       let deepOpen = props.deepOpen;
+      let open = shouldAutoFocus(props);
       if (!this.props.value !== props.value) {
         if (this.props.value && typeof this.props.value === 'object') {
           removeValue(this.props.value);
@@ -53,11 +61,12 @@ export default function RecursiveTreeElement(Element) {
         if (props.value && typeof props.value === 'object') {
           if (openValues.has(props.value)) {
             deepOpen = false;
+            open = false;
           }
           addValue(props.value);
         }
       }
-      this.setState({deepOpen});
+      this.setState({deepOpen, open});
     }
 
     render() {
@@ -65,6 +74,7 @@ export default function RecursiveTreeElement(Element) {
       return (
         <Element
           {...props}
+          open={this.state.open}
           deepOpen={this.state.deepOpen}
         />
       );

@@ -39,10 +39,10 @@ const Element = RecursiveTreeElement(React.createClass({
     const {value, name, deepOpen, parser, focusPath, settings} = this.props;
     // Some elements should be open by default
     var open =
+      this.props.open ||
       this.props.level === 0 ||
       deepOpen ||
-      (!!value && parser.opensByDefault(value, name)) ||
-      (!!settings.autofocus && focusPath.indexOf(value) > -1);
+      (!!value && parser.opensByDefault(value, name));
 
     return {
       open,
@@ -53,9 +53,7 @@ const Element = RecursiveTreeElement(React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     this.setState({
-      open: nextProps.deepOpen ||
-        this.state.open ||
-        this._shouldAutoFocus(this.props, nextProps),
+      open: nextProps.open || nextProps.deepOpen || this.state.open,
       deepOpen: nextProps.deepOpen,
       value: nextProps.value,
     });
