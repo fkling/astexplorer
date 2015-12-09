@@ -6,13 +6,11 @@ import * as LocalStorage from '../../LocalStorage';
 const ID = 'parse5';
 const options = {
   treeAdapter: 'default',
-  decodeHtmlEntities: true,
   ...LocalStorage.getParserSettings(ID),
 };
 
 const settings = [
   ['treeAdapter', ['default', 'htmlparser2']],
-  'decodeHtmlEntities',
 ];
 
 export default {
@@ -25,7 +23,7 @@ export default {
 
   loadParser(callback) {
     require([
-      'parse5/lib/tree_construction/parser',
+      'parse5/lib/parser',
       'parse5/lib/tree_adapters/default',
       'parse5/lib/tree_adapters/htmlparser2',
     ], (Parser, defaultAdapter, htmlparser2Adapter) => {
@@ -40,9 +38,9 @@ export default {
   },
 
   parse({ Parser, TreeAdapters }, code) {
-    return new Parser(TreeAdapters[options.treeAdapter], {
+    return new Parser({
+      treeAdapter: TreeAdapters[options.treeAdapter],
       locationInfo: true,
-      decodeHtmlEntities: options.decodeHtmlEntities,
     }).parse(code);
   },
 
@@ -56,7 +54,7 @@ export default {
 
   nodeToRange({ __location: loc }) {
     if (loc) {
-      return [loc.start, loc.end];
+      return [loc.startOffset, loc.endOffset];
     }
   },
 
