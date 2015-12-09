@@ -46,6 +46,7 @@
     "jscodeshift": "^0.3",
     "json-stringify-safe": "^5.0.1",
     "keypress": "git://github.com/dmauro/Keypress",
+    "parse": "^1.6.9",
     "parse5": "^1.5.1",
     "postcss-safe-parser": "^1.0.1",
     "postcss-scss": "^0.1.3",

@@ -28,6 +28,7 @@ npm run build
 echo "Copying artifacts..."
 cp -R dist/ "$TARGETPATH/dist/"
 cp -R css/ "$TARGETPATH/css/"
+cp -R fonts/ "$TARGETPATH/fonts/"
 cp index.html "$TARGETPATH/index.html"
 cp CNAME "$TARGETPATH/CNAME"
 cp favicon.png "$TARGETPATH/favicon.png"
