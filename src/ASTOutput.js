@@ -5,20 +5,23 @@ import visualizations from './components/visualization';
 
 const {PropTypes} = React;
 
-export default React.createClass({
-  propTypes: {
+export default class extends React.Component {
+  static propTypes = {
     ast: React.PropTypes.object,
     focusPath: React.PropTypes.array.isRequired,
     parser: PropTypes.object.isRequired,
-  },
+  };
 
-  getInitialState: function() {
-    return {
+  constructor(props, context) {
+    super(props, context);
+    this._changeOutput = this._changeOutput.bind(this);
+
+    this.state = {
       output: 0,
     };
-  },
+  }
 
-  shouldComponentUpdate: function(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) {
     var newFocusPath = nextProps.focusPath;
 
     return this.props.editorError !== nextProps.editorError ||
@@ -27,13 +30,13 @@ export default React.createClass({
       this.props.focusPath.some((obj, i) => obj !== newFocusPath[i]) ||
       this.state.output !== nextState.output ||
       this.state.parser !== nextState.parser;
-  },
+  }
 
-  _changeOutput: function(event) {
+  _changeOutput(event) {
     this.setState({output: event.target.value});
-  },
+  }
 
-  render: function() {
+  render() {
     var output;
     if (this.props.ast) {
       output = React.createElement(
@@ -66,5 +69,5 @@ export default React.createClass({
         {output}
       </div>
     );
-  },
-});
+  }
+}

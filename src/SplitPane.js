@@ -17,23 +17,26 @@ var baseStyleVertical = {
 /**
  * Creates a left-right split pane inside its container.
  */
-export default React.createClass({
-  getInitialState: function() {
-    return {
+export default class extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this._onMouseDown = this._onMouseDown.bind(this);
+
+    this.state = {
       dividerPosition: 50,
     };
-  },
+  }
 
-  _onMouseDown: function() {
+  _onMouseDown() {
     var vertical = this.props.vertical;
     var max = vertical ? global.innerHeight : global.innerWidth;
     global.document.body.style.cursor = vertical ? 'row-resize' : 'col-resize';
-    var moveHandler = function(event) {
+    var moveHandler = event => {
       event.preventDefault();
       this.setState({
         dividerPosition: ((vertical ? event.pageY : event.pageX) / max) * 100});
-    }.bind(this);
-    var upHandler = function() {
+    };
+    var upHandler = () => {
       document.removeEventListener('mousemove', moveHandler);
       document.removeEventListener('mouseup', upHandler);
       global.document.body.style.cursor = '';
@@ -41,13 +44,13 @@ export default React.createClass({
       if (this.props.onResize) {
         this.props.onResize();
       }
-    }.bind(this);
+    };
 
     document.addEventListener('mousemove', moveHandler);
     document.addEventListener('mouseup', upHandler);
-  },
+  }
 
-  render: function() {
+  render() {
     var children = this.props.children;
     var dividerPos = this.state.dividerPosition;
     var styleA;
@@ -127,5 +130,5 @@ export default React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}

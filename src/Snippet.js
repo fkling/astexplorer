@@ -38,15 +38,15 @@ var Snippet = Parse.Object.extend('Snippet', {
       if (!revisions || revisions.length === 0) {
         return Parse.Promise.as(null);
       }
-      return revisions[revisions.length - 1].fetch(function(revision) {
+      return revisions[revisions.length - 1].fetch(revision => {
         this._latestRevision = revision;
-      }.bind(this));
+      });
     }
   },
   createNewRevision: function(data) {
     // we only create a new revision if the code is different from the previous
     // revision
-    return this.fetchLatestRevision().then(function(revision) {
+    return this.fetchLatestRevision().then(revision => {
       const isNew = !revision ||
         revision.get('code') !== data.code ||
         revision.get('transform') !== data.transform ||
@@ -60,7 +60,7 @@ var Snippet = Parse.Object.extend('Snippet', {
         newRevision.set('toolID', data.toolID);
         newRevision.set('parserID', data.parserID);
         this.add('revisions', newRevision);
-        return this.save().then(function(snippet) {
+        return this.save().then(snippet => {
           var revisionNumber = snippet.get('revisions').length - 1;
           this._latestRevision = newRevision;
           setInCache(snippet, newRevision, revisionNumber);
@@ -69,10 +69,10 @@ var Snippet = Parse.Object.extend('Snippet', {
             revision: newRevision,
             revisionNumber: revisionNumber,
           };
-        }.bind(this));
+        });
       }
       return null;
-    }.bind(this));
+    });
   },
 }, {
   fetch: function(snippetID, rev) {

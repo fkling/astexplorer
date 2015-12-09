@@ -19,10 +19,23 @@ function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
 }
 
-var App = React.createClass({
-  getInitialState: function() {
-    var snippet = this.props.snippet;
-    var revision = this.props.revision;
+class App extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this._onCategoryChange = this._onCategoryChange.bind(this);
+    this._onDropError = this._onDropError.bind(this);
+    this._onDropText = this._onDropText.bind(this);
+    this._onFork = this._onFork.bind(this);
+    this._onParserChange = this._onParserChange.bind(this);
+    this._onResize = this._onResize.bind(this);
+    this._onSave = this._onSave.bind(this);
+    this._onSettingsChange = this._onSettingsChange.bind(this);
+    this.onActivity = this.onActivity.bind(this);
+    this.onContentChange = this.onContentChange.bind(this);
+    this.onTransformChange = this.onTransformChange.bind(this);
+    this.onTransformCodeChange = this.onTransformCodeChange.bind(this);
+    var snippet = props.snippet;
+    var revision = props.revision;
     if ((snippet && !revision) || (!snippet && revision)) {
       throw Error('Must set both, snippet and revision');
     }
@@ -43,7 +56,8 @@ var App = React.createClass({
       parser = getParserByID(LocalStorage.getParser()) || getDefaultParser();
       initialCode = this._getDefaultCode(parser);
     }
-    return {
+
+    this.state = {
       forking: false,
       saving: false,
       ast: null,
@@ -56,9 +70,9 @@ var App = React.createClass({
       revision: revision,
       parser,
     };
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     if (this.props.error) {
       this._showError(this.props.error);
     }
@@ -113,11 +127,11 @@ var App = React.createClass({
         astNode && nodeToRange(this.state.parser, astNode)
       )
    );
-  },
+  }
 
   _getDefaultCode(parser = this.state.parser) {
     return parser.category.codeExample;
-  },
+  }
 
   _getDataFromRevision(revision) {
     const transformerID = revision.get('toolID');
@@ -149,20 +163,20 @@ var App = React.createClass({
     const code = revision.get('code') || this._getDefaultCode(parser);
 
     return {parser, transformer, code, transformCode};
-  },
+  }
 
   _setCode(code) {
     return {initialCode: code, currentCode: code};
-  },
+  }
 
   _setTransformCode(transformCode) {
     return {
       initialTransformCode: transformCode,
       currentTransformCode: transformCode,
     };
-  },
+  }
 
-  _setRevision: function(snippet, revision) {
+  _setRevision(snippet, revision) {
     if (!snippet || !revision) {
       this.setError('Something went wrong fetching the revision. Try to refresh!');
     }
@@ -203,9 +217,9 @@ var App = React.createClass({
         update({ast: this.state.ast, editorError: null});
       }
     }
-  },
+  }
 
-  _clearRevision: function() {
+  _clearRevision() {
     const defaultCode = this._getDefaultCode();
     const update = newState => {
       this.setState({
@@ -225,9 +239,9 @@ var App = React.createClass({
       ast => update({ast, editorError: null}),
       error => update({ast: null, editorError: error})
     );
-  },
+  }
 
-  parse: function(code, parser) {
+  parse(code, parser) {
     if (!parser) {
       parser = this.state.parser;
     }
@@ -235,9 +249,9 @@ var App = React.createClass({
       parser._promise = new Promise(parser.loadParser);
     }
     return parser._promise.then(realParser => parser.parse(realParser, code));
-  },
+  }
 
-  onContentChange: function({value: code, cursor}) {
+  onContentChange({value: code, cursor}) {
     if (this.state.ast && this.state.currentCode === code) {
       return;
     }
@@ -255,15 +269,15 @@ var App = React.createClass({
         editorError: error,
       })
     );
-  },
+  }
 
-  onTransformCodeChange: function({value: transformCode}) {
+  onTransformCodeChange({value: transformCode}) {
     this.setState({
       currentTransformCode: transformCode,
     });
-  },
+  }
 
-  onTransformChange: function(transformer) {
+  onTransformChange(transformer) {
     const showTransformPanel = !this.state.showTransformPanel ||
       transformer !== this.state.transformer;
     const parser =
@@ -303,26 +317,26 @@ var App = React.createClass({
       });
     }
     this._onResize();
-  },
+  }
 
-  onActivity: function(cursorPos) {
+  onActivity(cursorPos) {
     if (this.state.ast) {
       this.setState({
         focusPath: getFocusPath(this.state.ast, cursorPos, this.state.parser),
       });
     }
-  },
+  }
 
-  _showError: function(msg) {
+  _showError(msg) {
     this.setState({error: msg});
     setTimeout(() => {
       if (msg === this.state.error) {
         this.setState({error: false});
       }
     }, 3000);
-  },
+  }
 
-  _save: function(fork) {
+  _save(fork) {
     var snippet = !fork && this.state.snippet || new Snippet();
     var code = this.refs.editor.getValue();
     var transformer = this.state.transformer;
@@ -358,9 +372,9 @@ var App = React.createClass({
         this.setState({saving: false, forking: false});
       }
     );
-  },
+  }
 
-  _onSave: function() {
+  _onSave() {
     const {revision} = this.state;
     var isNewRevision = !revision &&
       (this.state.currentCode !== this._getDefaultCode() ||
@@ -375,19 +389,19 @@ var App = React.createClass({
     if (isNewRevision || isModified) {
       this._save();
     }
-  },
+  }
 
-  _onFork: function() {
+  _onFork() {
     if (this.state.revision) {
       this._save(true);
     }
-  },
+  }
 
-  _onResize: function() {
+  _onResize() {
     PubSub.publish('PANEL_RESIZE');
-  },
+  }
 
-  _onDropText: function(type, event, text, categoryId) {
+  _onDropText(type, event, text, categoryId) {
     let parser = this.state.parser;
     if (categoryId && categoryId !== parser.category.id) {
       parser = getDefaultParser(getCategoryByID(categoryId));
@@ -407,13 +421,13 @@ var App = React.createClass({
         parser,
       })
     );
-  },
+  }
 
-  _onDropError: function(type, event, msg) {
+  _onDropError(type, event, msg) {
     this._showError(msg);
-  },
+  }
 
-  _onCategoryChange: function(category) {
+  _onCategoryChange(category) {
     if (category === this.state.parser.category) {
       return;
     }
@@ -434,9 +448,9 @@ var App = React.createClass({
       },
       () => { this._clearRevision() }
     );
-  },
+  }
 
-  _onParserChange: function(parser) {
+  _onParserChange(parser) {
     LocalStorage.setParser(parser);
     this.parse(this.state.currentCode, parser).then(
       ast => this.setState({
@@ -451,13 +465,13 @@ var App = React.createClass({
         parser: parser,
       })
     );
-  },
+  }
 
-  _onSettingsChange: function() {
+  _onSettingsChange() {
     this._onParserChange(this.state.parser);
-  },
+  }
 
-  _canSave: function() {
+  _canSave() {
     const {
       revision,
       showTransformPanel,
@@ -472,9 +486,9 @@ var App = React.createClass({
        showTransformPanel &&
        currentTransformCode !== initialTransformCode &&
        currentTransformCode !== this.state.transformer.defaultTransform;
-  },
+  }
 
-  render: function() {
+  render() {
     const {
       revision,
       showTransformPanel,
@@ -553,8 +567,8 @@ var App = React.createClass({
         />
       </PasteDropTarget>
     );
-  },
-});
+  }
+}
 
 function render(props) {
   React.render(
