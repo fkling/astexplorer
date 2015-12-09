@@ -18,20 +18,19 @@ if [ ! -d "$TARGETPATH" ]; then
 fi
 
 # Updating
+echo "Clear target..."
 cd "$TARGETPATH"
 git pull origin
-git rm -rf dist/*
+git rm -rf *
 cd - > /dev/null
 
 echo "Building..."
+rm -rf out/*
 npm run build
 echo "Copying artifacts..."
-cp -R dist/ "$TARGETPATH/dist/"
-cp -R css/ "$TARGETPATH/css/"
-cp -R fonts/ "$TARGETPATH/fonts/"
-cp index.html "$TARGETPATH/index.html"
+cp -R out/ "$TARGETPATH/"
+cp README.md "$TARGETPATH/README.md"
 cp CNAME "$TARGETPATH/CNAME"
-cp favicon.png "$TARGETPATH/favicon.png"
 
 # Commit changes
 cd $TARGETPATH
@@ -40,7 +39,7 @@ if git diff --quiet && git diff --cached --quite; then
   exit 0
 fi
 echo "Committing..."
-git add .
+git add -A
 git commit -m"Update site"
 echo "Pushing..."
 git push origin
