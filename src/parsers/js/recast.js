@@ -5,14 +5,12 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'recast';
-const options = Object.assign(
-  {
-    tolerant: false,
-    range: true,
-    parser: 'esprima-fb',
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  tolerant: false,
+  range: true,
+  parser: 'esprima-fb',
+  ...LocalStorage.getParserSettings(ID),
+};
 
 const settings = [
   'range',

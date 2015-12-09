@@ -15,7 +15,7 @@ export default class Editor {
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.codeMirror.getValue()) {
       // preserve scroll position
-      var info = this.codeMirror.getScrollInfo();
+      let info = this.codeMirror.getScrollInfo();
       this.codeMirror.setValue(nextProps.value);
       this.codeMirror.scrollTo(info.left, info.top);
     }
@@ -55,7 +55,7 @@ export default class Editor {
 
   componentWillUnmount() {
     this._unbindHandlers();
-    var container = this.refs.container.getDOMNode();
+    let container = this.refs.container.getDOMNode();
     container.removeChild(container.children[0]);
     this.codeMirror = null;
   }
@@ -66,8 +66,8 @@ export default class Editor {
   }
 
   _unbindHandlers() {
-    var cmHandlers = this._CMHandlers;
-    for (var i = 0; i < cmHandlers.length; i += 2) {
+    let cmHandlers = this._CMHandlers;
+    for (let i = 0; i < cmHandlers.length; i += 2) {
       this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
     }
   }

@@ -1,13 +1,13 @@
 import React from 'react';
 
-var baseStyleHorizontal = {
+let baseStyleHorizontal = {
   position: 'absolute',
   top: 0,
   bottom: 0,
   boxSizing: 'border-box',
 };
 
-var baseStyleVertical = {
+let baseStyleVertical = {
   position: 'absolute',
   left: 0,
   right: 0,
@@ -28,15 +28,15 @@ export default class extends React.Component {
   }
 
   _onMouseDown() {
-    var vertical = this.props.vertical;
-    var max = vertical ? global.innerHeight : global.innerWidth;
+    let {vertical} = this.props;
+    let max = vertical ? global.innerHeight : global.innerWidth;
     global.document.body.style.cursor = vertical ? 'row-resize' : 'col-resize';
-    var moveHandler = event => {
+    let moveHandler = event => {
       event.preventDefault();
       this.setState({
         dividerPosition: ((vertical ? event.pageY : event.pageX) / max) * 100});
     };
-    var upHandler = () => {
+    let upHandler = () => {
       document.removeEventListener('mousemove', moveHandler);
       document.removeEventListener('mouseup', upHandler);
       global.document.body.style.cursor = '';
@@ -51,11 +51,11 @@ export default class extends React.Component {
   }
 
   render() {
-    var children = this.props.children;
-    var dividerPos = this.state.dividerPosition;
-    var styleA;
-    var styleB;
-    var dividerStyle;
+    let {children} = this.props;
+    let dividerPos = this.state.dividerPosition;
+    let styleA;
+    let styleB;
+    let dividerStyle;
 
     if (!Array.isArray(children) || children.filter(x => x).length !== 2) {
       return (

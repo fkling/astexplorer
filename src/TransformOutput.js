@@ -12,7 +12,7 @@ function transform(transformer, transformCode, code) {
     // assert that there are no obvious infinite loops
     halts(transformCode);
     // guard against non-obvious loops with a timeout of 5 seconds
-    var start = Date.now();
+    let start = Date.now();
     transformCode = loopProtect(
       transformCode,
       [
@@ -54,8 +54,8 @@ export default class TransformOutput extends React.Component {
       this.props.transformCode,
       this.props.code,
     ).then(
-      result => this.setState({result: result}),
-      error => this.setState({error: error})
+      result => this.setState({result}),
+      error => this.setState({error})
     );
   }
 

@@ -22,7 +22,7 @@ export default class extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    var newFocusPath = nextProps.focusPath;
+    let newFocusPath = nextProps.focusPath;
 
     return this.props.editorError !== nextProps.editorError ||
       this.props.ast !== nextProps.ast ||
@@ -37,7 +37,7 @@ export default class extends React.Component {
   }
 
   render() {
-    var output;
+    let output;
     if (this.props.ast) {
       output = React.createElement(
         visualizations[this.state.output],
@@ -50,7 +50,7 @@ export default class extends React.Component {
         </div>;
     }
 
-    var buttons = visualizations.map(
+    let buttons = visualizations.map(
       (cls, index) =>
         <button
           key={index}

@@ -34,15 +34,13 @@ const parseOptionsDefaults = {
     unicodeEscapeSequences: true,
 };
 
-const options = Object.assign(
-  {
-    SourceType: 'Script',
-    TolerateErrors: false,
-    commentCallback: true,
-    ...parseOptionsDefaults,
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  SourceType: 'Script',
+  TolerateErrors: false,
+  commentCallback: true,
+  ...parseOptionsDefaults,
+  ...LocalStorage.getParserSettings(ID),
+};
 
 const settings = [
   ['SourceType', ['Script', 'Module']],
@@ -118,7 +116,7 @@ export default {
         key: 'type',
       }
     }
-    for (var prop in node) {
+    for (let prop in node) {
       if (prop === 'line_' || prop === 'column_') {
         prop = prop.slice(0, -1);
       }

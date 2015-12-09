@@ -4,12 +4,10 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'postcss';
-const options = Object.assign(
-  {
-    parser: 'built-in',
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  parser: 'built-in',
+  ...LocalStorage.getParserSettings(ID),
+};
 
 const settings = [
   ['parser', ['built-in', 'scss', 'safe-parser']],

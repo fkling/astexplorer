@@ -1,2 +1,7 @@
 import Parse from './Parse';
-export default Parse.Object.extend('SnippetRevision');
+
+export default class SnippetRevision extends Parse.Object {
+	constructor() {
+		super('SnippetRevision');
+	}
+}

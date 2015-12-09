@@ -13,7 +13,7 @@ const {PropTypes} = React;
 // For debugging
 function log(f) {
   return function(a, b) {
-    var result = f.call(this, a,b);
+    let result = f.call(this, a,b);
     console.log(a.name, a.name || a.value && a.value.type, 'Updates', result);
     return result;
   };
@@ -44,7 +44,7 @@ export default class Element extends React.Component {
     this._toggleClick = this._toggleClick.bind(this);
     const {value, name, deepOpen, parser, focusPath, settings} = props;
     // Some elements should be open by default
-    var open =
+    let open =
       props.open ||
       props.level === 0 ||
       deepOpen ||
@@ -238,7 +238,7 @@ export default class Element extends React.Component {
       showToggler = false;
     }
 
-    var name = this.props.name ?
+    let name = this.props.name ?
       <span
         className="key"
         onClick={
@@ -254,11 +254,11 @@ export default class Element extends React.Component {
       </span> :
       null;
 
-    var classNames = cx({
+    let classNames = cx({
       entry: true,
-      focused: focused,
+      focused,
       toggable: showToggler,
-      open: open,
+      open,
       func: typeof value === 'function',
     });
     return (

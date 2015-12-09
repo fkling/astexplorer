@@ -34,8 +34,7 @@ class App extends React.Component {
     this.onContentChange = this.onContentChange.bind(this);
     this.onTransformChange = this.onTransformChange.bind(this);
     this.onTransformCodeChange = this.onTransformCodeChange.bind(this);
-    var snippet = props.snippet;
-    var revision = props.revision;
+    const {snippet, revision} = props;
     if ((snippet && !revision) || (!snippet && revision)) {
       throw Error('Must set both, snippet and revision');
     }
@@ -65,9 +64,9 @@ class App extends React.Component {
       focusPath: [],
       ...this._setCode(initialCode),
       ...this._setTransformCode(initialTransformCode),
-      snippet: snippet,
+      snippet,
       showTransformPanel: !!transformer,
-      revision: revision,
+      revision,
       parser,
     };
   }
@@ -97,7 +96,7 @@ class App extends React.Component {
       }
     };
 
-    var listener = new keypress.Listener();
+    let listener = new keypress.Listener();
     listener.simple_combo('meta s', (event) => {
       event.preventDefault();
       this._onSave();
@@ -258,7 +257,7 @@ class App extends React.Component {
 
     this.parse(code).then(
       ast => this.setState({
-        ast: ast,
+        ast,
         currentCode: code,
         focusPath: cursor ? getFocusPath(ast, cursor, this.state.parser) : [],
         editorError: null,
@@ -283,7 +282,7 @@ class App extends React.Component {
     const parser =
       showTransformPanel ? getParserByID(transformer.defaultParserID) : this.state.parser;
 
-    var transformCode = this.state.currentTransformCode;
+    let transformCode = this.state.currentTransformCode;
     if (transformer !== this.state.transformer) {
       transformCode = transformer.defaultTransform;
     }
@@ -337,14 +336,14 @@ class App extends React.Component {
   }
 
   _save(fork) {
-    var snippet = !fork && this.state.snippet || new Snippet();
-    var code = this.refs.editor.getValue();
-    var transformer = this.state.transformer;
-    var transformerID = transformer && transformer.id;
-    var transformCode = this.refs.transformEditor &&
+    let snippet = !fork && this.state.snippet || new Snippet();
+    let code = this.refs.editor.getValue();
+    let {transformer} = this.state;
+    let transformerID = transformer && transformer.id;
+    let transformCode = this.refs.transformEditor &&
       this.refs.transformEditor.getValue();
 
-    var data = {
+    let data = {
       parserID: this.state.parser.id,
     };
     if (code !== this._getDefaultCode()) {
@@ -376,12 +375,12 @@ class App extends React.Component {
 
   _onSave() {
     const {revision} = this.state;
-    var isNewRevision = !revision &&
+    let isNewRevision = !revision &&
       (this.state.currentCode !== this._getDefaultCode() ||
        this.state.showTransformPanel &&
        this.state.currentTransformCode !==
        this.state.transformer.defaultTransform);
-    var isModified = revision &&
+    let isModified = revision &&
        (this.state.initalCode !== this.state.currentCode ||
         this.state.showTransformPanel &&
         this.state.initialTransformCode !== this.state.currentTransformCode);
@@ -402,14 +401,14 @@ class App extends React.Component {
   }
 
   _onDropText(type, event, text, categoryId) {
-    let parser = this.state.parser;
+    let {parser} = this.state;
     if (categoryId && categoryId !== parser.category.id) {
       parser = getDefaultParser(getCategoryByID(categoryId));
     }
     this.parse(text, parser).then(
       ast => this.setState({
         ...this._setCode(text),
-        ast: ast,
+        ast,
         parser,
         focusPath: [],
         editorError: null,
@@ -444,7 +443,7 @@ class App extends React.Component {
     this.setState(
       {
         showTransformPanel: false,
-        parser
+        parser,
       },
       () => { this._clearRevision() }
     );
@@ -454,15 +453,15 @@ class App extends React.Component {
     LocalStorage.setParser(parser);
     this.parse(this.state.currentCode, parser).then(
       ast => this.setState({
-        ast: ast,
-        parser: parser,
+        ast,
+        parser,
         focusPath: [],
         editorError: null,
       }),
       error => this.setState({
         ast: null,
         editorError: error,
-        parser: parser,
+        parser,
       })
     );
   }

@@ -5,23 +5,24 @@ import * as LocalStorage from '../../LocalStorage';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'babylon';
-const options = Object.assign(
-  {
-    sourceType: 'module',
-    features: {
-      'es7.asyncFunctions': true,
-      'es7.classProperties': true,
-      'es7.comprehensions': true,
-      'es7.decorators': true,
-      'es7.exportExtensions': true,
-      'es7.functionBind': true,
-      'es7.objectRestSpread': true,
-      'es7.trailingFunctionCommas': true,
-    },
-    plugins: { jsx: true, flow: true },
+const options = {
+  sourceType: 'module',
+
+  features: {
+    'es7.asyncFunctions': true,
+    'es7.classProperties': true,
+    'es7.comprehensions': true,
+    'es7.decorators': true,
+    'es7.exportExtensions': true,
+    'es7.functionBind': true,
+    'es7.objectRestSpread': true,
+    'es7.trailingFunctionCommas': true,
   },
-  LocalStorage.getParserSettings(ID)
-);
+
+  plugins: { jsx: true, flow: true },
+
+  ...LocalStorage.getParserSettings(ID),
+};
 
 export default {
   ...defaultParserInterface,

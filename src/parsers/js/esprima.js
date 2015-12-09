@@ -5,18 +5,16 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'esprima';
-const options = Object.assign(
-  {
-    loc: false,
-    range: true,
-    tokens: false,
-    comment: false,
-    attachComment: false,
-    tolerant: false,
-    sourceType: 'module',
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  loc: false,
+  range: true,
+  tokens: false,
+  comment: false,
+  attachComment: false,
+  tolerant: false,
+  sourceType: 'module',
+  ...LocalStorage.getParserSettings(ID),
+};
 
 const settings = [
   'range',

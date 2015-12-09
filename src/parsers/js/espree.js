@@ -5,44 +5,44 @@ import * as LocalStorage from '../../LocalStorage';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'espree';
-const options = Object.assign(
-  {
-    range: true,
-    loc: false,
-    comments: false,
-    attachComment: false,
-    tokens: false,
-    tolerant: true,
-    ecmaFeatures: {
-      arrowFunctions: true,
-      blockBindings: true,
-      destructuring: true,
-      regexYFlag: true,
-      regexUFlag: true,
-      templateStrings: true,
-      binaryLiterals: true,
-      octalLiterals: true,
-      unicodeCodePointEscapes: true,
-      defaultParams: true,
-      restParams: true,
-      forOf: true,
-      objectLiteralComputedProperties: true,
-      objectLiteralShorthandMethods: true,
-      objectLiteralShorthandProperties: true,
-      objectLiteralDuplicateProperties: true,
-      generators: true,
-      spread: true,
-      superInFunctions: true,
-      classes: true,
-      newTarget: false,
-      modules: true,
-      jsx: true,
-      globalReturn: true,
-      experimentalObjectRestSpread: true,
-    },
+const options = {
+  range: true,
+  loc: false,
+  comments: false,
+  attachComment: false,
+  tokens: false,
+  tolerant: true,
+
+  ecmaFeatures: {
+    arrowFunctions: true,
+    blockBindings: true,
+    destructuring: true,
+    regexYFlag: true,
+    regexUFlag: true,
+    templateStrings: true,
+    binaryLiterals: true,
+    octalLiterals: true,
+    unicodeCodePointEscapes: true,
+    defaultParams: true,
+    restParams: true,
+    forOf: true,
+    objectLiteralComputedProperties: true,
+    objectLiteralShorthandMethods: true,
+    objectLiteralShorthandProperties: true,
+    objectLiteralDuplicateProperties: true,
+    generators: true,
+    spread: true,
+    superInFunctions: true,
+    classes: true,
+    newTarget: false,
+    modules: true,
+    jsx: true,
+    globalReturn: true,
+    experimentalObjectRestSpread: true,
   },
-  LocalStorage.getParserSettings(ID)
-);
+
+  ...LocalStorage.getParserSettings(ID),
+};
 
 export default {
   ...defaultParserInterface,

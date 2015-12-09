@@ -103,7 +103,7 @@ export default class Editor {
       this._mark = null;
       this._subscriptions.push(
         PubSub.subscribe('CM.HIGHLIGHT', (_, range) => {
-          var doc = this.codeMirror.getDoc();
+          let doc = this.codeMirror.getDoc();
           this._markerRange = range;
           // We only want one mark at a time.
           if (this._mark) {
@@ -141,7 +141,7 @@ export default class Editor {
     this._unbindHandlers();
     this._markerRange = null;
     this._mark = null;
-    var container = this.refs.container.getDOMNode();
+    let container = this.refs.container.getDOMNode();
     container.removeChild(container.children[0]);
     this.codeMirror = null;
   }
@@ -152,17 +152,17 @@ export default class Editor {
   }
 
   _unbindHandlers() {
-    var cmHandlers = this._CMHandlers;
-    for (var i = 0; i < cmHandlers.length; i += 2) {
+    let cmHandlers = this._CMHandlers;
+    for (let i = 0; i < cmHandlers.length; i += 2) {
       this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
     }
-    this._subscriptions.forEach(function(token) {
+    this._subscriptions.forEach(token => {
       PubSub.unsubscribe(token);
     });
   }
 
   _onContentChange() {
-    var doc = this.codeMirror.getDoc();
+    let doc = this.codeMirror.getDoc();
     this.props.onContentChange({
       value: doc.getValue(),
       cursor: doc.indexFromPos(doc.getCursor()),

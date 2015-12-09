@@ -14,8 +14,8 @@ export default class CompactArrayView {
   }
 
   render() {
-    var array = this.props.array;
-    var count = array.length;
+    let {array} = this.props;
+    let count = array.length;
 
     if (count === 0) {
       return <span className="p">{"[ ]"}</span>;

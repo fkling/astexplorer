@@ -6,15 +6,13 @@ import * as LocalStorage from '../../LocalStorage';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'acorn';
-const options = Object.assign(
-  {
-    ecmaVersion: 6,
-    ranges: true,
-    sourceType: 'module',
-    'plugins.jsx': true,
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  ecmaVersion: 6,
+  ranges: true,
+  sourceType: 'module',
+  'plugins.jsx': true,
+  ...LocalStorage.getParserSettings(ID),
+};
 
 export default {
   ...defaultParserInterface,

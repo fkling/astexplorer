@@ -4,14 +4,12 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'htmlparser2';
-const options = Object.assign(
-  {
-    xmlMode: false,
-    lowerCaseAttributeNames: true,
-    lowerCaseTags: true,
-  },
-  LocalStorage.getParserSettings(ID)
-);
+const options = {
+  xmlMode: false,
+  lowerCaseAttributeNames: true,
+  lowerCaseTags: true,
+  ...LocalStorage.getParserSettings(ID),
+};
 
 const settings = Object.keys(options);
 
