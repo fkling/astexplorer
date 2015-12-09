@@ -1,28 +1,48 @@
-## A JavaScript AST explorer
+## AST explorer
 
-Paste JavaScript code into the editor and inspect the generated AST.
+Paste or drop code into the editor and inspect the generated AST.
 
-The JavaScript AST explorer provides
+The AST explorer provides following code parsers:
 
-- [esprima][]
-- [espree][]
-- [acorn][]
-- [babylon][]
-- [recast][]
+- JavaScript:
+  - [esprima][]
+  - [espree][]
+  - [acorn][] + [acorn-jsx][]
+  - [babylon][]
+  - [recast][]
+  - [shift][]
+  - [babel-eslint][]
+  - [traceur][]
+  - [typescript][]
+  - [uglify-js][]
+- CSS:
+  - [cssom][]
+  - [postcss][] + [postcss-safe-parser][] & [postcss-scss][]
+  - [rework][]
+- HTML:
+  - [htmlparser2][]
+  - [parse5][]
 
-to parse the code. Depending on the parser settings, it not only supports ES5
+Depending on the parser settings, it not only supports ES5/CSS3
 but also
 
 - ES6: [arrow functions](https://github.com/lukehoban/es6features#arrows), [destructuring](https://github.com/lukehoban/es6features#destructuring),
   [classes](https://github.com/lukehoban/es6features#classes), ...
 - ES7 propsals: [async/await](https://github.com/lukehoban/ecmascript-asyncawait), [object rest / spread](https://github.com/sebmarkbage/ecmascript-rest-spread),  ...
 - [JSX](https://facebook.github.io/jsx/), known through [React](https://facebook.github.io/react/).
-- Typed JavaScript ([Flow](http://flowtype.org/))
+- Typed JavaScript ([Flow](http://flowtype.org/) and [TypeScript](http://typescriptlang.org/))
+- [SASS](http://sass-lang.com/)
 
 Since future syntax is supported, the JavaScript AST explorer is a useful tool
 for developers who want to create AST transforms.
-In fact, [jscodeshift][] and [babel][] are included so you can prototype 
-codemodding scripts and babel plugins.
+
+In fact, following transformers are included so you can prototype your own plugins:
+
+- JavaScript
+  - [jscodeshift][]
+  - [babel][]
+- CSS
+  - [postcss][]
 
 ### Features
 
@@ -39,15 +59,30 @@ you can drag and drop JS files).
 - Editing the source or moving the cursor around will automatically highlight the
 corresponding AST node (or its ancestors of it isn't expanded):
 ![source highlight](assets/ast.png)
+- You can use `$node` in the console to refer to the last opened/toggled AST 
+node.
 
 [esprima]: https://github.com/jQuery/esprima
 [babylon]: https://babeljs.io/
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [espree]: https://github.com/eslint/espree
-[acorn]: https://github.com/marijnh/acorn
+[acorn]: https://github.com/ternjs/acorn
+[acorn-jsx]: https://github.com/RReverser/acorn-jsx
 [recast]: https://github.com/benjamn/recast
+[shift]: https://github.com/shapesecurity/shift-parser-js
+[traceur]: https://github.com/google/traceur-compiler
+[typescript]: https://github.com/Microsoft/TypeScript/
+[uglify-js]: https://github.com/mishoo/UglifyJS2
+[babel-eslint]: https://github.com/babel/babel-eslint
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [escodegen]: https://github.com/estools/escodegen
+[cssom]: https://github.com/NV/CSSOM
+[postcss]: https://github.com/postcss/postcss
+[postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
+[postcss-scss]: https://github.com/postcss/postcss-scss
+[rework]: https://github.com/reworkcss/rework
+[htmlparser2]: https://github.com/fb55/htmlparser2
+[parse5]: https://github.com/inikulin/parse5
 
 ### Contributions
 
@@ -57,15 +92,26 @@ as possible!
 #### How to add a new parser
 
 1. Install the new parser as dependency: `npm install -S theParser`
-2. Copy one of the existing examples in `src/parsers/`.
+2. Copy one of the existing examples in `src/parsers/{language}`.
 3. Adjust the code as necessary:
-  - Load the right parser.
-  - Call the right parsing method with the right/necessary options.
+  - Update metadata.
+  - Load the right parser (`loadParser`).
+  - Call the right parsing method with the right/necessary options in `parse`.
   - Implement the `nodeToRange` method (this is for highlighting).
+  - Implement the `getNodeName` method (this is for quick look through the tree).
+  - Implement `opensByDefault` method for auto-expansion of specific properties.
+  - Define `_ignoredProperties` set or implement `forEachProperty` generator method for filtering.
   - Provide a `renderSettings` method if applicable.
-4. Add a new import to `src/parser/index.js`.
-5. Add the module to `partition.json` (either as new bundle or to an
-   existing one of there are cross-dependencies).
+
+#### How to add a new transformer
+
+1. Install the new transformer as dependency.
+2. Copy one of the existing examples in `src/parsers/{language}/transformers`.
+3. Adjust the code as necessary:
+  - Update metadata and `defaultParserID`.
+  - Load the right transformer (`loadTransformer`).
+  - Call the transformation method in `transform`.
+  - Change sample transformation code in `codeExample.txt`.
 
 #### Build your own version
 
