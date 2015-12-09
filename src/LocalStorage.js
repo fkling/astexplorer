@@ -3,7 +3,7 @@ let defaultConfig = {
   parser: {},
   parserSettings: {},
   visualizationSettings: {},
-  category: null,
+  category: 'javascript',
 };
 
 let config = storage ?
@@ -22,7 +22,6 @@ let writeConfig = storage ?
 const parser = config.parser;
 if (parser == null || typeof parser === 'string') {
   config.parser = {};
-  config.category = 'javascript'; // default category
   writeConfig();
 }
 
@@ -31,7 +30,7 @@ export function getParser(category) {
 }
 
 export function setParser(parser) {
-  config.parser[getCategory()] = parser;
+  config.parser[parser.category.id] = parser.id;
   writeConfig();
 }
 

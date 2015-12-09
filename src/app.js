@@ -222,7 +222,7 @@ var App = React.createClass({
     }
 
     this.parse(defaultCode).then(
-      ast => update({ast}),
+      ast => update({ast, editorError: null}),
       error => update({ast: null, editorError: error})
     );
   },
@@ -414,16 +414,30 @@ var App = React.createClass({
   },
 
   _onCategoryChange: function(category) {
+    if (category === this.state.parser.category) {
+      return;
+    }
+
     LocalStorage.setCategory(category.id);
     let parser = getParserByID(LocalStorage.getParser(category.id)) ||
       getDefaultParser(category);
-    this.setState({ parser }, () => {
-      this._clearRevision();
-    });
+
+    // Verify that local storage wasn't corrupted
+    if (parser.category !== category) {
+      parser = getDefaultParser(category);
+    }
+
+    this.setState(
+      {
+        showTransformPanel: false,
+        parser
+      },
+      () => { this._clearRevision() }
+    );
   },
 
   _onParserChange: function(parser) {
-    LocalStorage.setParser(parser.id);
+    LocalStorage.setParser(parser);
     this.parse(this.state.currentCode, parser).then(
       ast => this.setState({
         ast: ast,
