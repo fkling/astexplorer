@@ -1,6 +1,17 @@
 import React from 'react';
-
 import escodegen from 'escodegen';
+import { categories } from './parsers';
+
+const acceptedFileTypes = new Map([
+  ['application/json', 'JSON'],
+  ['text/plain', 'TEXT'],
+]);
+
+categories.forEach(({ id, mimeTypes }) => {
+  mimeTypes.forEach(mimeType => {
+    acceptedFileTypes.set(mimeType, id);
+  });
+});
 
 export default class PasteDropTarget extends React.Component {
   static propTypes = {
@@ -32,14 +43,12 @@ export default class PasteDropTarget extends React.Component {
       }
       let cbdata = event.clipboardData;
       // Plain text
-      if (cbdata.types.indexOf && cbdata.types.indexOf('text/plain') > -1) {
+      if (cbdata.types.indexOf && cbdata.types.indexOf('text/plain') > -1 && this.props.onText) {
         try {
-          if (this.props.onText) {
-            let code = this._jsonToCode(cbdata.getData('text/plain'));
-            event.stopPropagation();
-            event.preventDefault();
-            this.props.onText('paste', event, code);
-          }
+          let code = this._jsonToCode(cbdata.getData('text/plain'));
+          event.stopPropagation();
+          event.preventDefault();
+          this.props.onText('paste', event, code);
         }
         catch(ex) {
           if (event.target.nodeName !== 'TEXTAREA') {
@@ -53,14 +62,6 @@ export default class PasteDropTarget extends React.Component {
         }
       }
     }, true);
-
-    let acceptedFileTypes = {
-      'text/javascript': true,
-      'text/css': true,
-      'text/html': true,
-      'application/json': true,
-      'text/plain': true,
-    };
 
     let timer;
 
@@ -80,8 +81,8 @@ export default class PasteDropTarget extends React.Component {
     this._bindListener(target, 'drop', event => {
       this.setState({dragging: false});
       let file = event.dataTransfer.files[0];
-      let {type} = file;
-      if (!acceptedFileTypes[type] || !this.props.onText) {
+      let categoryId = acceptedFileTypes.get(file.type);
+      if (!categoryId || !this.props.onText) {
         return;
       }
       event.preventDefault();
@@ -89,40 +90,25 @@ export default class PasteDropTarget extends React.Component {
       let reader = new FileReader();
       reader.onload = readerEvent => {
         let text = readerEvent.target.result;
-        switch (type) {
-          case 'text/javascript':
-            this.props.onText('drop', readerEvent, text, 'javascript');
-            break;
-          case 'text/css':
-            this.props.onText('drop', readerEvent, text, 'css');
-            break;
-          case 'text/html':
-            this.props.onText('drop', readerEvent, text, 'htmlmixed');
-            break;
-          case 'application/json':
-            try {
-              this.props.onText('drop', readerEvent, this._jsonToCode(text), 'javascript');
-            }
-            catch(ex) {
+        if (categoryId === 'JSON' || categoryId === 'TEXT') {
+          try {
+            text = this._jsonToCode(text);
+            categoryId = 'javascript';
+          }
+          catch(ex) {
+            if (categoryId === 'JSON') {
               this.props.onError(
                 'drop',
                 readerEvent,
                 'Unable to handle dropped file: ' + ex.message
               );
               throw ex;
+            } else {
+              categoryId = undefined;
             }
-            break;
-          default:
-            // JSON AST ?
-            try {
-              text = this._jsonToCode(text);
-            }
-            catch(ex) { /* swallow exception */} // eslint-disable-line no-empty
-            finally {
-              this.props.onText('drop', readerEvent, text);
-            }
-            break;
+          }
         }
+        this.props.onText('drop', readerEvent, text, categoryId);
       };
       reader.readAsText(file);
     }, true);
