@@ -4,15 +4,16 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
+const DEV = process.env.NODE_ENV !== 'production';
+
 var plugins = [
   new webpack.DefinePlugin({
     'process.env.NODE_ENV':
       JSON.stringify(process.env.NODE_ENV || 'development'),
   }),
   new webpack.optimize.CommonsChunkPlugin({
-    //children: true,
     async: true,
-    minChunks: 2,
+    minChunks: 3,
   }),
   new webpack.IgnorePlugin(
     /\.md$/
@@ -21,10 +22,10 @@ var plugins = [
     /node\/nodeLoader.js/,
     /traceur/
   ),
-  new ExtractTextPlugin("[name]-[chunkhash].css"),
+  new ExtractTextPlugin(DEV ? '[name].css' : '[name]-[chunkhash].css'),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    filename: 'vendor-[chunkhash].js',
+    filename: DEV ? 'vendor.js' : 'vendor-[chunkhash].js',
     minChunks: Infinity,
   }),
   new ChunkManifestPlugin({
@@ -46,10 +47,11 @@ var plugins = [
     favicon: './favicon.png',
     inject: 'body',
   }),
+  new webpack.NamedModulesPlugin(),
 ];
 
 
-if (process.env.NODE_ENV === 'production') {
+if (!DEV) {
   plugins.push(new webpack.optimize.UglifyJsPlugin({
     mangle: false, // Otherwise babelv5 plugins don't work
     compress: {
@@ -122,8 +124,7 @@ module.exports = {
 
   output: {
     path: './out',
-    //publicPath: '',
-    filename: '[name]-[chunkhash].js',
-    chunkFilename: '[name]-[chunkhash].js',
+    filename: DEV ? '[name].js' : '[name]-[chunkhash].js',
+    chunkFilename: DEV ? '[name].js' : '[name]-[chunkhash].js',
   },
 };

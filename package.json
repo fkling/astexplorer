@@ -70,7 +70,7 @@
   },
   "scripts": {
     "start": "http-server",
-    "build": "NODE_ENV=production webpack --optimize-occurence-order",
+    "build": "NODE_ENV=production webpack",
     "watch": "webpack -dw",
     "push": "./scripts/push-site.sh"
   }
