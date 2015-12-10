@@ -109,7 +109,6 @@ module.exports = {
     vendor: [
       'classnames',
       'codemirror',
-      'escodegen',
       'halting-problem',
       'json-stringify-safe',
       'keypress',

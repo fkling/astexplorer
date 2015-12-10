@@ -1,6 +1,9 @@
 import React from 'react';
-import escodegen from 'escodegen';
 import { categories } from './parsers';
+
+function importEscodegen() {
+  return new Promise(resolve => require(['escodegen'], resolve));
+}
 
 const acceptedFileTypes = new Map([
   ['application/json', 'JSON'],
@@ -31,6 +34,15 @@ export default class PasteDropTarget extends React.Component {
     };
   }
 
+  _onASTError(type, event, ex) {
+    this.props.onError(
+      type,
+      event,
+      `Cannot process pasted AST: ${ex.message}`
+    );
+    throw ex;
+  }
+
   componentDidMount() {
     this._listeners = [];
     let target = React.findDOMNode(this.refs.container);
@@ -43,24 +55,19 @@ export default class PasteDropTarget extends React.Component {
       }
       let cbdata = event.clipboardData;
       // Plain text
-      if (cbdata.types.indexOf && cbdata.types.indexOf('text/plain') > -1 && this.props.onText) {
-        try {
-          let code = this._jsonToCode(cbdata.getData('text/plain'));
-          event.stopPropagation();
-          event.preventDefault();
-          this.props.onText('paste', event, code);
-        }
-        catch(ex) {
+      if (!cbdata.types.indexOf || !cbdata.types.indexOf('text/plain') > -1) {
+        return;
+      }
+      event.stopPropagation();
+      event.preventDefault();
+      this._jsonToCode(cbdata.getData('text/plain')).then(
+        code => this.props.onText('paste', event, code),
+        ex => {
           if (event.target.nodeName !== 'TEXTAREA') {
-            this.props.onError(
-              'paste',
-              event,
-              'Cannot process pasted AST: ' + ex.message
-            );
-            throw ex;
+            this._onASTError('paste', event, ex);
           }
         }
-      }
+      );
     }, true);
 
     let timer;
@@ -91,24 +98,24 @@ export default class PasteDropTarget extends React.Component {
       reader.onload = readerEvent => {
         let text = readerEvent.target.result;
         if (categoryId === 'JSON' || categoryId === 'TEXT') {
-          try {
-            text = this._jsonToCode(text);
-            categoryId = 'javascript';
-          }
-          catch(ex) {
-            if (categoryId === 'JSON') {
-              this.props.onError(
-                'drop',
-                readerEvent,
-                'Unable to handle dropped file: ' + ex.message
-              );
-              throw ex;
-            } else {
-              categoryId = undefined;
+          text = this._jsonToCode(text).then(
+            text => {
+              categoryId = 'javascript';
+              return text;
+            },
+            ex => {
+              if (categoryId === 'JSON') {
+                this._onASTError('drop', readerEvent, ex);
+              } else {
+                categoryId = undefined;
+                return text;
+              }
             }
-          }
+          );
         }
-        this.props.onText('drop', readerEvent, text, categoryId);
+        Promise.resolve(text).then(text => {
+          this.props.onText('drop', readerEvent, text, categoryId);
+        });
       };
       reader.readAsText(file);
     }, true);
@@ -129,7 +136,9 @@ export default class PasteDropTarget extends React.Component {
 
   _jsonToCode(json) {
     let ast = JSON.parse(json);
-    return escodegen.generate(ast, {format: {indent: {style: '  '}}});
+    return importEscodegen().then(escodegen => {
+      return escodegen.generate(ast, {format: {indent: {style: '  '}}});
+    });
   }
 
   _bindListener(elem, event, listener, capture) {
