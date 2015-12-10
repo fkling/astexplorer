@@ -28,6 +28,7 @@ export default {
     return babel.transform(code, {
       presets,
       plugins: [(transform.default || transform)(babel)],
-    }).code;
+      sourceMaps: true,
+    });
   },
 };

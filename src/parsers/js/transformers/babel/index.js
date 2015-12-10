@@ -27,6 +27,7 @@ export default {
     return babel.transform(code, {
       ...options,
       plugins: [transform],
-    }).code;
+      sourceMaps: true,
+    });
   },
 };
