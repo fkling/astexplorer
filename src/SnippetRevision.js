@@ -5,3 +5,5 @@ export default class SnippetRevision extends Parse.Object {
 		super('SnippetRevision');
 	}
 }
+
+Parse.Object.registerSubclass('SnippetRevision', SnippetRevision);

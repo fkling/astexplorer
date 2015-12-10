@@ -64,16 +64,18 @@ export default class Snippet extends Parse.Object {
         newRevision.set('transform', data.transform);
         newRevision.set('toolID', data.toolID);
         newRevision.set('parserID', data.parserID);
-        this.add('revisions', newRevision);
-        return this.save().then(snippet => {
-          let revisionNumber = snippet.get('revisions').length - 1;
-          this._latestRevision = newRevision;
-          setInCache(snippet, newRevision, revisionNumber);
-          return {
-            snippet,
-            revision: newRevision,
-            revisionNumber,
-          };
+        return newRevision.save().then(revision => {
+          this.add('revisions', revision);
+          return this.save().then(snippet => {
+            let revisionNumber = snippet.get('revisions').length - 1;
+            this._latestRevision = revision;
+            setInCache(snippet, revision, revisionNumber);
+            return {
+              snippet,
+              revision,
+              revisionNumber,
+            };
+          });
         });
       }
       return null;
@@ -129,3 +131,5 @@ export default class Snippet extends Parse.Object {
     return Promise.resolve(null);
   }
 }
+
+Parse.Object.registerSubclass('Snippet', Snippet);
