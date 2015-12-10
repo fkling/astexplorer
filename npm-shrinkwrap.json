@@ -2884,9 +2884,9 @@
       "resolved": "https://registry.npmjs.org/parse-glob/-/parse-glob-3.0.4.tgz"
     },
     "parse5": {
-      "version": "1.5.1",
-      "from": "parse5@>=1.5.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/parse5/-/parse5-1.5.1.tgz"
+      "version": "2.0.0",
+      "from": "parse5@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/parse5/-/parse5-2.0.0.tgz"
     },
     "pascal-case": {
       "version": "1.1.1",
