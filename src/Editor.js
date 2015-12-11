@@ -65,14 +65,7 @@ export default class Editor extends React.Component {
   }
 
   _posFromIndex(doc, index) {
-    let pos;
-    if (this.props.posFromIndex) {
-      pos = this.props.posFromIndex(index);
-    }
-    if (!pos) {
-      pos = doc.posFromIndex(index);
-    }
-    return pos;
+    return (this.props.posFromIndex ? this.props : doc).posFromIndex(index);
   }
 
   componentDidMount() {
@@ -120,9 +113,14 @@ export default class Editor extends React.Component {
           if (this._mark) {
             this._mark.clear();
           }
+          let [start, end] = range.map(index => this._posFromIndex(doc, index));
+          if (!start || !end) {
+            this._markerRange = this._mark = null;
+            return;
+          }
           this._mark = this.codeMirror.markText(
-            this._posFromIndex(doc, range[0]),
-            this._posFromIndex(doc, range[1]),
+            start,
+            end,
             {className: 'marked'}
           );
         }),

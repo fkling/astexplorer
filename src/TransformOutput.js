@@ -98,7 +98,10 @@ export default class TransformOutput extends React.Component {
     if (!map) {
       return;
     }
-    let src = map.sourcesContent[0];
+    const src = map.sourcesContent[0];
+    if (pos === 0) {
+      return { line: 0, ch: 0 };
+    }
     let lineStart = src.lastIndexOf('\n', pos - 1);
     let column = pos - lineStart - 1;
     let line = 1;
@@ -111,6 +114,9 @@ export default class TransformOutput extends React.Component {
       column,
       source: map.sources[0],
     }));
+    if (line === null || column === null) {
+      return;
+    }
     return { line: line - 1, ch: column };
   }
 
