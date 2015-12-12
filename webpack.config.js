@@ -29,7 +29,7 @@ var plugins = [
     minChunks: Infinity,
   }),
   new ChunkManifestPlugin({
-    filename: "manifest.json",
+    filename: 'manifest.json',
   }),
   new HtmlWebpackPlugin({
     templateContent: function(templateParams, compilation) {
@@ -37,8 +37,7 @@ var plugins = [
       templateParams.manifest = manifest ?
         manifest._value :
         fs.readFileSync(
-          templateParams.webpack.out.path + '/manifest.json'
-          ,
+          templateParams.webpack.out.path + '/manifest.json',
           'utf-8'
         );
 
@@ -79,16 +78,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader?importLoaders=1!autoprefixer-loader"),
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?importLoaders=1!autoprefixer-loader'),
       },
       {
-				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-				loader: "url-loader?limit=10000&mimetype=application/font-woff"
-			},
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+      },
       {
-				test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-				loader: "file-loader"
-			}
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+      },
     ],
 
     noParse: [
@@ -110,7 +109,6 @@ module.exports = {
     vendor: [
       'classnames',
       'codemirror',
-      'escodegen',
       'halting-problem',
       'json-stringify-safe',
       'keypress',
@@ -119,7 +117,7 @@ module.exports = {
       'react',
     ],
     app: './src/app.js',
-		style: './css/style.css',
+    style: './css/style.css',
   },
 
   output: {

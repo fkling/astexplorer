@@ -2,7 +2,7 @@ import Parse from './Parse';
 import SnippetRevision from './SnippetRevision';
 let snippetQuery;
 let cache = {};
-global.__cache = cache;
+// global.__cache = cache;
 
 function getIDAndRevisionFromHash() {
   let match = global.location.hash.match(/^#\/([^\/]+)(?:\/(\d*))?/);
@@ -83,39 +83,27 @@ export default class Snippet extends Parse.Object {
   }
 
   static fetch(snippetID, rev) {
-    if (!snippetQuery) {
-      snippetQuery = new Parse.Query(Snippet);
-    }
     let cacheEntry = getFromCache(snippetID, rev);
     if (cacheEntry.snippet && cacheEntry.revision) {
       return Promise.resolve(cacheEntry);
-    } else if(cacheEntry.snippet) {
-      let revisions = cacheEntry.snippet.get('revisions');
-      if (!revisions[rev]) {
-        return Promise.reject(
-          new Error(`Revision "${snippetID}/${rev}" does not exist.`)
-        );
-      }
-      return revisions[rev].fetch().then(
-        revision => {
-          setInCache(cacheEntry.snippet, revision, rev);
-          return {snippet: cacheEntry.snippet, revision};
-        }
-      );
-    } else {
-      return snippetQuery.get(snippetID).then(snippet => {
-        let revisions = snippet.get('revisions');
-        if (!revisions[rev]) {
-          return Promise.reject(
-            new Error(`Revision "${snippetID}/${rev}" does not exist.`)
-          );
-        }
-        return revisions[rev].fetch().then(revision => {
-          setInCache(snippet, revision, rev);
-          return {snippet, revision};
-        });
-      });
     }
+    let { snippet } = cacheEntry;
+    if (!snippet) {
+      if (!snippetQuery) {
+        snippetQuery = new Parse.Query(Snippet);
+      }
+      snippet = snippetQuery.get(snippetID);
+    }
+    return Promise.resolve(snippet).then(snippet => {
+      const revisions = snippet.get('revisions');
+      if (!revisions[rev]) {
+        throw new Error(`Revision "${snippetID}/${rev}" does not exist.`);
+      }
+      return revisions[rev].fetch().then(revision => {
+        setInCache(snippet, revision, rev);
+        return {snippet, revision};
+      });
+    });
   }
 
   static fetchFromURL() {
