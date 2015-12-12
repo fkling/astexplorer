@@ -9,6 +9,9 @@ export default class Editor extends React.Component {
     highlight: React.PropTypes.bool,
     lineNumbers: React.PropTypes.bool,
     readOnly: React.PropTypes.bool,
+    onContentChange: React.PropTypes.func,
+    onActivity: React.PropTypes.func,
+    posFromIndex: React.PropTypes.func,
   }
 
   static defaultProps = {
@@ -61,6 +64,10 @@ export default class Editor extends React.Component {
     return false;
   }
 
+  _posFromIndex(doc, index) {
+    return (this.props.posFromIndex ? this.props : doc).posFromIndex(index);
+  }
+
   componentDidMount() {
     this._CMHandlers = [];
     this._subscriptions = [];
@@ -106,9 +113,14 @@ export default class Editor extends React.Component {
           if (this._mark) {
             this._mark.clear();
           }
+          let [start, end] = range.map(index => this._posFromIndex(doc, index));
+          if (!start || !end) {
+            this._markerRange = this._mark = null;
+            return;
+          }
           this._mark = this.codeMirror.markText(
-            doc.posFromIndex(range[0]),
-            doc.posFromIndex(range[1]),
+            start,
+            end,
             {className: 'marked'}
           );
         }),

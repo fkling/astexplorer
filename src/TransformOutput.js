@@ -2,6 +2,7 @@
 import Editor from './Editor';
 import React from 'react';
 import halts, {loopProtect} from 'halting-problem';
+import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
 
 function transform(transformer, transformCode, code) {
   if (!transformer._promise) {
@@ -25,11 +26,17 @@ function transform(transformer, transformCode, code) {
         '})',
       ].join('')
     );
-    return transformer.transform(
+    let result = transformer.transform(
       realTransformer,
       transformCode,
       code,
     );
+    let map = null;
+    if (typeof result !== 'string') {
+      map = new SourceMapConsumer(result.map);
+      result = result.code;
+    }
+    return { result, map };
   });
 }
 
@@ -44,8 +51,10 @@ export default class TransformOutput extends React.Component {
     super(props);
     this.state = {
       result: '',
+      map: null,
       error: null,
     };
+    this._posFromIndex = this._posFromIndex.bind(this);
   }
 
   componentDidMount() {
@@ -54,8 +63,8 @@ export default class TransformOutput extends React.Component {
       this.props.transformCode,
       this.props.code,
     ).then(
-      result => this.setState({result}),
-      error => this.setState({error})
+      ({ result, map }) => this.setState({ result, map }),
+      error => this.setState({ error })
     );
   }
 
@@ -70,25 +79,45 @@ export default class TransformOutput extends React.Component {
         nextProps.transformCode,
         nextProps.code,
       ).then(
-        result => {
-          let error = null;
-          if (typeof result !== 'string') {
-            result = '';
-            error = new Error('Transform did not return a string.');
-          }
-          this.setState({result, error});
-        },
+        ({ result, map }) => ({ result, map, error: null }),
         error => {
           console.error(error);
-          this.setState({error});
+          return { error };
         }
-      );
+      ).then(state => this.setState(state));
     }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.result !== nextState.result ||
       this.state.error !== nextState.error;
+  }
+
+  _posFromIndex(pos, doc) {
+    const {map} = this.state;
+    if (!map) {
+      return;
+    }
+    const src = map.sourcesContent[0];
+    if (pos === 0) {
+      return { line: 0, ch: 0 };
+    }
+    let lineStart = src.lastIndexOf('\n', pos - 1);
+    let column = pos - lineStart - 1;
+    let line = 1;
+    while (lineStart >= 0) {
+      lineStart = src.lastIndexOf('\n', lineStart - 1);
+      line++;
+    }
+    ({ line, column } = map.generatedPositionFor({
+      line,
+      column,
+      source: map.sources[0],
+    }));
+    if (line === null || column === null) {
+      return;
+    }
+    return { line: line - 1, ch: column };
   }
 
   render() {
@@ -103,7 +132,7 @@ export default class TransformOutput extends React.Component {
             defaultValue={this.state.error.message}
           /> :
           <Editor
-            highlight={false}
+            posFromIndex={this._posFromIndex}
             mode={this.props.mode}
             key="output"
             readOnly={true}
