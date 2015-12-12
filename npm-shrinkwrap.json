@@ -2035,7 +2035,8 @@
             },
             "source-map": {
               "version": "0.5.3",
-              "from": "source-map@>=0.5.1 <0.6.0"
+              "from": "source-map@0.5.3",
+              "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.5.3.tgz"
             }
           }
         },
@@ -2337,7 +2338,8 @@
     },
     "jscodeshift": {
       "version": "0.3.10",
-      "from": "jscodeshift@>=0.3.0 <0.4.0"
+      "from": "jscodeshift@0.3.10",
+      "resolved": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.10.tgz"
     },
     "jsesc": {
       "version": "0.5.0",
@@ -3243,7 +3245,8 @@
       "dependencies": {
         "esprima-fb": {
           "version": "15001.1001.0-dev-harmony-fb",
-          "from": "esprima-fb@>=15001.1001.0-dev-harmony-fb <15001.1002.0"
+          "from": "esprima-fb@15001.1001.0-dev-harmony-fb",
+          "resolved": "https://registry.npmjs.org/esprima-fb/-/esprima-fb-15001.1001.0-dev-harmony-fb.tgz"
         }
       }
     },
