@@ -37,7 +37,7 @@ var plugins = [
       templateParams.manifest = manifest ?
         manifest._value :
         fs.readFileSync(
-          templateParams.webpack.out.path + '/manifest.json',
+          compilation.outputOptions.path + '/manifest.json',
           'utf-8'
         );
 
