@@ -1,6 +1,6 @@
 import React from 'react';
 
-function shouldAutoFocus({deepOpen, value, settings, focusPath}) {
+function shouldAutoFocus({value, settings, focusPath}) {
   return !!settings.autofocus && focusPath.indexOf(value) > -1;
 }
 

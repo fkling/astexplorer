@@ -10,11 +10,13 @@ rules:
   no-path-concat: 0
   no-undef: 2
   no-underscore-dangle: 0
+  no-unused-vars: 1
   no-use-before-define: 0
   quotes: [2, "single", "avoid-escape"]
   strict: 0
   react/react-in-jsx-scope: 1
   react/jsx-no-undef: 1
+  react/jsx-uses-react: 1
   import/no-unresolved: [2, {commonjs: true, amd: true}]
   import/named: 2
   import/default: 2

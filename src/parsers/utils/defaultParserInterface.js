@@ -1,7 +1,7 @@
 export default {
   _ignoredProperties: new Set(),
 
-  opensByDefault(node, key) {
+  opensByDefault(/*node, key*/) {
     return false;
   },
 

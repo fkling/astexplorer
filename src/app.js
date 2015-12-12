@@ -489,12 +489,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {
-      revision,
-      showTransformPanel,
-      currentTransformCode,
-      initialTransformCode,
-    } = this.state;
+    const {showTransformPanel} = this.state;
 
     return (
       <PasteDropTarget
@@ -515,11 +510,11 @@ class App extends React.Component {
           onParserChange={this._onParserChange}
           onTransformChange={this.onTransformChange}
           canSave={this._canSave()}
-          canFork={!!revision}
+          canFork={!!this.state.revision}
           category={this.state.parser.category}
           parser={this.state.parser}
           transformer={this.state.transformer}
-          transformPanelIsEnabled={this.state.showTransformPanel}
+          transformPanelIsEnabled={showTransformPanel}
         />
         {this.state.error ? <ErrorMessage message={this.state.error} /> : null}
         <SplitPane
@@ -544,7 +539,7 @@ class App extends React.Component {
               parser={this.state.parser}
             />
           </SplitPane>
-          {this.state.showTransformPanel ? <SplitPane
+          {showTransformPanel ? <SplitPane
             className="splitpane"
             onResize={this._onResize}>
             <Editor

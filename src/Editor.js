@@ -1,7 +1,6 @@
 import CodeMirror from 'codemirror';
 import PubSub from 'pubsub-js';
 import React from 'react';
-import {keypress} from 'keypress';
 
 export default class Editor extends React.Component {
   static propTypes = {

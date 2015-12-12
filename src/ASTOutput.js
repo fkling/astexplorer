@@ -1,4 +1,3 @@
-import PubSub from 'pubsub-js';
 import React from 'react';
 import cx from 'classnames';
 import visualizations from './components/visualization';

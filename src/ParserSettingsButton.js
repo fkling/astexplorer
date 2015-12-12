@@ -1,5 +1,4 @@
 import React from 'react';
-import * as parsers from './parsers';
 import pubSub from 'pubsub-js';
 
 export default class ParserSettingsButton extends React.Component {
