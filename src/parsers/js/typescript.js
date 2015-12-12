@@ -81,11 +81,7 @@ export default {
               comment.text = sourceFile.text.substring(comment.pos, comment.end);
             });
 
-            if (isTrailing) {
-              node.trailingComments = comments;
-            } else {
-              node.leadingComments = comments;
-            }
+            return comments;
           }
         }
       }
