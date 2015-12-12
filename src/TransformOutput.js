@@ -93,21 +93,24 @@ export default class TransformOutput extends React.Component {
       this.state.error !== nextState.error;
   }
 
-  _posFromIndex(pos, doc) {
+  _posFromIndex(index) {
     const {map} = this.state;
     if (!map) {
       return;
     }
     const src = map.sourcesContent[0];
-    if (pos === 0) {
+    if (index === 0) {
       return { line: 0, ch: 0 };
     }
-    let lineStart = src.lastIndexOf('\n', pos - 1);
-    let column = pos - lineStart - 1;
+    let lineStart = src.lastIndexOf('\n', index - 1);
+    let column = index - lineStart - 1;
     let line = 1;
-    while (lineStart >= 0) {
-      lineStart = src.lastIndexOf('\n', lineStart - 1);
-      line++;
+    while (lineStart > 0) {
+        lineStart = src.lastIndexOf('\n', lineStart - 1);
+          line++;
+    }
+    if (lineStart === 0) {
+          line++;
     }
     ({ line, column } = map.generatedPositionFor({
       line,
