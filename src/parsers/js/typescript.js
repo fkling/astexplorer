@@ -113,6 +113,16 @@ export default {
         key: prop,
       };
     }
+    yield {
+      value: getComments(node),
+      key: 'leadingComments',
+      computed: true,
+    };
+    yield {
+      value: getComments(node, true),
+      key: 'trailingCommments',
+      computed: true,
+    };
   },
 
   nodeToRange(node) {

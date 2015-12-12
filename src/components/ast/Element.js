@@ -25,6 +25,7 @@ export default class Element extends React.Component {
   static propTypes = {
     name: PropTypes.string,
     value: PropTypes.any.isRequired,
+    computed: PropTypes.bool,
     deepOpen: PropTypes.bool,
     focusPath: PropTypes.array.isRequired,
     level: PropTypes.number,
@@ -42,7 +43,7 @@ export default class Element extends React.Component {
     this._onMouseLeave = this._onMouseLeave.bind(this);
     this._onMouseOver = this._onMouseOver.bind(this);
     this._toggleClick = this._toggleClick.bind(this);
-    const {value, name, deepOpen, parser, focusPath, settings} = props;
+    const {value, name, deepOpen, parser} = props;
     // Some elements should be open by default
     let open =
       props.open ||
@@ -143,7 +144,7 @@ export default class Element extends React.Component {
     this.setState(state);
   }
 
-  _createSubElement(key, value, name) {
+  _createSubElement(key, value, name, computed) {
     return (
       <Element
         key={key}
@@ -151,6 +152,7 @@ export default class Element extends React.Component {
         focusPath={this.props.focusPath}
         deepOpen={this.state.deepOpen}
         value={value}
+        computed={computed}
         level={this.props.level + 1}
         parser={this.props.parser}
         settings={this.props.settings}
@@ -164,7 +166,6 @@ export default class Element extends React.Component {
       focusPath,
       parser,
       level,
-      settings,
     } = this.props;
     const {
       open,
@@ -198,7 +199,12 @@ export default class Element extends React.Component {
           suffix = ']';
           let elements = this._getProperties(parser, value)
             .filter(({key}) => key !== 'length')
-            .map(({key, value}) => this._createSubElement(key, value, Number.isInteger(+key) ? undefined : key));
+            .map(({key, value, computed}) => this._createSubElement(
+              key,
+              value,
+              Number.isInteger(+key) ? undefined : key,
+              computed,
+            ));
           content = <ul className="value-body">{elements}</ul>;
         } else {
           valueOutput =
@@ -216,7 +222,12 @@ export default class Element extends React.Component {
           prefix = '{';
           suffix = '}';
           let elements = this._getProperties(parser, value)
-            .map(({key, value}) => this._createSubElement(key, value, key));
+            .map(({key, value, computed}) => this._createSubElement(
+              key,
+              value,
+              key,
+              computed
+            ));
           content = <ul className="value-body">{elements}</ul>;
           showToggler = elements.length > 0;
         } else {
@@ -249,7 +260,12 @@ export default class Element extends React.Component {
               null
             )
         }>
-        <span className="name nb">{this.props.name}</span>
+        <span className="name nb">
+          {this.props.computed ?
+            <span title="computed">*{this.props.name}</span> :
+            this.props.name
+          }
+        </span>
         <span className="p">: </span>
       </span> :
       null;
