@@ -856,6 +856,11 @@
       "from": "codemirror@>=5.1.0 <6.0.0",
       "resolved": "https://registry.npmjs.org/codemirror/-/codemirror-5.9.0.tgz"
     },
+    "codemirror-graphql": {
+      "version": "0.2.1",
+      "from": "codemirror-graphql@*",
+      "resolved": "https://registry.npmjs.org/codemirror-graphql/-/codemirror-graphql-0.2.1.tgz"
+    },
     "colors": {
       "version": "1.1.2",
       "from": "colors@>=1.1.2 <1.2.0",
@@ -2007,6 +2012,11 @@
       "version": "1.0.1",
       "from": "graceful-readlink@>=1.0.0",
       "resolved": "https://registry.npmjs.org/graceful-readlink/-/graceful-readlink-1.0.1.tgz"
+    },
+    "graphql": {
+      "version": "0.4.14",
+      "from": "graphql@*",
+      "resolved": "https://registry.npmjs.org/graphql/-/graphql-0.4.14.tgz"
     },
     "halting-problem": {
       "version": "1.0.1",
