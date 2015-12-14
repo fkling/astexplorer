@@ -24,7 +24,7 @@ export default class CategoryButton extends React.Component {
       <div className="button menuButton categoryButton">
         <button type="button">
           <i
-            className={cx(categoryIcon[this.props.category.id], {
+            className={cx(categoryIcon[this.props.category.id] || 'fa-file-o', {
               fa: true,
               'fa-lg': true,
               'fa-fw': true,
@@ -37,7 +37,7 @@ export default class CategoryButton extends React.Component {
             <li key={category.id} onClick={this._onClick} data-id={category.id}>
               <button type="button">
                 <i
-                  className={cx(categoryIcon[category.id], {
+                  className={cx(categoryIcon[category.id] || 'fa-file-o', {
                     fa: true,
                     'fa-lg': true,
                     'fa-fw': true,
