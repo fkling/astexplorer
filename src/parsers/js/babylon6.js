@@ -16,6 +16,7 @@ const plugins = [
   'exportExtensions',
   'flow',
   'functionSent',
+  'functionBind',
   'jsx',
   'objectRestSpread',
   'trailingFunctionCommas',
