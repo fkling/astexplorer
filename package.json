@@ -52,7 +52,7 @@
     "esprima": "^2.5",
     "font-awesome": "^4.5.0",
     "graphql": "^0.4.14",
-    "halting-problem": "^1.0.1",
+    "halting-problem": "^1.0.2",
     "htmlparser2": "^3.9.0",
     "jscodeshift": "^0.3",
     "json-stringify-safe": "^5.0.1",
