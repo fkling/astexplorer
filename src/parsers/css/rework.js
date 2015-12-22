@@ -10,6 +10,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  locationProps: ['position'],
 
   loadParser(callback) {
     require(['css/lib/parse'], callback);
