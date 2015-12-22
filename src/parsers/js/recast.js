@@ -25,6 +25,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  locationProps: ['range', 'loc'],
 
   loadParser(callback) {
     require(['recast', 'esprima', 'babel-core'], (recast, esprima, babelCore) => {

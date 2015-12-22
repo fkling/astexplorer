@@ -24,6 +24,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  locationProps: ['loc'],
 
   loadParser(callback) {
     require(['shift-parser'], callback);

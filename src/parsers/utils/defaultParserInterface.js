@@ -1,5 +1,6 @@
 export default {
   _ignoredProperties: new Set(),
+  locationProps: [],
 
   opensByDefault(/*node, key*/) {
     return false;

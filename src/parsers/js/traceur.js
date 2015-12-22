@@ -68,6 +68,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  locationProps: ['location'],
 
   loadParser(callback) {
     require(['exports?traceur!traceur/bin/traceur'], callback);

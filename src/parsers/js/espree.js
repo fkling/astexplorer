@@ -51,6 +51,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  locationProps: ['range'],
 
   loadParser(callback) {
     require(['espree'], callback);
