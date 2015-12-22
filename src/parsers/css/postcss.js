@@ -20,7 +20,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: ['source'],
+  locationProps: new Set(['source']),
 
   loadParser(callback) {
     require(['postcss/lib/parse', 'postcss-scss/lib/scss-parse', 'postcss-safe-parser'], (builtIn, scss, safe) => {

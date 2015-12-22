@@ -20,7 +20,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: ['__location'],
+  locationProps: new Set(['__location']),
 
   loadParser(callback) {
     require([

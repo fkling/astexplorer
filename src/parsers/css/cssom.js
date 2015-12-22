@@ -10,7 +10,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: ['__starts', '__ends'],
+  locationProps: new Set(['__starts', '__ends']),
 
   loadParser(callback) {
     require(['cssom/lib/parse'], callback);

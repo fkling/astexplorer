@@ -130,7 +130,7 @@ export default class Element extends React.Component {
     return properties
       .filter(({value}) => !hideFunctions || typeof value !== 'function')
       .filter(({value}) => !hideEmptyKeys || value != null)
-      .filter(({key}) => !hideLocationData || parser.locationProps.indexOf(key) === -1);
+      .filter(({key}) => !hideLocationData || !parser.locationProps.has(key));
   }
 
   _execFunction() {
