@@ -33,6 +33,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  locationProps: new Set(['pos', 'end']),
 
   loadParser(callback) {
     require(['typescript'], _ts => callback(ts = _ts));

@@ -31,6 +31,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  locationProps: new Set(['loc', 'start', 'end']),
 
   loadParser(callback) {
     require(['babylon'], callback);

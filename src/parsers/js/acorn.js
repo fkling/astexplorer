@@ -21,6 +21,7 @@ export default {
   displayName: ID,
   version: `${pkg.version} (acorn-jsx: ${jsxPkg.version})`,
   homepage: pkg.homepage,
+  locationProps: new Set(['range']),
 
   loadParser(callback) {
     require(['acorn', 'acorn-jsx/inject'], (acorn, jsxInject) => {

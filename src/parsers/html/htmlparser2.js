@@ -20,6 +20,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  locationProps: new Set(['startIndex']),
 
   loadParser(callback) {
     require(['htmlparser2/lib/Parser', 'domhandler'], (Parser, DomHandler) => {
