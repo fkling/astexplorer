@@ -11,7 +11,7 @@ export default {
   displayName: name,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: new Set(['loc', 'start', 'end']),
+  locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
     require(['acorn-to-esprima', 'babel-core'], (acornToEsprima, {acorn: {tokTypes}, traverse, parse}) => {

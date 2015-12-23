@@ -33,7 +33,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: new Set(['range']),
+  locationProps: new Set(['range', 'loc']),
 
   loadParser(callback) {
     require(['esprima'], callback);
