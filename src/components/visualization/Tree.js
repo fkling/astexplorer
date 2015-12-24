@@ -3,6 +3,8 @@ import React from 'react';
 import PubSub from 'pubsub-js';
 import {getVisualizationSettings, setVisualizationSettings} from '../../LocalStorage';
 
+import './css/tree.css'
+
 const ID = 'tree';
 
 export default class Tree extends React.Component {
