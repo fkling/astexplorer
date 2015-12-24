@@ -21,7 +21,7 @@ export default {
   displayName: ID,
   version: `${pkg.version} (acorn-jsx: ${jsxPkg.version})`,
   homepage: pkg.homepage,
-  locationProps: new Set(['range', 'loc']),
+  locationProps: new Set(['range', 'loc', 'start', 'end']),
 
   loadParser(callback) {
     require(['acorn', 'acorn-jsx/inject'], (acorn, jsxInject) => {
@@ -36,11 +36,6 @@ export default {
       plugins: options['plugins.jsx'] ? { jsx: true } : {},
     });
   },
-
-  _ignoredProperties: new Set([
-    'start',
-    'end',
-  ]),
 
   nodeToRange(node) {
     if (typeof node.start === 'number') {
