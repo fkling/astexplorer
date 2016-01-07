@@ -629,9 +629,9 @@
           "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.4.2.tgz"
         },
         "globals": {
-          "version": "8.17.0",
+          "version": "8.18.0",
           "from": "globals@>=8.3.0 <9.0.0",
-          "resolved": "https://registry.npmjs.org/globals/-/globals-8.17.0.tgz"
+          "resolved": "https://registry.npmjs.org/globals/-/globals-8.18.0.tgz"
         }
       }
     },
@@ -2423,9 +2423,8 @@
       "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-3.4.6.tgz"
     },
     "jscodeshift": {
-      "version": "0.3.11",
-      "from": "jscodeshift@>=0.3.0 <0.4.0",
-      "resolved": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.11.tgz"
+      "version": "0.3.12",
+      "from": "jscodeshift@>=0.3.0 <0.4.0"
     },
     "jsesc": {
       "version": "0.5.0",
@@ -3063,9 +3062,9 @@
       }
     },
     "postcss-calc": {
-      "version": "5.0.0",
+      "version": "5.1.0",
       "from": "postcss-calc@>=5.0.0 <6.0.0",
-      "resolved": "https://registry.npmjs.org/postcss-calc/-/postcss-calc-5.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/postcss-calc/-/postcss-calc-5.1.0.tgz"
     },
     "postcss-colormin": {
       "version": "2.1.8",
@@ -3344,9 +3343,9 @@
       "resolved": "https://registry.npmjs.org/readline2/-/readline2-1.0.1.tgz"
     },
     "recast": {
-      "version": "0.10.41",
+      "version": "0.10.42",
       "from": "recast@>=0.10.32 <0.11.0",
-      "resolved": "https://registry.npmjs.org/recast/-/recast-0.10.41.tgz",
+      "resolved": "https://registry.npmjs.org/recast/-/recast-0.10.42.tgz",
       "dependencies": {
         "esprima-fb": {
           "version": "15001.1001.0-dev-harmony-fb",
