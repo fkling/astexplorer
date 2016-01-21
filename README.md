@@ -23,6 +23,7 @@ The AST explorer provides following code parsers:
 - HTML:
   - [htmlparser2][]
   - [parse5][]
+- [GraphQL][]
 
 Depending on the parser settings, it not only supports ES5/CSS3
 but also
@@ -85,6 +86,7 @@ node.
 [htmlparser2]: https://github.com/fb55/htmlparser2
 [parse5]: https://github.com/inikulin/parse5
 [flow-parser]: https://github.com/facebook/flow/tree/master/src/parser
+[graphql]: https://facebook.github.io/graphql/
 
 ### Contributions
 
