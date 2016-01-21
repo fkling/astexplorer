@@ -423,3 +423,9 @@ li.entry {
 #SettingsDialog ul.settings li {
   padding: 3px 0;
 }
+
+
+body .CodeMirror-hints,
+body .CodeMirror-Tern-tooltip {
+  z-index: 1000;
+}

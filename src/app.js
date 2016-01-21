@@ -1,6 +1,7 @@
 import ASTOutput from './ASTOutput';
 import Editor from './Editor';
 import ErrorMessage from './ErrorMessage';
+import JSCodeshiftEditor from './JSCodeshiftEditor';
 import PasteDropTarget from './PasteDropTarget';
 import PubSub from 'pubsub-js';
 import React from 'react';
@@ -542,12 +543,19 @@ class App extends React.Component {
           {showTransformPanel ? <SplitPane
             className="splitpane"
             onResize={this._onResize}>
-            <Editor
-              ref="transformEditor"
-              highlight={false}
-              defaultValue={this.state.initialTransformCode}
-              onContentChange={this.onTransformCodeChange}
-            />
+            {this.state.transformer.id === 'jscodeshift' ?
+              <JSCodeshiftEditor
+                ref="transformEditor"
+                defaultValue={this.state.initialTransformCode}
+                onContentChange={this.onTransformCodeChange}
+              /> :
+              <Editor
+                ref="transformEditor"
+                highlight={false}
+                defaultValue={this.state.initialTransformCode}
+                onContentChange={this.onTransformCodeChange}
+              />
+            }
             <TransformOutput
               transformer={this.state.transformer}
               transformCode={this.state.currentTransformCode}

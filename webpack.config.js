@@ -102,6 +102,9 @@ module.exports = {
     module: 'empty',
     net: 'empty',
   },
+  resolve: {
+    fs: 'fs'
+  },
 
   plugins: plugins,
 

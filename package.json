@@ -23,6 +23,7 @@
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^1.7.0",
     "http-server": "^0.8.0",
+    "js-yaml": "^3.5.2",
     "json-loader": "^0.5.3",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",
@@ -30,7 +31,7 @@
     "webpack": "^1.12.8"
   },
   "dependencies": {
-    "acorn": "^2.3.0",
+    "acorn": "^3.0.0",
     "acorn-jsx": "^2.0.1",
     "acorn-to-esprima": "^1.0.2",
     "babel-core": "^5.7.3",
@@ -68,6 +69,7 @@
     "recast": "^0.11.0",
     "shift-parser": "^4.1.0",
     "source-map": "^0.5.3",
+    "tern": "^0.17.0",
     "traceur": "0.0.102",
     "typescript": "^1.7.5",
     "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"
