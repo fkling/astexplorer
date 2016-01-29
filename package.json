@@ -50,6 +50,7 @@
     "cssom": "^0.3.0",
     "domhandler": "^2.3.0",
     "escodegen": "^1.4.1",
+    "esformatter-parser": "^1.0.0",
     "eslint1": "file:packages/eslint1",
     "eslint2": "file:packages/eslint2",
     "espree": "^3.1.0",
