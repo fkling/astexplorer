@@ -6,26 +6,18 @@ import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'flow';
 const options = {
-	// TODO: We need to update the flow-parser package to the latest build of Flow
-	//       before these settings actually do anything.
-	/*
-	esproposal_decorators: true,
-	esproposal_class_instance_fields: true,
-	esproposal_class_static_fields: true,
-	types: true,
-	*/
+  esproposal_decorators: true,
+  esproposal_class_instance_fields: true,
+  esproposal_class_static_fields: true,
+  types: true,
   ...LocalStorage.getParserSettings(ID),
 };
 
 const settings = [
-	// TODO: We need to update the flow-parser package to the latest build of Flow
-	//       before these settings actually do anything.
-	/*
-	'esproposal_decorators',
-	'esproposal_class_instance_fields',
-	'esproposal_class_static_fields',
-	'types',
-	*/
+  'esproposal_decorators',
+  'esproposal_class_instance_fields',
+  'esproposal_class_static_fields',
+  'types',
 ];
 
 export default {
@@ -42,12 +34,9 @@ export default {
   },
 
   parse(flowParser, code) {
-		return flowParser.parse(code);
+    return flowParser.parse(code, options);
   },
 
-	// TODO: We need to update the flow-parser package to the latest build of Flow
-	//       before these settings actually do anything.
-	/*
   renderSettings() {
     return SettingsRenderer({
       settings,
@@ -55,10 +44,9 @@ export default {
       onChange: changeOption,
     });
   },
-	*/
 };
 
-function changeOption(name, {target: {value}}) {
-  options[name] = value;
+function changeOption(name, {target}) {
+  options[name] = target.checked;
   LocalStorage.setParserSettings(ID, options);
 }
