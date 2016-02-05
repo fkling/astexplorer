@@ -15,7 +15,7 @@ const options = {
 const settings = [
   'range',
   'tolerant',
-  ['parser', ['esprima-fb', 'esprima', 'babel-core']],
+  ['parser', ['esprima', 'babel-core']],
 ];
 
 export default {
@@ -28,11 +28,10 @@ export default {
   locationProps: new Set(['range', 'loc', 'start', 'end']),
 
   loadParser(callback) {
-    require(['recast', 'esprima', 'babel-core'], (recast, esprima, babelCore) => {
+    require(['recast', 'babel-core'], (recast, babelCore) => {
       callback({
         recast,
         parsers: {
-          esprima,
           'babel-core': babelCore,
         },
       });
@@ -41,7 +40,7 @@ export default {
 
   parse({ recast, parsers }, code) {
     let {parser, ...localOptions} = options;
-    if (parser !== 'esprima-fb') {
+    if (parser !== 'esprima') {
       localOptions.esprima = parsers[parser];
     }
     return recast.parse(code, localOptions);

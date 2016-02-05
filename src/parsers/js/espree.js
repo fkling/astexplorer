@@ -12,30 +12,10 @@ const options = {
   attachComment: false,
   tokens: false,
   tolerant: true,
+  ecmaVersion: 6,
+  sourceType: 'module',
 
   ecmaFeatures: {
-    arrowFunctions: true,
-    blockBindings: true,
-    destructuring: true,
-    regexYFlag: true,
-    regexUFlag: true,
-    templateStrings: true,
-    binaryLiterals: true,
-    octalLiterals: true,
-    unicodeCodePointEscapes: true,
-    defaultParams: true,
-    restParams: true,
-    forOf: true,
-    objectLiteralComputedProperties: true,
-    objectLiteralShorthandMethods: true,
-    objectLiteralShorthandProperties: true,
-    objectLiteralDuplicateProperties: true,
-    generators: true,
-    spread: true,
-    superInFunctions: true,
-    classes: true,
-    newTarget: false,
-    modules: true,
     jsx: true,
     globalReturn: true,
     experimentalObjectRestSpread: true,
@@ -66,12 +46,23 @@ export default {
   },
 };
 
-let parserSettings = Object.keys(options).filter(v => v !== 'ecmaFeatures');
+let parserSettings = [
+  ['ecmaVersion', [3, 5, 6]],
+  ['sourceType', ['script', 'module']],
+  ...Object.keys(options).filter(v => v !== 'ecmaFeatures'),
+];
 let ecmaFeatures = Object.keys(options.ecmaFeatures);
 
 function changeOption(name, {target}) {
   if (parserSettings.indexOf(name) > -1) {
-    options[name] = target.checked;
+    switch (name) {
+      case 'ecmaVersion':
+      case 'sourceType':
+        options[name] = target.value;
+        break;
+      default:
+        options[name] = target.checked;
+    }
   } else {
     options.ecmaFeatures[name] = target.checked;
   }
