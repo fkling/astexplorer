@@ -50,7 +50,7 @@
     "escodegen": "^1.4.1",
     "espree": "^2.2.4",
     "esprima": "^2.5",
-    "flow-parser": "^0.7.0",
+    "flow-parser": "^0.21.0",
     "font-awesome": "^4.5.0",
     "graphql": "^0.4.14",
     "halting-problem": "^1.0.2",
