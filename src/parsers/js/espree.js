@@ -8,7 +8,7 @@ const ID = 'espree';
 const options = {
   range: true,
   loc: false,
-  comments: false,
+  comment: false,
   attachComment: false,
   tokens: false,
   tolerant: true,
