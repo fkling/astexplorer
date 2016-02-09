@@ -76,7 +76,7 @@ let plugins = ['jsx', 'flow'];
 
 function changeOption(name, {target}) {
   if (name === 'sourceType') {
-    options.sourceType = target.vaue;
+    options.sourceType = target.value;
   } else if(parserSettings.indexOf(name) > -1) {
     options[name] = target.checked;
   } else if (features.indexOf(name) > -1) {
