@@ -57,6 +57,8 @@ function changeOption(name, {target}) {
   if (parserSettings.indexOf(name) > -1) {
     switch (name) {
       case 'ecmaVersion':
+        options[name] = +target.value;
+        break;
       case 'sourceType':
         options[name] = target.value;
         break;
