@@ -6,6 +6,7 @@ const categoryIcon = {
   javascript: 'fa-jsfiddle',
   css: 'fa-css3',
   htmlmixed: 'fa-html5',
+  idl: 'fa-th-list',
 };
 
 export default class CategoryButton extends React.Component {
