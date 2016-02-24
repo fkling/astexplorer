@@ -43,10 +43,10 @@ export default {
 
   transform({ jscodeshift, babel }, transformCode, code) {
     sessionMethods.clear();
-    let transform = compileModule( // eslint-disable-line no-shadow
+    const transform = compileModule( // eslint-disable-line no-shadow
       babel.transform(transformCode).code
     );
-    return transform(
+    const result = transform(
       {
         path: 'Live.js',
         source: code,
@@ -54,5 +54,16 @@ export default {
       { jscodeshift },
       {}
     );
+    if (result == null) {
+      // If null is returned, the jscodeshift runner won't touch the original
+      // code, so we just return that.
+      return code;
+    } else if (typeof result !== 'string') {
+      throw new Error(
+        'Transformers must either return undefined, null or a string, not ' +
+        `"${typeof result}".`
+      );
+    }
+    return result;
   },
 };
