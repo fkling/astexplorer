@@ -12984,10 +12984,18 @@ webpackJsonp([0],{
 	    sessionMethods.clear();
 	    var transform = (0, _utilsCompileModule2['default'])( // eslint-disable-line no-shadow
 	    babel.transform(transformCode).code);
-	    return transform({
+	    var result = transform({
 	      path: 'Live.js',
 	      source: code
 	    }, { jscodeshift: jscodeshift }, {});
+	    if (result == null) {
+	      // If null is returned, the jscodeshift runner won't touch the original
+	      // code, so we just return that.
+	      return code;
+	    } else if (typeof result !== 'string') {
+	      throw new Error('Transformers must either return undefined, null or a string, not ' + ('"' + typeof result + '".'));
+	    }
+	    return result;
 	  }
 	};
 	module.exports = exports['default'];
