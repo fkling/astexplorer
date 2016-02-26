@@ -49,7 +49,7 @@ export default {
 };
 
 const settings = [
-  ['ecmaVersion', [3, 5, 6]],
+  ['ecmaVersion', [3, 5, 6, 7]],
   ['sourceType', ['script', 'module']],
   'allowReserved',
   'allowReturnOutsideFunction',

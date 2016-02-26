@@ -3,9 +3,9 @@
   "version": "1.9.0",
   "dependencies": {
     "acorn": {
-      "version": "3.0.2",
-      "from": "acorn@3.0.2",
-      "resolved": "https://registry.npmjs.org/acorn/-/acorn-3.0.2.tgz"
+      "version": "3.0.4",
+      "from": "acorn@latest",
+      "resolved": "https://registry.npmjs.org/acorn/-/acorn-3.0.4.tgz"
     },
     "acorn-jsx": {
       "version": "2.0.1",
@@ -549,7 +549,8 @@
         },
         "babel-types": {
           "version": "6.5.2",
-          "from": "babel-types@>=6.5.2 <7.0.0"
+          "from": "babel-types@6.5.2",
+          "resolved": "https://registry.npmjs.org/babel-types/-/babel-types-6.5.2.tgz"
         },
         "babylon": {
           "version": "6.5.2",
@@ -1076,7 +1077,8 @@
       "dependencies": {
         "esprima-fb": {
           "version": "15001.1001.0-dev-harmony-fb",
-          "from": "esprima-fb@>=15001.1001.0-dev-harmony-fb <15001.1002.0"
+          "from": "esprima-fb@15001.1001.0-dev-harmony-fb",
+          "resolved": "https://registry.npmjs.org/esprima-fb/-/esprima-fb-15001.1001.0-dev-harmony-fb.tgz"
         }
       }
     },
@@ -1284,16 +1286,9 @@
       }
     },
     "espree": {
-      "version": "3.0.2",
-      "from": "espree@3.0.2",
-      "resolved": "https://registry.npmjs.org/espree/-/espree-3.0.2.tgz",
-      "dependencies": {
-        "acorn": {
-          "version": "2.7.0",
-          "from": "acorn@>=2.7.0 <3.0.0",
-          "resolved": "https://registry.npmjs.org/acorn/-/acorn-2.7.0.tgz"
-        }
-      }
+      "version": "3.1.0",
+      "from": "espree@latest",
+      "resolved": "https://registry.npmjs.org/espree/-/espree-3.1.0.tgz"
     },
     "esprima": {
       "version": "2.7.2",
@@ -2486,7 +2481,8 @@
     },
     "jscodeshift": {
       "version": "0.3.13",
-      "from": "jscodeshift@0.3.13"
+      "from": "jscodeshift@0.3.13",
+      "resolved": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.13.tgz"
     },
     "jsesc": {
       "version": "0.5.0",

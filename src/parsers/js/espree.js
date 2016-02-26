@@ -47,7 +47,7 @@ export default {
 };
 
 let parserSettings = [
-  ['ecmaVersion', [3, 5, 6]],
+  ['ecmaVersion', [3, 5, 6, 7]],
   ['sourceType', ['script', 'module']],
   ...Object.keys(options).filter(v => v !== 'ecmaFeatures'),
 ];
