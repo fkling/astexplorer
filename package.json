@@ -31,7 +31,7 @@
     "webpack": "^1.12.8"
   },
   "dependencies": {
-    "acorn": "^3.0.0",
+    "acorn": "^3.0.4",
     "acorn-jsx": "^2.0.1",
     "acorn-to-esprima": "^1.0.2",
     "babel-core": "^5.7.3",
@@ -49,7 +49,7 @@
     "cssom": "^0.3.0",
     "domhandler": "^2.3.0",
     "escodegen": "^1.4.1",
-    "espree": "^3.0.1",
+    "espree": "^3.1.0",
     "esprima": "^2.5",
     "flow-parser": "^0.21.0",
     "font-awesome": "^4.5.0",
