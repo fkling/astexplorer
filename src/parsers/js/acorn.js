@@ -1,7 +1,6 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'acorn/package.json';
-import jsxPkg from 'acorn-jsx/package.json';
 import * as LocalStorage from '../../LocalStorage';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
@@ -19,7 +18,7 @@ export default {
 
   id: ID,
   displayName: ID,
-  version: `${pkg.version} (acorn-jsx: ${jsxPkg.version})`,
+  version: `${pkg.version}`,
   homepage: pkg.homepage,
   locationProps: new Set(['range', 'loc', 'start', 'end']),
 
