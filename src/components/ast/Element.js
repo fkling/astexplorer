@@ -2,7 +2,9 @@ import CompactArrayView from './CompactArrayView';
 import CompactObjectView from './CompactObjectView';
 import PubSub from 'pubsub-js';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import RecursiveTreeElement from './RecursiveTreeElement';
+import {nodeToRange} from '../../getFocusPath';
 
 import cx from 'classnames';
 import stringify from '../../utils/stringify';
@@ -20,23 +22,7 @@ function log(f) {
 }
 */
 
-@RecursiveTreeElement
-export default class Element extends React.Component {
-  static propTypes = {
-    name: PropTypes.string,
-    value: PropTypes.any.isRequired,
-    computed: PropTypes.bool,
-    deepOpen: PropTypes.bool,
-    focusPath: PropTypes.array.isRequired,
-    level: PropTypes.number,
-    parser: PropTypes.object.isRequired,
-    settings: PropTypes.object.isRequired,
-    parent: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.array,
-    ]),
-  };
-
+let Element = class extends React.Component {
   constructor(props, context) {
     super(props, context);
     this._execFunction = this._execFunction.bind(this);
@@ -93,7 +79,7 @@ export default class Element extends React.Component {
     const {focusPath, value} = this.props;
     if (focusPath.length > 0 && focusPath[focusPath.length -1] === value) {
       setTimeout(() => {
-        const node = React.findDOMNode(this);
+        const node = ReactDOM.findDOMNode(this);
         node.scrollIntoView();
       }, 0);
     }
@@ -111,11 +97,19 @@ export default class Element extends React.Component {
 
   _onMouseOver(e) {
     e.stopPropagation();
-    PubSub.publish('HIGHLIGHT', this.state.value);
+    const {value} = this.state;
+    PubSub.publish(
+      'HIGHLIGHT',
+      {node: value, range: nodeToRange(this.props.parser, value)}
+    );
   }
 
   _onMouseLeave() {
-    PubSub.publish('CLEAR_HIGHLIGHT', this.state.value);
+    const {value} = this.state;
+    PubSub.publish(
+      'CLEAR_HIGHLIGHT',
+      {node: value, range: nodeToRange(this.props.parser, value)}
+    );
   }
 
   _isFocused(level, path, value, open) {
@@ -137,9 +131,9 @@ export default class Element extends React.Component {
     let state = {error: null};
     try {
       state.value = this.state.value.call(this.props.parent);
-      console.log(state.value);
+      console.log(state.value); // eslint-disable-line no-console
     } catch(err) {
-      console.error(`Unable to run "${this.props.name}": `, err.message);
+      console.error(`Unable to run "${this.props.name}": `, err.message); // eslint-disable-line no-console
       state.error = err;
     }
     this.setState(state);
@@ -157,7 +151,7 @@ export default class Element extends React.Component {
         level={this.props.level + 1}
         parser={this.props.parser}
         settings={this.props.settings}
-        parent={value}
+        parent={this.props.value}
       />
     );
   }
@@ -204,7 +198,7 @@ export default class Element extends React.Component {
               key,
               value,
               Number.isInteger(+key) ? undefined : key,
-              computed,
+              computed
             ));
           content = <ul className="value-body">{elements}</ul>;
         } else {
@@ -306,4 +300,22 @@ export default class Element extends React.Component {
       </li>
     );
   }
-}
+};
+
+Element.propTypes = {
+  name: PropTypes.string,
+  value: PropTypes.any,
+  computed: PropTypes.bool,
+  open: PropTypes.bool,
+  deepOpen: PropTypes.bool,
+  focusPath: PropTypes.array.isRequired,
+  level: PropTypes.number,
+  parser: PropTypes.object.isRequired,
+  settings: PropTypes.object.isRequired,
+  parent: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]),
+};
+
+export default (Element = RecursiveTreeElement(Element));

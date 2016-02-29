@@ -12,7 +12,7 @@ export default {
     let index = 0;
     do {
       this.lineOffsets.push(index);
-    } while (index = code.indexOf('\n', index) + 1);
+    } while (index = code.indexOf('\n', index) + 1); // eslint-disable-line no-cond-assign
     return parseCSS(code);
   },
 };

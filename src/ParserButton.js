@@ -42,3 +42,9 @@ export default class ParserButton extends React.Component {
     );
   }
 }
+
+ParserButton.propTypes = {
+  onParserChange: React.PropTypes.func,
+  parser: React.PropTypes.object,
+  category: React.PropTypes.object,
+};

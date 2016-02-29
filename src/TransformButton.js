@@ -21,7 +21,7 @@ export default class TransformButton extends React.Component {
 
   _onToggle() {
     if (this.props.transformer) {
-      this.props.onTransformChange(this.props.transformer);
+      this.props.onTransformChange(null);
     }
   }
 
@@ -32,13 +32,16 @@ export default class TransformButton extends React.Component {
         menuButton: true,
         disabled: !this.props.category.transformers.length,
       })}>
-        <button type="button" onClick={this._onToggle} disabled={!this.props.category.transformers.length}>
+        <button
+          type="button"
+          onClick={this._onToggle}
+          disabled={!this.props.category.transformers.length}>
           <i
             className={cx({
               fa: true,
               'fa-lg': true,
-              'fa-toggle-off': !this.props.transformPanelIsEnabled,
-              'fa-toggle-on': this.props.transformPanelIsEnabled,
+              'fa-toggle-off': !this.props.showTransformer,
+              'fa-toggle-on': this.props.showTransformer,
               'fa-fw': true,
             })}
           />
@@ -49,7 +52,7 @@ export default class TransformButton extends React.Component {
             <li
               key={transformer.id}
               className={cx({
-                selected: this.props.transformPanelIsEnabled &&
+                selected: this.props.showTransformer &&
                   this.props.transformer === transformer,
               })}
               onClick={this._onClick}>
@@ -63,3 +66,10 @@ export default class TransformButton extends React.Component {
     );
   }
 }
+
+TransformButton.propTypes = {
+  category: React.PropTypes.object,
+  transformer: React.PropTypes.object,
+  showTransformer: React.PropTypes.bool,
+  onTransformChange: React.PropTypes.func,
+};

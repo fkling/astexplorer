@@ -40,13 +40,13 @@ export default {
   },
 
   parse(ts, code) {
-    const compilerHost: ts.CompilerHost = {
+    const compilerHost/*: ts.CompilerHost*/ = {
       fileExists: () => true,
-      getCanonicalFileName: (filename: string) => filename,
+      getCanonicalFileName: filename => filename,
       getCurrentDirectory: () => '',
       getDefaultLibFileName: () => 'lib.d.ts',
       getNewLine: () => '\n',
-      getSourceFile: (filename: string) => {
+      getSourceFile: filename => {
         return ts.createSourceFile(filename, code, ts.ScriptTarget.Latest, true);
       },
       readFile: () => null,

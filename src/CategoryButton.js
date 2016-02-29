@@ -53,3 +53,8 @@ export default class CategoryButton extends React.Component {
     );
   }
 }
+
+CategoryButton.propTypes = {
+  onCategoryChange: React.PropTypes.func.isRequired,
+  category: React.PropTypes.object.isRequired,
+};

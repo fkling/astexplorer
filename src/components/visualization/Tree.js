@@ -74,3 +74,12 @@ export default class Tree extends React.Component {
     );
   }
 }
+
+Tree.propTypes = {
+  focusPath: React.PropTypes.array,
+  ast: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.object,
+  ]),
+  parser: React.PropTypes.object,
+};

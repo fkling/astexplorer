@@ -17,16 +17,6 @@ categories.forEach(({ id, mimeTypes }) => {
 });
 
 export default class PasteDropTarget extends React.Component {
-  static propTypes = {
-    dropindiciator: React.PropTypes.element,
-    onText: React.PropTypes.func,
-    onError: React.PropTypes.func,
-  };
-
-  static defaultProps = {
-    onError: () => {},
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +35,7 @@ export default class PasteDropTarget extends React.Component {
 
   componentDidMount() {
     this._listeners = [];
-    let target = React.findDOMNode(this.refs.container);
+    let target = this.refs.container;
 
     // Handle pastes
     this._bindListener(document, 'paste', event => {
@@ -135,7 +125,13 @@ export default class PasteDropTarget extends React.Component {
   }
 
   _jsonToCode(json) {
-    let ast = JSON.parse(json);
+    let ast;
+    try {
+      ast = JSON.parse(json);
+    }
+    catch(err) {
+      return Promise.resolve(json);
+    }
     return importEscodegen().then(escodegen => {
       return escodegen.generate(ast, {format: {indent: {style: '  '}}});
     });
@@ -149,10 +145,13 @@ export default class PasteDropTarget extends React.Component {
   }
 
   render() {
-    let {children, dropindicator, ...props} = this.props;
-    if (!this.state.dragging) {
-      dropindicator = null;
-    }
+    let {children, ...props} = this.props;
+    const dropindicator = this.state.dragging ?
+      <div className="dropIndicator">
+        <div>Drop the code or (JSON-encoded) AST file here</div>
+      </div> :
+      null;
+
     return (
       <div
         ref="container"
@@ -163,3 +162,9 @@ export default class PasteDropTarget extends React.Component {
     );
   }
 }
+
+PasteDropTarget.propTypes = {
+  onText: React.PropTypes.func,
+  onError: React.PropTypes.func,
+  children: React.PropTypes.node,
+};

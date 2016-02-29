@@ -9,6 +9,28 @@ html {
   font-family: Verdana, non-serif;
 }
 
+.cover {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hasError {
+  filter: blur(3px);
+}
+
+.loadingIndicator {
+  font-size: 200%;
+  color: #555;
+}
+
 .dropTarget {
   position: absolute;
   top: 0;
@@ -168,18 +190,15 @@ html {
   line-height: 1.3em;
 }
 
-#Error {
-  position: absolute;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #C00;
-  color: white;
-  text-align: center;
-  height: 35px;
-  line-height: 35px;
+.errorMessage {
   font-family: Verdana, non-serif;
+  font-size: 1.2em;
+}
+
+.errorMessage h3 {
+  padding-top: 0;
+  margin-top: 0;
+  color: #CC0000;
 }
 
 #contribution {

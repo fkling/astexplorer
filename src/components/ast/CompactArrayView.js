@@ -1,14 +1,6 @@
 import React from 'react';
 
-export default class CompactArrayView {
-  static propTypes = {
-    /**
-     * The array of elements to represent.
-     */
-    array: React.PropTypes.shape({ length: React.PropTypes.number }).isRequired,
-    onClick: React.PropTypes.func,
-  };
-
+export default class CompactArrayView extends React.Component {
   shouldComponentUpdate(nextProps) {
     return nextProps.array.length !== this.props.array.length;
   }
@@ -33,3 +25,14 @@ export default class CompactArrayView {
     }
   }
 }
+
+CompactArrayView.propTypes = {
+  /**
+   * The array of elements to represent.
+   */
+  array: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.shape({ length: React.PropTypes.number }),
+  ]).isRequired,
+  onClick: React.PropTypes.func,
+};

@@ -78,3 +78,9 @@ export default class Editor extends React.Component {
     );
   }
 }
+
+Editor.propTypes = {
+  value: React.PropTypes.string,
+  className: React.PropTypes.string,
+  onContentChange: React.PropTypes.func,
+};

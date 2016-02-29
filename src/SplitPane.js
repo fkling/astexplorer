@@ -17,7 +17,7 @@ let baseStyleVertical = {
 /**
  * Creates a left-right split pane inside its container.
  */
-export default class extends React.Component {
+export default class SplitPane extends React.Component {
   constructor(props, context) {
     super(props, context);
     this._onMouseDown = this._onMouseDown.bind(this);
@@ -132,3 +132,10 @@ export default class extends React.Component {
     );
   }
 }
+
+SplitPane.propTypes = {
+  vertical: React.PropTypes.bool,
+  className: React.PropTypes.string,
+  children: React.PropTypes.node,
+  onResize: React.PropTypes.func,
+};
