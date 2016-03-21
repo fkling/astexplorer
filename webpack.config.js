@@ -22,6 +22,19 @@ var plugins = [
     /node\/nodeLoader.js/,
     /traceur/
   ),
+  // Shim ESLint stuff that's only relevant for Node.js
+  new webpack.NormalModuleReplacementPlugin(
+    /(cli-engine|testers\/rule-tester)/,
+    'node-libs-browser/mock/empty'
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /load-rules/,
+    __dirname + '/src/parsers/js/transformers/eslint/loadRulesShim.js'
+  ),
+  // Hack to disable Webpack dynamic requires in ESLint, so we don't end up
+  // bundling the entire ESLint directory including files we don't even need.
+  // https://github.com/webpack/webpack/issues/198
+  new webpack.ContextReplacementPlugin(/eslint/, /NEVER_MATCH^/),
   new ExtractTextPlugin(DEV ? '[name].css' : '[name]-[chunkhash].css'),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
@@ -98,9 +111,11 @@ module.exports = {
   },
 
   node: {
+    child_process: 'empty',
     fs: 'empty',
     module: 'empty',
     net: 'empty',
+    readline: 'empty'
   },
   resolve: {
     fs: 'fs'
