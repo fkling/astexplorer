@@ -37,7 +37,7 @@ function typeNameToString(name) {
 for (const typeName in astTypes.namedTypes) {
   const typeDef = astTypes.Type.def(typeName);
   const definition = {
-    '!proto': 'ASTNode'
+    '!proto': 'ASTNode',
   };
   const builder = {};
 
@@ -80,7 +80,7 @@ for (const typeName in astTypes.namedTypes) {
     });
     builders[t.getBuilderName(typeName)] = Object.assign(builder, {
       '!type': `fn(${args.join(', ')}) -> ${typeName}`,
-      '!doc': `Builds an AST node of type '${typeName}'.`
+      '!doc': `Builds an AST node of type '${typeName}'.`,
     });
     if (typeDef.supertypeList.length > 1) {
       builder['!doc'] += '\nSuper types: ' + typeDef.supertypeList.slice(1).join(', ');
