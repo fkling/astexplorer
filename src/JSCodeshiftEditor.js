@@ -76,13 +76,13 @@ export default class JSCodeshiftEditor extends React.Component {
       {
         value: this.props.defaultValue,
         mode: 'javascript',
-        lineNumbers: true
+        lineNumbers: true,
       }
     );
-    this.codeMirror.setOption("extraKeys", {
-      "Ctrl-Space": cm => server && server.complete(cm),
-      "Ctrl-I": cm => server && server.showType(cm),
-      "Ctrl-O": cm => server && server.showDocs(cm),
+    this.codeMirror.setOption('extraKeys', {
+      'Ctrl-Space': cm => server && server.complete(cm),
+      'Ctrl-I': cm => server && server.showType(cm),
+      'Ctrl-O': cm => server && server.showDocs(cm),
     })
 
     if (this.props.onContentChange) {
@@ -177,8 +177,8 @@ function loadTern() {
         ],
         (tern, _, infer, jscs_def, ecma5_def, ecma6_def) => {
           global.tern = tern;
-          tern.registerPlugin("transformer", (server, options) => {
-            server.on("afterLoad", file => {
+          tern.registerPlugin('transformer', server => {
+            server.on('afterLoad', file => {
               const fnVal = file.scope.props.transformer;
               if (fnVal) {
                 const fnType = fnVal.getFunctionType();
@@ -187,7 +187,7 @@ function loadTern() {
                   infer.cx().topScope,
                   [
                     cx.definitions.jscodeshift.file,
-                    cx.definitions.jscodeshift.apiObject
+                    cx.definitions.jscodeshift.apiObject,
                   ],
                   null,
                   infer.ANull
@@ -200,7 +200,7 @@ function loadTern() {
             defs: [jscs_def, ecma6_def, ecma5_def],
             plugins: {
               transformer: {strong: true},
-            }
+            },
           });
         }
       );

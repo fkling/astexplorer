@@ -103,7 +103,7 @@ module.exports = {
     net: 'empty',
   },
   resolve: {
-    fs: 'fs'
+    fs: 'fs',
   },
 
   plugins: plugins,
