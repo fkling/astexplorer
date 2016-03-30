@@ -42,8 +42,9 @@ for developers who want to create AST transforms.
 In fact, following transformers are included so you can prototype your own plugins:
 
 - JavaScript
-  - [jscodeshift][]
   - [babel][]
+  - [ESLint][] (v1)
+  - [jscodeshift][]
 - CSS
   - [postcss][]
 
@@ -65,29 +66,30 @@ corresponding AST node (or its ancestors of it isn't expanded):
 - You can use `$node` in the console to refer to the last opened/toggled AST 
 node.
 
-[esprima]: https://github.com/jQuery/esprima
-[babylon]: https://babeljs.io/
-[babel]: https://babeljs.io/docs/advanced/plugins/
-[espree]: https://github.com/eslint/espree
-[acorn]: https://github.com/ternjs/acorn
 [acorn-jsx]: https://github.com/RReverser/acorn-jsx
+[acorn]: https://github.com/ternjs/acorn
+[babel-eslint]: https://github.com/babel/babel-eslint
+[babel]: https://babeljs.io/docs/advanced/plugins/
+[babylon]: https://babeljs.io/
+[cssom]: https://github.com/NV/CSSOM
+[escodegen]: https://github.com/estools/escodegen
+[eslint]: http://eslint.org/
+[espree]: https://github.com/eslint/espree
+[esprima]: https://github.com/jQuery/esprima
+[flow-parser]: https://github.com/facebook/flow/tree/master/src/parser
+[graphql]: https://facebook.github.io/graphql/
+[htmlparser2]: https://github.com/fb55/htmlparser2
+[jscodeshift]: https://github.com/facebook/jscodeshift
+[parse5]: https://github.com/inikulin/parse5
+[postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
+[postcss-scss]: https://github.com/postcss/postcss-scss
+[postcss]: https://github.com/postcss/postcss
 [recast]: https://github.com/benjamn/recast
+[rework]: https://github.com/reworkcss/rework
 [shift]: https://github.com/shapesecurity/shift-parser-js
 [traceur]: https://github.com/google/traceur-compiler
 [typescript]: https://github.com/Microsoft/TypeScript/
 [uglify-js]: https://github.com/mishoo/UglifyJS2
-[babel-eslint]: https://github.com/babel/babel-eslint
-[jscodeshift]: https://github.com/facebook/jscodeshift
-[escodegen]: https://github.com/estools/escodegen
-[cssom]: https://github.com/NV/CSSOM
-[postcss]: https://github.com/postcss/postcss
-[postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
-[postcss-scss]: https://github.com/postcss/postcss-scss
-[rework]: https://github.com/reworkcss/rework
-[htmlparser2]: https://github.com/fb55/htmlparser2
-[parse5]: https://github.com/inikulin/parse5
-[flow-parser]: https://github.com/facebook/flow/tree/master/src/parser
-[graphql]: https://facebook.github.io/graphql/
 [webidl]: https://github.com/darobin/webidl2.js
 
 ### Contributions
