@@ -1,11 +1,12 @@
 import compileModule from '../../../utils/compileModule';
 import pkg from 'eslint/package.json';
 
-const ID = 'eslint1';
+const ID = 'eslint-v1';
+const name = 'ESLint v1'
 
 export default {
   id: ID,
-  displayName: ID,
+  displayName: name,
   version: pkg.version,
   homepage: pkg.homepage,
 
