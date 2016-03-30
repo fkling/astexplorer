@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -86,7 +87,10 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: [
+          /node_modules/,
+          path.join(__dirname, './packages/'),
+        ],
         loader: 'babel?cacheDirectory&optional[]=runtime&stage=0',
       },
       {
@@ -115,7 +119,7 @@ module.exports = {
     fs: 'empty',
     module: 'empty',
     net: 'empty',
-    readline: 'empty'
+    readline: 'empty',
   },
   resolve: {
     fs: 'fs',

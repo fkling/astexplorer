@@ -72,7 +72,6 @@
     "tern": "^0.17.0",
     "traceur": "0.0.102",
     "typescript": "^1.7.5",
-    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
     "webidl2": "^2.0.11"
   },
   "scripts": {
