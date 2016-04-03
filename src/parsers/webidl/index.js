@@ -1,5 +1,9 @@
-import 'codemirror/mode/idl/idl';
+// Until Web IDL mode has been officially merged into CodeMirror, use the
+// local version of the mode.
 
-export const id = 'idl';
-export const displayName = 'WebIDL';
-export const mimeTypes = ['text/x-idl'];
+// import 'codemirror/mode/webidl/webidl';
+import './utils/mode';
+
+export const id = 'webidl';
+export const displayName = 'Web IDL';
+export const mimeTypes = ['text/x-webidl'];

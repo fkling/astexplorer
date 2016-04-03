@@ -12,6 +12,7 @@ const restrictedParserNames = new Set([
   'index.js',
   'codeExample.txt',
   'transformers',
+  'utils',
 ]);
 
 export const categories =
