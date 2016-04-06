@@ -30,7 +30,7 @@ var plugins = [
   ),
   new webpack.NormalModuleReplacementPlugin(
     /load-rules/,
-    __dirname + '/src/parsers/js/transformers/eslint/loadRulesShim.js'
+    __dirname + '/src/parsers/js/transformers/eslint1/loadRulesShim.js'
   ),
   // Hack to disable Webpack dynamic requires in ESLint, so we don't end up
   // bundling the entire ESLint directory including files we don't even need.
