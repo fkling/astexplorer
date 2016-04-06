@@ -23,16 +23,24 @@ export default {
   locationProps: new Set(['range', 'loc', 'start', 'end']),
 
   loadParser(callback) {
-    require(['acorn', 'acorn-jsx/inject'], (acorn, jsxInject) => {
-      callback(jsxInject(acorn));
+    require(['acorn/src', 'acorn/src/loose', 'acorn-jsx/inject'], (acorn, acornLoose, jsxInject) => {
+      acorn = jsxInject(acorn);
+      callback({
+        acorn,
+        acornLoose,
+      });
     });
   },
 
-  parse(acorn, code) {
+  parse(parsers, code) {
+    const parser = options.loose ?
+      parsers.acornLoose.parse_dammit :
+      parsers.acorn.parse;
+
     // put deep option into correspondent place
-    return acorn.parse(code, {
+    return parser(code, {
       ...options,
-      plugins: options['plugins.jsx'] ? { jsx: true } : {},
+      plugins: options['plugins.jsx'] && !options.loose ? { jsx: true } : {},
     });
   },
 
@@ -55,6 +63,7 @@ const settings = [
   'allowImportExportEverywhere',
   'allowHashBang',
   'locations',
+  'loose',
   'ranges',
   'preserveParens',
   'plugins.jsx',
