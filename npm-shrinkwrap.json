@@ -3869,9 +3869,9 @@
       "resolved": "https://registry.npmjs.org/typescript/-/typescript-1.8.2.tgz"
     },
     "uglify-js": {
-      "version": "2.6.1",
-      "from": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
-      "resolved": "git+https://github.com/mishoo/UglifyJS2.git#0b303379c0cdc33a8c14c97ab29148d981b4887e",
+      "version": "2.6.2",
+      "from": "uglify-js@>=2.6.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-2.6.2.tgz",
       "dependencies": {
         "async": {
           "version": "0.2.10",
