@@ -121,11 +121,12 @@ as possible!
   - Call the transformation method in `transform`.
   - Change sample transformation code in `codeExample.txt`.
 
-#### Build your own version
+#### Build your own version for development
 
+Clone the repository. Run `git submodule update --init` to initialize all submodules.  
 Install all dependencies with `npm install`.
 
-Run `npm run build` for the final minimized version.
+Run `npm run build` for the final minimized version.  
 Run `npm run watch` for incremental builds.
 
 Run `npm start` to start a simple static webserver.
