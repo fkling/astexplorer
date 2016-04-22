@@ -124,6 +124,7 @@ as possible!
 #### Build your own version
 
 Install all dependencies with `npm install`.
+Make sure submodules are updated with `git submodule update --init`.
 
 Run `npm run build` for the final minimized version.
 Run `npm run watch` for incremental builds.
