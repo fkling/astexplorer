@@ -26,7 +26,7 @@ export default {
     );
 
     return babel.transform(code, {
-      presets,
+      presets: [],
       plugins: [(transform.default || transform)(babel)],
       sourceMaps: true,
     });

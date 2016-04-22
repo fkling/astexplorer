@@ -25,7 +25,7 @@ export default {
     );
 
     return babel.transform(code, {
-      ...options,
+      whitelist: [],
       plugins: [transform],
       sourceMaps: true,
     });
