@@ -9,7 +9,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParserID: 'acorn-to-esprima',
+  defaultParserID: 'espree',
 
   loadTransformer(callback) {
     require(
