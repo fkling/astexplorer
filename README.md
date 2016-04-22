@@ -125,6 +125,7 @@ as possible!
 
 Clone the repository. Run `git submodule update --init` to initialize all submodules.  
 Install all dependencies with `npm install`.
+Make sure submodules are updated with `git submodule update --init`.
 
 Run `npm run build` for the final minimized version.  
 Run `npm run watch` for incremental builds.
