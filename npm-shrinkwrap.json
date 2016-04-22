@@ -880,9 +880,9 @@
       "resolved": "https://registry.npmjs.org/code-point-at/-/code-point-at-1.0.0.tgz"
     },
     "codemirror": {
-      "version": "5.12.0",
-      "from": "codemirror@5.12.0",
-      "resolved": "https://registry.npmjs.org/codemirror/-/codemirror-5.12.0.tgz"
+      "version": "5.14.2",
+      "from": "codemirror@>=5.1.0 <6.0.0",
+      "resolved": "https://registry.npmjs.org/codemirror/-/codemirror-5.14.2.tgz"
     },
     "codemirror-graphql": {
       "version": "0.2.2",
