@@ -14,19 +14,20 @@ export default {
   loadTransformer(callback) {
     require([
       'babel6',
+      'babel-preset-syntax-from-presets',
       'babel-preset-es2015',
       'babel-preset-stage-0',
       'babel-preset-react',
-    ], (babel, ...presets) => callback({ babel, presets }));
+    ], (babel, syntaxPreset, ...presets) => callback({ babel, syntaxPreset, presets }));
   },
 
-  transform({ babel, presets }, transformCode, code) {
+  transform({ babel, syntaxPreset, presets }, transformCode, code) {
     let transform = compileModule( // eslint-disable-line no-shadow
       babel.transform(transformCode, { presets }).code
     );
 
     return babel.transform(code, {
-      presets: [],
+      presets: [syntaxPreset],
       plugins: [(transform.default || transform)(babel)],
       sourceMaps: true,
     });
