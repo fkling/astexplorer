@@ -101,7 +101,8 @@ export default {
     for (let prop in node) {
       if (
         prop === 'constructor' ||
-        prop.charAt(0) === '_'
+        prop.charAt(0) === '_' ||
+        prop === 'parent'
       ) {
         continue;
       }
