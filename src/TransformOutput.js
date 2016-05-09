@@ -31,12 +31,14 @@ function transform(transformer, transformCode, code) {
       transformCode,
       code,
     );
-    let map = null;
-    if (typeof result !== 'string') {
-      map = new SourceMapConsumer(result.map);
-      result = result.code;
-    }
-    return { result, map };
+    return Promise.resolve(result).then(result => {
+      let map = null;
+      if (typeof result !== 'string') {
+        map = new SourceMapConsumer(result.map);
+        result = result.code;
+      }
+      return { result, map };
+    });
   });
 }
 
