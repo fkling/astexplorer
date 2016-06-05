@@ -1,4 +1,4 @@
-import pkg from 'eslint/package.json';
+import pkg from 'eslint1/package.js';
 
 const ID = 'eslint-v1';
 const name = 'ESLint v1'
