@@ -3,24 +3,6 @@ import PubSub from 'pubsub-js';
 import React from 'react';
 
 export default class Editor extends React.Component {
-  static propTypes = {
-    defaultValue: React.PropTypes.string,
-    highlight: React.PropTypes.bool,
-    lineNumbers: React.PropTypes.bool,
-    readOnly: React.PropTypes.bool,
-    onContentChange: React.PropTypes.func,
-    onActivity: React.PropTypes.func,
-    posFromIndex: React.PropTypes.func,
-  }
-
-  static defaultProps = {
-    highlight: true,
-    lineNumbers: true,
-    readOnly: false,
-    mode: 'javascript',
-    onContentChange: () => {},
-    onActivity: () => {},
-  };
 
   getValue() {
     return this.codeMirror && this.codeMirror.getValue();
@@ -71,7 +53,7 @@ export default class Editor extends React.Component {
     this._CMHandlers = [];
     this._subscriptions = [];
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
-      React.findDOMNode(this.refs.container),
+      this.refs.container,
       {
         value: this.props.defaultValue,
         mode: this.props.mode,
@@ -80,17 +62,13 @@ export default class Editor extends React.Component {
       }
     );
 
-    if (this.props.onContentChange) {
-      this._onContentChange();
-    }
-
     this._bindCMHandler('changes', () => {
       clearTimeout(this._updateTimer);
       this._updateTimer = setTimeout(this._onContentChange.bind(this), 200);
     });
     this._bindCMHandler('cursorActivity', () => {
       clearTimeout(this._updateTimer);
-      this._updateTimer = setTimeout(this._onActivity.bind(this), 100);
+      this._updateTimer = setTimeout(this._onActivity.bind(this, true), 100);
     });
 
     this._subscriptions.push(
@@ -105,7 +83,10 @@ export default class Editor extends React.Component {
       this._markerRange = null;
       this._mark = null;
       this._subscriptions.push(
-        PubSub.subscribe('CM.HIGHLIGHT', (_, range) => {
+        PubSub.subscribe('HIGHLIGHT', (_, {range}) => {
+          if (!range) {
+            return;
+          }
           let doc = this.codeMirror.getDoc();
           this._markerRange = range;
           // We only want one mark at a time.
@@ -124,7 +105,7 @@ export default class Editor extends React.Component {
           );
         }),
 
-        PubSub.subscribe('CM.CLEAR_HIGHLIGHT', (_, range) => {
+        PubSub.subscribe('CLEAR_HIGHLIGHT', (_, {range}={}) => {
           if (!range ||
             this._markerRange &&
             range[0] === this._markerRange[0] &&
@@ -146,10 +127,11 @@ export default class Editor extends React.Component {
   }
 
   componentWillUnmount() {
+    clearTimeout(this._updateTimer);
     this._unbindHandlers();
     this._markerRange = null;
     this._mark = null;
-    let container = this.refs.container.getDOMNode();
+    let container = this.refs.container;
     container.removeChild(container.children[0]);
     this.codeMirror = null;
   }
@@ -160,7 +142,7 @@ export default class Editor extends React.Component {
   }
 
   _unbindHandlers() {
-    let cmHandlers = this._CMHandlers;
+    const cmHandlers = this._CMHandlers;
     for (let i = 0; i < cmHandlers.length; i += 2) {
       this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
     }
@@ -169,12 +151,15 @@ export default class Editor extends React.Component {
     });
   }
 
-  _onContentChange() {
-    let doc = this.codeMirror.getDoc();
-    this.props.onContentChange({
+  _onContentChange(withCursor) {
+    const doc = this.codeMirror.getDoc();
+    const args = {
       value: doc.getValue(),
-      cursor: doc.indexFromPos(doc.getCursor()),
-    });
+    };
+    if (withCursor) {
+      args.cursor = doc.indexFromPos(doc.getCursor());
+    }
+    this.props.onContentChange(args);
   }
 
   _onActivity() {
@@ -189,3 +174,23 @@ export default class Editor extends React.Component {
     );
   }
 }
+Editor.propTypes = {
+  defaultValue: React.PropTypes.string,
+  highlight: React.PropTypes.bool,
+  lineNumbers: React.PropTypes.bool,
+  readOnly: React.PropTypes.bool,
+  onContentChange: React.PropTypes.func,
+  onActivity: React.PropTypes.func,
+  posFromIndex: React.PropTypes.func,
+  error: React.PropTypes.object,
+  mode: React.PropTypes.string,
+};
+
+Editor.defaultProps = {
+  highlight: true,
+  lineNumbers: true,
+  readOnly: false,
+  mode: 'javascript',
+  onContentChange: () => {},
+  onActivity: () => {},
+};

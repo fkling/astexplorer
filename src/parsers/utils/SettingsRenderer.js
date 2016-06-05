@@ -29,7 +29,7 @@ export default function SettingsRenderer(props) {
                 <select
                   onChange={onChange.bind(null, name)}
                   defaultValue={values[name]}>
-                  {options.map(o => <option key={o}>{o}</option>)}
+                  {options.map(o => <option key={o} value={o}>{o}</option>)}
                 </select>
               </label>
             </li>
@@ -39,3 +39,10 @@ export default function SettingsRenderer(props) {
     </ul>
   );
 }
+
+SettingsRenderer.propTypes = {
+  settings: React.PropTypes.array,
+  values: React.PropTypes.object,
+  required: React.PropTypes.instanceOf(Set),
+  onChange: React.PropTypes.func,
+};

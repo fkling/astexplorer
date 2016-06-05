@@ -1,21 +1,19 @@
 import React from 'react';
-import pubSub from 'pubsub-js';
 
-export default class ParserSettingsButton extends React.Component {
-  _show() {
-    pubSub.publish('PARSER.SHOW_SETTINGS');
-  }
-
-  render() {
-    let settings = this.props.parser.renderSettings;
-    return (
-      <button
-        type="button"
-        disabled={!settings}
-        onClick={this._show}>
-        <i className="fa fa-cog fa-fw" />
-        &nbsp;Parser Settings
-      </button>
-    );
-  }
+export default function ParserSettingsButton(props) {
+  let settings = props.parser.renderSettings;
+  return (
+    <button
+      type="button"
+      disabled={!settings}
+      onClick={props.onParserSettingsButtonClick}>
+      <i className="fa fa-cog fa-fw" />
+      &nbsp;Parser Settings
+    </button>
+  );
 }
+
+ParserSettingsButton.propTypes = {
+  parser: React.PropTypes.object,
+  onParserSettingsButtonClick: React.PropTypes.func,
+};

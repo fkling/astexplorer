@@ -29,7 +29,7 @@ function transform(transformer, transformCode, code) {
     let result = transformer.transform(
       realTransformer,
       transformCode,
-      code,
+      code
     );
     return Promise.resolve(result).then(result => {
       let map = null;
@@ -43,12 +43,6 @@ function transform(transformer, transformCode, code) {
 }
 
 export default class TransformOutput extends React.Component {
-  static propTypes = {
-    transformer: React.PropTypes.object,
-    transformCode: React.PropTypes.string,
-    code: React.PropTypes.string,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -63,7 +57,7 @@ export default class TransformOutput extends React.Component {
     transform(
       this.props.transformer,
       this.props.transformCode,
-      this.props.code,
+      this.props.code
     ).then(
       ({ result, map }) => this.setState({ result, map }),
       error => this.setState({ error })
@@ -73,17 +67,17 @@ export default class TransformOutput extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.transformCode !== nextProps.transformCode ||
         this.props.code !== nextProps.code) {
-      if (console.clear) {
-        console.clear();
+      if (console.clear) { // eslint-disable-line no-console
+        console.clear(); // eslint-disable-line no-console
       }
       transform(
         nextProps.transformer,
         nextProps.transformCode,
-        nextProps.code,
+        nextProps.code
       ).then(
         ({ result, map }) => ({ result, map, error: null }),
         error => {
-          console.error(error);
+          console.error(error); // eslint-disable-line no-console
           return { error };
         }
       ).then(state => this.setState(state));
@@ -148,3 +142,10 @@ export default class TransformOutput extends React.Component {
     );
   }
 }
+
+TransformOutput.propTypes = {
+  transformer: React.PropTypes.object,
+  transformCode: React.PropTypes.string,
+  mode: React.PropTypes.string,
+  code: React.PropTypes.string,
+};

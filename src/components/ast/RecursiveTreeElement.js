@@ -29,7 +29,7 @@ export default function RecursiveTreeElement(Element) {
     }
   }
 
-  return class extends React.Component {
+  class RecursiveElement extends React.Component {
     constructor(props) {
       super(props);
       let {deepOpen} = props;
@@ -79,5 +79,13 @@ export default function RecursiveTreeElement(Element) {
         />
       );
     }
+  }
+
+  RecursiveElement.propTypes = {
+    deepOpen: React.PropTypes.bool,
+    value: React.PropTypes.any,
   };
+
+  return RecursiveElement;
+
 }

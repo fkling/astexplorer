@@ -8,16 +8,6 @@ import 'codemirror/addon/tern/tern.css';
 let server;
 
 export default class JSCodeshiftEditor extends React.Component {
-  static propTypes = {
-    defaultValue: React.PropTypes.string,
-    onContentChange: React.PropTypes.func,
-  }
-
-  static defaultProps = {
-    onContentChange: () => {},
-    onActivity: () => {},
-  };
-
   constructor(props) {
     super(props);
     loadTern();
@@ -72,7 +62,7 @@ export default class JSCodeshiftEditor extends React.Component {
     this._CMHandlers = [];
     this._subscriptions = [];
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
-      React.findDOMNode(this.refs.container),
+      this.refs.container,
       {
         value: this.props.defaultValue,
         mode: 'javascript',
@@ -207,3 +197,18 @@ function loadTern() {
     }
   );
 }
+
+JSCodeshiftEditor.propTypes = {
+  defaultValue: React.PropTypes.string,
+  onContentChange: React.PropTypes.func,
+  onActivity: React.PropTypes.func,
+  error: React.PropTypes.object,
+  mode: React.PropTypes.string,
+  posFromIndex: React.PropTypes.func,
+};
+
+JSCodeshiftEditor.defaultProps = {
+  onContentChange: () => {},
+  onActivity: () => {},
+};
+

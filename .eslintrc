@@ -1,4 +1,11 @@
-parser: babel-eslint
+extends: ["eslint:recommended" , "plugin:react/recommended"]
+
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+    experimentalObjectRestSpread: true
 
 plugins:
   - react
@@ -14,9 +21,6 @@ rules:
   no-use-before-define: 0
   quotes: [2, "single", "avoid-escape"]
   strict: 0
-  react/react-in-jsx-scope: 1
-  react/jsx-no-undef: 1
-  react/jsx-uses-react: 1
   import/no-unresolved: [2, {commonjs: true, amd: true}]
   import/named: 2
   import/default: 2
@@ -24,7 +28,7 @@ rules:
   import/export: 2
 
 settings:
-  import/parser: "babel-eslint"
+  #import/parser: "babel-eslint"
   import/resolver: "webpack"
 
 env:
@@ -33,3 +37,7 @@ env:
 
 globals:
   loadjs: true
+  Promise: true
+  Map: true
+  Set: true
+  WeakMap: true

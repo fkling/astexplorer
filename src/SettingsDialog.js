@@ -1,42 +1,22 @@
 import React from 'react';
-import pubSub from 'pubsub-js';
 
 function noop() {}
 
 export default class SettingsDialog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {show: false};
-
-    this._show = this._toggleVisibility.bind(this, true);
-    this._hide = this._toggleVisibility.bind(this, false);
-    this._onChange = this._onChange.bind(this);
     this._outerClick = this._outerClick.bind(this);
-  }
-
-  componentDidMount() {
-    pubSub.subscribe('PARSER.SHOW_SETTINGS', this._show);
-  }
-
-  _toggleVisibility(show) {
-    this.setState({
-      show,
-    });
   }
 
   _outerClick(event) {
     if (event.target === document.getElementById('SettingsDialog')) {
-      this._onChange();
+      this.props.onChange();
+      this.props.onWantToClose();
     }
   }
 
-  _onChange() {
-    this._hide();
-    this.props.onChange();
-  }
-
   render() {
-    if (this.state.show) {
+    if (this.props.visible) {
       let settings = (this.props.parser.renderSettings || noop)();
       return (
         <div id="SettingsDialog" onClick={this._outerClick}>
@@ -54,3 +34,10 @@ export default class SettingsDialog extends React.Component {
     return null;
   }
 }
+
+SettingsDialog.propTypes = {
+  onChange: React.PropTypes.func,
+  onWantToClose: React.PropTypes.func,
+  visible: React.PropTypes.bool,
+  parser: React.PropTypes.object,
+};
