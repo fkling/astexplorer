@@ -1,5 +1,9 @@
 import {createSelector} from 'reselect';
 
+function getParser(state) {
+  return state.parser;
+}
+
 function getSnippet(state) {
   return state.selectedSnippet;
 }
@@ -34,42 +38,39 @@ function showTransformer(state) {
   return state.transform.showTransformer;
 }
 
-export const canSaveCode = createSelector(
-  [getRevision, getCode, getCodeExample],
-  (revision, code, codeExample) => revision ?
-    revision.get('code') !== code :
-    codeExample !== code
-);
-
-export const canSaveTransform = createSelector(
-  [showTransformer, getRevision, getTransformCode, getTransformExample],
-  (showTransformer, revision, code, codeExample) => {
-    if (!showTransformer) {
-      return false;
-    }
-    return revision ?
-      revision.get('transform') !== code :
-      codeExample !== code
-});
-
-export const canSave = createSelector(
-  [canSaveCode, canSaveTransform],
-  (canSaveCode, canSaveTransform) => canSaveCode || canSaveTransform
-);
-
 export const canFork = createSelector(
   [getSnippet],
   (snippet) => !!snippet
 );
 
-export const defaultValue = createSelector(
-  [getRevision, getCodeExample, getDroppedText],
-  (revision, codeExample, droppedText) => revision ?
-    revision.get('code') :
+const defaultValue = createSelector(
+  [getRevision, getCodeExample, getDroppedText, getParser],
+  (revision, codeExample, droppedText, parser) => revision ?
+    revision.get('code') ||  parser.category.codeExample :
     (droppedText != null ? droppedText : codeExample)
 );
+export {defaultValue};
 
-export const defaultTransformCode = createSelector(
+const defaultTransformCode = createSelector(
   [getRevision, getTransformExample],
-  (revision, example) => revision ? revision.get('transform') : example
+  (revision, example) => revision ?
+    revision.get('transform') || example :
+    example
+);
+export {defaultTransformCode};
+
+export const canSaveCode = createSelector(
+  [defaultValue, getCode],
+  (defaultCode, code) => defaultCode !== code
+);
+
+export const canSaveTransform = createSelector(
+  [showTransformer, defaultTransformCode, getTransformCode],
+  (showTransformer, defaultCode, code) =>
+    showTransformer && defaultCode !== code
+);
+
+export const canSave = createSelector(
+  [canSaveCode, canSaveTransform],
+  (canSaveCode, canSaveTransform) => canSaveCode || canSaveTransform
 );

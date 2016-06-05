@@ -26,10 +26,12 @@ function getParserForCategory(category) {
 }
 
 function* save(fork) {
-  let [snippet, parser, code] = yield [
+  let [snippet, parser, code, transformCode, transformer] = yield [
     select(getSnippet),
     select(getParser),
     select(getCode),
+    select(getTransformerCode),
+    select(getTransformer),
   ];
   if (fork || !snippet) {
     snippet = new Snippet();
@@ -40,6 +42,12 @@ function* save(fork) {
   };
   if (code !== parser.category.codeExample) {
     data.code = code;
+  }
+  if (transformer) {
+    data.toolID = transformer.id;
+  }
+  if (transformCode && transformCode !== transformer.defaultTransform) {
+    data.transform = transformCode;
   }
 
   try {
@@ -70,6 +78,14 @@ export function isForking(state) {
 
 export function getSnippet(state) {
   return state.selectedSnippet;
+}
+
+export function getTransformer(state) {
+  return state.transform.transformer;
+}
+
+export function getTransformerCode(state) {
+  return state.transform.code;
 }
 
 export function* watchSave() {

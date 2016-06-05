@@ -32,9 +32,7 @@ export default function getDataFromRevision(revision) {
     parser = getDefaultParser();
   }
 
-  const code = revision.get('code') || this._getDefaultCode(parser);
+  const code = revision.get('code') || parser.category.codeExample;
 
   return {parser, transformer, code, transformCode};
 }
-
-
