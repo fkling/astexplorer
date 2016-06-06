@@ -11,7 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParserID: 'recast',
+  defaultParserID: 'babylon6',
 
   loadTransformer(callback) {
     require(['jscodeshift', 'babel-core'], (jscodeshift, babel) => {
