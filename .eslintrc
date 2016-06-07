@@ -9,7 +9,7 @@ parserOptions:
 
 plugins:
   - react
-  - import
+ #  - import
 
 rules:
   comma-dangle: [1, "always-multiline"]
@@ -21,11 +21,11 @@ rules:
   no-use-before-define: 0
   quotes: [2, "single", "avoid-escape"]
   strict: 0
-  import/no-unresolved: [2, {commonjs: true, amd: true}]
-  import/named: 2
-  import/default: 2
-  import/namespace: 2
-  import/export: 2
+  # import/no-unresolved: [2, {commonjs: true, amd: true}]
+  # import/named: 2
+  # import/default: 2
+  # import/namespace: 2
+  # import/export: 2
 
 settings:
   #import/parser: "babel-eslint"

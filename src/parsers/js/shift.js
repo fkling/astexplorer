@@ -1,21 +1,23 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'shift-parser/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'shift';
-const options = {
+const defaultOptions = {
   loc: true,
   earlyErrors: false,
   sourceType: 'module',
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = [
-  'loc',
-  'earlyErrors',
-  ['sourceType', ['script', 'module']],
-];
+const parserSettingsConfiguration = {
+  fields: [
+    ['sourceType', ['script', 'module']],
+    'loc',
+    'earlyErrors',
+  ],
+  required: new Set(['loc']),
+};
 
 export default {
   ...defaultParserInterface,
@@ -30,12 +32,12 @@ export default {
     require(['shift-parser'], callback);
   },
 
-  parse(shift, code) {
-    if (options.sourceType === 'module') {
-      return shift.parseModule(code, options);
-    } else {
-      return shift.parseScript(code, options);
-    }
+  parse(shift, code, options) {
+    options = {...defaultOptions, ...options};
+    const parseMethod = options.sourceType === 'module' ?
+      'parseModule' :
+      'parseScript';
+    return shift[parseMethod](code, options);
   },
 
   nodeToRange({ loc }) {
@@ -44,14 +46,14 @@ export default {
     }
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      required: new Set(['loc']),
-      values: options,
-      onChange: changeOption,
-    });
-
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 
   opensByDefault(node, key) {
@@ -65,16 +67,3 @@ export default {
     );
   },
 };
-
-function changeOption(name, {target}) {
-  let value;
-  switch (name) {
-    case 'sourceType':
-      value = target.value;
-      break;
-    default:
-      value = target.checked;
-  }
-  options[name] = value;
-  LocalStorage.setParserSettings(ID, options);
-}

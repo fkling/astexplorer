@@ -1,32 +1,42 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon6/node_modules/babylon/package.json';
-import * as LocalStorage from '../../LocalStorage';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'babylon6';
-const plugins = [
-  'asyncFunctions',
-  'asyncGenerators',
-  'classConstructorCall',
-  'classProperties',
-  'decorators',
-  'doExpressions',
-  'exponentiationOperator',
-  'exportExtensions',
-  'flow',
-  'functionSent',
-  'functionBind',
-  'jsx',
-  'objectRestSpread',
-  'trailingFunctionCommas',
-];
-const options = {
+const defaultOptions = {
   sourceType: 'module',
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
-  plugins: plugins.slice(0),
-  ...LocalStorage.getParserSettings(ID),
+  plugins: [
+    'asyncFunctions',
+    'asyncGenerators',
+    'classConstructorCall',
+    'classProperties',
+    'decorators',
+    'doExpressions',
+    'exponentiationOperator',
+    'exportExtensions',
+    'flow',
+    'functionSent',
+    'functionBind',
+    'jsx',
+    'objectRestSpread',
+    'trailingFunctionCommas',
+  ],
+};
+const parserSettingsConfiguration = {
+  fields: [
+    ['sourceType', ['module', 'script']],
+    'allowReturnOutsideFunction',
+    'allowImportExportEverywhere',
+    {
+      key: 'plugins',
+      title: 'Plugins',
+      fields: defaultOptions.plugins,
+      settings: settings => settings.plugins || [...defaultOptions.plugins],
+    },
+  ],
 };
 
 export default {
@@ -42,7 +52,7 @@ export default {
     require(['babylon6'], callback);
   },
 
-  parse(babylon, code) {
+  parse(babylon, code, options) {
     return babylon.parse(code, options);
   },
 
@@ -61,51 +71,13 @@ export default {
     }
   },
 
-  renderSettings() {
-    return Settings();
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };
-
-let parserSettings = [
-  ['sourceType', ['module', 'script']],
-  'allowReturnOutsideFunction',
-  'allowImportExportEverywhere',
-];
-
-function changeOption(name, {target}) {
-  if (name === 'sourceType') {
-    options.sourceType = target.value;
-  } else if (parserSettings.indexOf(name) > -1) {
-    options[name] = target.checked;
-  } else if (plugins.indexOf(name) > -1) {
-    let plugs = new Set(options.plugins);
-    if (target.checked) {
-      plugs.add(name);
-    } else {
-      plugs.delete(name);
-    }
-    options.plugins = Array.from(plugs);
-  }
-  LocalStorage.setParserSettings(ID, options);
-}
-
-function Settings() {
-  return (
-    <div>
-      {SettingsRenderer({
-        settings: parserSettings,
-        values: options,
-        onChange: changeOption,
-      })}
-      <h4>plugins</h4>
-      {SettingsRenderer({
-        settings: plugins,
-        values: plugins.reduce(
-          (obj, p) => ((obj[p] = options.plugins.indexOf(p) > -1), obj),
-          {}
-        ),
-        onChange: changeOption,
-      })}
-    </div>
-  );
-}

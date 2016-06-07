@@ -2,21 +2,22 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'recast/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'recast';
-const options = {
+const defaultOptions = {
   tolerant: false,
   range: true,
   parser: 'esprima-fb',
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = [
-  'range',
-  'tolerant',
-  ['parser', ['esprima', 'babel-core']],
-];
+const parserSettingsConfiguration = {
+  fields: [
+    ['parser', ['esprima', 'babel-core']],
+    'range',
+    'tolerant',
+  ],
+  required: new Set(['range']),
+};
 
 export default {
   ...defaultParserInterface,
@@ -38,43 +39,45 @@ export default {
     });
   },
 
-  parse({ recast, parsers }, code) {
-    let {parser, ...localOptions} = options;
+  parse({ recast, parsers }, code, options) {
+    let {parser, ...localOptions} = {...defaultOptions, ...options};
     if (parser !== 'esprima') {
-      localOptions.esprima = parsers[parser];
+      localOptions.parser = parsers[parser];
     }
     return recast.parse(code, localOptions);
   },
 
   _ignoredProperties: new Set(['__clone']),
 
+  *forEachProperty(node) {
+    for (let prop in node) {
+      if (
+        this._ignoredProperties.has(prop) || typeof node[prop] === 'function'
+      ) {
+        continue;
+      }
+      yield {
+        value: node[prop],
+        key: prop,
+        computed: false,
+      };
+    }
+  },
+
   nodeToRange(node) {
-    if (options.parser === 'babel-core' && typeof node.start === 'number') {
+    if (typeof node.start === 'number') {
       return [node.start, node.end];
     }
     return node.range;
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      required: new Set(['range']),
-      values: options,
-      onChange: changeOption,
-    });
-
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };
-
-function changeOption(name, {target}) {
-  let value;
-  switch (name) {
-    case 'parser':
-      value = target.value;
-      break;
-    default:
-      value = target.checked;
-  }
-  options[name] = value;
-  LocalStorage.setParserSettings(ID, options);
-}

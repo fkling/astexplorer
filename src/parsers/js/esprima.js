@@ -2,29 +2,30 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'esprima/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'esprima';
-const options = {
+const defaultOptions = {
+  sourceType: 'module',
   loc: false,
   range: true,
   tokens: false,
   comment: false,
   attachComment: false,
   tolerant: false,
-  sourceType: 'module',
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = [
-  'range',
-  'loc',
-  'attachComment',
-  'comment',
-  'tokens',
-  'tolerant',
-  ['sourceType', ['script', 'module']],
-];
+const parserSettingsConfiguration = {
+  fields: [
+    ['sourceType', ['script', 'module']],
+    'range',
+    'loc',
+    'attachComment',
+    'comment',
+    'tokens',
+    'tolerant',
+  ],
+  required: new Set(['range']),
+};
 
 export default {
   ...defaultParserInterface,
@@ -39,8 +40,8 @@ export default {
     require(['esprima'], callback);
   },
 
-  parse(esprima, code) {
-    return esprima.parse(code, options);
+  parse(esprima, code, options) {
+    return esprima.parse(code, {...defaultOptions, ...options});
   },
 
   *forEachProperty(node) {
@@ -56,26 +57,13 @@ export default {
     }
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      required: new Set(['range']),
-      values: options,
-      onChange: changeOption,
-    });
-
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };
-
-function changeOption(name, {target}) {
-  let value;
-  switch (name) {
-    case 'sourceType':
-      value = target.value;
-      break;
-    default:
-      value = target.checked;
-  }
-  options[name] = value;
-  LocalStorage.setParserSettings(ID, options);
-}

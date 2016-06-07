@@ -1,15 +1,16 @@
+import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'webidl2/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'webidl2';
-const options = {
+const defaultOptions = {
   allowNestedTypedefs: false,
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = Object.keys(options);
+const parserSettingsConfiguration = {
+  fields: Object.keys(defaultOptions),
+};
 
 export default {
   ...defaultParserInterface,
@@ -33,24 +34,21 @@ export default {
     require(['webidl2'], callback);
   },
 
-  parse({ parse }, code) {
-    return parse(code, options);
+  parse({ parse }, code, options) {
+    return parse(code, {...defaultOptions, ...options});
   },
 
   opensByDefault(node, key) {
     return key === 'members';
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      values: options,
-      onChange: changeOption,
-    });
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };
-
-function changeOption(name, {target}) {
-  options[name] = target.checked;
-  LocalStorage.setParserSettings(ID, options);
-}

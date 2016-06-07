@@ -6,6 +6,7 @@ function mapStateToProps(state) {
   return {
     code: state.code,
     parser: state.parser,
+    parserSettings: state.parserSettings,
     cursor: state.cursor,
   };
 }

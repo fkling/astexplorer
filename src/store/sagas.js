@@ -25,6 +25,10 @@ function getParserForCategory(category) {
   return parser;
 }
 
+function getParserSettingsForParser(parser) {
+  return LocalStorage.getParserSettings(parser.id) || {};
+}
+
 function* save(fork) {
   let [snippet, parser, code, transformCode, transformer] = yield [
     select(getSnippet),
@@ -103,7 +107,10 @@ export function* watchCategoryChange() {
     const parser = getParserForCategory(category);
 
     yield put(batchActions([
-      actions.setWorkbenchState({parser}),
+      actions.setWorkbenchState({
+        parser,
+        parserSettings: getParserSettingsForParser(parser),
+      }),
       actions.clearSnippet(),
     ]));
   }
@@ -119,6 +126,7 @@ export function* watchSnippetChange() {
     yield put(batchActions([
       actions.setWorkbenchState({
         parser,
+        parserSettings: getParserSettingsForParser(parser),
         code,
       }),
       actions.setSnippet(snippet, revision),
@@ -156,7 +164,11 @@ export function* watchSnippetURI() {
         getDataFromRevision(data.revision);
       yield put(batchActions([
         actions.setSnippet(data.snippet, data.revision),
-        actions.setWorkbenchState({code, parser}),
+        actions.setWorkbenchState({
+          code,
+          parser,
+          parserSettings: getParserSettingsForParser(parser),
+        }),
         actions.doneLoadingSnippet(),
         transformer ?
           actions.setTransformState({transformer, code: transformCode}) :
@@ -187,7 +199,10 @@ export function* watchSelectTransformer() {
       actions.doneLoadingSnippet(),
     ];
     if (parser !== (yield select(getParser))) {
-      todo.push(actions.setWorkbenchState({parser}));
+      todo.push(actions.setWorkbenchState({
+        parser,
+        parserSettings: getParserSettingsForParser(parser),
+      }));
     }
     yield put(batchActions(todo));
   }
@@ -199,8 +214,10 @@ export function* watchDropText() {
     const currentParser = yield select(getParser);
 
     if (currentParser.category.id !== categoryId) {
+      const parser = getParserForCategory(getCategoryByID(categoryId));
       yield put(actions.setWorkbenchState({
-        parser: getParserForCategory(getCategoryByID(categoryId)),
+        parser,
+        parserSettings: getParserSettingsForParser(parser),
       }));
     }
   }

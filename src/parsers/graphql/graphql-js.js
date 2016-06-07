@@ -1,16 +1,17 @@
+import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'graphql/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'graphql-js';
-const options = {
+const defaultOptions = {
   noLocation: false,
   noSource: false,
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = Object.keys(options);
+const parserSettingsConfiguration = {
+  fields: Object.keys(defaultOptions),
+};
 
 export default {
   ...defaultParserInterface,
@@ -27,8 +28,8 @@ export default {
     });
   },
 
-  parse({ parse }, code) {
-    return parse(code, options);
+  parse({ parse }, code, options) {
+    return parse(code, {...defaultOptions, ...options});
   },
 
   nodeToRange(node) {
@@ -45,16 +46,13 @@ export default {
     return key === 'definitions';
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      values: options,
-      onChange: changeOption,
-    });
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };
-
-function changeOption(name, {target}) {
-  options[name] = target.checked;
-  LocalStorage.setParserSettings(ID, options);
-}

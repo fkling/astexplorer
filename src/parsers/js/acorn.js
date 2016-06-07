@@ -1,16 +1,37 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'acorn/package.json';
-import * as LocalStorage from '../../LocalStorage';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'acorn';
-const options = {
+const defaultOptions = {
   ecmaVersion: 6,
-  ranges: true,
   sourceType: 'module',
+  allowReserved: false,
+  allowReturnOutsideFunction: false,
+  allowImportExportEverywhere: false,
+  allowHashBang: false,
+  locations: false,
+  loose: false,
+  ranges: false,
+  preserveParens: false,
   'plugins.jsx': true,
-  ...LocalStorage.getParserSettings(ID),
+};
+
+const settingsConfiguration = {
+  fields: [
+    ['ecmaVersion', [3, 5, 6, 7], x => Number(x)],
+    ['sourceType', ['script', 'module']],
+    'allowReserved',
+    'allowReturnOutsideFunction',
+    'allowImportExportEverywhere',
+    'allowHashBang',
+    'locations',
+    'loose',
+    'ranges',
+    'preserveParens',
+    'plugins.jsx',
+  ],
 };
 
 export default {
@@ -32,7 +53,8 @@ export default {
     });
   },
 
-  parse(parsers, code) {
+  parse(parsers, code, options={}) {
+    options = Object.assign({}, defaultOptions, options);
     const parser = options.loose ?
       parsers.acornLoose.parse_dammit :
       parsers.acorn.parse;
@@ -50,54 +72,22 @@ export default {
     }
   },
 
-  renderSettings() {
-    return Settings();
+  renderSettings(parserSettings, onChange) {
+    return (
+      <div>
+        <p>
+          <a
+            href="https://github.com/marijnh/acorn/blob/master/src/options.js"
+            target="_blank">
+            Option descriptions
+          </a>
+        </p>
+        <SettingsRenderer
+          settingsConfiguration={settingsConfiguration}
+          parserSettings={{...defaultOptions, ...parserSettings}}
+          onChange={onChange}
+        />
+      </div>
+    );
   },
 };
-
-const settings = [
-  ['ecmaVersion', [3, 5, 6, 7]],
-  ['sourceType', ['script', 'module']],
-  'allowReserved',
-  'allowReturnOutsideFunction',
-  'allowImportExportEverywhere',
-  'allowHashBang',
-  'locations',
-  'loose',
-  'ranges',
-  'preserveParens',
-  'plugins.jsx',
-];
-
-function changeOption(name, {target}) {
-  let value;
-  switch (name) {
-    case 'ecmaVersion':
-    case 'sourceType':
-      value = target.value;
-      break;
-    default:
-      value = target.checked;
-  }
-  options[name] = value;
-  LocalStorage.setParserSettings(ID, options);
-}
-
-function Settings() {
-  return (
-    <div>
-      <p>
-        <a
-          href="https://github.com/marijnh/acorn/blob/master/src/options.js"
-          target="_blank">
-          Option descriptions
-        </a>
-      </p>
-      {SettingsRenderer({
-        settings,
-        values: options,
-        onChange: changeOption,
-      })}
-    </div>
-  );
-}

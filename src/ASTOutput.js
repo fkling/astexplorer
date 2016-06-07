@@ -6,12 +6,12 @@ import PubSub from 'pubsub-js';
 
 const {PropTypes} = React;
 
-function parse(parser, code) {
+function parse(parser, code, parserSettings) {
   if (!parser._promise) {
     parser._promise = new Promise(parser.loadParser);
   }
   return parser._promise.then(
-    realParser => parser.parse(realParser, code)
+    realParser => parser.parse(realParser, code, parserSettings)
   );
 }
 
@@ -28,7 +28,7 @@ export default class ASTOutput extends React.Component {
   }
 
   componentDidMount() {
-    this._parse(this.props.parser, this.props.code);
+    this._parse(this.props.parser, this.props.code, this.props.parserSettings);
     this._subscription = PubSub.subscribe('FORCE_PARSE', () => {
       this._parse(this.props.parser, this.props.code);
     });
@@ -40,8 +40,9 @@ export default class ASTOutput extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.parser !== this.props.parser ||
-        nextProps.code !== this.props.code) {
-      this._parse(nextProps.parser, nextProps.code);
+        nextProps.code !== this.props.code ||
+        nextProps.parserSettings !== this.props.parserSettings) {
+      this._parse(nextProps.parser, nextProps.code, nextProps.parserSettings);
     } else if (nextProps.cursor !== this.props.cursor) {
       this.setState({
         focusPath: nextProps.cursor != null ?
@@ -58,11 +59,11 @@ export default class ASTOutput extends React.Component {
       nextState.output !== this.state.output;
   }
 
-  _parse(parser, code) {
+  _parse(parser, code, parserSettings) {
     if (!parser || code == null) {
       return;
     }
-    parse(parser, code).then(
+    parse(parser, code, parserSettings).then(
       ast => {
         // Did the parser or code change in the meantime?
         if (parser !== this.props.parser && code !== this.props.code) {
@@ -78,6 +79,7 @@ export default class ASTOutput extends React.Component {
         this.props.onParseError(null);
       },
       parseError => {
+        console.error(parseError); // eslint-disable-line no-console
         this.setState({parseError});
         this.props.onParseError(parseError);
       }
@@ -131,6 +133,7 @@ export default class ASTOutput extends React.Component {
 ASTOutput.propTypes = {
   code: React.PropTypes.string,
   parser: PropTypes.object.isRequired,
+  parserSettings: PropTypes.object,
   cursor: PropTypes.any,
   onParseError: React.PropTypes.func.isRequired,
 };

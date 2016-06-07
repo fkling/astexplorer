@@ -18,6 +18,10 @@ export const SAVE = 'SAVE';
 export const START_SAVE = 'START_SAVE';
 export const END_SAVE = 'END_SAVE';
 
+export function setParserSettings(settings) {
+  return {type: SET_PARSER_SETTINGS, settings};
+}
+
 export function save(fork=false) {
   return {type: SAVE, fork};
 }

@@ -1,3 +1,5 @@
+import * as LocalStorage from './LocalStorage';
+import * as sagas from './store/sagas';
 import ASTOutputContainer from './containers/ASTOutputContainer';
 import CodeEditorContainer from './containers/CodeEditorContainer';
 import ErrorMessageContainer from './containers/ErrorMessageContainer';
@@ -10,12 +12,12 @@ import SplitPane from './SplitPane';
 import ToolbarContainer from './containers/ToolbarContainer';
 import TransformerContainer from './containers/TransformerContainer';
 import createSagaMiddleware from 'redux-saga'
-import * as sagas from './store/sagas';
 import {Provider, connect} from 'react-redux';
-import {astexplorer} from './store/reducers';
+import {astexplorer, initialState} from './store/reducers';
 import {createStore, applyMiddleware} from 'redux';
 import {defaultTransformCode} from './store/selectors';
 import {enableBatching} from 'redux-batched-actions';
+import {getCategoryByID, getDefaultParser, getParserByID} from './parsers';
 import {loadSnippet} from './store/actions';
 import {render} from 'react-dom';
 
@@ -62,8 +64,17 @@ const AppContainer = connect(
   })
 )(App);
 
+const parser = getParserByID(LocalStorage.getParser()) ||
+  getDefaultParser(getCategoryByID(LocalStorage.getCategory()));
+const parserSettings = LocalStorage.getParserSettings(parser.id) || {};
+
 const store = createStore(
   enableBatching(astexplorer),
+  {
+    ...initialState,
+    parser,
+    parserSettings,
+  },
   applyMiddleware(
     createSagaMiddleware(
       sagas.watchSelectTransformer,
