@@ -1,12 +1,14 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon/package.json';
-import * as LocalStorage from '../../LocalStorage';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'babylon';
-const options = {
+const defaultOptions = {
   sourceType: 'module',
+  allowReserved: false,
+  allowReturnOutsideFunction: false,
+  strictMode: false,
 
   features: {
     'es7.asyncFunctions': true,
@@ -20,8 +22,39 @@ const options = {
   },
 
   plugins: { jsx: true, flow: true },
+};
 
-  ...LocalStorage.getParserSettings(ID),
+const parserSettingsConfiguration = {
+  fields: [
+    ['sourceType', ['module', 'script']],
+    'allowReserved',
+    'allowReturnOutsideFunction',
+    'strictMode',
+    {
+      key: 'features',
+      title: 'Features',
+      fields: Object.keys(defaultOptions.features),
+      settings: settings => settings.features || {...defaultOptions.features},
+    },
+    {
+      key: 'plugins',
+      title: 'Plugins',
+      fields: Object.keys(defaultOptions.plugins),
+      settings: settings => settings.plugins || {...defaultOptions.plugins},
+      values: plugins => Object.keys(defaultOptions.plugins).reduce(
+        (obj, name) => ((obj[name] = name in plugins), obj),
+        {}
+      ),
+      update: (plugins, name, value) => {
+        if (value) {
+          return {...plugins, [name]: true};
+        }
+        plugins = {...plugins};
+        delete plugins[name];
+        return plugins;
+      },
+    },
+  ],
 };
 
 export default {
@@ -37,8 +70,11 @@ export default {
     require(['babylon'], callback);
   },
 
-  parse(babylon, code) {
-    return babylon.parse(code, options);
+  parse(babylon, code, parserSettings) {
+    return babylon.parse(
+      code,
+      {...defaultOptions, ...parserSettings}
+    );
   },
 
   getNodeName(node) {
@@ -60,57 +96,15 @@ export default {
     '__clone',
   ]),
 
-  renderSettings() {
-    return Settings();
+  renderSettings(parserSettings, onChange) {
+    return (
+      <div>
+        <SettingsRenderer
+          settingsConfiguration={parserSettingsConfiguration}
+          parserSettings={parserSettings}
+          onChange={onChange}
+        />
+      </div>
+    );
   },
 };
-
-let parserSettings = [
-  ['sourceType', ['module', 'script']],
-  'allowReserved',
-  'allowReturnOutsideFunction',
-  'strictMode',
-];
-let features = Object.keys(options.features);
-let plugins = ['jsx', 'flow'];
-
-function changeOption(name, {target}) {
-  if (name === 'sourceType') {
-    options.sourceType = target.value;
-  } else if(parserSettings.indexOf(name) > -1) {
-    options[name] = target.checked;
-  } else if (features.indexOf(name) > -1) {
-    options.features[name] = target.checked;
-  } else if (plugins.indexOf(name) > -1) {
-    if (target.checked) {
-      options.plugins[name] = true;
-    } else {
-      delete options.plugins[name];
-    }
-  }
-  LocalStorage.setParserSettings(ID, options);
-}
-
-function Settings() {
-  return (
-    <div>
-      {SettingsRenderer({
-        settings: parserSettings,
-        values: options,
-        onChange: changeOption,
-      })}
-      <h4>features</h4>
-      {SettingsRenderer({
-        settings: features,
-        values: options.features,
-        onChange: changeOption,
-      })}
-      <h4>plugins</h4>
-      {SettingsRenderer({
-        settings: plugins,
-        values: options.plugins,
-        onChange: changeOption,
-      })}
-    </div>
-  );
-}

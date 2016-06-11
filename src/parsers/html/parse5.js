@@ -1,17 +1,18 @@
+import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'parse5/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'parse5';
-const options = {
+const defaultOptions = {
   treeAdapter: 'default',
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = [
-  ['treeAdapter', ['default', 'htmlparser2']],
-];
+const parserSettingsConfiguration = {
+  fields : [
+    ['treeAdapter', ['default', 'htmlparser2']],
+  ],
+};
 
 export default {
   ...defaultParserInterface,
@@ -38,15 +39,16 @@ export default {
     });
   },
 
-  parse({ Parser, TreeAdapters }, code) {
+  parse({ Parser, TreeAdapters }, code, options) {
+    this.options = {...defaultOptions, ...options};
     return new Parser({
-      treeAdapter: TreeAdapters[options.treeAdapter],
+      treeAdapter: TreeAdapters[this.options.treeAdapter],
       locationInfo: true,
     }).parse(code);
   },
 
   getNodeName(node) {
-    if (options.treeAdapter === 'htmlparser2') {
+    if (this.options.treeAdapter === 'htmlparser2') {
       return node.type + (node.name && node.type !== 'root' ? `(${node.name})` : '');
     } else {
       return node.nodeName;
@@ -63,26 +65,15 @@ export default {
     return key === 'children' || key === 'childNodes';
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      values: options,
-      onChange: changeOption,
-    });
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 
   _ignoredProperties: new Set(['parentNode', 'prev', 'next', 'parent', 'firstChild', 'lastChild']),
 };
-
-function changeOption(name, {target}) {
-  let value;
-  switch (name) {
-    case 'treeAdapter':
-      value = target.value;
-      break;
-    default:
-      value = target.checked;
-  }
-  options[name] = value;
-  LocalStorage.setParserSettings(ID, options);
-}

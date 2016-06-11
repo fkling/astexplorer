@@ -33,7 +33,10 @@ function mapDispatchToProps(dispatch) {
   return {
     onParserChange: parser => {
       LocalStorage.setParser(parser);
-      dispatch(setWorkbenchState({parser}));
+      dispatch(setWorkbenchState({
+        parser,
+        parserSettings: LocalStorage.getParserSettings(parser.id) || {},
+      }));
     },
     onCategoryChange: category => {
       LocalStorage.setCategory(category.id);

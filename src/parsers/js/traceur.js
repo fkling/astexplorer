@@ -1,56 +1,47 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'traceur/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'traceur';
 const FILENAME = 'astExplorer.js';
 
-const parseOptionsDefaults = {
-    annotations: false,
-    arrayComprehension: false,
-    arrowFunctions: true,
-    asyncFunctions: false,
-    asyncGenerators: false,
-    blockBinding: true,
-    classes: true,
-    computedPropertyNames: true,
-    destructuring: true,
-    exponentiation: false,
-    exportFromExtended: false,
-    forOf: true,
-    forOn: false,
-    generatorComprehension: false,
-    generators: true,
-    jsx: true,
-    memberVariables: false,
-    numericLiterals: true,
-    propertyMethods: true,
-    propertyNameShorthand: true,
-    restParameters: true,
-    spread: true,
-    templateLiterals: true,
-    types: false,
-    unicodeEscapeSequences: true,
-};
-
-const options = {
-  SourceType: 'Script',
+const defaultOptions = {
+  SourceType: 'Module',
   TolerateErrors: false,
   commentCallback: true,
-  ...parseOptionsDefaults,
-  ...LocalStorage.getParserSettings(ID),
+  annotations: false,
+  arrayComprehension: false,
+  arrowFunctions: true,
+  asyncFunctions: false,
+  asyncGenerators: false,
+  blockBinding: true,
+  classes: true,
+  computedPropertyNames: true,
+  destructuring: true,
+  exponentiation: false,
+  exportFromExtended: false,
+  forOf: true,
+  forOn: false,
+  generatorComprehension: false,
+  generators: true,
+  jsx: true,
+  memberVariables: false,
+  numericLiterals: true,
+  propertyMethods: true,
+  propertyNameShorthand: true,
+  restParameters: true,
+  spread: true,
+  templateLiterals: true,
+  types: false,
+  unicodeEscapeSequences: true,
 };
 
-const settings = [
-  ['SourceType', ['Script', 'Module']],
-  'TolerateErrors',
-  ...Object.keys(parseOptionsDefaults),
-];
-
-const changeOption = (name, {target}) => {
-  options[name] = name === 'SourceType' ? target.value : target.checked;
-  LocalStorage.setParserSettings(ID, options);
+const parserSettingsConfiguration = {
+  fields :[
+    ['SourceType', ['Script', 'Module']],
+    ...Object.keys(defaultOptions).filter(x => x !== 'SourceType'),
+  ],
 };
 
 class Comment {
@@ -74,7 +65,8 @@ export default {
     require(['exports?traceur!traceur/bin/traceur'], callback);
   },
 
-  parse(traceur, code) {
+  parse(traceur, code, options) {
+    options = {...defaultOptions, ...options};
     let sourceFile = new traceur.syntax.SourceFile(FILENAME, code);
     let errorReporter = new traceur.util.ErrorReporter();
     errorReporter.reportMessageInternal = (sourceRange, message) => {
@@ -152,11 +144,13 @@ export default {
     );
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      values: options,
-      onChange: changeOption,
-    });
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };

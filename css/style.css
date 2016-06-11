@@ -430,6 +430,12 @@ li.entry {
   padding: 10px;
 }
 
+#SettingsDialog .footer {
+  flex-shrink: 0;
+  padding: 0 10px 10px 10px;
+  text-align: right;
+}
+
 #SettingsDialog .inner h3 {
   margin: 0 0 10px 0;
   padding: 0;

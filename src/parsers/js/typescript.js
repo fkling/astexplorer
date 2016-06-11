@@ -1,26 +1,23 @@
+import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'typescript/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'typescript';
 const FILENAME = 'astExplorer.ts';
-const options = {
+
+const defaultOptions = {
   experimentalDecorators: true,
   experimentalAsyncFunctions: true,
   jsx: true,
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = [
-  'experimentalDecorators',
-  'experimentalAsyncFunctions',
-  'jsx',
-];
-
-const changeOption = (name, {target}) => {
-  options[name] = target.checked;
-  LocalStorage.setParserSettings(ID, options);
+const parserSettingsConfiguration = {
+  fields: [
+    'experimentalDecorators',
+    'experimentalAsyncFunctions',
+    'jsx',
+  ],
 };
 
 let ts;
@@ -39,7 +36,9 @@ export default {
     require(['typescript'], _ts => callback(ts = _ts));
   },
 
-  parse(ts, code) {
+  parse(ts, code, options) {
+    options = {...defaultOptions, ...options};
+
     const compilerHost/*: ts.CompilerHost*/ = {
       fileExists: () => true,
       getCanonicalFileName: filename => filename,
@@ -97,13 +96,14 @@ export default {
     }
   },
 
+  _ignoredProperties: new Set([
+    'constructor',
+    'parent',
+  ]),
+
   *forEachProperty(node) {
     for (let prop in node) {
-      if (
-        prop === 'constructor' ||
-        prop.charAt(0) === '_' ||
-        prop === 'parent'
-      ) {
+      if (this._ignoredProperties.has(prop) || prop.charAt(0) === '_') {
         continue;
       }
       yield {
@@ -111,22 +111,26 @@ export default {
         key: prop,
       };
     }
-    yield {
-      value: getComments(node),
-      key: 'leadingComments',
-      computed: true,
-    };
-    yield {
-      value: getComments(node, true),
-      key: 'trailingCommments',
-      computed: true,
-    };
+    if (node.parent) {
+      yield {
+        value: getComments(node),
+        key: 'leadingComments',
+        computed: true,
+      };
+      yield {
+        value: getComments(node, true),
+        key: 'trailingCommments',
+        computed: true,
+      };
+    }
   },
 
   nodeToRange(node) {
-    if (typeof node.getStart === 'function' && typeof node.getEnd === 'function') {
+    if (typeof node.getStart === 'function' &&
+        typeof node.getEnd === 'function') {
       return [node.getStart(), node.getEnd()];
-    } else if (typeof node.pos !== 'undefined' && typeof node.end !== 'undefined') {
+    } else if (typeof node.pos !== 'undefined' &&
+        typeof node.end !== 'undefined') {
       return [node.pos, node.end];
     }
   },
@@ -139,11 +143,13 @@ export default {
     );
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      values: options,
-      onChange: changeOption,
-    });
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };

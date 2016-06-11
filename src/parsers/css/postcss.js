@@ -1,17 +1,18 @@
+import React from 'react';
 import defaultParserInterface from './utils/defaultCSSParserInterface';
 import pkg from 'postcss/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'postcss';
-const options = {
+const defaultOptions = {
   parser: 'built-in',
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = [
-  ['parser', ['built-in', 'scss', 'safe-parser']],
-];
+const parserSettingsConfiguration = {
+  fields: [
+    ['parser', ['built-in', 'scss', 'safe-parser']],
+  ],
+};
 
 export default {
   ...defaultParserInterface,
@@ -32,8 +33,12 @@ export default {
     });
   },
 
-  parse(parsers, code) {
-    return defaultParserInterface.parse.call(this, parsers[options.parser], code);
+  parse(parsers, code, options) {
+    return defaultParserInterface.parse.call(
+      this,
+      parsers[options.parser || defaultOptions.parser],
+      code
+    );
   },
 
   nodeToRange({ source: range }) {
@@ -50,16 +55,13 @@ export default {
 
   _ignoredProperties: new Set(['parent', 'input']),
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      values: options,
-      onChange: changeOption,
-    });
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };
-
-function changeOption(name, {target}) {
-  options[name] = target.value;
-  LocalStorage.setParserSettings(ID, options);
-}

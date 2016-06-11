@@ -1,11 +1,10 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'espree/package.json';
-import * as LocalStorage from '../../LocalStorage';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'espree';
-const options = {
+const defaultOptions = {
   range: true,
   loc: false,
   comment: false,
@@ -20,8 +19,25 @@ const options = {
     globalReturn: true,
     experimentalObjectRestSpread: true,
   },
-
-  ...LocalStorage.getParserSettings(ID),
+};
+const parserSettingsConfiguration = {
+  fields: [
+    ['ecmaVersion', [3, 5, 6, 7], value => Number(value)],
+    ['sourceType', ['script', 'module']],
+    'range',
+    'loc',
+    'comment',
+    'attachComment',
+    'tokens',
+    'tolerant',
+    {
+      key: 'ecmaFeatures',
+      title: 'ecmaFeatures',
+      fields: Object.keys(defaultOptions.ecmaFeatures),
+      settings:
+        settings => settings.ecmaFeatures || {...defaultOptions.ecmaFeatures},
+    },
+  ],
 };
 
 export default {
@@ -31,68 +47,38 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: new Set(['range']),
+  locationProps: new Set(['range', 'loc', 'start', 'end']),
 
   loadParser(callback) {
     require(['espree'], callback);
   },
 
-  parse(espree, code) {
-    return espree.parse(code, options);
+  parse(espree, code, options) {
+    return espree.parse(code, {...defaultOptions, ...options});
   },
 
-  renderSettings() {
-    return Settings();
+  nodeToRange(node) {
+    if (typeof node.start === 'number') {
+      return [node.start, node.end];
+    }
+  },
+
+  renderSettings(parserSettings, onChange) {
+    return (
+      <div>
+        <p>
+          <a
+            href="https://github.com/eslint/espree#usage"
+            target="_blank">
+            Option descriptions
+          </a>
+        </p>
+        <SettingsRenderer
+          settingsConfiguration={parserSettingsConfiguration}
+          parserSettings={{...defaultOptions, ...parserSettings}}
+          onChange={onChange}
+        />
+      </div>
+    );
   },
 };
-
-let parserSettings = [
-  ['ecmaVersion', [3, 5, 6, 7]],
-  ['sourceType', ['script', 'module']],
-  ...Object.keys(options).filter(v => v !== 'ecmaFeatures'),
-];
-let ecmaFeatures = Object.keys(options.ecmaFeatures);
-
-function changeOption(name, {target}) {
-  if (parserSettings.indexOf(name) > -1) {
-    switch (name) {
-      case 'ecmaVersion':
-        options[name] = +target.value;
-        break;
-      case 'sourceType':
-        options[name] = target.value;
-        break;
-      default:
-        options[name] = target.checked;
-    }
-  } else {
-    options.ecmaFeatures[name] = target.checked;
-  }
-  LocalStorage.setParserSettings(ID, options);
-}
-
-function Settings() {
-  return (
-    <div>
-      <p>
-        <a
-          href="https://github.com/eslint/espree#usage"
-          target="_blank">
-          Option descriptions
-        </a>
-      </p>
-      {SettingsRenderer({
-        settings: parserSettings,
-        values: options,
-        required: new Set(['range']),
-        onChange: changeOption,
-      })}
-      <h4>ecmaFeatures</h4>
-      {SettingsRenderer({
-        settings: ecmaFeatures,
-        values: options.ecmaFeatures,
-        onChange: changeOption,
-      })}
-    </div>
-  );
-}

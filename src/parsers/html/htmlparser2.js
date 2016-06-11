@@ -1,17 +1,18 @@
+import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'htmlparser2/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
-import * as LocalStorage from '../../LocalStorage';
 
 const ID = 'htmlparser2';
-const options = {
+const defaultOptions = {
   xmlMode: false,
   lowerCaseAttributeNames: true,
   lowerCaseTags: true,
-  ...LocalStorage.getParserSettings(ID),
 };
 
-const settings = Object.keys(options);
+const parserSettingsConfiguration = {
+  fields: Object.keys(defaultOptions),
+};
 
 export default {
   ...defaultParserInterface,
@@ -55,9 +56,9 @@ export default {
     });
   },
 
-  parse({ Parser, Handler }, code) {
+  parse({ Parser, Handler }, code, options) {
     let handler = new Handler();
-    new Parser(handler, options).end(code);
+    new Parser(handler, {...defaultOptions, ...options}).end(code);
     return handler.dom;
   },
 
@@ -79,19 +80,15 @@ export default {
     return nodeName;
   },
 
-  renderSettings() {
-    return SettingsRenderer({
-      settings,
-      required: new Set(['xmlMode']),
-      values: options,
-      onChange: changeOption,
-    });
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 
   _ignoredProperties: new Set(['prev', 'next', 'parent', 'endIndex']),
 };
-
-function changeOption(name, {target}) {
-  options[name] = target.checked;
-  LocalStorage.setParserSettings(ID, options);
-}

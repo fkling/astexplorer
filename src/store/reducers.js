@@ -1,18 +1,14 @@
-import * as LocalStorage from '../LocalStorage';
-import {getCategoryByID, getDefaultParser, getParserByID} from '../parsers';
 import * as actions from './actions';
 
-const parser = getParserByID(LocalStorage.getParser()) ||
-  getDefaultParser(getCategoryByID(LocalStorage.getCategory()));
-
-const initialState = {
+export const initialState = {
   showSettingsDialog: false,
   loadingSnippet: true,
   selectedSnippet: null,
   selectedRevision: null,
   forking: false,
   saving: false,
-  parser,
+  parser: null,
+  parserSettings: null,
   droppedText: null,
   code: null,
   focusPath: [],
@@ -27,7 +23,6 @@ const initialState = {
 };
 
 export function astexplorer(state = initialState, action) {
-  //console.log(action.type);
   switch (action.type) {
     case actions.SET_WORKBENCH_STATE:
       var newState = action.state;
@@ -42,6 +37,8 @@ export function astexplorer(state = initialState, action) {
         newState.cursor = null;
       }
       return {...state, ...newState};
+    case actions.SET_PARSER_SETTINGS:
+      return {...state, parserSettings: action.settings};
     case actions.SET_PARSE_ERROR:
       return {...state, parseError: action.error};
     case actions.SET_SNIPPET: {

@@ -30,8 +30,8 @@ export function runRule(code, eslint, sourceCode) {
   const ast = parseNoPatch(code);
   const results = eslint.verify(new sourceCode(code, ast), {
     rules: {
-      astExplorerRule: 2
-    }
+      astExplorerRule: 2,
+    },
   });
   return formatResults(results);
 }
