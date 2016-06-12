@@ -1,7 +1,12 @@
 import {createSelector} from 'reselect';
+import isEqual from 'lodash.isequal';
 
 function getParser(state) {
   return state.parser;
+}
+
+function getParserSettings(state) {
+  return state.parserSettings;
 }
 
 function getSnippet(state) {
@@ -70,7 +75,19 @@ export const canSaveTransform = createSelector(
     showTransformer && defaultCode !== code
 );
 
+const didParserSettingsChange = createSelector(
+  [getParserSettings, getRevision],
+  (parserSettings, revision) => {
+    const savedParserSettings = revision && revision.getParserSettings();
+    return !!revision &&
+      !!savedParserSettings &&
+      !isEqual(parserSettings, savedParserSettings);
+  }
+);
+
 export const canSave = createSelector(
-  [canSaveCode, canSaveTransform],
-  (canSaveCode, canSaveTransform) => canSaveCode || canSaveTransform
+  [canSaveCode, canSaveTransform, didParserSettingsChange],
+  (canSaveCode, canSaveTransform, didParserSettingsChange) => (
+    canSaveCode || canSaveTransform || didParserSettingsChange
+  )
 );

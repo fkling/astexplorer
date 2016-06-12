@@ -1,5 +1,6 @@
 import Parse from './Parse';
 import SnippetRevision from './SnippetRevision';
+import isEqual from 'lodash.isequal';
 let snippetQuery;
 let cache = {};
 // global.__cache = cache;
@@ -29,6 +30,15 @@ function setInCache(snippet, revision, rev) {
   cacheEntry[rev] = revision;
 }
 
+function makeSettingsSafe(settings) {
+  // Parse doesn't allow us to store objects containing `.` or `$` in their
+  // property names. That's why we serialize all settings to JSON.
+  return Object.keys(settings).reduce(
+    (obj, name) => ((obj[name] = JSON.stringify(settings[name])), obj),
+    {}
+  );
+}
+
 export default class Snippet extends Parse.Object {
   constructor() {
     super('Snippet');
@@ -56,7 +66,8 @@ export default class Snippet extends Parse.Object {
         revision.get('code') !== data.code ||
         revision.get('transform') !== data.transform ||
         revision.get('toolID') !== data.toolID ||
-        revision.get('parserID') !== data.parserID;
+        revision.get('parserID') !== data.parserID ||
+        !isEqual(revision.get('settings'), data.settings);
 
       if (isNew) {
         let newRevision = new SnippetRevision();
@@ -64,6 +75,9 @@ export default class Snippet extends Parse.Object {
         newRevision.set('transform', data.transform);
         newRevision.set('toolID', data.toolID);
         newRevision.set('parserID', data.parserID);
+        newRevision.set('settings', makeSettingsSafe(data.settings));
+        newRevision.set('versions', data.versions);
+
         return newRevision.save().then(revision => {
           this.add('revisions', revision);
           return this.save().then(snippet => {

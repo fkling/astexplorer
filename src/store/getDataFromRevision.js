@@ -33,6 +33,10 @@ export default function getDataFromRevision(revision) {
   }
 
   const code = revision.get('code') || parser.category.codeExample;
+  let parserSettings = revision.getParserSettings();
+  if (!parserSettings) {
+    parserSettings = LocalStorage.getParserSettings(parser.id) || {};
+  }
 
-  return {parser, transformer, code, transformCode};
+  return {parser, transformer, code, transformCode, parserSettings};
 }
