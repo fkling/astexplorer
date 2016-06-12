@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 import {getParserByID} from './parsers';
 
 export default class ParserButton extends React.Component {
@@ -15,29 +14,33 @@ export default class ParserButton extends React.Component {
 
   render() {
     return (
-      <div
-        className="button menuButton">
+      <div className="button">
+        <div
+          className="menuButton"
+          style={{display: 'inline-block'}}>
+          <button
+            type="button">
+            <i className='fa fa-lg fa-code fa-fw' />
+            &nbsp;{this.props.parser.displayName}
+          </button>
+          <ul>
+            {this.props.category.parsers.map(parser => (
+              <li key={parser.id} onClick={this._onClick} data-id={parser.id}>
+                <button type="button" >
+                  {parser.displayName}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
         <button
-          type="button">
-          <i
-            className={cx({
-              fa: true,
-              'fa-lg': true,
-              'fa-code': true,
-              'fa-fw': true,
-            })}
-          />
-          &nbsp;{this.props.parser.displayName}
+          type="button"
+          title="Parser Settings"
+          style={{minWidth: 0}}
+          disabled={!this.props.parser.renderSettings}
+          onClick={this.props.onParserSettingsButtonClick}>
+          <i className="fa fa-cog fa-fw" />
         </button>
-        <ul>
-          {this.props.category.parsers.map(parser => (
-            <li key={parser.id} onClick={this._onClick} data-id={parser.id}>
-              <button type="button" >
-                {parser.displayName}
-              </button>
-            </li>
-          ))}
-        </ul>
       </div>
     );
   }
@@ -45,6 +48,7 @@ export default class ParserButton extends React.Component {
 
 ParserButton.propTypes = {
   onParserChange: React.PropTypes.func,
+  onParserSettingsButtonClick: React.PropTypes.func,
   parser: React.PropTypes.object,
   category: React.PropTypes.object,
 };

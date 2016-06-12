@@ -3,7 +3,6 @@ import cx from 'classnames';
 import CategoryButton from './CategoryButton';
 import ParserButton from './ParserButton';
 import TransformButton from './TransformButton';
-import ParserSettingsButton from './ParserSettingsButton';
 
 export default function Toolbar(props) {
   let {parser, transformer, showTransformer} = props;
@@ -69,20 +68,13 @@ export default function Toolbar(props) {
       </button>
       <CategoryButton {...props} />
       <ParserButton {...props} />
-      <ParserSettingsButton {...props} />
       <TransformButton {...props} />
       <a
+        style={{minWidth: 0}}
         target="_blank"
+        title="Help"
         href="https://github.com/fkling/esprima_ast_explorer#features">
-        <i
-          className={cx({
-            fa: true,
-            'fa-lg': true,
-            'fa-question': true,
-            'fa-fw': true,
-          })}
-        />
-        Help
+        <i className="fa fa-lg fa-question fa-fw" />
       </a>
       <div id="info" className={transformerInfo ? 'small' : ''}>
         Parser: {parserInfo}<br />
@@ -98,6 +90,7 @@ Toolbar.propTypes = {
   onSave: React.PropTypes.func,
   onFork: React.PropTypes.func,
   onParserChange: React.PropTypes.func,
+  onParserSettingsButtonClick: React.PropTypes.func,
   onTransformChange: React.PropTypes.func,
   parser: React.PropTypes.object,
   transformer: React.PropTypes.object,
