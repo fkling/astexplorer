@@ -66,6 +66,7 @@
     "htmlparser2": "^3.9.0",
     "jscodeshift": "^0.3.28",
     "json-stringify-safe": "^5.0.1",
+    "lodash.isequal": "^4.2.0",
     "parse": "^1.6.9",
     "parse5": "^2.2.0",
     "postcss": "^5.0.12",

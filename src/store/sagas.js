@@ -30,11 +30,23 @@ function getParserSettingsForParser(parser) {
   return LocalStorage.getParserSettings(parser.id) || {};
 }
 
+function getParserSettings(state) {
+  return state.parserSettings;
+}
+
 function* save(fork) {
   let action = 'new_revision';
-  let [snippet, parser, code, transformCode, transformer] = yield [
+  let [
+    snippet,
+    parser,
+    parserSettings,
+    code,
+    transformCode,
+    transformer,
+  ] = yield [
     select(getSnippet),
     select(getParser),
+    select(getParserSettings),
     select(getCode),
     select(getTransformerCode),
     select(getTransformer),
@@ -46,12 +58,19 @@ function* save(fork) {
 
   const data = {
     parserID: parser.id,
+    settings: {
+      [parser.id]: parserSettings,
+    },
+    versions: {
+      [parser.id]: parser.version,
+    },
   };
   if (code !== parser.category.codeExample) {
     data.code = code;
   }
   if (transformer) {
     data.toolID = transformer.id;
+    data.versions[transformer.id] = transformer.version;
   }
   if (transformCode && transformCode !== transformer.defaultTransform) {
     data.transform = transformCode;
@@ -129,11 +148,12 @@ export function* watchSnippetChange() {
     const {
       parser,
       code,
+      parserSettings,
     } = getDataFromRevision(revision);
     yield put(batchActions([
       actions.setWorkbenchState({
         parser,
-        parserSettings: getParserSettingsForParser(parser),
+        parserSettings,
         code,
       }),
       actions.setSnippet(snippet, revision),
@@ -170,14 +190,14 @@ export function* watchSnippetURI() {
     if (data) {
       logEvent('snippet', 'load');
 
-      const {parser, code, transformer, transformCode} =
+      const {parser, code, transformer, transformCode, parserSettings} =
         getDataFromRevision(data.revision);
       yield put(batchActions([
         actions.setSnippet(data.snippet, data.revision),
         actions.setWorkbenchState({
           code,
           parser,
-          parserSettings: getParserSettingsForParser(parser),
+          parserSettings,
         }),
         actions.doneLoadingSnippet(),
         transformer ?
