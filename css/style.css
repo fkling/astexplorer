@@ -349,22 +349,12 @@ li.entry {
   color: red;
 }
 
-.entry.func > .value .s,
-.entry.func > .key .name,
-.entry.toggable > .key .name {
+.entry .invokeable {
   cursor: pointer;
 }
 
-.entry.func > .value:hover,
-.entry.func > .key .name:hover,
-.entry.toggable > .key .name:hover {
+.entry .invokeable:hover {
   text-decoration: underline;
-}
-
-.entry.func::before {
-  content: 'ƒ';
-  left: -10px;
-  position: absolute;
 }
 
 .placeholder {

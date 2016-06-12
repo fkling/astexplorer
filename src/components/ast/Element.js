@@ -271,6 +271,15 @@ let Element = class extends React.Component {
           showToggler = keys.length > 0;
         }
       }
+    } else if (typeof value === 'function') {
+      valueOutput =
+        <span
+          className="ge invokeable"
+          title="Click to invoke function"
+          onClick={this._execFunction}>
+          (...)
+        </span>;
+      showToggler = false;
     } else {
       valueOutput = <span className="s">{stringify(value)}</span>;
       showToggler = false;
@@ -282,10 +291,7 @@ let Element = class extends React.Component {
         onClick={
           showToggler ?
             this._toggleClick :
-            (typeof value === 'function' ?
-              this._execFunction :
-              null
-            )
+            null
         }>
         <span className="name nb">
           {this.props.computed ?
@@ -302,7 +308,6 @@ let Element = class extends React.Component {
       focused,
       toggable: showToggler,
       open,
-      func: typeof value === 'function',
     });
     return (
       <li
@@ -311,10 +316,8 @@ let Element = class extends React.Component {
         onMouseOver={enableHighlight ? this._onMouseOver : null}
         onMouseLeave={enableHighlight ? this._onMouseLeave : null}>
         {name}
-        <span
-          className="value"
-          onClick={typeof value === 'function' ? this._execFunction : null}>
-            {valueOutput}
+        <span className="value">
+          {valueOutput}
         </span>
         {prefix ? <span className="prefix p"> {prefix}</span> : null}
         {content}
