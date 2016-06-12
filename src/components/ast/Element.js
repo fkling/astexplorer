@@ -22,6 +22,8 @@ function log(f) {
 }
 */
 
+let lastClickedElement;
+
 let Element = class extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -50,6 +52,12 @@ let Element = class extends React.Component {
       deepOpen: nextProps.deepOpen,
       value: nextProps.value,
     });
+  }
+
+  componentWillUnmount() {
+    if (lastClickedElement === this) {
+      lastClickedElement = null;
+    }
   }
 
   _shouldAutoFocus(thisProps, nextProps) {
@@ -86,13 +94,31 @@ let Element = class extends React.Component {
   }
 
   _toggleClick(event) {
-    // Make AST node accessible
-    global.$node = this.state.value;
+    const shiftKey = event.shiftKey;
+    const open = shiftKey || !this.state.open;
 
-    this.setState({
-      open: event.shiftKey || !this.state.open,
-      deepOpen: event.shiftKey,
-    });
+    const update  = () => {
+      // Make AST node accessible
+      if (open) {
+        global.$node = this.state.value;
+      } else {
+        delete global.$node;
+      }
+
+      this.setState({
+        open,
+        deepOpen: shiftKey,
+      });
+    };
+    if (lastClickedElement && lastClickedElement !== this) {
+      const element = lastClickedElement;
+      lastClickedElement = open ? this : null;
+      element.forceUpdate(update);
+      return;
+    } else {
+      lastClickedElement = open ? this : null;
+      update();
+    }
   }
 
   _onMouseOver(e) {
@@ -181,6 +207,12 @@ let Element = class extends React.Component {
           valueOutput =
             <span className="tokenName nc" onClick={this._toggleClick}>
               {nodeName}
+              {lastClickedElement === this ?
+                <span className="ge" style={{fontSize: '0.8em'}}>
+                  {' = $node'}
+                </span> :
+                null
+              }
             </span>
         }
         enableHighlight = parser.nodeToRange(value) && level !== 0;
