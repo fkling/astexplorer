@@ -282,6 +282,13 @@ html {
   color: #f5f5f5;
 }
 
+.output .toolbar .time {
+  float: right;
+  margin-right: 10px;
+  font-size: 10px;
+  line-height: 25px;
+}
+
 .output > .container {
   overflow: auto;
   position: absolute;

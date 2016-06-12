@@ -15,6 +15,16 @@ function parse(parser, code, parserSettings) {
   );
 }
 
+function formatTime(time) {
+  if (!time) {
+    return null;
+  }
+  if (time < 1000) {
+    return `${time}ms`;
+  }
+  return `${(time / 1000).toFixed(2)}s`;
+}
+
 export default class ASTOutput extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -24,6 +34,7 @@ export default class ASTOutput extends React.Component {
       output: 0,
       parseError: null,
       ast: null,
+      parseTime: null,
     };
   }
 
@@ -63,6 +74,7 @@ export default class ASTOutput extends React.Component {
     if (!parser || code == null) {
       return;
     }
+    const start = Date.now();
     parse(parser, code, parserSettings).then(
       ast => {
         // Did the parser or code change in the meantime?
@@ -70,6 +82,7 @@ export default class ASTOutput extends React.Component {
           return;
         }
         this.setState({
+          parseTime: Date.now() - start,
           ast: ast,
           focusPath: this.props.cursor != null ?
             getFocusPath(ast, this.props.cursor, parser) :
@@ -80,7 +93,7 @@ export default class ASTOutput extends React.Component {
       },
       parseError => {
         console.error(parseError); // eslint-disable-line no-console
-        this.setState({parseError});
+        this.setState({parseError, parseTime: null});
         this.props.onParseError(parseError);
       }
     );
@@ -123,7 +136,12 @@ export default class ASTOutput extends React.Component {
 
     return (
       <div className="output highlight">
-        <div className="toolbar">{buttons}</div>
+        <div className="toolbar">
+          {buttons}
+          <span className="time">
+            {formatTime(this.state.parseTime)}
+          </span>
+        </div>
         {output}
       </div>
     );
