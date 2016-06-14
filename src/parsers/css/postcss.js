@@ -10,7 +10,7 @@ const defaultOptions = {
 
 const parserSettingsConfiguration = {
   fields: [
-    ['parser', ['built-in', 'scss', 'safe-parser']],
+    ['parser', ['built-in', 'scss', 'less', 'safe-parser']],
   ],
 };
 
@@ -24,10 +24,11 @@ export default {
   locationProps: new Set(['source']),
 
   loadParser(callback) {
-    require(['postcss/lib/parse', 'postcss-scss/lib/scss-parse', 'postcss-safe-parser'], (builtIn, scss, safe) => {
+    require(['postcss/lib/parse', 'postcss-scss/lib/scss-parse', 'postcss-less/dist/less-parse', 'postcss-safe-parser'], (builtIn, scss, less, safe) => {
       callback({
         'built-in': builtIn,
         scss,
+        less,
         'safe-parser': safe,
       });
     });
