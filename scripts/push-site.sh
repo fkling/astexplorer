@@ -8,6 +8,11 @@ if ! git diff --quiet && git diff --cached --quiet; then
   exit 1
 fi
 
+# Fetch latest changes from GH
+git checkout gh-pages
+git pull
+git checkout master
+
 if [ ! -d "$TARGETPATH" ]; then
   echo "Cloning into '$TARGETPATH'..."
   git clone ./ "$TARGETPATH"
@@ -25,6 +30,7 @@ git rm -rf *
 cd - > /dev/null
 
 echo "Building..."
+git checkout master
 rm -rf out/*
 npm run build
 echo "Copying artifacts..."
