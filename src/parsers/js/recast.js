@@ -7,7 +7,7 @@ const ID = 'recast';
 const defaultOptions = {
   tolerant: false,
   range: true,
-  parser: 'esprima-fb',
+  parser: 'esprima',
 };
 
 const parserSettingsConfiguration = {
@@ -40,11 +40,15 @@ export default {
   },
 
   parse({ recast, parsers }, code, options) {
-    let {parser, ...localOptions} = {...defaultOptions, ...options};
-    if (parser !== 'esprima') {
-      localOptions.parser = parsers[parser];
+    options = {...defaultOptions, ...options};
+    switch (options.parser) {
+      case 'esprima':
+        delete options.parser; // default parser
+        break;
+      default:
+        options.parser = parsers[options.parser];
     }
-    return recast.parse(code, localOptions);
+    return recast.parse(code, options);
   },
 
   _ignoredProperties: new Set(['__clone']),
