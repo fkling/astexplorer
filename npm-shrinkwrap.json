@@ -1336,9 +1336,9 @@
           "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.9.2.tgz"
         },
         "babylon": {
-          "version": "6.8.1",
+          "version": "6.8.2",
           "from": "babylon@>=6.6.5 <7.0.0",
-          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.1.tgz"
+          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.2.tgz"
         },
         "core-js": {
           "version": "2.4.0",
@@ -1430,9 +1430,9 @@
           "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.9.2.tgz"
         },
         "babylon": {
-          "version": "6.8.1",
+          "version": "6.8.2",
           "from": "babylon@>=6.7.0 <7.0.0",
-          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.1.tgz"
+          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.2.tgz"
         },
         "core-js": {
           "version": "2.4.0",
@@ -1462,9 +1462,9 @@
           "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.9.2.tgz"
         },
         "babylon": {
-          "version": "6.8.1",
+          "version": "6.8.2",
           "from": "babylon@>=6.7.0 <7.0.0",
-          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.1.tgz"
+          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.2.tgz"
         },
         "core-js": {
           "version": "2.4.0",
@@ -1489,9 +1489,9 @@
           "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.9.2.tgz"
         },
         "babylon": {
-          "version": "6.8.1",
+          "version": "6.8.2",
           "from": "babylon@>=6.7.0 <7.0.0",
-          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.1.tgz"
+          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.2.tgz"
         },
         "core-js": {
           "version": "2.4.0",
@@ -1548,9 +1548,9 @@
           "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.9.2.tgz"
         },
         "babylon": {
-          "version": "6.8.1",
+          "version": "6.8.2",
           "from": "babylon@>=6.7.0 <7.0.0",
-          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.1.tgz"
+          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.2.tgz"
         },
         "core-js": {
           "version": "2.4.0",
@@ -1580,9 +1580,9 @@
           "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.9.2.tgz"
         },
         "babylon": {
-          "version": "6.8.1",
+          "version": "6.8.2",
           "from": "babylon@>=6.1.21 <7.0.0",
-          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.1.tgz"
+          "resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.2.tgz"
         },
         "core-js": {
           "version": "2.4.0",
