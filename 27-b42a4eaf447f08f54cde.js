@@ -1,4 +1,4 @@
-webpackJsonp([25],{"./node_modules/buffer/index.js":function(module,exports,__webpack_require__){(function(Buffer,global){/*!
+webpackJsonp([27],{"./node_modules/buffer/index.js":function(module,exports,__webpack_require__){(function(Buffer,global){/*!
 	 * The buffer module from node.js, for the browser.
 	 *
 	 * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
