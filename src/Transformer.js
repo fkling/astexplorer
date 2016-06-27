@@ -1,4 +1,5 @@
 import Editor from './Editor';
+import JSCodeshiftEditor from './JSCodeshiftEditor';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import SplitPane from './SplitPane';
@@ -9,15 +10,20 @@ function resize() {
 }
 
 export default function Transformer(props) {
+  const editor = React.createElement(
+    props.transformer.id === 'jscodeshift' ? JSCodeshiftEditor : Editor,
+    {
+      highlight: false,
+      defaultValue: props.defaultTransformCode,
+      onContentChange: props.onContentChange,
+    }
+  );
+
   return (
     <SplitPane
       className="splitpane"
       onResize={resize}>
-      <Editor
-        highlight={false}
-        defaultValue={props.defaultTransformCode}
-        onContentChange={props.onContentChange}
-      />
+      {editor}
       <TransformOutput
         transformer={props.transformer}
         transformCode={props.transformCode}

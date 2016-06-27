@@ -211,4 +211,3 @@ JSCodeshiftEditor.defaultProps = {
   onContentChange: () => {},
   onActivity: () => {},
 };
-
