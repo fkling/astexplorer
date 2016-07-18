@@ -117,6 +117,9 @@ export default function SettingsRenderer(props) {
 
 SettingsRenderer.propTypes = {
   settingsConfiguration: React.PropTypes.object.isRequired,
-  parserSettings: React.PropTypes.object.isRequired,
+  parserSettings: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.array,
+  ]).isRequired,
   onChange: React.PropTypes.func.isRequired,
 };

@@ -34,7 +34,11 @@ const parserSettingsConfiguration = {
       key: 'plugins',
       title: 'Plugins',
       fields: defaultOptions.plugins,
-      settings: settings => settings.plugins || [...defaultOptions.plugins],
+      settings: settings => settings.plugins || defaultOptions.plugins,
+      values: plugins => defaultOptions.plugins.reduce(
+        (obj, name) => ((obj[name] = plugins.indexOf(name) > -1), obj),
+        {}
+      ),
     },
   ],
 };
@@ -53,7 +57,7 @@ export default {
   },
 
   parse(babylon, code, options) {
-    return babylon.parse(code, options);
+    return babylon.parse(code, {...defaultOptions, ...options});
   },
 
   getNodeName(node) {
