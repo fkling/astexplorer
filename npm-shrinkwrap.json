@@ -1,6 +1,6 @@
 {
   "name": "astexplorer",
-  "version": "1.12.1",
+  "version": "1.13.0",
   "dependencies": {
     "acorn": {
       "version": "3.2.0",
