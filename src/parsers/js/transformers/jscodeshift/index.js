@@ -14,46 +14,80 @@ export default {
   defaultParserID: 'recast',
 
   loadTransformer(callback) {
-    require(['jscodeshift', 'babel-core'], (jscodeshift, babel) => {
-      const { registerMethods } = jscodeshift;
+    require(
+      [
+        'jscodeshift',
+        'babel6',
+        'babel-preset-stage-1',
+        'babel-preset-es2015',
+        'babel-plugin-transform-flow-strip-types',
+      ],
+      (jscodeshift, babel, presetStage1, presetES2015, flowStripTypes) => {
+        const { registerMethods } = jscodeshift;
 
-      let origMethods;
+        let origMethods;
 
-      jscodeshift.registerMethods({
-        hasOwnProperty(name) {
-          // compare only against current-session & very original methods
-          if (!origMethods) {
-            origMethods = new Set(Object.getOwnPropertyNames(this));
+        jscodeshift.registerMethods({
+          hasOwnProperty(name) {
+            // compare only against current-session & very original methods
+            if (!origMethods) {
+              origMethods = new Set(Object.getOwnPropertyNames(this));
+            }
+            return origMethods.has(name) || sessionMethods.has(name);
+          },
+        });
+
+        // patch in order to collect user-defined method names
+        jscodeshift.registerMethods = function (methods) {
+          registerMethods.apply(this, arguments);
+          for (let name in methods) {
+            sessionMethods.add(name);
           }
-          return origMethods.has(name) || sessionMethods.has(name);
-        },
-      });
+        };
 
-      // patch in order to collect user-defined method names
-      jscodeshift.registerMethods = function (methods) {
-        registerMethods.apply(this, arguments);
-        for (let name in methods) {
-          sessionMethods.add(name);
-        }
-      };
-
-      callback({ jscodeshift, babel });
-    });
+        callback({
+          jscodeshift,
+          babel,
+          options: {
+            presets: [presetStage1, presetES2015],
+            plugins: [flowStripTypes],
+          },
+        });
+      }
+    );
   },
 
-  transform({ jscodeshift, babel }, transformCode, code) {
+  transform(
+    {jscodeshift, babel, options},
+    transformCode,
+    code
+  ) {
     sessionMethods.clear();
     const transform = compileModule( // eslint-disable-line no-shadow
-      babel.transform(transformCode).code
+      babel.transform(transformCode, options).code
     );
-    const result = transform(
+    const counter = Object.create(null);
+    let statsWasCalled = false;
+
+    const result = transform.default(
       {
         path: 'Live.js',
         source: code,
       },
-      { jscodeshift },
+      {
+        jscodeshift: transform.parser ?
+          jscodeshift.withParser(transform.parser) :
+          jscodeshift,
+        stats: (value, quantity=1) => {
+          statsWasCalled = true;
+          counter[value] = (counter[value] ? counter[value] : 0) + quantity;
+        },
+      },
       {}
     );
+    if (statsWasCalled) {
+      console.log(JSON.stringify(counter, null, 4)); // eslint-disable-line no-console
+    }
     if (result == null) {
       // If null is returned, the jscodeshift runner won't touch the original
       // code, so we just return that.

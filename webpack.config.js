@@ -88,7 +88,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: [
-          /node_modules(?!\/acorn\/src)/,
+          /node_modules(?!(\/acorn\/src|\/jscodeshift\/dist))/,
           path.join(__dirname, './packages/'),
         ],
         loader: 'babel?cacheDirectory&optional[]=runtime&stage=0',
