@@ -7,14 +7,16 @@ if ! git diff --quiet && git diff --cached --quiet; then
   exit 1
 fi
 
-# Fetch latest changes from GH
+# Initialize worktree
+rm -rf $TARGETPATH
+git worktree prune
 git worktree add $TARGETPATH gh-pages
 
 # Updating
 pushd $TARGETPATH
 echo "Clear target..."
 git pull
-git rm -rf *
+git rm -rf ./*
 popd
 
 echo "Building..."
