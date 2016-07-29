@@ -63,20 +63,24 @@ export default {
     code
   ) {
     sessionMethods.clear();
-    const transform = compileModule( // eslint-disable-line no-shadow
+    const transformModule = compileModule( // eslint-disable-line no-shadow
       babel.transform(transformCode, options).code
     );
+    const transform = transformModule.__esModule ?
+      transformModule.default :
+      transformModule;
+
     const counter = Object.create(null);
     let statsWasCalled = false;
 
-    const result = transform.default(
+    const result = transform(
       {
         path: 'Live.js',
         source: code,
       },
       {
-        jscodeshift: transform.parser ?
-          jscodeshift.withParser(transform.parser) :
+        jscodeshift: transformModule.parser ?
+          jscodeshift.withParser(transformModule.parser) :
           jscodeshift,
         stats: (value, quantity=1) => {
           statsWasCalled = true;
