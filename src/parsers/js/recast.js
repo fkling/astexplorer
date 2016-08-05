@@ -12,7 +12,7 @@ const defaultOptions = {
 
 const parserSettingsConfiguration = {
   fields: [
-    ['parser', ['esprima', 'babel-core', 'babylon6', 'flow']],
+    ['parser', ['esprima', 'babel5', 'babylon6', 'flow']],
     'range',
     'tolerant',
   ],
@@ -30,12 +30,12 @@ export default {
 
   loadParser(callback) {
     require(
-      ['recast', 'babel-core', 'babylon6', 'flow-parser'],
+      ['recast', 'babel5', 'babylon6', 'flow-parser'],
       (recast, babelCore, babylon6, flow) => {
         callback({
           recast,
           parsers: {
-            'babel-core': babelCore,
+            'babel5': babelCore,
             babylon6,
             flow,
           },

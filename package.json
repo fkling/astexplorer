@@ -42,6 +42,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-preset-syntax-from-presets": "^1.0.0",
     "babel-runtime": "^5.8.19",
+    "babel5": "file:packages/babel5",
     "babel6": "file:packages/babel6",
     "babylon": "^5.8.22",
     "babylon6": "file:packages/babylon6",

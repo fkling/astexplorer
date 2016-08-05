@@ -16,7 +16,7 @@ export default {
   defaultParserID: 'babylon',
 
   loadTransformer(callback) {
-    require(['babel-core'], callback);
+    require(['babel5'], callback);
   },
 
   transform(babel, transformCode, code) {

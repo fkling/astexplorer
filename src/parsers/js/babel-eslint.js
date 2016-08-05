@@ -14,7 +14,7 @@ export default {
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['acorn-to-esprima', 'babel-core'], (acornToEsprima, {acorn: {tokTypes}, traverse, parse}) => {
+    require(['acorn-to-esprima', 'babel5'], (acornToEsprima, {acorn: {tokTypes}, traverse, parse}) => {
       callback({
         ...acornToEsprima,
         tokTypes,
