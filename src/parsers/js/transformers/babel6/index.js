@@ -15,15 +15,12 @@ export default {
     require([
       'babel6',
       'babel-preset-syntax-from-presets',
-      'babel-preset-es2015',
-      'babel-preset-stage-0',
-      'babel-preset-react',
-    ], (babel, syntaxPreset, ...presets) => callback({ babel, syntaxPreset, presets }));
+    ], (babel, syntaxPreset) => callback({ babel, syntaxPreset }));
   },
 
   transform({ babel, syntaxPreset, presets }, transformCode, code) {
     let transform = compileModule( // eslint-disable-line no-shadow
-      babel.transform(transformCode, { presets }).code
+      transformCode
     );
 
     return babel.transform(code, {

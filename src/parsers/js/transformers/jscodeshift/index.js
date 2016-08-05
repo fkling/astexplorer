@@ -14,15 +14,7 @@ export default {
   defaultParserID: 'recast',
 
   loadTransformer(callback) {
-    require(
-      [
-        'jscodeshift',
-        'babel6',
-        'babel-preset-stage-1',
-        'babel-preset-es2015',
-        'babel-plugin-transform-flow-strip-types',
-      ],
-      (jscodeshift, babel, presetStage1, presetES2015, flowStripTypes) => {
+    require(['jscodeshift'], jscodeshift => {
         const { registerMethods } = jscodeshift;
 
         let origMethods;
@@ -45,26 +37,19 @@ export default {
           }
         };
 
-        callback({
-          jscodeshift,
-          babel,
-          options: {
-            presets: [presetStage1, presetES2015],
-            plugins: [flowStripTypes],
-          },
-        });
+        callback({jscodeshift});
       }
     );
   },
 
   transform(
-    {jscodeshift, babel, options},
+    {jscodeshift},
     transformCode,
     code
   ) {
     sessionMethods.clear();
     const transformModule = compileModule( // eslint-disable-line no-shadow
-      babel.transform(transformCode, options).code
+      transformCode
     );
     const transform = transformModule.__esModule ?
       transformModule.default :

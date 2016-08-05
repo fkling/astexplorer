@@ -1,6 +1,5 @@
 import compileModule from '../../utils/compileModule';
 import {parseNoPatch} from 'babel-eslint';
-import {transform} from 'babel-core';
 
 export function formatResults(results) {
   return results.length === 0
@@ -20,8 +19,8 @@ export function formatResult(result) {
 export function defineRule(eslintRules, code) {
   // Compile the transform code and install it as an ESLint rule. The rule
   // name doesn't really matter here, so we'll just use a hard-coded name.
-  const rule = compileModule(transform(code).code);
-  eslintRules.define('astExplorerRule', rule);
+  const rule = compileModule(code);
+  eslintRules.define('astExplorerRule', rule.default || rule);
 }
 
 export function runRule(code, eslint, sourceCode) {

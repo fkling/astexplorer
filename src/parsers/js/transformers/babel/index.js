@@ -21,12 +21,12 @@ export default {
 
   transform(babel, transformCode, code) {
     let transform = compileModule( // eslint-disable-line no-shadow
-      babel.transform(transformCode, options).code
+      transformCode
     );
 
     return babel.transform(code, {
       whitelist: [],
-      plugins: [transform],
+      plugins: [transform.default || transform],
       sourceMaps: true,
     });
   },

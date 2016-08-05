@@ -12,14 +12,14 @@ export default {
   defaultParserID: 'postcss',
 
   loadTransformer(callback) {
-    require(['postcss', 'babel-core'], (postcss, babel) => {
-      callback({ postcss, babel });
+    require(['postcss'], postcss => {
+      callback({ postcss });
     });
   },
 
-  transform({ postcss, babel }, transformCode, code) {
+  transform({ postcss }, transformCode, code) {
     let transform = compileModule( // eslint-disable-line no-shadow
-      babel.transform(transformCode).code,
+      transformCode,
       {
         require(name) {
           switch (name) {

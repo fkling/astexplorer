@@ -4,12 +4,19 @@ import React from 'react';
 import halts, {loopProtect} from 'halting-problem';
 import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
 
+function loadJSTransformer(callback) {
+  require(['./parsers/utils/transformJSCode'], callback);
+}
+
 function transform(transformer, transformCode, code) {
   if (!transformer._promise) {
-    transformer._promise = new Promise(transformer.loadTransformer);
+    transformer._promise = Promise.all([
+      new Promise(transformer.loadTransformer),
+      new Promise(loadJSTransformer)
+    ]);
   }
   // Use Promise.resolve(null) to return all errors as rejected promises
-  return transformer._promise.then(realTransformer => {
+  return transformer._promise.then(([realTransformer, toES5]) => {
     // assert that there are no obvious infinite loops
     halts(transformCode);
     // guard against non-obvious loops with a timeout of 5 seconds
@@ -28,7 +35,7 @@ function transform(transformer, transformCode, code) {
     );
     let result = transformer.transform(
       realTransformer,
-      transformCode,
+      toES5(transformCode),
       code
     );
     return Promise.resolve(result).then(result => {
