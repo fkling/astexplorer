@@ -1,5 +1,5 @@
 import compileModule from '../../../utils/compileModule';
-import pkg from 'babel6/node_modules/babel-core/package.json';
+import pkg from 'babel6/babel6-package';
 
 const ID = 'babelv6';
 

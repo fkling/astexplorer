@@ -1,11 +1,7 @@
 import compileModule from '../../../utils/compileModule';
-import pkg from 'babel-core/package.json';
+import pkg from 'babel5/babel5-package';
 
 const ID = 'babel';
-
-const options = {
-  stage: 0,
-};
 
 export default {
   id: ID,

@@ -44,7 +44,7 @@ export default {
   locationProps: new Set(['range', 'loc', 'start', 'end']),
 
   loadParser(callback) {
-    require(['acorn/src', 'acorn/src/loose', 'acorn-jsx/inject'], (acorn, acornLoose, jsxInject) => {
+    require(['acorn', 'acorn/dist/acorn_loose', 'acorn-jsx/inject'], (acorn, acornLoose, jsxInject) => {
       acorn = jsxInject(acorn);
       callback({
         acorn,

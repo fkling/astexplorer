@@ -26,7 +26,7 @@ export function defineRule(eslintRules, code) {
 export function runRule(code, eslint, sourceCode) {
   // Run the ESLint rule on the AST of the provided code.
   // Reference: http://eslint.org/docs/developer-guide/nodejs-api
-  const ast = parseNoPatch(code);
+  const ast = parseNoPatch(code, {});
   const results = eslint.verify(new sourceCode(code, ast), {
     rules: {
       astExplorerRule: 2,

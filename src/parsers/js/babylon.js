@@ -1,6 +1,6 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babylon/package.json';
+import pkg from 'babylon5/babylon-package';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'babylon';
@@ -67,7 +67,7 @@ export default {
   locationProps: new Set(['loc', 'start', 'end']),
 
   loadParser(callback) {
-    require(['babylon'], callback);
+    require(['babylon5'], callback);
   },
 
   parse(babylon, code, parserSettings) {

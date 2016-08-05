@@ -5,14 +5,14 @@ import halts, {loopProtect} from 'halting-problem';
 import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
 
 function loadJSTransformer(callback) {
-  require(['./parsers/utils/transformJSCode'], callback);
+  require(['./parsers/utils/transformJSCode'], toES5 => callback(toES5.default));
 }
 
 function transform(transformer, transformCode, code) {
   if (!transformer._promise) {
     transformer._promise = Promise.all([
       new Promise(transformer.loadTransformer),
-      new Promise(loadJSTransformer)
+      new Promise(loadJSTransformer),
     ]);
   }
   // Use Promise.resolve(null) to return all errors as rejected promises

@@ -35,6 +35,7 @@ export const categories =
       .filter(([parserName]) => !restrictedParserNames.has(parserName))
       .map(([parserName]) => {
         let parser = localRequire(`./${catName}/${parserName}`);
+        parser = parser.__esModule ? parser.default : parser;
         parserByID[parser.id] = parser;
         parser.category = category;
         return parser;
@@ -46,6 +47,7 @@ export const categories =
       .map(([, transformerName]) => {
         let transformerDir = `./${catName}/transformers/${transformerName}`;
         let transformer = localRequire(`${transformerDir}/index.js`);
+        transformer = transformer.__esModule ? transformer.default : transformer;
         transformerByID[transformer.id] = transformer;
         transformer.defaultTransform = localRequire(`${transformerDir}/codeExample.txt`);
         return transformer;

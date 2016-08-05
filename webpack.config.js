@@ -23,6 +23,14 @@ var plugins = [
     /node\/nodeLoader.js/,
     /traceur/
   ),
+  // Usually babel-eslint tries to patch eslint, but we are using "parseNoPatch",
+  // so that code patch will never be executed. However, webpack will still bundle
+  // eslint. Since eslint@3 is a dev dependency it will pick up that one which
+  // is incorrect.
+  new webpack.IgnorePlugin(
+    /eslint/,
+    /babel-eslint/
+  ),
   // Shim ESLint stuff that's only relevant for Node.js
   new webpack.NormalModuleReplacementPlugin(
     /(cli-engine|testers\/rule-tester)/,
@@ -93,10 +101,21 @@ module.exports = Object.assign({
       {
         test: /\.jsx?$/,
         exclude: [
-          /node_modules(?!(\/acorn\/src|\/jscodeshift\/dist))/,
+          /node_modules(?!(\/jscodeshift\/dist))/,
           path.join(__dirname, './packages/'),
         ],
-        loader: 'babel?cacheDirectory&optional[]=runtime&stage=0',
+        loader: 'babel',
+        query: {
+          babelrc: false,
+          presets: [
+            require.resolve('babel-preset-es2015'),
+            require.resolve('babel-preset-stage-1'),
+            require.resolve('babel-preset-react'),
+          ],
+          plugins: [
+            require.resolve('babel-plugin-transform-runtime'),
+          ],
+        },
       },
       {
         test: /\.css$/,
@@ -115,7 +134,7 @@ module.exports = Object.assign({
     noParse: [
       /traceur\/bin/,
       /typescript\/lib/,
-      /acorn\/dist/,
+      /acorn\/dist\/acorn\.js/,
     ],
   },
 

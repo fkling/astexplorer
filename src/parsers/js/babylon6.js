@@ -1,6 +1,6 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babylon6/node_modules/babylon/package.json';
+import pkg from 'babylon6/babylon-package';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'babylon6';
