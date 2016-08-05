@@ -93,6 +93,7 @@
     "start": "http-server out",
     "build": "NODE_ENV=production webpack",
     "watch": "webpack -dw",
-    "push": "./scripts/push-site.sh"
+    "push": "./scripts/push-site.sh",
+    "eslint": "eslint src/"
   }
 }
