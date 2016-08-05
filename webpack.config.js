@@ -65,15 +65,20 @@ var plugins = [
 
 
 if (!DEV) {
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    mangle: false, // Otherwise babelv5 plugins don't work
-    compress: {
-      keep_fnames: true, // eslint-disable-line camelcase
-    },
-  }));
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: {
+        except: ['Plugin', 'Tree', 'JSON'],
+      },
+      compress: {
+        warnings: false,
+        keep_fnames: true, // eslint-disable-line camelcase
+      },
+    })
+  );
 }
 
-module.exports = {
+module.exports = Object.assign({
   module: {
     loaders: [
       {
@@ -147,4 +152,9 @@ module.exports = {
     filename: DEV ? '[name].js' : '[name]-[chunkhash].js',
     chunkFilename: DEV ? '[name].js' : '[name]-[chunkhash].js',
   },
-};
+},
+
+DEV ?
+  {} :
+  {recordsPath: path.join(__dirname, 'records.json')}
+);
