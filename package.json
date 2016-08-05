@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "acorn": "^3.0.4",
-    "acorn-jsx": "^2.0.1",
+    "acorn-jsx": "^3.0.1",
     "acorn-to-esprima": "^1.0.2",
     "babel-eslint": "^6.1.2",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
