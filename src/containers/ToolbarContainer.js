@@ -10,6 +10,7 @@ import {
 import Toolbar from '../Toolbar';
 import {canSave, canFork} from '../store/selectors';
 import * as LocalStorage from '../LocalStorage';
+import {logEvent} from '../utils/logger';
 
 function mapStateToProps(state) {
   const {
@@ -37,15 +38,23 @@ function mapDispatchToProps(dispatch) {
         parser,
         parserSettings: LocalStorage.getParserSettings(parser.id) || {},
       }));
+      logEvent('parser', 'select', parser.id);
     },
     onCategoryChange: category => {
       LocalStorage.setCategory(category.id);
       dispatch(selectCategory(category));
+      logEvent('category', 'select', category.id);
     },
-    onParserSettingsButtonClick: () => dispatch(openSettingsDialog()),
-    onTransformChange: transformer => dispatch(
-      transformer ? selectTransformer(transformer) : hideTransformer()
-    ),
+    onParserSettingsButtonClick: () => {
+      dispatch(openSettingsDialog());
+      logEvent('parser', 'open_settings');
+    },
+    onTransformChange: transformer => {
+      dispatch(transformer ? selectTransformer(transformer) : hideTransformer());
+      if (transformer) {
+        logEvent('tool', 'select', transformer.id);
+      }
+    },
     onSave: () => dispatch(save(false)),
     onFork: () => dispatch(save(true)),
   };

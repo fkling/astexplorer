@@ -2,6 +2,7 @@ import Element from '../ast/Element';
 import React from 'react';
 import PubSub from 'pubsub-js';
 import {getVisualizationSettings, setVisualizationSettings} from '../../LocalStorage';
+import {logEvent} from '../../utils/logger';
 
 import './css/tree.css'
 
@@ -21,6 +22,11 @@ export default class Tree extends React.Component {
     this.setState(
       {[name]: event.target.checked},
       () => setVisualizationSettings(ID, this.state)
+    );
+    logEvent(
+      'tree_view_settings',
+      event.target.checked ? 'enabled' : 'disabled',
+      name
     );
   }
 

@@ -7,10 +7,11 @@ import {getParserByID, getDefaultParser, getCategoryByID} from '../parsers';
 import {batchActions} from 'redux-batched-actions';
 import getDataFromRevision from './getDataFromRevision';
 import Snippet from '../Snippet';
-
+import {logEvent, logError} from '../utils/logger';
 
 function updateHashWithIDAndRevision(id, rev) {
-  global.location.hash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
+  const newHash = '/' + id + (rev && rev !== 0 ? '/' + rev : '');
+  global.location.hash = newHash;
 }
 
 function getParserForCategory(category) {
@@ -30,6 +31,7 @@ function getParserSettingsForParser(parser) {
 }
 
 function* save(fork) {
+  let action = 'new_revision';
   let [snippet, parser, code, transformCode, transformer] = yield [
     select(getSnippet),
     select(getParser),
@@ -39,6 +41,7 @@ function* save(fork) {
   ];
   if (fork || !snippet) {
     snippet = new Snippet();
+    action = fork ? 'fork' : 'create';
   }
 
   const data = {
@@ -54,12 +57,15 @@ function* save(fork) {
     data.transform = transformCode;
   }
 
+  logEvent('snippet', action, data.toolID);
+
   try {
     const response = yield snippet.createNewRevision(data);
     if (response) {
       updateHashWithIDAndRevision(snippet.id, response.revisionNumber);
     }
   } catch (error) {
+    logError(error.message);
     yield put(actions.setError(error));
   }
 }
@@ -141,6 +147,7 @@ export function* watchSnippetURI() {
     if (saving || forking) {
       continue;
     }
+    logEvent('snippet', 'load');
 
     yield put(batchActions([
       actions.setError(null),
@@ -150,10 +157,11 @@ export function* watchSnippetURI() {
     try {
       data = yield call(Snippet.fetchFromURL);
     } catch(error) {
+      const errorMessage = 'Failed to fetch revision: ' + error.message;
+      logError(errorMessage);
+
       yield put(batchActions([
-        actions.setError(new Error(
-          'Failed to fetch revision: ' + error.message
-        )),
+        actions.setError(new Error(errorMessage)),
         actions.doneLoadingSnippet(),
       ]));
       continue;
@@ -212,6 +220,8 @@ export function* watchDropText() {
   while (true) {
     const {categoryId} = yield take(actions.DROP_TEXT);
     const currentParser = yield select(getParser);
+
+    logEvent('text', 'drop', categoryId);
 
     if (currentParser.category.id !== categoryId) {
       const parser = getParserForCategory(getCategoryByID(categoryId));
