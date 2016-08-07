@@ -12,10 +12,6 @@ var plugins = [
     'process.env.NODE_ENV':
       JSON.stringify(process.env.NODE_ENV || 'development'),
   }),
-  new webpack.optimize.CommonsChunkPlugin({
-    async: true,
-    minChunks: 3,
-  }),
   new webpack.IgnorePlugin(
     /\.md$/
   ),
@@ -69,22 +65,11 @@ var plugins = [
     inject: 'body',
   }),
   new webpack.NamedModulesPlugin(),
+  new webpack.ProgressPlugin(function handler(percentage, msg) {
+    process.stdout.write(/build modules/.test(msg) ? '\r' : '\n');
+    process.stdout.write(msg);
+  }),
 ];
-
-
-if (!DEV) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: {
-        except: ['Plugin', 'Tree', 'JSON'],
-      },
-      compress: {
-        warnings: false,
-        keep_fnames: true, // eslint-disable-line camelcase
-      },
-    })
-  );
-}
 
 module.exports = Object.assign({
   module: {
@@ -136,6 +121,16 @@ module.exports = Object.assign({
       /typescript\/lib/,
       /acorn\/dist\/acorn\.js/,
     ],
+    postLoaders: DEV ?
+      [] :
+       [
+        {
+          test: /\.jsx?$/,
+          // Applying uglify to the flow parser generates invalid strict mode code
+          exclude: /flow_parser\.js/,
+          loader: 'uglify',
+        },
+      ],
   },
 
   node: {
@@ -175,5 +170,15 @@ module.exports = Object.assign({
 
 DEV ?
   {} :
-  {recordsPath: path.join(__dirname, 'records.json')}
+  {
+    recordsPath: path.join(__dirname, 'records.json'),
+    'uglify-loader': {
+      mangle: {
+        except: ['Plugin', 'Tree', 'JSON'],
+      },
+      compress: {
+        warnings: false,
+      },
+    },
+  }
 );
