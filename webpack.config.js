@@ -152,7 +152,6 @@ module.exports = Object.assign({
       'codemirror',
       'halting-problem',
       'json-stringify-safe',
-      'keypress',
       'parse',
       'pubsub-js',
       'react',
