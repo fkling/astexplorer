@@ -103,7 +103,6 @@
 	__webpack_require__("./node_modules/codemirror/lib/codemirror.js");
 	__webpack_require__("./node_modules/halting-problem/index.js");
 	__webpack_require__("./node_modules/json-stringify-safe/stringify.js");
-	(function webpackMissingModule() { throw new Error("Cannot find module \"keypress\""); }());
 	__webpack_require__("./node_modules/parse/index.js");
 	__webpack_require__("./node_modules/pubsub-js/src/pubsub.js");
 	module.exports = __webpack_require__("./node_modules/react/react.js");
