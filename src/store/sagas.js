@@ -147,7 +147,6 @@ export function* watchSnippetURI() {
     if (saving || forking) {
       continue;
     }
-    logEvent('snippet', 'load');
 
     yield put(batchActions([
       actions.setError(null),
@@ -168,6 +167,8 @@ export function* watchSnippetURI() {
     }
 
     if (data) {
+      logEvent('snippet', 'load');
+
       const {parser, code, transformer, transformCode} =
         getDataFromRevision(data.revision);
       yield put(batchActions([
