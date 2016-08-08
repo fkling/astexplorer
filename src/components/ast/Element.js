@@ -2,7 +2,6 @@ import CompactArrayView from './CompactArrayView';
 import CompactObjectView from './CompactObjectView';
 import PubSub from 'pubsub-js';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import RecursiveTreeElement from './RecursiveTreeElement';
 import {nodeToRange} from '../../getFocusPath';
 
@@ -86,10 +85,7 @@ let Element = class extends React.Component {
   _scrollIntoView() {
     const {focusPath, value} = this.props;
     if (focusPath.length > 0 && focusPath[focusPath.length -1] === value) {
-      setTimeout(() => {
-        const node = ReactDOM.findDOMNode(this);
-        node.scrollIntoView();
-      }, 0);
+      setTimeout(() => this.refs.container.scrollIntoView(), 0);
     }
   }
 

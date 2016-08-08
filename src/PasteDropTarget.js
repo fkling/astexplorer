@@ -145,7 +145,7 @@ export default class PasteDropTarget extends React.Component {
   }
 
   render() {
-    let {children, ...props} = this.props;
+    let {children, onText: _onText, ...props} = this.props;
     const dropindicator = this.state.dragging ?
       <div className="dropIndicator">
         <div>Drop the code or (JSON-encoded) AST file here</div>

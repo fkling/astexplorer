@@ -17,7 +17,9 @@ rules:
   no-path-concat: 0
   no-undef: 2
   no-underscore-dangle: 0
-  no-unused-vars: 1
+  no-unused-vars: 
+    - 1
+    - varsIgnorePattern: '^_'
   no-use-before-define: 0
   quotes: [2, "single", "avoid-escape"]
   strict: 0
