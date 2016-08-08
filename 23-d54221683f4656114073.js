@@ -20053,29 +20053,22 @@ webpackJsonp([23,14,15],{
 	module.exports = {
 		"_args": [
 			[
-				"try-resolve@^1.0.0",
-				"/Users/fkling/git/astexplorer/node_modules/babel5/node_modules/babel-core"
+				"try-resolve@https://registry.npmjs.org/try-resolve/-/try-resolve-1.0.1.tgz",
+				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "try-resolve@>=1.0.0 <2.0.0",
 		"_id": "try-resolve@1.0.1",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/try-resolve",
-		"_nodeVersion": "2.3.4",
-		"_npmUser": {
-			"email": "sebmck@gmail.com",
-			"name": "sebmck"
-		},
-		"_npmVersion": "2.12.1",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "try-resolve",
-			"raw": "try-resolve@^1.0.0",
-			"rawSpec": "^1.0.0",
+			"raw": "try-resolve@https://registry.npmjs.org/try-resolve/-/try-resolve-1.0.1.tgz",
+			"rawSpec": "https://registry.npmjs.org/try-resolve/-/try-resolve-1.0.1.tgz",
 			"scope": null,
-			"spec": ">=1.0.0 <2.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/try-resolve/-/try-resolve-1.0.1.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/babel5/babel-core",
@@ -20084,8 +20077,8 @@ webpackJsonp([23,14,15],{
 		"_resolved": "https://registry.npmjs.org/try-resolve/-/try-resolve-1.0.1.tgz",
 		"_shasum": "cfde6fabd72d63e5797cfaab873abbe8e700e912",
 		"_shrinkwrap": null,
-		"_spec": "try-resolve@^1.0.0",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/babel5/node_modules/babel-core",
+		"_spec": "try-resolve@https://registry.npmjs.org/try-resolve/-/try-resolve-1.0.1.tgz",
+		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "sebmck@gmail.com",
 			"name": "Sebastian McKenzie"
@@ -20096,29 +20089,17 @@ webpackJsonp([23,14,15],{
 		"dependencies": {},
 		"description": "Try and resolve a filename",
 		"devDependencies": {},
-		"directories": {},
-		"dist": {
-			"shasum": "cfde6fabd72d63e5797cfaab873abbe8e700e912",
-			"tarball": "http://registry.npmjs.org/try-resolve/-/try-resolve-1.0.1.tgz"
-		},
-		"gitHead": "11f52ddf92dd1abdea9e64edf54d87138a0f610e",
 		"homepage": "https://github.com/sebmck/try-resolve#readme",
 		"license": "MIT",
 		"main": "index.js",
-		"maintainers": [
-			{
-				"email": "sebmck@gmail.com",
-				"name": "sebmck"
-			}
-		],
 		"name": "try-resolve",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# try-resolve\n\n## Installation\n\n```sh\n$ npm install try-resolve\n```\n\n## Usage\n\n```javascrpt\nvar resolve = require(\"try-resolve\");\n```\n\n### `resolve(filename, [require])`\n\n - `filename` is a filename to be resolved.\n - `require` is an optional instance of the `require` function from any file.\n\nReturns `null` if the file can't be required, otherwise it returns an absolute filename string.\n\n#### Example\n\n```javascript\nif (require(\"try-resolve\")(\"/home/sebastian/file\")) {\n  // this file can be required\n} else {\n  // it can't\n}\n```\n\n### `resolve.relative(filename)`\n\nResolve a filename relative to the cwd.\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/sebmck/try-resolve.git"
 		},
-		"scripts": {},
 		"version": "1.0.1"
 	};
 
@@ -21967,33 +21948,22 @@ webpackJsonp([23,14,15],{
 	module.exports = {
 		"_args": [
 			[
-				"babel-core@^5",
+				"babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
 				"/Users/fkling/git/astexplorer/node_modules/jscodeshift"
 			]
 		],
 		"_from": "babel-core@>=5.0.0 <6.0.0",
 		"_id": "babel-core@5.8.38",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/jscodeshift/babel-core",
-		"_nodeVersion": "5.5.0",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/babel-core-5.8.38.tgz_1458687002807_0.9978649774566293"
-		},
-		"_npmUser": {
-			"email": "sebmck@gmail.com",
-			"name": "sebmck"
-		},
-		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babel-core",
-			"raw": "babel-core@^5",
-			"rawSpec": "^5",
+			"raw": "babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
+			"rawSpec": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
 			"scope": null,
-			"spec": ">=5.0.0 <6.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/jscodeshift"
@@ -22001,7 +21971,7 @@ webpackJsonp([23,14,15],{
 		"_resolved": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
 		"_shasum": "1fcaee79d7e61b750b00b8e54f6dfc9d0af86558",
 		"_shrinkwrap": null,
-		"_spec": "babel-core@^5",
+		"_spec": "babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
 		"_where": "/Users/fkling/git/astexplorer/node_modules/jscodeshift",
 		"author": {
 			"email": "sebmck@gmail.com",
@@ -22063,11 +22033,6 @@ webpackJsonp([23,14,15],{
 		},
 		"description": "A compiler for writing next generation JavaScript",
 		"devDependencies": {},
-		"directories": {},
-		"dist": {
-			"shasum": "1fcaee79d7e61b750b00b8e54f6dfc9d0af86558",
-			"tarball": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz"
-		},
 		"homepage": "https://babeljs.io/",
 		"keywords": [
 			"6to5",
@@ -22083,32 +22048,6 @@ webpackJsonp([23,14,15],{
 			"var"
 		],
 		"license": "MIT",
-		"maintainers": [
-			{
-				"email": "amjad.masad@gmail.com",
-				"name": "amasad"
-			},
-			{
-				"email": "hi@henryzoo.com",
-				"name": "hzoo"
-			},
-			{
-				"email": "npm-public@jessemccarthy.net",
-				"name": "jmm"
-			},
-			{
-				"email": "loganfsmyth@gmail.com",
-				"name": "loganfsmyth"
-			},
-			{
-				"email": "sebmck@gmail.com",
-				"name": "sebmck"
-			},
-			{
-				"email": "me@thejameskyle.com",
-				"name": "thejameskyle"
-			}
-		],
 		"name": "babel-core",
 		"optionalDependencies": {},
 		"readme": "ERROR: No README data found!",

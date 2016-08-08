@@ -34,33 +34,22 @@ webpackJsonp([21],{
 	module.exports = {
 		"_args": [
 			[
-				"estraverse@^4.1.1",
-				"/Users/fkling/git/astexplorer/node_modules/eslint1/node_modules/eslint"
+				"estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
+				"/Users/fkling/git/astexplorer/node_modules/eslint1"
 			]
 		],
 		"_from": "estraverse@>=4.1.1 <5.0.0",
 		"_id": "estraverse@4.2.0",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/eslint1/estraverse",
-		"_nodeVersion": "0.12.9",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/estraverse-4.2.0.tgz_1457646738925_0.7118953282479197"
-		},
-		"_npmUser": {
-			"email": "nicholas@nczconsulting.com",
-			"name": "nzakas"
-		},
-		"_npmVersion": "2.14.9",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "estraverse",
-			"raw": "estraverse@^4.1.1",
-			"rawSpec": "^4.1.1",
+			"raw": "estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
+			"rawSpec": "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
 			"scope": null,
-			"spec": ">=4.1.1 <5.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/eslint1/eslint"
@@ -68,8 +57,8 @@ webpackJsonp([21],{
 		"_resolved": "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
 		"_shasum": "0dee3fed31fcd469618ce7342099fc1afa0bdb13",
 		"_shrinkwrap": null,
-		"_spec": "estraverse@^4.1.1",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/eslint1/node_modules/eslint",
+		"_spec": "estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
+		"_where": "/Users/fkling/git/astexplorer/node_modules/eslint1",
 		"bugs": {
 			"url": "https://github.com/estools/estraverse/issues"
 		},
@@ -88,30 +77,17 @@ webpackJsonp([21],{
 			"jshint": "^2.5.6",
 			"mocha": "^2.1.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "0dee3fed31fcd469618ce7342099fc1afa0bdb13",
-			"tarball": "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz"
-		},
 		"engines": {
 			"node": ">=0.10.0"
 		},
-		"gitHead": "6f6a4e99653908e859c7c10d04d9518bf4844ede",
 		"homepage": "https://github.com/estools/estraverse",
 		"license": "BSD-2-Clause",
 		"main": "estraverse.js",
 		"maintainers": [
 			{
 				"email": "utatane.tea@gmail.com",
-				"name": "constellation"
-			},
-			{
-				"email": "npm@michael.ficarra.me",
-				"name": "michaelficarra"
-			},
-			{
-				"email": "nicholas@nczconsulting.com",
-				"name": "nzakas"
+				"name": "Yusuke Suzuki",
+				"url": "http://github.com/Constellation"
 			}
 		],
 		"name": "estraverse",
@@ -517,33 +493,22 @@ webpackJsonp([21],{
 	module.exports = {
 		"_args": [
 			[
-				"estraverse@^4.1.1",
+				"estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
 				"/Users/fkling/git/astexplorer/node_modules/escope"
 			]
 		],
 		"_from": "estraverse@>=4.1.1 <5.0.0",
 		"_id": "estraverse@4.2.0",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/escope/estraverse",
-		"_nodeVersion": "0.12.9",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/estraverse-4.2.0.tgz_1457646738925_0.7118953282479197"
-		},
-		"_npmUser": {
-			"email": "nicholas@nczconsulting.com",
-			"name": "nzakas"
-		},
-		"_npmVersion": "2.14.9",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "estraverse",
-			"raw": "estraverse@^4.1.1",
-			"rawSpec": "^4.1.1",
+			"raw": "estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
+			"rawSpec": "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
 			"scope": null,
-			"spec": ">=4.1.1 <5.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/escope"
@@ -551,7 +516,7 @@ webpackJsonp([21],{
 		"_resolved": "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
 		"_shasum": "0dee3fed31fcd469618ce7342099fc1afa0bdb13",
 		"_shrinkwrap": null,
-		"_spec": "estraverse@^4.1.1",
+		"_spec": "estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz",
 		"_where": "/Users/fkling/git/astexplorer/node_modules/escope",
 		"bugs": {
 			"url": "https://github.com/estools/estraverse/issues"
@@ -571,30 +536,17 @@ webpackJsonp([21],{
 			"jshint": "^2.5.6",
 			"mocha": "^2.1.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "0dee3fed31fcd469618ce7342099fc1afa0bdb13",
-			"tarball": "https://registry.npmjs.org/estraverse/-/estraverse-4.2.0.tgz"
-		},
 		"engines": {
 			"node": ">=0.10.0"
 		},
-		"gitHead": "6f6a4e99653908e859c7c10d04d9518bf4844ede",
 		"homepage": "https://github.com/estools/estraverse",
 		"license": "BSD-2-Clause",
 		"main": "estraverse.js",
 		"maintainers": [
 			{
 				"email": "utatane.tea@gmail.com",
-				"name": "constellation"
-			},
-			{
-				"email": "npm@michael.ficarra.me",
-				"name": "michaelficarra"
-			},
-			{
-				"email": "nicholas@nczconsulting.com",
-				"name": "nzakas"
+				"name": "Yusuke Suzuki",
+				"url": "http://github.com/Constellation"
 			}
 		],
 		"name": "estraverse",
@@ -760,29 +712,22 @@ webpackJsonp([21],{
 	module.exports = {
 		"_args": [
 			[
-				"estraverse@~4.1.0",
+				"estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.1.1.tgz",
 				"/Users/fkling/git/astexplorer/node_modules/esrecurse"
 			]
 		],
 		"_from": "estraverse@>=4.1.0 <4.2.0",
 		"_id": "estraverse@4.1.1",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/esrecurse/estraverse",
-		"_nodeVersion": "4.1.1",
-		"_npmUser": {
-			"email": "utatane.tea@gmail.com",
-			"name": "constellation"
-		},
-		"_npmVersion": "2.14.4",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "estraverse",
-			"raw": "estraverse@~4.1.0",
-			"rawSpec": "~4.1.0",
+			"raw": "estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.1.1.tgz",
+			"rawSpec": "https://registry.npmjs.org/estraverse/-/estraverse-4.1.1.tgz",
 			"scope": null,
-			"spec": ">=4.1.0 <4.2.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/estraverse/-/estraverse-4.1.1.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/esrecurse"
@@ -790,7 +735,7 @@ webpackJsonp([21],{
 		"_resolved": "https://registry.npmjs.org/estraverse/-/estraverse-4.1.1.tgz",
 		"_shasum": "f6caca728933a850ef90661d0e17982ba47111a2",
 		"_shrinkwrap": null,
-		"_spec": "estraverse@~4.1.0",
+		"_spec": "estraverse@https://registry.npmjs.org/estraverse/-/estraverse-4.1.1.tgz",
 		"_where": "/Users/fkling/git/astexplorer/node_modules/esrecurse",
 		"bugs": {
 			"url": "https://github.com/estools/estraverse/issues"
@@ -809,35 +754,23 @@ webpackJsonp([21],{
 			"jshint": "^2.5.6",
 			"mocha": "^2.1.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "f6caca728933a850ef90661d0e17982ba47111a2",
-			"tarball": "https://registry.npmjs.org/estraverse/-/estraverse-4.1.1.tgz"
-		},
 		"engines": {
 			"node": ">=0.10.0"
 		},
-		"gitHead": "bbcccbfe98296585e4311c8755e1d00dcd581e3c",
 		"homepage": "https://github.com/estools/estraverse",
 		"license": "BSD-2-Clause",
 		"main": "estraverse.js",
 		"maintainers": [
 			{
 				"email": "utatane.tea@gmail.com",
-				"name": "constellation"
-			},
-			{
-				"email": "npm@michael.ficarra.me",
-				"name": "michaelficarra"
-			},
-			{
-				"email": "nicholas@nczconsulting.com",
-				"name": "nzakas"
+				"name": "Yusuke Suzuki",
+				"url": "http://github.com/Constellation"
 			}
 		],
 		"name": "estraverse",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "### Estraverse [![Build Status](https://secure.travis-ci.org/estools/estraverse.png)](http://travis-ci.org/estools/estraverse)\n\nEstraverse ([estraverse](http://github.com/estools/estraverse)) is\n[ECMAScript](http://www.ecma-international.org/publications/standards/Ecma-262.htm)\ntraversal functions from [esmangle project](http://github.com/estools/esmangle).\n\n### Documentation\n\nYou can find usage docs at [wiki page](https://github.com/estools/estraverse/wiki/Usage).\n\n### Example Usage\n\nThe following code will output all variables declared at the root of a file.\n\n```javascript\nestraverse.traverse(ast, {\n    enter: function (node, parent) {\n        if (node.type == 'FunctionExpression' || node.type == 'FunctionDeclaration')\n            return estraverse.VisitorOption.Skip;\n    },\n    leave: function (node, parent) {\n        if (node.type == 'VariableDeclarator')\n          console.log(node.id.name);\n    }\n});\n```\n\nWe can use `this.skip`, `this.remove` and `this.break` functions instead of using Skip, Remove and Break.\n\n```javascript\nestraverse.traverse(ast, {\n    enter: function (node) {\n        this.break();\n    }\n});\n```\n\nAnd estraverse provides `estraverse.replace` function. When returning node from `enter`/`leave`, current node is replaced with it.\n\n```javascript\nresult = estraverse.replace(tree, {\n    enter: function (node) {\n        // Replace it with replaced.\n        if (node.type === 'Literal')\n            return replaced;\n    }\n});\n```\n\nBy passing `visitor.keys` mapping, we can extend estraverse traversing functionality.\n\n```javascript\n// This tree contains a user-defined `TestExpression` node.\nvar tree = {\n    type: 'TestExpression',\n\n    // This 'argument' is the property containing the other **node**.\n    argument: {\n        type: 'Literal',\n        value: 20\n    },\n\n    // This 'extended' is the property not containing the other **node**.\n    extended: true\n};\nestraverse.traverse(tree, {\n    enter: function (node) { },\n\n    // Extending the existing traversing rules.\n    keys: {\n        // TargetNodeName: [ 'keys', 'containing', 'the', 'other', '**node**' ]\n        TestExpression: ['argument']\n    }\n});\n```\n\nBy passing `visitor.fallback` option, we can control the behavior when encountering unknown nodes.\n```javascript\n// This tree contains a user-defined `TestExpression` node.\nvar tree = {\n    type: 'TestExpression',\n\n    // This 'argument' is the property containing the other **node**.\n    argument: {\n        type: 'Literal',\n        value: 20\n    },\n\n    // This 'extended' is the property not containing the other **node**.\n    extended: true\n};\nestraverse.traverse(tree, {\n    enter: function (node) { },\n\n    // Iterating the child **nodes** of unknown nodes.\n    fallback: 'iteration'\n});\n```\n\n### License\n\nCopyright (C) 2012-2013 [Yusuke Suzuki](http://github.com/Constellation)\n (twitter: [@Constellation](http://twitter.com/Constellation)) and other contributors.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n  * Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n\n  * Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY\nDIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\nON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF\nTHIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+ssh://git@github.com/estools/estraverse.git"
@@ -858,33 +791,22 @@ webpackJsonp([21],{
 	module.exports = {
 		"_args": [
 			[
-				"esrecurse@^4.1.0",
-				"/Users/fkling/git/astexplorer/node_modules/escope"
+				"esrecurse@https://registry.npmjs.org/esrecurse/-/esrecurse-4.1.0.tgz",
+				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "esrecurse@>=4.1.0 <5.0.0",
 		"_id": "esrecurse@4.1.0",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/esrecurse",
-		"_nodeVersion": "0.12.9",
-		"_npmOperationalInternal": {
-			"host": "packages-13-west.internal.npmjs.com",
-			"tmp": "tmp/esrecurse-4.1.0.tgz_1457712782215_0.15950557170435786"
-		},
-		"_npmUser": {
-			"email": "nicholas@nczconsulting.com",
-			"name": "nzakas"
-		},
-		"_npmVersion": "2.14.9",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "esrecurse",
-			"raw": "esrecurse@^4.1.0",
-			"rawSpec": "^4.1.0",
+			"raw": "esrecurse@https://registry.npmjs.org/esrecurse/-/esrecurse-4.1.0.tgz",
+			"rawSpec": "https://registry.npmjs.org/esrecurse/-/esrecurse-4.1.0.tgz",
 			"scope": null,
-			"spec": ">=4.1.0 <5.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/esrecurse/-/esrecurse-4.1.0.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/escope"
@@ -892,8 +814,8 @@ webpackJsonp([21],{
 		"_resolved": "https://registry.npmjs.org/esrecurse/-/esrecurse-4.1.0.tgz",
 		"_shasum": "4713b6536adf7f2ac4f327d559e7756bff648220",
 		"_shrinkwrap": null,
-		"_spec": "esrecurse@^4.1.0",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/escope",
+		"_spec": "esrecurse@https://registry.npmjs.org/esrecurse/-/esrecurse-4.1.0.tgz",
+		"_where": "/Users/fkling/git/astexplorer",
 		"bugs": {
 			"url": "https://github.com/estools/esrecurse/issues"
 		},
@@ -916,30 +838,17 @@ webpackJsonp([21],{
 			"jsdoc": "^3.3.0-alpha10",
 			"minimist": "^1.1.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "4713b6536adf7f2ac4f327d559e7756bff648220",
-			"tarball": "https://registry.npmjs.org/esrecurse/-/esrecurse-4.1.0.tgz"
-		},
 		"engines": {
 			"node": ">=0.10.0"
 		},
-		"gitHead": "63a34714834bd7ad2063054bd4abb24fb82ca667",
 		"homepage": "https://github.com/estools/esrecurse",
 		"license": "BSD-2-Clause",
 		"main": "esrecurse.js",
 		"maintainers": [
 			{
 				"email": "utatane.tea@gmail.com",
-				"name": "constellation"
-			},
-			{
-				"email": "npm@michael.ficarra.me",
-				"name": "michaelficarra"
-			},
-			{
-				"email": "nicholas@nczconsulting.com",
-				"name": "nzakas"
+				"name": "Yusuke Suzuki",
+				"url": "https://github.com/Constellation"
 			}
 		],
 		"name": "esrecurse",
@@ -972,43 +881,33 @@ webpackJsonp([21],{
 	module.exports = {
 		"_args": [
 			[
-				"escope@^3.3.0",
-				"/Users/fkling/git/astexplorer/node_modules/eslint"
+				"escope@https://registry.npmjs.org/escope/-/escope-3.6.0.tgz",
+				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "escope@>=3.3.0 <4.0.0",
 		"_id": "escope@3.6.0",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/escope",
-		"_nodeVersion": "0.12.9",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/escope-3.6.0.tgz_1457720018969_0.025237560039386153"
-		},
-		"_npmUser": {
-			"email": "nicholas@nczconsulting.com",
-			"name": "nzakas"
-		},
-		"_npmVersion": "2.14.9",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "escope",
-			"raw": "escope@^3.3.0",
-			"rawSpec": "^3.3.0",
+			"raw": "escope@https://registry.npmjs.org/escope/-/escope-3.6.0.tgz",
+			"rawSpec": "https://registry.npmjs.org/escope/-/escope-3.6.0.tgz",
 			"scope": null,
-			"spec": ">=3.3.0 <4.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/escope/-/escope-3.6.0.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/eslint",
+			"/eslint1/eslint",
 			"/eslint2/eslint"
 		],
 		"_resolved": "https://registry.npmjs.org/escope/-/escope-3.6.0.tgz",
 		"_shasum": "e01975e812781a163a6dadfdd80398dc64c889c3",
 		"_shrinkwrap": null,
-		"_spec": "escope@^3.3.0",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/eslint",
+		"_spec": "escope@https://registry.npmjs.org/escope/-/escope-3.6.0.tgz",
+		"_where": "/Users/fkling/git/astexplorer",
 		"bugs": {
 			"url": "https://github.com/estools/escope/issues"
 		},
@@ -1042,35 +941,23 @@ webpackJsonp([21],{
 			"lazypipe": "^1.0.1",
 			"vinyl-source-stream": "^1.1.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "e01975e812781a163a6dadfdd80398dc64c889c3",
-			"tarball": "https://registry.npmjs.org/escope/-/escope-3.6.0.tgz"
-		},
 		"engines": {
 			"node": ">=0.4.0"
 		},
-		"gitHead": "aa35861faa76a09f01203dee3497a939d70b463c",
 		"homepage": "http://github.com/estools/escope",
 		"license": "BSD-2-Clause",
 		"main": "lib/index.js",
 		"maintainers": [
 			{
 				"email": "utatane.tea@gmail.com",
-				"name": "constellation"
-			},
-			{
-				"email": "npm@michael.ficarra.me",
-				"name": "michaelficarra"
-			},
-			{
-				"email": "nicholas@nczconsulting.com",
-				"name": "nzakas"
+				"name": "Yusuke Suzuki",
+				"url": "http://github.com/Constellation"
 			}
 		],
 		"name": "escope",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "Escope ([escope](http://github.com/estools/escope)) is\n[ECMAScript](http://www.ecma-international.org/publications/standards/Ecma-262.htm)\nscope analyzer extracted from [esmangle project](http://github.com/estools/esmangle).\n\n[![Build Status](https://travis-ci.org/estools/escope.png?branch=master)](https://travis-ci.org/estools/escope)\n\n### Example\n\n```js\nvar escope = require('escope');\nvar esprima = require('esprima');\nvar estraverse = require('estraverse');\n\nvar ast = esprima.parse(code);\nvar scopeManager = escope.analyze(ast);\n\nvar currentScope = scopeManager.acquire(ast);   // global scope\n\nestraverse.traverse(ast, {\n    enter: function(node, parent) {\n        // do stuff\n        \n        if (/Function/.test(node.type)) {\n            currentScope = scopeManager.acquire(node);  // get current function scope\n        }\n    },\n    leave: function(node, parent) {\n        if (/Function/.test(node.type)) {\n            currentScope = currentScope.upper;  // set to parent scope\n        }\n        \n        // do stuff\n    }\n});\n```\n\n### Document\n\nGenerated JSDoc is [here](http://estools.github.io/escope/).\n\n### Demos and Tools\n\nDemonstration is [here](http://mazurov.github.io/escope-demo/) by [Sasha Mazurov](https://github.com/mazurov) (twitter: [@mazurov](http://twitter.com/mazurov)). [issue](https://github.com/estools/escope/issues/14)\n\n![Demo](https://f.cloud.github.com/assets/75759/462920/7aa6dd40-b4f5-11e2-9f07-9f4e8d0415f9.gif)\n\n\nAnd there are tools constructed on Escope.\n\n- [Esmangle](https://github.com/estools/esmangle) is a minifier / mangler / optimizer.\n- [Eslevels](https://github.com/mazurov/eslevels) is a scope levels analyzer and [SublimeText plugin for scope context coloring](https://github.com/mazurov/sublime-levels) is constructed on it.\n- [Esgoggles](https://github.com/keeyipchan/esgoggles) is JavaScript code browser.\n\n\n### License\n\nCopyright (C) 2012-2013 [Yusuke Suzuki](http://github.com/Constellation)\n (twitter: [@Constellation](http://twitter.com/Constellation)) and other contributors.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n  * Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n\n  * Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY\nDIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\nON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF\nTHIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/estools/escope.git"

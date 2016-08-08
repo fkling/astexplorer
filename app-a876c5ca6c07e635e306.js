@@ -299,7 +299,7 @@ webpackJsonp([0],{
 /***/ "./src/store/sagas.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {"use strict";function _interopRequireWildcard(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[r]=e[r]);return t["default"]=e,t}function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function updateHashWithIDAndRevision(e,t){var r="/"+e+(t&&0!==t?"/"+t:"");global.location.hash=r}function getParserForCategory(e){var t=(0,_parsers.getParserByID)(LocalStorage.getParser(e.id))||(0,_parsers.getDefaultParser)(e);return t.category!==e&&(t=(0,_parsers.getDefaultParser)(e)),t}function getParserSettingsForParser(e){return LocalStorage.getParserSettings(e.id)||{}}function save(e){var t,r,a,n,s,o,c,i,p,u;return _regenerator2["default"].wrap(function(f){for(;;)switch(f.prev=f.next){case 0:return t="new_revision",f.next=3,[(0,_effects.select)(getSnippet),(0,_effects.select)(getParser),(0,_effects.select)(getCode),(0,_effects.select)(getTransformerCode),(0,_effects.select)(getTransformer)];case 3:return r=f.sent,a=(0,_slicedToArray3["default"])(r,5),n=a[0],s=a[1],o=a[2],c=a[3],i=a[4],!e&&n||(n=new _Snippet2["default"],t=e?"fork":"create"),p={parserID:s.id},o!==s.category.codeExample&&(p.code=o),i&&(p.toolID=i.id),c&&c!==i.defaultTransform&&(p.transform=c),(0,_logger.logEvent)("snippet",t,p.toolID),f.prev=16,f.next=19,n.createNewRevision(p);case 19:u=f.sent,u&&updateHashWithIDAndRevision(n.id,u.revisionNumber),f.next=28;break;case 23:return f.prev=23,f.t0=f["catch"](16),(0,_logger.logError)(f.t0.message),f.next=28,(0,_effects.put)(actions.setError(f.t0));case 28:case"end":return f.stop()}},_marked[0],this,[[16,23]])}function getParser(e){return e.parser}function getCode(e){return e.code}function isSaving(e){return e.saving}function isForking(e){return e.forking}function getSnippet(e){return e.selectedSnippet}function getTransformer(e){return e.transform.transformer}function getTransformerCode(e){return e.transform.code}function watchSave(){var e,t;return _regenerator2["default"].wrap(function(r){for(;;)switch(r.prev=r.next){case 0:return r.next=3,(0,_effects.take)(actions.SAVE);case 3:return e=r.sent,t=e.fork,r.next=7,(0,_effects.put)(actions.startSave(t));case 7:return r.delegateYield(save(t),"t0",8);case 8:return r.next=10,(0,_effects.put)(actions.endSave(t));case 10:r.next=0;break;case 12:case"end":return r.stop()}},_marked[1],this)}function watchCategoryChange(){var e,t,r;return _regenerator2["default"].wrap(function(a){for(;;)switch(a.prev=a.next){case 0:return a.next=3,(0,_effects.take)(actions.SELECT_CATEGORY);case 3:return e=a.sent,t=e.category,r=getParserForCategory(t),a.next=8,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setWorkbenchState({parser:r,parserSettings:getParserSettingsForParser(r)}),actions.clearSnippet()]));case 8:a.next=0;break;case 10:case"end":return a.stop()}},_marked[2],this)}function watchSnippetChange(){var e,t,r,a,n,s;return _regenerator2["default"].wrap(function(o){for(;;)switch(o.prev=o.next){case 0:return o.next=3,(0,_effects.take)(actions.SET_SNIPPET);case 3:return e=o.sent,t=e.snippet,r=e.revision,a=(0,_getDataFromRevision4["default"])(r),n=a.parser,s=a.code,o.next=11,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setWorkbenchState({parser:n,parserSettings:getParserSettingsForParser(n),code:s}),actions.setSnippet(t,r)]));case 11:o.next=0;break;case 13:case"end":return o.stop()}},_marked[3],this)}function watchSnippetURI(){var e,t,r,a,n,s,o,c,i,p,u,f;return _regenerator2["default"].wrap(function(g){for(;;)switch(g.prev=g.next){case 0:return g.next=3,(0,_effects.take)(actions.LOAD_SNIPPET);case 3:return g.next=5,[(0,_effects.select)(isSaving),(0,_effects.select)(isForking)];case 5:if(e=g.sent,t=e.saving,r=e.forking,!t&&!r){g.next=10;break}return g.abrupt("continue",0);case 10:return(0,_logger.logEvent)("snippet","load"),g.next=13,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setError(null),actions.startLoadingSnippet()]));case 13:return a=void 0,g.prev=14,g.next=17,(0,_effects.call)(_Snippet2["default"].fetchFromURL);case 17:a=g.sent,g.next=27;break;case 20:return g.prev=20,g.t0=g["catch"](14),n="Failed to fetch revision: "+g.t0.message,(0,_logger.logError)(n),g.next=26,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setError(new Error(n)),actions.doneLoadingSnippet()]));case 26:return g.abrupt("continue",0);case 27:if(!a){g.next=37;break}return s=(0,_getDataFromRevision4["default"])(a.revision),o=s.parser,c=s.code,i=s.transformer,p=s.transformCode,g.next=35,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setSnippet(a.snippet,a.revision),actions.setWorkbenchState({code:c,parser:o,parserSettings:getParserSettingsForParser(o)}),actions.doneLoadingSnippet(),i?actions.setTransformState({transformer:i,code:p}):actions.hideTransformer()]));case 35:g.next=43;break;case 37:return g.next=39,(0,_effects.select)(getParser);case 39:return u=g.sent,f=u.category.codeExample,g.next=43,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.clearSnippet(),actions.setWorkbenchState({code:f}),actions.doneLoadingSnippet()]));case 43:g.next=0;break;case 45:case"end":return g.stop()}},_marked[4],this,[[14,20]])}function watchSelectTransformer(){var e,t,r,a,n;return _regenerator2["default"].wrap(function(s){for(;;)switch(s.prev=s.next){case 0:return s.next=3,(0,_effects.take)(actions.SELECT_TRANSFORMER);case 3:return e=s.sent,t=e.transformer,s.next=7,(0,_effects.put)(actions.startLoadingSnippet());case 7:if(s.t0=(0,_parsers.getParserByID)(t.defaultParserID),s.t0){s.next=12;break}return s.next=11,(0,_effects.select)(getParser);case 11:s.t0=s.sent;case 12:return r=s.t0,a=t.defaultTransform,n=[actions.setTransformState({transformer:t,code:a}),actions.doneLoadingSnippet()],s.t1=r,s.next=18,(0,_effects.select)(getParser);case 18:if(s.t2=s.sent,s.t1===s.t2){s.next=21;break}n.push(actions.setWorkbenchState({parser:r,parserSettings:getParserSettingsForParser(r)}));case 21:return s.next=23,(0,_effects.put)((0,_reduxBatchedActions.batchActions)(n));case 23:s.next=0;break;case 25:case"end":return s.stop()}},_marked[5],this)}function watchDropText(){var e,t,r,a;return _regenerator2["default"].wrap(function(n){for(;;)switch(n.prev=n.next){case 0:return n.next=3,(0,_effects.take)(actions.DROP_TEXT);case 3:return e=n.sent,t=e.categoryId,n.next=7,(0,_effects.select)(getParser);case 7:if(r=n.sent,(0,_logger.logEvent)("text","drop",t),r.category.id===t){n.next=13;break}return a=getParserForCategory((0,_parsers.getCategoryByID)(t)),n.next=13,(0,_effects.put)(actions.setWorkbenchState({parser:a,parserSettings:getParserSettingsForParser(a)}));case 13:n.next=0;break;case 15:case"end":return n.stop()}},_marked[6],this)}Object.defineProperty(exports,"__esModule",{value:!0});var _regenerator=__webpack_require__("./node_modules/babel-runtime/regenerator/index.js"),_regenerator2=_interopRequireDefault(_regenerator),_slicedToArray2=__webpack_require__("./node_modules/babel-runtime/helpers/slicedToArray.js"),_slicedToArray3=_interopRequireDefault(_slicedToArray2);exports.getParser=getParser,exports.getCode=getCode,exports.isSaving=isSaving,exports.isForking=isForking,exports.getSnippet=getSnippet,exports.getTransformer=getTransformer,exports.getTransformerCode=getTransformerCode,exports.watchSave=watchSave,exports.watchCategoryChange=watchCategoryChange,exports.watchSnippetChange=watchSnippetChange,exports.watchSnippetURI=watchSnippetURI,exports.watchSelectTransformer=watchSelectTransformer,exports.watchDropText=watchDropText;var _actions=__webpack_require__("./src/store/actions.js"),actions=_interopRequireWildcard(_actions),_effects=__webpack_require__("./node_modules/redux-saga/effects.js"),_LocalStorage=__webpack_require__("./src/LocalStorage.js"),LocalStorage=_interopRequireWildcard(_LocalStorage),_parsers=__webpack_require__("./src/parsers/index.js"),_reduxBatchedActions=__webpack_require__("./node_modules/redux-batched-actions/lib/index.js"),_getDataFromRevision3=__webpack_require__("./src/store/getDataFromRevision.js"),_getDataFromRevision4=_interopRequireDefault(_getDataFromRevision3),_Snippet=__webpack_require__("./src/Snippet.js"),_Snippet2=_interopRequireDefault(_Snippet),_logger=__webpack_require__("./src/utils/logger.js"),_marked=[save,watchSave,watchCategoryChange,watchSnippetChange,watchSnippetURI,watchSelectTransformer,watchDropText].map(_regenerator2["default"].mark);
+	/* WEBPACK VAR INJECTION */(function(global) {"use strict";function _interopRequireWildcard(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[r]=e[r]);return t["default"]=e,t}function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function updateHashWithIDAndRevision(e,t){var r="/"+e+(t&&0!==t?"/"+t:"");global.location.hash=r}function getParserForCategory(e){var t=(0,_parsers.getParserByID)(LocalStorage.getParser(e.id))||(0,_parsers.getDefaultParser)(e);return t.category!==e&&(t=(0,_parsers.getDefaultParser)(e)),t}function getParserSettingsForParser(e){return LocalStorage.getParserSettings(e.id)||{}}function save(e){var t,r,a,n,s,o,c,i,p,u;return _regenerator2["default"].wrap(function(f){for(;;)switch(f.prev=f.next){case 0:return t="new_revision",f.next=3,[(0,_effects.select)(getSnippet),(0,_effects.select)(getParser),(0,_effects.select)(getCode),(0,_effects.select)(getTransformerCode),(0,_effects.select)(getTransformer)];case 3:return r=f.sent,a=(0,_slicedToArray3["default"])(r,5),n=a[0],s=a[1],o=a[2],c=a[3],i=a[4],!e&&n||(n=new _Snippet2["default"],t=e?"fork":"create"),p={parserID:s.id},o!==s.category.codeExample&&(p.code=o),i&&(p.toolID=i.id),c&&c!==i.defaultTransform&&(p.transform=c),(0,_logger.logEvent)("snippet",t,p.toolID),f.prev=16,f.next=19,n.createNewRevision(p);case 19:u=f.sent,u&&updateHashWithIDAndRevision(n.id,u.revisionNumber),f.next=28;break;case 23:return f.prev=23,f.t0=f["catch"](16),(0,_logger.logError)(f.t0.message),f.next=28,(0,_effects.put)(actions.setError(f.t0));case 28:case"end":return f.stop()}},_marked[0],this,[[16,23]])}function getParser(e){return e.parser}function getCode(e){return e.code}function isSaving(e){return e.saving}function isForking(e){return e.forking}function getSnippet(e){return e.selectedSnippet}function getTransformer(e){return e.transform.transformer}function getTransformerCode(e){return e.transform.code}function watchSave(){var e,t;return _regenerator2["default"].wrap(function(r){for(;;)switch(r.prev=r.next){case 0:return r.next=3,(0,_effects.take)(actions.SAVE);case 3:return e=r.sent,t=e.fork,r.next=7,(0,_effects.put)(actions.startSave(t));case 7:return r.delegateYield(save(t),"t0",8);case 8:return r.next=10,(0,_effects.put)(actions.endSave(t));case 10:r.next=0;break;case 12:case"end":return r.stop()}},_marked[1],this)}function watchCategoryChange(){var e,t,r;return _regenerator2["default"].wrap(function(a){for(;;)switch(a.prev=a.next){case 0:return a.next=3,(0,_effects.take)(actions.SELECT_CATEGORY);case 3:return e=a.sent,t=e.category,r=getParserForCategory(t),a.next=8,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setWorkbenchState({parser:r,parserSettings:getParserSettingsForParser(r)}),actions.clearSnippet()]));case 8:a.next=0;break;case 10:case"end":return a.stop()}},_marked[2],this)}function watchSnippetChange(){var e,t,r,a,n,s;return _regenerator2["default"].wrap(function(o){for(;;)switch(o.prev=o.next){case 0:return o.next=3,(0,_effects.take)(actions.SET_SNIPPET);case 3:return e=o.sent,t=e.snippet,r=e.revision,a=(0,_getDataFromRevision4["default"])(r),n=a.parser,s=a.code,o.next=11,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setWorkbenchState({parser:n,parserSettings:getParserSettingsForParser(n),code:s}),actions.setSnippet(t,r)]));case 11:o.next=0;break;case 13:case"end":return o.stop()}},_marked[3],this)}function watchSnippetURI(){var e,t,r,a,n,s,o,c,i,p,u,f;return _regenerator2["default"].wrap(function(g){for(;;)switch(g.prev=g.next){case 0:return g.next=3,(0,_effects.take)(actions.LOAD_SNIPPET);case 3:return g.next=5,[(0,_effects.select)(isSaving),(0,_effects.select)(isForking)];case 5:if(e=g.sent,t=e.saving,r=e.forking,!t&&!r){g.next=10;break}return g.abrupt("continue",0);case 10:return g.next=12,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setError(null),actions.startLoadingSnippet()]));case 12:return a=void 0,g.prev=13,g.next=16,(0,_effects.call)(_Snippet2["default"].fetchFromURL);case 16:a=g.sent,g.next=26;break;case 19:return g.prev=19,g.t0=g["catch"](13),n="Failed to fetch revision: "+g.t0.message,(0,_logger.logError)(n),g.next=25,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setError(new Error(n)),actions.doneLoadingSnippet()]));case 25:return g.abrupt("continue",0);case 26:if(!a){g.next=37;break}return(0,_logger.logEvent)("snippet","load"),s=(0,_getDataFromRevision4["default"])(a.revision),o=s.parser,c=s.code,i=s.transformer,p=s.transformCode,g.next=35,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.setSnippet(a.snippet,a.revision),actions.setWorkbenchState({code:c,parser:o,parserSettings:getParserSettingsForParser(o)}),actions.doneLoadingSnippet(),i?actions.setTransformState({transformer:i,code:p}):actions.hideTransformer()]));case 35:g.next=43;break;case 37:return g.next=39,(0,_effects.select)(getParser);case 39:return u=g.sent,f=u.category.codeExample,g.next=43,(0,_effects.put)((0,_reduxBatchedActions.batchActions)([actions.clearSnippet(),actions.setWorkbenchState({code:f}),actions.doneLoadingSnippet()]));case 43:g.next=0;break;case 45:case"end":return g.stop()}},_marked[4],this,[[13,19]])}function watchSelectTransformer(){var e,t,r,a,n;return _regenerator2["default"].wrap(function(s){for(;;)switch(s.prev=s.next){case 0:return s.next=3,(0,_effects.take)(actions.SELECT_TRANSFORMER);case 3:return e=s.sent,t=e.transformer,s.next=7,(0,_effects.put)(actions.startLoadingSnippet());case 7:if(s.t0=(0,_parsers.getParserByID)(t.defaultParserID),s.t0){s.next=12;break}return s.next=11,(0,_effects.select)(getParser);case 11:s.t0=s.sent;case 12:return r=s.t0,a=t.defaultTransform,n=[actions.setTransformState({transformer:t,code:a}),actions.doneLoadingSnippet()],s.t1=r,s.next=18,(0,_effects.select)(getParser);case 18:if(s.t2=s.sent,s.t1===s.t2){s.next=21;break}n.push(actions.setWorkbenchState({parser:r,parserSettings:getParserSettingsForParser(r)}));case 21:return s.next=23,(0,_effects.put)((0,_reduxBatchedActions.batchActions)(n));case 23:s.next=0;break;case 25:case"end":return s.stop()}},_marked[5],this)}function watchDropText(){var e,t,r,a;return _regenerator2["default"].wrap(function(n){for(;;)switch(n.prev=n.next){case 0:return n.next=3,(0,_effects.take)(actions.DROP_TEXT);case 3:return e=n.sent,t=e.categoryId,n.next=7,(0,_effects.select)(getParser);case 7:if(r=n.sent,(0,_logger.logEvent)("text","drop",t),r.category.id===t){n.next=13;break}return a=getParserForCategory((0,_parsers.getCategoryByID)(t)),n.next=13,(0,_effects.put)(actions.setWorkbenchState({parser:a,parserSettings:getParserSettingsForParser(a)}));case 13:n.next=0;break;case 15:case"end":return n.stop()}},_marked[6],this)}Object.defineProperty(exports,"__esModule",{value:!0});var _regenerator=__webpack_require__("./node_modules/babel-runtime/regenerator/index.js"),_regenerator2=_interopRequireDefault(_regenerator),_slicedToArray2=__webpack_require__("./node_modules/babel-runtime/helpers/slicedToArray.js"),_slicedToArray3=_interopRequireDefault(_slicedToArray2);exports.getParser=getParser,exports.getCode=getCode,exports.isSaving=isSaving,exports.isForking=isForking,exports.getSnippet=getSnippet,exports.getTransformer=getTransformer,exports.getTransformerCode=getTransformerCode,exports.watchSave=watchSave,exports.watchCategoryChange=watchCategoryChange,exports.watchSnippetChange=watchSnippetChange,exports.watchSnippetURI=watchSnippetURI,exports.watchSelectTransformer=watchSelectTransformer,exports.watchDropText=watchDropText;var _actions=__webpack_require__("./src/store/actions.js"),actions=_interopRequireWildcard(_actions),_effects=__webpack_require__("./node_modules/redux-saga/effects.js"),_LocalStorage=__webpack_require__("./src/LocalStorage.js"),LocalStorage=_interopRequireWildcard(_LocalStorage),_parsers=__webpack_require__("./src/parsers/index.js"),_reduxBatchedActions=__webpack_require__("./node_modules/redux-batched-actions/lib/index.js"),_getDataFromRevision3=__webpack_require__("./src/store/getDataFromRevision.js"),_getDataFromRevision4=_interopRequireDefault(_getDataFromRevision3),_Snippet=__webpack_require__("./src/Snippet.js"),_Snippet2=_interopRequireDefault(_Snippet),_logger=__webpack_require__("./src/utils/logger.js"),_marked=[save,watchSave,watchCategoryChange,watchSnippetChange,watchSnippetURI,watchSelectTransformer,watchDropText].map(_regenerator2["default"].mark);
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
@@ -783,29 +783,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"cssom@^0.3.0",
+				"cssom@https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "cssom@>=0.3.0 <0.4.0",
 		"_id": "cssom@0.3.1",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/cssom",
-		"_nodeVersion": "5.3.0",
-		"_npmUser": {
-			"email": "d@domenic.me",
-			"name": "domenic"
-		},
-		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "cssom",
-			"raw": "cssom@^0.3.0",
-			"rawSpec": "^0.3.0",
+			"raw": "cssom@https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
+			"rawSpec": "https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
 			"scope": null,
-			"spec": ">=0.3.0 <0.4.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -813,7 +806,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
 		"_shasum": "c9e37ef2490e64f6d1baa10fda852257082c25d3",
 		"_shrinkwrap": null,
-		"_spec": "cssom@^0.3.0",
+		"_spec": "cssom@https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "me@elv1s.ru",
@@ -827,15 +820,9 @@ webpackJsonp([0],{
 		"devDependencies": {
 			"jake": "~0.7.3"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "c9e37ef2490e64f6d1baa10fda852257082c25d3",
-			"tarball": "https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz"
-		},
 		"files": [
 			"lib/"
 		],
-		"gitHead": "c82ca18e35e207bb8ce57ffa2d3b783c026f7a52",
 		"homepage": "https://github.com/nv/CSSOM#readme",
 		"keywords": [
 			"CSS",
@@ -845,19 +832,10 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/index.js",
-		"maintainers": [
-			{
-				"email": "me@elv1s.ru",
-				"name": "nv"
-			},
-			{
-				"email": "domenic@domenicdenicola.com",
-				"name": "domenic"
-			}
-		],
 		"name": "cssom",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# CSSOM\n\nCSSOM.js is a CSS parser written in pure JavaScript. It also a partial implementation of [CSS Object Model](http://dev.w3.org/csswg/cssom/). \n\n    CSSOM.parse(\"body {color: black}\")\n    -> {\n      cssRules: [\n        {\n          selectorText: \"body\",\n          style: {\n            0: \"color\",\n            color: \"black\",\n            length: 1\n          }\n        }\n      ]\n    }\n\n\n## [Parser demo](http://nv.github.com/CSSOM/docs/parse.html)\n\nWorks well in Google Chrome 6+, Safari 5+, Firefox 3.6+, Opera 10.63+.\nDoesn't work in IE < 9 because of unsupported getters/setters.\n\nTo use CSSOM.js in the browser you might want to build a one-file version that exposes CSSOM global variable:\n\n    ➤ git clone https://github.com/NV/CSSOM.git\n    ➤ cd CSSOM\n    ➤ npm install -d\n    ➤ ./node_modules/.bin/jake\n    build/CSSOM.js is done\n\nTo use it with Node.js or any other CommonJS loader:\n\n    ➤ npm install cssom\n\n## Don’t use it if...\n\nYou parse CSS to mungle, minify or reformat the following code:\n\n```css\ndiv {\n  background: gray;\n  background: linear-gradient(to bottom, white 0%, black 100%);\n}\n```\n\nThis pattern is often used to give browsers that don’t understand linear gradients a fallback solution (e.g. gray color in the example).\nIn CSSOM, `background: gray` [gets overwritten](http://nv.github.io/CSSOM/docs/parse.html#css=div%20%7B%0A%20%20%20%20%20%20background%3A%20gray%3B%0A%20%20%20%20background%3A%20linear-gradient(to%20bottom%2C%20white%200%25%2C%20black%20100%25)%3B%0A%7D).\nThe last same-name property always overwrites all the previous ones.\n\n\nIf you do CSS mungling, minification, image inlining, and such, CSSOM.js is no good for you, considere using one of the following:\n\n  * [postcss](https://github.com/postcss/postcss)\n  * [reworkcss/css](https://github.com/reworkcss/css)\n  * [csso](https://github.com/css/csso)\n  * [mensch](https://github.com/brettstimmerman/mensch)\n\n\n## [Specs](http://nv.github.com/CSSOM/spec/)\n\nTo run specs locally:\n\n    ➤ git submodule init\n    ➤ git submodule update\n\n\n## [Who uses CSSOM.js](https://github.com/NV/CSSOM/wiki/Who-uses-CSSOM.js)\n",
+		"readmeFilename": "README.mdown",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/nv/CSSOM.git"
@@ -904,35 +882,24 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"postcss@5.1.2",
+				"postcss@https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "postcss@5.1.2",
 		"_id": "postcss@5.1.2",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/postcss",
-		"_nodeVersion": "6.3.1",
-		"_npmOperationalInternal": {
-			"host": "packages-16-east.internal.npmjs.com",
-			"tmp": "tmp/postcss-5.1.2.tgz_1470506534964_0.8015585844404995"
-		},
-		"_npmUser": {
-			"email": "andrey@sitnik.ru",
-			"name": "ai"
-		},
-		"_npmVersion": "3.10.3",
 		"_phantomChildren": {
 			"has-flag": "1.0.0"
 		},
 		"_requested": {
 			"name": "postcss",
-			"raw": "postcss@5.1.2",
-			"rawSpec": "5.1.2",
+			"raw": "postcss@https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
+			"rawSpec": "https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
 			"scope": null,
-			"spec": "5.1.2",
-			"type": "version"
+			"spec": "https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/",
@@ -976,7 +943,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
 		"_shasum": "bd84886a66bcad489afaf7c673eed5ef639551e2",
 		"_shrinkwrap": null,
-		"_spec": "postcss@5.1.2",
+		"_spec": "postcss@https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "andrey@sitnik.ru",
@@ -1016,11 +983,6 @@ webpackJsonp([0],{
 			"strip-ansi": "3.0.1",
 			"yaspeller": "2.9.1"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "bd84886a66bcad489afaf7c673eed5ef639551e2",
-			"tarball": "https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz"
-		},
 		"engines": {
 			"node": ">=0.12"
 		},
@@ -1038,19 +1000,10 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "lib/postcss",
-		"maintainers": [
-			{
-				"email": "andrey@sitnik.ru",
-				"name": "ai"
-			},
-			{
-				"email": "beneb.info@gmail.com",
-				"name": "beneb"
-			}
-		],
 		"name": "postcss",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]\n\n<img align=\"right\" width=\"95\" height=\"95\"\n     title=\"Philosopher’s stone, logo of PostCSS\"\n     src=\"http://postcss.github.io/postcss/logo.svg\">\n\n[appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows\n[travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix\n[chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg\n[appveyor]:     https://ci.appveyor.com/project/ai/postcss\n[travis]:       https://travis-ci.org/postcss/postcss\n[chat]:         https://gitter.im/postcss/postcss\n\nPostCSS is a tool for transforming styles with JS plugins.\nThese plugins can lint your CSS, support variables and mixins,\ntranspile future CSS syntax, inline images, and more.\n\nPostCSS is used by industry leaders including Wikipedia, Twitter, Alibaba,\nand JetBrains. The [Autoprefixer] PostCSS plugin is one of the most popular\nCSS processors.\n\nTwitter account:      [@postcss](https://twitter.com/postcss).\nVK.com page:          [postcss](https://vk.com/postcss).\nSupport / Discussion: [Gitter](https://gitter.im/postcss/postcss).\n\nFor PostCSS commercial support (consulting, improving the front-end culture\nof your company, PostCSS plugins), contact Evil Martians\nat <surrender@evilmartians.com>.\n\n[Autoprefixer]: https://github.com/postcss/autoprefixer\n\n<a href=\"https://evilmartians.com/?utm_source=postcss\">\n  <img src=\"https://evilmartians.com/badges/sponsored-by-evil-martians.svg\"\n       alt=\"Sponsored by Evil Martians\" width=\"236\" height=\"54\">\n</a>\n\n## Plugins\n\nCurrently, PostCSS has more than 200 plugins. You can find all of the plugins\nin the [plugins list] or in the [searchable catalog]. Below is a list\nof our favorite plugins — the best demonstrations of what can be built\non top of PostCSS.\n\nIf you have any new ideas, [PostCSS plugin development] is really easy.\n\n[searchable catalog]: http://postcss.parts\n[plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md\n\n### Solve Global CSS Problem\n\n* [`postcss-use`] allows you to explicitly set PostCSS plugins within CSS\n  and execute them only for the current file.\n* [`postcss-modules`] and [`react-css-modules`] automatically isolate\n  selectors within components.\n* [`postcss-autoreset`] is an alternative to using a global reset\n  that is better for isolatable components.\n* [`postcss-initial`] adds `all: initial` support, which resets\n  all inherited styles.\n* [`cq-prolyfill`] adds container query support, allowing styles that respond\n  to the width of the parent.\n\n### Use Future CSS, Today\n\n* [`autoprefixer`] adds vendor prefixes, using data from Can I Use.\n* [`postcss-cssnext`] allows you to use future CSS features today\n  (includes `autoprefixer`).\n\n### Better CSS Readability\n\n* [`precss`] contains plugins for Sass-like features, like variables, nesting,\n  and mixins.\n* [`postcss-sorting`] sorts the content of rules and at-rules.\n* [`postcss-utilities`] includes the most commonly used shortcuts and helpers.\n* [`short`] adds and extends numerous shorthand properties.\n\n### Images and Fonts\n\n* [`postcss-assets`] inserts image dimensions and inlines files.\n* [`postcss-sprites`] generates image sprites.\n* [`font-magician`] generates all the `@font-face` rules needed in CSS.\n* [`postcss-inline-svg`] allows you to inline SVG and customize its styles.\n* [`postcss-write-svg`] allows you to write simple SVG directly in your CSS.\n\n### Linters\n\n* [`stylelint`] is a modular stylesheet linter.\n* [`stylefmt`] is a tool that automatically formats CSS\n  according `stylelint` rules.\n* [`doiuse`] lints CSS for browser support, using data from Can I Use.\n* [`colorguard`] helps you maintain a consistent color palette.\n\n### Other\n\n* [`lost`] is a feature-rich `calc()` grid system.\n* [`cssnano`] is a modular CSS minifier.\n* [`rtlcss`] mirrors styles for right-to-left locales.\n\n[PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md\n[`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg\n[`react-css-modules`]:        https://github.com/gajus/react-css-modules\n[`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset\n[`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg\n[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities\n[`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial\n[`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites\n[`postcss-modules`]:          https://github.com/outpunk/postcss-modules\n[`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting\n[`postcss-cssnext`]:          http://cssnext.io\n[`postcss-assets`]:           https://github.com/assetsjs/postcss-assets\n[`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician\n[`autoprefixer`]:             https://github.com/postcss/autoprefixer\n[`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill\n[`postcss-use`]:              https://github.com/postcss/postcss-use\n[`css-modules`]:              https://github.com/css-modules/css-modules\n[`colorguard`]:               https://github.com/SlexAxton/css-colorguard\n[`stylelint`]:                https://github.com/stylelint/stylelint\n[`stylefmt`]:                 https://github.com/morishitter/stylefmt\n[`cssnano`]:                  http://cssnano.co\n[`precss`]:                   https://github.com/jonathantneal/precss\n[`doiuse`]:                   https://github.com/anandthakker/doiuse\n[`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss\n[`short`]:                    https://github.com/jonathantneal/postcss-short\n[`lost`]:                     https://github.com/peterramsing/lost\n\n## Syntaxes\n\nPostCSS can transform styles in any syntax, not just CSS.\nIf there is not yet support for your favorite syntax,\nyou can write a parser and/or stringifier to extend PostCSS.\n\n* [`sugarss`] is a indent-based syntax like Sass or Stylus.\n* [`postcss-scss`] allows you to work with SCSS\n  *(but does not compile SCSS to CSS)*.\n* [`postcss-less`] allows you to work with Less\n  *(but does not compile LESS to CSS)*.\n* [`postcss-less-engine`] allows you to work with Less\n  *(and DOES compile LESS to CSS using true Less.js evaluation)*.\n* [`postcss-js`] allows you to write styles in JS or transform\n  React Inline Styles, Radium or JSS.\n* [`postcss-safe-parser`] finds and fixes CSS syntax errors.\n* [`midas`] converts a CSS string to highlighted HTML.\n\n[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser\n[`postcss-less`]:        https://github.com/webschik/postcss-less\n[`postcss-less-engine`]: https://github.com/Crunch/postcss-less\n[`postcss-scss`]:        https://github.com/postcss/postcss-scss\n[`postcss-js`]:          https://github.com/postcss/postcss-js\n[`sugarss`]:             https://github.com/postcss/sugarss\n[`midas`]:               https://github.com/ben-eb/midas\n\n## Articles\n\n* [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong)\n* [What PostCSS Really Is; What It Really Does](http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss)\n* [PostCSS Guides](http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)\n\nMore articles and videos you can find on [awesome-postcss](https://github.com/jjaderg/awesome-postcss) list.\n\n## Usage\n\nYou can start using PostCSS in just two steps:\n\n1. Find and add PostCSS extensions for your build tool.\n2. [Select plugins] and add them to your PostCSS process.\n\n[Select plugins]: http://postcss.parts\n\n### Gulp\n\nUse [`gulp-postcss`] and [`gulp-sourcemaps`].\n\n```js\ngulp.task('css', function () {\n    var postcss    = require('gulp-postcss');\n    var sourcemaps = require('gulp-sourcemaps');\n\n    return gulp.src('src/**/*.css')\n        .pipe( sourcemaps.init() )\n        .pipe( postcss([ require('autoprefixer'), require('precss') ]) )\n        .pipe( sourcemaps.write('.') )\n        .pipe( gulp.dest('build/') );\n});\n```\n\n[`gulp-sourcemaps`]: https://github.com/floridoo/gulp-sourcemaps\n[`gulp-postcss`]:    https://github.com/postcss/gulp-postcss\n\n### Webpack\n\nUse [`postcss-loader`]:\n\n```js\nmodule.exports = {\n    module: {\n        loaders: [\n            {\n                test:   /\\.css$/,\n                loader: \"style-loader!css-loader!postcss-loader\"\n            }\n        ]\n    },\n    postcss: function () {\n        return [require('autoprefixer'), require('precss')];\n    }\n}\n```\n\n[`postcss-loader`]: https://github.com/postcss/postcss-loader\n\n### npm run / CLI\n\nTo use PostCSS from your command-line interface or with npm scripts\nthere is [`postcss-cli`].\n\n```sh\npostcss --use autoprefixer -c options.json -o main.css css/*.css\n```\n\n[`postcss-cli`]: https://github.com/postcss/postcss-cli\n\n### CSS-in-JS\n\nTo apply PostCSS plugins to React Inline Styles, JSS, Radium\nand other CSS-in-JS, you can use [`postcss-js`] and transforms style objects.\n\n```js\nvar postcss  = require('postcss-js');\nvar prefixer = postcss.sync([ require('autoprefixer') ]);\n\nprefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }\n```\n\n[`postcss-js`]: https://github.com/postcss/postcss-js\n\n### Runners\n\n* **Grunt**: [`grunt-postcss`](https://github.com/nDmitry/grunt-postcss)\n* **HTML**: [`posthtml-postcss`](https://github.com/posthtml/posthtml-postcss)\n* **Stylus**: [`poststylus`](https://github.com/seaneking/poststylus)\n* **Rollup**: [`rollup-plugin-postcss`](https://github.com/egoist/rollup-plugin-postcss)\n* **Brunch**: [`postcss-brunch`](https://github.com/iamvdo/postcss-brunch)\n* **Broccoli**: [`broccoli-postcss`](https://github.com/jeffjewiss/broccoli-postcss)\n* **Meteor**: [`postcss`](https://atmospherejs.com/juliancwirko/postcss)\n* **ENB**: [`enb-postcss`](https://github.com/awinogradov/enb-postcss)\n* **Fly**: [`fly-postcss`](https://github.com/postcss/fly-postcss)\n* **Start**: [`start-postcss`](https://github.com/start-runner/postcss)\n* **Connect/Express**: [`postcss-middleware`](https://github.com/jedmao/postcss-middleware)\n\n### JS API\n\nFor other environments, you can use the JS API:\n\n```js\nvar postcss = require('postcss');\npostcss([ require('autoprefixer'), require('cssnano') ])\n    .process(css, { from: 'src/app.css', to: 'app.css' })\n    .then(function (result) {\n        fs.writeFileSync('app.css', result.css);\n        if ( result.map ) fs.writeFileSync('app.css.map', result.map);\n    });\n```\n\nRead the [PostCSS API documentation] for more details about the JS API.\n\nAll PostCSS runners should pass [PostCSS Runner Guidelines].\n\n[PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md\n[PostCSS API documentation]: http://api.postcss.org/postcss.html\n\n### Options\n\nMost PostCSS runners accept two parameters:\n\n* An array of plugins.\n* An object of options.\n\nCommon options:\n\n* `syntax`: an object providing a syntax parser and a stringifier.\n* `parser`: a special syntax parser (for example, [SCSS]).\n* `stringifier`: a special syntax output generator (for example, [Midas]).\n* `map`: [source map options].\n* `from`: the input file name (most runners set it automatically).\n* `to`: the output file name (most runners set it automatically).\n\n[source map options]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md\n[Midas]:              https://github.com/ben-eb/midas\n[SCSS]:               https://github.com/postcss/postcss-scss\n\n### Node.js 0.10 and the Promise API\n\nIf you want to run PostCSS in Node.js 0.10, add the [Promise polyfill]:\n\n```js\nrequire('es6-promise').polyfill();\nvar postcss = require('postcss');\n```\n\n[Promise polyfill]: https://github.com/jakearchibald/es6-promise\n\n## IDE Integration\n\n### Atom\n\n* [`language-postcss`] adds PostCSS and [SugarSS] highlight.\n* [`source-preview-postcss`] previews your output CSS in a separate, live pane.\n\n[SugarSS]: https://github.com/postcss/sugarss\n\n### Sublime Text\n\n* [`Syntax-highlighting-for-PostCSS`] adds PostCSS highlight.\n\n[`Syntax-highlighting-for-PostCSS`]: https://github.com/hudochenkov/Syntax-highlighting-for-PostCSS\n[`source-preview-postcss`]:          https://atom.io/packages/source-preview-postcss\n[`language-postcss`]:                https://atom.io/packages/language-postcss\n\n### WebStorm\n\nSupport is still in progress. Please support [WEB-16601 issue]\nin JetBrains tracker.\n\n[WEB-16601 issue]: https://youtrack.jetbrains.com/issue/WEB-16601\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/postcss/postcss.git"
@@ -1252,31 +1205,24 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"css@^2.2.1",
+				"css@https://registry.npmjs.org/css/-/css-2.2.1.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "css@>=2.2.1 <3.0.0",
 		"_id": "css@2.2.1",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/css",
-		"_nodeVersion": "2.2.1",
-		"_npmUser": {
-			"email": "me@conradz.com",
-			"name": "conradz"
-		},
-		"_npmVersion": "2.11.0",
 		"_phantomChildren": {
 			"amdefine": "1.0.0"
 		},
 		"_requested": {
 			"name": "css",
-			"raw": "css@^2.2.1",
-			"rawSpec": "^2.2.1",
+			"raw": "css@https://registry.npmjs.org/css/-/css-2.2.1.tgz",
+			"rawSpec": "https://registry.npmjs.org/css/-/css-2.2.1.tgz",
 			"scope": null,
-			"spec": ">=2.2.1 <3.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/css/-/css-2.2.1.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -1284,7 +1230,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/css/-/css-2.2.1.tgz",
 		"_shasum": "73a4c81de85db664d4ee674f7d47085e3b2d55dc",
 		"_shrinkwrap": null,
-		"_spec": "css@^2.2.1",
+		"_spec": "css@https://registry.npmjs.org/css/-/css-2.2.1.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "tj@vision-media.ca",
@@ -1306,16 +1252,10 @@ webpackJsonp([0],{
 			"mocha": "^1.21.3",
 			"should": "^4.0.4"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "73a4c81de85db664d4ee674f7d47085e3b2d55dc",
-			"tarball": "https://registry.npmjs.org/css/-/css-2.2.1.tgz"
-		},
 		"files": [
 			"index.js",
 			"lib"
 		],
-		"gitHead": "e38b6f1cc03aa36ff161a3da96b5c7510bd41ca7",
 		"homepage": "https://github.com/reworkcss/css#readme",
 		"keywords": [
 			"css",
@@ -1325,55 +1265,10 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "index",
-		"maintainers": [
-			{
-				"email": "tj@vision-media.ca",
-				"name": "tjholowaychuk"
-			},
-			{
-				"email": "jonathanrichardong@gmail.com",
-				"name": "jonathanong"
-			},
-			{
-				"email": "jonathanrichardong@gmail.com",
-				"name": "jongleberry"
-			},
-			{
-				"email": "me@conradz.com",
-				"name": "conradz"
-			},
-			{
-				"email": "nicolasgallagher@gmail.com",
-				"name": "necolas"
-			},
-			{
-				"email": "antshort@gmail.com",
-				"name": "anthonyshort"
-			},
-			{
-				"email": "ian@ianstormtaylor.com",
-				"name": "ianstormtaylor"
-			},
-			{
-				"email": "m@moox.io",
-				"name": "moox"
-			},
-			{
-				"email": "clint@anotherway.co.za",
-				"name": "clintwood"
-			},
-			{
-				"email": "simon.lydell@gmail.com",
-				"name": "lydell"
-			},
-			{
-				"email": "alexsexton@gmail.com",
-				"name": "slexaxton"
-			}
-		],
 		"name": "css",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# css [![Build Status](https://travis-ci.org/reworkcss/css.svg?branch=master)](https://travis-ci.org/reworkcss/css)\n\nCSS parser / stringifier.\n\n## Installation\n\n    $ npm install css\n\n## Usage\n\n```js\nvar css = require('css');\nvar obj = css.parse('body { font-size: 12px; }', options);\ncss.stringify(obj, options);\n```\n\n## API\n\n### css.parse(code, [options])\n\nAccepts a CSS string and returns an AST `object`.\n\n`options`:\n\n- silent: silently fail on parse errors.\n- source: the path to the file containing `css`. Makes errors and source\n  maps more helpful, by letting them know where code comes from.\n\n### css.stringify(object, [options])\n\nAccepts an AST `object` (as `css.parse` produces) and returns a CSS string.\n\n`options`:\n\n- indent: the string used to indent the output. Defaults to two spaces.\n- compress: omit comments and extraneous whitespace.\n- sourcemap: return a sourcemap along with the CSS output. Using the `source`\n  option of `css.parse` is strongly recommended when creating a source map.\n  Specify `sourcemap: 'generator'` to return the SourceMapGenerator object\n  instead of serializing the source map.\n- inputSourcemaps: (enabled by default, specify `false` to disable) reads any\n  source maps referenced by the input files when generating the output source\n  map. When enabled, file system access may be required for reading the\n  referenced source maps.\n\n### Example\n\n```js\nvar ast = css.parse('body { font-size: 12px; }', { source: 'source.css' });\n\nvar css = css.stringify(ast);\n\nvar result = css.stringify(ast, { sourcemap: true });\nresult.code // string with CSS\nresult.map // source map object\n```\n\n### Errors\n\nErrors thrown during parsing have the following properties:\n\n- message: `String`. The full error message with the source position.\n- reason: `String`. The error message without position.\n- filename: `String` or `undefined`. The value of `options.source` if\n  passed to `css.parse`. Otherwise `undefined`.\n- line: `Integer`.\n- column: `Integer`.\n- source: `String`. The portion of code that couldn't be parsed.\n\nWhen parsing with the `silent` option, errors are listed in the\n`parsingErrors` property of the [`stylesheet`](#stylesheet) node instead\nof being thrown.\n\nIf you create any errors in plugins such as in\n[rework](https://github.com/reworkcss/rework), you __must__ set the same\nproperties for consistency.\n\n## AST\n\nInteractively explore the AST with <http://iamdustan.com/reworkcss_ast_explorer/>.\n\n### Common properties\n\nAll nodes have the following properties.\n\n#### position\n\nInformation about the position in the source string that corresponds to\nthe node.\n\n`Object`:\n\n- start: `Object`:\n  - line: `Number`.\n  - column: `Number`.\n- end: `Object`:\n  - line: `Number`.\n  - column: `Number`.\n- source: `String` or `undefined`. The value of `options.source` if passed to\n  `css.parse`. Otherwise `undefined`.\n- content: `String`. The full source string passed to `css.parse`.\n\nThe line and column numbers are 1-based: The first line is 1 and the first\ncolumn of a line is 1 (not 0).\n\nThe `position` property lets you know from which source file the node comes\nfrom (if available), what that file contains, and what part of that file was\nparsed into the node.\n\n#### type\n\n`String`. The possible values are the ones listed in the Types section below.\n\n#### parent\n\nA reference to the parent node, or `null` if the node has no parent.\n\n### Types\n\nThe available values of `node.type` are listed below, as well as the available\nproperties of each node (other than the common properties listed above.)\n\n#### stylesheet\n\nThe root node returned by `css.parse`.\n\n- stylesheet: `Object`:\n  - rules: `Array` of nodes with the types `rule`, `comment` and any of the\n    at-rule types.\n  - parsingErrors: `Array` of `Error`s. Errors collected during parsing when\n    option `silent` is true.\n\n#### rule\n\n- selectors: `Array` of `String`s. The list of selectors of the rule, split\n  on commas. Each selector is trimmed from whitespace and comments.\n- declarations: `Array` of nodes with the types `declaration` and `comment`.\n\n#### declaration\n\n- property: `String`. The property name, trimmed from whitespace and\n  comments. May not be empty.\n- value: `String`. The value of the property, trimmed from whitespace and\n  comments. Empty values are allowed.\n\n#### comment\n\nA rule-level or declaration-level comment. Comments inside selectors,\nproperties and values etc. are lost.\n\n- comment: `String`. The part between the starting `/*` and the ending `*/`\n  of the comment, including whitespace.\n\n#### charset\n\nThe `@charset` at-rule.\n\n- charset: `String`. The part following `@charset `.\n\n#### custom-media\n\nThe `@custom-media` at-rule.\n\n- name: `String`. The `--`-prefixed name.\n- media: `String`. The part following the name.\n\n#### document\n\nThe `@document` at-rule.\n\n- document: `String`. The part following `@document `.\n- vendor: `String` or `undefined`. The vendor prefix in `@document`, or\n  `undefined` if there is none.\n- rules: `Array` of nodes with the types `rule`, `comment` and any of the\n  at-rule types.\n\n#### font-face\n\nThe `@font-face` at-rule.\n\n- declarations: `Array` of nodes with the types `declaration` and `comment`.\n\n#### host\n\nThe `@host` at-rule.\n\n- rules: `Array` of nodes with the types `rule`, `comment` and any of the\n  at-rule types.\n\n#### import\n\nThe `@import` at-rule.\n\n- import: `String`. The part following `@import `.\n\n#### keyframes\n\nThe `@keyframes` at-rule.\n\n- name: `String`. The name of the keyframes rule.\n- vendor: `String` or `undefined`. The vendor prefix in `@keyframes`, or\n  `undefined` if there is none.\n- keyframes: `Array` of nodes with the types `keyframe` and `comment`.\n\n#### keyframe\n\n- values: `Array` of `String`s. The list of “selectors” of the keyframe rule,\n  split on commas. Each “selector” is trimmed from whitespace.\n- declarations: `Array` of nodes with the types `declaration` and `comment`.\n\n#### media\n\nThe `@media` at-rule.\n\n- media: `String`. The part following `@media `.\n- rules: `Array` of nodes with the types `rule`, `comment` and any of the\n  at-rule types.\n\n#### namespace\n\nThe `@namespace` at-rule.\n\n- namespace: `String`. The part following `@namespace `.\n\n#### page\n\nThe `@page` at-rule.\n\n- selectors: `Array` of `String`s. The list of selectors of the rule, split\n  on commas. Each selector is trimmed from whitespace and comments.\n- declarations: `Array` of nodes with the types `declaration` and `comment`.\n\n#### supports\n\nThe `@supports` at-rule.\n\n- supports: `String`. The part following `@supports `.\n- rules: `Array` of nodes with the types `rule`, `comment` and any of the\n  at-rule types.\n\n### Example\n\nCSS:\n\n```css\nbody {\n  background: #eee;\n  color: #888;\n}\n```\n\nParse tree:\n\n```json\n{\n  \"type\": \"stylesheet\",\n  \"stylesheet\": {\n    \"rules\": [\n      {\n        \"type\": \"rule\",\n        \"selectors\": [\n          \"body\"\n        ],\n        \"declarations\": [\n          {\n            \"type\": \"declaration\",\n            \"property\": \"background\",\n            \"value\": \"#eee\",\n            \"position\": {\n              \"start\": {\n                \"line\": 2,\n                \"column\": 3\n              },\n              \"end\": {\n                \"line\": 2,\n                \"column\": 19\n              }\n            }\n          },\n          {\n            \"type\": \"declaration\",\n            \"property\": \"color\",\n            \"value\": \"#888\",\n            \"position\": {\n              \"start\": {\n                \"line\": 3,\n                \"column\": 3\n              },\n              \"end\": {\n                \"line\": 3,\n                \"column\": 14\n              }\n            }\n          }\n        ],\n        \"position\": {\n          \"start\": {\n            \"line\": 1,\n            \"column\": 1\n          },\n          \"end\": {\n            \"line\": 4,\n            \"column\": 2\n          }\n        }\n      }\n    ]\n  }\n}\n```\n\n## License\n\nMIT\n",
+		"readmeFilename": "Readme.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/reworkcss/css.git"
@@ -1463,33 +1358,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"graphql@^0.6.2",
+				"graphql@https://registry.npmjs.org/graphql/-/graphql-0.6.2.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "graphql@>=0.6.2 <0.7.0",
 		"_id": "graphql@0.6.2",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/graphql",
-		"_nodeVersion": "6.3.0",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/graphql-0.6.2.tgz_1469135170549_0.9132720122579485"
-		},
-		"_npmUser": {
-			"email": "lee@leebyron.com",
-			"name": "leebyron"
-		},
-		"_npmVersion": "3.10.3",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "graphql",
-			"raw": "graphql@^0.6.2",
-			"rawSpec": "^0.6.2",
+			"raw": "graphql@https://registry.npmjs.org/graphql/-/graphql-0.6.2.tgz",
+			"rawSpec": "https://registry.npmjs.org/graphql/-/graphql-0.6.2.tgz",
 			"scope": null,
-			"spec": ">=0.6.2 <0.7.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/graphql/-/graphql-0.6.2.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -1497,7 +1381,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/graphql/-/graphql-0.6.2.tgz",
 		"_shasum": "19cdcb17e5862d64396a0684f92f7be64e90e7af",
 		"_shrinkwrap": null,
-		"_spec": "graphql@^0.6.2",
+		"_spec": "graphql@https://registry.npmjs.org/graphql/-/graphql-0.6.2.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"bugs": {
 			"url": "https://github.com/graphql/graphql-js/issues"
@@ -1521,89 +1405,17 @@ webpackJsonp([0],{
 			"iterall": "1.0.2"
 		},
 		"description": "A Query Language and Runtime which can target any service.",
-		"devDependencies": {
-			"babel-cli": "6.10.1",
-			"babel-eslint": "6.1.0",
-			"babel-plugin-check-es2015-constants": "6.8.0",
-			"babel-plugin-syntax-async-functions": "6.8.0",
-			"babel-plugin-transform-class-properties": "6.10.2",
-			"babel-plugin-transform-es2015-arrow-functions": "6.8.0",
-			"babel-plugin-transform-es2015-block-scoped-functions": "6.8.0",
-			"babel-plugin-transform-es2015-block-scoping": "6.10.1",
-			"babel-plugin-transform-es2015-classes": "6.9.0",
-			"babel-plugin-transform-es2015-computed-properties": "6.8.0",
-			"babel-plugin-transform-es2015-destructuring": "6.9.0",
-			"babel-plugin-transform-es2015-duplicate-keys": "6.8.0",
-			"babel-plugin-transform-es2015-function-name": "6.9.0",
-			"babel-plugin-transform-es2015-literals": "6.8.0",
-			"babel-plugin-transform-es2015-modules-commonjs": "6.10.3",
-			"babel-plugin-transform-es2015-object-super": "6.8.0",
-			"babel-plugin-transform-es2015-parameters": "6.9.0",
-			"babel-plugin-transform-es2015-shorthand-properties": "6.8.0",
-			"babel-plugin-transform-es2015-spread": "6.8.0",
-			"babel-plugin-transform-es2015-template-literals": "6.8.0",
-			"babel-plugin-transform-flow-strip-types": "6.8.0",
-			"babel-plugin-transform-object-rest-spread": "6.8.0",
-			"babel-plugin-transform-regenerator": "6.9.0",
-			"chai": "3.5.0",
-			"chai-json-equal": "0.0.1",
-			"chai-subset": "1.2.2",
-			"coveralls": "2.11.9",
-			"eslint": "3.1.1",
-			"eslint-plugin-babel": "3.3.0",
-			"eslint-plugin-flow-vars": "0.4.0",
-			"eslint-plugin-flowtype": "2.3.1",
-			"flow-bin": "0.29.0",
-			"isparta": "4.0.0",
-			"mocha": "2.5.3",
-			"sane": "1.3.4"
-		},
-		"directories": {},
-		"dist": {
-			"shasum": "19cdcb17e5862d64396a0684f92f7be64e90e7af",
-			"tarball": "https://registry.npmjs.org/graphql/-/graphql-0.6.2.tgz"
-		},
-		"gitHead": "2aa060007dda62be2cd5b480ada3b9270cee0454",
+		"devDependencies": {},
 		"homepage": "https://github.com/graphql/graphql-js",
 		"license": "BSD-3-Clause",
 		"main": "index.js",
-		"maintainers": [
-			{
-				"email": "lee@leebyron.com",
-				"name": "leebyron"
-			},
-			{
-				"email": "dschafer@fb.com",
-				"name": "dschafer"
-			},
-			{
-				"email": "schrockn@gmail.com",
-				"name": "schrockn"
-			}
-		],
 		"name": "graphql",
 		"optionalDependencies": {},
-		"options": {
-			"mocha": "--require ./resources/mocha-bootload --check-leaks --full-trace src/**/__tests__/**/*-test.js"
-		},
-		"readme": "ERROR: No README data found!",
+		"readme": "# GraphQL.js\n\nThis is a technical preview of the JavaScript reference implementation for\nGraphQL, a query language created by Facebook for describing data requirements\non complex application data models.\n\n[![npm version](https://badge.fury.io/js/graphql.svg)](http://badge.fury.io/js/graphql)\n[![Build Status](https://travis-ci.org/graphql/graphql-js.svg?branch=master)](https://travis-ci.org/graphql/graphql-js?branch=master)\n[![Coverage Status](https://coveralls.io/repos/graphql/graphql-js/badge.svg?branch=master)](https://coveralls.io/r/graphql/graphql-js?branch=master)\n\nSee more complete documentation at http://graphql.org/ and\nhttp://graphql.org/docs/api-reference-graphql/.\n\nFor questions, ask [Stack Overflow](http://stackoverflow.com/questions/tagged/graphql).\n\nFor discussion, join [#graphql on Discord](http://join.reactiflux.com/).\n\n## Technical Preview Contents\n\nThis technical preview contains a [draft specification for GraphQL]\n(https://github.com/facebook/graphql) and a reference implementation in\nJavaScript that implements that draft, GraphQL.js.\n\nThe reference implementation provides base libraries in JavaScript that would\nprovide the basis for full GraphQL implementations and tools. It is not a fully\nstandalone GraphQL server that a client developer could use to start\nmanipulating and querying data. Most importantly, it provides no mapping to a\nfunctioning, production-ready backend. The only \"backend\" we have targeted for\nthis early preview are in-memory stubs in test cases.\n\nWe are releasing this now because after GraphQL was first discussed publicly,\nmany engineers used this information to implement the parts of the system that\nwe discussed publicly. We want to support those engineers by providing both a\nformal specification and a reference implementation for the system as a whole.\n\nTo that end, the target audience is not the client developer, but those who have\nbuilt or are actively interested in building their own GraphQL implementations and\ntools. Critically, we also want feedback on the system and to incorporate that\nfeedback in our final release.\n\nIn order to be broadly adopted, GraphQL will have to target a wide\nvariety of backends, frameworks, and languages, which will necessitate a\ncollaborative effort across projects and organizations. This technical preview\nmarks the beginning of that process.\n\n## Getting Started\n\nAn overview of GraphQL in general is available in the\n[README](https://github.com/facebook/graphql/blob/master/README.md) for the\n[Specification for GraphQL](https://github.com/facebook/graphql). That overview\ndescribes a simple set of GraphQL examples that exist as [tests](src/__tests__)\nin this repository. A good way to get started with this repository is to walk\nthrough that README and the corresponding tests in parallel.\n\n### Using GraphQL.js\n\nInstall GraphQL.js from npm\n\n```sh\nnpm install --save graphql\n```\n\nGraphQL.js provides two important capabilities: building a type schema, and\nserving queries against that type schema.\n\nFirst, build a GraphQL type schema which maps to your code base.\n\n```js\nimport {\n  graphql,\n  GraphQLSchema,\n  GraphQLObjectType,\n  GraphQLString\n} from 'graphql';\n\nvar schema = new GraphQLSchema({\n  query: new GraphQLObjectType({\n    name: 'RootQueryType',\n    fields: {\n      hello: {\n        type: GraphQLString,\n        resolve() {\n          return 'world';\n        }\n      }\n    }\n  })\n});\n```\n\nThis defines a simple schema with one type and one field, that resolves\nto a fixed value. The `resolve` function can return a value, a promise,\nor an array of promises. A more complex example is included in the top\nlevel [tests](src/__tests__) directory.\n\nThen, serve the result of a query against that type schema.\n\n```js\nvar query = '{ hello }';\n\ngraphql(schema, query).then(result => {\n\n  // Prints\n  // {\n  //   data: { hello: \"world\" }\n  // }\n  console.log(result);\n\n});\n```\n\nThis runs a query fetching the one field defined. The `graphql` function will\nfirst ensure the query is syntactically and semantically valid before executing\nit, reporting errors otherwise.\n\n```js\nvar query = '{ boyhowdy }';\n\ngraphql(schema, query).then(result => {\n\n  // Prints\n  // {\n  //   errors: [\n  //     { message: 'Cannot query field boyhowdy on RootQueryType',\n  //       locations: [ { line: 1, column: 3 } ] }\n  //   ]\n  // }\n  console.log(result);\n\n});\n```\n\n### Want to ride the bleeding edge?\n\nThe `npm` branch in this repository is automatically maintained to be the last\ncommit to `master` to pass all tests, in the same form found on npm. It is\nrecommend to use builds deployed npm for many reasons, but if you want to use\nthe latest not-yet-released version of graphql-js, you can do so by depending\ndirectly on this branch:\n\n```\nnpm install graphql@git://github.com/graphql/graphql-js.git#npm\n```\n\n### Contributing\n\nWe actively welcome pull requests, learn how to\n[contribute](https://github.com/graphql/graphql-js/blob/master/CONTRIBUTING.md).\n\n### Changelog\n\nChanges are tracked as [Github releases](https://github.com/graphql/graphql-js/releases).\n\n### License\n\nGraphQL is [BSD-licensed](https://github.com/graphql/graphql-js/blob/master/LICENSE).\nWe also provide an additional [patent grant](https://github.com/graphql/graphql-js/blob/master/PATENTS).\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+ssh://git@github.com/graphql/graphql-js.git"
-		},
-		"scripts": {
-			"build": "babel src --ignore __tests__ --out-dir dist/ && cp package.json dist/",
-			"check": "flow check",
-			"check-cover": "for file in {src/*.js,src/**/*.js}; do echo $file; flow coverage $file; done",
-			"cover": "babel-node ./node_modules/.bin/isparta cover --root src --report html _mocha -- $npm_package_options_mocha",
-			"cover:lcov": "babel-node ./node_modules/.bin/isparta cover --root src --report lcovonly _mocha -- $npm_package_options_mocha",
-			"lint": "eslint src",
-			"prepublish": ". ./resources/prepublish.sh",
-			"preversion": ". ./resources/checkgit.sh && npm test",
-			"t": "babel-node ./node_modules/.bin/_mocha --require ./resources/mocha-bootload",
-			"test": "npm run lint && npm run check && npm run testonly",
-			"testonly": "babel-node ./node_modules/.bin/_mocha $npm_package_options_mocha",
-			"watch": "babel-node ./resources/watch.js"
 		},
 		"version": "0.6.2"
 	};
@@ -1791,33 +1603,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"htmlparser2@^3.9.0",
+				"htmlparser2@https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "htmlparser2@>=3.9.0 <4.0.0",
 		"_id": "htmlparser2@3.9.1",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/htmlparser2",
-		"_nodeVersion": "6.2.1",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/htmlparser2-3.9.1.tgz_1465693408619_0.5511430425103754"
-		},
-		"_npmUser": {
-			"email": "me@feedic.com",
-			"name": "feedic"
-		},
-		"_npmVersion": "3.9.6",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "htmlparser2",
-			"raw": "htmlparser2@^3.9.0",
-			"rawSpec": "^3.9.0",
+			"raw": "htmlparser2@https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
+			"rawSpec": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
 			"scope": null,
-			"spec": ">=3.9.0 <4.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -1825,7 +1626,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
 		"_shasum": "621b7a58bc9acd003f7af0a2c9a00aa67c8505d2",
 		"_shrinkwrap": null,
-		"_spec": "htmlparser2@^3.9.0",
+		"_spec": "htmlparser2@https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "me@feedic.com",
@@ -1856,14 +1657,9 @@ webpackJsonp([0],{
 		"directories": {
 			"lib": "lib/"
 		},
-		"dist": {
-			"shasum": "621b7a58bc9acd003f7af0a2c9a00aa67c8505d2",
-			"tarball": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz"
-		},
 		"files": [
 			"lib"
 		],
-		"gitHead": "f4651bd5dc1315a9949ff24361cce012b105861f",
 		"homepage": "https://github.com/fb55/htmlparser2#readme",
 		"keywords": [
 			"html",
@@ -1877,12 +1673,6 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "lib/index.js",
-		"maintainers": [
-			{
-				"email": "me@feedic.com",
-				"name": "feedic"
-			}
-		],
 		"name": "htmlparser2",
 		"optionalDependencies": {},
 		"readme": "ERROR: No README data found!",
@@ -1942,29 +1732,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"parse5@^2.0.0",
+				"parse5@https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "parse5@>=2.0.0 <3.0.0",
 		"_id": "parse5@2.1.5",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/parse5",
-		"_nodeVersion": "4.2.2",
-		"_npmUser": {
-			"email": "ifaaan@gmail.com",
-			"name": "inikulin"
-		},
-		"_npmVersion": "2.14.7",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "parse5",
-			"raw": "parse5@^2.0.0",
-			"rawSpec": "^2.0.0",
+			"raw": "parse5@https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
+			"rawSpec": "https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
 			"scope": null,
-			"spec": ">=2.0.0 <3.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -1972,7 +1755,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
 		"_shasum": "7a8677ade25ddac04237905f7be54645572dcf05",
 		"_shrinkwrap": null,
-		"_spec": "parse5@^2.0.0",
+		"_spec": "parse5@https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "ifaaan@gmail.com",
@@ -2024,15 +1807,9 @@ webpackJsonp([0],{
 			"publish-please": "^1.1.0",
 			"through2": "^2.0.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "7a8677ade25ddac04237905f7be54645572dcf05",
-			"tarball": "https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz"
-		},
 		"files": [
 			"lib"
 		],
-		"gitHead": "3c195ec374422497fdce1f98528dab9e7ebbeb9b",
 		"homepage": "https://github.com/inikulin/parse5",
 		"keywords": [
 			"html",
@@ -2057,15 +1834,10 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/index.js",
-		"maintainers": [
-			{
-				"email": "ifaaan@gmail.com",
-				"name": "inikulin"
-			}
-		],
 		"name": "parse5",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "<p align=\"center\">\n    <a href=\"https://github.com/inikulin/parse5\">\n        <img src=\"https://raw.github.com/inikulin/parse5/master/docs/logo.png\" alt=\"parse5\" />\n    </a>\n</p>\n\n<p align=\"center\">\n<i>WHATWG HTML5 specification-compliant, fast and ready for production HTML parsing/serialization toolset for Node.js</i>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://travis-ci.org/inikulin/parse5\"><img alt=\"Build Status\" src=\"https://api.travis-ci.org/inikulin/parse5.svg\"></a>\n  <a href=\"https://www.npmjs.com/package/parse5\"><img alt=\"NPM Version\" src=\"https://img.shields.io/npm/v/parse5.svg\"></a>\n  <a href=\"https://npmjs.org/package/parse5\"><img alt=\"Downloads\" src=\"http://img.shields.io/npm/dm/parse5.svg\"></a>\n  <a href=\"https://npmjs.org/package/parse5\"><img alt=\"Downloads total\" src=\"http://img.shields.io/npm/dt/parse5.svg\"></a>\n</p>\n\n<p align=\"center\">\n<b><i>parse5</i></b> provides nearly everything you may need when dealing with HTML. It's the fastest spec-compliant HTML parser\nfor Node to date. It parses HTML the way the latest version of your browser does. It has proven itself reliable in such projects\nas <a href=\"https://github.com/tmpvar/jsdom\">jsdom</a>, <a href=\"https://github.com/angular/angular\">Angular2</a>, <a href=\"https://www.polymer-project.org\">Polymer</a> and many more.\n</p>\n\n----\n\n<p align=\"center\">\n  <a href=\"https://github.com/inikulin/parse5/wiki/Documentation\">Documentation</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/inikulin/parse5/wiki/Documentation#version-history\">Version history</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"http://astexplorer.net/#/1CHlCXc4n4\">Online playground</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/inikulin/parse5/issues\">Issue tracker</a>\n</p>\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git://github.com/inikulin/parse5.git"
@@ -2098,33 +1870,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"acorn@^3.0.4",
+				"acorn@https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "acorn@>=3.0.4 <4.0.0",
 		"_id": "acorn@3.3.0",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/acorn",
-		"_nodeVersion": "6.3.0",
-		"_npmOperationalInternal": {
-			"host": "packages-16-east.internal.npmjs.com",
-			"tmp": "tmp/acorn-3.3.0.tgz_1469481913382_0.3856039580423385"
-		},
-		"_npmUser": {
-			"email": "marijnh@gmail.com",
-			"name": "marijn"
-		},
-		"_npmVersion": "3.10.3",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "acorn",
-			"raw": "acorn@^3.0.4",
-			"rawSpec": "^3.0.4",
+			"raw": "acorn@https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
+			"rawSpec": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
 			"scope": null,
-			"spec": ">=3.0.4 <4.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/",
@@ -2135,7 +1896,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
 		"_shasum": "45e37fb39e8da3f25baee3ff5369e2bb5f22017a",
 		"_shrinkwrap": null,
-		"_spec": "acorn@^3.0.4",
+		"_spec": "acorn@https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"bin": {
 			"acorn": "./bin/acorn"
@@ -2326,15 +2087,9 @@ webpackJsonp([0],{
 			"rollup-plugin-buble": "^0.11.0",
 			"unicode-9.0.0": "^0.7.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "45e37fb39e8da3f25baee3ff5369e2bb5f22017a",
-			"tarball": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz"
-		},
 		"engines": {
 			"node": ">=0.4.0"
 		},
-		"gitHead": "693c5fe9257c3e114a7097dc9196d6e484e52809",
 		"homepage": "https://github.com/ternjs/acorn",
 		"jsnext:main": "dist/acorn.es.js",
 		"license": "MIT",
@@ -2342,16 +2097,19 @@ webpackJsonp([0],{
 		"maintainers": [
 			{
 				"email": "marijnh@gmail.com",
-				"name": "marijn"
+				"name": "Marijn Haverbeke",
+				"url": "http://marijnhaverbeke.nl"
 			},
 			{
 				"email": "me@rreverser.com",
-				"name": "rreverser"
+				"name": "Ingvar Stepanyan",
+				"url": "http://rreverser.com/"
 			}
 		],
 		"name": "acorn",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# Acorn\n\n[![Build Status](https://travis-ci.org/ternjs/acorn.svg?branch=master)](https://travis-ci.org/ternjs/acorn)\n[![NPM version](https://img.shields.io/npm/v/acorn.svg)](https://www.npmjs.com/package/acorn)  \n[Author funding status: ![maintainer happiness](https://marijnhaverbeke.nl/fund/status_s.png?force)](https://marijnhaverbeke.nl/fund/)\n\nA tiny, fast JavaScript parser, written completely in JavaScript.\n\n## Community\n\nAcorn is open source software released under an\n[MIT license](https://github.com/ternjs/acorn/blob/master/LICENSE).\n\nYou are welcome to\n[report bugs](https://github.com/ternjs/acorn/issues) or create pull\nrequests on [github](https://github.com/ternjs/acorn). For questions\nand discussion, please use the\n[Tern discussion forum](https://discuss.ternjs.net).\n\n## Installation\n\nThe easiest way to install acorn is with [`npm`][npm].\n\n[npm]: https://www.npmjs.com/\n\n```sh\nnpm install acorn\n```\n\nAlternately, download the source.\n\n```sh\ngit clone https://github.com/ternjs/acorn.git\n```\n\n## Components\n\nWhen run in a CommonJS (node.js) or AMD environment, exported values\nappear in the interfaces exposed by the individual files, as usual.\nWhen loaded in the browser (Acorn works in any JS-enabled browser more\nrecent than IE5) without any kind of module management, a single\nglobal object `acorn` will be defined, and all the exported properties\nwill be added to that.\n\n### Main parser\n\nThis is implemented in `dist/acorn.js`, and is what you get when you\n`require(\"acorn\")` in node.js.\n\n**parse**`(input, options)` is used to parse a JavaScript program.\nThe `input` parameter is a string, `options` can be undefined or an\nobject setting some of the options listed below. The return value will\nbe an abstract syntax tree object as specified by the\n[ESTree spec][estree].\n\nWhen  encountering   a  syntax   error,  the   parser  will   raise  a\n`SyntaxError` object with a meaningful  message. The error object will\nhave a `pos` property that indicates the character offset at which the\nerror occurred,  and a `loc`  object that contains a  `{line, column}`\nobject referring to that same position.\n\n[estree]: https://github.com/estree/estree\n\n- **ecmaVersion**: Indicates the ECMAScript version to parse. Must be\n  either 3, 5, 6, or 7. This influences support for strict mode, the set\n  of reserved words, and support for new syntax features. Default is 6.\n\n  **NOTE**: Only 'stage 4' (finalized) ECMAScript 7 features are being\n  implemented by Acorn. That means that most of the draft standard is\n  not yet being parsed.\n\n- **sourceType**: Indicate the mode the code should be parsed in. Can be\n  either `\"script\"` or `\"module\"`.\n\n- **onInsertedSemicolon**: If given a callback, that callback will be\n  called whenever a missing semicolon is inserted by the parser. The\n  callback will be given the character offset of the point where the\n  semicolon is inserted as argument, and if `locations` is on, also a\n  `{line, column}` object representing this position.\n\n- **onTrailingComma**: Like `onInsertedSemicolon`, but for trailing\n  commas.\n\n- **allowReserved**: If `false`, using a reserved word will generate\n  an error. Defaults to `true` for `ecmaVersion` 3, `false` for higher\n  versions. When given the value `\"never\"`, reserved words and\n  keywords can also not be used as property names (as in Internet\n  Explorer's old parser).\n\n- **allowReturnOutsideFunction**: By default, a return statement at\n  the top level raises an error. Set this to `true` to accept such\n  code.\n\n- **allowImportExportEverywhere**: By default, `import` and `export`\n  declarations can only appear at a program's top level. Setting this\n  option to `true` allows them anywhere where a statement is allowed.\n\n- **allowHashBang**: When this is enabled (off by default), if the\n  code starts with the characters `#!` (as in a shellscript), the\n  first line will be treated as a comment.\n\n- **locations**: When `true`, each node has a `loc` object attached\n  with `start` and `end` subobjects, each of which contains the\n  one-based line and zero-based column numbers in `{line, column}`\n  form. Default is `false`.\n\n- **onToken**: If a function is passed for this option, each found\n  token will be passed in same format as tokens returned from\n  `tokenizer().getToken()`.\n\n  If array is passed, each found token is pushed to it.\n\n  Note that you are not allowed to call the parser from the\n  callback—that will corrupt its internal state.\n\n- **onComment**: If a function is passed for this option, whenever a\n  comment is encountered the function will be called with the\n  following parameters:\n\n  - `block`: `true` if the comment is a block comment, false if it\n    is a line comment.\n  - `text`: The content of the comment.\n  - `start`: Character offset of the start of the comment.\n  - `end`: Character offset of the end of the comment.\n\n  When the `locations` options is on, the `{line, column}` locations\n  of the comment’s start and end are passed as two additional\n  parameters.\n\n  If array is passed for this option, each found comment is pushed\n  to it as object in Esprima format:\n\n  ```javascript\n  {\n    \"type\": \"Line\" | \"Block\",\n    \"value\": \"comment text\",\n    \"start\": Number,\n    \"end\": Number,\n    // If `locations` option is on:\n    \"loc\": {\n      \"start\": {line: Number, column: Number}\n      \"end\": {line: Number, column: Number}\n    },\n    // If `ranges` option is on:\n    \"range\": [Number, Number]\n  }\n  ```\n\n  Note that you are not allowed to call the parser from the\n  callback—that will corrupt its internal state.\n\n- **ranges**: Nodes have their start and end characters offsets\n  recorded in `start` and `end` properties (directly on the node,\n  rather than the `loc` object, which holds line/column data. To also\n  add a [semi-standardized][range] `range` property holding a\n  `[start, end]` array with the same numbers, set the `ranges` option\n  to `true`.\n\n- **program**: It is possible to parse multiple files into a single\n  AST by passing the tree produced by parsing the first file as the\n  `program` option in subsequent parses. This will add the toplevel\n  forms of the parsed file to the \"Program\" (top) node of an existing\n  parse tree.\n\n- **sourceFile**: When the `locations` option is `true`, you can pass\n  this option to add a `source` attribute in every node’s `loc`\n  object. Note that the contents of this option are not examined or\n  processed in any way; you are free to use whatever format you\n  choose.\n\n- **directSourceFile**: Like `sourceFile`, but a `sourceFile` property\n  will be added (regardless of the `location` option) directly to the\n  nodes, rather than the `loc` object.\n\n- **preserveParens**: If this option is `true`, parenthesized expressions\n  are represented by (non-standard) `ParenthesizedExpression` nodes\n  that have a single `expression` property containing the expression\n  inside parentheses.\n\n[range]: https://bugzilla.mozilla.org/show_bug.cgi?id=745678\n\n**parseExpressionAt**`(input, offset, options)` will parse a single\nexpression in a string, and return its AST. It will not complain if\nthere is more of the string left after the expression.\n\n**getLineInfo**`(input, offset)` can be used to get a `{line,\ncolumn}` object for a given program string and character offset.\n\n**tokenizer**`(input, options)` returns an object with a `getToken`\nmethod that can be called repeatedly to get the next token, a `{start,\nend, type, value}` object (with added `loc` property when the\n`locations` option is enabled and `range` property when the `ranges`\noption is enabled). When the token's type is `tokTypes.eof`, you\nshould stop calling the method, since it will keep returning that same\ntoken forever.\n\nIn ES6 environment, returned result can be used as any other\nprotocol-compliant iterable:\n\n```javascript\nfor (let token of acorn.tokenizer(str)) {\n  // iterate over the tokens\n}\n\n// transform code to array of tokens:\nvar tokens = [...acorn.tokenizer(str)];\n```\n\n**tokTypes** holds an object mapping names to the token type objects\nthat end up in the `type` properties of tokens.\n\n#### Note on using with [Escodegen][escodegen]\n\nEscodegen supports generating comments from AST, attached in\nEsprima-specific format. In order to simulate same format in\nAcorn, consider following example:\n\n```javascript\nvar comments = [], tokens = [];\n\nvar ast = acorn.parse('var x = 42; // answer', {\n\t// collect ranges for each node\n\tranges: true,\n\t// collect comments in Esprima's format\n\tonComment: comments,\n\t// collect token ranges\n\tonToken: tokens\n});\n\n// attach comments using collected information\nescodegen.attachComments(ast, comments, tokens);\n\n// generate code\nconsole.log(escodegen.generate(ast, {comment: true}));\n// > 'var x = 42;    // answer'\n```\n\n[escodegen]: https://github.com/estools/escodegen\n\n### dist/acorn_loose.js ###\n\nThis file implements an error-tolerant parser. It exposes a single\nfunction. The loose parser is accessible in node.js via `require(\"acorn/dist/acorn_loose\")`.\n\n**parse_dammit**`(input, options)` takes the same arguments and\nreturns the same syntax tree as the `parse` function in `acorn.js`,\nbut never raises an error, and will do its best to parse syntactically\ninvalid code in as meaningful a way as it can. It'll insert identifier\nnodes with name `\"✖\"` as placeholders in places where it can't make\nsense of the input. Depends on `acorn.js`, because it uses the same\ntokenizer.\n\n### dist/walk.js ###\n\nImplements an abstract syntax tree walker. Will store its interface in\n`acorn.walk` when loaded without a module system.\n\n**simple**`(node, visitors, base, state)` does a 'simple' walk over\na tree. `node` should be the AST node to walk, and `visitors` an\nobject with properties whose names correspond to node types in the\n[ESTree spec][estree]. The properties should contain functions\nthat will be called with the node object and, if applicable the state\nat that point. The last two arguments are optional. `base` is a walker\nalgorithm, and `state` is a start state. The default walker will\nsimply visit all statements and expressions and not produce a\nmeaningful state. (An example of a use of state is to track scope at\neach point in the tree.)\n\n**ancestor**`(node, visitors, base, state)` does a 'simple' walk over\na tree, building up an array of ancestor nodes (including the current node)\nand passing the array to the callbacks as a third parameter.\n\n**recursive**`(node, state, functions, base)` does a 'recursive'\nwalk, where the walker functions are responsible for continuing the\nwalk on the child nodes of their target node. `state` is the start\nstate, and `functions` should contain an object that maps node types\nto walker functions. Such functions are called with `(node, state, c)`\narguments, and can cause the walk to continue on a sub-node by calling\nthe `c` argument on it with `(node, state)` arguments. The optional\n`base` argument provides the fallback walker functions for node types\nthat aren't handled in the `functions` object. If not given, the\ndefault walkers will be used.\n\n**make**`(functions, base)` builds a new walker object by using the\nwalker functions in `functions` and filling in the missing ones by\ntaking defaults from `base`.\n\n**findNodeAt**`(node, start, end, test, base, state)` tries to\nlocate a node in a tree at the given start and/or end offsets, which\nsatisfies the predicate `test`. `start` and `end` can be either `null`\n(as wildcard) or a number. `test` may be a string (indicating a node\ntype) or a function that takes `(nodeType, node)` arguments and\nreturns a boolean indicating whether this node is interesting. `base`\nand `state` are optional, and can be used to specify a custom walker.\nNodes are tested from inner to outer, so if two nodes match the\nboundaries, the inner one will be preferred.\n\n**findNodeAround**`(node, pos, test, base, state)` is a lot like\n`findNodeAt`, but will match any node that exists 'around' (spanning)\nthe given position.\n\n**findNodeAfter**`(node, pos, test, base, state)` is similar to\n`findNodeAround`, but will match all nodes *after* the given position\n(testing outer nodes before inner nodes).\n\n## Command line interface\n\nThe `bin/acorn` utility can be used to parse a file from the command\nline. It accepts as arguments its input file and the following\noptions:\n\n- `--ecma3|--ecma5|--ecma6|--ecma7`: Sets the ECMAScript version to parse. Default is\n  version 5.\n\n- `--module`: Sets the parsing mode to `\"module\"`. Is set to `\"script\"` otherwise.\n\n- `--locations`: Attaches a \"loc\" object to each node with \"start\" and\n  \"end\" subobjects, each of which contains the one-based line and\n  zero-based column numbers in `{line, column}` form.\n\n- `--allow-hash-bang`: If the code starts with the characters #! (as in a shellscript), the first line will be treated as a comment.\n\n- `--compact`: No whitespace is used in the AST output.\n\n- `--silent`: Do not output the AST, just return the exit status.\n\n- `--help`: Print the usage information and quit.\n\nThe utility spits out the syntax tree as JSON data.\n\n## Build system\n\nAcorn is written in ECMAScript 6, as a set of small modules, in the\nproject's `src` directory, and compiled down to bigger ECMAScript 3\nfiles in `dist` using [Browserify](http://browserify.org) and\n[Babel](http://babeljs.io/). If you are already using Babel, you can\nconsider including the modules directly.\n\nThe command-line test runner (`npm test`) uses the ES6 modules. The\nbrowser-based test page (`test/index.html`) uses the compiled modules.\nThe `bin/build-acorn.js` script builds the latter from the former.\n\nIf you are working on Acorn, you'll probably want to try the code out\ndirectly, without an intermediate build step. In your scripts, you can\nregister the Babel require shim like this:\n\n    require(\"babel-core/register\")\n\nThat will allow you to directly `require` the ES6 modules.\n\n## Plugins\n\nAcorn is designed support allow plugins which, within reasonable\nbounds, redefine the way the parser works. Plugins can add new token\ntypes and new tokenizer contexts (if necessary), and extend methods in\nthe parser object. This is not a clean, elegant API—using it requires\nan understanding of Acorn's internals, and plugins are likely to break\nwhenever those internals are significantly changed. But still, it is\n_possible_, in this way, to create parsers for JavaScript dialects\nwithout forking all of Acorn. And in principle it is even possible to\ncombine such plugins, so that if you have, for example, a plugin for\nparsing types and a plugin for parsing JSX-style XML literals, you\ncould load them both and parse code with both JSX tags and types.\n\nA plugin should register itself by adding a property to\n`acorn.plugins`, which holds a function. Calling `acorn.parse`, a\n`plugins` option can be passed, holding an object mapping plugin names\nto configuration values (or just `true` for plugins that don't take\noptions). After the parser object has been created, the initialization\nfunctions for the chosen plugins are called with `(parser,\nconfigValue)` arguments. They are expected to use the `parser.extend`\nmethod to extend parser methods. For example, the `readToken` method\ncould be extended like this:\n\n```javascript\nparser.extend(\"readToken\", function(nextMethod) {\n  return function(code) {\n    console.log(\"Reading a token!\")\n    return nextMethod.call(this, code)\n  }\n})\n```\n\nThe `nextMethod` argument passed to `extend`'s second argument is the\nprevious value of this method, and should usually be called through to\nwhenever the extended method does not handle the call itself.\n\nSimilarly, the loose parser allows plugins to register themselves via\n`acorn.pluginsLoose`.  The extension mechanism is the same as for the\nnormal parser:\n\n```javascript\nlooseParser.extend(\"readToken\", function(nextMethod) {\n  return function() {\n    console.log(\"Reading a token in the loose parser!\")\n    return nextMethod.call(this)\n  }\n})\n```\n\n### Existing plugins\n\n - [`acorn-jsx`](https://github.com/RReverser/acorn-jsx): Parse [Facebook JSX syntax extensions](https://github.com/facebook/jsx)\n - [`acorn-es7-plugin`](https://github.com/MatAtBread/acorn-es7-plugin/): Parse [async/await syntax proposal](https://github.com/tc39/ecmascript-asyncawait)\n - [`acorn-object-spread`](https://github.com/UXtemple/acorn-object-spread): Parse [object spread syntax proposal](https://github.com/sebmarkbage/ecmascript-rest-spread)\n - [`acorn-es7`](https://www.npmjs.com/package/acorn-es7): Parse [decorator syntax proposal](https://github.com/wycats/javascript-decorators)\n - [`acorn-objj`](https://www.npmjs.com/package/acorn-objj): [Objective-J](http://www.cappuccino-project.org/learn/objective-j.html) language parser built as Acorn plugin\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/ternjs/acorn.git"
@@ -2384,29 +2142,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"acorn-to-esprima@^1.0.2",
+				"acorn-to-esprima@https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "acorn-to-esprima@>=1.0.2 <2.0.0",
 		"_id": "acorn-to-esprima@1.0.7",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/acorn-to-esprima",
-		"_nodeVersion": "0.12.7",
-		"_npmUser": {
-			"email": "hi@henryzoo.com",
-			"name": "hzoo"
-		},
-		"_npmVersion": "2.13.4",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "acorn-to-esprima",
-			"raw": "acorn-to-esprima@^1.0.2",
-			"rawSpec": "^1.0.2",
+			"raw": "acorn-to-esprima@https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
+			"rawSpec": "https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
 			"scope": null,
-			"spec": ">=1.0.2 <2.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -2414,7 +2165,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
 		"_shasum": "9436259760098f9ead9b9da2242fab2f4850281b",
 		"_shrinkwrap": null,
-		"_spec": "acorn-to-esprima@^1.0.2",
+		"_spec": "acorn-to-esprima@https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "sebmck@gmail.com",
@@ -2426,12 +2177,6 @@ webpackJsonp([0],{
 		"dependencies": {},
 		"description": "Convert acorn tokens to esprima",
 		"devDependencies": {},
-		"directories": {},
-		"dist": {
-			"shasum": "9436259760098f9ead9b9da2242fab2f4850281b",
-			"tarball": "https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz"
-		},
-		"gitHead": "f0df07bd87bb82dccff10d72f756be81c666ae83",
 		"homepage": "https://github.com/babel/acorn-to-esprima#readme",
 		"keywords": [
 			"acorn",
@@ -2442,24 +2187,14 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "src/index.js",
-		"maintainers": [
-			{
-				"email": "hi@henryzoo.com",
-				"name": "hzoo"
-			},
-			{
-				"email": "sebmck@gmail.com",
-				"name": "sebmck"
-			}
-		],
 		"name": "acorn-to-esprima",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# acorn-to-esprima\n\nSome functions to help transform an acorn/babel ast to esprima format.\n\nPrimarily for use in [babel-eslint](https://github.com/babel/babel-eslint), [babel-jscs](https://github.com/jscs-dev/babel-jscs), and [ast explorer](https://github.com/fkling/esprima_ast_explorer)\n\n**There are no dependencies** (the methods were changed to pass in dependencies instead)\n\nThe current functions exposed are:\n\n- `function attachComments(ast, comments, tokens)`\n  - This modifies the comments passed in.\n- `function toTokens(tokens, tt)`\n  - `tt` is `require(\"babel-core\").acorn.tokTypes`\n  - Converts template string tokens (`convertTemplateType`)\n  - filters out comment tokens\n  - runs `toToken` over each token\n- `function toToken(token, tt)`\n  - Sets `token.type`, `token.range`, and `token.value`\n- `function toAST(ast, traverse)`\n  - `traverse` is `require(\"babel-core\").traverse;`\n  - traverses over the ast and makes any necessary changes (usually es6+)\n- `function convertComments(comments)`\n  - Modifies `comment.type`\n\nHow to use:\n\nCheck out the parse method of https://github.com/babel/babel-eslint/blob/master/index.js\n```js\n// example\nexports.parse = function (code) {\n  var comments = opts.onComment = [];\n  var tokens = opts.onToken = [];\n\n  var ast;\n  try {\n    ast = parse(code, {\n        locations: true,\n        ranges: true\n    });\n  } catch (err) { throw err; }\n\n  tokens.pop();\n  ast.tokens = acornToEsprima.toTokens(tokens, tt);\n\n  acornToEsprima.convertComments(comments);\n  ast.comments = comments;\n  acornToEsprima.attachComments(ast, comments, ast.tokens);\n\n  acornToEsprima.toAST(ast, traverse);\n\n  return ast;\n}\n```",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/babel/acorn-to-esprima.git"
 		},
-		"scripts": {},
 		"version": "1.0.7"
 	};
 
@@ -2485,33 +2220,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babylon@^5.8.38",
-				"/Users/fkling/git/astexplorer/packages/babylon5"
+				"babylon@https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
+				"/Users/fkling/git/astexplorer/node_modules/babylon5"
 			]
 		],
 		"_from": "babylon@>=5.8.38 <6.0.0",
 		"_id": "babylon@5.8.38",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/babylon5/babylon",
-		"_nodeVersion": "5.5.0",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/babylon-5.8.38.tgz_1458687018469_0.5434813795145601"
-		},
-		"_npmUser": {
-			"email": "sebmck@gmail.com",
-			"name": "sebmck"
-		},
-		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babylon",
-			"raw": "babylon@^5.8.38",
-			"rawSpec": "^5.8.38",
+			"raw": "babylon@https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
+			"rawSpec": "https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
 			"scope": null,
-			"spec": ">=5.8.38 <6.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/babylon5"
@@ -2519,8 +2243,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
 		"_shasum": "ec9b120b11bf6ccd4173a18bf217e60b79859ffd",
 		"_shrinkwrap": null,
-		"_spec": "babylon@^5.8.38",
-		"_where": "/Users/fkling/git/astexplorer/packages/babylon5",
+		"_spec": "babylon@https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
+		"_where": "/Users/fkling/git/astexplorer/node_modules/babylon5",
 		"author": {
 			"email": "sebmck@gmail.com",
 			"name": "Sebastian McKenzie"
@@ -2653,48 +2377,17 @@ webpackJsonp([0],{
 		"dependencies": {},
 		"description": "<p align=\"center\">   <img alt=\"babylon\" src=\"https://raw.githubusercontent.com/babel/logo/master/babylon.png\" width=\"700\"> </p>",
 		"devDependencies": {},
-		"directories": {},
-		"dist": {
-			"shasum": "ec9b120b11bf6ccd4173a18bf217e60b79859ffd",
-			"tarball": "https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz"
-		},
 		"homepage": "https://babeljs.io/",
 		"license": "MIT",
 		"main": "lib/index.js",
-		"maintainers": [
-			{
-				"email": "amjad.masad@gmail.com",
-				"name": "amasad"
-			},
-			{
-				"email": "hi@henryzoo.com",
-				"name": "hzoo"
-			},
-			{
-				"email": "npm-public@jessemccarthy.net",
-				"name": "jmm"
-			},
-			{
-				"email": "loganfsmyth@gmail.com",
-				"name": "loganfsmyth"
-			},
-			{
-				"email": "sebmck@gmail.com",
-				"name": "sebmck"
-			},
-			{
-				"email": "me@thejameskyle.com",
-				"name": "thejameskyle"
-			}
-		],
 		"name": "babylon",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "<p align=\"center\">\n  <img alt=\"babylon\" src=\"https://raw.githubusercontent.com/babel/logo/master/babylon.png\" width=\"700\">\n</p>\n\n<p align=\"center\">\n  Babylon is a JavaScript parser used in <a href=\"https://github.com/babel/babel\">Babel</a>.\n</p>\n\n## Credits\n\nHeavily based on [acorn](https://github.com/marijnh/acorn) and [acorn-jsx](https://github.com/RReverser/acorn-jsx),\nthanks to the awesome work of [@RReverser](https://github.com/RReverser) and [@marijnh](https://github.com/marijnh).\n\nSignificant diversions are expected to occur in the future such as streaming, EBNF definitions, sweet.js integration,\ninterspacial parsing, comment attachment and more.\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/babel/babel.git"
 		},
-		"scripts": {},
 		"version": "5.8.38"
 	};
 
@@ -2720,33 +2413,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babylon@^6.0.18",
-				"/Users/fkling/git/astexplorer/node_modules/babel-eslint"
+				"babylon@https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
+				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "babylon@>=6.0.18 <7.0.0",
 		"_id": "babylon@6.8.4",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/babylon",
-		"_nodeVersion": "5.11.1",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/babylon-6.8.4.tgz_1467848136699_0.6809531478211284"
-		},
-		"_npmUser": {
-			"email": "hi@henryzoo.com",
-			"name": "hzoo"
-		},
-		"_npmVersion": "3.10.3",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babylon",
-			"raw": "babylon@^6.0.18",
-			"rawSpec": "^6.0.18",
+			"raw": "babylon@https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
+			"rawSpec": "https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
 			"scope": null,
-			"spec": ">=6.0.18 <7.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/babel-core",
@@ -2761,8 +2443,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
 		"_shasum": "097306b8dabae95159225cf29b3ea55912053180",
 		"_shrinkwrap": null,
-		"_spec": "babylon@^6.0.18",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/babel-eslint",
+		"_spec": "babylon@https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
+		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "sebmck@gmail.com",
 			"name": "Sebastian McKenzie"
@@ -2773,128 +2455,6 @@ webpackJsonp([0],{
 		"bugs": {
 			"url": "https://github.com/babel/babylon/issues"
 		},
-		"contributors": [
-			{
-				"name": "List of Acorn contributors. Updated before every release."
-			},
-			{
-				"name": "Adrian Rakovsky"
-			},
-			{
-				"name": "Alistair Braidwood"
-			},
-			{
-				"name": "Andres Suarez"
-			},
-			{
-				"name": "Aparajita Fishman"
-			},
-			{
-				"name": "Arian Stolwijk"
-			},
-			{
-				"name": "Artem Govorov"
-			},
-			{
-				"name": "Brandon Mills"
-			},
-			{
-				"name": "Charles Hughes"
-			},
-			{
-				"name": "Conrad Irwin"
-			},
-			{
-				"name": "David Bonnet"
-			},
-			{
-				"name": "Forbes Lindesay"
-			},
-			{
-				"name": "Gilad Peleg"
-			},
-			{
-				"name": "impinball"
-			},
-			{
-				"name": "Ingvar Stepanyan"
-			},
-			{
-				"name": "Jesse McCarthy"
-			},
-			{
-				"name": "Jiaxing Wang"
-			},
-			{
-				"name": "Joel Kemp"
-			},
-			{
-				"name": "Johannes Herr"
-			},
-			{
-				"name": "Jürg Lehni"
-			},
-			{
-				"name": "keeyipchan"
-			},
-			{
-				"name": "Kevin Kwok"
-			},
-			{
-				"name": "krator"
-			},
-			{
-				"name": "Marijn Haverbeke"
-			},
-			{
-				"name": "Martin Carlberg"
-			},
-			{
-				"name": "Mathias Bynens"
-			},
-			{
-				"name": "Mathieu 'p01' Henri"
-			},
-			{
-				"name": "Max Schaefer"
-			},
-			{
-				"name": "Max Zerzouri"
-			},
-			{
-				"name": "Mihai Bazon"
-			},
-			{
-				"name": "Mike Rennie"
-			},
-			{
-				"name": "Nick Fitzgerald"
-			},
-			{
-				"name": "Oskar Schöldström"
-			},
-			{
-				"name": "Paul Harper"
-			},
-			{
-				"name": "Peter Rust"
-			},
-			{
-				"name": "PlNG"
-			},
-			{
-				"name": "r-e-d"
-			},
-			{
-				"name": "Rich Harris"
-			},
-			{
-				"name": "Sebastian McKenzie"
-			},
-			{
-				"name": "zsjforcn"
-			}
-		],
 		"dependencies": {
 			"babel-runtime": "^6.0.0"
 		},
@@ -2912,52 +2472,17 @@ webpackJsonp([0],{
 			"lodash": "^4.6.1",
 			"unicode-9.0.0": "~0.7.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "097306b8dabae95159225cf29b3ea55912053180",
-			"tarball": "https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz"
-		},
 		"files": [
 			"bin",
 			"lib"
 		],
-		"gitHead": "46fc22438224a73db3149b1eabcc1525eeafeb9e",
 		"homepage": "https://babeljs.io/",
 		"license": "MIT",
 		"main": "lib/index.js",
-		"maintainers": [
-			{
-				"email": "amjad.masad@gmail.com",
-				"name": "amasad"
-			},
-			{
-				"email": "gabelevi@gmail.com",
-				"name": "gabelevi"
-			},
-			{
-				"email": "hi@henryzoo.com",
-				"name": "hzoo"
-			},
-			{
-				"email": "npm-public@jessemccarthy.net",
-				"name": "jmm"
-			},
-			{
-				"email": "loganfsmyth@gmail.com",
-				"name": "loganfsmyth"
-			},
-			{
-				"email": "sebmck@gmail.com",
-				"name": "sebmck"
-			},
-			{
-				"email": "me@thejameskyle.com",
-				"name": "thejameskyle"
-			}
-		],
 		"name": "babylon",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "<p align=\"center\">\n  <img alt=\"babylon\" src=\"https://raw.githubusercontent.com/babel/logo/master/babylon.png\" width=\"700\">\n</p>\n\n<p align=\"center\">\n  Babylon is a JavaScript parser used in <a href=\"https://github.com/babel/babel\">Babel</a>.\n</p>\n\n<p align=\"center\">\n  <a href=\"https://travis-ci.org/babel/babylon\"><img alt=\"Travis Status\" src=\"https://img.shields.io/travis/babel/babylon/master.svg?style=flat&label=travis\"></a>\n</p>\n\n - ES6 enabled by default.\n - Comment attachment.\n - Support for JSX and Flow.\n - Support for experimental language proposals.\n\n## Credits\n\nHeavily based on [acorn](https://github.com/marijnh/acorn) and [acorn-jsx](https://github.com/RReverser/acorn-jsx),\nthanks to the awesome work of [@RReverser](https://github.com/RReverser) and [@marijnh](https://github.com/marijnh).\n\nSignificant diversions are expected to occur in the future such as streaming, EBNF definitions, sweet.js integration, interspacial parsing and more.\n\n## API\n\n### `babylon.parse(code, [options])`\n\n### Options\n\n- **allowImportExportEverywhere**: By default, `import` and `export`\n  declarations can only appear at a program's top level. Setting this\n  option to `true` allows them anywhere where a statement is allowed.\n\n- **allowReturnOutsideFunction**: By default, a return statement at\n  the top level raises an error. Set this to `true` to accept such\n  code.\n\n- **allowSuperOutsideMethod** TODO\n\n- **sourceType**: Indicate the mode the code should be parsed in. Can be\n  either `\"script\"` or `\"module\"`.\n\n- **sourceFilename**: Correlate output AST nodes with their source filename.  Useful when generating code and source maps from the ASTs of multiple input files.\n\n- **plugins**: Array containing the plugins that you want to enable.\n\n### Output\n\nBabylon generates AST according to [Babel AST format][].\nIt is based on [ESTree spec][] with the following deviations:\n\n- [Literal][] token is replaced with [StringLiteral][], [NumericLiteral][], [BooleanLiteral][], [NullLiteral][], [RegExpLiteral][]\n- [Property][] token is replaced with [ObjectProperty][] and [ObjectMethod][]\n- [MethodDefinition][] is replaced with [ClassMethod][]\n- [Program][] and [BlockStatement][] contain additional `directives` field with [Directive][] and [DirectiveLiteral][]\n- [ClassMethod][], [ObjectProperty][], and [ObjectMethod][] value property's properties in [FunctionExpression][] is coerced/brought into the main method node.\n\nAST for JSX code is based on [Facebook JSX AST][] with the addition of one node type:\n\n- `JSXText`\n\n[Babel AST format]: https://github.com/babel/babylon/blob/master/ast/spec.md\n[ESTree spec]: https://github.com/estree/estree\n\n[Literal]: https://github.com/estree/estree/blob/master/spec.md#literal\n[Property]: https://github.com/estree/estree/blob/master/spec.md#property\n[MethodDefinition]: https://github.com/estree/estree/blob/master/es6.md#methoddefinition\n\n[StringLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#stringliteral\n[NumericLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#numericliteral\n[BooleanLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#booleanliteral\n[NullLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#nullliteral\n[RegExpLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#regexpliteral\n[ObjectProperty]: https://github.com/babel/babylon/blob/master/ast/spec.md#objectproperty\n[ObjectMethod]: https://github.com/babel/babylon/blob/master/ast/spec.md#objectmethod\n[ClassMethod]: https://github.com/babel/babylon/blob/master/ast/spec.md#classmethod\n[Program]: https://github.com/babel/babylon/blob/master/ast/spec.md#programs\n[BlockStatement]: https://github.com/babel/babylon/blob/master/ast/spec.md#blockstatement\n[Directive]: https://github.com/babel/babylon/blob/master/ast/spec.md#directive\n[DirectiveLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#directiveliteral\n[FunctionExpression]: https://github.com/babel/babylon/blob/master/ast/spec.md#functionexpression\n\n[Facebook JSX AST]: https://github.com/facebook/jsx/blob/master/AST.md\n\n### Example\n\n```javascript\nrequire(\"babylon\").parse(\"code\", {\n  // parse in strict mode and allow module declarations\n  sourceType: \"module\",\n\n  plugins: [\n    // enable experimental async functions\n    \"asyncFunctions\",\n\n    // enable jsx and flow syntax\n    \"jsx\",\n    \"flow\"\n  ]\n});\n```\n\n### Plugins\n\n - `jsx`\n - `flow`\n - `asyncFunctions`\n - `classConstructorCall`\n - `doExpressions`\n - `trailingFunctionCommas`\n - `objectRestSpread`\n - `decorators`\n - `classProperties`\n - `exportExtensions`\n - `exponentiationOperator`\n - `asyncGenerators`\n - `functionBind`\n - `functionSent`\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/babel/babylon.git"
@@ -2993,33 +2518,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"esformatter-parser@^1.0.0",
+				"esformatter-parser@https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "esformatter-parser@>=1.0.0 <2.0.0",
 		"_id": "esformatter-parser@1.0.0",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/esformatter-parser",
-		"_nodeVersion": "4.2.1",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/esformatter-parser-1.0.0.tgz_1464205052948_0.8728667397517711"
-		},
-		"_npmUser": {
-			"email": "miller@millermedeiros.com",
-			"name": "millermedeiros"
-		},
-		"_npmVersion": "2.14.7",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "esformatter-parser",
-			"raw": "esformatter-parser@^1.0.0",
-			"rawSpec": "^1.0.0",
+			"raw": "esformatter-parser@https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
+			"rawSpec": "https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
 			"scope": null,
-			"spec": ">=1.0.0 <2.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -3027,7 +2541,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
 		"_shasum": "0854072d0487539ed39cae38d8a5432c17ec11d3",
 		"_shrinkwrap": null,
-		"_spec": "esformatter-parser@^1.0.0",
+		"_spec": "esformatter-parser@https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Miller Medeiros"
@@ -3043,12 +2557,6 @@ webpackJsonp([0],{
 		},
 		"description": "JavaScript parser used by esformatter",
 		"devDependencies": {},
-		"directories": {},
-		"dist": {
-			"shasum": "0854072d0487539ed39cae38d8a5432c17ec11d3",
-			"tarball": "https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz"
-		},
-		"gitHead": "96a2e58ed9a930f7b93136cee9cb59da548dbae4",
 		"homepage": "https://github.com/millermedeiros/esformatter-parser#readme",
 		"keywords": [
 			"babel",
@@ -3060,15 +2568,10 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "esformatter-parser.js",
-		"maintainers": [
-			{
-				"email": "miller@millermedeiros.com",
-				"name": "millermedeiros"
-			}
-		],
 		"name": "esformatter-parser",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# esformatter-parser\n\nWrapper around [Babylon](https://github.com/babel/babylon), [Acorn to Esprima](https://github.com/babel/acorn-to-esprima) and [Rocambole](https://github.com/millermedeiros/rocambole).\n\nUsed internally by [esformatter](https://github.com/millermedeiros/esformatter)\n\nReleased under the MIT License\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/millermedeiros/esformatter-parser.git"
@@ -3094,33 +2597,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"espree@^3.1.0",
+				"espree@https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "espree@>=3.1.0 <4.0.0",
 		"_id": "espree@3.1.7",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/espree",
-		"_nodeVersion": "4.4.7",
-		"_npmOperationalInternal": {
-			"host": "packages-16-east.internal.npmjs.com",
-			"tmp": "tmp/espree-3.1.7.tgz_1469818741131_0.25705570145510137"
-		},
-		"_npmUser": {
-			"email": "nicholas+eslint@nczconsulting.com",
-			"name": "eslint"
-		},
-		"_npmVersion": "2.15.8",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "espree",
-			"raw": "espree@^3.1.0",
-			"rawSpec": "^3.1.0",
+			"raw": "espree@https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
+			"rawSpec": "https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
 			"scope": null,
-			"spec": ">=3.1.0 <4.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/",
@@ -3130,7 +2622,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
 		"_shasum": "fd5deec76a97a5120a9cd3a7cb1177a0923b11d2",
 		"_shrinkwrap": null,
-		"_spec": "espree@^3.1.0",
+		"_spec": "espree@https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "nicholas+npm@nczconsulting.com",
@@ -3161,11 +2653,6 @@ webpackJsonp([0],{
 			"shelljs-nodecli": "^0.1.1",
 			"unicode-6.3.0": "~0.1.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "fd5deec76a97a5120a9cd3a7cb1177a0923b11d2",
-			"tarball": "https://registry.npmjs.org/espree/-/espree-3.1.7.tgz"
-		},
 		"engines": {
 			"node": ">=0.10.0"
 		},
@@ -3173,7 +2660,6 @@ webpackJsonp([0],{
 			"lib",
 			"espree.js"
 		],
-		"gitHead": "4ddfacba95c96732541d94521efbcdccce2fad99",
 		"homepage": "https://github.com/eslint/espree",
 		"keywords": [
 			"ast",
@@ -3185,19 +2671,10 @@ webpackJsonp([0],{
 		],
 		"license": "BSD-2-Clause",
 		"main": "espree.js",
-		"maintainers": [
-			{
-				"email": "nicholas+eslint@nczconsulting.com",
-				"name": "eslint"
-			},
-			{
-				"email": "nicholas@nczconsulting.com",
-				"name": "nzakas"
-			}
-		],
 		"name": "espree",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# Espree\n\nEspree started out as a fork of [Esprima](http://esprima.org) v1.2.2, the last stable published released of Esprima before work on ECMAScript 6 began. Espree is now built on top of [Acorn](https://github.com/ternjs/acorn), which has a modular architecture that allows extension of core functionality. The goal of Espree is to produce output that is similar to Esprima with a similar API so that it can be used in place of Esprima.\n\n## Usage\n\nInstall:\n\n```\nnpm i espree --save\n```\n\nAnd in your Node.js code:\n\n```javascript\nvar espree = require(\"espree\");\n\nvar ast = espree.parse(code);\n```\n\nThere is a second argument to `parse()` that allows you to specify various options:\n\n```javascript\nvar espree = require(\"espree\");\n\nvar ast = espree.parse(code, {\n\n    // attach range information to each node\n    range: true,\n\n    // attach line/column location information to each node\n    loc: true,\n\n    // create a top-level comments array containing all comments\n    comment: true,\n\n    // attach comments to the closest relevant node as leadingComments and\n    // trailingComments\n    attachComment: true,\n\n    // create a top-level tokens array containing all tokens\n    tokens: true,\n\n    // specify the language version (3, 5, 6, or 7, default is 5)\n    ecmaVersion: 5,\n\n    // specify which type of script you're parsing (script or module, default is script)\n    sourceType: \"script\",\n\n    // specify additional language features\n    ecmaFeatures: {\n\n        // enable JSX parsing\n        jsx: true,\n\n        // enable return in global scope\n        globalReturn: true,\n\n        // enable implied strict mode (if ecmaVersion >= 5)\n        impliedStrict: true,\n\n        // allow experimental object rest/spread\n        experimentalObjectRestSpread: true\n    }\n});\n```\n\n## Esprima Compatibility Going Forward\n\nThe primary goal is to produce the exact same AST structure and tokens as Esprima, and that takes precedence over anything else. (The AST structure being the [ESTree](https://github.com/estree/estree) API with JSX extensions.) Separate from that, Espree may deviate from what Esprima outputs in terms of where and how comments are attached, as well as what additional information is available on AST nodes. That is to say, Espree may add more things to the AST nodes than Esprima does but the overall AST structure produced will be the same.\n\nEspree may also deviate from Esprima in the interface it exposes.\n\n## Contributing\n\nIssues and pull requests will be triaged and responded to as quickly as possible. We operate under the [ESLint Contributor Guidelines](http://eslint.org/docs/developer-guide/contributing), so please be sure to read them before contributing. If you're not sure where to dig in, check out the [issues](https://github.com/eslint/espree/issues).\n\nEspree is licensed under a permissive BSD 2-clause license.\n\n## Build Commands\n\n* `npm test` - run all linting and tests\n* `npm run lint` - run all linting\n* `npm run browserify` - creates a version of Espree that is usable in a browser\n\n## Differences from Espree 2.x\n\n* The `tokenize()` method does not use `ecmaFeatures`. Any string will be tokenized completely based on ECMAScript 6 semantics.\n* Trailing whitespace no longer is counted as part of a node.\n* `let` and `const` declarations are no longer parsed by default. You must opt-in using `ecmaFeatures.blockBindings`.\n* The `esparse` and `esvalidate` binary scripts have been removed.\n* There is no `tolerant` option. We will investigate adding this back in the future.\n\n## Known Incompatibilities\n\nIn an effort to help those wanting to transition from other parsers to Espree, the following is a list of noteworthy incompatibilities with other parsers. These are known differences that we do not intend to change.\n\n### Esprima 1.2.2\n\n* Esprima counts trailing whitespace as part of each AST node while Espree does not. In Espree, the end of a node is where the last token occurs.\n* Espree does not parse `let` and `const` declarations by default.\n* Error messages returned for parsing errors are different.\n* There are two addition properties on every node and token: `start` and `end`. These represent the same data as `range` and are used internally by Acorn.\n\n### Esprima 2.x\n\n* Esprima 2.x uses a different comment attachment algorithm that results in some comments being added in different places than Espree. The algorithm Espree uses is the same one used in Esprima 1.2.2.\n\n## Frequently Asked Questions\n\n### Why another parser\n\n[ESLint](http://eslint.org) had been relying on Esprima as its parser from the beginning. While that was fine when the JavaScript language was evolving slowly, the pace of development increased dramatically and Esprima had fallen behind. ESLint, like many other tools reliant on Esprima, has been stuck in using new JavaScript language features until Esprima updates, and that caused our users frustration.\n\nWe decided the only way for us to move forward was to create our own parser, bringing us inline with JSHint and JSLint, and allowing us to keep implementing new features as we need them. We chose to fork Esprima instead of starting from scratch in order to move as quickly as possible with a compatible API.\n\nWith Espree 2.0.0, we are no longer a fork of Esprima but rather a translation layer between Acorn and Esprima syntax. This allows us to put work back into a community-supported parser (Acorn) that is continuing to grow and evolve while maintaining an Esprima-compatible parser for those utilities still built on Esprima.\n\n### Have you tried working with Esprima?\n\nYes. Since the start of ESLint, we've regularly filed bugs and feature requests with Esprima and will continue to do so. However, there are some different philosophies around how the projects work that need to be worked through. The initial goal was to have Espree track Esprima and eventually merge the two back together, but we ultimately decided that building on top of Acorn was a better choice due to Acorn's plugin support.\n\n### Why don't you just use Acorn?\n\nAcorn is a great JavaScript parser that produces an AST that is compatible with Esprima. Unfortunately, ESLint relies on more than just the AST to do its job. It relies on Esprima's tokens and comment attachment features to get a complete picture of the source code. We investigated switching to Acorn, but the inconsistencies between Esprima and Acorn created too much work for a project like ESLint.\n\nWe are building on top of Acorn, however, so that we can contribute back and help make Acorn even better.\n\n### What ECMAScript 6 features do you support?\n\nAll of them.\n\n### What ECMAScript 7 features do you support?\n\nThere is only one ECMAScript 7 syntax change: the exponentiation operator. Espree supports this.\n\n### How do you determine which experimental features to support?\n\nIn general, we do not support experimental JavaScript features. We may make exceptions from time to time depending on the maturity of the features.\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+ssh://git@github.com/eslint/espree.git"
@@ -3230,37 +2707,27 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"esprima@^2.5",
+				"esprima@https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "esprima@>=2.5.0 <3.0.0",
 		"_id": "esprima@2.7.2",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/esprima",
-		"_nodeVersion": "4.2.2",
-		"_npmOperationalInternal": {
-			"host": "packages-9-west.internal.npmjs.com",
-			"tmp": "tmp/esprima-2.7.2.tgz_1454477276067_0.014412595424801111"
-		},
-		"_npmUser": {
-			"email": "ariya.hidayat@gmail.com",
-			"name": "ariya"
-		},
-		"_npmVersion": "2.14.7",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "esprima",
-			"raw": "esprima@^2.5",
-			"rawSpec": "^2.5",
+			"raw": "esprima@https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz",
+			"rawSpec": "https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz",
 			"scope": null,
-			"spec": ">=2.5.0 <3.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/",
 			"/escodegen",
+			"/eslint1/js-yaml",
 			"/eslint2/js-yaml",
 			"/js-yaml",
 			"/recast",
@@ -3270,7 +2737,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz",
 		"_shasum": "f43be543609984eae44c933ac63352a6af35f339",
 		"_shrinkwrap": null,
-		"_spec": "esprima@^2.5",
+		"_spec": "esprima@https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "ariya.hidayat@gmail.com",
@@ -3309,11 +2776,6 @@ webpackJsonp([0],{
 			"temp": "~0.8.3",
 			"unicode-7.0.0": "~0.1.5"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "f43be543609984eae44c933ac63352a6af35f339",
-			"tarball": "https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz"
-		},
 		"engines": {
 			"node": ">=0.10.0"
 		},
@@ -3322,7 +2784,6 @@ webpackJsonp([0],{
 			"unit-tests.js",
 			"esprima.js"
 		],
-		"gitHead": "eb05a03b18b8433ab1ebeabea635a949219cd75e",
 		"homepage": "http://esprima.org",
 		"keywords": [
 			"ast",
@@ -3336,12 +2797,14 @@ webpackJsonp([0],{
 		"maintainers": [
 			{
 				"email": "ariya.hidayat@gmail.com",
-				"name": "ariya"
+				"name": "Ariya Hidayat",
+				"url": "http://ariya.ofilabs.com"
 			}
 		],
 		"name": "esprima",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "[![NPM version](https://img.shields.io/npm/v/esprima.svg)](https://www.npmjs.com/package/esprima)\n[![npm download](https://img.shields.io/npm/dm/esprima.svg)](https://www.npmjs.com/package/esprima)\n[![Build Status](https://img.shields.io/travis/jquery/esprima/master.svg)](https://travis-ci.org/jquery/esprima)\n[![Coverage Status](https://img.shields.io/codecov/c/github/jquery/esprima/master.svg)](https://codecov.io/github/jquery/esprima)\n\n**Esprima** ([esprima.org](http://esprima.org), BSD license) is a high performance,\nstandard-compliant [ECMAScript](http://www.ecma-international.org/publications/standards/Ecma-262.htm)\nparser written in ECMAScript (also popularly known as\n[JavaScript](https://en.wikipedia.org/wiki/JavaScript)).\nEsprima is created and maintained by [Ariya Hidayat](https://twitter.com/ariyahidayat),\nwith the help of [many contributors](https://github.com/jquery/esprima/contributors).\n\n### Features\n\n- Full support for ECMAScript 6 ([ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm))\n- Sensible [syntax tree format](https://github.com/estree/estree/blob/master/spec.md) as standardized by [ESTree project](https://github.com/estree/estree)\n- Optional tracking of syntax node location (index-based and line-column)\n- [Heavily tested](http://esprima.org/test/ci.html) (~1250 [unit tests](https://github.com/jquery/esprima/tree/master/test/fixtures) with [full code coverage](https://codecov.io/github/jquery/esprima))\n\nEsprima serves as a **building block** for some JavaScript\nlanguage tools, from [code instrumentation](http://esprima.org/demo/functiontrace.html)\nto [editor autocompletion](http://esprima.org/demo/autocomplete.html).\n\nEsprima runs on many popular web browsers, as well as other ECMAScript platforms such as\n[Rhino](http://www.mozilla.org/rhino), [Nashorn](http://openjdk.java.net/projects/nashorn/), and [Node.js](https://npmjs.org/package/esprima).\n\nFor more information, check the web site [esprima.org](http://esprima.org).\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/jquery/esprima.git"
@@ -3394,33 +2857,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"flow-parser@^0.28.0",
+				"flow-parser@https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "flow-parser@>=0.28.0 <0.29.0",
 		"_id": "flow-parser@0.28.0",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/flow-parser",
-		"_nodeVersion": "5.0.0",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/flow-parser-0.28.0.tgz_1468108489705_0.7863475005142391"
-		},
-		"_npmUser": {
-			"email": "lbljeffmo@gmail.com",
-			"name": "jeffmo"
-		},
-		"_npmVersion": "3.8.9",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "flow-parser",
-			"raw": "flow-parser@^0.28.0",
-			"rawSpec": "^0.28.0",
+			"raw": "flow-parser@https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
+			"rawSpec": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
 			"scope": null,
-			"spec": ">=0.28.0 <0.29.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/",
@@ -3429,7 +2881,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
 		"_shasum": "67f2b9dba91f97e25768879048af46a7aa69a3be",
 		"_shrinkwrap": null,
-		"_spec": "flow-parser@^0.28.0",
+		"_spec": "flow-parser@https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "gabe@fb.com",
@@ -3448,33 +2900,15 @@ webpackJsonp([0],{
 		"devDependencies": {
 			"esprima-fb": "15001.1001.0-dev-harmony-fb"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "67f2b9dba91f97e25768879048af46a7aa69a3be",
-			"tarball": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz"
-		},
 		"engines": {
 			"node": ">=0.4.0"
 		},
 		"license": "BSD-3-Clause",
 		"main": "flow_parser.js",
-		"maintainers": [
-			{
-				"email": "marshall@mroch.com",
-				"name": "mroch"
-			},
-			{
-				"email": "lbljeffmo@gmail.com",
-				"name": "jeffmo"
-			},
-			{
-				"email": "gabelevi@gmail.com",
-				"name": "gabelevi"
-			}
-		],
 		"name": "flow-parser",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# The Flow Parser\n\nThe Flow Parser is a JavaScript parser written in OCaml. It produces an AST that conforms to [SpiderMonkey's Parser API](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API) and that mostly matches what [esprima](http://esprima.org/) produces. The Flow Parser can be compiled to native code or can be compiled to JavaScript using [js_of_ocaml](http://ocsigen.org/js_of_ocaml/).\n\n## Building the Flow Parser\n\nBuilding the Flow Parser requires OCaml. Compiling to JavaScript requires js_of_ocaml.\n\n### Initial set up\n\n* [Install opam](https://opam.ocaml.org/doc/Install.html)\n* `opam install js_of_ocaml`\n\n### Building the OCaml Flow Parser library\n\n    make\n    \n### Compiling the Flow Parser to JavaScript\n\n    make js\n\n## Tests\n\nThe Flow Parser's test suite tests the JavaScript version of the parser, so you will need js_of_ocaml installed. The tests and tools also have some node module dependencies, so you will need to run\n\n### Initial set up\n\n* Follow the steps in [Building the Flow Parser](https://github.com/facebook/flow/blob/master/src/parser/README.md#building-the-flow-parser)\n* `npm install`\n\n### Running the Tests\n\n    make test\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"private": true
 		},
@@ -3507,33 +2941,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"recast@^0.11.0",
+				"recast@https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "recast@>=0.11.0 <0.12.0",
 		"_id": "recast@0.11.11",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/recast",
-		"_nodeVersion": "6.0.0",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/recast-0.11.11.tgz_1470432216701_0.015340972226113081"
-		},
-		"_npmUser": {
-			"email": "bn@cs.stanford.edu",
-			"name": "benjamn"
-		},
-		"_npmVersion": "3.10.6",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "recast",
-			"raw": "recast@^0.11.0",
-			"rawSpec": "^0.11.0",
+			"raw": "recast@https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
+			"rawSpec": "https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
 			"scope": null,
-			"spec": ">=0.11.0 <0.12.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/",
@@ -3542,7 +2965,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
 		"_shasum": "7c4a097387b8865ff3a1122057726874be4b3101",
 		"_shrinkwrap": null,
-		"_spec": "recast@^0.11.0",
+		"_spec": "recast@https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "bn@cs.stanford.edu",
@@ -3566,15 +2989,9 @@ webpackJsonp([0],{
 			"esprima-fb": "^15001.1001.0-dev-harmony-fb",
 			"mocha": "~3.0.1"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "7c4a097387b8865ff3a1122057726874be4b3101",
-			"tarball": "https://registry.npmjs.org/recast/-/recast-0.11.11.tgz"
-		},
 		"engines": {
 			"node": ">= 0.8"
 		},
-		"gitHead": "38ef7be1969c84546ee6e5f2802cd663ee5bc9f4",
 		"homepage": "http://github.com/benjamn/recast",
 		"keywords": [
 			"ast",
@@ -3588,15 +3005,10 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "main.js",
-		"maintainers": [
-			{
-				"email": "bn@cs.stanford.edu",
-				"name": "benjamn"
-			}
-		],
 		"name": "recast",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# recast, _v_. [![Build Status](https://travis-ci.org/benjamn/recast.svg?branch=master)](https://travis-ci.org/benjamn/recast) [![Join the chat at https://gitter.im/benjamn/recast](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/benjamn/recast?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\n1. to give (a metal object) a different form by melting it down and reshaping it.\n1. to form, fashion, or arrange again.\n1. to remodel or reconstruct (a literary work, document, sentence, etc.).\n1. to supply (a theater or opera work) with a new cast.\n\nInstallation\n---\n\nFrom NPM:\n\n    npm install recast\n    \nFrom GitHub:\n\n    cd path/to/node_modules\n    git clone git://github.com/benjamn/recast.git\n    cd recast\n    npm install .\n\nUsage\n---\n\nIn less poetic terms, Recast exposes two essential interfaces, one for parsing JavaScript code (`require(\"recast\").parse`) and the other for reprinting modified syntax trees (`require(\"recast\").print`).\n\nHere's a simple but non-trivial example of how you might use `.parse` and `.print`:\n```js\nvar recast = require(\"recast\");\n\n// Let's turn this function declaration into a variable declaration.\nvar code = [\n    \"function add(a, b) {\",\n    \"  return a +\",\n    \"    // Weird formatting, huh?\",\n    \"    b;\",\n    \"}\"\n].join(\"\\n\");\n\n// Parse the code using an interface similar to require(\"esprima\").parse.\nvar ast = recast.parse(code);\n```\nNow do *whatever* you want to `ast`. Really, anything at all!\n\nSee [ast-types](https://github.com/benjamn/ast-types) (especially the [def/core.js](https://github.com/benjamn/ast-types/blob/master/def/core.js)) module for a thorough overview of the `ast` api.\n```js\n// Grab a reference to the function declaration we just parsed.\nvar add = ast.program.body[0];\n\n// Make sure it's a FunctionDeclaration (optional).\nvar n = recast.types.namedTypes;\nn.FunctionDeclaration.assert(add);\n\n// If you choose to use recast.builders to construct new AST nodes, all builder\n// arguments will be dynamically type-checked against the Mozilla Parser API.\nvar b = recast.types.builders;\n\n// This kind of manipulation should seem familiar if you've used Esprima or the\n// Mozilla Parser API before.\nast.program.body[0] = b.variableDeclaration(\"var\", [\n    b.variableDeclarator(add.id, b.functionExpression(\n        null, // Anonymize the function expression.\n        add.params,\n        add.body\n    ))\n]);\n\n// Just for fun, because addition is commutative:\nadd.params.push(add.params.shift());\n```\nWhen you finish manipulating the AST, let `recast.print` work its magic:\n```js\nvar output = recast.print(ast).code;\n```\nThe `output` string now looks exactly like this, weird formatting and all:\n```js\nvar add = function(b, a) {\n  return a +\n    // Weird formatting, huh?\n    b;\n}\n```\nThe magic of Recast is that it reprints only those parts of the syntax tree that you modify. In other words, the following identity is guaranteed:\n```js\nrecast.print(recast.parse(source)).code === source\n```\nWhenever Recast cannot reprint a modified node using the original source code, it falls back to using a generic pretty printer. So the worst that can happen is that your changes trigger some harmless reformatting of your code.\n\nIf you really don't care about preserving the original formatting, you can access the pretty printer directly:\n```js\nvar output = recast.prettyPrint(ast, { tabWidth: 2 }).code;\n```\nAnd here's the exact `output`:\n```js\nvar add = function(b, a) {\n  return a + b;\n}\n```\nNote that the weird formatting was discarded, yet the behavior and abstract structure of the code remain the same.\n\nSource maps\n---\n\nOne of the coolest consequences of tracking and reusing original source code during reprinting is that it's pretty easy to generate a high-resolution mapping between the original code and the generated code—completely automatically!\n\nWith every `slice`, `join`, and re-`indent`-ation, the reprinting process maintains exact knowledge of which character sequences are original, and where in the original source they came from.\n\nAll you have to think about is how to manipulate the syntax tree, and Recast will give you a [source map](https://github.com/mozilla/source-map) in exchange for specifying the names of your source file(s) and the desired name of the map:\n```js\nvar result = recast.print(transform(recast.parse(source, {\n  sourceFileName: \"source.js\"\n})), {\n  sourceMapName: \"map.json\"\n});\n    \nconsole.log(result.code); // Resulting string of code.\nconsole.log(result.map); // JSON source map.\n\nvar SourceMapConsumer = require(\"source-map\").SourceMapConsumer;\nvar smc = new SourceMapConsumer(result.map);\nconsole.log(smc.originalPositionFor({\n  line: 3,\n  column: 15\n})); // { source: 'source.js',\n     //   line: 2,\n     //   column: 10,\n     //   name: null }\n```\n\nNote that you are free to mix and match syntax trees parsed from different source files, and the resulting source map will automatically keep track of the separate file origins for you.\n\nNote also that the source maps generated by Recast are character-by-character maps, so meaningful identifier names are not recorded at this time. This approach leads to higher-resolution debugging in modern browsers, at the expense of somewhat larger map sizes. Striking the perfect balance here is an area for future exploration, but such improvements will not require any breaking changes to the interface demonstrated above.\n\nMotivation\n---\n\nThe more code you have, the harder it becomes to make big, sweeping changes quickly and confidently. Even if you trust yourself not to make too many mistakes, and no matter how proficient you are with your text editor, changing tens of thousands of lines of code takes precious, non-refundable time.\n\nIs there a better way? Not always! When a task requires you to alter the semantics of many different pieces of code in subtly different ways, your brain inevitably becomes the bottleneck, and there is little hope of completely automating the process. Your best bet is to plan carefully, buckle down, and get it right the first time. Love it or loathe it, that's the way programming goes sometimes.\n\nWhat I hope to eliminate are the brain-wasting tasks, the tasks that are bottlenecked by keystrokes, the tasks that can be expressed as operations on the _syntactic structure_ of your code. Specifically, my goal is to make it possible for you to run your code through a parser, manipulate the abstract syntax tree directly, subject only to the constraints of your imagination, and then automatically translate those modifications back into source code, without upsetting the formatting of unmodified code.\n\nAnd here's the best part: when you're done running a Recast script, if you're not completely satisfied with the results, blow them away with `git reset --hard`, tweak the script, and just run it again. Change your mind as many times as you like. Instead of typing yourself into a nasty case of [RSI](http://en.wikipedia.org/wiki/Repetitive_strain_injury), gaze upon your new wells of free time and ask yourself: what next?\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git://github.com/benjamn/recast.git"
@@ -3623,33 +3035,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"shift-parser@^5.0.1",
+				"shift-parser@https://registry.npmjs.org/shift-parser/-/shift-parser-5.0.1.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "shift-parser@>=5.0.1 <6.0.0",
 		"_id": "shift-parser@5.0.1",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/shift-parser",
-		"_nodeVersion": "6.0.0",
-		"_npmOperationalInternal": {
-			"host": "packages-16-east.internal.npmjs.com",
-			"tmp": "tmp/shift-parser-5.0.1.tgz_1465606611136_0.9064245035406202"
-		},
-		"_npmUser": {
-			"email": "npm@michael.ficarra.me",
-			"name": "michaelficarra"
-		},
-		"_npmVersion": "3.8.6",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "shift-parser",
-			"raw": "shift-parser@^5.0.1",
-			"rawSpec": "^5.0.1",
+			"raw": "shift-parser@https://registry.npmjs.org/shift-parser/-/shift-parser-5.0.1.tgz",
+			"rawSpec": "https://registry.npmjs.org/shift-parser/-/shift-parser-5.0.1.tgz",
 			"scope": null,
-			"spec": ">=5.0.1 <6.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/shift-parser/-/shift-parser-5.0.1.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -3657,7 +3058,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/shift-parser/-/shift-parser-5.0.1.tgz",
 		"_shasum": "8f6e25b05edfdc47f2d9e1c335f185b42a7834ef",
 		"_shrinkwrap": null,
-		"_spec": "shift-parser@^5.0.1",
+		"_spec": "shift-parser@https://registry.npmjs.org/shift-parser/-/shift-parser-5.0.1.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Shape Security Labs"
@@ -3691,15 +3092,9 @@ webpackJsonp([0],{
 			"traceur": "0.0.91",
 			"uglifyjs": "2.4.10"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "8f6e25b05edfdc47f2d9e1c335f185b42a7834ef",
-			"tarball": "https://registry.npmjs.org/shift-parser/-/shift-parser-5.0.1.tgz"
-		},
 		"files": [
 			"dist"
 		],
-		"gitHead": "2e34679437e5c24abecc03e6d67d4240d3fe0d27",
 		"homepage": "https://github.com/shapesecurity/shift-parser-js",
 		"keywords": [
 			"Shift",
@@ -3718,24 +3113,6 @@ webpackJsonp([0],{
 		],
 		"license": "Apache-2.0",
 		"main": "dist/index.js",
-		"maintainers": [
-			{
-				"email": "ariya.hidayat@gmail.com",
-				"name": "ariya"
-			},
-			{
-				"email": "bakkot@gmail.com",
-				"name": "bakkot"
-			},
-			{
-				"email": "ikarienator@gmail.com",
-				"name": "ikarienator"
-			},
-			{
-				"email": "npm@michael.ficarra.me",
-				"name": "michaelficarra"
-			}
-		],
 		"name": "shift-parser",
 		"optionalDependencies": {},
 		"readme": "ERROR: No README data found!",
@@ -3769,33 +3146,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"traceur@0.0.111",
+				"traceur@https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "traceur@0.0.111",
 		"_id": "traceur@0.0.111",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/traceur",
-		"_nodeVersion": "6.2.1",
-		"_npmOperationalInternal": {
-			"host": "packages-16-east.internal.npmjs.com",
-			"tmp": "tmp/traceur-0.0.111.tgz_1465442611894_0.9058660811278969"
-		},
-		"_npmUser": {
-			"email": "erik.arvidsson@gmail.com",
-			"name": "arv"
-		},
-		"_npmVersion": "3.9.3",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "traceur",
-			"raw": "traceur@0.0.111",
-			"rawSpec": "0.0.111",
+			"raw": "traceur@https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
+			"rawSpec": "https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
 			"scope": null,
-			"spec": "0.0.111",
-			"type": "version"
+			"spec": "https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -3803,7 +3169,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
 		"_shasum": "c04de74d14696c3373427de4fc08ecaf913fc3a1",
 		"_shrinkwrap": null,
-		"_spec": "traceur@0.0.111",
+		"_spec": "traceur@https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Traceur Authors"
@@ -3814,216 +3180,6 @@ webpackJsonp([0],{
 		"bugs": {
 			"url": "https://github.com/google/traceur-compiler/issues"
 		},
-		"contributors": [
-			{
-				"email": "*@chromium.org",
-				"name": "The Chromium Authors"
-			},
-			{
-				"email": "*@google.com",
-				"name": "Google Inc."
-			},
-			{
-				"email": "viktor.kronvall@gmail.com",
-				"name": "Viktor Kronvall"
-			},
-			{
-				"email": "usrbincc@yahoo.com",
-				"name": "Ben Chan"
-			},
-			{
-				"email": "edy.burt@gmail.com",
-				"name": "Eduard Burtescu"
-			},
-			{
-				"email": "peter@peterhallam.com",
-				"name": "Peter Hallam"
-			},
-			{
-				"email": "nschonni@gmail.com",
-				"name": "Nick Schonning"
-			},
-			{
-				"email": "terasaka.k@gmail.com",
-				"name": "Kinya TERASAKA"
-			},
-			{
-				"email": "sean@seanmiddleditch.com",
-				"name": "Sean Middleditch"
-			},
-			{
-				"email": "ross@rhadden.com",
-				"name": "Ross Hadden"
-			},
-			{
-				"email": "stephan.seidt@gmail.com",
-				"name": "Stephan Seidt"
-			},
-			{
-				"email": "mathias@qiwi.be",
-				"name": "Mathias Bynens"
-			},
-			{
-				"email": "tommy.odom@gmail.com",
-				"name": "Tommy Odom"
-			},
-			{
-				"email": "r.w.timmermans@gmail.com",
-				"name": "Rolf Timmermans"
-			},
-			{
-				"email": "tomi.belan@gmail.com",
-				"name": "Tomi Belan"
-			},
-			{
-				"email": "james@lightsofapollo.com",
-				"name": "James Lal"
-			},
-			{
-				"email": "dmt021@gmail.com",
-				"name": "Galimzyanov Dmitry"
-			},
-			{
-				"email": "waldron.rick@gmail.com",
-				"name": "Rick Waldron"
-			},
-			{
-				"email": "amatiasq@gmail.com",
-				"name": "A. Matías Quezada"
-			},
-			{
-				"email": "sday@atlassian.com",
-				"name": "Sam Day"
-			},
-			{
-				"email": "guybedford@gmail.com",
-				"name": "Guy Bedford"
-			},
-			{
-				"email": "jmcriffey@gmail.com",
-				"name": "Jeff McRiffey"
-			},
-			{
-				"email": "m@mariusnita.com",
-				"name": "Marius Nita"
-			},
-			{
-				"email": "fitzgen@mozilla.com",
-				"name": "Nick Fitzgerald"
-			},
-			{
-				"email": "gil@tayar.org",
-				"name": "Gil Tayar"
-			},
-			{
-				"email": "alxandr@alxandr.me",
-				"name": "Aleksander Heintz"
-			},
-			{
-				"email": "ulrikdem@gmail.com",
-				"name": "Ulrik de Muelenaere"
-			},
-			{
-				"email": "nison.mael@gmail.com",
-				"name": "Maël Nison"
-			},
-			{
-				"email": "snnskwtnb@gmail.com",
-				"name": "Shinnosuke Watanabe"
-			},
-			{
-				"email": "terminal2010@gmail.com",
-				"name": "Vyacheslav Shebanov"
-			},
-			{
-				"email": "ultcombo@gmail.com",
-				"name": "Fabrício Matté"
-			},
-			{
-				"email": "ljharb@gmail.com",
-				"name": "Jordan Harband"
-			},
-			{
-				"email": "mciparelli@gmail.com",
-				"name": "Martín Ciparelli"
-			},
-			{
-				"email": "hasather@gmail.com",
-				"name": "David Håsäther"
-			},
-			{
-				"email": "amjad.masad@gmail.com",
-				"name": "Amjad Masad"
-			},
-			{
-				"email": "flannery.peter@ntlworld.com",
-				"name": "Peter Flannery"
-			},
-			{
-				"email": "liubko.qwert@gmail.com",
-				"name": "Liubomyr Mykhalchenko"
-			},
-			{
-				"email": "dmitry.soshnikov@gmail.com",
-				"name": "Dmitry Soshnikov"
-			},
-			{
-				"email": "victor@suumit.com",
-				"name": "Victor Berchet"
-			},
-			{
-				"email": "pselden4@gmail.com",
-				"name": "Paul Selden"
-			},
-			{
-				"email": "contact@svachon.com",
-				"name": "Steven Vachon"
-			},
-			{
-				"email": "denelxan@gmail.com",
-				"name": "Maga D. Zandaqo"
-			},
-			{
-				"email": "valeriy.sorokobatko@gmail.com",
-				"name": "Valeriy Sorokobatko"
-			},
-			{
-				"email": "iwillig@gmail.com",
-				"name": "Ivan Willig"
-			},
-			{
-				"email": "oliverjash@gmail.com",
-				"name": "Oliver Joseph Ash"
-			},
-			{
-				"email": "jeffpalentine@gmail.com",
-				"name": "Chris Truter"
-			},
-			{
-				"email": "marc.nieper@gmail.com",
-				"name": "Marc Nieper-Wißkirchen"
-			},
-			{
-				"email": "me@ro.ger.io",
-				"name": "Rogério Yokomizo"
-			},
-			{
-				"email": "caitpotter88@gmail.com",
-				"name": "Caitlin Potter"
-			},
-			{
-				"email": "srinivasan.sekar1990@gmail.com",
-				"name": "Srinivasan Sekar"
-			},
-			{
-				"email": "jeffshen86@gmail.com",
-				"name": "Jeff Shen"
-			},
-			{
-				"email": "erik.arvidsson@gmail.com",
-				"name": "Erik Arvidsson"
-			}
-		],
 		"dependencies": {
 			"commander": "2.9.x",
 			"glob": "5.0.x",
@@ -4048,11 +3204,6 @@ webpackJsonp([0],{
 			"traceur": "0.0.110",
 			"webcomponents.js": "^0.5.4-1"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "c04de74d14696c3373427de4fc08ecaf913fc3a1",
-			"tarball": "https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz"
-		},
 		"engines": {
 			"node": ">=0.10"
 		},
@@ -4065,7 +3216,6 @@ webpackJsonp([0],{
 			"dist/",
 			"traceur"
 		],
-		"gitHead": "2ddade7061e895b7dddb56ed4b89df310386860b",
 		"homepage": "https://github.com/google/traceur-compiler",
 		"keywords": [
 			"javascript",
@@ -4080,16 +3230,6 @@ webpackJsonp([0],{
 		],
 		"license": "Apache-2.0",
 		"main": "./src/node/api.js",
-		"maintainers": [
-			{
-				"email": "arv@chromium.org",
-				"name": "arv"
-			},
-			{
-				"email": "johnjbarton@johnjbarton.com",
-				"name": "johnjbarton"
-			}
-		],
 		"name": "traceur",
 		"optionalDependencies": {},
 		"readme": "ERROR: No README data found!",
@@ -4157,33 +3297,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babel-core@^5.8.38",
-				"/Users/fkling/git/astexplorer/packages/babel5"
+				"babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
+				"/Users/fkling/git/astexplorer/node_modules/babel5"
 			]
 		],
 		"_from": "babel-core@>=5.8.38 <6.0.0",
 		"_id": "babel-core@5.8.38",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/babel5/babel-core",
-		"_nodeVersion": "5.5.0",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/babel-core-5.8.38.tgz_1458687002807_0.9978649774566293"
-		},
-		"_npmUser": {
-			"email": "sebmck@gmail.com",
-			"name": "sebmck"
-		},
-		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babel-core",
-			"raw": "babel-core@^5.8.38",
-			"rawSpec": "^5.8.38",
+			"raw": "babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
+			"rawSpec": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
 			"scope": null,
-			"spec": ">=5.8.38 <6.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/babel5"
@@ -4191,8 +3320,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
 		"_shasum": "1fcaee79d7e61b750b00b8e54f6dfc9d0af86558",
 		"_shrinkwrap": null,
-		"_spec": "babel-core@^5.8.38",
-		"_where": "/Users/fkling/git/astexplorer/packages/babel5",
+		"_spec": "babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
+		"_where": "/Users/fkling/git/astexplorer/node_modules/babel5",
 		"author": {
 			"email": "sebmck@gmail.com",
 			"name": "Sebastian McKenzie"
@@ -4253,11 +3382,6 @@ webpackJsonp([0],{
 		},
 		"description": "A compiler for writing next generation JavaScript",
 		"devDependencies": {},
-		"directories": {},
-		"dist": {
-			"shasum": "1fcaee79d7e61b750b00b8e54f6dfc9d0af86558",
-			"tarball": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz"
-		},
 		"homepage": "https://babeljs.io/",
 		"keywords": [
 			"6to5",
@@ -4273,32 +3397,6 @@ webpackJsonp([0],{
 			"var"
 		],
 		"license": "MIT",
-		"maintainers": [
-			{
-				"email": "amjad.masad@gmail.com",
-				"name": "amasad"
-			},
-			{
-				"email": "hi@henryzoo.com",
-				"name": "hzoo"
-			},
-			{
-				"email": "npm-public@jessemccarthy.net",
-				"name": "jmm"
-			},
-			{
-				"email": "loganfsmyth@gmail.com",
-				"name": "loganfsmyth"
-			},
-			{
-				"email": "sebmck@gmail.com",
-				"name": "sebmck"
-			},
-			{
-				"email": "me@thejameskyle.com",
-				"name": "thejameskyle"
-			}
-		],
 		"name": "babel-core",
 		"optionalDependencies": {},
 		"readme": "ERROR: No README data found!",
@@ -4342,33 +3440,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babel-core@^6.11.4",
-				"/Users/fkling/git/astexplorer/node_modules/babel-plugin-transform-regenerator"
+				"babel-core@https://registry.npmjs.org/babel-core/-/babel-core-6.13.2.tgz",
+				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "babel-core@>=6.11.4 <7.0.0",
 		"_id": "babel-core@6.13.2",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/babel-core",
-		"_nodeVersion": "5.11.1",
-		"_npmOperationalInternal": {
-			"host": "packages-16-east.internal.npmjs.com",
-			"tmp": "tmp/babel-core-6.13.2.tgz_1470405096180_0.20206776657141745"
-		},
-		"_npmUser": {
-			"email": "hi@henryzoo.com",
-			"name": "hzoo"
-		},
-		"_npmVersion": "3.10.3",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babel-core",
-			"raw": "babel-core@^6.11.4",
-			"rawSpec": "^6.11.4",
+			"raw": "babel-core@https://registry.npmjs.org/babel-core/-/babel-core-6.13.2.tgz",
+			"rawSpec": "https://registry.npmjs.org/babel-core/-/babel-core-6.13.2.tgz",
 			"scope": null,
-			"spec": ">=6.11.4 <7.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/babel-core/-/babel-core-6.13.2.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"#DEV:/",
@@ -4379,8 +3466,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/babel-core/-/babel-core-6.13.2.tgz",
 		"_shasum": "f761e1199361d5a6ed16f93ce801ad50acadb338",
 		"_shrinkwrap": null,
-		"_spec": "babel-core@^6.11.4",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/babel-plugin-transform-regenerator",
+		"_spec": "babel-core@https://registry.npmjs.org/babel-core/-/babel-core-6.13.2.tgz",
+		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "sebmck@gmail.com",
 			"name": "Sebastian McKenzie"
@@ -4414,11 +3501,6 @@ webpackJsonp([0],{
 			"babel-helper-transform-fixture-test-runner": "^6.13.2",
 			"babel-polyfill": "^6.13.0"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "f761e1199361d5a6ed16f93ce801ad50acadb338",
-			"tarball": "https://registry.npmjs.org/babel-core/-/babel-core-6.13.2.tgz"
-		},
 		"homepage": "https://babeljs.io/",
 		"keywords": [
 			"6to5",
@@ -4434,35 +3516,10 @@ webpackJsonp([0],{
 			"var"
 		],
 		"license": "MIT",
-		"maintainers": [
-			{
-				"email": "amjad.masad@gmail.com",
-				"name": "amasad"
-			},
-			{
-				"email": "hi@henryzoo.com",
-				"name": "hzoo"
-			},
-			{
-				"email": "npm-public@jessemccarthy.net",
-				"name": "jmm"
-			},
-			{
-				"email": "loganfsmyth@gmail.com",
-				"name": "loganfsmyth"
-			},
-			{
-				"email": "sebmck@gmail.com",
-				"name": "sebmck"
-			},
-			{
-				"email": "me@thejameskyle.com",
-				"name": "thejameskyle"
-			}
-		],
 		"name": "babel-core",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# babel-core\n\n> Babel compiler core.\n\n## Install\n\n```\n$ npm install babel-core\n```\n\n## Usage\n\n```js\nimport babel from 'babel-core';\n\nconst code = `class Example {}`;\nconst result = babel.transform(code, { /* options */ });\n\nresult.code; // Generated code\nresult.map; // Sourcemap\nresult.ast; // AST\n```\n\nFor more in depth documentation see: http://babeljs.io/docs/usage/api/\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "https://github.com/babel/babel/tree/master/packages/babel-core"
@@ -4503,28 +3560,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"eslint@^1.10.3",
-				"/Users/fkling/git/astexplorer/packages/eslint1"
+				"eslint@https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
+				"/Users/fkling/git/astexplorer/node_modules/eslint1"
 			]
 		],
 		"_from": "eslint@>=1.10.3 <2.0.0",
 		"_id": "eslint@1.10.3",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/eslint1/eslint",
-		"_npmUser": {
-			"email": "nicholas@nczconsulting.com",
-			"name": "nzakas"
-		},
-		"_npmVersion": "1.4.28",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "eslint",
-			"raw": "eslint@^1.10.3",
-			"rawSpec": "^1.10.3",
+			"raw": "eslint@https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
+			"rawSpec": "https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
 			"scope": null,
-			"spec": ">=1.10.3 <2.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/eslint1"
@@ -4532,8 +3583,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
 		"_shasum": "fb19a91b13c158082bbca294b17d979bc8353a0a",
 		"_shrinkwrap": null,
-		"_spec": "eslint@^1.10.3",
-		"_where": "/Users/fkling/git/astexplorer/packages/eslint1",
+		"_spec": "eslint@https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
+		"_where": "/Users/fkling/git/astexplorer/node_modules/eslint1",
 		"author": {
 			"email": "nicholas+npm@nczconsulting.com",
 			"name": "Nicholas C. Zakas"
@@ -4610,11 +3661,6 @@ webpackJsonp([0],{
 			"sinon": "1.17.2",
 			"through": "^2.3.6"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "fb19a91b13c158082bbca294b17d979bc8353a0a",
-			"tarball": "https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz"
-		},
 		"engines": {
 			"node": ">=0.10"
 		},
@@ -4625,7 +3671,6 @@ webpackJsonp([0],{
 			"conf",
 			"lib"
 		],
-		"gitHead": "2436cc6c1816a7890e35dab38e609daee84d7530",
 		"homepage": "http://eslint.org",
 		"keywords": [
 			"ast",
@@ -4636,19 +3681,10 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/api.js",
-		"maintainers": [
-			{
-				"email": "nicholas@nczconsulting.com",
-				"name": "nzakas"
-			},
-			{
-				"email": "ivolodin@gmail.com",
-				"name": "ivolodin"
-			}
-		],
 		"name": "eslint",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "[![NPM version][npm-image]][npm-url]\n[![build status][travis-image]][travis-url]\n[![Test coverage][coveralls-image]][coveralls-url]\n[![Downloads][downloads-image]][downloads-url]\n[![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=282608)](https://www.bountysource.com/trackers/282608-eslint?utm_source=282608&utm_medium=shield&utm_campaign=TRACKER_BADGE)\n[![Join the chat at https://gitter.im/eslint/eslint](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eslint/eslint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\n# ESLint\n\n[Website](http://eslint.org) | [Configuring](http://eslint.org/docs/user-guide/configuring) | [Rules](http://eslint.org/docs/rules/) | [Contributing](http://eslint.org/docs/developer-guide/contributing) | [Twitter](https://twitter.com/geteslint) | [Mailing List](https://groups.google.com/group/eslint)\n\nESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code. In many ways, it is similar to JSLint and JSHint with a few exceptions:\n\n* ESLint uses [Espree](https://github.com/eslint/espree) for JavaScript parsing.\n* ESLint uses an AST to evaluate patterns in code.\n* ESLint is completely pluggable, every single rule is a plugin and you can add more at runtime.\n\n## Installation\n\nYou can install ESLint using npm:\n\n    npm install -g eslint\n\n## Usage\n\nIf it's your first time using ESLint, you should set up a config file using `--init`:\n\n    eslint --init\n\nAfter that, you can run ESLint on any JavaScript file:\n\n    eslint test.js test2.js\n\n## Configuration\n\nAfter running `eslint --init`, you'll have a `.eslintrc` file in your directory. In it, you'll see some rules configured like this:\n\n```json\n{\n    \"rules\": {\n        \"semi\": [2, \"always\"],\n        \"quotes\": [2, \"double\"]\n    }\n}\n```\n\nThe names `\"semi\"` and `\"quotes\"` are the names of [rules](http://eslint.org/docs/rules) in ESLint. The number is the error level of the rule and can be one of the three values:\n\n* `0` - turn the rule off\n* `1` - turn the rule on as a warning (doesn't affect exit code)\n* `2` - turn the rule on as an error (exit code will be 1)\n\nThe three error levels allow you fine-grained control over how ESLint applies rules (for more configuration options and details, see the [configuration docs](http://eslint.org/docs/user-guide/configuring)).\n\n## Sponsors\n\n* Development is sponsored by [Box](https://box.com)\n\n## Team\n\nThese folks keep the project moving and are resources for help:\n\n* Nicholas C. Zakas ([@nzakas](https://github.com/nzakas)) - project lead\n* Ilya Volodin ([@ilyavolodin](https://github.com/ilyavolodin)) - reviewer\n* Brandon Mills ([@btmills](https://github.com/btmills)) - reviewer\n* Gyandeep Singh ([@gyandeeps](https://github.com/gyandeeps)) - reviewer\n* Mathias Schreck ([@lo1tuma](https://github.com/lo1tuma)) - committer\n* Jamund Ferguson ([@xjamundx](https://github.com/xjamundx)) - committer\n* Ian VanSchooten ([@ianvs](https://github.com/ianvs)) - committer\n* Toru Nagashima ([@mysticatea](https://github.com/mysticatea)) - committer\n* Burak Yiğit Kaya ([@byk](https://github.com/byk)) - committer\n* Alberto Rodríguez ([@alberto](https://github.com/alberto)) - committer\n\n## Releases\n\nWe have scheduled releases every two weeks on Friday or Saturday.\n\n## Frequently Asked Questions\n\n### Why don't you like JSHint???\n\nI do like JSHint. And I like Anton and Rick. Neither of those were deciding factors in creating this tool. The fact is that I've had a dire need for a JavaScript tool with pluggable linting rules. I had hoped JSHint would be able to do this, however after chatting with Anton, I found that the planned plugin infrastructure wasn't going to suit my purpose.\n\n### I'm not giving up JSHint for this!\n\nThat's not really a question, but I got it. I'm not trying to convince you that ESLint is better than JSHint. The only thing I know is that ESLint is better than JSHint for what I'm doing. In the off chance you're doing something similar, it might be better for you. Otherwise, keep using JSHint, I'm certainly not going to tell you to stop using it.\n\n### How does ESLint performance compare to JSHint and JSCS?\n\nESLint is slower than JSHint, usually 2-3x slower on a single file. This is because ESLint uses Espree to construct an AST before it can evaluate your code whereas JSHint evaluates your code as it's being parsed. The speed is also based on the number of rules you enable; the more rules you enable, the slower the process.\n\nDespite being slower, we believe that ESLint is fast enough to replace JSHint without causing significant pain.\n\nESLint is faster than JSCS, as ESLint uses a single-pass traversal for analysis whereas JSCS using a querying model.\n\nIf you are using both JSHint and JSCS on your files, then using just ESLint will be faster.\n\n### Is ESLint just linting or does it also check style?\n\nESLint does both traditional linting (looking for problematic patterns) and style checking (enforcement of conventions). You can use it for both.\n\n### What about ECMAScript 6 support?\n\nESLint has full support for ECMAScript 6. By default, this support is off. You can enable ECMAScript 6 support through [configuration](http://eslint.org/docs/user-guide/configuring).\n\n### Does ESLint support JSX?\n\nYes, ESLint natively supports parsing JSX syntax (this must be enabled in [configuration](http://eslint.org/docs/user-guide/configuring).). Please note that supporting JSX syntax *is not* the same as supporting React. React applies specific semantics to JSX syntax that ESLint doesn't recognize. We recommend using [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) if you are using React and want React semantics.\n\n### What about ECMAScript 7/2016 and experimental features?\n\nESLint doesn't natively support experimental ECMAScript language features. You can use [babel-eslint](https://github.com/babel/babel-eslint) to use any option available in Babel.\n\n### Where to ask for help?\n\nJoin our [Mailing List](https://groups.google.com/group/eslint) or [Chatroom](https://gitter.im/eslint/eslint)\n\n\n[npm-image]: https://img.shields.io/npm/v/eslint.svg?style=flat-square\n[npm-url]: https://www.npmjs.com/package/eslint\n[travis-image]: https://img.shields.io/travis/eslint/eslint/master.svg?style=flat-square\n[travis-url]: https://travis-ci.org/eslint/eslint\n[coveralls-image]: https://img.shields.io/coveralls/eslint/eslint/master.svg?style=flat-square\n[coveralls-url]: https://coveralls.io/r/eslint/eslint?branch=master\n[downloads-image]: https://img.shields.io/npm/dm/eslint.svg?style=flat-square\n[downloads-url]: https://www.npmjs.com/package/eslint\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/eslint/eslint.git"
@@ -4699,33 +3735,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"eslint@^2.5.3",
-				"/Users/fkling/git/astexplorer/packages/eslint2"
+				"eslint@https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
+				"/Users/fkling/git/astexplorer/node_modules/eslint2"
 			]
 		],
 		"_from": "eslint@>=2.5.3 <3.0.0",
 		"_id": "eslint@2.13.1",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/eslint2/eslint",
-		"_nodeVersion": "4.4.2",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/eslint-2.13.1.tgz_1466445641361_0.2213528158608824"
-		},
-		"_npmUser": {
-			"email": "nicholas@nczconsulting.com",
-			"name": "nzakas"
-		},
-		"_npmVersion": "2.15.0",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "eslint",
-			"raw": "eslint@^2.5.3",
-			"rawSpec": "^2.5.3",
+			"raw": "eslint@https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
+			"rawSpec": "https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
 			"scope": null,
-			"spec": ">=2.5.3 <3.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/eslint2"
@@ -4733,8 +3758,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
 		"_shasum": "e4cc8fa0f009fb829aaae23855a29360be1f6c11",
 		"_shrinkwrap": null,
-		"_spec": "eslint@^2.5.3",
-		"_where": "/Users/fkling/git/astexplorer/packages/eslint2",
+		"_spec": "eslint@https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
+		"_where": "/Users/fkling/git/astexplorer/node_modules/eslint2",
 		"author": {
 			"email": "nicholas+npm@nczconsulting.com",
 			"name": "Nicholas C. Zakas"
@@ -4815,11 +3840,6 @@ webpackJsonp([0],{
 			"temp": "^0.8.3",
 			"through": "^2.3.6"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "e4cc8fa0f009fb829aaae23855a29360be1f6c11",
-			"tarball": "https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz"
-		},
 		"engines": {
 			"node": ">=0.10"
 		},
@@ -4831,7 +3851,6 @@ webpackJsonp([0],{
 			"lib",
 			"messages"
 		],
-		"gitHead": "031a35614f9353b57c072ba14aff16f930ab6520",
 		"homepage": "http://eslint.org",
 		"keywords": [
 			"ast",
@@ -4842,19 +3861,10 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/api.js",
-		"maintainers": [
-			{
-				"email": "nicholas@nczconsulting.com",
-				"name": "nzakas"
-			},
-			{
-				"email": "ivolodin@gmail.com",
-				"name": "ivolodin"
-			}
-		],
 		"name": "eslint",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "[![NPM version][npm-image]][npm-url]\n[![build status][travis-image]][travis-url]\n[![Build status][appveyor-image]][appveyor-url]\n[![Test coverage][coveralls-image]][coveralls-url]\n[![Downloads][downloads-image]][downloads-url]\n[![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=282608)](https://www.bountysource.com/trackers/282608-eslint?utm_source=282608&utm_medium=shield&utm_campaign=TRACKER_BADGE)\n[![Join the chat at https://gitter.im/eslint/eslint](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eslint/eslint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\n# ESLint\n\n[Website](http://eslint.org) |\n[Configuring](http://eslint.org/docs/user-guide/configuring) |\n[Rules](http://eslint.org/docs/rules/) |\n[Contributing](http://eslint.org/docs/developer-guide/contributing) |\n[Reporting Bugs](http://eslint.org/docs/developer-guide/contributing/reporting-bugs) |\n[Code of Conduct](https://jquery.org/conduct/) |\n[Twitter](https://twitter.com/geteslint) |\n[Mailing List](https://groups.google.com/group/eslint) |\n[Chat Room](https://gitter.im/eslint/eslint)\n\nESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code. In many ways, it is similar to JSLint and JSHint with a few exceptions:\n\n* ESLint uses [Espree](https://github.com/eslint/espree) for JavaScript parsing.\n* ESLint uses an AST to evaluate patterns in code.\n* ESLint is completely pluggable, every single rule is a plugin and you can add more at runtime.\n\n## Installation\n\nYou can install ESLint using npm:\n\n    npm install -g eslint\n\n## Usage\n\nIf it's your first time using ESLint, you should set up a config file using `--init`:\n\n    eslint --init\n\nAfter that, you can run ESLint on any JavaScript file:\n\n    eslint test.js test2.js\n\n**Note:** `eslint --init` is intended for setting up and configuring ESLint on a per-project basis and will perform a local installation of ESLint and its plugins in the directory in which it is run. If you prefer using a global installation of ESLint, any plugins used in your configuration must also be installed globally.\n\n## Configuration\n\nAfter running `eslint --init`, you'll have a `.eslintrc` file in your directory. In it, you'll see some rules configured like this:\n\n```json\n{\n    \"rules\": {\n        \"semi\": [\"error\", \"always\"],\n        \"quotes\": [\"error\", \"double\"]\n    }\n}\n```\n\nThe names `\"semi\"` and `\"quotes\"` are the names of [rules](http://eslint.org/docs/rules) in ESLint. The first value is the error level of the rule and can be one of these values:\n\n* `\"off\"` or `0` - turn the rule off\n* `\"warn\"` or `1` - turn the rule on as a warning (doesn't affect exit code)\n* `\"error\"` or `2` - turn the rule on as an error (exit code will be 1)\n\nThe three error levels allow you fine-grained control over how ESLint applies rules (for more configuration options and details, see the [configuration docs](http://eslint.org/docs/user-guide/configuring)).\n\n## Sponsors\n\n* Development is sponsored by [Box](https://box.com)\n* Site search ([eslint.org](http://eslint.org)) is sponsored by [Algolia](https://www.algolia.com)\n\n## Team\n\nThese folks keep the project moving and are resources for help:\n\n* Nicholas C. Zakas ([@nzakas](https://github.com/nzakas)) - project lead\n* Ilya Volodin ([@ilyavolodin](https://github.com/ilyavolodin)) - reviewer\n* Brandon Mills ([@btmills](https://github.com/btmills)) - reviewer\n* Gyandeep Singh ([@gyandeeps](https://github.com/gyandeeps)) - reviewer\n* Toru Nagashima ([@mysticatea](https://github.com/mysticatea)) - reviewer\n* Alberto Rodríguez ([@alberto](https://github.com/alberto)) - reviewer\n* Mathias Schreck ([@lo1tuma](https://github.com/lo1tuma)) - committer\n* Jamund Ferguson ([@xjamundx](https://github.com/xjamundx)) - committer\n* Ian VanSchooten ([@ianvs](https://github.com/ianvs)) - committer\n* Burak Yiğit Kaya ([@byk](https://github.com/byk)) - committer\n* Kai Cataldo ([@kaicataldo](https://github.com/kaicataldo)) - committer\n* Michael Ficarra ([@michaelficarra](https://github.com/michaelficarra)) - committer\n* Mark Pedrotti ([@pedrottimark](https://github.com/pedrottimark)) - committer\n* Oleg Gaidarenko ([@markelog](https://github.com/markelog)) - committer\n* Mike Sherov [@mikesherov](https://github.com/mikesherov)) - committer\n* Henry Zhu ([@hzoo](https://github.com/hzoo)) - committer\n* Marat Dulin ([@mdevils](https://github.com/mdevils)) - committer\n* Alexej Yaroshevich ([@zxqfox](https://github.com/zxqfox)) - committer\n\n## Releases\n\nWe have scheduled releases every two weeks on Friday or Saturday.\n\n## Filing Issues\n\nBefore filing an issue, please be sure to read the guidelines for what you're reporting:\n\n* [Bug Report](http://eslint.org/docs/developer-guide/contributing/reporting-bugs)\n* [Propose a New Rule](http://eslint.org/docs/developer-guide/contributing/new-rules)\n* [Proposing a Rule Change](http://eslint.org/docs/developer-guide/contributing/rule-changes)\n* [Request a Change](http://eslint.org/docs/developer-guide/contributing/changes)\n\n## Semantic Versioning Policy\n\nESLint follows [semantic versioning](http://semver.org). However, due to the nature of ESLint as a code quality tool, it's not always clear when a minor or major version bump occurs. To help clarify this for everyone, we've defined the following semantic versioning policy for ESLint:\n\n* Patch release (intended to not break your lint build)\n    * A bug fix in a rule that results in ESLint reporting fewer errors.\n    * A bug fix to the CLI or core (including formatters).\n    * Improvements to documentation.\n    * Non-user-facing changes such as refactoring code, adding, deleting, or modifying tests, and increasing test coverage.\n    * Re-releasing after a failed release (i.e., publishing a release that doesn't work for anyone).\n* Minor release (might break your lint build)\n    * A bug fix in a rule that results in ESLint reporting more errors.\n    * A new rule is created.\n    * A new option to an existing rule is created.\n    * An existing rule is deprecated.\n    * A new CLI capability is created.\n    * New capabilities to the public API are added (new classes, new methods, new arguments to existing methods, etc.).\n    * A new formatter is created.\n* Major release (likely to break your lint build)\n    * `eslint:recommended` is updated.\n    * An existing rule is removed.\n    * An existing formatter is removed.\n    * Part of the public API is removed or changed in an incompatible way.\n\n## Frequently Asked Questions\n\n### How is ESLint different from JSHint?\n\nThe most significant difference is that ESlint has pluggable linting rules. That means you can use the rules it comes with, or you can extend it with rules created by others or by yourself!\n\n### How does ESLint performance compare to JSHint?\n\nESLint is slower than JSHint, usually 2-3x slower on a single file. This is because ESLint uses Espree to construct an AST before it can evaluate your code whereas JSHint evaluates your code as it's being parsed. The speed is also based on the number of rules you enable; the more rules you enable, the slower the process.\n\nDespite being slower, we believe that ESLint is fast enough to replace JSHint without causing significant pain.\n\n### I heard ESLint is going to replace JSCS?\n\nYes. Since we are solving the same problems, ESLint and JSCS teams have decided to join forces and work together in the development of ESLint instead of competing with each other. You can read more about this in both [ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint) and [JSCS](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.u76sx334n) announcements.\n\n### So, should I stop using JSCS and start using ESLint?\n\nNot yet. We are still working to smooth the transition. You can see our progress [here](https://github.com/eslint/eslint/milestones/JSCS%20Compatibility). We’ll announce when all of the changes necessary to support JSCS users in ESLint are complete and will start encouraging JSCS users to switch to ESLint at that time. Meanwhile, we recommend you to upgrade to JSCS 3.0 and provide feedback to the team.\n\n### Is ESLint just linting or does it also check style?\n\nESLint does both traditional linting (looking for problematic patterns) and style checking (enforcement of conventions). You can use it for both.\n\n### Does ESLint support JSX?\n\nYes, ESLint natively supports parsing JSX syntax (this must be enabled in [configuration](http://eslint.org/docs/user-guide/configuring).). Please note that supporting JSX syntax *is not* the same as supporting React. React applies specific semantics to JSX syntax that ESLint doesn't recognize. We recommend using [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) if you are using React and want React semantics.\n\n### What about ECMAScript 6 support?\n\nESLint has full support for ECMAScript 6. By default, this support is off. You can enable ECMAScript 6 support through [configuration](http://eslint.org/docs/user-guide/configuring).\n\n### What about experimental features?\n\nESLint doesn't natively support experimental ECMAScript language features. You can use [babel-eslint](https://github.com/babel/babel-eslint) to use any option available in Babel.\n\nOnce a language feature has been adopted into the ECMAScript standard, we will accept\nissues and pull requests related to the new feature, subject to our [contributing\nguidelines](http://eslint.org/docs/developer-guide/contributing). Until then, please use\nthe appropriate parser and plugin(s) for your experimental feature.\n\n### Where to ask for help?\n\nJoin our [Mailing List](https://groups.google.com/group/eslint) or [Chatroom](https://gitter.im/eslint/eslint)\n\n\n[npm-image]: https://img.shields.io/npm/v/eslint.svg?style=flat-square\n[npm-url]: https://www.npmjs.com/package/eslint\n[travis-image]: https://img.shields.io/travis/eslint/eslint/master.svg?style=flat-square\n[travis-url]: https://travis-ci.org/eslint/eslint\n[appveyor-image]: https://ci.appveyor.com/api/projects/status/iwxmiobcvbw3b0av/branch/master?svg=true\n[appveyor-url]: https://ci.appveyor.com/project/nzakas/eslint/branch/master\n[coveralls-image]: https://img.shields.io/coveralls/eslint/eslint/master.svg?style=flat-square\n[coveralls-url]: https://coveralls.io/r/eslint/eslint?branch=master\n[downloads-image]: https://img.shields.io/npm/dm/eslint.svg?style=flat-square\n[downloads-url]: https://www.npmjs.com/package/eslint\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/eslint/eslint.git"
@@ -4919,25 +3929,14 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"jscodeshift@^0.3",
+				"jscodeshift@https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "jscodeshift@>=0.3.0 <0.4.0",
 		"_id": "jscodeshift@0.3.27",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/jscodeshift",
-		"_nodeVersion": "5.12.0",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/jscodeshift-0.3.27.tgz_1469833067237_0.09810599707998335"
-		},
-		"_npmUser": {
-			"email": "felix.kling@gmx.net",
-			"name": "fkling"
-		},
-		"_npmVersion": "3.8.6",
 		"_phantomChildren": {
 			"babel-plugin-constant-folding": "1.0.1",
 			"babel-plugin-dead-code-elimination": "1.0.2",
@@ -4983,11 +3982,11 @@ webpackJsonp([0],{
 		},
 		"_requested": {
 			"name": "jscodeshift",
-			"raw": "jscodeshift@^0.3",
-			"rawSpec": "^0.3",
+			"raw": "jscodeshift@https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
+			"rawSpec": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
 			"scope": null,
-			"spec": ">=0.3.0 <0.4.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -4995,7 +3994,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
 		"_shasum": "a5ecab3329e2fe8debfbc3d5994409cb33238adc",
 		"_shrinkwrap": null,
-		"_spec": "jscodeshift@^0.3",
+		"_spec": "jscodeshift@https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Felix Kling"
@@ -5031,15 +4030,9 @@ webpackJsonp([0],{
 			"jest-cli": "^12.0.0",
 			"mkdirp": "^0.5.1"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "a5ecab3329e2fe8debfbc3d5994409cb33238adc",
-			"tarball": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz"
-		},
 		"engines": {
 			"node": ">=4"
 		},
-		"gitHead": "d4ec75956d8d05421df6e3abe05645370da0f91a",
 		"homepage": "https://github.com/facebook/jscodeshift#readme",
 		"jest": {
 			"testPathDirs": [
@@ -5057,15 +4050,10 @@ webpackJsonp([0],{
 		],
 		"license": "BSD-3-Clause",
 		"main": "index.js",
-		"maintainers": [
-			{
-				"email": "felix.kling@gmx.net",
-				"name": "fkling"
-			}
-		],
 		"name": "jscodeshift",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "# jscodeshift [![Build Status](https://travis-ci.org/facebook/jscodeshift.svg?branch=master)](https://travis-ci.org/facebook/jscodeshift)\n\njscodeshift is a toolkit for running codemods over multiple JS files.\nIt provides:\n\n- A runner, which executes the provided transform for each file passed to it.\n  It also outputs a summary of how many files have (not) been transformed.\n- A wrapper around [recast][], providing a different API.  Recast is an\n  AST-to-AST transform tool and also tries to preserve the style of original code\n  as much as possible.\n\n## Install\n\nGet jscodeshift from [npm][]:\n\n```\n$ npm install -g jscodeshift\n```\n\nThis will install the runner as `jscodeshift`.\n\n## Usage (CLI)\n\nThe CLI provides the following options:\n\n```text\n$ jscodeshift --help\n\nUsage: jscodeshift <path>... [options]\n\npath     Files or directory to transform\n\nOptions:\n   -t FILE, --transform FILE   Path to the transform file. Can be either a local path or url  [./transform.js]\n   -c, --cpus                  (all by default) Determines the number of processes started.\n   -v, --verbose               Show more information about the transform process  [0]\n   -d, --dry                   Dry run (no changes are made to files)\n   -p, --print                 Print output, useful for development\n   --babel                     Apply Babel to transform files  [true]\n   --extensions                File extensions the transform file should be applied to  [js]\n   --ignore-pattern            Ignore files that match a provided glob expression\n   --ignore-config FILE        Ignore files if they match patterns sourced from a configuration file (e.g., a .gitignore)\n   --run-in-band               Run serially in the current process  [false]\n   -s, --silent                No output  [false]\n   --parser                    The parser to use for parsing your source files (babel | babylon | flow)  [babel]\n   --version                   print version and exit\n```\n\nThis passes the source of all passed through the transform module specified\nwith `-t` or `--transform` (defaults to `transform.js` in the current\ndirectory). The next section explains the structure of the transform module.\n\n## Transform module\n\nThe transform is simply a module that exports a function of the form:\n\n```js\nmodule.exports = function(fileInfo, api, options) {\n  // transform `fileInfo.source` here\n  // ...\n  // return changed source\n  return source;\n};\n```\n\n### Arguments\n\n#### `fileInfo`\n\nHolds information about the currently processed file.\n\nProperty    | Description\n------------|------------\npath        | File path\nsource      | File content\n\n#### `api`\n\nThis object exposes the `jscodeshift` library and helper functions from the\nrunner.\n\nProperty    | Description\n------------|------------\njscodeshift | A reference to the jscodeshift library\nstats       | A function to collect statistics during `--dry` runs\n\n`jscodeshift` is a reference to the wrapper around recast and provides a\njQuery-like API to navigate and transform the AST. Here is a quick example,\na more detailed description can be found below.\n\n```js\n/**\n * This replaces every occurence of variable \"foo\".\n */\nmodule.exports = function(fileInfo, api) {\n  return api.jscodeshift(fileInfo.source)\n    .findVariableDeclarators('foo')\n    .renameTo('bar')\n    .toSource();\n}\n```\n\n**Note:** This api is exposed for convenience, but you don't have to use it.\nYou can use any tool to modify the source.\n\n`stats` is a function that only works when the `--dry` options is set. It accepts\na string, and will simply count how often it was called with that value.\n\nAt the end, the CLI will report those values. This can be useful while\ndeveloping the transform, e.g. to find out how often a certain construct\nappears in the source(s).\n\n#### `options`\n\nContains all options that have been passed to runner. This allows you to pass\nadditional options to the transform. For example, if the CLI is called with\n\n```\n$ jscodeshift -t myTransforms fileA fileB --foo=bar\n```\n\n`options` would contain `{foo: 'bar'}`. jscodeshift uses [nomnom][] to parse\ncommand line options.\n\n### Return value\n\nThe return value of the function determines the status of the transformation:\n\n- If a string is returned and it is different from passed source, the\n  transform is considered to be successful.\n- If a string is returned but it's the same as the source, the transform\n  is considered to be unsuccessful.\n- If nothing is returned, the file is not supposed to be transformed (which is\n  ok).\n\nThe CLI provides a summary of the transformation at the end. You can get more\ndetailed information by setting the `-v` option to `1` or `2`.\n\nYou can collect even more stats via the `stats` function as explained above.\n\n### Parser\n\nThe transform can let jscodeshift know with which parser to parse the source \nfiles (and features like templates).\n\nTo do that, the transform module can export `parser`, which can either be one \nof the strings `\"babel\"`, `\"babylon\"`, or `\"flow\"`, or it can be a parser \nobject that is compatible with with recast.\n\nFor example:\n\n```js\nmodule.exports.parser = 'flow'; // use the flow parser\n// or\nmodule.exports.parser = {\n  parse: function(source) {\n    // return estree compatible AST\n  },\n};\n```\n\n### Example output\n\n```text\n$ jscodeshift -t myTransform.js src\nProcessing 10 files...\nSpawning 2 workers with 5 files each...\nAll workers done.\nResults: 0 errors 2 unmodified 3 skipped 5 ok\n```\n\n## The jscodeshift API\n\nAs already mentioned, jscodeshift also provides a wrapper around [recast][].\nIn order to properly use the jscodeshift API, one has to understand the basic\nbuilding blocks of recast (and ASTs) as well.\n\n### Core Concepts\n\n#### AST nodes\n\nAn AST node is a plain JavaScript object with a specific set of fields, in\naccordance with the [Mozilla Parser API][]. The primary way to identify nodes\nis via their `type`.\n\nFor example, string literals are represented via `Literal` nodes, which\nhave the structure\n\n```js\n// \"foo\"\n{\n  type: 'Literal',\n  value: 'foo',\n  raw: '\"foo\"'\n}\n```\n\nIt's OK to not know the structure of every AST node type.\nThe [(esprima) AST explorer][ast-explorer] is an online tool to inspect the AST\nfor a given piece of JS code.\n\n#### Path objects\n\nRecast itself relies heavily on [ast-types][] which defines methods to traverse\nthe AST, access node fields and build new nodes. ast-types wraps every AST node\ninto a *path object*. Paths contain meta-information and helper methods to\nprocess AST nodes.\n\nFor example, the child-parent relationship between two nodes is not explicitly\ndefined. Given a plain AST node, it is not possible to traverse the tree *up*.\nGiven a path object however, the parent can be traversed to via `path.parent`.\n\nFor more information about the path object API, please have a look at\n[ast-types][].\n\n#### Builders\n\nTo make creating AST nodes a bit simpler and \"safer\", ast-types defines a couple\nof *builder methods*, which are also exposed on `jscodeshift`.\n\nFor example, the following creates an AST equivalent to `foo(bar)`:\n\n```js\n// inside a module transform\nvar j = jscodeshift;\n// foo(bar);\nvar ast = j.callExpression(\n  j.identifier('foo'),\n  [j.identifier('bar')]\n);\n```\n\nThe signature of each builder function is best learned by having a look at the\n[definition files](https://github.com/benjamn/ast-types/blob/master/def/).\n\n### Collections and Traversal\n\nIn order to transform the AST, you have to traverse it and find the nodes that\nneed to be changed. jscodeshift is built around the idea of **collections** of\npaths and thus provides a different way of processing an AST than recast or\nast-types.\n\nA collection has methods to process the nodes inside a collection, often\nresulting in a new collection. This results in a fluent interface, which can\nmake the transform more readable.\n\nCollections are \"typed\" which means that the type of a collection is the\n\"lowest\" type all AST nodes in the collection have in common. That means you\ncannot call a method for a `FunctionExpression` collection on an `Identifier`\ncollection.\n\nHere is an example of how one would find/traverse all `Identifier` nodes with\njscodeshift and with recast:\n\n```js\n// recast\nvar ast = recast.parse(src);\nrecast.visit(ast, {\n  visitIdentifier: function(path) {\n    // do something with path\n    return false;\n  }\n});\n\n// jscodeshift\njscodeshift(src)\n  .find(jscodeshift.Identifier)\n  .forEach(function(path) {\n    // do something with path\n  });\n```\n\nTo learn about the provided methods, have a look at the\n[Collection.js](src/Collection.js) and its [extensions](src/collections/).\n\n### Extensibility\n\njscodeshift provides an API to extend collections. By moving common operators\ninto helper functions (which can be stored separately in other modules), a\ntransform can be made more readable.\n\nThere are two types of extensions: generic extensions and type-specific\nextensions. **Generic extensions** are applicable to all collections. As such,\nthey typically don't access specific node data, but rather traverse the AST from\nthe nodes in the collection. **Type-specific** extensions work only on specific\nnode types and are not callable on differently typed collections.\n\n#### Examples\n\n```js\n// Adding a method to all Identifiers\njscodeshift.registerMethods({\n\tlogNames: function() {\n\t\treturn this.forEach(function(path) {\n\t\t\tconsole.log(path.node.name);\n\t\t});\n\t}\n}, jscodeshift.Identifier);\n\n// Adding a method to all collections\njscodeshift.registerMethods({\n\tfindIdentifiers: function() {\n\t\treturn this.find(jscodeshift.Identifier);\n\t}\n});\n\njscodeshift(ast).findIdentifiers().logNames();\njscodeshift(ast).logNames(); // error, unless `ast` only consists of Identifier nodes\n```\n\n### Passing options to [recast]\n\nYou may want to change some of the output settings (like setting `'` instead of `\"`).\nThis can be done by passing config options to [recast].\n\n```js\n.toSource({quote: 'single'}); // sets strings to use single quotes in transformed code.\n```\n\nYou can also pass options to recast's `parse` method by passing an object to \njscodeshift as second argument:\n\n```js\njscodeshift(source, {...})\n```\n\nMore on config options [here](https://github.com/benjamn/recast/blob/52a7ec3eaaa37e78436841ed8afc948033a86252/lib/options.js#L61)\n\n### Unit Testing\n\njscodeshift comes with a simple utility to allow easy unit testing with [Jest](https://facebook.github.io/jest/), without having to write a lot of boilerplate code. This utility makes some assumptions in order to reduce the amount of configuration required:\n\n - The test is located in a subdirectory under the directory the transform itself is located in (eg. `__tests__`)\n - Test fixtures are located in a `__testfixtures__` directory\n\nThis results in a directory structure like this:\n```\n/MyTransform.js\n/__tests__/MyTransform-test.js\n/__testfixtures__/MyTransform.input.js\n/__testfixtures__/MyTransform.output.js\n```\n\nTo define a test, use `defineTest` from the `testUtils` module:\n\n```js\njest.autoMockOff();\nconst defineTest = require('jscodeshift/dist/testUtils').defineTest;\ndefineTest(__dirname, 'MyTransform');\n```\n\nAn alternate fixture filename can be provided as the fourth argument to `defineTest`. This also means that multiple test fixtures can be provided:\n```js\ndefineTest(__dirname, 'MyTransform', null, 'FirstFixture');\ndefineTest(__dirname, 'MyTransform', null, 'SecondFixture');\n```\nThis will run two tests: One for `__testfixtures__/FirstFixture.input.js` and one for `__testfixtures__/SecondFixture.input.js`\n\n\nA simple example is bundled in the [sample directory](sample).\n\n\n### Example Codemods\n\n- [react-codemod](https://github.com/reactjs/react-codemod) - React codemod scripts to update React APIs.\n- [js-codemod](https://github.com/cpojer/js-codemod/) - Codemod scripts to transform code to next generation JS.\n- [js-transforms](https://github.com/jhgg/js-transforms) - Some documented codemod experiments to help you learn.\n\n### Recipes\n\n- [Retain leading comment(s) in file when replacing/removing first statement](recipes/retain-first-comment.md)\n\n### Support\n\n* Discord - [#codemod](https://discordapp.com/channels/102860784329052160/103748721107292160) on [Reactiflux](http://www.reactiflux.com/)\n\n[npm]: https://www.npmjs.com/\n[Mozilla Parser API]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API\n[recast]: https://github.com/benjamn/recast\n[ast-types]: https://github.com/benjamn/ast-types\n[ast-explorer]: http://astexplorer.net/\n[nomnom]: https://www.npmjs.com/package/nomnom\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/facebook/jscodeshift.git"
@@ -5093,33 +4081,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"typescript@^1.7.5",
+				"typescript@https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "typescript@>=1.7.5 <2.0.0",
 		"_id": "typescript@1.8.10",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/typescript",
-		"_nodeVersion": "5.9.0",
-		"_npmOperationalInternal": {
-			"host": "packages-12-west.internal.npmjs.com",
-			"tmp": "tmp/typescript-1.8.10.tgz_1460493736776_0.9304528103675693"
-		},
-		"_npmUser": {
-			"email": "typescript@microsoft.com",
-			"name": "typescript"
-		},
-		"_npmVersion": "2.14.2",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "typescript",
-			"raw": "typescript@^1.7.5",
-			"rawSpec": "^1.7.5",
+			"raw": "typescript@https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
+			"rawSpec": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
 			"scope": null,
-			"spec": ">=1.7.5 <2.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -5127,7 +4104,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
 		"_shasum": "b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e",
 		"_shrinkwrap": null,
-		"_spec": "typescript@^1.7.5",
+		"_spec": "typescript@https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Microsoft Corp."
@@ -5158,15 +4135,9 @@ webpackJsonp([0],{
 			"tslint": "next",
 			"typescript": "next"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e",
-			"tarball": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz"
-		},
 		"engines": {
 			"node": ">=0.8.0"
 		},
-		"gitHead": "794c57478ec2a44ee15fb3e245a4c5d2d1612375",
 		"homepage": "http://typescriptlang.org/",
 		"keywords": [
 			"TypeScript",
@@ -5177,15 +4148,10 @@ webpackJsonp([0],{
 		],
 		"license": "Apache-2.0",
 		"main": "./lib/typescript.js",
-		"maintainers": [
-			{
-				"email": "typescript@microsoft.com",
-				"name": "typescript"
-			}
-		],
 		"name": "typescript",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "[![Build Status](https://travis-ci.org/Microsoft/TypeScript.svg?branch=master)](https://travis-ci.org/Microsoft/TypeScript)\r\n[![npm version](https://badge.fury.io/js/typescript.svg)](https://www.npmjs.com/package/typescript)\r\n[![Downloads](https://img.shields.io/npm/dm/TypeScript.svg)](https://www.npmjs.com/package/typescript)\r\n\r\n# TypeScript\r\n\r\n[![Join the chat at https://gitter.im/Microsoft/TypeScript](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Microsoft/TypeScript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\r\n\r\n[TypeScript](http://www.typescriptlang.org/) is a language for application-scale JavaScript. TypeScript adds optional types, classes, and modules to JavaScript. TypeScript supports tools for large-scale JavaScript applications for any browser, for any host, on any OS. TypeScript compiles to readable, standards-based JavaScript. Try it out at the [playground](http://www.typescriptlang.org/Playground), and stay up to date via [our blog](http://blogs.msdn.com/typescript) and [Twitter account](https://twitter.com/typescriptlang).\r\n\r\n## Installing\r\n\r\nFor the latest stable version:\r\n\r\n```\r\nnpm install -g typescript\r\n```\r\n\r\nFor our nightly builds:\r\n\r\n```\r\nnpm install -g typescript@next\r\n```\r\n\r\n## Contribute\r\n\r\nThere are many ways to [contribute](https://github.com/Microsoft/TypeScript/blob/master/CONTRIBUTING.md) to TypeScript.\r\n* [Submit bugs](https://github.com/Microsoft/TypeScript/issues) and help us verify fixes as they are checked in.\r\n* Review the [source code changes](https://github.com/Microsoft/TypeScript/pulls).\r\n* Engage with other TypeScript users and developers on [StackOverflow](http://stackoverflow.com/questions/tagged/typescript). \r\n* Join the [#typescript](http://twitter.com/#!/search/realtime/%23typescript) discussion on Twitter.\r\n* [Contribute bug fixes](https://github.com/Microsoft/TypeScript/blob/master/CONTRIBUTING.md).\r\n* Read the language specification ([docx](https://github.com/Microsoft/TypeScript/blob/master/doc/TypeScript%20Language%20Specification.docx?raw=true), [pdf](https://github.com/Microsoft/TypeScript/blob/master/doc/TypeScript%20Language%20Specification.pdf?raw=true), [md](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md)).\r\n\r\n\r\n## Documentation\r\n\r\n*  [Quick tutorial](http://www.typescriptlang.org/Tutorial)\r\n*  [Programming handbook](http://www.typescriptlang.org/Handbook)\r\n*  [Language specification](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md)\r\n*  [Homepage](http://www.typescriptlang.org/)\r\n\r\n## Building\r\n\r\nIn order to build the TypeScript compiler, ensure that you have [Git](http://git-scm.com/downloads) and [Node.js](http://nodejs.org/) installed.\r\n\r\nClone a copy of the repo:\r\n\r\n```\r\ngit clone https://github.com/Microsoft/TypeScript.git\r\n```\r\n\r\nChange to the TypeScript directory:\r\n\r\n```\r\ncd TypeScript\r\n```\r\n\r\nInstall Jake tools and dev dependencies:\r\n\r\n```\r\nnpm install -g jake\r\nnpm install\r\n```\r\n\r\nUse one of the following to build and test:\r\n\r\n```\r\njake local            # Build the compiler into built/local \r\njake clean            # Delete the built compiler \r\njake LKG              # Replace the last known good with the built one.\r\n                      # Bootstrapping step to be executed when the built compiler reaches a stable state.\r\njake tests            # Build the test infrastructure using the built compiler. \r\njake runtests         # Run tests using the built compiler and test infrastructure. \r\n                      # You can override the host or specify a test for this command. \r\n                      # Use host=<hostName> or tests=<testPath>. \r\njake runtests-browser # Runs the tests using the built run.js file. Syntax is jake runtests. Optional\r\n                        parameters 'host=', 'tests=[regex], reporter=[list|spec|json|<more>]'.\r\njake baseline-accept  # This replaces the baseline test results with the results obtained from jake runtests.\r\njake lint             # Runs tslint on the TypeScript source.\r\njake -T               # List the above commands. \r\n```\r\n\r\n\r\n## Usage\r\n\r\n```shell\r\nnode built/local/tsc.js hello.ts\r\n```\r\n\r\n\r\n## Roadmap\r\n\r\nFor details on our planned features and future direction please refer to our [roadmap](https://github.com/Microsoft/TypeScript/wiki/Roadmap).\r\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/Microsoft/TypeScript.git"
@@ -5313,28 +4279,22 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"webidl2@^2.0.11",
+				"webidl2@https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "webidl2@>=2.0.11 <3.0.0",
 		"_id": "webidl2@2.0.11",
 		"_inCache": true,
-		"_installable": true,
 		"_location": "/webidl2",
-		"_npmUser": {
-			"email": "robin@berjon.com",
-			"name": "robin.berjon"
-		},
-		"_npmVersion": "1.4.28",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "webidl2",
-			"raw": "webidl2@^2.0.11",
-			"rawSpec": "^2.0.11",
+			"raw": "webidl2@https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
+			"rawSpec": "https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
 			"scope": null,
-			"spec": ">=2.0.11 <3.0.0",
-			"type": "range"
+			"spec": "https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
+			"type": "remote"
 		},
 		"_requiredBy": [
 			"/"
@@ -5342,7 +4302,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
 		"_shasum": "788ba6daad0a14e20fc396b860296a07b55b8a17",
 		"_shrinkwrap": null,
-		"_spec": "webidl2@^2.0.11",
+		"_spec": "webidl2@https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "robin@berjon.com",
@@ -5361,24 +4321,13 @@ webpackJsonp([0],{
 			"mocha": "2.2.5",
 			"underscore": "1.8.3"
 		},
-		"directories": {},
-		"dist": {
-			"shasum": "788ba6daad0a14e20fc396b860296a07b55b8a17",
-			"tarball": "https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz"
-		},
-		"gitHead": "bd216bcd5596d60734450adc938155deab1e1a80",
-		"homepage": "https://github.com/darobin/webidl2.js",
+		"homepage": "https://github.com/darobin/webidl2.js#readme",
 		"license": "MIT",
 		"main": "index",
-		"maintainers": [
-			{
-				"email": "robin@berjon.com",
-				"name": "robin.berjon"
-			}
-		],
 		"name": "webidl2",
 		"optionalDependencies": {},
-		"readme": "ERROR: No README data found!",
+		"readme": "\n# WebIDL 2\n\n[![NPM version](https://badge.fury.io/js/webidl2.png)](http://badge.fury.io/js/webidl2)\n\nPurpose\n=======\n\nThis is a parser for the [WebIDL](http://dev.w3.org/2006/webapi/WebIDL/) language. If\nyou don't know what that is, then you probably don't need it. It is meant to be used\nboth in Node and in the browser (the parser likely works in other JS environments, but\nnot the test suite).\n\nWhat of v1?\n-----------\nThere was a previous incarnation of this project. I had written it in the most quick\nand dirty manner that was handy because I required it as a dependency in an experiment.\nAs these things tend to happen, some people started using that, which then had to be\nmaintained. But since it was not built on solid foundations, it was painful to keep\nup to date with the specification, which is a bit of a moving target.\n\nSo I started from scratch. Compared to the previous version (which used a parser generator)\nthis one is about 6x less code (which translates to 4x smaller minified or 2x smaller \nminizipped) and 4x faster. The test suite is reasonably complete (95% coverage), much more\nthan previously. This version is up to date with WebIDL, rather than a couple years' behind.\nIt also has *far* better error reporting.\n\nThe AST you get from parsing is very similar to the one you got in v1, but some adjustments \nhave been made in order to be more systematic, and to map better to what's actually in the spec \nnow. If you used v1, you will need to tweak your code but the result ought to be simpler and\nyou ought to be able to be a fair bit less defensive against irregularities in the way \ninformation is represented.\n\nInstallation\n============\n\nJust the usual. For Node:\n\n    npm install webidl2\n    \nIn the browser:\n\n    <script src='webidl2.js'></script>\n\nDocumentation\n=============\n\nThe API to WebIDL2 is trivial: you parse a string of WebIDL and it returns a syntax tree.\n\nParsing\n-------\nIn Node, that happens with:\n\n    var WebIDL2 = require(\"webidl2\");\n    var tree = WebIDL2.parse(\"string of WebIDL\");\n\nIn the browser:\n\n    <script src='webidl2.js'></script>\n    <script>\n      var tree = WebIDL2.parse(\"string of WebIDL\");\n    </script>\n\nAdvanced Parsing\n----------------\n\n`parse()` can optionally accept a second parameter, an options object, which can be used to\nmodify parsing behavior.\n\nThe following options are recognized:\n```javascript\n{\n    allowNestedTypedefs: false # \n}\n```\nAnd their meanings are as follows:\n\n* `allowNestedTypedefs`: Boolean indicating whether the parser should accept `typedef`s as valid members of `interface`s. This is non-standard syntax and therefore the default is `false`.\n\nErrors\n------\nWhen there is a syntax error in the WebIDL, it throws an exception object with the following\nproperties:\n\n* `message`: the error message\n* `line`: the line at which the error occurred.\n* `input`: a short peek at the text at the point where the error happened\n* `tokens`: the five tokens at the point of error, as understood by the tokeniser\n  (this is the same content as `input`, but seen from the tokeniser's point of view)\n\nThe exception also has a `toString()` method that hopefully should produce a decent\nerror message.\n\nAST (Abstract Syntax Tree)\n--------------------------\nThe `parse()` method returns a tree object representing the parse tree of the IDL.\nComment and white space are not represented in the AST.\n\nThe root of this object is always an array of definitions (where definitions are\nany of interfaces, exceptions, callbacks, etc. — anything that can occur at the root\nof the IDL).\n\n### IDL Type\n\nThis structure is used in many other places (operation return types, argument types, etc.).\nIt captures a WebIDL type with a number of options. Types look like this and are typically\nattached to a field called `idlType`:\n\n    {\n        \"sequence\": false,\n        \"generic\": null,\n        \"nullable\": false,\n        \"array\": false,\n        \"union\": false,\n        \"idlType\": \"void\"\n    }\n\nWhere the fields are as follows:\n\n* `sequence`: Boolean indicating whether this is a sequence or not. Deprecated. Use\n  `generic` instead.\n* `generic`: String indicating the generic type (e.g. \"Promise\", \"sequence\"). `null`\n  otherwise.\n* `nullable`: Boolean indicating whether this is nullable or not.\n* `array`: Either `false` to indicate that it is not an array, or a number for the level of\n  array nesting.\n* `union`: Boolean indicating whether this is a union type or not.\n* `idlType`: Can be different things depending on context. In most cases, this will just\n  be a string with the type name. But the reason this field isn't called \"typeName\" is\n  because it can take more complex values. If the type is a union, then this contains an\n  array of the types it unites. If it is a generic type, it contains the IDL type\n  description for the type in the sequence, the eventual value of the promise, etc.\n\n#### Interactions between `nullable` and `array`\n\nA more complex data model for our AST would likely represent `Foo[][][]` as a series of\nnested types four levels deep with three anonymous array types eventually containing a \n`Foo` type. But experience shows that such structures are cumbersome to use, and so we\nhave a simpler model in which the depth of the array is specified with the `array` field.\n\nThis is all fine and well, and in the vast majority of cases is actually simpler. But it\ndoes run afoul of cases in which it is necessary to distinguish between `Foo[][][]?`,\n`Foo?[][][]`, `Foo[][]?[]`, or even `Foo?[]?[]?[]?`.\n\nFor this, when a type is an array type an additional `nullableArray` field is made available\nthat captures which of the arrays contain nullable elements. It contains booleans that are\ntrue if the given array depth contains nullable elements, and false otherwise (mapping that to\nthe syntax, and item is true if there is a `?` preceding the `[]`). These examples ought to\nclarify the model:\n\n    Foo[][][]?\n        -> nullable: true\n        -> nullableArray: [false, false, false]\n    Foo?[][][]\n        -> nullable: false\n        -> nullableArray: [true, false, false]\n    Foo[][]?[]\n        -> nullable: false\n        -> nullableArray: [false, false, true]\n    Foo?[]?[]?[]?\n        -> nullable: true\n        -> nullableArray: [true, true, true]\n\nOf particular importance, please note that the overall type is only `nullable` if there is\na `?` at the end.\n\n### Interface\nInterfaces look like this:\n\n    {\n        \"type\": \"interface\",\n        \"name\": \"Animal\",\n        \"partial\": false,\n        \"members\": [...],\n        \"inheritance\": null,\n        \"extAttrs\": [...]\n    },\n    {\n        \"type\": \"interface\",\n        \"name\": \"Human\",\n        \"partial\": false,\n        \"members\": [...],\n        \"inheritance\": \"Animal\",\n        \"extAttrs\": [...]\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"interface\".\n* `name`: The name of the interface\n* `partial`: A boolean indicating whether it's a partial interface.\n* `members`: An array of interface members (attributes, operations, etc.). Empty if there are none.\n* `inheritance`: A string giving the name of an interface this one inherits from, `null` otherwise.\n  **NOTE**: In v1 this was an array, but multiple inheritance is no longer supported so this didn't make\n  sense.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Callback Interfaces\n\nThese are captured by the same structure as [Interfaces](#interface) except that\ntheir `type` field is \"callback interface\".\n\n### Callback\n\nA callback looks like this:\n\n  {\n      \"type\": \"callback\",\n      \"name\": \"AsyncOperationCallback\",\n      \"idlType\": {\n          \"sequence\": false,\n          \"generic\": null,\n          \"nullable\": false,\n          \"array\": false,\n          \"union\": false,\n          \"idlType\": \"void\"\n      },\n      \"arguments\": [...],\n      \"extAttrs\": []\n  }\n\nThe fields are as follows:\n\n* `type`: Always \"callback\".\n* `name`: The name of the callback.\n* `idlType`: An [IDL Type](#idl-type) describing what the callback returns.\n* `arguments`: A list of [arguments](#arguments), as in function paramters.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Dictionary\n\nA dictionary looks like this:\n\n    {\n        \"type\": \"dictionary\",\n        \"name\": \"PaintOptions\",\n        \"partial\": false,\n        \"members\": [\n            {\n                \"type\": \"field\",\n                \"name\": \"fillPattern\",\n                \"required\": false,\n                \"idlType\": {\n                    \"sequence\": false,\n                    \"generic\": null,\n                    \"nullable\": true,\n                    \"array\": false,\n                    \"union\": false,\n                    \"idlType\": \"DOMString\"\n                },\n                \"extAttrs\": [],\n                \"default\": {\n                    \"type\": \"string\",\n                    \"value\": \"black\"\n                }\n            }\n        ],\n        \"inheritance\": null,\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"dictionary\".\n* `name`: The dictionary name.\n* `partial`: Boolean indicating whether it's a partial dictionary.\n* `members`: An array of members (see below).\n* `inheritance`: A string indicating which dictionary is being inherited from, `null` otherwise.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\nAll the members are fields as follows:\n\n* `type`: Always \"field\".\n* `name`: The name of the field.\n* `required`: Boolean indicating whether this is a [required](https://heycam.github.io/webidl/#required-dictionary-member) field.\n* `idlType`: An [IDL Type](#idl-type) describing what field's type.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n* `default`: A [default value](#default-and-const-values), absent if there is none.\n\n### Exception\n\nAn exception looks like this:\n\n    {\n        \"type\": \"exception\",\n        \"name\": \"HierarchyRequestError\",\n        \"members\": [\n            {\n                \"type\": \"field\",\n                \"name\": \"code\",\n                \"idlType\": {\n                    \"sequence\": false,\n                    \"generic\": null,\n                    \"nullable\": false,\n                    \"array\": false,\n                    \"union\": false,\n                    \"idlType\": \"unsigned short\"\n                },\n                \"extAttrs\": []\n            }\n        ],\n        \"inheritance\": \"DOMException\",\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"exception\".\n* `name`: The exception name.\n* `members`: An array of members (constants or fields, where fields are described below).\n* `inheritance`: A string indicating which exception is being inherited from, `null` otherwise.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\nMembers that aren't [constants](#constants) have the following fields:\n\n* `type`: Always \"field\".\n* `name`: The field's name.\n* `idlType`: An [IDL Type](#idl-type) describing what field's type.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Enum\n\nAn enum looks like this:\n\n    {\n        \"type\": \"enum\",\n        \"name\": \"MealType\",\n        \"values\": [\n            \"rice\",\n            \"noodles\",\n            \"other\"\n        ],\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"enum\".\n* `name`: The enum's name.\n* `value`: An array of values (strings).\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Typedef\n\nA typedef looks like this:\n\n    {\n        \"type\": \"typedef\",\n        \"typeExtAttrs\": [],\n        \"idlType\": {\n            \"sequence\": true,\n            \"generic\": \"sequence\",\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": {\n                \"sequence\": false,\n                \"generic\": null,\n                \"nullable\": false,\n                \"array\": false,\n                \"union\": false,\n                \"idlType\": \"Point\"\n            }\n        },\n        \"name\": \"PointSequence\",\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"typedef\".\n* `name`: The typedef's name.\n* `idlType`: An [IDL Type](#idl-type) describing what typedef's type.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n* `typeExtAttrs`: A list of [extended attributes](#extended-attributes) that apply to the \ntype rather than to the typedef as a whole.\n\n### Implements\n\nAn implements definition looks like this:\n\n    {\n        \"type\": \"implements\",\n        \"target\": \"Node\",\n        \"implements\": \"EventTarget\",\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"implements\".\n* `target`: The interface that implements another.\n* `implements`: The interface that is being implemented by the target.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Operation Member\n\nAn operation looks like this:\n\n    {\n        \"type\": \"operation\",\n        \"getter\": false,\n        \"setter\": false,\n        \"creator\": false,\n        \"deleter\": false,\n        \"legacycaller\": false,\n        \"static\": false,\n        \"stringifier\": false,\n        \"idlType\": {\n            \"sequence\": false,\n            \"generic\": null,\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": \"void\"\n        },\n        \"name\": \"intersection\",\n        \"arguments\": [\n            {\n                \"optional\": false,\n                \"variadic\": true,\n                \"extAttrs\": [],\n                \"idlType\": {\n                    \"sequence\": false,\n                    \"generic\": null,\n                    \"nullable\": false,\n                    \"array\": false,\n                    \"union\": false,\n                    \"idlType\": \"long\"\n                },\n                \"name\": \"ints\"\n            }\n        ],\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"operation\".\n* `getter`: True if a getter operation.\n* `setter`: True if a setter operation.\n* `creator`: True if a creator operation.\n* `deleter`: True if a deleter operation.\n* `legacycaller`: True if a legacycaller operation.\n* `static`: True if a static operation.\n* `stringifier`: True if a stringifier operation.\n* `idlType`: An [IDL Type](#idl-type) of what the operation returns. If a stringifier, may be absent.\n* `name`: The name of the operation. If a stringifier, may be `null`.\n* `arguments`: An array of [arguments](#arguments) for the operation.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Attribute Member\n\nAn attribute member looks like this:\n\n    {\n        \"type\": \"attribute\",\n        \"static\": false,\n        \"stringifier\": false,\n        \"inherit\": false,\n        \"readonly\": false,\n        \"idlType\": {\n            \"sequence\": false,\n            \"generic\": null,\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": \"RegExp\"\n        },\n        \"name\": \"regexp\",\n        \"extAttrs\": []\n    }\n    \nThe fields are as follows:\n\n* `type`: Always \"attribute\".\n* `name`: The attribute's name.\n* `static`: True if it's a static attribute.\n* `stringifier`: True if it's a stringifier attribute.\n* `inherit`: True if it's an inherit attribute.\n* `readonly`: True if it's a read-only attribute.\n* `idlType`: An [IDL Type](#idl-type) for the attribute.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Constant Member\n\nA constant member looks like this:\n\n    {\n        \"type\": \"const\",\n        \"nullable\": false,\n        \"idlType\": \"boolean\",\n        \"name\": \"DEBUG\",\n        \"value\": {\n            \"type\": \"boolean\",\n            \"value\": false\n        },\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"const\".\n* `nullable`: Whether its type is nullable.\n* `idlType`: The type of the constant (a simple type, the type name).\n* `name`: The name of the constant.\n* `value`: The constant value as described by [Const Values](#default-and-const-values)\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Serializer Member\n\nSerializers come in many shapes, which are best understood by looking at the\nexamples below that map the IDL to the produced AST.\n\n    // serializer;\n    {\n        \"type\": \"serializer\",\n        \"extAttrs\": []\n    }\n\n    // serializer DOMString serialize();\n    {\n        \"type\": \"serializer\",\n        \"idlType\": {\n            \"sequence\": false,\n            \"generic\": null,\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": \"DOMString\"\n        },\n        \"operation\": {\n            \"name\": \"serialize\",\n            \"arguments\": []\n        },\n        \"extAttrs\": []\n    }\n\n    // serializer = { from, to, amount, description };\n    {\n        \"type\": \"serializer\",\n        \"patternMap\": true,\n        \"names\": [\n            \"from\",\n            \"to\",\n            \"amount\",\n            \"description\"\n        ],\n        \"extAttrs\": []\n    }\n\n    // serializer = number;\n    {\n        \"type\": \"serializer\",\n        \"name\": \"number\",\n        \"extAttrs\": []\n    }\n\n    // serializer = [ name, number ];\n    {\n        \"type\": \"serializer\",\n        \"patternList\": true,\n        \"names\": [\n            \"name\",\n            \"number\"\n        ],\n        \"extAttrs\": []\n    }\n\nThe common fields are as follows:\n\n* `type`: Always \"serializer\".\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\nFor a simple serializer, that's all there is. If the serializer is an operation, it will\nhave:\n\n* `idlType`: An [IDL Type](#idl-type) describing what the serializer returns.\n* `operation`: An object with the following fields:\n    * `name`: The name of the operation.\n    * `arguments`: An array of [arguments](#arguments) for the operation.\n\nIf the serializer is a pattern map:\n\n* `patternMap`: Always true.\n* `names`: An array of names in the pattern map.\n\nIf the serializer is a pattern list:\n\n* `patternList`: Always true.\n* `names`: An array of names in the pattern list.\n\nFinally, if the serializer is a named serializer:\n\n* `name`: The serializer's name.\n\n### Iterator Member\n\nIterator members look like this\n\n    {\n        \"type\": \"iterator\",\n        \"getter\": false,\n        \"setter\": false,\n        \"creator\": false,\n        \"deleter\": false,\n        \"legacycaller\": false,\n        \"static\": false,\n        \"stringifier\": false,\n        \"idlType\": {\n            \"sequence\": false,\n            \"generic\": null,\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": \"Session2\"\n        },\n        \"iteratorObject\": \"SessionIterator\",\n        \"extAttrs\": []\n    }\n\n* `type`: Always \"iterator\".\n* `iteratorObject`: The string on the right-hand side; absent if there isn't one.\n* the rest: same as on [operations](#operation-member).\n\n### Arguments\n\nThe arguments (e.g. for an operation) look like this:\n\n    \"arguments\": [\n        {\n            \"optional\": false,\n            \"variadic\": true,\n            \"extAttrs\": [],\n            \"idlType\": {\n                \"sequence\": false,\n                \"generic\": null,\n                \"nullable\": false,\n                \"array\": false,\n                \"union\": false,\n                \"idlType\": \"long\"\n            },\n            \"name\": \"ints\"\n        }\n    ]\n\nThe fields are as follows:\n\n* `optional`: True if the argument is optional.\n* `variadic`: True if the argument is variadic.\n* `idlType`: An [IDL Type](#idl-type) describing the type of the argument.\n* `name`: The argument's name.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Extended Attributes\n\nExtended attributes are arrays of items that look like this:\n\n    \"extAttrs\": [\n        {\n            \"name\": \"TreatNullAs\",\n            \"arguments\": null,\n            \"rhs\": {\n                \"type\": \"identifier\",\n                \"value\": \"EmptyString\"\n            }\n        }\n    ]\n\nThe fields are as follows:\n\n* `name`: The extended attribute's name.\n* `arguments`: If the extended attribute takes arguments (e.g. `[Foo()]`) or if\n  its right-hand side does (e.g. `[NamedConstructor=Name(DOMString blah)]`) they\n  are listed here. Note that an empty arguments list will produce an empty array,\n  whereas the lack thereof will yield a `null`. If there is an `rhs` field then\n  they are the right-hand side's arguments, otherwise they apply to the extended\n  attribute directly.\n* `rhs`: If there is a right-hand side, this will capture its `type` (which can be\n  \"identifier\" or \"identifier-list\") and its `value`.\n* `typePair`: If the extended attribute is a `MapClass` this will capture the\n  map's key type and value type respectively.\n\n### Default and Const Values\n\nDictionary fields and operation arguments can take default values, and constants take\nvalues, all of which have the following fields:\n\n* `type`: One of string, number, boolean, null, Infinity, NaN, or sequence.\n\nFor string, number, boolean, and sequence:\n\n* `value`: The value of the given type. For sequence, the only possible value is `[]`.\n\nFor Infinity:\n\n* `negative`: Boolean indicating whether this is negative Infinity or not.\n\n### `iterable<>`, `legacyiterable<>`, `maplike<>`, `setlike<>` declarations\n\nThese appear as members of interfaces that look like this:\n\n        {\n            \"type\": \"maplike\", // or \"legacyiterable\" / \"iterable\" / \"setlike\"\n            \"idlType\": /* One or two types */,\n            \"readonly\": false, // only for maplike and setlike\n            \"extAttrs\": []\n        }\n\nThe fields are as follows:\n\n* `type`: Always one of \"iterable\", \"legacyiterable\", \"maplike\" or \"setlike\".\n* `idlType`: An [IDL Type](#idl-type) (or an array of two types) representing the declared type arguments.\n* `readonly`: Whether the maplike or setlike is declared as read only.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n\nTesting\n=======\n\nIn order to run the tests you need to ensure that the widlproc submodule inside `test` is\ninitialised and up to date:\n\n    git submodule init\n    git submodule update\n\nRunning\n-------\nThe test runs with mocha and expect.js. Normally, running mocha in the root directory\nshould be enough once you're set up.\n\nCoverage\n--------\nCurrent test coverage, as documented in `coverage.html`, is 95%. You can run your own\ncoverage analysis with:\n\n    jscoverage lib lib-cov\n    \nThat will create the lib-cov directory with instrumented code; the test suite knows\nto use that if needed. You can then run the tests with:\n\n    JSCOV=1 mocha --reporter html-cov > coverage.html\n\nNote that I've been getting weirdly overescaped results from the html-cov reporter,\nso you might wish to try this instead:\n\n    JSCOV=1 mocha  --reporter html-cov | sed \"s/&lt;/</g\" | sed \"s/&gt;/>/g\" | sed \"s/&quot;/\\\"/g\" > coverage.html\n\nBrowser tests\n-------------\nIn order to test in the browser, get inside `test/web` and run `make-web-tests.js`. This\nwill generate a `browser-tests.html` file that you can open in a browser. As of this\nwriting tests pass in the latest Firefox, Chrome, Opera, and Safari. Testing on IE\nand older versions will happen progressively.\n\nTODO\n====\n\n* add some tests to address coverage limitations\n* add a push API for processors that need to process things like comments\n",
+		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
 			"url": "git://github.com/darobin/webidl2.js.git"
