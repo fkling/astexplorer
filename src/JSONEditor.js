@@ -29,7 +29,7 @@ export default class Editor extends React.Component {
     this._CMHandlers = [];
     this._subscriptions = [];
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
-      this.refs.container.getDOMNode(),
+      this.refs.container,
       {
         value: this.props.value,
         mode: {name: 'javascript', json: true},

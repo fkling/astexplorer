@@ -3,7 +3,7 @@ import React from 'react';
 
 import stringify from 'json-stringify-safe';
 
-export default class JSON {
+export default class JSON extends React.Component {
   render() {
     return (
       <JSONEditor
