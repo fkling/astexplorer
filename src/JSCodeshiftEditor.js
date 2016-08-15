@@ -106,7 +106,7 @@ export default class JSCodeshiftEditor extends React.Component {
     this._unbindHandlers();
     this._markerRange = null;
     this._mark = null;
-    let container = this.refs.container.getDOMNode();
+    let container = this.refs.container;
     container.removeChild(container.children[0]);
     this.codeMirror = null;
   }

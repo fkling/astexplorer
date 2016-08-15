@@ -113,6 +113,7 @@ export function* watchCategoryChange() {
     const parser = getParserForCategory(category);
 
     yield put(batchActions([
+      actions.hideTransformer(),
       actions.setWorkbenchState({
         parser,
         parserSettings: getParserSettingsForParser(parser),
