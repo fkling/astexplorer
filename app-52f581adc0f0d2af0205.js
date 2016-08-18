@@ -1732,30 +1732,41 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"parse5@https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
+				"parse5@2.2.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "parse5@>=2.0.0 <3.0.0",
-		"_id": "parse5@2.1.5",
+		"_from": "parse5@2.2.0",
+		"_id": "parse5@2.2.0",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/parse5",
+		"_nodeVersion": "5.4.1",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/parse5-2.2.0.tgz_1470915407245_0.07531618792563677"
+		},
+		"_npmUser": {
+			"email": "ifaaan@gmail.com",
+			"name": "inikulin"
+		},
+		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "parse5",
-			"raw": "parse5@https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
-			"rawSpec": "https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
+			"raw": "parse5@2.2.0",
+			"rawSpec": "2.2.0",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
-			"type": "remote"
+			"spec": "2.2.0",
+			"type": "version"
 		},
 		"_requiredBy": [
 			"/"
 		],
-		"_resolved": "https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
-		"_shasum": "7a8677ade25ddac04237905f7be54645572dcf05",
+		"_resolved": "https://registry.npmjs.org/parse5/-/parse5-2.2.0.tgz",
+		"_shasum": "e2378b541d552047cb3abc5bd2f2d05a1ae36170",
 		"_shrinkwrap": null,
-		"_spec": "parse5@https://registry.npmjs.org/parse5/-/parse5-2.1.5.tgz",
+		"_spec": "parse5@2.2.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "ifaaan@gmail.com",
@@ -1797,19 +1808,25 @@ webpackJsonp([0],{
 			"gulp-benchmark": "^1.1.1",
 			"gulp-concat": "^2.6.0",
 			"gulp-download": "0.0.1",
-			"gulp-eslint": "^1.0.0",
+			"gulp-eslint": "^2.0.0",
 			"gulp-insert": "^0.5.0",
-			"gulp-install": "^0.5.0",
+			"gulp-install": "^0.6.0",
 			"gulp-jsdoc-to-markdown": "^1.1.1",
 			"gulp-mocha": "^2.1.3",
 			"gulp-rename": "^1.2.2",
 			"promise": "^7.0.4",
-			"publish-please": "^1.1.0",
+			"publish-please": "^2.2.0",
 			"through2": "^2.0.0"
+		},
+		"directories": {},
+		"dist": {
+			"shasum": "e2378b541d552047cb3abc5bd2f2d05a1ae36170",
+			"tarball": "https://registry.npmjs.org/parse5/-/parse5-2.2.0.tgz"
 		},
 		"files": [
 			"lib"
 		],
+		"gitHead": "6f9b2a311e4dc1f210ec439412ae6125ed05d631",
 		"homepage": "https://github.com/inikulin/parse5",
 		"keywords": [
 			"html",
@@ -1834,18 +1851,25 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/index.js",
+		"maintainers": [
+			{
+				"email": "ifaaan@gmail.com",
+				"name": "inikulin"
+			}
+		],
 		"name": "parse5",
 		"optionalDependencies": {},
-		"readme": "<p align=\"center\">\n    <a href=\"https://github.com/inikulin/parse5\">\n        <img src=\"https://raw.github.com/inikulin/parse5/master/docs/logo.png\" alt=\"parse5\" />\n    </a>\n</p>\n\n<p align=\"center\">\n<i>WHATWG HTML5 specification-compliant, fast and ready for production HTML parsing/serialization toolset for Node.js</i>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://travis-ci.org/inikulin/parse5\"><img alt=\"Build Status\" src=\"https://api.travis-ci.org/inikulin/parse5.svg\"></a>\n  <a href=\"https://www.npmjs.com/package/parse5\"><img alt=\"NPM Version\" src=\"https://img.shields.io/npm/v/parse5.svg\"></a>\n  <a href=\"https://npmjs.org/package/parse5\"><img alt=\"Downloads\" src=\"http://img.shields.io/npm/dm/parse5.svg\"></a>\n  <a href=\"https://npmjs.org/package/parse5\"><img alt=\"Downloads total\" src=\"http://img.shields.io/npm/dt/parse5.svg\"></a>\n</p>\n\n<p align=\"center\">\n<b><i>parse5</i></b> provides nearly everything you may need when dealing with HTML. It's the fastest spec-compliant HTML parser\nfor Node to date. It parses HTML the way the latest version of your browser does. It has proven itself reliable in such projects\nas <a href=\"https://github.com/tmpvar/jsdom\">jsdom</a>, <a href=\"https://github.com/angular/angular\">Angular2</a>, <a href=\"https://www.polymer-project.org\">Polymer</a> and many more.\n</p>\n\n----\n\n<p align=\"center\">\n  <a href=\"https://github.com/inikulin/parse5/wiki/Documentation\">Documentation</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/inikulin/parse5/wiki/Documentation#version-history\">Version history</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"http://astexplorer.net/#/1CHlCXc4n4\">Online playground</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/inikulin/parse5/issues\">Issue tracker</a>\n</p>\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git://github.com/inikulin/parse5.git"
 		},
 		"scripts": {
+			"prepublish": "publish-please guard",
+			"publish-please": "publish-please",
 			"test": "gulp test"
 		},
-		"version": "2.1.5"
+		"version": "2.2.0"
 	};
 
 /***/ },
@@ -2413,21 +2437,21 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babylon@https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
+				"babylon@https://registry.npmjs.org/babylon/-/babylon-6.9.0.tgz",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "babylon@>=6.0.18 <7.0.0",
-		"_id": "babylon@6.8.4",
+		"_id": "babylon@6.9.0",
 		"_inCache": true,
 		"_location": "/babylon",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babylon",
-			"raw": "babylon@https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
-			"rawSpec": "https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
+			"raw": "babylon@https://registry.npmjs.org/babylon/-/babylon-6.9.0.tgz",
+			"rawSpec": "https://registry.npmjs.org/babylon/-/babylon-6.9.0.tgz",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
+			"spec": "https://registry.npmjs.org/babylon/-/babylon-6.9.0.tgz",
 			"type": "remote"
 		},
 		"_requiredBy": [
@@ -2440,10 +2464,10 @@ webpackJsonp([0],{
 			"/esformatter-parser",
 			"/jscodeshift"
 		],
-		"_resolved": "https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
-		"_shasum": "097306b8dabae95159225cf29b3ea55912053180",
+		"_resolved": "https://registry.npmjs.org/babylon/-/babylon-6.9.0.tgz",
+		"_shasum": "d840d52e44cbb168c11a98bf0282293ab27f7d53",
 		"_shrinkwrap": null,
-		"_spec": "babylon@https://registry.npmjs.org/babylon/-/babylon-6.8.4.tgz",
+		"_spec": "babylon@https://registry.npmjs.org/babylon/-/babylon-6.9.0.tgz",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "sebmck@gmail.com",
@@ -2460,16 +2484,20 @@ webpackJsonp([0],{
 		},
 		"description": "A JavaScript parser",
 		"devDependencies": {
-			"ava": "^0.15.2",
+			"ava": "^0.16.0",
 			"babel-cli": "^6.0.0",
 			"babel-helper-fixtures": "^6.6.5",
+			"babel-plugin-istanbul": "^2.0.0",
 			"babel-plugin-transform-class-properties": "^6.6.0",
 			"babel-plugin-transform-runtime": "^6.0.0",
 			"babel-preset-es2015": "^6.0.0",
 			"babel-preset-react": "^6.0.0",
 			"babel-preset-stage-0": "^6.5.0",
+			"codecov": "^1.0.1",
+			"cross-env": "^2.0.0",
 			"kcheck": "^2.0.1",
 			"lodash": "^4.6.1",
+			"nyc": "^8.0.0",
 			"unicode-9.0.0": "~0.7.0"
 		},
 		"files": [
@@ -2480,8 +2508,16 @@ webpackJsonp([0],{
 		"license": "MIT",
 		"main": "lib/index.js",
 		"name": "babylon",
+		"nyc": {
+			"include": [
+				"src/*.js",
+				"bin/*.js"
+			],
+			"instrument": false,
+			"sourceMap": false
+		},
 		"optionalDependencies": {},
-		"readme": "<p align=\"center\">\n  <img alt=\"babylon\" src=\"https://raw.githubusercontent.com/babel/logo/master/babylon.png\" width=\"700\">\n</p>\n\n<p align=\"center\">\n  Babylon is a JavaScript parser used in <a href=\"https://github.com/babel/babel\">Babel</a>.\n</p>\n\n<p align=\"center\">\n  <a href=\"https://travis-ci.org/babel/babylon\"><img alt=\"Travis Status\" src=\"https://img.shields.io/travis/babel/babylon/master.svg?style=flat&label=travis\"></a>\n</p>\n\n - ES6 enabled by default.\n - Comment attachment.\n - Support for JSX and Flow.\n - Support for experimental language proposals.\n\n## Credits\n\nHeavily based on [acorn](https://github.com/marijnh/acorn) and [acorn-jsx](https://github.com/RReverser/acorn-jsx),\nthanks to the awesome work of [@RReverser](https://github.com/RReverser) and [@marijnh](https://github.com/marijnh).\n\nSignificant diversions are expected to occur in the future such as streaming, EBNF definitions, sweet.js integration, interspacial parsing and more.\n\n## API\n\n### `babylon.parse(code, [options])`\n\n### Options\n\n- **allowImportExportEverywhere**: By default, `import` and `export`\n  declarations can only appear at a program's top level. Setting this\n  option to `true` allows them anywhere where a statement is allowed.\n\n- **allowReturnOutsideFunction**: By default, a return statement at\n  the top level raises an error. Set this to `true` to accept such\n  code.\n\n- **allowSuperOutsideMethod** TODO\n\n- **sourceType**: Indicate the mode the code should be parsed in. Can be\n  either `\"script\"` or `\"module\"`.\n\n- **sourceFilename**: Correlate output AST nodes with their source filename.  Useful when generating code and source maps from the ASTs of multiple input files.\n\n- **plugins**: Array containing the plugins that you want to enable.\n\n### Output\n\nBabylon generates AST according to [Babel AST format][].\nIt is based on [ESTree spec][] with the following deviations:\n\n- [Literal][] token is replaced with [StringLiteral][], [NumericLiteral][], [BooleanLiteral][], [NullLiteral][], [RegExpLiteral][]\n- [Property][] token is replaced with [ObjectProperty][] and [ObjectMethod][]\n- [MethodDefinition][] is replaced with [ClassMethod][]\n- [Program][] and [BlockStatement][] contain additional `directives` field with [Directive][] and [DirectiveLiteral][]\n- [ClassMethod][], [ObjectProperty][], and [ObjectMethod][] value property's properties in [FunctionExpression][] is coerced/brought into the main method node.\n\nAST for JSX code is based on [Facebook JSX AST][] with the addition of one node type:\n\n- `JSXText`\n\n[Babel AST format]: https://github.com/babel/babylon/blob/master/ast/spec.md\n[ESTree spec]: https://github.com/estree/estree\n\n[Literal]: https://github.com/estree/estree/blob/master/spec.md#literal\n[Property]: https://github.com/estree/estree/blob/master/spec.md#property\n[MethodDefinition]: https://github.com/estree/estree/blob/master/es6.md#methoddefinition\n\n[StringLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#stringliteral\n[NumericLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#numericliteral\n[BooleanLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#booleanliteral\n[NullLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#nullliteral\n[RegExpLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#regexpliteral\n[ObjectProperty]: https://github.com/babel/babylon/blob/master/ast/spec.md#objectproperty\n[ObjectMethod]: https://github.com/babel/babylon/blob/master/ast/spec.md#objectmethod\n[ClassMethod]: https://github.com/babel/babylon/blob/master/ast/spec.md#classmethod\n[Program]: https://github.com/babel/babylon/blob/master/ast/spec.md#programs\n[BlockStatement]: https://github.com/babel/babylon/blob/master/ast/spec.md#blockstatement\n[Directive]: https://github.com/babel/babylon/blob/master/ast/spec.md#directive\n[DirectiveLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#directiveliteral\n[FunctionExpression]: https://github.com/babel/babylon/blob/master/ast/spec.md#functionexpression\n\n[Facebook JSX AST]: https://github.com/facebook/jsx/blob/master/AST.md\n\n### Example\n\n```javascript\nrequire(\"babylon\").parse(\"code\", {\n  // parse in strict mode and allow module declarations\n  sourceType: \"module\",\n\n  plugins: [\n    // enable experimental async functions\n    \"asyncFunctions\",\n\n    // enable jsx and flow syntax\n    \"jsx\",\n    \"flow\"\n  ]\n});\n```\n\n### Plugins\n\n - `jsx`\n - `flow`\n - `asyncFunctions`\n - `classConstructorCall`\n - `doExpressions`\n - `trailingFunctionCommas`\n - `objectRestSpread`\n - `decorators`\n - `classProperties`\n - `exportExtensions`\n - `exponentiationOperator`\n - `asyncGenerators`\n - `functionBind`\n - `functionSent`\n",
+		"readme": "<p align=\"center\">\n  <img alt=\"babylon\" src=\"https://raw.githubusercontent.com/babel/logo/master/babylon.png\" width=\"700\">\n</p>\n\n<p align=\"center\">\n  Babylon is a JavaScript parser used in <a href=\"https://github.com/babel/babel\">Babel</a>.\n</p>\n\n<p align=\"center\">\n  <a href=\"https://travis-ci.org/babel/babylon\"><img alt=\"Travis Status\" src=\"https://img.shields.io/travis/babel/babylon/master.svg?style=flat&label=travis\"></a>\n  <a href=\"https://codecov.io/gh/babel/babylon\"><img alt=\"Codecov Status\" src=\"https://img.shields.io/codecov/c/github/babel/babylon/master.svg?style=flat\"></a>\n</p>\n\n - ES6 enabled by default.\n - Comment attachment.\n - Support for JSX and Flow.\n - Support for experimental language proposals.\n\n## Credits\n\nHeavily based on [acorn](https://github.com/marijnh/acorn) and [acorn-jsx](https://github.com/RReverser/acorn-jsx),\nthanks to the awesome work of [@RReverser](https://github.com/RReverser) and [@marijnh](https://github.com/marijnh).\n\nSignificant diversions are expected to occur in the future such as streaming, EBNF definitions, sweet.js integration, interspacial parsing and more.\n\n## API\n\n### `babylon.parse(code, [options])`\n\n### Options\n\n- **allowImportExportEverywhere**: By default, `import` and `export`\n  declarations can only appear at a program's top level. Setting this\n  option to `true` allows them anywhere where a statement is allowed.\n\n- **allowReturnOutsideFunction**: By default, a return statement at\n  the top level raises an error. Set this to `true` to accept such\n  code.\n\n- **allowSuperOutsideMethod** TODO\n\n- **sourceType**: Indicate the mode the code should be parsed in. Can be\n  either `\"script\"` or `\"module\"`.\n\n- **sourceFilename**: Correlate output AST nodes with their source filename.  Useful when generating code and source maps from the ASTs of multiple input files.\n\n- **plugins**: Array containing the plugins that you want to enable.\n\n### Output\n\nBabylon generates AST according to [Babel AST format][].\nIt is based on [ESTree spec][] with the following deviations:\n\n- [Literal][] token is replaced with [StringLiteral][], [NumericLiteral][], [BooleanLiteral][], [NullLiteral][], [RegExpLiteral][]\n- [Property][] token is replaced with [ObjectProperty][] and [ObjectMethod][]\n- [MethodDefinition][] is replaced with [ClassMethod][]\n- [Program][] and [BlockStatement][] contain additional `directives` field with [Directive][] and [DirectiveLiteral][]\n- [ClassMethod][], [ObjectProperty][], and [ObjectMethod][] value property's properties in [FunctionExpression][] is coerced/brought into the main method node.\n\nAST for JSX code is based on [Facebook JSX AST][] with the addition of one node type:\n\n- `JSXText`\n\n[Babel AST format]: https://github.com/babel/babylon/blob/master/ast/spec.md\n[ESTree spec]: https://github.com/estree/estree\n\n[Literal]: https://github.com/estree/estree/blob/master/spec.md#literal\n[Property]: https://github.com/estree/estree/blob/master/spec.md#property\n[MethodDefinition]: https://github.com/estree/estree/blob/master/es6.md#methoddefinition\n\n[StringLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#stringliteral\n[NumericLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#numericliteral\n[BooleanLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#booleanliteral\n[NullLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#nullliteral\n[RegExpLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#regexpliteral\n[ObjectProperty]: https://github.com/babel/babylon/blob/master/ast/spec.md#objectproperty\n[ObjectMethod]: https://github.com/babel/babylon/blob/master/ast/spec.md#objectmethod\n[ClassMethod]: https://github.com/babel/babylon/blob/master/ast/spec.md#classmethod\n[Program]: https://github.com/babel/babylon/blob/master/ast/spec.md#programs\n[BlockStatement]: https://github.com/babel/babylon/blob/master/ast/spec.md#blockstatement\n[Directive]: https://github.com/babel/babylon/blob/master/ast/spec.md#directive\n[DirectiveLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#directiveliteral\n[FunctionExpression]: https://github.com/babel/babylon/blob/master/ast/spec.md#functionexpression\n\n[Facebook JSX AST]: https://github.com/facebook/jsx/blob/master/AST.md\n\n### Example\n\n```javascript\nrequire(\"babylon\").parse(\"code\", {\n  // parse in strict mode and allow module declarations\n  sourceType: \"module\",\n\n  plugins: [\n    // enable experimental async functions\n    \"asyncFunctions\",\n\n    // enable jsx and flow syntax\n    \"jsx\",\n    \"flow\"\n  ]\n});\n```\n\n### Plugins\n\n - `jsx`\n - `flow`\n - `asyncFunctions`\n - `classConstructorCall`\n - `doExpressions`\n - `trailingFunctionCommas`\n - `objectRestSpread`\n - `decorators`\n - `classProperties`\n - `exportExtensions`\n - `exponentiationOperator`\n - `asyncGenerators`\n - `functionBind`\n - `functionSent`\n",
 		"readmeFilename": "README.md",
 		"repository": {
 			"type": "git",
@@ -2489,11 +2525,15 @@ webpackJsonp([0],{
 		},
 		"scripts": {
 			"build": "babel src --out-dir lib",
+			"coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
 			"lint": "kcheck",
+			"prepublish": "cross-env BABEL_ENV=production npm run build",
+			"preversion": "npm run test",
 			"test": "npm run build && npm run lint && ava test/",
+			"test_cov": "cross-env BABEL_ENV=test npm run build && npm run lint && nyc ava test/",
 			"watch": "babel src --out-dir lib --watch"
 		},
-		"version": "6.8.4"
+		"version": "6.9.0"
 	};
 
 /***/ },
@@ -2941,31 +2981,42 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"recast@https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
+				"recast@0.11.12",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "recast@>=0.11.0 <0.12.0",
-		"_id": "recast@0.11.11",
+		"_from": "recast@0.11.12",
+		"_id": "recast@0.11.12",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/recast",
+		"_nodeVersion": "4.4.7",
+		"_npmOperationalInternal": {
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/recast-0.11.12.tgz_1471294233443_0.7245700098574162"
+		},
+		"_npmUser": {
+			"email": "bn@cs.stanford.edu",
+			"name": "benjamn"
+		},
+		"_npmVersion": "3.10.5",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "recast",
-			"raw": "recast@https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
-			"rawSpec": "https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
+			"raw": "recast@0.11.12",
+			"rawSpec": "0.11.12",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
-			"type": "remote"
+			"spec": "0.11.12",
+			"type": "version"
 		},
 		"_requiredBy": [
 			"/",
 			"/jscodeshift"
 		],
-		"_resolved": "https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
-		"_shasum": "7c4a097387b8865ff3a1122057726874be4b3101",
+		"_resolved": "https://registry.npmjs.org/recast/-/recast-0.11.12.tgz",
+		"_shasum": "a79e4d3f82d5d72a82ee177aeaa791e793bbe5d6",
 		"_shrinkwrap": null,
-		"_spec": "recast@https://registry.npmjs.org/recast/-/recast-0.11.11.tgz",
+		"_spec": "recast@0.11.12",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "bn@cs.stanford.edu",
@@ -2978,7 +3029,7 @@ webpackJsonp([0],{
 			"url": "https://github.com/benjamn/recast/issues"
 		},
 		"dependencies": {
-			"ast-types": "0.8.18",
+			"ast-types": "0.9.0",
 			"esprima": "~2.7.1",
 			"private": "~0.1.5",
 			"source-map": "~0.5.0"
@@ -2989,9 +3040,15 @@ webpackJsonp([0],{
 			"esprima-fb": "^15001.1001.0-dev-harmony-fb",
 			"mocha": "~3.0.1"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "a79e4d3f82d5d72a82ee177aeaa791e793bbe5d6",
+			"tarball": "https://registry.npmjs.org/recast/-/recast-0.11.12.tgz"
+		},
 		"engines": {
 			"node": ">= 0.8"
 		},
+		"gitHead": "127ff651a3d2b728b43d382be65a8932f03d9b58",
 		"homepage": "http://github.com/benjamn/recast",
 		"keywords": [
 			"ast",
@@ -3005,10 +3062,15 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "main.js",
+		"maintainers": [
+			{
+				"email": "bn@cs.stanford.edu",
+				"name": "benjamn"
+			}
+		],
 		"name": "recast",
 		"optionalDependencies": {},
-		"readme": "# recast, _v_. [![Build Status](https://travis-ci.org/benjamn/recast.svg?branch=master)](https://travis-ci.org/benjamn/recast) [![Join the chat at https://gitter.im/benjamn/recast](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/benjamn/recast?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\n1. to give (a metal object) a different form by melting it down and reshaping it.\n1. to form, fashion, or arrange again.\n1. to remodel or reconstruct (a literary work, document, sentence, etc.).\n1. to supply (a theater or opera work) with a new cast.\n\nInstallation\n---\n\nFrom NPM:\n\n    npm install recast\n    \nFrom GitHub:\n\n    cd path/to/node_modules\n    git clone git://github.com/benjamn/recast.git\n    cd recast\n    npm install .\n\nUsage\n---\n\nIn less poetic terms, Recast exposes two essential interfaces, one for parsing JavaScript code (`require(\"recast\").parse`) and the other for reprinting modified syntax trees (`require(\"recast\").print`).\n\nHere's a simple but non-trivial example of how you might use `.parse` and `.print`:\n```js\nvar recast = require(\"recast\");\n\n// Let's turn this function declaration into a variable declaration.\nvar code = [\n    \"function add(a, b) {\",\n    \"  return a +\",\n    \"    // Weird formatting, huh?\",\n    \"    b;\",\n    \"}\"\n].join(\"\\n\");\n\n// Parse the code using an interface similar to require(\"esprima\").parse.\nvar ast = recast.parse(code);\n```\nNow do *whatever* you want to `ast`. Really, anything at all!\n\nSee [ast-types](https://github.com/benjamn/ast-types) (especially the [def/core.js](https://github.com/benjamn/ast-types/blob/master/def/core.js)) module for a thorough overview of the `ast` api.\n```js\n// Grab a reference to the function declaration we just parsed.\nvar add = ast.program.body[0];\n\n// Make sure it's a FunctionDeclaration (optional).\nvar n = recast.types.namedTypes;\nn.FunctionDeclaration.assert(add);\n\n// If you choose to use recast.builders to construct new AST nodes, all builder\n// arguments will be dynamically type-checked against the Mozilla Parser API.\nvar b = recast.types.builders;\n\n// This kind of manipulation should seem familiar if you've used Esprima or the\n// Mozilla Parser API before.\nast.program.body[0] = b.variableDeclaration(\"var\", [\n    b.variableDeclarator(add.id, b.functionExpression(\n        null, // Anonymize the function expression.\n        add.params,\n        add.body\n    ))\n]);\n\n// Just for fun, because addition is commutative:\nadd.params.push(add.params.shift());\n```\nWhen you finish manipulating the AST, let `recast.print` work its magic:\n```js\nvar output = recast.print(ast).code;\n```\nThe `output` string now looks exactly like this, weird formatting and all:\n```js\nvar add = function(b, a) {\n  return a +\n    // Weird formatting, huh?\n    b;\n}\n```\nThe magic of Recast is that it reprints only those parts of the syntax tree that you modify. In other words, the following identity is guaranteed:\n```js\nrecast.print(recast.parse(source)).code === source\n```\nWhenever Recast cannot reprint a modified node using the original source code, it falls back to using a generic pretty printer. So the worst that can happen is that your changes trigger some harmless reformatting of your code.\n\nIf you really don't care about preserving the original formatting, you can access the pretty printer directly:\n```js\nvar output = recast.prettyPrint(ast, { tabWidth: 2 }).code;\n```\nAnd here's the exact `output`:\n```js\nvar add = function(b, a) {\n  return a + b;\n}\n```\nNote that the weird formatting was discarded, yet the behavior and abstract structure of the code remain the same.\n\nSource maps\n---\n\nOne of the coolest consequences of tracking and reusing original source code during reprinting is that it's pretty easy to generate a high-resolution mapping between the original code and the generated code—completely automatically!\n\nWith every `slice`, `join`, and re-`indent`-ation, the reprinting process maintains exact knowledge of which character sequences are original, and where in the original source they came from.\n\nAll you have to think about is how to manipulate the syntax tree, and Recast will give you a [source map](https://github.com/mozilla/source-map) in exchange for specifying the names of your source file(s) and the desired name of the map:\n```js\nvar result = recast.print(transform(recast.parse(source, {\n  sourceFileName: \"source.js\"\n})), {\n  sourceMapName: \"map.json\"\n});\n    \nconsole.log(result.code); // Resulting string of code.\nconsole.log(result.map); // JSON source map.\n\nvar SourceMapConsumer = require(\"source-map\").SourceMapConsumer;\nvar smc = new SourceMapConsumer(result.map);\nconsole.log(smc.originalPositionFor({\n  line: 3,\n  column: 15\n})); // { source: 'source.js',\n     //   line: 2,\n     //   column: 10,\n     //   name: null }\n```\n\nNote that you are free to mix and match syntax trees parsed from different source files, and the resulting source map will automatically keep track of the separate file origins for you.\n\nNote also that the source maps generated by Recast are character-by-character maps, so meaningful identifier names are not recorded at this time. This approach leads to higher-resolution debugging in modern browsers, at the expense of somewhat larger map sizes. Striking the perfect balance here is an area for future exploration, but such improvements will not require any breaking changes to the interface demonstrated above.\n\nMotivation\n---\n\nThe more code you have, the harder it becomes to make big, sweeping changes quickly and confidently. Even if you trust yourself not to make too many mistakes, and no matter how proficient you are with your text editor, changing tens of thousands of lines of code takes precious, non-refundable time.\n\nIs there a better way? Not always! When a task requires you to alter the semantics of many different pieces of code in subtly different ways, your brain inevitably becomes the bottleneck, and there is little hope of completely automating the process. Your best bet is to plan carefully, buckle down, and get it right the first time. Love it or loathe it, that's the way programming goes sometimes.\n\nWhat I hope to eliminate are the brain-wasting tasks, the tasks that are bottlenecked by keystrokes, the tasks that can be expressed as operations on the _syntactic structure_ of your code. Specifically, my goal is to make it possible for you to run your code through a parser, manipulate the abstract syntax tree directly, subject only to the constraints of your imagination, and then automatically translate those modifications back into source code, without upsetting the formatting of unmodified code.\n\nAnd here's the best part: when you're done running a Recast script, if you're not completely satisfied with the results, blow them away with `git reset --hard`, tweak the script, and just run it again. Change your mind as many times as you like. Instead of typing yourself into a nasty case of [RSI](http://en.wikipedia.org/wiki/Repetitive_strain_injury), gaze upon your new wells of free time and ask yourself: what next?\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git://github.com/benjamn/recast.git"
@@ -3017,7 +3079,7 @@ webpackJsonp([0],{
 			"debug": "node ./node_modules/mocha/bin/mocha --debug-brk --reporter spec",
 			"test": "node ./node_modules/mocha/bin/mocha --reporter spec --full-trace"
 		},
-		"version": "0.11.11"
+		"version": "0.11.12"
 	};
 
 /***/ },
@@ -3929,14 +3991,25 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"jscodeshift@https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
+				"jscodeshift@0.3.28",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "jscodeshift@>=0.3.0 <0.4.0",
-		"_id": "jscodeshift@0.3.27",
+		"_from": "jscodeshift@0.3.28",
+		"_id": "jscodeshift@0.3.28",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/jscodeshift",
+		"_nodeVersion": "5.12.0",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/jscodeshift-0.3.28.tgz_1471278163711_0.24770012288354337"
+		},
+		"_npmUser": {
+			"email": "felix.kling@gmx.net",
+			"name": "fkling"
+		},
+		"_npmVersion": "3.8.6",
 		"_phantomChildren": {
 			"babel-plugin-constant-folding": "1.0.1",
 			"babel-plugin-dead-code-elimination": "1.0.2",
@@ -3982,19 +4055,18 @@ webpackJsonp([0],{
 		},
 		"_requested": {
 			"name": "jscodeshift",
-			"raw": "jscodeshift@https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
-			"rawSpec": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
+			"raw": "jscodeshift@0.3.28",
+			"rawSpec": "0.3.28",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
-			"type": "remote"
+			"spec": "0.3.28",
+			"type": "version"
 		},
 		"_requiredBy": [
 			"/"
 		],
-		"_resolved": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
-		"_shasum": "a5ecab3329e2fe8debfbc3d5994409cb33238adc",
+		"_shasum": "8e87be995ba3c9cba36e83808f22c1ac03f8eb87",
 		"_shrinkwrap": null,
-		"_spec": "jscodeshift@https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.27.tgz",
+		"_spec": "jscodeshift@0.3.28",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Felix Kling"
@@ -4020,7 +4092,7 @@ webpackJsonp([0],{
 			"micromatch": "^2.3.7",
 			"node-dir": "0.1.8",
 			"nomnom": "^1.8.1",
-			"recast": "^0.11.8",
+			"recast": "^0.11.11",
 			"temp": "^0.8.1"
 		},
 		"description": "A toolkit for JavaScript codemods",
@@ -4030,9 +4102,15 @@ webpackJsonp([0],{
 			"jest-cli": "^12.0.0",
 			"mkdirp": "^0.5.1"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "8e87be995ba3c9cba36e83808f22c1ac03f8eb87",
+			"tarball": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.28.tgz"
+		},
 		"engines": {
 			"node": ">=4"
 		},
+		"gitHead": "fe67b121d4c2519c5227a00be3f590e7f7c46d2b",
 		"homepage": "https://github.com/facebook/jscodeshift#readme",
 		"jest": {
 			"testPathDirs": [
@@ -4050,10 +4128,15 @@ webpackJsonp([0],{
 		],
 		"license": "BSD-3-Clause",
 		"main": "index.js",
+		"maintainers": [
+			{
+				"email": "felix.kling@gmx.net",
+				"name": "fkling"
+			}
+		],
 		"name": "jscodeshift",
 		"optionalDependencies": {},
-		"readme": "# jscodeshift [![Build Status](https://travis-ci.org/facebook/jscodeshift.svg?branch=master)](https://travis-ci.org/facebook/jscodeshift)\n\njscodeshift is a toolkit for running codemods over multiple JS files.\nIt provides:\n\n- A runner, which executes the provided transform for each file passed to it.\n  It also outputs a summary of how many files have (not) been transformed.\n- A wrapper around [recast][], providing a different API.  Recast is an\n  AST-to-AST transform tool and also tries to preserve the style of original code\n  as much as possible.\n\n## Install\n\nGet jscodeshift from [npm][]:\n\n```\n$ npm install -g jscodeshift\n```\n\nThis will install the runner as `jscodeshift`.\n\n## Usage (CLI)\n\nThe CLI provides the following options:\n\n```text\n$ jscodeshift --help\n\nUsage: jscodeshift <path>... [options]\n\npath     Files or directory to transform\n\nOptions:\n   -t FILE, --transform FILE   Path to the transform file. Can be either a local path or url  [./transform.js]\n   -c, --cpus                  (all by default) Determines the number of processes started.\n   -v, --verbose               Show more information about the transform process  [0]\n   -d, --dry                   Dry run (no changes are made to files)\n   -p, --print                 Print output, useful for development\n   --babel                     Apply Babel to transform files  [true]\n   --extensions                File extensions the transform file should be applied to  [js]\n   --ignore-pattern            Ignore files that match a provided glob expression\n   --ignore-config FILE        Ignore files if they match patterns sourced from a configuration file (e.g., a .gitignore)\n   --run-in-band               Run serially in the current process  [false]\n   -s, --silent                No output  [false]\n   --parser                    The parser to use for parsing your source files (babel | babylon | flow)  [babel]\n   --version                   print version and exit\n```\n\nThis passes the source of all passed through the transform module specified\nwith `-t` or `--transform` (defaults to `transform.js` in the current\ndirectory). The next section explains the structure of the transform module.\n\n## Transform module\n\nThe transform is simply a module that exports a function of the form:\n\n```js\nmodule.exports = function(fileInfo, api, options) {\n  // transform `fileInfo.source` here\n  // ...\n  // return changed source\n  return source;\n};\n```\n\n### Arguments\n\n#### `fileInfo`\n\nHolds information about the currently processed file.\n\nProperty    | Description\n------------|------------\npath        | File path\nsource      | File content\n\n#### `api`\n\nThis object exposes the `jscodeshift` library and helper functions from the\nrunner.\n\nProperty    | Description\n------------|------------\njscodeshift | A reference to the jscodeshift library\nstats       | A function to collect statistics during `--dry` runs\n\n`jscodeshift` is a reference to the wrapper around recast and provides a\njQuery-like API to navigate and transform the AST. Here is a quick example,\na more detailed description can be found below.\n\n```js\n/**\n * This replaces every occurence of variable \"foo\".\n */\nmodule.exports = function(fileInfo, api) {\n  return api.jscodeshift(fileInfo.source)\n    .findVariableDeclarators('foo')\n    .renameTo('bar')\n    .toSource();\n}\n```\n\n**Note:** This api is exposed for convenience, but you don't have to use it.\nYou can use any tool to modify the source.\n\n`stats` is a function that only works when the `--dry` options is set. It accepts\na string, and will simply count how often it was called with that value.\n\nAt the end, the CLI will report those values. This can be useful while\ndeveloping the transform, e.g. to find out how often a certain construct\nappears in the source(s).\n\n#### `options`\n\nContains all options that have been passed to runner. This allows you to pass\nadditional options to the transform. For example, if the CLI is called with\n\n```\n$ jscodeshift -t myTransforms fileA fileB --foo=bar\n```\n\n`options` would contain `{foo: 'bar'}`. jscodeshift uses [nomnom][] to parse\ncommand line options.\n\n### Return value\n\nThe return value of the function determines the status of the transformation:\n\n- If a string is returned and it is different from passed source, the\n  transform is considered to be successful.\n- If a string is returned but it's the same as the source, the transform\n  is considered to be unsuccessful.\n- If nothing is returned, the file is not supposed to be transformed (which is\n  ok).\n\nThe CLI provides a summary of the transformation at the end. You can get more\ndetailed information by setting the `-v` option to `1` or `2`.\n\nYou can collect even more stats via the `stats` function as explained above.\n\n### Parser\n\nThe transform can let jscodeshift know with which parser to parse the source \nfiles (and features like templates).\n\nTo do that, the transform module can export `parser`, which can either be one \nof the strings `\"babel\"`, `\"babylon\"`, or `\"flow\"`, or it can be a parser \nobject that is compatible with with recast.\n\nFor example:\n\n```js\nmodule.exports.parser = 'flow'; // use the flow parser\n// or\nmodule.exports.parser = {\n  parse: function(source) {\n    // return estree compatible AST\n  },\n};\n```\n\n### Example output\n\n```text\n$ jscodeshift -t myTransform.js src\nProcessing 10 files...\nSpawning 2 workers with 5 files each...\nAll workers done.\nResults: 0 errors 2 unmodified 3 skipped 5 ok\n```\n\n## The jscodeshift API\n\nAs already mentioned, jscodeshift also provides a wrapper around [recast][].\nIn order to properly use the jscodeshift API, one has to understand the basic\nbuilding blocks of recast (and ASTs) as well.\n\n### Core Concepts\n\n#### AST nodes\n\nAn AST node is a plain JavaScript object with a specific set of fields, in\naccordance with the [Mozilla Parser API][]. The primary way to identify nodes\nis via their `type`.\n\nFor example, string literals are represented via `Literal` nodes, which\nhave the structure\n\n```js\n// \"foo\"\n{\n  type: 'Literal',\n  value: 'foo',\n  raw: '\"foo\"'\n}\n```\n\nIt's OK to not know the structure of every AST node type.\nThe [(esprima) AST explorer][ast-explorer] is an online tool to inspect the AST\nfor a given piece of JS code.\n\n#### Path objects\n\nRecast itself relies heavily on [ast-types][] which defines methods to traverse\nthe AST, access node fields and build new nodes. ast-types wraps every AST node\ninto a *path object*. Paths contain meta-information and helper methods to\nprocess AST nodes.\n\nFor example, the child-parent relationship between two nodes is not explicitly\ndefined. Given a plain AST node, it is not possible to traverse the tree *up*.\nGiven a path object however, the parent can be traversed to via `path.parent`.\n\nFor more information about the path object API, please have a look at\n[ast-types][].\n\n#### Builders\n\nTo make creating AST nodes a bit simpler and \"safer\", ast-types defines a couple\nof *builder methods*, which are also exposed on `jscodeshift`.\n\nFor example, the following creates an AST equivalent to `foo(bar)`:\n\n```js\n// inside a module transform\nvar j = jscodeshift;\n// foo(bar);\nvar ast = j.callExpression(\n  j.identifier('foo'),\n  [j.identifier('bar')]\n);\n```\n\nThe signature of each builder function is best learned by having a look at the\n[definition files](https://github.com/benjamn/ast-types/blob/master/def/).\n\n### Collections and Traversal\n\nIn order to transform the AST, you have to traverse it and find the nodes that\nneed to be changed. jscodeshift is built around the idea of **collections** of\npaths and thus provides a different way of processing an AST than recast or\nast-types.\n\nA collection has methods to process the nodes inside a collection, often\nresulting in a new collection. This results in a fluent interface, which can\nmake the transform more readable.\n\nCollections are \"typed\" which means that the type of a collection is the\n\"lowest\" type all AST nodes in the collection have in common. That means you\ncannot call a method for a `FunctionExpression` collection on an `Identifier`\ncollection.\n\nHere is an example of how one would find/traverse all `Identifier` nodes with\njscodeshift and with recast:\n\n```js\n// recast\nvar ast = recast.parse(src);\nrecast.visit(ast, {\n  visitIdentifier: function(path) {\n    // do something with path\n    return false;\n  }\n});\n\n// jscodeshift\njscodeshift(src)\n  .find(jscodeshift.Identifier)\n  .forEach(function(path) {\n    // do something with path\n  });\n```\n\nTo learn about the provided methods, have a look at the\n[Collection.js](src/Collection.js) and its [extensions](src/collections/).\n\n### Extensibility\n\njscodeshift provides an API to extend collections. By moving common operators\ninto helper functions (which can be stored separately in other modules), a\ntransform can be made more readable.\n\nThere are two types of extensions: generic extensions and type-specific\nextensions. **Generic extensions** are applicable to all collections. As such,\nthey typically don't access specific node data, but rather traverse the AST from\nthe nodes in the collection. **Type-specific** extensions work only on specific\nnode types and are not callable on differently typed collections.\n\n#### Examples\n\n```js\n// Adding a method to all Identifiers\njscodeshift.registerMethods({\n\tlogNames: function() {\n\t\treturn this.forEach(function(path) {\n\t\t\tconsole.log(path.node.name);\n\t\t});\n\t}\n}, jscodeshift.Identifier);\n\n// Adding a method to all collections\njscodeshift.registerMethods({\n\tfindIdentifiers: function() {\n\t\treturn this.find(jscodeshift.Identifier);\n\t}\n});\n\njscodeshift(ast).findIdentifiers().logNames();\njscodeshift(ast).logNames(); // error, unless `ast` only consists of Identifier nodes\n```\n\n### Passing options to [recast]\n\nYou may want to change some of the output settings (like setting `'` instead of `\"`).\nThis can be done by passing config options to [recast].\n\n```js\n.toSource({quote: 'single'}); // sets strings to use single quotes in transformed code.\n```\n\nYou can also pass options to recast's `parse` method by passing an object to \njscodeshift as second argument:\n\n```js\njscodeshift(source, {...})\n```\n\nMore on config options [here](https://github.com/benjamn/recast/blob/52a7ec3eaaa37e78436841ed8afc948033a86252/lib/options.js#L61)\n\n### Unit Testing\n\njscodeshift comes with a simple utility to allow easy unit testing with [Jest](https://facebook.github.io/jest/), without having to write a lot of boilerplate code. This utility makes some assumptions in order to reduce the amount of configuration required:\n\n - The test is located in a subdirectory under the directory the transform itself is located in (eg. `__tests__`)\n - Test fixtures are located in a `__testfixtures__` directory\n\nThis results in a directory structure like this:\n```\n/MyTransform.js\n/__tests__/MyTransform-test.js\n/__testfixtures__/MyTransform.input.js\n/__testfixtures__/MyTransform.output.js\n```\n\nTo define a test, use `defineTest` from the `testUtils` module:\n\n```js\njest.autoMockOff();\nconst defineTest = require('jscodeshift/dist/testUtils').defineTest;\ndefineTest(__dirname, 'MyTransform');\n```\n\nAn alternate fixture filename can be provided as the fourth argument to `defineTest`. This also means that multiple test fixtures can be provided:\n```js\ndefineTest(__dirname, 'MyTransform', null, 'FirstFixture');\ndefineTest(__dirname, 'MyTransform', null, 'SecondFixture');\n```\nThis will run two tests: One for `__testfixtures__/FirstFixture.input.js` and one for `__testfixtures__/SecondFixture.input.js`\n\n\nA simple example is bundled in the [sample directory](sample).\n\n\n### Example Codemods\n\n- [react-codemod](https://github.com/reactjs/react-codemod) - React codemod scripts to update React APIs.\n- [js-codemod](https://github.com/cpojer/js-codemod/) - Codemod scripts to transform code to next generation JS.\n- [js-transforms](https://github.com/jhgg/js-transforms) - Some documented codemod experiments to help you learn.\n\n### Recipes\n\n- [Retain leading comment(s) in file when replacing/removing first statement](recipes/retain-first-comment.md)\n\n### Support\n\n* Discord - [#codemod](https://discordapp.com/channels/102860784329052160/103748721107292160) on [Reactiflux](http://www.reactiflux.com/)\n\n[npm]: https://www.npmjs.com/\n[Mozilla Parser API]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API\n[recast]: https://github.com/benjamn/recast\n[ast-types]: https://github.com/benjamn/ast-types\n[ast-explorer]: http://astexplorer.net/\n[nomnom]: https://www.npmjs.com/package/nomnom\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/facebook/jscodeshift.git"
@@ -4063,7 +4146,7 @@ webpackJsonp([0],{
 			"prepublish": "npm run build && npm run test",
 			"test": "jest --bail"
 		},
-		"version": "0.3.27"
+		"version": "0.3.28"
 	};
 
 /***/ },
