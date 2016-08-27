@@ -9,20 +9,17 @@ const defaultOptions = {
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
   plugins: [
-    'asyncFunctions',
     'asyncGenerators',
     'classConstructorCall',
     'classProperties',
     'decorators',
     'doExpressions',
-    'exponentiationOperator',
     'exportExtensions',
     'flow',
     'functionSent',
     'functionBind',
     'jsx',
     'objectRestSpread',
-    'trailingFunctionCommas',
   ],
 };
 const parserSettingsConfiguration = {
