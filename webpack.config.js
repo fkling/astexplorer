@@ -61,6 +61,7 @@ var plugins = [
 
       return fs.readFileSync('./index.html', 'utf-8');
     },
+    filename: 'index.html',
     favicon: './favicon.png',
     inject: 'body',
   }),
