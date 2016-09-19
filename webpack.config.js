@@ -3,6 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var OfflinePlugin = require('offline-plugin')
 var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
 const DEV = process.env.NODE_ENV !== 'production';
@@ -70,6 +71,7 @@ var plugins = [
     process.stdout.write(/build modules/.test(msg) ? '\r' : '\n');
     process.stdout.write(msg);
   }),
+  new OfflinePlugin(),
 ];
 
 module.exports = Object.assign({
