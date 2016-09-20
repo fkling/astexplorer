@@ -5,7 +5,7 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'acorn';
 const defaultOptions = {
-  ecmaVersion: 6,
+  ecmaVersion: 7,
   sourceType: 'module',
   allowReserved: false,
   allowReturnOutsideFunction: false,
@@ -20,7 +20,7 @@ const defaultOptions = {
 
 const settingsConfiguration = {
   fields: [
-    ['ecmaVersion', [3, 5, 6, 7], x => Number(x)],
+    ['ecmaVersion', [3, 5, 6, 7, 8], x => Number(x)],
     ['sourceType', ['script', 'module']],
     'allowReserved',
     'allowReturnOutsideFunction',

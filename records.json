@@ -395,6 +395,72 @@
         "byName": {},
         "byBlocks": {}
       }
+    },
+    {
+      "nextFreeModuleId": 1,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/index.js?importLoaders=1!node_modules/autoprefixer-loader/index.js!src/components/visualization/css/tree.css": 0,
+          "node_modules/uglify-loader/index.js!node_modules/css-loader/lib/css-base.js": "./node_modules/css-loader/lib/css-base.js"
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      }
+    },
+    {
+      "nextFreeModuleId": 1,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/index.js?importLoaders=1!node_modules/autoprefixer-loader/index.js!node_modules/codemirror/addon/hint/show-hint.css": 0,
+          "node_modules/uglify-loader/index.js!node_modules/css-loader/lib/css-base.js": "./node_modules/css-loader/lib/css-base.js"
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      }
+    },
+    {
+      "nextFreeModuleId": 1,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/index.js?importLoaders=1!node_modules/autoprefixer-loader/index.js!node_modules/codemirror/addon/tern/tern.css": 0,
+          "node_modules/uglify-loader/index.js!node_modules/css-loader/lib/css-base.js": "./node_modules/css-loader/lib/css-base.js"
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      }
+    },
+    {
+      "nextFreeModuleId": 1,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/index.js?importLoaders=1!node_modules/autoprefixer-loader/index.js!css/style.css": 0,
+          "node_modules/uglify-loader/index.js!node_modules/css-loader/lib/css-base.js": "./node_modules/css-loader/lib/css-base.js",
+          "node_modules/css-loader/index.js?importLoaders=1!node_modules/autoprefixer-loader/index.js!node_modules/codemirror/lib/codemirror.css": "./node_modules/css-loader/index.js?importLoaders=1!./node_modules/autoprefixer-loader/index.js!./node_modules/codemirror/lib/codemirror.css",
+          "node_modules/css-loader/index.js?importLoaders=1!node_modules/autoprefixer-loader/index.js!node_modules/codemirror/addon/fold/foldgutter.css": "./node_modules/css-loader/index.js?importLoaders=1!./node_modules/autoprefixer-loader/index.js!./node_modules/codemirror/addon/fold/foldgutter.css",
+          "node_modules/css-loader/index.js?importLoaders=1!node_modules/autoprefixer-loader/index.js!css/highlight.css": "./node_modules/css-loader/index.js?importLoaders=1!./node_modules/autoprefixer-loader/index.js!./css/highlight.css",
+          "node_modules/css-loader/index.js?importLoaders=1!node_modules/autoprefixer-loader/index.js!node_modules/font-awesome/css/font-awesome.css": "./node_modules/css-loader/index.js?importLoaders=1!./node_modules/autoprefixer-loader/index.js!./node_modules/font-awesome/css/font-awesome.css",
+          "node_modules/file-loader/index.js!node_modules/font-awesome/fonts/fontawesome-webfont.eot?v=4.6.3": "./node_modules/font-awesome/fonts/fontawesome-webfont.eot?v=4.6.3",
+          "node_modules/file-loader/index.js!node_modules/font-awesome/fonts/fontawesome-webfont.eot": "./node_modules/font-awesome/fonts/fontawesome-webfont.eot",
+          "node_modules/url-loader/index.js?limit=10000&mimetype=application/font-woff!node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3": "./node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3",
+          "node_modules/url-loader/index.js?limit=10000&mimetype=application/font-woff!node_modules/font-awesome/fonts/fontawesome-webfont.woff?v=4.6.3": "./node_modules/font-awesome/fonts/fontawesome-webfont.woff?v=4.6.3",
+          "node_modules/file-loader/index.js!node_modules/font-awesome/fonts/fontawesome-webfont.ttf?v=4.6.3": "./node_modules/font-awesome/fonts/fontawesome-webfont.ttf?v=4.6.3",
+          "node_modules/file-loader/index.js!node_modules/font-awesome/fonts/fontawesome-webfont.svg?v=4.6.3": "./node_modules/font-awesome/fonts/fontawesome-webfont.svg?v=4.6.3"
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      }
     }
   ],
   "nextFreeModuleId": 13,
@@ -3145,7 +3211,33 @@
       "node_modules/uglify-loader/index.js!node_modules/react/lib/ReactDOMContainerInfo.js": "./node_modules/react/lib/ReactDOMContainerInfo.js",
       "node_modules/uglify-loader/index.js!node_modules/react/lib/getHostComponentFromComposite.js": "./node_modules/react/lib/getHostComponentFromComposite.js",
       "node_modules/uglify-loader/index.js!node_modules/babel-loader/index.js?{\"babelrc\":false,\"presets\":[\"/Users/fkling/git/astexplorer/node_modules/babel-preset-es2015/lib/index.js\",\"/Users/fkling/git/astexplorer/node_modules/babel-preset-stage-1/index.js\",\"/Users/fkling/git/astexplorer/node_modules/babel-preset-react/index.js\"],\"plugins\":[\"/Users/fkling/git/astexplorer/node_modules/babel-plugin-transform-runtime/lib/index.js\"]}!src/utils/logger.js": "./src/utils/logger.js",
-      "node_modules/uglify-loader/index.js!node_modules/recast/node_modules/ast-types/fork.js": "./node_modules/recast/node_modules/ast-types/fork.js"
+      "node_modules/uglify-loader/index.js!node_modules/recast/node_modules/ast-types/fork.js": "./node_modules/recast/node_modules/ast-types/fork.js",
+      "node_modules/uglify-loader/index.js!node_modules/postcss/lib/terminal-highlight.js": "./node_modules/postcss/lib/terminal-highlight.js",
+      "node_modules/uglify-loader/index.js!node_modules/postcss-scss/lib/nested-declaration.js": "./node_modules/postcss-scss/lib/nested-declaration.js",
+      "node_modules/uglify-loader/index.js!node_modules/util/node_modules/inherits/inherits_browser.js": "./node_modules/util/node_modules/inherits/inherits_browser.js",
+      "node_modules/uglify-loader/index.js!node_modules/webpack/node_modules/isarray/index.js": "./node_modules/webpack/node_modules/isarray/index.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_baseAssignValue.js": "./node_modules/lodash/_baseAssignValue.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_arrayLikeKeys.js": "./node_modules/lodash/_arrayLikeKeys.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_nativeKeys.js": "./node_modules/lodash/_nativeKeys.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_memoizeCapped.js": "./node_modules/lodash/_memoizeCapped.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_strictIndexOf.js": "./node_modules/lodash/_strictIndexOf.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_overRest.js": "./node_modules/lodash/_overRest.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_setToString.js": "./node_modules/lodash/_setToString.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_baseSetToString.js": "./node_modules/lodash/_baseSetToString.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/constant.js": "./node_modules/lodash/constant.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_nativeDefineProperty.js": "./node_modules/lodash/_nativeDefineProperty.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_shortOut.js": "./node_modules/lodash/_shortOut.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_nativeKeysIn.js": "./node_modules/lodash/_nativeKeysIn.js",
+      "node_modules/uglify-loader/index.js!node_modules/rocambole/node_modules/esprima/esprima.js": "./node_modules/rocambole/node_modules/esprima/esprima.js",
+      "node_modules/uglify-loader/index.js!node_modules/espree/node_modules/acorn/dist/acorn.js": "./node_modules/espree/node_modules/acorn/dist/acorn.js",
+      "node_modules/uglify-loader/index.js!node_modules/esprima/dist/esprima.js": "./node_modules/esprima/dist/esprima.js",
+      "node_modules/uglify-loader/index.js!node_modules/recast/node_modules/esprima/dist/esprima.js": "./node_modules/recast/node_modules/esprima/dist/esprima.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_asciiToArray.js": "./node_modules/lodash/_asciiToArray.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_hasUnicode.js": "./node_modules/lodash/_hasUnicode.js",
+      "node_modules/uglify-loader/index.js!node_modules/lodash/_unicodeToArray.js": "./node_modules/lodash/_unicodeToArray.js",
+      "node_modules/uglify-loader/index.js!node_modules/symbol-observable/lib/index.js": "./node_modules/symbol-observable/lib/index.js",
+      "node_modules/uglify-loader/index.js!node_modules/symbol-observable/lib/ponyfill.js": "./node_modules/symbol-observable/lib/ponyfill.js",
+      "node_modules/uglify-loader/index.js!node_modules/react/lib/ReactComponentTreeHook.js": "./node_modules/react/lib/ReactComponentTreeHook.js"
     }
   },
   "nextFreeChunkId": 63,

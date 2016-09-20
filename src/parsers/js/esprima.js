@@ -12,6 +12,7 @@ const defaultOptions = {
   comment: false,
   attachComment: false,
   tolerant: false,
+  jsx: true,
 };
 
 const parserSettingsConfiguration = {
@@ -23,6 +24,7 @@ const parserSettingsConfiguration = {
     'comment',
     'tokens',
     'tolerant',
+    'jsx',
   ],
   required: new Set(['range']),
 };
