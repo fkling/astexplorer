@@ -14,6 +14,7 @@
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.12.0",
     "chunk-manifest-webpack-plugin": "0.1.0",
+    "cross-env": "^2.0.1",
     "css-loader": "^0.23.0",
     "eslint": "^3.2.2",
     "eslint-import-resolver-webpack": "^0.4.0",
@@ -92,7 +93,7 @@
   },
   "scripts": {
     "start": "http-server out",
-    "build": "NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production webpack",
     "watch": "webpack -dw",
     "push": "./scripts/push-site.sh",
     "eslint": "eslint src/"
