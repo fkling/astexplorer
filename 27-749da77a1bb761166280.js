@@ -14,24 +14,35 @@ webpackJsonp([27],{
 	module.exports = {
 		"_args": [
 			[
-				"escodegen@https://registry.npmjs.org/escodegen/-/escodegen-1.8.1.tgz",
+				"escodegen@^1.4.1",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "escodegen@1.8.1",
+		"_from": "escodegen@>=1.4.1 <2.0.0",
 		"_id": "escodegen@1.8.1",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/escodegen",
+		"_nodeVersion": "6.3.0",
+		"_npmOperationalInternal": {
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/escodegen-1.8.1.tgz_1470506723009_0.12818681285716593"
+		},
+		"_npmUser": {
+			"email": "npm@michael.ficarra.me",
+			"name": "michaelficarra"
+		},
+		"_npmVersion": "3.10.3",
 		"_phantomChildren": {
 			"amdefine": "1.0.0"
 		},
 		"_requested": {
 			"name": "escodegen",
-			"raw": "escodegen@https://registry.npmjs.org/escodegen/-/escodegen-1.8.1.tgz",
-			"rawSpec": "https://registry.npmjs.org/escodegen/-/escodegen-1.8.1.tgz",
+			"raw": "escodegen@^1.4.1",
+			"rawSpec": "^1.4.1",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/escodegen/-/escodegen-1.8.1.tgz",
-			"type": "remote"
+			"spec": ">=1.4.1 <2.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -39,7 +50,7 @@ webpackJsonp([27],{
 		"_resolved": "https://registry.npmjs.org/escodegen/-/escodegen-1.8.1.tgz",
 		"_shasum": "5a5b53af4693110bebb0867aa3430dd3b70a1018",
 		"_shrinkwrap": null,
-		"_spec": "escodegen@https://registry.npmjs.org/escodegen/-/escodegen-1.8.1.tgz",
+		"_spec": "escodegen@^1.4.1",
 		"_where": "/Users/fkling/git/astexplorer",
 		"bin": {
 			"escodegen": "./bin/escodegen.js",
@@ -67,6 +78,11 @@ webpackJsonp([27],{
 			"gulp-mocha": "^2.0.0",
 			"semver": "^5.1.0"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "5a5b53af4693110bebb0867aa3430dd3b70a1018",
+			"tarball": "https://registry.npmjs.org/escodegen/-/escodegen-1.8.1.tgz"
+		},
 		"engines": {
 			"node": ">=0.12.0"
 		},
@@ -78,22 +94,25 @@ webpackJsonp([27],{
 			"escodegen.js",
 			"package.json"
 		],
+		"gitHead": "ba4faabb224b2d5e0080c8e4f964702b699c7d1f",
 		"homepage": "http://github.com/estools/escodegen",
 		"license": "BSD-2-Clause",
 		"main": "escodegen.js",
 		"maintainers": [
 			{
 				"email": "utatane.tea@gmail.com",
-				"name": "Yusuke Suzuki",
-				"url": "http://github.com/Constellation"
+				"name": "constellation"
+			},
+			{
+				"email": "npm@michael.ficarra.me",
+				"name": "michaelficarra"
 			}
 		],
 		"name": "escodegen",
 		"optionalDependencies": {
 			"source-map": "~0.2.0"
 		},
-		"readme": "## Escodegen\n[![npm version](https://badge.fury.io/js/escodegen.svg)](http://badge.fury.io/js/escodegen)\n[![Build Status](https://secure.travis-ci.org/estools/escodegen.svg)](http://travis-ci.org/estools/escodegen)\n[![Dependency Status](https://david-dm.org/estools/escodegen.svg)](https://david-dm.org/estools/escodegen)\n[![devDependency Status](https://david-dm.org/estools/escodegen/dev-status.svg)](https://david-dm.org/estools/escodegen#info=devDependencies)\n\nEscodegen ([escodegen](http://github.com/estools/escodegen)) is an\n[ECMAScript](http://www.ecma-international.org/publications/standards/Ecma-262.htm)\n(also popularly known as [JavaScript](http://en.wikipedia.org/wiki/JavaScript))\ncode generator from [Mozilla's Parser API](https://developer.mozilla.org/en/SpiderMonkey/Parser_API)\nAST. See the [online generator](https://estools.github.io/escodegen/demo/index.html)\nfor a demo.\n\n\n### Install\n\nEscodegen can be used in a web browser:\n\n    <script src=\"escodegen.browser.js\"></script>\n\nescodegen.browser.js can be found in tagged revisions on GitHub.\n\nOr in a Node.js application via npm:\n\n    npm install escodegen\n\n### Usage\n\nA simple example: the program\n\n    escodegen.generate({\n        type: 'BinaryExpression',\n        operator: '+',\n        left: { type: 'Literal', value: 40 },\n        right: { type: 'Literal', value: 2 }\n    });\n\nproduces the string `'40 + 2'`.\n\nSee the [API page](https://github.com/estools/escodegen/wiki/API) for\noptions. To run the tests, execute `npm test` in the root directory.\n\n### Building browser bundle / minified browser bundle\n\nAt first, execute `npm install` to install the all dev dependencies.\nAfter that,\n\n    npm run-script build\n\nwill generate `escodegen.browser.js`, which can be used in browser environments.\n\nAnd,\n\n    npm run-script build-min\n\nwill generate the minified file `escodegen.browser.min.js`.\n\n### License\n\n#### Escodegen\n\nCopyright (C) 2012 [Yusuke Suzuki](http://github.com/Constellation)\n (twitter: [@Constellation](http://twitter.com/Constellation)) and other contributors.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n  * Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n\n  * Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY\nDIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\nON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF\nTHIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\n#### source-map\n\nSourceNodeMocks has a limited interface of mozilla/source-map SourceNode implementations.\n\nCopyright (c) 2009-2011, Mozilla Foundation and contributors\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice, this\n  list of conditions and the following disclaimer.\n\n* Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n\n* Neither the names of the Mozilla Foundation nor the names of project\n  contributors may be used to endorse or promote products derived from this\n  software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+ssh://git@github.com/estools/escodegen.git"

@@ -783,22 +783,29 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"cssom@https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
+				"cssom@^0.3.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "cssom@>=0.3.0 <0.4.0",
 		"_id": "cssom@0.3.1",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/cssom",
+		"_nodeVersion": "5.3.0",
+		"_npmUser": {
+			"email": "d@domenic.me",
+			"name": "domenic"
+		},
+		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "cssom",
-			"raw": "cssom@https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
-			"rawSpec": "https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
+			"raw": "cssom@^0.3.0",
+			"rawSpec": "^0.3.0",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
-			"type": "remote"
+			"spec": ">=0.3.0 <0.4.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -806,7 +813,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
 		"_shasum": "c9e37ef2490e64f6d1baa10fda852257082c25d3",
 		"_shrinkwrap": null,
-		"_spec": "cssom@https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz",
+		"_spec": "cssom@^0.3.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "me@elv1s.ru",
@@ -820,9 +827,15 @@ webpackJsonp([0],{
 		"devDependencies": {
 			"jake": "~0.7.3"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "c9e37ef2490e64f6d1baa10fda852257082c25d3",
+			"tarball": "https://registry.npmjs.org/cssom/-/cssom-0.3.1.tgz"
+		},
 		"files": [
 			"lib/"
 		],
+		"gitHead": "c82ca18e35e207bb8ce57ffa2d3b783c026f7a52",
 		"homepage": "https://github.com/nv/CSSOM#readme",
 		"keywords": [
 			"CSS",
@@ -832,10 +845,19 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/index.js",
+		"maintainers": [
+			{
+				"email": "me@elv1s.ru",
+				"name": "nv"
+			},
+			{
+				"email": "domenic@domenicdenicola.com",
+				"name": "domenic"
+			}
+		],
 		"name": "cssom",
 		"optionalDependencies": {},
-		"readme": "# CSSOM\n\nCSSOM.js is a CSS parser written in pure JavaScript. It also a partial implementation of [CSS Object Model](http://dev.w3.org/csswg/cssom/). \n\n    CSSOM.parse(\"body {color: black}\")\n    -> {\n      cssRules: [\n        {\n          selectorText: \"body\",\n          style: {\n            0: \"color\",\n            color: \"black\",\n            length: 1\n          }\n        }\n      ]\n    }\n\n\n## [Parser demo](http://nv.github.com/CSSOM/docs/parse.html)\n\nWorks well in Google Chrome 6+, Safari 5+, Firefox 3.6+, Opera 10.63+.\nDoesn't work in IE < 9 because of unsupported getters/setters.\n\nTo use CSSOM.js in the browser you might want to build a one-file version that exposes CSSOM global variable:\n\n    ➤ git clone https://github.com/NV/CSSOM.git\n    ➤ cd CSSOM\n    ➤ npm install -d\n    ➤ ./node_modules/.bin/jake\n    build/CSSOM.js is done\n\nTo use it with Node.js or any other CommonJS loader:\n\n    ➤ npm install cssom\n\n## Don’t use it if...\n\nYou parse CSS to mungle, minify or reformat the following code:\n\n```css\ndiv {\n  background: gray;\n  background: linear-gradient(to bottom, white 0%, black 100%);\n}\n```\n\nThis pattern is often used to give browsers that don’t understand linear gradients a fallback solution (e.g. gray color in the example).\nIn CSSOM, `background: gray` [gets overwritten](http://nv.github.io/CSSOM/docs/parse.html#css=div%20%7B%0A%20%20%20%20%20%20background%3A%20gray%3B%0A%20%20%20%20background%3A%20linear-gradient(to%20bottom%2C%20white%200%25%2C%20black%20100%25)%3B%0A%7D).\nThe last same-name property always overwrites all the previous ones.\n\n\nIf you do CSS mungling, minification, image inlining, and such, CSSOM.js is no good for you, considere using one of the following:\n\n  * [postcss](https://github.com/postcss/postcss)\n  * [reworkcss/css](https://github.com/reworkcss/css)\n  * [csso](https://github.com/css/csso)\n  * [mensch](https://github.com/brettstimmerman/mensch)\n\n\n## [Specs](http://nv.github.com/CSSOM/spec/)\n\nTo run specs locally:\n\n    ➤ git submodule init\n    ➤ git submodule update\n\n\n## [Who uses CSSOM.js](https://github.com/NV/CSSOM/wiki/Who-uses-CSSOM.js)\n",
-		"readmeFilename": "README.mdown",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/nv/CSSOM.git"
@@ -882,24 +904,35 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"postcss@https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
+				"postcss@^5.0.12",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "postcss@5.1.2",
-		"_id": "postcss@5.1.2",
+		"_from": "postcss@>=5.0.12 <6.0.0",
+		"_id": "postcss@5.2.0",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/postcss",
+		"_nodeVersion": "6.5.0",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/postcss-5.2.0.tgz_1473222562845_0.7899637438822538"
+		},
+		"_npmUser": {
+			"email": "andrey@sitnik.ru",
+			"name": "ai"
+		},
+		"_npmVersion": "3.10.3",
 		"_phantomChildren": {
 			"has-flag": "1.0.0"
 		},
 		"_requested": {
 			"name": "postcss",
-			"raw": "postcss@https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
-			"rawSpec": "https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
+			"raw": "postcss@^5.0.12",
+			"rawSpec": "^5.0.12",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
-			"type": "remote"
+			"spec": ">=5.0.12 <6.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/",
@@ -940,10 +973,10 @@ webpackJsonp([0],{
 			"/postcss-unique-selectors",
 			"/postcss-zindex"
 		],
-		"_resolved": "https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
-		"_shasum": "bd84886a66bcad489afaf7c673eed5ef639551e2",
+		"_resolved": "https://registry.npmjs.org/postcss/-/postcss-5.2.0.tgz",
+		"_shasum": "cdbee46b45abec245ed7ee8e905fc336c1dce2c9",
 		"_shrinkwrap": null,
-		"_spec": "postcss@https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz",
+		"_spec": "postcss@^5.0.12",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "andrey@sitnik.ru",
@@ -960,28 +993,38 @@ webpackJsonp([0],{
 		"description": "Tool for transforming styles with JS plugins",
 		"devDependencies": {
 			"ava": "0.16.0",
-			"babel-core": "6.13.2",
+			"babel-core": "6.14.0",
 			"babel-eslint": "6.1.2",
 			"babel-plugin-add-module-exports": "0.2.1",
 			"babel-plugin-precompile-charcodes": "1.0.0",
-			"babel-preset-es2015": "6.13.2",
+			"babel-preset-es2015": "6.14.0",
+			"chalk": "1.1.3",
 			"concat-with-sourcemaps": "1.0.4",
-			"del": "2.2.1",
+			"del": "2.2.2",
 			"docdash": "0.4.0",
-			"eslint": "3.2.2",
+			"eslint": "3.4.0",
 			"eslint-config-postcss": "2.0.2",
 			"fs-extra": "0.30.0",
 			"gulp": "3.9.1",
-			"gulp-ava": "0.13.0",
+			"gulp-ava": "0.14.1",
 			"gulp-babel": "6.1.2",
+			"gulp-changed": "1.3.2",
 			"gulp-eslint": "3.0.1",
 			"gulp-jsdoc3": "0.3.0",
 			"gulp-run": "1.7.1",
 			"gulp-sourcemaps": "1.6.0",
-			"postcss-parser-tests": "5.0.9",
+			"lint-staged": "2.0.3",
+			"postcss-parser-tests": "5.0.10",
+			"pre-commit": "1.1.3",
+			"run-sequence": "1.2.2",
 			"sinon": "1.17.5",
 			"strip-ansi": "3.0.1",
 			"yaspeller": "2.9.1"
+		},
+		"directories": {},
+		"dist": {
+			"shasum": "cdbee46b45abec245ed7ee8e905fc336c1dce2c9",
+			"tarball": "https://registry.npmjs.org/postcss/-/postcss-5.2.0.tgz"
 		},
 		"engines": {
 			"node": ">=0.12"
@@ -999,20 +1042,37 @@ webpackJsonp([0],{
 			"transpiler"
 		],
 		"license": "MIT",
+		"lint-staged": {
+			"lib/*.es6": "eslint",
+			"test/*.js": "eslint"
+		},
 		"main": "lib/postcss",
+		"maintainers": [
+			{
+				"email": "andrey@sitnik.ru",
+				"name": "ai"
+			},
+			{
+				"email": "beneb.info@gmail.com",
+				"name": "beneb"
+			}
+		],
 		"name": "postcss",
 		"optionalDependencies": {},
-		"readme": "# PostCSS [![Travis Build Status][travis-img]][travis] [![AppVeyor Build Status][appveyor-img]][appveyor] [![Gitter][chat-img]][chat]\n\n<img align=\"right\" width=\"95\" height=\"95\"\n     title=\"Philosopher’s stone, logo of PostCSS\"\n     src=\"http://postcss.github.io/postcss/logo.svg\">\n\n[appveyor-img]: https://img.shields.io/appveyor/ci/ai/postcss.svg?label=windows\n[travis-img]:   https://img.shields.io/travis/postcss/postcss.svg?label=unix\n[chat-img]:     https://img.shields.io/badge/Gitter-Join_the_PostCSS_chat-brightgreen.svg\n[appveyor]:     https://ci.appveyor.com/project/ai/postcss\n[travis]:       https://travis-ci.org/postcss/postcss\n[chat]:         https://gitter.im/postcss/postcss\n\nPostCSS is a tool for transforming styles with JS plugins.\nThese plugins can lint your CSS, support variables and mixins,\ntranspile future CSS syntax, inline images, and more.\n\nPostCSS is used by industry leaders including Wikipedia, Twitter, Alibaba,\nand JetBrains. The [Autoprefixer] PostCSS plugin is one of the most popular\nCSS processors.\n\nTwitter account:      [@postcss](https://twitter.com/postcss).\nVK.com page:          [postcss](https://vk.com/postcss).\nSupport / Discussion: [Gitter](https://gitter.im/postcss/postcss).\n\nFor PostCSS commercial support (consulting, improving the front-end culture\nof your company, PostCSS plugins), contact Evil Martians\nat <surrender@evilmartians.com>.\n\n[Autoprefixer]: https://github.com/postcss/autoprefixer\n\n<a href=\"https://evilmartians.com/?utm_source=postcss\">\n  <img src=\"https://evilmartians.com/badges/sponsored-by-evil-martians.svg\"\n       alt=\"Sponsored by Evil Martians\" width=\"236\" height=\"54\">\n</a>\n\n## Plugins\n\nCurrently, PostCSS has more than 200 plugins. You can find all of the plugins\nin the [plugins list] or in the [searchable catalog]. Below is a list\nof our favorite plugins — the best demonstrations of what can be built\non top of PostCSS.\n\nIf you have any new ideas, [PostCSS plugin development] is really easy.\n\n[searchable catalog]: http://postcss.parts\n[plugins list]:       https://github.com/postcss/postcss/blob/master/docs/plugins.md\n\n### Solve Global CSS Problem\n\n* [`postcss-use`] allows you to explicitly set PostCSS plugins within CSS\n  and execute them only for the current file.\n* [`postcss-modules`] and [`react-css-modules`] automatically isolate\n  selectors within components.\n* [`postcss-autoreset`] is an alternative to using a global reset\n  that is better for isolatable components.\n* [`postcss-initial`] adds `all: initial` support, which resets\n  all inherited styles.\n* [`cq-prolyfill`] adds container query support, allowing styles that respond\n  to the width of the parent.\n\n### Use Future CSS, Today\n\n* [`autoprefixer`] adds vendor prefixes, using data from Can I Use.\n* [`postcss-cssnext`] allows you to use future CSS features today\n  (includes `autoprefixer`).\n\n### Better CSS Readability\n\n* [`precss`] contains plugins for Sass-like features, like variables, nesting,\n  and mixins.\n* [`postcss-sorting`] sorts the content of rules and at-rules.\n* [`postcss-utilities`] includes the most commonly used shortcuts and helpers.\n* [`short`] adds and extends numerous shorthand properties.\n\n### Images and Fonts\n\n* [`postcss-assets`] inserts image dimensions and inlines files.\n* [`postcss-sprites`] generates image sprites.\n* [`font-magician`] generates all the `@font-face` rules needed in CSS.\n* [`postcss-inline-svg`] allows you to inline SVG and customize its styles.\n* [`postcss-write-svg`] allows you to write simple SVG directly in your CSS.\n\n### Linters\n\n* [`stylelint`] is a modular stylesheet linter.\n* [`stylefmt`] is a tool that automatically formats CSS\n  according `stylelint` rules.\n* [`doiuse`] lints CSS for browser support, using data from Can I Use.\n* [`colorguard`] helps you maintain a consistent color palette.\n\n### Other\n\n* [`lost`] is a feature-rich `calc()` grid system.\n* [`cssnano`] is a modular CSS minifier.\n* [`rtlcss`] mirrors styles for right-to-left locales.\n\n[PostCSS plugin development]: https://github.com/postcss/postcss/blob/master/docs/writing-a-plugin.md\n[`postcss-inline-svg`]:       https://github.com/TrySound/postcss-inline-svg\n[`react-css-modules`]:        https://github.com/gajus/react-css-modules\n[`postcss-autoreset`]:        https://github.com/maximkoretskiy/postcss-autoreset\n[`postcss-write-svg`]:        https://github.com/jonathantneal/postcss-write-svg\n[`postcss-utilities`]: https://github.com/ismamz/postcss-utilities\n[`postcss-initial`]:          https://github.com/maximkoretskiy/postcss-initial\n[`postcss-sprites`]:          https://github.com/2createStudio/postcss-sprites\n[`postcss-modules`]:          https://github.com/outpunk/postcss-modules\n[`postcss-sorting`]:          https://github.com/hudochenkov/postcss-sorting\n[`postcss-cssnext`]:          http://cssnext.io\n[`postcss-assets`]:           https://github.com/assetsjs/postcss-assets\n[`font-magician`]:            https://github.com/jonathantneal/postcss-font-magician\n[`autoprefixer`]:             https://github.com/postcss/autoprefixer\n[`cq-prolyfill`]:             https://github.com/ausi/cq-prolyfill\n[`postcss-use`]:              https://github.com/postcss/postcss-use\n[`css-modules`]:              https://github.com/css-modules/css-modules\n[`colorguard`]:               https://github.com/SlexAxton/css-colorguard\n[`stylelint`]:                https://github.com/stylelint/stylelint\n[`stylefmt`]:                 https://github.com/morishitter/stylefmt\n[`cssnano`]:                  http://cssnano.co\n[`precss`]:                   https://github.com/jonathantneal/precss\n[`doiuse`]:                   https://github.com/anandthakker/doiuse\n[`rtlcss`]:                   https://github.com/MohammadYounes/rtlcss\n[`short`]:                    https://github.com/jonathantneal/postcss-short\n[`lost`]:                     https://github.com/peterramsing/lost\n\n## Syntaxes\n\nPostCSS can transform styles in any syntax, not just CSS.\nIf there is not yet support for your favorite syntax,\nyou can write a parser and/or stringifier to extend PostCSS.\n\n* [`sugarss`] is a indent-based syntax like Sass or Stylus.\n* [`postcss-scss`] allows you to work with SCSS\n  *(but does not compile SCSS to CSS)*.\n* [`postcss-less`] allows you to work with Less\n  *(but does not compile LESS to CSS)*.\n* [`postcss-less-engine`] allows you to work with Less\n  *(and DOES compile LESS to CSS using true Less.js evaluation)*.\n* [`postcss-js`] allows you to write styles in JS or transform\n  React Inline Styles, Radium or JSS.\n* [`postcss-safe-parser`] finds and fixes CSS syntax errors.\n* [`midas`] converts a CSS string to highlighted HTML.\n\n[`postcss-safe-parser`]: https://github.com/postcss/postcss-safe-parser\n[`postcss-less`]:        https://github.com/webschik/postcss-less\n[`postcss-less-engine`]: https://github.com/Crunch/postcss-less\n[`postcss-scss`]:        https://github.com/postcss/postcss-scss\n[`postcss-js`]:          https://github.com/postcss/postcss-js\n[`sugarss`]:             https://github.com/postcss/sugarss\n[`midas`]:               https://github.com/ben-eb/midas\n\n## Articles\n\n* [Some things you may think about PostCSS… and you might be wrong](http://julian.io/some-things-you-may-think-about-postcss-and-you-might-be-wrong)\n* [What PostCSS Really Is; What It Really Does](http://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss)\n* [PostCSS Guides](http://webdesign.tutsplus.com/series/postcss-deep-dive--cms-889)\n\nMore articles and videos you can find on [awesome-postcss](https://github.com/jjaderg/awesome-postcss) list.\n\n## Usage\n\nYou can start using PostCSS in just two steps:\n\n1. Find and add PostCSS extensions for your build tool.\n2. [Select plugins] and add them to your PostCSS process.\n\n[Select plugins]: http://postcss.parts\n\n### Gulp\n\nUse [`gulp-postcss`] and [`gulp-sourcemaps`].\n\n```js\ngulp.task('css', function () {\n    var postcss    = require('gulp-postcss');\n    var sourcemaps = require('gulp-sourcemaps');\n\n    return gulp.src('src/**/*.css')\n        .pipe( sourcemaps.init() )\n        .pipe( postcss([ require('autoprefixer'), require('precss') ]) )\n        .pipe( sourcemaps.write('.') )\n        .pipe( gulp.dest('build/') );\n});\n```\n\n[`gulp-sourcemaps`]: https://github.com/floridoo/gulp-sourcemaps\n[`gulp-postcss`]:    https://github.com/postcss/gulp-postcss\n\n### Webpack\n\nUse [`postcss-loader`]:\n\n```js\nmodule.exports = {\n    module: {\n        loaders: [\n            {\n                test:   /\\.css$/,\n                loader: \"style-loader!css-loader!postcss-loader\"\n            }\n        ]\n    },\n    postcss: function () {\n        return [require('autoprefixer'), require('precss')];\n    }\n}\n```\n\n[`postcss-loader`]: https://github.com/postcss/postcss-loader\n\n### npm run / CLI\n\nTo use PostCSS from your command-line interface or with npm scripts\nthere is [`postcss-cli`].\n\n```sh\npostcss --use autoprefixer -c options.json -o main.css css/*.css\n```\n\n[`postcss-cli`]: https://github.com/postcss/postcss-cli\n\n### CSS-in-JS\n\nTo apply PostCSS plugins to React Inline Styles, JSS, Radium\nand other CSS-in-JS, you can use [`postcss-js`] and transforms style objects.\n\n```js\nvar postcss  = require('postcss-js');\nvar prefixer = postcss.sync([ require('autoprefixer') ]);\n\nprefixer({ display: 'flex' }); //=> { display: ['-webkit-box', '-webkit-flex', '-ms-flexbox', 'flex'] }\n```\n\n[`postcss-js`]: https://github.com/postcss/postcss-js\n\n### Runners\n\n* **Grunt**: [`grunt-postcss`](https://github.com/nDmitry/grunt-postcss)\n* **HTML**: [`posthtml-postcss`](https://github.com/posthtml/posthtml-postcss)\n* **Stylus**: [`poststylus`](https://github.com/seaneking/poststylus)\n* **Rollup**: [`rollup-plugin-postcss`](https://github.com/egoist/rollup-plugin-postcss)\n* **Brunch**: [`postcss-brunch`](https://github.com/iamvdo/postcss-brunch)\n* **Broccoli**: [`broccoli-postcss`](https://github.com/jeffjewiss/broccoli-postcss)\n* **Meteor**: [`postcss`](https://atmospherejs.com/juliancwirko/postcss)\n* **ENB**: [`enb-postcss`](https://github.com/awinogradov/enb-postcss)\n* **Fly**: [`fly-postcss`](https://github.com/postcss/fly-postcss)\n* **Start**: [`start-postcss`](https://github.com/start-runner/postcss)\n* **Connect/Express**: [`postcss-middleware`](https://github.com/jedmao/postcss-middleware)\n\n### JS API\n\nFor other environments, you can use the JS API:\n\n```js\nvar postcss = require('postcss');\npostcss([ require('autoprefixer'), require('cssnano') ])\n    .process(css, { from: 'src/app.css', to: 'app.css' })\n    .then(function (result) {\n        fs.writeFileSync('app.css', result.css);\n        if ( result.map ) fs.writeFileSync('app.css.map', result.map);\n    });\n```\n\nRead the [PostCSS API documentation] for more details about the JS API.\n\nAll PostCSS runners should pass [PostCSS Runner Guidelines].\n\n[PostCSS Runner Guidelines]: https://github.com/postcss/postcss/blob/master/docs/guidelines/runner.md\n[PostCSS API documentation]: http://api.postcss.org/postcss.html\n\n### Options\n\nMost PostCSS runners accept two parameters:\n\n* An array of plugins.\n* An object of options.\n\nCommon options:\n\n* `syntax`: an object providing a syntax parser and a stringifier.\n* `parser`: a special syntax parser (for example, [SCSS]).\n* `stringifier`: a special syntax output generator (for example, [Midas]).\n* `map`: [source map options].\n* `from`: the input file name (most runners set it automatically).\n* `to`: the output file name (most runners set it automatically).\n\n[source map options]: https://github.com/postcss/postcss/blob/master/docs/source-maps.md\n[Midas]:              https://github.com/ben-eb/midas\n[SCSS]:               https://github.com/postcss/postcss-scss\n\n### Node.js 0.10 and the Promise API\n\nIf you want to run PostCSS in Node.js 0.10, add the [Promise polyfill]:\n\n```js\nrequire('es6-promise').polyfill();\nvar postcss = require('postcss');\n```\n\n[Promise polyfill]: https://github.com/jakearchibald/es6-promise\n\n## IDE Integration\n\n### Atom\n\n* [`language-postcss`] adds PostCSS and [SugarSS] highlight.\n* [`source-preview-postcss`] previews your output CSS in a separate, live pane.\n\n[SugarSS]: https://github.com/postcss/sugarss\n\n### Sublime Text\n\n* [`Syntax-highlighting-for-PostCSS`] adds PostCSS highlight.\n\n[`Syntax-highlighting-for-PostCSS`]: https://github.com/hudochenkov/Syntax-highlighting-for-PostCSS\n[`source-preview-postcss`]:          https://atom.io/packages/source-preview-postcss\n[`language-postcss`]:                https://atom.io/packages/language-postcss\n\n### WebStorm\n\nSupport is still in progress. Please support [WEB-16601 issue]\nin JetBrains tracker.\n\n[WEB-16601 issue]: https://youtrack.jetbrains.com/issue/WEB-16601\n",
-		"readmeFilename": "README.md",
+		"pre-commit": [
+			"lint-staged"
+		],
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/postcss/postcss.git"
 		},
 		"scripts": {
+			"lint-staged": "lint-staged",
 			"test": "gulp"
 		},
 		"typings": "d.ts/postcss.d.ts",
-		"version": "5.1.2"
+		"version": "5.2.0"
 	};
 
 /***/ },
@@ -1205,24 +1265,31 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"css@https://registry.npmjs.org/css/-/css-2.2.1.tgz",
+				"css@^2.2.1",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "css@>=2.2.1 <3.0.0",
 		"_id": "css@2.2.1",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/css",
+		"_nodeVersion": "2.2.1",
+		"_npmUser": {
+			"email": "me@conradz.com",
+			"name": "conradz"
+		},
+		"_npmVersion": "2.11.0",
 		"_phantomChildren": {
 			"amdefine": "1.0.0"
 		},
 		"_requested": {
 			"name": "css",
-			"raw": "css@https://registry.npmjs.org/css/-/css-2.2.1.tgz",
-			"rawSpec": "https://registry.npmjs.org/css/-/css-2.2.1.tgz",
+			"raw": "css@^2.2.1",
+			"rawSpec": "^2.2.1",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/css/-/css-2.2.1.tgz",
-			"type": "remote"
+			"spec": ">=2.2.1 <3.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -1230,7 +1297,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/css/-/css-2.2.1.tgz",
 		"_shasum": "73a4c81de85db664d4ee674f7d47085e3b2d55dc",
 		"_shrinkwrap": null,
-		"_spec": "css@https://registry.npmjs.org/css/-/css-2.2.1.tgz",
+		"_spec": "css@^2.2.1",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "tj@vision-media.ca",
@@ -1252,10 +1319,16 @@ webpackJsonp([0],{
 			"mocha": "^1.21.3",
 			"should": "^4.0.4"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "73a4c81de85db664d4ee674f7d47085e3b2d55dc",
+			"tarball": "https://registry.npmjs.org/css/-/css-2.2.1.tgz"
+		},
 		"files": [
 			"index.js",
 			"lib"
 		],
+		"gitHead": "e38b6f1cc03aa36ff161a3da96b5c7510bd41ca7",
 		"homepage": "https://github.com/reworkcss/css#readme",
 		"keywords": [
 			"css",
@@ -1265,10 +1338,55 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "index",
+		"maintainers": [
+			{
+				"email": "tj@vision-media.ca",
+				"name": "tjholowaychuk"
+			},
+			{
+				"email": "jonathanrichardong@gmail.com",
+				"name": "jonathanong"
+			},
+			{
+				"email": "jonathanrichardong@gmail.com",
+				"name": "jongleberry"
+			},
+			{
+				"email": "me@conradz.com",
+				"name": "conradz"
+			},
+			{
+				"email": "nicolasgallagher@gmail.com",
+				"name": "necolas"
+			},
+			{
+				"email": "antshort@gmail.com",
+				"name": "anthonyshort"
+			},
+			{
+				"email": "ian@ianstormtaylor.com",
+				"name": "ianstormtaylor"
+			},
+			{
+				"email": "m@moox.io",
+				"name": "moox"
+			},
+			{
+				"email": "clint@anotherway.co.za",
+				"name": "clintwood"
+			},
+			{
+				"email": "simon.lydell@gmail.com",
+				"name": "lydell"
+			},
+			{
+				"email": "alexsexton@gmail.com",
+				"name": "slexaxton"
+			}
+		],
 		"name": "css",
 		"optionalDependencies": {},
-		"readme": "# css [![Build Status](https://travis-ci.org/reworkcss/css.svg?branch=master)](https://travis-ci.org/reworkcss/css)\n\nCSS parser / stringifier.\n\n## Installation\n\n    $ npm install css\n\n## Usage\n\n```js\nvar css = require('css');\nvar obj = css.parse('body { font-size: 12px; }', options);\ncss.stringify(obj, options);\n```\n\n## API\n\n### css.parse(code, [options])\n\nAccepts a CSS string and returns an AST `object`.\n\n`options`:\n\n- silent: silently fail on parse errors.\n- source: the path to the file containing `css`. Makes errors and source\n  maps more helpful, by letting them know where code comes from.\n\n### css.stringify(object, [options])\n\nAccepts an AST `object` (as `css.parse` produces) and returns a CSS string.\n\n`options`:\n\n- indent: the string used to indent the output. Defaults to two spaces.\n- compress: omit comments and extraneous whitespace.\n- sourcemap: return a sourcemap along with the CSS output. Using the `source`\n  option of `css.parse` is strongly recommended when creating a source map.\n  Specify `sourcemap: 'generator'` to return the SourceMapGenerator object\n  instead of serializing the source map.\n- inputSourcemaps: (enabled by default, specify `false` to disable) reads any\n  source maps referenced by the input files when generating the output source\n  map. When enabled, file system access may be required for reading the\n  referenced source maps.\n\n### Example\n\n```js\nvar ast = css.parse('body { font-size: 12px; }', { source: 'source.css' });\n\nvar css = css.stringify(ast);\n\nvar result = css.stringify(ast, { sourcemap: true });\nresult.code // string with CSS\nresult.map // source map object\n```\n\n### Errors\n\nErrors thrown during parsing have the following properties:\n\n- message: `String`. The full error message with the source position.\n- reason: `String`. The error message without position.\n- filename: `String` or `undefined`. The value of `options.source` if\n  passed to `css.parse`. Otherwise `undefined`.\n- line: `Integer`.\n- column: `Integer`.\n- source: `String`. The portion of code that couldn't be parsed.\n\nWhen parsing with the `silent` option, errors are listed in the\n`parsingErrors` property of the [`stylesheet`](#stylesheet) node instead\nof being thrown.\n\nIf you create any errors in plugins such as in\n[rework](https://github.com/reworkcss/rework), you __must__ set the same\nproperties for consistency.\n\n## AST\n\nInteractively explore the AST with <http://iamdustan.com/reworkcss_ast_explorer/>.\n\n### Common properties\n\nAll nodes have the following properties.\n\n#### position\n\nInformation about the position in the source string that corresponds to\nthe node.\n\n`Object`:\n\n- start: `Object`:\n  - line: `Number`.\n  - column: `Number`.\n- end: `Object`:\n  - line: `Number`.\n  - column: `Number`.\n- source: `String` or `undefined`. The value of `options.source` if passed to\n  `css.parse`. Otherwise `undefined`.\n- content: `String`. The full source string passed to `css.parse`.\n\nThe line and column numbers are 1-based: The first line is 1 and the first\ncolumn of a line is 1 (not 0).\n\nThe `position` property lets you know from which source file the node comes\nfrom (if available), what that file contains, and what part of that file was\nparsed into the node.\n\n#### type\n\n`String`. The possible values are the ones listed in the Types section below.\n\n#### parent\n\nA reference to the parent node, or `null` if the node has no parent.\n\n### Types\n\nThe available values of `node.type` are listed below, as well as the available\nproperties of each node (other than the common properties listed above.)\n\n#### stylesheet\n\nThe root node returned by `css.parse`.\n\n- stylesheet: `Object`:\n  - rules: `Array` of nodes with the types `rule`, `comment` and any of the\n    at-rule types.\n  - parsingErrors: `Array` of `Error`s. Errors collected during parsing when\n    option `silent` is true.\n\n#### rule\n\n- selectors: `Array` of `String`s. The list of selectors of the rule, split\n  on commas. Each selector is trimmed from whitespace and comments.\n- declarations: `Array` of nodes with the types `declaration` and `comment`.\n\n#### declaration\n\n- property: `String`. The property name, trimmed from whitespace and\n  comments. May not be empty.\n- value: `String`. The value of the property, trimmed from whitespace and\n  comments. Empty values are allowed.\n\n#### comment\n\nA rule-level or declaration-level comment. Comments inside selectors,\nproperties and values etc. are lost.\n\n- comment: `String`. The part between the starting `/*` and the ending `*/`\n  of the comment, including whitespace.\n\n#### charset\n\nThe `@charset` at-rule.\n\n- charset: `String`. The part following `@charset `.\n\n#### custom-media\n\nThe `@custom-media` at-rule.\n\n- name: `String`. The `--`-prefixed name.\n- media: `String`. The part following the name.\n\n#### document\n\nThe `@document` at-rule.\n\n- document: `String`. The part following `@document `.\n- vendor: `String` or `undefined`. The vendor prefix in `@document`, or\n  `undefined` if there is none.\n- rules: `Array` of nodes with the types `rule`, `comment` and any of the\n  at-rule types.\n\n#### font-face\n\nThe `@font-face` at-rule.\n\n- declarations: `Array` of nodes with the types `declaration` and `comment`.\n\n#### host\n\nThe `@host` at-rule.\n\n- rules: `Array` of nodes with the types `rule`, `comment` and any of the\n  at-rule types.\n\n#### import\n\nThe `@import` at-rule.\n\n- import: `String`. The part following `@import `.\n\n#### keyframes\n\nThe `@keyframes` at-rule.\n\n- name: `String`. The name of the keyframes rule.\n- vendor: `String` or `undefined`. The vendor prefix in `@keyframes`, or\n  `undefined` if there is none.\n- keyframes: `Array` of nodes with the types `keyframe` and `comment`.\n\n#### keyframe\n\n- values: `Array` of `String`s. The list of “selectors” of the keyframe rule,\n  split on commas. Each “selector” is trimmed from whitespace.\n- declarations: `Array` of nodes with the types `declaration` and `comment`.\n\n#### media\n\nThe `@media` at-rule.\n\n- media: `String`. The part following `@media `.\n- rules: `Array` of nodes with the types `rule`, `comment` and any of the\n  at-rule types.\n\n#### namespace\n\nThe `@namespace` at-rule.\n\n- namespace: `String`. The part following `@namespace `.\n\n#### page\n\nThe `@page` at-rule.\n\n- selectors: `Array` of `String`s. The list of selectors of the rule, split\n  on commas. Each selector is trimmed from whitespace and comments.\n- declarations: `Array` of nodes with the types `declaration` and `comment`.\n\n#### supports\n\nThe `@supports` at-rule.\n\n- supports: `String`. The part following `@supports `.\n- rules: `Array` of nodes with the types `rule`, `comment` and any of the\n  at-rule types.\n\n### Example\n\nCSS:\n\n```css\nbody {\n  background: #eee;\n  color: #888;\n}\n```\n\nParse tree:\n\n```json\n{\n  \"type\": \"stylesheet\",\n  \"stylesheet\": {\n    \"rules\": [\n      {\n        \"type\": \"rule\",\n        \"selectors\": [\n          \"body\"\n        ],\n        \"declarations\": [\n          {\n            \"type\": \"declaration\",\n            \"property\": \"background\",\n            \"value\": \"#eee\",\n            \"position\": {\n              \"start\": {\n                \"line\": 2,\n                \"column\": 3\n              },\n              \"end\": {\n                \"line\": 2,\n                \"column\": 19\n              }\n            }\n          },\n          {\n            \"type\": \"declaration\",\n            \"property\": \"color\",\n            \"value\": \"#888\",\n            \"position\": {\n              \"start\": {\n                \"line\": 3,\n                \"column\": 3\n              },\n              \"end\": {\n                \"line\": 3,\n                \"column\": 14\n              }\n            }\n          }\n        ],\n        \"position\": {\n          \"start\": {\n            \"line\": 1,\n            \"column\": 1\n          },\n          \"end\": {\n            \"line\": 4,\n            \"column\": 2\n          }\n        }\n      }\n    ]\n  }\n}\n```\n\n## License\n\nMIT\n",
-		"readmeFilename": "Readme.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/reworkcss/css.git"
@@ -1285,7 +1403,7 @@ webpackJsonp([0],{
 /***/ "./src/parsers/css/transformers/postcss/codeExample.txt":
 /***/ function(module, exports) {
 
-	module.exports = "import * as postcss from 'postcss';\n\nexport default postcss.plugin('postcss-reverse-props', (options = {}) => {\n    // Work with options here\n    return css => {\n        // Transform CSS AST here\n        css.walkRules(rule => {\n            // Transform each rule here\n            rule.walkDecls(decl => {\n                // Transform each property declaration here\n                decl.prop = decl.prop.split('').reverse().join('');\n            });\n        });\n    };\n});\n"
+	module.exports = "import * as postcss from 'postcss';\n\nexport default postcss.plugin('postcss-reverse-props', (options = {}) => {\n    // Work with options here\n    return root => {\n        // Transform CSS AST here\n        root.walkRules(rule => {\n            // Transform each rule here\n            rule.walkDecls(decl => {\n                // Transform each property declaration here\n                decl.prop = decl.prop.split('').reverse().join('');\n            });\n        });\n    };\n});\n"
 
 /***/ },
 
@@ -1358,11 +1476,11 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"graphql@0.7.0",
+				"graphql@^0.7.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "graphql@0.7.0",
+		"_from": "graphql@>=0.7.0 <0.8.0",
 		"_id": "graphql@0.7.0",
 		"_inCache": true,
 		"_installable": true,
@@ -1380,11 +1498,11 @@ webpackJsonp([0],{
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "graphql",
-			"raw": "graphql@0.7.0",
-			"rawSpec": "0.7.0",
+			"raw": "graphql@^0.7.0",
+			"rawSpec": "^0.7.0",
 			"scope": null,
-			"spec": "0.7.0",
-			"type": "version"
+			"spec": ">=0.7.0 <0.8.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -1392,7 +1510,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/graphql/-/graphql-0.7.0.tgz",
 		"_shasum": "5701492838edc6c673c184075eb8f06b11a7e451",
 		"_shrinkwrap": null,
-		"_spec": "graphql@0.7.0",
+		"_spec": "graphql@^0.7.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"bugs": {
 			"url": "https://github.com/graphql/graphql-js/issues"
@@ -1686,22 +1804,33 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"htmlparser2@https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
+				"htmlparser2@^3.9.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "htmlparser2@>=3.9.0 <4.0.0",
 		"_id": "htmlparser2@3.9.1",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/htmlparser2",
+		"_nodeVersion": "6.2.1",
+		"_npmOperationalInternal": {
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/htmlparser2-3.9.1.tgz_1465693408619_0.5511430425103754"
+		},
+		"_npmUser": {
+			"email": "me@feedic.com",
+			"name": "feedic"
+		},
+		"_npmVersion": "3.9.6",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "htmlparser2",
-			"raw": "htmlparser2@https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
-			"rawSpec": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
+			"raw": "htmlparser2@^3.9.0",
+			"rawSpec": "^3.9.0",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
-			"type": "remote"
+			"spec": ">=3.9.0 <4.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -1709,7 +1838,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
 		"_shasum": "621b7a58bc9acd003f7af0a2c9a00aa67c8505d2",
 		"_shrinkwrap": null,
-		"_spec": "htmlparser2@https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz",
+		"_spec": "htmlparser2@^3.9.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "me@feedic.com",
@@ -1740,9 +1869,14 @@ webpackJsonp([0],{
 		"directories": {
 			"lib": "lib/"
 		},
+		"dist": {
+			"shasum": "621b7a58bc9acd003f7af0a2c9a00aa67c8505d2",
+			"tarball": "https://registry.npmjs.org/htmlparser2/-/htmlparser2-3.9.1.tgz"
+		},
 		"files": [
 			"lib"
 		],
+		"gitHead": "f4651bd5dc1315a9949ff24361cce012b105861f",
 		"homepage": "https://github.com/fb55/htmlparser2#readme",
 		"keywords": [
 			"html",
@@ -1756,6 +1890,12 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "lib/index.js",
+		"maintainers": [
+			{
+				"email": "me@feedic.com",
+				"name": "feedic"
+			}
+		],
 		"name": "htmlparser2",
 		"optionalDependencies": {},
 		"readme": "ERROR: No README data found!",
@@ -1798,7 +1938,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/codemirror/mode/javascript/javascript.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	!function(e){ true?e(__webpack_require__("./node_modules/codemirror/lib/codemirror.js")):"function"==typeof define&&define.amd?define(["../../lib/codemirror"],e):e(CodeMirror)}(function(e){"use strict";function t(e,t,r){return/^(?:operator|sof|keyword c|case|new|[\[{}\(,;:]|=>)$/.test(t.lastType)||"quasi"==t.lastType&&/\{\s*$/.test(e.string.slice(0,e.pos-(r||0)))}e.defineMode("javascript",function(r,n){function a(e){for(var t,r=!1,n=!1;null!=(t=e.next());){if(!r){if("/"==t&&!n)return;"["==t?n=!0:n&&"]"==t&&(n=!1)}r=!r&&"\\"==t}}function i(e,t,r){return ge=e,je=r,t}function o(e,r){var n=e.next();if('"'==n||"'"==n)return r.tokenize=c(n),r.tokenize(e,r);if("."==n&&e.match(/^\d+(?:[eE][+\-]?\d+)?/))return i("number","number");if("."==n&&e.match(".."))return i("spread","meta");if(/[\[\]{}\(\),;\:\.]/.test(n))return i(n);if("="==n&&e.eat(">"))return i("=>","operator");if("0"==n&&e.eat(/x/i))return e.eatWhile(/[\da-f]/i),i("number","number");if("0"==n&&e.eat(/o/i))return e.eatWhile(/[0-7]/i),i("number","number");if("0"==n&&e.eat(/b/i))return e.eatWhile(/[01]/i),i("number","number");if(/\d/.test(n))return e.match(/^\d*(?:\.\d*)?(?:[eE][+\-]?\d+)?/),i("number","number");if("/"==n)return e.eat("*")?(r.tokenize=u,u(e,r)):e.eat("/")?(e.skipToEnd(),i("comment","comment")):t(e,r,1)?(a(e),e.match(/^\b(([gimyu])(?![gimyu]*\2))+\b/),i("regexp","string-2")):(e.eatWhile($e),i("operator","operator",e.current()));if("`"==n)return r.tokenize=l,l(e,r);if("#"==n)return e.skipToEnd(),i("error","error");if($e.test(n))return e.eatWhile($e),i("operator","operator",e.current());if(Ae.test(n)){e.eatWhile(Ae);var o=e.current(),s=Te.propertyIsEnumerable(o)&&Te[o];return s&&"."!=r.lastType?i(s.type,s.style,o):i("variable","variable",o)}}function c(e){return function(t,r){var n,a=!1;if(Ee&&"@"==t.peek()&&t.match(qe))return r.tokenize=o,i("jsonld-keyword","meta");for(;null!=(n=t.next())&&(n!=e||a);)a=!a&&"\\"==n;return a||(r.tokenize=o),i("string","string")}}function u(e,t){for(var r,n=!1;r=e.next();){if("/"==r&&n){t.tokenize=o;break}n="*"==r}return i("comment","comment")}function l(e,t){for(var r,n=!1;null!=(r=e.next());){if(!n&&("`"==r||"$"==r&&e.eat("{"))){t.tokenize=o;break}n=!n&&"\\"==r}return i("quasi","string-2",e.current())}function s(e,t){t.fatArrowAt&&(t.fatArrowAt=null);var r=e.string.indexOf("=>",e.start);if(!(r<0)){for(var n=0,a=!1,i=r-1;i>=0;--i){var o=e.string.charAt(i),c=Ce.indexOf(o);if(c>=0&&c<3){if(!n){++i;break}if(0==--n){"("==o&&(a=!0);break}}else if(c>=3&&c<6)++n;else if(Ae.test(o))a=!0;else{if(/["'\/]/.test(o))return;if(a&&!n){++i;break}}}a&&!n&&(t.fatArrowAt=i)}}function f(e,t,r,n,a,i){this.indented=e,this.column=t,this.type=r,this.prev=a,this.info=i,null!=n&&(this.align=n)}function d(e,t){for(var r=e.localVars;r;r=r.next)if(r.name==t)return!0;for(var n=e.context;n;n=n.prev)for(var r=n.vars;r;r=r.next)if(r.name==t)return!0}function p(e,t,r,n,a){var i=e.cc;for(Oe.state=e,Oe.stream=a,Oe.marked=null,Oe.cc=i,Oe.style=t,e.lexical.hasOwnProperty("align")||(e.lexical.align=!0);;){var o=i.length?i.pop():Ie?j:g;if(o(r,n)){for(;i.length&&i[i.length-1].lex;)i.pop()();return Oe.marked?Oe.marked:"variable"==r&&d(e,n)?"variable-2":t}}}function m(){for(var e=arguments.length-1;e>=0;e--)Oe.cc.push(arguments[e])}function v(){return m.apply(null,arguments),!0}function y(e){function t(t){for(var r=t;r;r=r.next)if(r.name==e)return!0;return!1}var r=Oe.state;if(Oe.marked="def",r.context){if(t(r.localVars))return;r.localVars={name:e,next:r.localVars}}else{if(t(r.globalVars))return;n.globalVars&&(r.globalVars={name:e,next:r.globalVars})}}function k(){Oe.state.context={prev:Oe.state.context,vars:Oe.state.localVars},Oe.state.localVars=Pe}function b(){Oe.state.localVars=Oe.state.context.vars,Oe.state.context=Oe.state.context.prev}function x(e,t){var r=function(){var r=Oe.state,n=r.indented;if("stat"==r.lexical.type)n=r.lexical.indented;else for(var a=r.lexical;a&&")"==a.type&&a.align;a=a.prev)n=a.indented;r.lexical=new f(n,Oe.stream.column(),e,null,r.lexical,t)};return r.lex=!0,r}function h(){var e=Oe.state;e.lexical.prev&&(")"==e.lexical.type&&(e.indented=e.lexical.indented),e.lexical=e.lexical.prev)}function w(e){function t(r){return r==e?v():";"==e?m():v(t)}return t}function g(e,t){return"var"==e?v(x("vardef",t.length),Z,w(";"),h):"keyword a"==e?v(x("form"),j,g,h):"keyword b"==e?v(x("form"),g,h):"{"==e?v(x("}"),G,h):";"==e?v():"if"==e?("else"==Oe.state.lexical.info&&Oe.state.cc[Oe.state.cc.length-1]==h&&Oe.state.cc.pop()(),v(x("form"),j,g,h,ne)):"function"==e?v(le):"for"==e?v(x("form"),ae,g,h):"variable"==e?v(x("stat"),S):"switch"==e?v(x("form"),j,x("}","switch"),w("{"),G,h,h):"case"==e?v(j,w(":")):"default"==e?v(w(":")):"catch"==e?v(x("form"),k,w("("),se,w(")"),g,h,b):"class"==e?v(x("form"),fe,h):"export"==e?v(x("stat"),ve,h):"import"==e?v(x("stat"),ye,h):"module"==e?v(x("form"),_,x("}"),w("{"),G,h,h):"async"==e?v(g):m(x("stat"),j,w(";"),h)}function j(e){return V(e,!1)}function M(e){return V(e,!0)}function V(e,t){if(Oe.state.fatArrowAt==Oe.stream.start){var r=t?C:q;if("("==e)return v(k,x(")"),D(_,")"),h,w("=>"),r,b);if("variable"==e)return m(k,_,w("=>"),r,b)}var n=t?A:z;return We.hasOwnProperty(e)?v(n):"function"==e?v(le,n):"keyword c"==e||"async"==e?v(t?I:E):"("==e?v(x(")"),E,w(")"),h,n):"operator"==e||"spread"==e?v(t?M:j):"["==e?v(x("]"),he,h,n):"{"==e?F(B,"}",null,n):"quasi"==e?m(T,n):"new"==e?v(W(t)):v()}function E(e){return e.match(/[;\}\)\],]/)?m():m(j)}function I(e){return e.match(/[;\}\)\],]/)?m():m(M)}function z(e,t){return","==e?v(j):A(e,t,!1)}function A(e,t,r){var n=0==r?z:A,a=0==r?j:M;return"=>"==e?v(k,r?C:q,b):"operator"==e?/\+\+|--/.test(t)?v(n):"?"==t?v(j,w(":"),a):v(a):"quasi"==e?m(T,n):";"!=e?"("==e?F(M,")","call",n):"."==e?v(N,n):"["==e?v(x("]"),E,w("]"),h,n):void 0:void 0}function T(e,t){return"quasi"!=e?m():"${"!=t.slice(t.length-2)?v(T):v(j,$)}function $(e){if("}"==e)return Oe.marked="string-2",Oe.state.tokenize=l,v(T)}function q(e){return s(Oe.stream,Oe.state),m("{"==e?g:j)}function C(e){return s(Oe.stream,Oe.state),m("{"==e?g:M)}function W(e){return function(t){return"."==t?v(e?P:O):m(e?M:j)}}function O(e,t){if("target"==t)return Oe.marked="keyword",v(z)}function P(e,t){if("target"==t)return Oe.marked="keyword",v(A)}function S(e){return":"==e?v(h,g):m(z,w(";"),h)}function N(e){if("variable"==e)return Oe.marked="property",v()}function B(e,t){return"async"==e?(Oe.marked="property",v(B)):"variable"==e||"keyword"==Oe.style?(Oe.marked="property",v("get"==t||"set"==t?H:U)):"number"==e||"string"==e?(Oe.marked=Ee?"property":Oe.style+" property",v(U)):"jsonld-keyword"==e?v(U):"modifier"==e?v(B):"["==e?v(j,w("]"),U):"spread"==e?v(j):":"==e?m(U):void 0}function H(e){return"variable"!=e?m(U):(Oe.marked="property",v(le))}function U(e){return":"==e?v(M):"("==e?m(le):void 0}function D(e,t){function r(n,a){if(","==n){var i=Oe.state.lexical;return"call"==i.info&&(i.pos=(i.pos||0)+1),v(function(r,n){return r==t||n==t?m():m(e)},r)}return n==t||a==t?v():v(w(t))}return function(n,a){return n==t||a==t?v():m(e,r)}}function F(e,t,r){for(var n=3;n<arguments.length;n++)Oe.cc.push(arguments[n]);return v(x(t,r),D(e,t),h)}function G(e){return"}"==e?v():m(g,G)}function J(e){if(ze&&":"==e)return v(L)}function K(e,t){if("="==t)return v(M)}function L(e){return"variable"==e?(Oe.marked="variable-3",v(Y)):"{"==e?v(D(R,"}")):"("==e?v(D(X,")"),Q):void 0}function Q(e){if("=>"==e)return v(L)}function R(e){return"variable"==e||"keyword"==Oe.style?(Oe.marked="property",v(R)):":"==e?v(L):void 0}function X(e){return"variable"==e?v(X):":"==e?v(L):void 0}function Y(e,t){return"<"==t?v(D(L,">"),Y):"["==e?v(w("]"),Y):void 0}function Z(){return m(_,J,te,re)}function _(e,t){return"modifier"==e?v(_):"variable"==e?(y(t),v()):"spread"==e?v(_):"["==e?F(_,"]"):"{"==e?F(ee,"}"):void 0}function ee(e,t){return"variable"!=e||Oe.stream.match(/^\s*:/,!1)?("variable"==e&&(Oe.marked="property"),"spread"==e?v(_):"}"==e?m():v(w(":"),_,te)):(y(t),v(te))}function te(e,t){if("="==t)return v(M)}function re(e){if(","==e)return v(Z)}function ne(e,t){if("keyword b"==e&&"else"==t)return v(x("form","else"),g,h)}function ae(e){if("("==e)return v(x(")"),ie,w(")"),h)}function ie(e){return"var"==e?v(Z,w(";"),ce):";"==e?v(ce):"variable"==e?v(oe):m(j,w(";"),ce)}function oe(e,t){return"in"==t||"of"==t?(Oe.marked="keyword",v(j)):v(z,ce)}function ce(e,t){return";"==e?v(ue):"in"==t||"of"==t?(Oe.marked="keyword",v(j)):m(j,w(";"),ue)}function ue(e){")"!=e&&v(j)}function le(e,t){return"*"==t?(Oe.marked="keyword",v(le)):"variable"==e?(y(t),v(le)):"("==e?v(k,x(")"),D(se,")"),h,J,g,b):void 0}function se(e){return"spread"==e?v(se):m(_,J,K)}function fe(e,t){if("variable"==e)return y(t),v(de)}function de(e,t){return"extends"==t?v(ze?L:j,de):"{"==e?v(x("}"),pe,h):void 0}function pe(e,t){return"variable"==e||"keyword"==Oe.style?"static"==t?(Oe.marked="keyword",v(pe)):(Oe.marked="property","get"==t||"set"==t?v(me,le,pe):v(le,pe)):"*"==t?(Oe.marked="keyword",v(pe)):";"==e?v(pe):"}"==e?v():void 0}function me(e){return"variable"!=e?m():(Oe.marked="property",v())}function ve(e,t){return"*"==t?(Oe.marked="keyword",v(xe,w(";"))):"default"==t?(Oe.marked="keyword",v(j,w(";"))):m(g)}function ye(e){return"string"==e?v():m(ke,xe)}function ke(e,t){return"{"==e?F(ke,"}"):("variable"==e&&y(t),"*"==t&&(Oe.marked="keyword"),v(be))}function be(e,t){if("as"==t)return Oe.marked="keyword",v(ke)}function xe(e,t){if("from"==t)return Oe.marked="keyword",v(j)}function he(e){return"]"==e?v():m(D(M,"]"))}function we(e,t){return"operator"==e.lastType||","==e.lastType||$e.test(t.charAt(0))||/[,.]/.test(t.charAt(0))}var ge,je,Me=r.indentUnit,Ve=n.statementIndent,Ee=n.jsonld,Ie=n.json||Ee,ze=n.typescript,Ae=n.wordCharacters||/[\w$\xa1-\uffff]/,Te=function(){function e(e){return{type:e,style:"keyword"}}var t=e("keyword a"),r=e("keyword b"),n=e("keyword c"),a=e("operator"),i={type:"atom",style:"atom"},o={"if":e("if"),"while":t,"with":t,"else":r,"do":r,"try":r,"finally":r,"return":n,"break":n,"continue":n,"new":e("new"),"delete":n,"throw":n,"debugger":n,"var":e("var"),"const":e("var"),"let":e("var"),"function":e("function"),"catch":e("catch"),"for":e("for"),"switch":e("switch"),"case":e("case"),"default":e("default"),"in":a,"typeof":a,"instanceof":a,"true":i,"false":i,"null":i,undefined:i,NaN:i,Infinity:i,"this":e("this"),"class":e("class"),"super":e("atom"),"yield":n,"export":e("export"),"import":e("import"),"extends":n,await:n,async:e("async")};if(ze){var c={type:"variable",style:"variable-3"},u={"interface":e("class"),"implements":n,namespace:n,module:e("module"),"enum":e("module"),"public":e("modifier"),"private":e("modifier"),"protected":e("modifier"),"abstract":e("modifier"),as:a,string:c,number:c,"boolean":c,any:c};for(var l in u)o[l]=u[l]}return o}(),$e=/[+\-*&%=<>!?|~^]/,qe=/^@(context|id|value|language|type|container|list|set|reverse|index|base|vocab|graph)"/,Ce="([{}])",We={atom:!0,number:!0,variable:!0,string:!0,regexp:!0,"this":!0,"jsonld-keyword":!0},Oe={state:null,column:null,marked:null,cc:null},Pe={name:"this",next:{name:"arguments"}};return h.lex=!0,{startState:function(e){var t={tokenize:o,lastType:"sof",cc:[],lexical:new f((e||0)-Me,0,"block",(!1)),localVars:n.localVars,context:n.localVars&&{vars:n.localVars},indented:e||0};return n.globalVars&&"object"==typeof n.globalVars&&(t.globalVars=n.globalVars),t},token:function(e,t){if(e.sol()&&(t.lexical.hasOwnProperty("align")||(t.lexical.align=!1),t.indented=e.indentation(),s(e,t)),t.tokenize!=u&&e.eatSpace())return null;var r=t.tokenize(e,t);return"comment"==ge?r:(t.lastType="operator"!=ge||"++"!=je&&"--"!=je?ge:"incdec",p(t,r,ge,je,e))},indent:function(t,r){if(t.tokenize==u)return e.Pass;if(t.tokenize!=o)return 0;var a=r&&r.charAt(0),i=t.lexical;if(!/^\s*else\b/.test(r))for(var c=t.cc.length-1;c>=0;--c){var l=t.cc[c];if(l==h)i=i.prev;else if(l!=ne)break}"stat"==i.type&&"}"==a&&(i=i.prev),Ve&&")"==i.type&&"stat"==i.prev.type&&(i=i.prev);var s=i.type,f=a==s;return"vardef"==s?i.indented+("operator"==t.lastType||","==t.lastType?i.info+1:0):"form"==s&&"{"==a?i.indented:"form"==s?i.indented+Me:"stat"==s?i.indented+(we(t,r)?Ve||Me:0):"switch"!=i.info||f||0==n.doubleIndentSwitch?i.align?i.column+(f?0:1):i.indented+(f?0:Me):i.indented+(/^(?:case|default)\b/.test(r)?Me:2*Me)},electricInput:/^\s*(?:case .*?:|default:|\{|\})$/,blockCommentStart:Ie?null:"/*",blockCommentEnd:Ie?null:"*/",lineComment:Ie?null:"//",fold:"brace",closeBrackets:"()[]{}''\"\"``",helperType:Ie?"json":"javascript",jsonldMode:Ee,jsonMode:Ie,expressionAllowed:t,skipExpression:function(e){var t=e.cc[e.cc.length-1];t!=j&&t!=M||e.cc.pop()}}}),e.registerHelper("wordChars","javascript",/[\w$]/),e.defineMIME("text/javascript","javascript"),e.defineMIME("text/ecmascript","javascript"),e.defineMIME("application/javascript","javascript"),e.defineMIME("application/x-javascript","javascript"),e.defineMIME("application/ecmascript","javascript"),e.defineMIME("application/json",{name:"javascript",json:!0}),e.defineMIME("application/x-json",{name:"javascript",json:!0}),e.defineMIME("application/ld+json",{name:"javascript",jsonld:!0}),e.defineMIME("text/typescript",{name:"javascript",typescript:!0}),e.defineMIME("application/typescript",{name:"javascript",typescript:!0})});
+	!function(e){ true?e(__webpack_require__("./node_modules/codemirror/lib/codemirror.js")):"function"==typeof define&&define.amd?define(["../../lib/codemirror"],e):e(CodeMirror)}(function(e){"use strict";function t(e,t,r){return/^(?:operator|sof|keyword c|case|new|[\[{}\(,;:]|=>)$/.test(t.lastType)||"quasi"==t.lastType&&/\{\s*$/.test(e.string.slice(0,e.pos-(r||0)))}e.defineMode("javascript",function(r,n){function a(e){for(var t,r=!1,n=!1;null!=(t=e.next());){if(!r){if("/"==t&&!n)return;"["==t?n=!0:n&&"]"==t&&(n=!1)}r=!r&&"\\"==t}}function i(e,t,r){return je=e,Me=r,t}function o(e,r){var n=e.next();if('"'==n||"'"==n)return r.tokenize=c(n),r.tokenize(e,r);if("."==n&&e.match(/^\d+(?:[eE][+\-]?\d+)?/))return i("number","number");if("."==n&&e.match(".."))return i("spread","meta");if(/[\[\]{}\(\),;\:\.]/.test(n))return i(n);if("="==n&&e.eat(">"))return i("=>","operator");if("0"==n&&e.eat(/x/i))return e.eatWhile(/[\da-f]/i),i("number","number");if("0"==n&&e.eat(/o/i))return e.eatWhile(/[0-7]/i),i("number","number");if("0"==n&&e.eat(/b/i))return e.eatWhile(/[01]/i),i("number","number");if(/\d/.test(n))return e.match(/^\d*(?:\.\d*)?(?:[eE][+\-]?\d+)?/),i("number","number");if("/"==n)return e.eat("*")?(r.tokenize=u,u(e,r)):e.eat("/")?(e.skipToEnd(),i("comment","comment")):t(e,r,1)?(a(e),e.match(/^\b(([gimyu])(?![gimyu]*\2))+\b/),i("regexp","string-2")):(e.eatWhile(qe),i("operator","operator",e.current()));if("`"==n)return r.tokenize=l,l(e,r);if("#"==n)return e.skipToEnd(),i("error","error");if(qe.test(n))return e.eatWhile(qe),i("operator","operator",e.current());if(Te.test(n)){e.eatWhile(Te);var o=e.current(),f=$e.propertyIsEnumerable(o)&&$e[o];return f&&"."!=r.lastType?i(f.type,f.style,o):i("variable","variable",o)}}function c(e){return function(t,r){var n,a=!1;if(Ie&&"@"==t.peek()&&t.match(Ce))return r.tokenize=o,i("jsonld-keyword","meta");for(;null!=(n=t.next())&&(n!=e||a);)a=!a&&"\\"==n;return a||(r.tokenize=o),i("string","string")}}function u(e,t){for(var r,n=!1;r=e.next();){if("/"==r&&n){t.tokenize=o;break}n="*"==r}return i("comment","comment")}function l(e,t){for(var r,n=!1;null!=(r=e.next());){if(!n&&("`"==r||"$"==r&&e.eat("{"))){t.tokenize=o;break}n=!n&&"\\"==r}return i("quasi","string-2",e.current())}function f(e,t){t.fatArrowAt&&(t.fatArrowAt=null);var r=e.string.indexOf("=>",e.start);if(!(r<0)){for(var n=0,a=!1,i=r-1;i>=0;--i){var o=e.string.charAt(i),c=We.indexOf(o);if(c>=0&&c<3){if(!n){++i;break}if(0==--n){"("==o&&(a=!0);break}}else if(c>=3&&c<6)++n;else if(Te.test(o))a=!0;else{if(/["'\/]/.test(o))return;if(a&&!n){++i;break}}}a&&!n&&(t.fatArrowAt=i)}}function s(e,t,r,n,a,i){this.indented=e,this.column=t,this.type=r,this.prev=a,this.info=i,null!=n&&(this.align=n)}function d(e,t){for(var r=e.localVars;r;r=r.next)if(r.name==t)return!0;for(var n=e.context;n;n=n.prev)for(var r=n.vars;r;r=r.next)if(r.name==t)return!0}function p(e,t,r,n,a){var i=e.cc;for(Pe.state=e,Pe.stream=a,Pe.marked=null,Pe.cc=i,Pe.style=t,e.lexical.hasOwnProperty("align")||(e.lexical.align=!0);;){var o=i.length?i.pop():ze?j:g;if(o(r,n)){for(;i.length&&i[i.length-1].lex;)i.pop()();return Pe.marked?Pe.marked:"variable"==r&&d(e,n)?"variable-2":t}}}function m(){for(var e=arguments.length-1;e>=0;e--)Pe.cc.push(arguments[e])}function v(){return m.apply(null,arguments),!0}function y(e){function t(t){for(var r=t;r;r=r.next)if(r.name==e)return!0;return!1}var r=Pe.state;if(Pe.marked="def",r.context){if(t(r.localVars))return;r.localVars={name:e,next:r.localVars}}else{if(t(r.globalVars))return;n.globalVars&&(r.globalVars={name:e,next:r.globalVars})}}function k(){Pe.state.context={prev:Pe.state.context,vars:Pe.state.localVars},Pe.state.localVars=Se}function b(){Pe.state.localVars=Pe.state.context.vars,Pe.state.context=Pe.state.context.prev}function x(e,t){var r=function(){var r=Pe.state,n=r.indented;if("stat"==r.lexical.type)n=r.lexical.indented;else for(var a=r.lexical;a&&")"==a.type&&a.align;a=a.prev)n=a.indented;r.lexical=new s(n,Pe.stream.column(),e,null,r.lexical,t)};return r.lex=!0,r}function h(){var e=Pe.state;e.lexical.prev&&(")"==e.lexical.type&&(e.indented=e.lexical.indented),e.lexical=e.lexical.prev)}function w(e){function t(r){return r==e?v():";"==e?m():v(t)}return t}function g(e,t){return"var"==e?v(x("vardef",t.length),_,w(";"),h):"keyword a"==e?v(x("form"),V,g,h):"keyword b"==e?v(x("form"),g,h):"{"==e?v(x("}"),J,h):";"==e?v():"if"==e?("else"==Pe.state.lexical.info&&Pe.state.cc[Pe.state.cc.length-1]==h&&Pe.state.cc.pop()(),v(x("form"),V,g,h,ae)):"function"==e?v(fe):"for"==e?v(x("form"),ie,g,h):"variable"==e?v(x("stat"),N):"switch"==e?v(x("form"),V,x("}","switch"),w("{"),J,h,h):"case"==e?v(j,w(":")):"default"==e?v(w(":")):"catch"==e?v(x("form"),k,w("("),se,w(")"),g,h,b):"class"==e?v(x("form"),de,h):"export"==e?v(x("stat"),ye,h):"import"==e?v(x("stat"),ke,h):"module"==e?v(x("form"),ee,x("}"),w("{"),J,h,h):"type"==e?v(Q,w("operator"),Q,w(";")):"async"==e?v(g):m(x("stat"),j,w(";"),h)}function j(e){return E(e,!1)}function M(e){return E(e,!0)}function V(e){return"("!=e?m():v(x(")"),j,w(")"),h)}function E(e,t){if(Pe.state.fatArrowAt==Pe.stream.start){var r=t?W:C;if("("==e)return v(k,x(")"),F(ee,")"),h,w("=>"),r,b);if("variable"==e)return m(k,ee,w("=>"),r,b)}var n=t?T:A;return Oe.hasOwnProperty(e)?v(n):"function"==e?v(fe,n):"keyword c"==e||"async"==e?v(t?z:I):"("==e?v(x(")"),I,w(")"),h,n):"operator"==e||"spread"==e?v(t?M:j):"["==e?v(x("]"),we,h,n):"{"==e?G(H,"}",null,n):"quasi"==e?m($,n):"new"==e?v(O(t)):v()}function I(e){return e.match(/[;\}\)\],]/)?m():m(j)}function z(e){return e.match(/[;\}\)\],]/)?m():m(M)}function A(e,t){return","==e?v(j):T(e,t,!1)}function T(e,t,r){var n=0==r?A:T,a=0==r?j:M;return"=>"==e?v(k,r?W:C,b):"operator"==e?/\+\+|--/.test(t)?v(n):"?"==t?v(j,w(":"),a):v(a):"quasi"==e?m($,n):";"!=e?"("==e?G(M,")","call",n):"."==e?v(B,n):"["==e?v(x("]"),I,w("]"),h,n):void 0:void 0}function $(e,t){return"quasi"!=e?m():"${"!=t.slice(t.length-2)?v($):v(j,q)}function q(e){if("}"==e)return Pe.marked="string-2",Pe.state.tokenize=l,v($)}function C(e){return f(Pe.stream,Pe.state),m("{"==e?g:j)}function W(e){return f(Pe.stream,Pe.state),m("{"==e?g:M)}function O(e){return function(t){return"."==t?v(e?S:P):m(e?M:j)}}function P(e,t){if("target"==t)return Pe.marked="keyword",v(A)}function S(e,t){if("target"==t)return Pe.marked="keyword",v(T)}function N(e){return":"==e?v(h,g):m(A,w(";"),h)}function B(e){if("variable"==e)return Pe.marked="property",v()}function H(e,t){return"async"==e?(Pe.marked="property",v(H)):"variable"==e||"keyword"==Pe.style?(Pe.marked="property",v("get"==t||"set"==t?U:D)):"number"==e||"string"==e?(Pe.marked=Ie?"property":Pe.style+" property",v(D)):"jsonld-keyword"==e?v(D):"modifier"==e?v(H):"["==e?v(j,w("]"),D):"spread"==e?v(j):":"==e?m(D):void 0}function U(e){return"variable"!=e?m(D):(Pe.marked="property",v(fe))}function D(e){return":"==e?v(M):"("==e?m(fe):void 0}function F(e,t){function r(n,a){if(","==n){var i=Pe.state.lexical;return"call"==i.info&&(i.pos=(i.pos||0)+1),v(function(r,n){return r==t||n==t?m():m(e)},r)}return n==t||a==t?v():v(w(t))}return function(n,a){return n==t||a==t?v():m(e,r)}}function G(e,t,r){for(var n=3;n<arguments.length;n++)Pe.cc.push(arguments[n]);return v(x(t,r),F(e,t),h)}function J(e){return"}"==e?v():m(g,J)}function K(e,t){if(Ae){if(":"==e)return v(Q);if("?"==t)return v(K)}}function L(e,t){if("="==t)return v(M)}function Q(e){return"variable"==e?(Pe.marked="variable-3",v(Z)):"{"==e?v(F(X,"}")):"("==e?v(F(Y,")"),R):void 0}function R(e){if("=>"==e)return v(Q)}function X(e){return"variable"==e||"keyword"==Pe.style?(Pe.marked="property",v(X)):":"==e?v(Q):void 0}function Y(e){return"variable"==e?v(Y):":"==e?v(Q):void 0}function Z(e,t){return"<"==t?v(F(Q,">"),Z):"["==e?v(w("]"),Z):void 0}function _(){return m(ee,K,re,ne)}function ee(e,t){return"modifier"==e?v(ee):"variable"==e?(y(t),v()):"spread"==e?v(ee):"["==e?G(ee,"]"):"{"==e?G(te,"}"):void 0}function te(e,t){return"variable"!=e||Pe.stream.match(/^\s*:/,!1)?("variable"==e&&(Pe.marked="property"),"spread"==e?v(ee):"}"==e?m():v(w(":"),ee,re)):(y(t),v(re))}function re(e,t){if("="==t)return v(M)}function ne(e){if(","==e)return v(_)}function ae(e,t){if("keyword b"==e&&"else"==t)return v(x("form","else"),g,h)}function ie(e){if("("==e)return v(x(")"),oe,w(")"),h)}function oe(e){return"var"==e?v(_,w(";"),ue):";"==e?v(ue):"variable"==e?v(ce):m(j,w(";"),ue)}function ce(e,t){return"in"==t||"of"==t?(Pe.marked="keyword",v(j)):v(A,ue)}function ue(e,t){return";"==e?v(le):"in"==t||"of"==t?(Pe.marked="keyword",v(j)):m(j,w(";"),le)}function le(e){")"!=e&&v(j)}function fe(e,t){return"*"==t?(Pe.marked="keyword",v(fe)):"variable"==e?(y(t),v(fe)):"("==e?v(k,x(")"),F(se,")"),h,K,g,b):void 0}function se(e){return"spread"==e?v(se):m(ee,K,L)}function de(e,t){if("variable"==e)return y(t),v(pe)}function pe(e,t){return"extends"==t?v(Ae?Q:j,pe):"{"==e?v(x("}"),me,h):void 0}function me(e,t){return"variable"==e||"keyword"==Pe.style?("static"==t||"get"==t||"set"==t||Ae&&("public"==t||"private"==t||"protected"==t))&&Pe.stream.match(/^\s+[\w$\xa1-\uffff]/,!1)?(Pe.marked="keyword",v(me)):(Pe.marked="property",v(Ae?ve:fe,me)):"*"==t?(Pe.marked="keyword",v(me)):";"==e?v(me):"}"==e?v():void 0}function ve(e){return":"==e?v(Q):m(fe)}function ye(e,t){return"*"==t?(Pe.marked="keyword",v(he,w(";"))):"default"==t?(Pe.marked="keyword",v(j,w(";"))):m(g)}function ke(e){return"string"==e?v():m(be,he)}function be(e,t){return"{"==e?G(be,"}"):("variable"==e&&y(t),"*"==t&&(Pe.marked="keyword"),v(xe))}function xe(e,t){if("as"==t)return Pe.marked="keyword",v(be)}function he(e,t){if("from"==t)return Pe.marked="keyword",v(j)}function we(e){return"]"==e?v():m(F(M,"]"))}function ge(e,t){return"operator"==e.lastType||","==e.lastType||qe.test(t.charAt(0))||/[,.]/.test(t.charAt(0))}var je,Me,Ve=r.indentUnit,Ee=n.statementIndent,Ie=n.jsonld,ze=n.json||Ie,Ae=n.typescript,Te=n.wordCharacters||/[\w$\xa1-\uffff]/,$e=function(){function e(e){return{type:e,style:"keyword"}}var t=e("keyword a"),r=e("keyword b"),n=e("keyword c"),a=e("operator"),i={type:"atom",style:"atom"},o={"if":e("if"),"while":t,"with":t,"else":r,"do":r,"try":r,"finally":r,"return":n,"break":n,"continue":n,"new":e("new"),"delete":n,"throw":n,"debugger":n,"var":e("var"),"const":e("var"),"let":e("var"),"function":e("function"),"catch":e("catch"),"for":e("for"),"switch":e("switch"),"case":e("case"),"default":e("default"),"in":a,"typeof":a,"instanceof":a,"true":i,"false":i,"null":i,undefined:i,NaN:i,Infinity:i,"this":e("this"),"class":e("class"),"super":e("atom"),"yield":n,"export":e("export"),"import":e("import"),"extends":n,await:n,async:e("async")};if(Ae){var c={type:"variable",style:"variable-3"},u={"interface":e("class"),"implements":n,namespace:n,module:e("module"),"enum":e("module"),type:e("type"),"public":e("modifier"),"private":e("modifier"),"protected":e("modifier"),"abstract":e("modifier"),as:a,string:c,number:c,"boolean":c,any:c};for(var l in u)o[l]=u[l]}return o}(),qe=/[+\-*&%=<>!?|~^]/,Ce=/^@(context|id|value|language|type|container|list|set|reverse|index|base|vocab|graph)"/,We="([{}])",Oe={atom:!0,number:!0,variable:!0,string:!0,regexp:!0,"this":!0,"jsonld-keyword":!0},Pe={state:null,column:null,marked:null,cc:null},Se={name:"this",next:{name:"arguments"}};return h.lex=!0,{startState:function(e){var t={tokenize:o,lastType:"sof",cc:[],lexical:new s((e||0)-Ve,0,"block",(!1)),localVars:n.localVars,context:n.localVars&&{vars:n.localVars},indented:e||0};return n.globalVars&&"object"==typeof n.globalVars&&(t.globalVars=n.globalVars),t},token:function(e,t){if(e.sol()&&(t.lexical.hasOwnProperty("align")||(t.lexical.align=!1),t.indented=e.indentation(),f(e,t)),t.tokenize!=u&&e.eatSpace())return null;var r=t.tokenize(e,t);return"comment"==je?r:(t.lastType="operator"!=je||"++"!=Me&&"--"!=Me?je:"incdec",p(t,r,je,Me,e))},indent:function(t,r){if(t.tokenize==u)return e.Pass;if(t.tokenize!=o)return 0;var a,i=r&&r.charAt(0),c=t.lexical;if(!/^\s*else\b/.test(r))for(var l=t.cc.length-1;l>=0;--l){var f=t.cc[l];if(f==h)c=c.prev;else if(f!=ae)break}for(;("stat"==c.type||"form"==c.type)&&("}"==i||(a=t.cc[t.cc.length-1])&&(a==A||a==T)&&!/^[,\.=+\-*:?[\(]/.test(r));)c=c.prev;Ee&&")"==c.type&&"stat"==c.prev.type&&(c=c.prev);var s=c.type,d=i==s;return"vardef"==s?c.indented+("operator"==t.lastType||","==t.lastType?c.info+1:0):"form"==s&&"{"==i?c.indented:"form"==s?c.indented+Ve:"stat"==s?c.indented+(ge(t,r)?Ee||Ve:0):"switch"!=c.info||d||0==n.doubleIndentSwitch?c.align?c.column+(d?0:1):c.indented+(d?0:Ve):c.indented+(/^(?:case|default)\b/.test(r)?Ve:2*Ve)},electricInput:/^\s*(?:case .*?:|default:|\{|\})$/,blockCommentStart:ze?null:"/*",blockCommentEnd:ze?null:"*/",lineComment:ze?null:"//",fold:"brace",closeBrackets:"()[]{}''\"\"``",helperType:ze?"json":"javascript",jsonldMode:Ie,jsonMode:ze,expressionAllowed:t,skipExpression:function(e){var t=e.cc[e.cc.length-1];t!=j&&t!=M||e.cc.pop()}}}),e.registerHelper("wordChars","javascript",/[\w$]/),e.defineMIME("text/javascript","javascript"),e.defineMIME("text/ecmascript","javascript"),e.defineMIME("application/javascript","javascript"),e.defineMIME("application/x-javascript","javascript"),e.defineMIME("application/ecmascript","javascript"),e.defineMIME("application/json",{name:"javascript",json:!0}),e.defineMIME("application/x-json",{name:"javascript",json:!0}),e.defineMIME("application/ld+json",{name:"javascript",jsonld:!0}),e.defineMIME("text/typescript",{name:"javascript",typescript:!0}),e.defineMIME("application/typescript",{name:"javascript",typescript:!0})});
 
 /***/ },
 
@@ -1815,30 +1955,41 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"parse5@https://registry.npmjs.org/parse5/-/parse5-2.2.0.tgz",
+				"parse5@^2.2.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "parse5@2.2.0",
-		"_id": "parse5@2.2.0",
+		"_from": "parse5@>=2.2.0 <3.0.0",
+		"_id": "parse5@2.2.1",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/parse5",
+		"_nodeVersion": "5.4.1",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/parse5-2.2.1.tgz_1472728719480_0.1344913737848401"
+		},
+		"_npmUser": {
+			"email": "ifaaan@gmail.com",
+			"name": "inikulin"
+		},
+		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "parse5",
-			"raw": "parse5@https://registry.npmjs.org/parse5/-/parse5-2.2.0.tgz",
-			"rawSpec": "https://registry.npmjs.org/parse5/-/parse5-2.2.0.tgz",
+			"raw": "parse5@^2.2.0",
+			"rawSpec": "^2.2.0",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/parse5/-/parse5-2.2.0.tgz",
-			"type": "remote"
+			"spec": ">=2.2.0 <3.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
 		],
-		"_resolved": "https://registry.npmjs.org/parse5/-/parse5-2.2.0.tgz",
-		"_shasum": "e2378b541d552047cb3abc5bd2f2d05a1ae36170",
+		"_resolved": "https://registry.npmjs.org/parse5/-/parse5-2.2.1.tgz",
+		"_shasum": "48dcafe712b0dc583f9ddabf1a4a50d8898e821c",
 		"_shrinkwrap": null,
-		"_spec": "parse5@https://registry.npmjs.org/parse5/-/parse5-2.2.0.tgz",
+		"_spec": "parse5@^2.2.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "ifaaan@gmail.com",
@@ -1890,9 +2041,15 @@ webpackJsonp([0],{
 			"publish-please": "^2.2.0",
 			"through2": "^2.0.0"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "48dcafe712b0dc583f9ddabf1a4a50d8898e821c",
+			"tarball": "https://registry.npmjs.org/parse5/-/parse5-2.2.1.tgz"
+		},
 		"files": [
 			"lib"
 		],
+		"gitHead": "389d01761f1f072089cdd2b4f7dd112c96e4b531",
 		"homepage": "https://github.com/inikulin/parse5",
 		"keywords": [
 			"html",
@@ -1917,10 +2074,15 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/index.js",
+		"maintainers": [
+			{
+				"email": "ifaaan@gmail.com",
+				"name": "inikulin"
+			}
+		],
 		"name": "parse5",
 		"optionalDependencies": {},
-		"readme": "<p align=\"center\">\r\n    <a href=\"https://github.com/inikulin/parse5\">\r\n        <img src=\"https://raw.github.com/inikulin/parse5/master/docs/logo.png\" alt=\"parse5\" />\r\n    </a>\r\n</p>\r\n\r\n<p align=\"center\">\r\n<i>WHATWG HTML5 specification-compliant, fast and ready for production HTML parsing/serialization toolset for Node.js</i>\r\n</p>\r\n\r\n<p align=\"center\">\r\n  <a href=\"https://travis-ci.org/inikulin/parse5\"><img alt=\"Build Status\" src=\"https://api.travis-ci.org/inikulin/parse5.svg\"></a>\r\n  <a href=\"https://www.npmjs.com/package/parse5\"><img alt=\"NPM Version\" src=\"https://img.shields.io/npm/v/parse5.svg\"></a>\r\n  <a href=\"https://npmjs.org/package/parse5\"><img alt=\"Downloads\" src=\"http://img.shields.io/npm/dm/parse5.svg\"></a>\r\n  <a href=\"https://npmjs.org/package/parse5\"><img alt=\"Downloads total\" src=\"http://img.shields.io/npm/dt/parse5.svg\"></a>\r\n</p>\r\n\r\n<p align=\"center\">\r\n<b><i>parse5</i></b> provides nearly everything you may need when dealing with HTML. It's the fastest spec-compliant HTML parser\r\nfor Node to date. It parses HTML the way the latest version of your browser does. It has proven itself reliable in such projects\r\nas <a href=\"https://github.com/tmpvar/jsdom\">jsdom</a>, <a href=\"https://github.com/angular/angular\">Angular2</a>, <a href=\"https://www.polymer-project.org\">Polymer</a> and many more.\r\n</p>\r\n\r\n----\r\n\r\n<p align=\"center\">\r\n  <a href=\"https://github.com/inikulin/parse5/wiki/Documentation\">Documentation</a>\r\n</p>\r\n\r\n<p align=\"center\">\r\n  <a href=\"https://github.com/inikulin/parse5/wiki/Documentation#version-history\">Version history</a>\r\n</p>\r\n\r\n<p align=\"center\">\r\n  <a href=\"http://astexplorer.net/#/1CHlCXc4n4\">Online playground</a>\r\n</p>\r\n\r\n<p align=\"center\">\r\n  <a href=\"https://github.com/inikulin/parse5/issues\">Issue tracker</a>\r\n</p>\r\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git://github.com/inikulin/parse5.git"
@@ -1930,7 +2092,7 @@ webpackJsonp([0],{
 			"publish-please": "publish-please",
 			"test": "gulp test"
 		},
-		"version": "2.2.0"
+		"version": "2.2.1"
 	};
 
 /***/ },
@@ -1938,7 +2100,7 @@ webpackJsonp([0],{
 /***/ "./src/parsers/js/acorn.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(exports,"__esModule",{value:!0});var _assign=__webpack_require__("./node_modules/babel-runtime/core-js/object/assign.js"),_assign2=_interopRequireDefault(_assign),_set=__webpack_require__("./node_modules/babel-runtime/core-js/set.js"),_set2=_interopRequireDefault(_set),_extends2=__webpack_require__("./node_modules/babel-runtime/helpers/extends.js"),_extends3=_interopRequireDefault(_extends2),_react=__webpack_require__("./node_modules/react/react.js"),_react2=_interopRequireDefault(_react),_defaultESTreeParserInterface=__webpack_require__("./src/parsers/js/utils/defaultESTreeParserInterface.js"),_defaultESTreeParserInterface2=_interopRequireDefault(_defaultESTreeParserInterface),_package=__webpack_require__("./node_modules/acorn/package.json"),_package2=_interopRequireDefault(_package),_SettingsRenderer=__webpack_require__("./src/parsers/utils/SettingsRenderer.js"),_SettingsRenderer2=_interopRequireDefault(_SettingsRenderer),ID="acorn",defaultOptions={ecmaVersion:6,sourceType:"module",allowReserved:!1,allowReturnOutsideFunction:!1,allowImportExportEverywhere:!1,allowHashBang:!1,locations:!1,loose:!1,ranges:!1,preserveParens:!1,"plugins.jsx":!0},settingsConfiguration={fields:[["ecmaVersion",[3,5,6,7],function(e){return Number(e)}],["sourceType",["script","module"]],"allowReserved","allowReturnOutsideFunction","allowImportExportEverywhere","allowHashBang","locations","loose","ranges","preserveParens","plugins.jsx"]};exports["default"]=(0,_extends3["default"])({},_defaultESTreeParserInterface2["default"],{id:ID,displayName:ID,version:""+_package2["default"].version,homepage:_package2["default"].homepage,locationProps:new _set2["default"](["range","loc","start","end"]),loadParser:function(e){__webpack_require__.e/* require */(8, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__("./node_modules/acorn/dist/acorn.js"),__webpack_require__("./node_modules/acorn/dist/acorn_loose.js"),__webpack_require__("./node_modules/acorn-jsx/inject.js")]; (function(r,t,a){r=a(r),e({acorn:r,acornLoose:t})}.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));})},parse:function(e,r){var t=arguments.length<=2||void 0===arguments[2]?{}:arguments[2];t=(0,_assign2["default"])({},defaultOptions,t);var a=t.loose?e.acornLoose.parse_dammit:e.acorn.parse;return a(r,(0,_extends3["default"])({},t,{plugins:t["plugins.jsx"]&&!t.loose?{jsx:!0}:{}}))},nodeToRange:function(e){if("number"==typeof e.start)return[e.start,e.end]},renderSettings:function(e,r){return _react2["default"].createElement("div",null,_react2["default"].createElement("p",null,_react2["default"].createElement("a",{href:"https://github.com/marijnh/acorn/blob/master/src/options.js",target:"_blank"},"Option descriptions")),_react2["default"].createElement(_SettingsRenderer2["default"],{settingsConfiguration:settingsConfiguration,parserSettings:(0,_extends3["default"])({},defaultOptions,e),onChange:r}))}});
+	"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(exports,"__esModule",{value:!0});var _assign=__webpack_require__("./node_modules/babel-runtime/core-js/object/assign.js"),_assign2=_interopRequireDefault(_assign),_set=__webpack_require__("./node_modules/babel-runtime/core-js/set.js"),_set2=_interopRequireDefault(_set),_extends2=__webpack_require__("./node_modules/babel-runtime/helpers/extends.js"),_extends3=_interopRequireDefault(_extends2),_react=__webpack_require__("./node_modules/react/react.js"),_react2=_interopRequireDefault(_react),_defaultESTreeParserInterface=__webpack_require__("./src/parsers/js/utils/defaultESTreeParserInterface.js"),_defaultESTreeParserInterface2=_interopRequireDefault(_defaultESTreeParserInterface),_package=__webpack_require__("./node_modules/acorn/package.json"),_package2=_interopRequireDefault(_package),_SettingsRenderer=__webpack_require__("./src/parsers/utils/SettingsRenderer.js"),_SettingsRenderer2=_interopRequireDefault(_SettingsRenderer),ID="acorn",defaultOptions={ecmaVersion:7,sourceType:"module",allowReserved:!1,allowReturnOutsideFunction:!1,allowImportExportEverywhere:!1,allowHashBang:!1,locations:!1,loose:!1,ranges:!1,preserveParens:!1,"plugins.jsx":!0},settingsConfiguration={fields:[["ecmaVersion",[3,5,6,7,8],function(e){return Number(e)}],["sourceType",["script","module"]],"allowReserved","allowReturnOutsideFunction","allowImportExportEverywhere","allowHashBang","locations","loose","ranges","preserveParens","plugins.jsx"]};exports["default"]=(0,_extends3["default"])({},_defaultESTreeParserInterface2["default"],{id:ID,displayName:ID,version:""+_package2["default"].version,homepage:_package2["default"].homepage,locationProps:new _set2["default"](["range","loc","start","end"]),loadParser:function(e){__webpack_require__.e/* require */(8, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__("./node_modules/acorn/dist/acorn.js"),__webpack_require__("./node_modules/acorn/dist/acorn_loose.js"),__webpack_require__("./node_modules/acorn-jsx/inject.js")]; (function(r,t,a){r=a(r),e({acorn:r,acornLoose:t})}.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));})},parse:function(e,r){var t=arguments.length<=2||void 0===arguments[2]?{}:arguments[2];t=(0,_assign2["default"])({},defaultOptions,t);var a=t.loose?e.acornLoose.parse_dammit:e.acorn.parse;return a(r,(0,_extends3["default"])({},t,{plugins:t["plugins.jsx"]&&!t.loose?{jsx:!0}:{}}))},nodeToRange:function(e){if("number"==typeof e.start)return[e.start,e.end]},renderSettings:function(e,r){return _react2["default"].createElement("div",null,_react2["default"].createElement("p",null,_react2["default"].createElement("a",{href:"https://github.com/marijnh/acorn/blob/master/src/options.js",target:"_blank"},"Option descriptions")),_react2["default"].createElement(_SettingsRenderer2["default"],{settingsConfiguration:settingsConfiguration,parserSettings:(0,_extends3["default"])({},defaultOptions,e),onChange:r}))}});
 
 /***/ },
 
@@ -1955,33 +2117,41 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"acorn@https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
+				"acorn@latest",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "acorn@>=3.0.4 <4.0.0",
-		"_id": "acorn@3.3.0",
+		"_from": "acorn@latest",
+		"_id": "acorn@4.0.3",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/acorn",
+		"_nodeVersion": "6.3.0",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/acorn-4.0.3.tgz_1474012883070_0.7297828732989728"
+		},
+		"_npmUser": {
+			"email": "marijnh@gmail.com",
+			"name": "marijn"
+		},
+		"_npmVersion": "3.10.3",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "acorn",
-			"raw": "acorn@https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
-			"rawSpec": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
+			"raw": "acorn@latest",
+			"rawSpec": "latest",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
-			"type": "remote"
+			"spec": "latest",
+			"type": "tag"
 		},
 		"_requiredBy": [
-			"/",
-			"/acorn-jsx",
-			"/espree",
-			"/webpack"
+			"/"
 		],
-		"_resolved": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
-		"_shasum": "45e37fb39e8da3f25baee3ff5369e2bb5f22017a",
+		"_resolved": "https://registry.npmjs.org/acorn/-/acorn-4.0.3.tgz",
+		"_shasum": "1a3e850b428e73ba6b09d1cc527f5aaad4d03ef1",
 		"_shrinkwrap": null,
-		"_spec": "acorn@https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz",
+		"_spec": "acorn@latest",
 		"_where": "/Users/fkling/git/astexplorer",
 		"bin": {
 			"acorn": "./bin/acorn"
@@ -2034,9 +2204,6 @@ webpackJsonp([0],{
 			},
 			{
 				"name": "Domenico Matteo"
-			},
-			{
-				"name": "ForbesLindesay"
 			},
 			{
 				"name": "Forbes Lindesay"
@@ -2150,10 +2317,10 @@ webpackJsonp([0],{
 				"name": "Rich Harris"
 			},
 			{
-				"name": "Rich-Harris"
+				"name": "Sebastian McKenzie"
 			},
 			{
-				"name": "Sebastian McKenzie"
+				"name": "Simen Bekkhus"
 			},
 			{
 				"name": "Timothy Gu"
@@ -2172,9 +2339,15 @@ webpackJsonp([0],{
 			"rollup-plugin-buble": "^0.11.0",
 			"unicode-9.0.0": "^0.7.0"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "1a3e850b428e73ba6b09d1cc527f5aaad4d03ef1",
+			"tarball": "https://registry.npmjs.org/acorn/-/acorn-4.0.3.tgz"
+		},
 		"engines": {
 			"node": ">=0.4.0"
 		},
+		"gitHead": "bb54adcdbceef01997a9549732139ca8f53a4e28",
 		"homepage": "https://github.com/ternjs/acorn",
 		"jsnext:main": "dist/acorn.es.js",
 		"license": "MIT",
@@ -2182,19 +2355,16 @@ webpackJsonp([0],{
 		"maintainers": [
 			{
 				"email": "marijnh@gmail.com",
-				"name": "Marijn Haverbeke",
-				"url": "http://marijnhaverbeke.nl"
+				"name": "marijn"
 			},
 			{
 				"email": "me@rreverser.com",
-				"name": "Ingvar Stepanyan",
-				"url": "http://rreverser.com/"
+				"name": "rreverser"
 			}
 		],
 		"name": "acorn",
 		"optionalDependencies": {},
-		"readme": "# Acorn\n\n[![Build Status](https://travis-ci.org/ternjs/acorn.svg?branch=master)](https://travis-ci.org/ternjs/acorn)\n[![NPM version](https://img.shields.io/npm/v/acorn.svg)](https://www.npmjs.com/package/acorn)  \n[Author funding status: ![maintainer happiness](https://marijnhaverbeke.nl/fund/status_s.png?force)](https://marijnhaverbeke.nl/fund/)\n\nA tiny, fast JavaScript parser, written completely in JavaScript.\n\n## Community\n\nAcorn is open source software released under an\n[MIT license](https://github.com/ternjs/acorn/blob/master/LICENSE).\n\nYou are welcome to\n[report bugs](https://github.com/ternjs/acorn/issues) or create pull\nrequests on [github](https://github.com/ternjs/acorn). For questions\nand discussion, please use the\n[Tern discussion forum](https://discuss.ternjs.net).\n\n## Installation\n\nThe easiest way to install acorn is with [`npm`][npm].\n\n[npm]: https://www.npmjs.com/\n\n```sh\nnpm install acorn\n```\n\nAlternately, download the source.\n\n```sh\ngit clone https://github.com/ternjs/acorn.git\n```\n\n## Components\n\nWhen run in a CommonJS (node.js) or AMD environment, exported values\nappear in the interfaces exposed by the individual files, as usual.\nWhen loaded in the browser (Acorn works in any JS-enabled browser more\nrecent than IE5) without any kind of module management, a single\nglobal object `acorn` will be defined, and all the exported properties\nwill be added to that.\n\n### Main parser\n\nThis is implemented in `dist/acorn.js`, and is what you get when you\n`require(\"acorn\")` in node.js.\n\n**parse**`(input, options)` is used to parse a JavaScript program.\nThe `input` parameter is a string, `options` can be undefined or an\nobject setting some of the options listed below. The return value will\nbe an abstract syntax tree object as specified by the\n[ESTree spec][estree].\n\nWhen  encountering   a  syntax   error,  the   parser  will   raise  a\n`SyntaxError` object with a meaningful  message. The error object will\nhave a `pos` property that indicates the character offset at which the\nerror occurred,  and a `loc`  object that contains a  `{line, column}`\nobject referring to that same position.\n\n[estree]: https://github.com/estree/estree\n\n- **ecmaVersion**: Indicates the ECMAScript version to parse. Must be\n  either 3, 5, 6, or 7. This influences support for strict mode, the set\n  of reserved words, and support for new syntax features. Default is 6.\n\n  **NOTE**: Only 'stage 4' (finalized) ECMAScript 7 features are being\n  implemented by Acorn. That means that most of the draft standard is\n  not yet being parsed.\n\n- **sourceType**: Indicate the mode the code should be parsed in. Can be\n  either `\"script\"` or `\"module\"`.\n\n- **onInsertedSemicolon**: If given a callback, that callback will be\n  called whenever a missing semicolon is inserted by the parser. The\n  callback will be given the character offset of the point where the\n  semicolon is inserted as argument, and if `locations` is on, also a\n  `{line, column}` object representing this position.\n\n- **onTrailingComma**: Like `onInsertedSemicolon`, but for trailing\n  commas.\n\n- **allowReserved**: If `false`, using a reserved word will generate\n  an error. Defaults to `true` for `ecmaVersion` 3, `false` for higher\n  versions. When given the value `\"never\"`, reserved words and\n  keywords can also not be used as property names (as in Internet\n  Explorer's old parser).\n\n- **allowReturnOutsideFunction**: By default, a return statement at\n  the top level raises an error. Set this to `true` to accept such\n  code.\n\n- **allowImportExportEverywhere**: By default, `import` and `export`\n  declarations can only appear at a program's top level. Setting this\n  option to `true` allows them anywhere where a statement is allowed.\n\n- **allowHashBang**: When this is enabled (off by default), if the\n  code starts with the characters `#!` (as in a shellscript), the\n  first line will be treated as a comment.\n\n- **locations**: When `true`, each node has a `loc` object attached\n  with `start` and `end` subobjects, each of which contains the\n  one-based line and zero-based column numbers in `{line, column}`\n  form. Default is `false`.\n\n- **onToken**: If a function is passed for this option, each found\n  token will be passed in same format as tokens returned from\n  `tokenizer().getToken()`.\n\n  If array is passed, each found token is pushed to it.\n\n  Note that you are not allowed to call the parser from the\n  callback—that will corrupt its internal state.\n\n- **onComment**: If a function is passed for this option, whenever a\n  comment is encountered the function will be called with the\n  following parameters:\n\n  - `block`: `true` if the comment is a block comment, false if it\n    is a line comment.\n  - `text`: The content of the comment.\n  - `start`: Character offset of the start of the comment.\n  - `end`: Character offset of the end of the comment.\n\n  When the `locations` options is on, the `{line, column}` locations\n  of the comment’s start and end are passed as two additional\n  parameters.\n\n  If array is passed for this option, each found comment is pushed\n  to it as object in Esprima format:\n\n  ```javascript\n  {\n    \"type\": \"Line\" | \"Block\",\n    \"value\": \"comment text\",\n    \"start\": Number,\n    \"end\": Number,\n    // If `locations` option is on:\n    \"loc\": {\n      \"start\": {line: Number, column: Number}\n      \"end\": {line: Number, column: Number}\n    },\n    // If `ranges` option is on:\n    \"range\": [Number, Number]\n  }\n  ```\n\n  Note that you are not allowed to call the parser from the\n  callback—that will corrupt its internal state.\n\n- **ranges**: Nodes have their start and end characters offsets\n  recorded in `start` and `end` properties (directly on the node,\n  rather than the `loc` object, which holds line/column data. To also\n  add a [semi-standardized][range] `range` property holding a\n  `[start, end]` array with the same numbers, set the `ranges` option\n  to `true`.\n\n- **program**: It is possible to parse multiple files into a single\n  AST by passing the tree produced by parsing the first file as the\n  `program` option in subsequent parses. This will add the toplevel\n  forms of the parsed file to the \"Program\" (top) node of an existing\n  parse tree.\n\n- **sourceFile**: When the `locations` option is `true`, you can pass\n  this option to add a `source` attribute in every node’s `loc`\n  object. Note that the contents of this option are not examined or\n  processed in any way; you are free to use whatever format you\n  choose.\n\n- **directSourceFile**: Like `sourceFile`, but a `sourceFile` property\n  will be added (regardless of the `location` option) directly to the\n  nodes, rather than the `loc` object.\n\n- **preserveParens**: If this option is `true`, parenthesized expressions\n  are represented by (non-standard) `ParenthesizedExpression` nodes\n  that have a single `expression` property containing the expression\n  inside parentheses.\n\n[range]: https://bugzilla.mozilla.org/show_bug.cgi?id=745678\n\n**parseExpressionAt**`(input, offset, options)` will parse a single\nexpression in a string, and return its AST. It will not complain if\nthere is more of the string left after the expression.\n\n**getLineInfo**`(input, offset)` can be used to get a `{line,\ncolumn}` object for a given program string and character offset.\n\n**tokenizer**`(input, options)` returns an object with a `getToken`\nmethod that can be called repeatedly to get the next token, a `{start,\nend, type, value}` object (with added `loc` property when the\n`locations` option is enabled and `range` property when the `ranges`\noption is enabled). When the token's type is `tokTypes.eof`, you\nshould stop calling the method, since it will keep returning that same\ntoken forever.\n\nIn ES6 environment, returned result can be used as any other\nprotocol-compliant iterable:\n\n```javascript\nfor (let token of acorn.tokenizer(str)) {\n  // iterate over the tokens\n}\n\n// transform code to array of tokens:\nvar tokens = [...acorn.tokenizer(str)];\n```\n\n**tokTypes** holds an object mapping names to the token type objects\nthat end up in the `type` properties of tokens.\n\n#### Note on using with [Escodegen][escodegen]\n\nEscodegen supports generating comments from AST, attached in\nEsprima-specific format. In order to simulate same format in\nAcorn, consider following example:\n\n```javascript\nvar comments = [], tokens = [];\n\nvar ast = acorn.parse('var x = 42; // answer', {\n\t// collect ranges for each node\n\tranges: true,\n\t// collect comments in Esprima's format\n\tonComment: comments,\n\t// collect token ranges\n\tonToken: tokens\n});\n\n// attach comments using collected information\nescodegen.attachComments(ast, comments, tokens);\n\n// generate code\nconsole.log(escodegen.generate(ast, {comment: true}));\n// > 'var x = 42;    // answer'\n```\n\n[escodegen]: https://github.com/estools/escodegen\n\n### dist/acorn_loose.js ###\n\nThis file implements an error-tolerant parser. It exposes a single\nfunction. The loose parser is accessible in node.js via `require(\"acorn/dist/acorn_loose\")`.\n\n**parse_dammit**`(input, options)` takes the same arguments and\nreturns the same syntax tree as the `parse` function in `acorn.js`,\nbut never raises an error, and will do its best to parse syntactically\ninvalid code in as meaningful a way as it can. It'll insert identifier\nnodes with name `\"✖\"` as placeholders in places where it can't make\nsense of the input. Depends on `acorn.js`, because it uses the same\ntokenizer.\n\n### dist/walk.js ###\n\nImplements an abstract syntax tree walker. Will store its interface in\n`acorn.walk` when loaded without a module system.\n\n**simple**`(node, visitors, base, state)` does a 'simple' walk over\na tree. `node` should be the AST node to walk, and `visitors` an\nobject with properties whose names correspond to node types in the\n[ESTree spec][estree]. The properties should contain functions\nthat will be called with the node object and, if applicable the state\nat that point. The last two arguments are optional. `base` is a walker\nalgorithm, and `state` is a start state. The default walker will\nsimply visit all statements and expressions and not produce a\nmeaningful state. (An example of a use of state is to track scope at\neach point in the tree.)\n\n**ancestor**`(node, visitors, base, state)` does a 'simple' walk over\na tree, building up an array of ancestor nodes (including the current node)\nand passing the array to the callbacks as a third parameter.\n\n**recursive**`(node, state, functions, base)` does a 'recursive'\nwalk, where the walker functions are responsible for continuing the\nwalk on the child nodes of their target node. `state` is the start\nstate, and `functions` should contain an object that maps node types\nto walker functions. Such functions are called with `(node, state, c)`\narguments, and can cause the walk to continue on a sub-node by calling\nthe `c` argument on it with `(node, state)` arguments. The optional\n`base` argument provides the fallback walker functions for node types\nthat aren't handled in the `functions` object. If not given, the\ndefault walkers will be used.\n\n**make**`(functions, base)` builds a new walker object by using the\nwalker functions in `functions` and filling in the missing ones by\ntaking defaults from `base`.\n\n**findNodeAt**`(node, start, end, test, base, state)` tries to\nlocate a node in a tree at the given start and/or end offsets, which\nsatisfies the predicate `test`. `start` and `end` can be either `null`\n(as wildcard) or a number. `test` may be a string (indicating a node\ntype) or a function that takes `(nodeType, node)` arguments and\nreturns a boolean indicating whether this node is interesting. `base`\nand `state` are optional, and can be used to specify a custom walker.\nNodes are tested from inner to outer, so if two nodes match the\nboundaries, the inner one will be preferred.\n\n**findNodeAround**`(node, pos, test, base, state)` is a lot like\n`findNodeAt`, but will match any node that exists 'around' (spanning)\nthe given position.\n\n**findNodeAfter**`(node, pos, test, base, state)` is similar to\n`findNodeAround`, but will match all nodes *after* the given position\n(testing outer nodes before inner nodes).\n\n## Command line interface\n\nThe `bin/acorn` utility can be used to parse a file from the command\nline. It accepts as arguments its input file and the following\noptions:\n\n- `--ecma3|--ecma5|--ecma6|--ecma7`: Sets the ECMAScript version to parse. Default is\n  version 5.\n\n- `--module`: Sets the parsing mode to `\"module\"`. Is set to `\"script\"` otherwise.\n\n- `--locations`: Attaches a \"loc\" object to each node with \"start\" and\n  \"end\" subobjects, each of which contains the one-based line and\n  zero-based column numbers in `{line, column}` form.\n\n- `--allow-hash-bang`: If the code starts with the characters #! (as in a shellscript), the first line will be treated as a comment.\n\n- `--compact`: No whitespace is used in the AST output.\n\n- `--silent`: Do not output the AST, just return the exit status.\n\n- `--help`: Print the usage information and quit.\n\nThe utility spits out the syntax tree as JSON data.\n\n## Build system\n\nAcorn is written in ECMAScript 6, as a set of small modules, in the\nproject's `src` directory, and compiled down to bigger ECMAScript 3\nfiles in `dist` using [Browserify](http://browserify.org) and\n[Babel](http://babeljs.io/). If you are already using Babel, you can\nconsider including the modules directly.\n\nThe command-line test runner (`npm test`) uses the ES6 modules. The\nbrowser-based test page (`test/index.html`) uses the compiled modules.\nThe `bin/build-acorn.js` script builds the latter from the former.\n\nIf you are working on Acorn, you'll probably want to try the code out\ndirectly, without an intermediate build step. In your scripts, you can\nregister the Babel require shim like this:\n\n    require(\"babel-core/register\")\n\nThat will allow you to directly `require` the ES6 modules.\n\n## Plugins\n\nAcorn is designed support allow plugins which, within reasonable\nbounds, redefine the way the parser works. Plugins can add new token\ntypes and new tokenizer contexts (if necessary), and extend methods in\nthe parser object. This is not a clean, elegant API—using it requires\nan understanding of Acorn's internals, and plugins are likely to break\nwhenever those internals are significantly changed. But still, it is\n_possible_, in this way, to create parsers for JavaScript dialects\nwithout forking all of Acorn. And in principle it is even possible to\ncombine such plugins, so that if you have, for example, a plugin for\nparsing types and a plugin for parsing JSX-style XML literals, you\ncould load them both and parse code with both JSX tags and types.\n\nA plugin should register itself by adding a property to\n`acorn.plugins`, which holds a function. Calling `acorn.parse`, a\n`plugins` option can be passed, holding an object mapping plugin names\nto configuration values (or just `true` for plugins that don't take\noptions). After the parser object has been created, the initialization\nfunctions for the chosen plugins are called with `(parser,\nconfigValue)` arguments. They are expected to use the `parser.extend`\nmethod to extend parser methods. For example, the `readToken` method\ncould be extended like this:\n\n```javascript\nparser.extend(\"readToken\", function(nextMethod) {\n  return function(code) {\n    console.log(\"Reading a token!\")\n    return nextMethod.call(this, code)\n  }\n})\n```\n\nThe `nextMethod` argument passed to `extend`'s second argument is the\nprevious value of this method, and should usually be called through to\nwhenever the extended method does not handle the call itself.\n\nSimilarly, the loose parser allows plugins to register themselves via\n`acorn.pluginsLoose`.  The extension mechanism is the same as for the\nnormal parser:\n\n```javascript\nlooseParser.extend(\"readToken\", function(nextMethod) {\n  return function() {\n    console.log(\"Reading a token in the loose parser!\")\n    return nextMethod.call(this)\n  }\n})\n```\n\n### Existing plugins\n\n - [`acorn-jsx`](https://github.com/RReverser/acorn-jsx): Parse [Facebook JSX syntax extensions](https://github.com/facebook/jsx)\n - [`acorn-es7-plugin`](https://github.com/MatAtBread/acorn-es7-plugin/): Parse [async/await syntax proposal](https://github.com/tc39/ecmascript-asyncawait)\n - [`acorn-object-spread`](https://github.com/UXtemple/acorn-object-spread): Parse [object spread syntax proposal](https://github.com/sebmarkbage/ecmascript-rest-spread)\n - [`acorn-es7`](https://www.npmjs.com/package/acorn-es7): Parse [decorator syntax proposal](https://github.com/wycats/javascript-decorators)\n - [`acorn-objj`](https://www.npmjs.com/package/acorn-objj): [Objective-J](http://www.cappuccino-project.org/learn/objective-j.html) language parser built as Acorn plugin\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/ternjs/acorn.git"
@@ -2209,7 +2379,7 @@ webpackJsonp([0],{
 			"pretest": "npm run build",
 			"test": "node test/run.js"
 		},
-		"version": "3.3.0"
+		"version": "4.0.3"
 	};
 
 /***/ },
@@ -2227,22 +2397,29 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"acorn-to-esprima@https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
+				"acorn-to-esprima@^1.0.2",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "acorn-to-esprima@>=1.0.2 <2.0.0",
 		"_id": "acorn-to-esprima@1.0.7",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/acorn-to-esprima",
+		"_nodeVersion": "0.12.7",
+		"_npmUser": {
+			"email": "hi@henryzoo.com",
+			"name": "hzoo"
+		},
+		"_npmVersion": "2.13.4",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "acorn-to-esprima",
-			"raw": "acorn-to-esprima@https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
-			"rawSpec": "https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
+			"raw": "acorn-to-esprima@^1.0.2",
+			"rawSpec": "^1.0.2",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
-			"type": "remote"
+			"spec": ">=1.0.2 <2.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -2250,7 +2427,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
 		"_shasum": "9436259760098f9ead9b9da2242fab2f4850281b",
 		"_shrinkwrap": null,
-		"_spec": "acorn-to-esprima@https://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz",
+		"_spec": "acorn-to-esprima@^1.0.2",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "sebmck@gmail.com",
@@ -2262,6 +2439,12 @@ webpackJsonp([0],{
 		"dependencies": {},
 		"description": "Convert acorn tokens to esprima",
 		"devDependencies": {},
+		"directories": {},
+		"dist": {
+			"shasum": "9436259760098f9ead9b9da2242fab2f4850281b",
+			"tarball": "http://registry.npmjs.org/acorn-to-esprima/-/acorn-to-esprima-1.0.7.tgz"
+		},
+		"gitHead": "f0df07bd87bb82dccff10d72f756be81c666ae83",
 		"homepage": "https://github.com/babel/acorn-to-esprima#readme",
 		"keywords": [
 			"acorn",
@@ -2272,14 +2455,24 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "src/index.js",
+		"maintainers": [
+			{
+				"email": "hi@henryzoo.com",
+				"name": "hzoo"
+			},
+			{
+				"email": "sebmck@gmail.com",
+				"name": "sebmck"
+			}
+		],
 		"name": "acorn-to-esprima",
 		"optionalDependencies": {},
-		"readme": "# acorn-to-esprima\n\nSome functions to help transform an acorn/babel ast to esprima format.\n\nPrimarily for use in [babel-eslint](https://github.com/babel/babel-eslint), [babel-jscs](https://github.com/jscs-dev/babel-jscs), and [ast explorer](https://github.com/fkling/esprima_ast_explorer)\n\n**There are no dependencies** (the methods were changed to pass in dependencies instead)\n\nThe current functions exposed are:\n\n- `function attachComments(ast, comments, tokens)`\n  - This modifies the comments passed in.\n- `function toTokens(tokens, tt)`\n  - `tt` is `require(\"babel-core\").acorn.tokTypes`\n  - Converts template string tokens (`convertTemplateType`)\n  - filters out comment tokens\n  - runs `toToken` over each token\n- `function toToken(token, tt)`\n  - Sets `token.type`, `token.range`, and `token.value`\n- `function toAST(ast, traverse)`\n  - `traverse` is `require(\"babel-core\").traverse;`\n  - traverses over the ast and makes any necessary changes (usually es6+)\n- `function convertComments(comments)`\n  - Modifies `comment.type`\n\nHow to use:\n\nCheck out the parse method of https://github.com/babel/babel-eslint/blob/master/index.js\n```js\n// example\nexports.parse = function (code) {\n  var comments = opts.onComment = [];\n  var tokens = opts.onToken = [];\n\n  var ast;\n  try {\n    ast = parse(code, {\n        locations: true,\n        ranges: true\n    });\n  } catch (err) { throw err; }\n\n  tokens.pop();\n  ast.tokens = acornToEsprima.toTokens(tokens, tt);\n\n  acornToEsprima.convertComments(comments);\n  ast.comments = comments;\n  acornToEsprima.attachComments(ast, comments, ast.tokens);\n\n  acornToEsprima.toAST(ast, traverse);\n\n  return ast;\n}\n```",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/babel/acorn-to-esprima.git"
 		},
+		"scripts": {},
 		"version": "1.0.7"
 	};
 
@@ -2305,22 +2498,33 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babylon@https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
-				"/Users/fkling/git/astexplorer/node_modules/babylon5"
+				"babylon@^5.8.38",
+				"/Users/fkling/git/astexplorer/packages/babylon5"
 			]
 		],
 		"_from": "babylon@>=5.8.38 <6.0.0",
 		"_id": "babylon@5.8.38",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/babylon5/babylon",
+		"_nodeVersion": "5.5.0",
+		"_npmOperationalInternal": {
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/babylon-5.8.38.tgz_1458687018469_0.5434813795145601"
+		},
+		"_npmUser": {
+			"email": "sebmck@gmail.com",
+			"name": "sebmck"
+		},
+		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babylon",
-			"raw": "babylon@https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
-			"rawSpec": "https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
+			"raw": "babylon@^5.8.38",
+			"rawSpec": "^5.8.38",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
-			"type": "remote"
+			"spec": ">=5.8.38 <6.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/babylon5"
@@ -2328,8 +2532,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
 		"_shasum": "ec9b120b11bf6ccd4173a18bf217e60b79859ffd",
 		"_shrinkwrap": null,
-		"_spec": "babylon@https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/babylon5",
+		"_spec": "babylon@^5.8.38",
+		"_where": "/Users/fkling/git/astexplorer/packages/babylon5",
 		"author": {
 			"email": "sebmck@gmail.com",
 			"name": "Sebastian McKenzie"
@@ -2462,17 +2666,48 @@ webpackJsonp([0],{
 		"dependencies": {},
 		"description": "<p align=\"center\">   <img alt=\"babylon\" src=\"https://raw.githubusercontent.com/babel/logo/master/babylon.png\" width=\"700\"> </p>",
 		"devDependencies": {},
+		"directories": {},
+		"dist": {
+			"shasum": "ec9b120b11bf6ccd4173a18bf217e60b79859ffd",
+			"tarball": "https://registry.npmjs.org/babylon/-/babylon-5.8.38.tgz"
+		},
 		"homepage": "https://babeljs.io/",
 		"license": "MIT",
 		"main": "lib/index.js",
+		"maintainers": [
+			{
+				"email": "amjad.masad@gmail.com",
+				"name": "amasad"
+			},
+			{
+				"email": "hi@henryzoo.com",
+				"name": "hzoo"
+			},
+			{
+				"email": "npm-public@jessemccarthy.net",
+				"name": "jmm"
+			},
+			{
+				"email": "loganfsmyth@gmail.com",
+				"name": "loganfsmyth"
+			},
+			{
+				"email": "sebmck@gmail.com",
+				"name": "sebmck"
+			},
+			{
+				"email": "me@thejameskyle.com",
+				"name": "thejameskyle"
+			}
+		],
 		"name": "babylon",
 		"optionalDependencies": {},
-		"readme": "<p align=\"center\">\n  <img alt=\"babylon\" src=\"https://raw.githubusercontent.com/babel/logo/master/babylon.png\" width=\"700\">\n</p>\n\n<p align=\"center\">\n  Babylon is a JavaScript parser used in <a href=\"https://github.com/babel/babel\">Babel</a>.\n</p>\n\n## Credits\n\nHeavily based on [acorn](https://github.com/marijnh/acorn) and [acorn-jsx](https://github.com/RReverser/acorn-jsx),\nthanks to the awesome work of [@RReverser](https://github.com/RReverser) and [@marijnh](https://github.com/marijnh).\n\nSignificant diversions are expected to occur in the future such as streaming, EBNF definitions, sweet.js integration,\ninterspacial parsing, comment attachment and more.\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/babel/babel.git"
 		},
+		"scripts": {},
 		"version": "5.8.38"
 	};
 
@@ -2498,22 +2733,33 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babylon@https://registry.npmjs.org/babylon/-/babylon-6.9.1.tgz",
-				"/Users/fkling/git/astexplorer"
+				"babylon@^6.9.0",
+				"/Users/fkling/git/astexplorer/node_modules/babel-core"
 			]
 		],
-		"_from": "babylon@>=6.0.18 <7.0.0",
-		"_id": "babylon@6.9.1",
+		"_from": "babylon@>=6.9.0 <7.0.0",
+		"_id": "babylon@6.10.0",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/babylon",
+		"_nodeVersion": "5.11.1",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/babylon-6.10.0.tgz_1474299210757_0.6366760202217847"
+		},
+		"_npmUser": {
+			"email": "hi@henryzoo.com",
+			"name": "hzoo"
+		},
+		"_npmVersion": "3.10.6",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babylon",
-			"raw": "babylon@https://registry.npmjs.org/babylon/-/babylon-6.9.1.tgz",
-			"rawSpec": "https://registry.npmjs.org/babylon/-/babylon-6.9.1.tgz",
+			"raw": "babylon@^6.9.0",
+			"rawSpec": "^6.9.0",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/babylon/-/babylon-6.9.1.tgz",
-			"type": "remote"
+			"spec": ">=6.9.0 <7.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/babel-core",
@@ -2525,11 +2771,11 @@ webpackJsonp([0],{
 			"/esformatter-parser",
 			"/jscodeshift"
 		],
-		"_resolved": "https://registry.npmjs.org/babylon/-/babylon-6.9.1.tgz",
-		"_shasum": "b839f39009bfdb5d20e37677b1b7802c59fe32ee",
+		"_resolved": "https://registry.npmjs.org/babylon/-/babylon-6.10.0.tgz",
+		"_shasum": "ebab5f4402c85261f77fecc3e10627ef90e53121",
 		"_shrinkwrap": null,
-		"_spec": "babylon@https://registry.npmjs.org/babylon/-/babylon-6.9.1.tgz",
-		"_where": "/Users/fkling/git/astexplorer",
+		"_spec": "babylon@^6.9.0",
+		"_where": "/Users/fkling/git/astexplorer/node_modules/babel-core",
 		"author": {
 			"email": "sebmck@gmail.com",
 			"name": "Sebastian McKenzie"
@@ -2540,34 +2786,188 @@ webpackJsonp([0],{
 		"bugs": {
 			"url": "https://github.com/babel/babylon/issues"
 		},
-		"dependencies": {
-			"babel-runtime": "^6.0.0"
-		},
+		"contributors": [
+			{
+				"name": "List of Acorn contributors. Updated before every release."
+			},
+			{
+				"name": "Adrian Rakovsky"
+			},
+			{
+				"name": "Alistair Braidwood"
+			},
+			{
+				"name": "Andres Suarez"
+			},
+			{
+				"name": "Aparajita Fishman"
+			},
+			{
+				"name": "Arian Stolwijk"
+			},
+			{
+				"name": "Artem Govorov"
+			},
+			{
+				"name": "Brandon Mills"
+			},
+			{
+				"name": "Charles Hughes"
+			},
+			{
+				"name": "Conrad Irwin"
+			},
+			{
+				"name": "David Bonnet"
+			},
+			{
+				"name": "Forbes Lindesay"
+			},
+			{
+				"name": "Gilad Peleg"
+			},
+			{
+				"name": "impinball"
+			},
+			{
+				"name": "Ingvar Stepanyan"
+			},
+			{
+				"name": "Jesse McCarthy"
+			},
+			{
+				"name": "Jiaxing Wang"
+			},
+			{
+				"name": "Joel Kemp"
+			},
+			{
+				"name": "Johannes Herr"
+			},
+			{
+				"name": "Jürg Lehni"
+			},
+			{
+				"name": "keeyipchan"
+			},
+			{
+				"name": "Kevin Kwok"
+			},
+			{
+				"name": "krator"
+			},
+			{
+				"name": "Marijn Haverbeke"
+			},
+			{
+				"name": "Martin Carlberg"
+			},
+			{
+				"name": "Mathias Bynens"
+			},
+			{
+				"name": "Mathieu 'p01' Henri"
+			},
+			{
+				"name": "Max Schaefer"
+			},
+			{
+				"name": "Max Zerzouri"
+			},
+			{
+				"name": "Mihai Bazon"
+			},
+			{
+				"name": "Mike Rennie"
+			},
+			{
+				"name": "Nick Fitzgerald"
+			},
+			{
+				"name": "Oskar Schöldström"
+			},
+			{
+				"name": "Paul Harper"
+			},
+			{
+				"name": "Peter Rust"
+			},
+			{
+				"name": "PlNG"
+			},
+			{
+				"name": "r-e-d"
+			},
+			{
+				"name": "Rich Harris"
+			},
+			{
+				"name": "Sebastian McKenzie"
+			},
+			{
+				"name": "zsjforcn"
+			}
+		],
+		"dependencies": {},
 		"description": "A JavaScript parser",
 		"devDependencies": {
 			"ava": "^0.16.0",
-			"babel-cli": "^6.0.0",
-			"babel-helper-fixtures": "^6.6.5",
-			"babel-plugin-istanbul": "^2.0.0",
-			"babel-plugin-transform-class-properties": "^6.6.0",
-			"babel-plugin-transform-runtime": "^6.0.0",
-			"babel-preset-es2015": "^6.0.0",
-			"babel-preset-react": "^6.0.0",
+			"babel-cli": "^6.14.0",
+			"babel-helper-fixtures": "^6.9.0",
+			"babel-plugin-istanbul": "^2.0.1",
+			"babel-plugin-transform-flow-strip-types": "^6.14.0",
+			"babel-preset-es2015": "^6.14.0",
 			"babel-preset-stage-0": "^6.5.0",
 			"codecov": "^1.0.1",
-			"cross-env": "^2.0.0",
-			"kcheck": "^2.0.1",
-			"lodash": "^4.6.1",
-			"nyc": "^8.0.0",
+			"cross-env": "^2.0.1",
+			"kcheck": "^2.0.3",
+			"lodash": "^4.15.0",
+			"nyc": "^8.1.0",
 			"unicode-9.0.0": "~0.7.0"
+		},
+		"directories": {},
+		"dist": {
+			"shasum": "ebab5f4402c85261f77fecc3e10627ef90e53121",
+			"tarball": "https://registry.npmjs.org/babylon/-/babylon-6.10.0.tgz"
 		},
 		"files": [
 			"bin",
 			"lib"
 		],
+		"gitHead": "df60dcbb98348746ec03a8015564d67321f74b8e",
 		"homepage": "https://babeljs.io/",
 		"license": "MIT",
 		"main": "lib/index.js",
+		"maintainers": [
+			{
+				"email": "amjad.masad@gmail.com",
+				"name": "amasad"
+			},
+			{
+				"email": "gabelevi@gmail.com",
+				"name": "gabelevi"
+			},
+			{
+				"email": "hi@henryzoo.com",
+				"name": "hzoo"
+			},
+			{
+				"email": "npm-public@jessemccarthy.net",
+				"name": "jmm"
+			},
+			{
+				"email": "loganfsmyth@gmail.com",
+				"name": "loganfsmyth"
+			},
+			{
+				"email": "sebmck@gmail.com",
+				"name": "sebmck"
+			},
+			{
+				"email": "me@thejameskyle.com",
+				"name": "thejameskyle"
+			}
+		],
 		"name": "babylon",
 		"nyc": {
 			"include": [
@@ -2578,23 +2978,23 @@ webpackJsonp([0],{
 			"sourceMap": false
 		},
 		"optionalDependencies": {},
-		"readme": "<p align=\"center\">\n  <img alt=\"babylon\" src=\"https://raw.githubusercontent.com/babel/logo/master/babylon.png\" width=\"700\">\n</p>\n\n<p align=\"center\">\n  Babylon is a JavaScript parser used in <a href=\"https://github.com/babel/babel\">Babel</a>.\n</p>\n\n<p align=\"center\">\n  <a href=\"https://travis-ci.org/babel/babylon\"><img alt=\"Travis Status\" src=\"https://img.shields.io/travis/babel/babylon/master.svg?style=flat&label=travis\"></a>\n  <a href=\"https://codecov.io/gh/babel/babylon\"><img alt=\"Codecov Status\" src=\"https://img.shields.io/codecov/c/github/babel/babylon/master.svg?style=flat\"></a>\n</p>\n\n - The latest ECMAScript version enabled by default (ES2017).\n - Comment attachment.\n - Support for JSX and Flow.\n - Support for experimental language proposals.\n\n## Credits\n\nHeavily based on [acorn](https://github.com/marijnh/acorn) and [acorn-jsx](https://github.com/RReverser/acorn-jsx),\nthanks to the awesome work of [@RReverser](https://github.com/RReverser) and [@marijnh](https://github.com/marijnh).\n\nSignificant diversions are expected to occur in the future such as streaming, EBNF definitions, sweet.js integration, interspacial parsing and more.\n\n## API\n\n### `babylon.parse(code, [options])`\n\n### Options\n\n- **allowImportExportEverywhere**: By default, `import` and `export`\n  declarations can only appear at a program's top level. Setting this\n  option to `true` allows them anywhere where a statement is allowed.\n\n- **allowReturnOutsideFunction**: By default, a return statement at\n  the top level raises an error. Set this to `true` to accept such\n  code.\n\n- **allowSuperOutsideMethod** TODO\n\n- **sourceType**: Indicate the mode the code should be parsed in. Can be\n  either `\"script\"` or `\"module\"`.\n\n- **sourceFilename**: Correlate output AST nodes with their source filename.  Useful when generating code and source maps from the ASTs of multiple input files.\n\n- **plugins**: Array containing the plugins that you want to enable.\n\n### Output\n\nBabylon generates AST according to [Babel AST format][].\nIt is based on [ESTree spec][] with the following deviations:\n\n- [Literal][] token is replaced with [StringLiteral][], [NumericLiteral][], [BooleanLiteral][], [NullLiteral][], [RegExpLiteral][]\n- [Property][] token is replaced with [ObjectProperty][] and [ObjectMethod][]\n- [MethodDefinition][] is replaced with [ClassMethod][]\n- [Program][] and [BlockStatement][] contain additional `directives` field with [Directive][] and [DirectiveLiteral][]\n- [ClassMethod][], [ObjectProperty][], and [ObjectMethod][] value property's properties in [FunctionExpression][] is coerced/brought into the main method node.\n\nAST for JSX code is based on [Facebook JSX AST][] with the addition of one node type:\n\n- `JSXText`\n\n[Babel AST format]: https://github.com/babel/babylon/blob/master/ast/spec.md\n[ESTree spec]: https://github.com/estree/estree\n\n[Literal]: https://github.com/estree/estree/blob/master/spec.md#literal\n[Property]: https://github.com/estree/estree/blob/master/spec.md#property\n[MethodDefinition]: https://github.com/estree/estree/blob/master/es6.md#methoddefinition\n\n[StringLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#stringliteral\n[NumericLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#numericliteral\n[BooleanLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#booleanliteral\n[NullLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#nullliteral\n[RegExpLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#regexpliteral\n[ObjectProperty]: https://github.com/babel/babylon/blob/master/ast/spec.md#objectproperty\n[ObjectMethod]: https://github.com/babel/babylon/blob/master/ast/spec.md#objectmethod\n[ClassMethod]: https://github.com/babel/babylon/blob/master/ast/spec.md#classmethod\n[Program]: https://github.com/babel/babylon/blob/master/ast/spec.md#programs\n[BlockStatement]: https://github.com/babel/babylon/blob/master/ast/spec.md#blockstatement\n[Directive]: https://github.com/babel/babylon/blob/master/ast/spec.md#directive\n[DirectiveLiteral]: https://github.com/babel/babylon/blob/master/ast/spec.md#directiveliteral\n[FunctionExpression]: https://github.com/babel/babylon/blob/master/ast/spec.md#functionexpression\n\n[Facebook JSX AST]: https://github.com/facebook/jsx/blob/master/AST.md\n\n### Example\n\n```javascript\nrequire(\"babylon\").parse(\"code\", {\n  // parse in strict mode and allow module declarations\n  sourceType: \"module\",\n\n  plugins: [\n    // enable jsx and flow syntax\n    \"jsx\",\n    \"flow\"\n  ]\n});\n```\n\n### Plugins\n\n - `jsx`\n - `flow`\n - `classConstructorCall`\n - `doExpressions`\n - `objectRestSpread`\n - `decorators`\n - `classProperties`\n - `exportExtensions`\n - `asyncGenerators`\n - `functionBind`\n - `functionSent`\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/babel/babylon.git"
 		},
 		"scripts": {
 			"build": "babel src --out-dir lib",
-			"coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+			"coverage": "nyc report --reporter=json && codecov -f coverage/coverage-final.json",
 			"lint": "kcheck",
 			"prepublish": "cross-env BABEL_ENV=production npm run build",
 			"preversion": "npm run test",
-			"test": "npm run build && npm run lint && ava test/",
-			"test_cov": "cross-env BABEL_ENV=test npm run build && npm run lint && nyc ava test/",
+			"test": "npm run build && npm run lint && npm run test-only",
+			"test-only": "ava test",
+			"test_cov": "cross-env BABEL_ENV=test npm run build && npm run lint && nyc ava test",
 			"watch": "babel src --out-dir lib --watch"
 		},
-		"version": "6.9.1"
+		"version": "6.10.0"
 	};
 
 /***/ },
@@ -2619,22 +3019,33 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"esformatter-parser@https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
+				"esformatter-parser@^1.0.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "esformatter-parser@>=1.0.0 <2.0.0",
 		"_id": "esformatter-parser@1.0.0",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/esformatter-parser",
+		"_nodeVersion": "4.2.1",
+		"_npmOperationalInternal": {
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/esformatter-parser-1.0.0.tgz_1464205052948_0.8728667397517711"
+		},
+		"_npmUser": {
+			"email": "miller@millermedeiros.com",
+			"name": "millermedeiros"
+		},
+		"_npmVersion": "2.14.7",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "esformatter-parser",
-			"raw": "esformatter-parser@https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
-			"rawSpec": "https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
+			"raw": "esformatter-parser@^1.0.0",
+			"rawSpec": "^1.0.0",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
-			"type": "remote"
+			"spec": ">=1.0.0 <2.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -2642,7 +3053,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
 		"_shasum": "0854072d0487539ed39cae38d8a5432c17ec11d3",
 		"_shrinkwrap": null,
-		"_spec": "esformatter-parser@https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz",
+		"_spec": "esformatter-parser@^1.0.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Miller Medeiros"
@@ -2658,6 +3069,12 @@ webpackJsonp([0],{
 		},
 		"description": "JavaScript parser used by esformatter",
 		"devDependencies": {},
+		"directories": {},
+		"dist": {
+			"shasum": "0854072d0487539ed39cae38d8a5432c17ec11d3",
+			"tarball": "https://registry.npmjs.org/esformatter-parser/-/esformatter-parser-1.0.0.tgz"
+		},
+		"gitHead": "96a2e58ed9a930f7b93136cee9cb59da548dbae4",
 		"homepage": "https://github.com/millermedeiros/esformatter-parser#readme",
 		"keywords": [
 			"babel",
@@ -2669,10 +3086,15 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "esformatter-parser.js",
+		"maintainers": [
+			{
+				"email": "miller@millermedeiros.com",
+				"name": "millermedeiros"
+			}
+		],
 		"name": "esformatter-parser",
 		"optionalDependencies": {},
-		"readme": "# esformatter-parser\n\nWrapper around [Babylon](https://github.com/babel/babylon), [Acorn to Esprima](https://github.com/babel/acorn-to-esprima) and [Rocambole](https://github.com/millermedeiros/rocambole).\n\nUsed internally by [esformatter](https://github.com/millermedeiros/esformatter)\n\nReleased under the MIT License\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/millermedeiros/esformatter-parser.git"
@@ -2698,32 +3120,43 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"espree@https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
+				"espree@^3.1.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "espree@>=3.1.0 <4.0.0",
-		"_id": "espree@3.1.7",
+		"_id": "espree@3.2.0",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/espree",
+		"_nodeVersion": "4.4.7",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/espree-3.2.0.tgz_1474047126237_0.166505990549922"
+		},
+		"_npmUser": {
+			"email": "nicholas+eslint@nczconsulting.com",
+			"name": "eslint"
+		},
+		"_npmVersion": "2.15.8",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "espree",
-			"raw": "espree@https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
-			"rawSpec": "https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
+			"raw": "espree@^3.1.0",
+			"rawSpec": "^3.1.0",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
-			"type": "remote"
+			"spec": ">=3.1.0 <4.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/",
 			"/eslint",
 			"/eslint2/eslint"
 		],
-		"_resolved": "https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
-		"_shasum": "fd5deec76a97a5120a9cd3a7cb1177a0923b11d2",
+		"_resolved": "https://registry.npmjs.org/espree/-/espree-3.2.0.tgz",
+		"_shasum": "f99e18207c220f4c4c3f88a22ab3ff809ad06923",
 		"_shrinkwrap": null,
-		"_spec": "espree@https://registry.npmjs.org/espree/-/espree-3.1.7.tgz",
+		"_spec": "espree@^3.1.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "nicholas+npm@nczconsulting.com",
@@ -2733,7 +3166,7 @@ webpackJsonp([0],{
 			"url": "http://github.com/eslint/espree.git"
 		},
 		"dependencies": {
-			"acorn": "^3.3.0",
+			"acorn": "^4.0.1",
 			"acorn-jsx": "^3.0.0"
 		},
 		"description": "An Esprima-compatible JavaScript parser built on Acorn",
@@ -2742,7 +3175,7 @@ webpackJsonp([0],{
 			"chai": "^1.10.0",
 			"eslint": "^2.0.0-beta.1",
 			"eslint-config-eslint": "^3.0.0",
-			"eslint-release": "^0.6.4",
+			"eslint-release": "^0.10.0",
 			"esprima": "latest",
 			"esprima-fb": "^8001.2001.0-dev-harmony-fb",
 			"istanbul": "~0.2.6",
@@ -2754,6 +3187,11 @@ webpackJsonp([0],{
 			"shelljs-nodecli": "^0.1.1",
 			"unicode-6.3.0": "~0.1.0"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "f99e18207c220f4c4c3f88a22ab3ff809ad06923",
+			"tarball": "https://registry.npmjs.org/espree/-/espree-3.2.0.tgz"
+		},
 		"engines": {
 			"node": ">=0.10.0"
 		},
@@ -2761,6 +3199,7 @@ webpackJsonp([0],{
 			"lib",
 			"espree.js"
 		],
+		"gitHead": "f1fef68fd70f6a87befa18a42da36d7eab41d9cc",
 		"homepage": "https://github.com/eslint/espree",
 		"keywords": [
 			"ast",
@@ -2772,13 +3211,22 @@ webpackJsonp([0],{
 		],
 		"license": "BSD-2-Clause",
 		"main": "espree.js",
+		"maintainers": [
+			{
+				"email": "nicholas+eslint@nczconsulting.com",
+				"name": "eslint"
+			},
+			{
+				"email": "nicholas@nczconsulting.com",
+				"name": "nzakas"
+			}
+		],
 		"name": "espree",
 		"optionalDependencies": {},
-		"readme": "# Espree\n\nEspree started out as a fork of [Esprima](http://esprima.org) v1.2.2, the last stable published released of Esprima before work on ECMAScript 6 began. Espree is now built on top of [Acorn](https://github.com/ternjs/acorn), which has a modular architecture that allows extension of core functionality. The goal of Espree is to produce output that is similar to Esprima with a similar API so that it can be used in place of Esprima.\n\n## Usage\n\nInstall:\n\n```\nnpm i espree --save\n```\n\nAnd in your Node.js code:\n\n```javascript\nvar espree = require(\"espree\");\n\nvar ast = espree.parse(code);\n```\n\nThere is a second argument to `parse()` that allows you to specify various options:\n\n```javascript\nvar espree = require(\"espree\");\n\nvar ast = espree.parse(code, {\n\n    // attach range information to each node\n    range: true,\n\n    // attach line/column location information to each node\n    loc: true,\n\n    // create a top-level comments array containing all comments\n    comment: true,\n\n    // attach comments to the closest relevant node as leadingComments and\n    // trailingComments\n    attachComment: true,\n\n    // create a top-level tokens array containing all tokens\n    tokens: true,\n\n    // specify the language version (3, 5, 6, or 7, default is 5)\n    ecmaVersion: 5,\n\n    // specify which type of script you're parsing (script or module, default is script)\n    sourceType: \"script\",\n\n    // specify additional language features\n    ecmaFeatures: {\n\n        // enable JSX parsing\n        jsx: true,\n\n        // enable return in global scope\n        globalReturn: true,\n\n        // enable implied strict mode (if ecmaVersion >= 5)\n        impliedStrict: true,\n\n        // allow experimental object rest/spread\n        experimentalObjectRestSpread: true\n    }\n});\n```\n\n## Esprima Compatibility Going Forward\n\nThe primary goal is to produce the exact same AST structure and tokens as Esprima, and that takes precedence over anything else. (The AST structure being the [ESTree](https://github.com/estree/estree) API with JSX extensions.) Separate from that, Espree may deviate from what Esprima outputs in terms of where and how comments are attached, as well as what additional information is available on AST nodes. That is to say, Espree may add more things to the AST nodes than Esprima does but the overall AST structure produced will be the same.\n\nEspree may also deviate from Esprima in the interface it exposes.\n\n## Contributing\n\nIssues and pull requests will be triaged and responded to as quickly as possible. We operate under the [ESLint Contributor Guidelines](http://eslint.org/docs/developer-guide/contributing), so please be sure to read them before contributing. If you're not sure where to dig in, check out the [issues](https://github.com/eslint/espree/issues).\n\nEspree is licensed under a permissive BSD 2-clause license.\n\n## Build Commands\n\n* `npm test` - run all linting and tests\n* `npm run lint` - run all linting\n* `npm run browserify` - creates a version of Espree that is usable in a browser\n\n## Differences from Espree 2.x\n\n* The `tokenize()` method does not use `ecmaFeatures`. Any string will be tokenized completely based on ECMAScript 6 semantics.\n* Trailing whitespace no longer is counted as part of a node.\n* `let` and `const` declarations are no longer parsed by default. You must opt-in using `ecmaFeatures.blockBindings`.\n* The `esparse` and `esvalidate` binary scripts have been removed.\n* There is no `tolerant` option. We will investigate adding this back in the future.\n\n## Known Incompatibilities\n\nIn an effort to help those wanting to transition from other parsers to Espree, the following is a list of noteworthy incompatibilities with other parsers. These are known differences that we do not intend to change.\n\n### Esprima 1.2.2\n\n* Esprima counts trailing whitespace as part of each AST node while Espree does not. In Espree, the end of a node is where the last token occurs.\n* Espree does not parse `let` and `const` declarations by default.\n* Error messages returned for parsing errors are different.\n* There are two addition properties on every node and token: `start` and `end`. These represent the same data as `range` and are used internally by Acorn.\n\n### Esprima 2.x\n\n* Esprima 2.x uses a different comment attachment algorithm that results in some comments being added in different places than Espree. The algorithm Espree uses is the same one used in Esprima 1.2.2.\n\n## Frequently Asked Questions\n\n### Why another parser\n\n[ESLint](http://eslint.org) had been relying on Esprima as its parser from the beginning. While that was fine when the JavaScript language was evolving slowly, the pace of development increased dramatically and Esprima had fallen behind. ESLint, like many other tools reliant on Esprima, has been stuck in using new JavaScript language features until Esprima updates, and that caused our users frustration.\n\nWe decided the only way for us to move forward was to create our own parser, bringing us inline with JSHint and JSLint, and allowing us to keep implementing new features as we need them. We chose to fork Esprima instead of starting from scratch in order to move as quickly as possible with a compatible API.\n\nWith Espree 2.0.0, we are no longer a fork of Esprima but rather a translation layer between Acorn and Esprima syntax. This allows us to put work back into a community-supported parser (Acorn) that is continuing to grow and evolve while maintaining an Esprima-compatible parser for those utilities still built on Esprima.\n\n### Have you tried working with Esprima?\n\nYes. Since the start of ESLint, we've regularly filed bugs and feature requests with Esprima and will continue to do so. However, there are some different philosophies around how the projects work that need to be worked through. The initial goal was to have Espree track Esprima and eventually merge the two back together, but we ultimately decided that building on top of Acorn was a better choice due to Acorn's plugin support.\n\n### Why don't you just use Acorn?\n\nAcorn is a great JavaScript parser that produces an AST that is compatible with Esprima. Unfortunately, ESLint relies on more than just the AST to do its job. It relies on Esprima's tokens and comment attachment features to get a complete picture of the source code. We investigated switching to Acorn, but the inconsistencies between Esprima and Acorn created too much work for a project like ESLint.\n\nWe are building on top of Acorn, however, so that we can contribute back and help make Acorn even better.\n\n### What ECMAScript 6 features do you support?\n\nAll of them.\n\n### What ECMAScript 7 features do you support?\n\nThere is only one ECMAScript 7 syntax change: the exponentiation operator. Espree supports this.\n\n### How do you determine which experimental features to support?\n\nIn general, we do not support experimental JavaScript features. We may make exceptions from time to time depending on the maturity of the features.\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
-			"url": "git+ssh://git@github.com/eslint/espree.git"
+			"url": "git+https://github.com/eslint/espree.git"
 		},
 		"scripts": {
 			"alpharelease": "eslint-prelease alpha",
@@ -2786,11 +3234,12 @@ webpackJsonp([0],{
 			"browserify": "node Makefile.js browserify",
 			"ci-release": "eslint-ci-release",
 			"generate-regex": "node tools/generate-identifier-regex.js",
+			"gh-release": "eslint-gh-release",
 			"lint": "node Makefile.js lint",
 			"release": "eslint-release",
 			"test": "npm run-script lint && node Makefile.js test"
 		},
-		"version": "3.1.7"
+		"version": "3.2.0"
 	};
 
 /***/ },
@@ -2798,7 +3247,7 @@ webpackJsonp([0],{
 /***/ "./src/parsers/js/esprima.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(exports,"__esModule",{value:!0});var _regenerator=__webpack_require__("./node_modules/babel-runtime/regenerator/index.js"),_regenerator2=_interopRequireDefault(_regenerator),_extends2=__webpack_require__("./node_modules/babel-runtime/helpers/extends.js"),_extends3=_interopRequireDefault(_extends2),_set=__webpack_require__("./node_modules/babel-runtime/core-js/set.js"),_set2=_interopRequireDefault(_set),_react=__webpack_require__("./node_modules/react/react.js"),_react2=_interopRequireDefault(_react),_defaultESTreeParserInterface=__webpack_require__("./src/parsers/js/utils/defaultESTreeParserInterface.js"),_defaultESTreeParserInterface2=_interopRequireDefault(_defaultESTreeParserInterface),_package=__webpack_require__("./node_modules/esprima/package.json"),_package2=_interopRequireDefault(_package),_SettingsRenderer=__webpack_require__("./src/parsers/utils/SettingsRenderer.js"),_SettingsRenderer2=_interopRequireDefault(_SettingsRenderer),ID="esprima",defaultOptions={sourceType:"module",loc:!1,range:!0,tokens:!1,comment:!1,attachComment:!1,tolerant:!1},parserSettingsConfiguration={fields:[["sourceType",["script","module"]],"range","loc","attachComment","comment","tokens","tolerant"],required:new _set2["default"](["range"])};exports["default"]=(0,_extends3["default"])({},_defaultESTreeParserInterface2["default"],{id:ID,displayName:ID,version:_package2["default"].version,homepage:_package2["default"].homepage,locationProps:new _set2["default"](["range","loc"]),loadParser:function(e){__webpack_require__.e/* require */(14, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__("./node_modules/esprima/esprima.js")]; (e.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this))},parse:function(e,r,t){return e.parse(r,(0,_extends3["default"])({},defaultOptions,t))},forEachProperty:_regenerator2["default"].mark(function e(r){var t;return _regenerator2["default"].wrap(function(e){for(;;)switch(e.prev=e.next){case 0:e.t0=_regenerator2["default"].keys(r);case 1:if((e.t1=e.t0()).done){e.next=9;break}if(t=e.t1.value,"function"!=typeof r[t]){e.next=5;break}return e.abrupt("continue",1);case 5:return e.next=7,{value:r[t],key:t,computed:!1};case 7:e.next=1;break;case 9:case"end":return e.stop()}},e,this)}),renderSettings:function(e,r){return _react2["default"].createElement(_SettingsRenderer2["default"],{settingsConfiguration:parserSettingsConfiguration,parserSettings:(0,_extends3["default"])({},defaultOptions,e),onChange:r})}});
+	"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(exports,"__esModule",{value:!0});var _regenerator=__webpack_require__("./node_modules/babel-runtime/regenerator/index.js"),_regenerator2=_interopRequireDefault(_regenerator),_extends2=__webpack_require__("./node_modules/babel-runtime/helpers/extends.js"),_extends3=_interopRequireDefault(_extends2),_set=__webpack_require__("./node_modules/babel-runtime/core-js/set.js"),_set2=_interopRequireDefault(_set),_react=__webpack_require__("./node_modules/react/react.js"),_react2=_interopRequireDefault(_react),_defaultESTreeParserInterface=__webpack_require__("./src/parsers/js/utils/defaultESTreeParserInterface.js"),_defaultESTreeParserInterface2=_interopRequireDefault(_defaultESTreeParserInterface),_package=__webpack_require__("./node_modules/esprima/package.json"),_package2=_interopRequireDefault(_package),_SettingsRenderer=__webpack_require__("./src/parsers/utils/SettingsRenderer.js"),_SettingsRenderer2=_interopRequireDefault(_SettingsRenderer),ID="esprima",defaultOptions={sourceType:"module",loc:!1,range:!0,tokens:!1,comment:!1,attachComment:!1,tolerant:!1,jsx:!0},parserSettingsConfiguration={fields:[["sourceType",["script","module"]],"range","loc","attachComment","comment","tokens","tolerant","jsx"],required:new _set2["default"](["range"])};exports["default"]=(0,_extends3["default"])({},_defaultESTreeParserInterface2["default"],{id:ID,displayName:ID,version:_package2["default"].version,homepage:_package2["default"].homepage,locationProps:new _set2["default"](["range","loc"]),loadParser:function(e){__webpack_require__.e/* require */(14, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__("./node_modules/esprima/dist/esprima.js")]; (e.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this))},parse:function(e,r,t){return e.parse(r,(0,_extends3["default"])({},defaultOptions,t))},forEachProperty:_regenerator2["default"].mark(function e(r){var t;return _regenerator2["default"].wrap(function(e){for(;;)switch(e.prev=e.next){case 0:e.t0=_regenerator2["default"].keys(r);case 1:if((e.t1=e.t0()).done){e.next=9;break}if(t=e.t1.value,"function"!=typeof r[t]){e.next=5;break}return e.abrupt("continue",1);case 5:return e.next=7,{value:r[t],key:t,computed:!1};case 7:e.next=1;break;case 9:case"end":return e.stop()}},e,this)}),renderSettings:function(e,r){return _react2["default"].createElement(_SettingsRenderer2["default"],{settingsConfiguration:parserSettingsConfiguration,parserSettings:(0,_extends3["default"])({},defaultOptions,e),onChange:r})}});
 
 /***/ },
 
@@ -2808,48 +3257,41 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"esprima@2.7.3",
+				"esprima@latest",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "esprima@2.7.3",
-		"_id": "esprima@2.7.3",
+		"_from": "esprima@latest",
+		"_id": "esprima@3.0.0",
 		"_inCache": true,
 		"_installable": true,
 		"_location": "/esprima",
-		"_nodeVersion": "6.1.0",
+		"_nodeVersion": "6.3.1",
 		"_npmOperationalInternal": {
-			"host": "packages-16-east.internal.npmjs.com",
-			"tmp": "tmp/esprima-2.7.3.tgz_1472013602345_0.010668299393728375"
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/esprima-3.0.0.tgz_1472911974371_0.6553201307542622"
 		},
 		"_npmUser": {
 			"email": "ariya.hidayat@gmail.com",
 			"name": "ariya"
 		},
-		"_npmVersion": "3.8.6",
+		"_npmVersion": "3.10.3",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "esprima",
-			"raw": "esprima@2.7.3",
-			"rawSpec": "2.7.3",
+			"raw": "esprima@latest",
+			"rawSpec": "latest",
 			"scope": null,
-			"spec": "2.7.3",
-			"type": "version"
+			"spec": "latest",
+			"type": "tag"
 		},
 		"_requiredBy": [
-			"/",
-			"/escodegen",
-			"/eslint1/js-yaml",
-			"/eslint2/js-yaml",
-			"/js-yaml",
-			"/recast",
-			"/regexpu",
-			"/rocambole"
+			"/"
 		],
-		"_resolved": "https://registry.npmjs.org/esprima/-/esprima-2.7.3.tgz",
-		"_shasum": "96e3b70d5779f6ad49cd032673d1c312767ba581",
+		"_resolved": "https://registry.npmjs.org/esprima/-/esprima-3.0.0.tgz",
+		"_shasum": "53cf247acda77313e551c3aa2e73342d3fb4f7d9",
 		"_shrinkwrap": null,
-		"_spec": "esprima@2.7.3",
+		"_spec": "esprima@latest",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "ariya.hidayat@gmail.com",
@@ -2867,51 +3309,54 @@ webpackJsonp([0],{
 		"devDependencies": {
 			"codecov.io": "~0.1.6",
 			"escomplex-js": "1.2.0",
-			"eslint": "~1.7.2",
 			"everything.js": "~1.0.3",
-			"glob": "^5.0.15",
+			"glob": "~7.0.0",
 			"istanbul": "~0.4.0",
-			"jscs": "~2.3.5",
+			"jscs": "~3.0.3",
 			"json-diff": "~0.3.1",
-			"karma": "^0.13.11",
-			"karma-chrome-launcher": "^0.2.1",
-			"karma-detect-browsers": "^2.0.2",
-			"karma-firefox-launcher": "^0.1.6",
-			"karma-ie-launcher": "^0.2.0",
-			"karma-mocha": "^0.2.0",
-			"karma-safari-launcher": "^0.1.1",
-			"karma-sauce-launcher": "^0.2.14",
-			"lodash": "^3.10.0",
-			"mocha": "^2.3.3",
+			"karma": "~1.2.0",
+			"karma-chrome-launcher": "~2.0.0",
+			"karma-detect-browsers": "~2.1.0",
+			"karma-firefox-launcher": "~1.0.0",
+			"karma-ie-launcher": "~1.0.0",
+			"karma-mocha": "~1.1.1",
+			"karma-safari-launcher": "~1.0.0",
+			"karma-sauce-launcher": "~1.0.0",
+			"lodash": "~3.10.1",
+			"mocha": "~3.0.2",
 			"node-tick-processor": "~0.0.2",
-			"regenerate": "~1.2.1",
+			"regenerate": "~1.3.1",
 			"temp": "~0.8.3",
-			"unicode-7.0.0": "~0.1.5"
+			"tslint": "~3.15.1",
+			"typescript": "~1.8.10",
+			"typescript-formatter": "~1.2.0",
+			"unicode-8.0.0": "~0.7.0",
+			"webpack": "~1.13.2"
 		},
 		"directories": {},
 		"dist": {
-			"shasum": "96e3b70d5779f6ad49cd032673d1c312767ba581",
-			"tarball": "https://registry.npmjs.org/esprima/-/esprima-2.7.3.tgz"
+			"shasum": "53cf247acda77313e551c3aa2e73342d3fb4f7d9",
+			"tarball": "https://registry.npmjs.org/esprima/-/esprima-3.0.0.tgz"
 		},
 		"engines": {
 			"node": ">=0.10.0"
 		},
 		"files": [
 			"bin",
-			"unit-tests.js",
-			"esprima.js"
+			"dist/esprima.js"
 		],
-		"gitHead": "abaaf7f12040f0b31fac6fee342ffec8feab15d0",
+		"gitHead": "dea024fc158259ed513d78c1bb910ce847fd556c",
 		"homepage": "http://esprima.org",
 		"keywords": [
 			"ast",
 			"ecmascript",
+			"esprima",
 			"javascript",
 			"parser",
 			"syntax"
 		],
 		"license": "BSD-2-Clause",
-		"main": "esprima.js",
+		"main": "dist/esprima.js",
 		"maintainers": [
 			{
 				"email": "ariya.hidayat@gmail.com",
@@ -2926,36 +3371,43 @@ webpackJsonp([0],{
 			"url": "git+https://github.com/jquery/esprima.git"
 		},
 		"scripts": {
-			"all-tests": "npm run generate-fixtures && npm run unit-tests && npm run grammar-tests && npm run regression-tests",
+			"all-tests": "npm run generate-fixtures && npm run unit-tests && npm run api-tests && npm run grammar-tests && npm run regression-tests && npm run hostile-env-tests",
 			"analyze-coverage": "istanbul cover test/unit-tests.js",
-			"appveyor": "npm run all-tests && npm run browser-tests && npm run dynamic-analysis",
-			"benchmark": "node test/benchmarks.js",
-			"benchmark-quick": "node test/benchmarks.js quick",
-			"browser-tests": "npm run generate-fixtures && cd test && karma start --single-run",
+			"api-tests": "mocha -R dot test/api-tests.js",
+			"appveyor": "npm run compile && npm run all-tests && npm run browser-tests",
+			"benchmark": "npm run benchmark-parser && npm run benchmark-tokenizer",
+			"benchmark-parser": "node -expose_gc test/benchmark-parser.js",
+			"benchmark-tokenizer": "node --expose_gc test/benchmark-tokenizer.js",
+			"browser-tests": "npm run compile && npm run generate-fixtures && cd test && karma start --single-run",
 			"check-coverage": "istanbul check-coverage --statement 100 --branch 100 --function 100",
 			"check-version": "node test/check-version.js",
 			"circleci": "npm test && npm run codecov && npm run downstream",
+			"code-style": "tsfmt --verify src/*.ts && jscs -p crockford test/*.js",
 			"codecov": "istanbul report cobertura && codecov < ./coverage/cobertura-coverage.xml",
+			"compile": "tsc -p src/ && webpack && node tools/fixupbundle.js",
 			"complexity": "node test/check-complexity.js",
 			"downstream": "node test/downstream.js",
 			"droneio": "npm test && npm run saucelabs-evergreen && npm run saucelabs-ie && npm run saucelabs-safari",
 			"dynamic-analysis": "npm run analyze-coverage && npm run check-coverage",
-			"eslint": "node node_modules/eslint/bin/eslint.js -c .lintrc esprima.js",
+			"format-code": "tsfmt -r src/*.ts",
 			"generate-fixtures": "node tools/generate-fixtures.js",
 			"generate-regex": "node tools/generate-identifier-regex.js",
+			"generate-xhtml-entities": "node tools/generate-xhtml-entities.js",
 			"grammar-tests": "node test/grammar-tests.js",
-			"jscs": "jscs -p crockford esprima.js && jscs -p crockford test/*.js",
+			"hostile-env-tests": "node test/hostile-environment-tests.js",
+			"prepublish": "npm run compile",
 			"profile": "node --prof test/profile.js && mv isolate*.log v8.log && node-tick-processor",
 			"regression-tests": "node test/regression-tests.js",
 			"saucelabs-evergreen": "cd test && karma start saucelabs-evergreen.conf.js",
 			"saucelabs-ie": "cd test && karma start saucelabs-ie.conf.js",
 			"saucelabs-safari": "cd test && karma start saucelabs-safari.conf.js",
-			"static-analysis": "npm run check-version && npm run jscs && npm run eslint && npm run complexity",
-			"test": "npm run all-tests && npm run static-analysis && npm run dynamic-analysis",
+			"static-analysis": "npm run check-version && npm run tslint && npm run code-style && npm run complexity",
+			"test": "npm run compile && npm run all-tests && npm run static-analysis && npm run dynamic-analysis",
 			"travis": "npm test",
+			"tslint": "tslint src/*.ts",
 			"unit-tests": "node test/unit-tests.js"
 		},
-		"version": "2.7.3"
+		"version": "3.0.0"
 	};
 
 /***/ },
@@ -2973,31 +3425,42 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"flow-parser@https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
+				"flow-parser@^0.32.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "flow-parser@>=0.28.0 <0.29.0",
-		"_id": "flow-parser@0.28.0",
+		"_from": "flow-parser@>=0.32.0 <0.33.0",
+		"_id": "flow-parser@0.32.0",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/flow-parser",
+		"_nodeVersion": "4.1.2",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/flow-parser-0.32.0.tgz_1473186858231_0.8323409354779869"
+		},
+		"_npmUser": {
+			"email": "gabelevi@gmail.com",
+			"name": "gabelevi"
+		},
+		"_npmVersion": "2.14.6",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "flow-parser",
-			"raw": "flow-parser@https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
-			"rawSpec": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
+			"raw": "flow-parser@^0.32.0",
+			"rawSpec": "^0.32.0",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
-			"type": "remote"
+			"spec": ">=0.32.0 <0.33.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/",
 			"/jscodeshift"
 		],
-		"_resolved": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
-		"_shasum": "67f2b9dba91f97e25768879048af46a7aa69a3be",
+		"_resolved": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.32.0.tgz",
+		"_shasum": "e8898d9f6f272c01071133da4790d30833c41825",
 		"_shrinkwrap": null,
-		"_spec": "flow-parser@https://registry.npmjs.org/flow-parser/-/flow-parser-0.28.0.tgz",
+		"_spec": "flow-parser@^0.32.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "gabe@fb.com",
@@ -3008,7 +3471,7 @@ webpackJsonp([0],{
 			"flowvalidate": "tools/js_test_files.js"
 		},
 		"dependencies": {
-			"ast-types": "0.8.16",
+			"ast-types": "0.8.18",
 			"colors": ">=0.6.2",
 			"minimist": ">=0.2.0"
 		},
@@ -3016,15 +3479,33 @@ webpackJsonp([0],{
 		"devDependencies": {
 			"esprima-fb": "15001.1001.0-dev-harmony-fb"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "e8898d9f6f272c01071133da4790d30833c41825",
+			"tarball": "https://registry.npmjs.org/flow-parser/-/flow-parser-0.32.0.tgz"
+		},
 		"engines": {
 			"node": ">=0.4.0"
 		},
 		"license": "BSD-3-Clause",
 		"main": "flow_parser.js",
+		"maintainers": [
+			{
+				"email": "marshall@mroch.com",
+				"name": "mroch"
+			},
+			{
+				"email": "lbljeffmo@gmail.com",
+				"name": "jeffmo"
+			},
+			{
+				"email": "gabelevi@gmail.com",
+				"name": "gabelevi"
+			}
+		],
 		"name": "flow-parser",
 		"optionalDependencies": {},
-		"readme": "# The Flow Parser\n\nThe Flow Parser is a JavaScript parser written in OCaml. It produces an AST that conforms to [SpiderMonkey's Parser API](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API) and that mostly matches what [esprima](http://esprima.org/) produces. The Flow Parser can be compiled to native code or can be compiled to JavaScript using [js_of_ocaml](http://ocsigen.org/js_of_ocaml/).\n\n## Building the Flow Parser\n\nBuilding the Flow Parser requires OCaml. Compiling to JavaScript requires js_of_ocaml.\n\n### Initial set up\n\n* [Install opam](https://opam.ocaml.org/doc/Install.html)\n* `opam install js_of_ocaml`\n\n### Building the OCaml Flow Parser library\n\n    make\n    \n### Compiling the Flow Parser to JavaScript\n\n    make js\n\n## Tests\n\nThe Flow Parser's test suite tests the JavaScript version of the parser, so you will need js_of_ocaml installed. The tests and tools also have some node module dependencies, so you will need to run\n\n### Initial set up\n\n* Follow the steps in [Building the Flow Parser](https://github.com/facebook/flow/blob/master/src/parser/README.md#building-the-flow-parser)\n* `npm install`\n\n### Running the Tests\n\n    make test\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"private": true
 		},
@@ -3032,7 +3513,7 @@ webpackJsonp([0],{
 			"prepublish": "make js",
 			"test": "node test/run_tests.js"
 		},
-		"version": "0.28.0"
+		"version": "0.32.0"
 	};
 
 /***/ },
@@ -3057,31 +3538,42 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"recast@https://registry.npmjs.org/recast/-/recast-0.11.12.tgz",
+				"recast@^0.11.12",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "recast@0.11.12",
-		"_id": "recast@0.11.12",
+		"_from": "recast@>=0.11.12 <0.12.0",
+		"_id": "recast@0.11.14",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/recast",
+		"_nodeVersion": "4.5.0",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/recast-0.11.14.tgz_1473698150606_0.10585225862450898"
+		},
+		"_npmUser": {
+			"email": "bn@cs.stanford.edu",
+			"name": "benjamn"
+		},
+		"_npmVersion": "3.10.7",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "recast",
-			"raw": "recast@https://registry.npmjs.org/recast/-/recast-0.11.12.tgz",
-			"rawSpec": "https://registry.npmjs.org/recast/-/recast-0.11.12.tgz",
+			"raw": "recast@^0.11.12",
+			"rawSpec": "^0.11.12",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/recast/-/recast-0.11.12.tgz",
-			"type": "remote"
+			"spec": ">=0.11.12 <0.12.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/",
 			"/jscodeshift"
 		],
-		"_resolved": "https://registry.npmjs.org/recast/-/recast-0.11.12.tgz",
-		"_shasum": "a79e4d3f82d5d72a82ee177aeaa791e793bbe5d6",
+		"_resolved": "https://registry.npmjs.org/recast/-/recast-0.11.14.tgz",
+		"_shasum": "3ba11420f9403c66e397c045ce4fe951a56eecb1",
 		"_shrinkwrap": null,
-		"_spec": "recast@https://registry.npmjs.org/recast/-/recast-0.11.12.tgz",
+		"_spec": "recast@^0.11.12",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "bn@cs.stanford.edu",
@@ -3095,19 +3587,25 @@ webpackJsonp([0],{
 		},
 		"dependencies": {
 			"ast-types": "0.9.0",
-			"esprima": "~2.7.1",
+			"esprima": "~3.0.0",
 			"private": "~0.1.5",
 			"source-map": "~0.5.0"
 		},
 		"description": "JavaScript syntax tree transformer, nondestructive pretty-printer, and automatic source map generator",
 		"devDependencies": {
-			"babylon": "~6.8.0",
+			"babylon": "~6.9.1",
 			"esprima-fb": "^15001.1001.0-dev-harmony-fb",
 			"mocha": "~3.0.1"
+		},
+		"directories": {},
+		"dist": {
+			"shasum": "3ba11420f9403c66e397c045ce4fe951a56eecb1",
+			"tarball": "https://registry.npmjs.org/recast/-/recast-0.11.14.tgz"
 		},
 		"engines": {
 			"node": ">= 0.8"
 		},
+		"gitHead": "3a0de50f404cd75db5a8a7c34ff1102270d9de82",
 		"homepage": "http://github.com/benjamn/recast",
 		"keywords": [
 			"ast",
@@ -3121,10 +3619,15 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "main.js",
+		"maintainers": [
+			{
+				"email": "bn@cs.stanford.edu",
+				"name": "benjamn"
+			}
+		],
 		"name": "recast",
 		"optionalDependencies": {},
-		"readme": "# recast, _v_. [![Build Status](https://travis-ci.org/benjamn/recast.svg?branch=master)](https://travis-ci.org/benjamn/recast) [![Join the chat at https://gitter.im/benjamn/recast](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/benjamn/recast?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\n1. to give (a metal object) a different form by melting it down and reshaping it.\n1. to form, fashion, or arrange again.\n1. to remodel or reconstruct (a literary work, document, sentence, etc.).\n1. to supply (a theater or opera work) with a new cast.\n\nInstallation\n---\n\nFrom NPM:\n\n    npm install recast\n    \nFrom GitHub:\n\n    cd path/to/node_modules\n    git clone git://github.com/benjamn/recast.git\n    cd recast\n    npm install .\n\nUsage\n---\n\nIn less poetic terms, Recast exposes two essential interfaces, one for parsing JavaScript code (`require(\"recast\").parse`) and the other for reprinting modified syntax trees (`require(\"recast\").print`).\n\nHere's a simple but non-trivial example of how you might use `.parse` and `.print`:\n```js\nvar recast = require(\"recast\");\n\n// Let's turn this function declaration into a variable declaration.\nvar code = [\n    \"function add(a, b) {\",\n    \"  return a +\",\n    \"    // Weird formatting, huh?\",\n    \"    b;\",\n    \"}\"\n].join(\"\\n\");\n\n// Parse the code using an interface similar to require(\"esprima\").parse.\nvar ast = recast.parse(code);\n```\nNow do *whatever* you want to `ast`. Really, anything at all!\n\nSee [ast-types](https://github.com/benjamn/ast-types) (especially the [def/core.js](https://github.com/benjamn/ast-types/blob/master/def/core.js)) module for a thorough overview of the `ast` api.\n```js\n// Grab a reference to the function declaration we just parsed.\nvar add = ast.program.body[0];\n\n// Make sure it's a FunctionDeclaration (optional).\nvar n = recast.types.namedTypes;\nn.FunctionDeclaration.assert(add);\n\n// If you choose to use recast.builders to construct new AST nodes, all builder\n// arguments will be dynamically type-checked against the Mozilla Parser API.\nvar b = recast.types.builders;\n\n// This kind of manipulation should seem familiar if you've used Esprima or the\n// Mozilla Parser API before.\nast.program.body[0] = b.variableDeclaration(\"var\", [\n    b.variableDeclarator(add.id, b.functionExpression(\n        null, // Anonymize the function expression.\n        add.params,\n        add.body\n    ))\n]);\n\n// Just for fun, because addition is commutative:\nadd.params.push(add.params.shift());\n```\nWhen you finish manipulating the AST, let `recast.print` work its magic:\n```js\nvar output = recast.print(ast).code;\n```\nThe `output` string now looks exactly like this, weird formatting and all:\n```js\nvar add = function(b, a) {\n  return a +\n    // Weird formatting, huh?\n    b;\n}\n```\nThe magic of Recast is that it reprints only those parts of the syntax tree that you modify. In other words, the following identity is guaranteed:\n```js\nrecast.print(recast.parse(source)).code === source\n```\nWhenever Recast cannot reprint a modified node using the original source code, it falls back to using a generic pretty printer. So the worst that can happen is that your changes trigger some harmless reformatting of your code.\n\nIf you really don't care about preserving the original formatting, you can access the pretty printer directly:\n```js\nvar output = recast.prettyPrint(ast, { tabWidth: 2 }).code;\n```\nAnd here's the exact `output`:\n```js\nvar add = function(b, a) {\n  return a + b;\n}\n```\nNote that the weird formatting was discarded, yet the behavior and abstract structure of the code remain the same.\n\nSource maps\n---\n\nOne of the coolest consequences of tracking and reusing original source code during reprinting is that it's pretty easy to generate a high-resolution mapping between the original code and the generated code—completely automatically!\n\nWith every `slice`, `join`, and re-`indent`-ation, the reprinting process maintains exact knowledge of which character sequences are original, and where in the original source they came from.\n\nAll you have to think about is how to manipulate the syntax tree, and Recast will give you a [source map](https://github.com/mozilla/source-map) in exchange for specifying the names of your source file(s) and the desired name of the map:\n```js\nvar result = recast.print(transform(recast.parse(source, {\n  sourceFileName: \"source.js\"\n})), {\n  sourceMapName: \"map.json\"\n});\n    \nconsole.log(result.code); // Resulting string of code.\nconsole.log(result.map); // JSON source map.\n\nvar SourceMapConsumer = require(\"source-map\").SourceMapConsumer;\nvar smc = new SourceMapConsumer(result.map);\nconsole.log(smc.originalPositionFor({\n  line: 3,\n  column: 15\n})); // { source: 'source.js',\n     //   line: 2,\n     //   column: 10,\n     //   name: null }\n```\n\nNote that you are free to mix and match syntax trees parsed from different source files, and the resulting source map will automatically keep track of the separate file origins for you.\n\nNote also that the source maps generated by Recast are character-by-character maps, so meaningful identifier names are not recorded at this time. This approach leads to higher-resolution debugging in modern browsers, at the expense of somewhat larger map sizes. Striking the perfect balance here is an area for future exploration, but such improvements will not require any breaking changes to the interface demonstrated above.\n\nMotivation\n---\n\nThe more code you have, the harder it becomes to make big, sweeping changes quickly and confidently. Even if you trust yourself not to make too many mistakes, and no matter how proficient you are with your text editor, changing tens of thousands of lines of code takes precious, non-refundable time.\n\nIs there a better way? Not always! When a task requires you to alter the semantics of many different pieces of code in subtly different ways, your brain inevitably becomes the bottleneck, and there is little hope of completely automating the process. Your best bet is to plan carefully, buckle down, and get it right the first time. Love it or loathe it, that's the way programming goes sometimes.\n\nWhat I hope to eliminate are the brain-wasting tasks, the tasks that are bottlenecked by keystrokes, the tasks that can be expressed as operations on the _syntactic structure_ of your code. Specifically, my goal is to make it possible for you to run your code through a parser, manipulate the abstract syntax tree directly, subject only to the constraints of your imagination, and then automatically translate those modifications back into source code, without upsetting the formatting of unmodified code.\n\nAnd here's the best part: when you're done running a Recast script, if you're not completely satisfied with the results, blow them away with `git reset --hard`, tweak the script, and just run it again. Change your mind as many times as you like. Instead of typing yourself into a nasty case of [RSI](http://en.wikipedia.org/wiki/Repetitive_strain_injury), gaze upon your new wells of free time and ask yourself: what next?\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git://github.com/benjamn/recast.git"
@@ -3133,7 +3636,7 @@ webpackJsonp([0],{
 			"debug": "node ./node_modules/mocha/bin/mocha --debug-brk --reporter spec",
 			"test": "node ./node_modules/mocha/bin/mocha --reporter spec --full-trace"
 		},
-		"version": "0.11.12"
+		"version": "0.11.14"
 	};
 
 /***/ },
@@ -3151,11 +3654,11 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"shift-parser@5.0.2",
+				"shift-parser@^5.0.2",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "shift-parser@5.0.2",
+		"_from": "shift-parser@>=5.0.2 <6.0.0",
 		"_id": "shift-parser@5.0.2",
 		"_inCache": true,
 		"_installable": true,
@@ -3173,11 +3676,11 @@ webpackJsonp([0],{
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "shift-parser",
-			"raw": "shift-parser@5.0.2",
-			"rawSpec": "5.0.2",
+			"raw": "shift-parser@^5.0.2",
+			"rawSpec": "^5.0.2",
 			"scope": null,
-			"spec": "5.0.2",
-			"type": "version"
+			"spec": ">=5.0.2 <6.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -3185,7 +3688,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/shift-parser/-/shift-parser-5.0.2.tgz",
 		"_shasum": "4fd55435633f3eb9a3fa8962988e025b882d8b00",
 		"_shrinkwrap": null,
-		"_spec": "shift-parser@5.0.2",
+		"_spec": "shift-parser@^5.0.2",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Shape Security Labs"
@@ -3297,22 +3800,33 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"traceur@https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
+				"traceur@0.0.111",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "traceur@0.0.111",
 		"_id": "traceur@0.0.111",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/traceur",
+		"_nodeVersion": "6.2.1",
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/traceur-0.0.111.tgz_1465442611894_0.9058660811278969"
+		},
+		"_npmUser": {
+			"email": "erik.arvidsson@gmail.com",
+			"name": "arv"
+		},
+		"_npmVersion": "3.9.3",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "traceur",
-			"raw": "traceur@https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
-			"rawSpec": "https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
+			"raw": "traceur@0.0.111",
+			"rawSpec": "0.0.111",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
-			"type": "remote"
+			"spec": "0.0.111",
+			"type": "version"
 		},
 		"_requiredBy": [
 			"/"
@@ -3320,7 +3834,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
 		"_shasum": "c04de74d14696c3373427de4fc08ecaf913fc3a1",
 		"_shrinkwrap": null,
-		"_spec": "traceur@https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz",
+		"_spec": "traceur@0.0.111",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Traceur Authors"
@@ -3331,6 +3845,216 @@ webpackJsonp([0],{
 		"bugs": {
 			"url": "https://github.com/google/traceur-compiler/issues"
 		},
+		"contributors": [
+			{
+				"email": "*@chromium.org",
+				"name": "The Chromium Authors"
+			},
+			{
+				"email": "*@google.com",
+				"name": "Google Inc."
+			},
+			{
+				"email": "viktor.kronvall@gmail.com",
+				"name": "Viktor Kronvall"
+			},
+			{
+				"email": "usrbincc@yahoo.com",
+				"name": "Ben Chan"
+			},
+			{
+				"email": "edy.burt@gmail.com",
+				"name": "Eduard Burtescu"
+			},
+			{
+				"email": "peter@peterhallam.com",
+				"name": "Peter Hallam"
+			},
+			{
+				"email": "nschonni@gmail.com",
+				"name": "Nick Schonning"
+			},
+			{
+				"email": "terasaka.k@gmail.com",
+				"name": "Kinya TERASAKA"
+			},
+			{
+				"email": "sean@seanmiddleditch.com",
+				"name": "Sean Middleditch"
+			},
+			{
+				"email": "ross@rhadden.com",
+				"name": "Ross Hadden"
+			},
+			{
+				"email": "stephan.seidt@gmail.com",
+				"name": "Stephan Seidt"
+			},
+			{
+				"email": "mathias@qiwi.be",
+				"name": "Mathias Bynens"
+			},
+			{
+				"email": "tommy.odom@gmail.com",
+				"name": "Tommy Odom"
+			},
+			{
+				"email": "r.w.timmermans@gmail.com",
+				"name": "Rolf Timmermans"
+			},
+			{
+				"email": "tomi.belan@gmail.com",
+				"name": "Tomi Belan"
+			},
+			{
+				"email": "james@lightsofapollo.com",
+				"name": "James Lal"
+			},
+			{
+				"email": "dmt021@gmail.com",
+				"name": "Galimzyanov Dmitry"
+			},
+			{
+				"email": "waldron.rick@gmail.com",
+				"name": "Rick Waldron"
+			},
+			{
+				"email": "amatiasq@gmail.com",
+				"name": "A. Matías Quezada"
+			},
+			{
+				"email": "sday@atlassian.com",
+				"name": "Sam Day"
+			},
+			{
+				"email": "guybedford@gmail.com",
+				"name": "Guy Bedford"
+			},
+			{
+				"email": "jmcriffey@gmail.com",
+				"name": "Jeff McRiffey"
+			},
+			{
+				"email": "m@mariusnita.com",
+				"name": "Marius Nita"
+			},
+			{
+				"email": "fitzgen@mozilla.com",
+				"name": "Nick Fitzgerald"
+			},
+			{
+				"email": "gil@tayar.org",
+				"name": "Gil Tayar"
+			},
+			{
+				"email": "alxandr@alxandr.me",
+				"name": "Aleksander Heintz"
+			},
+			{
+				"email": "ulrikdem@gmail.com",
+				"name": "Ulrik de Muelenaere"
+			},
+			{
+				"email": "nison.mael@gmail.com",
+				"name": "Maël Nison"
+			},
+			{
+				"email": "snnskwtnb@gmail.com",
+				"name": "Shinnosuke Watanabe"
+			},
+			{
+				"email": "terminal2010@gmail.com",
+				"name": "Vyacheslav Shebanov"
+			},
+			{
+				"email": "ultcombo@gmail.com",
+				"name": "Fabrício Matté"
+			},
+			{
+				"email": "ljharb@gmail.com",
+				"name": "Jordan Harband"
+			},
+			{
+				"email": "mciparelli@gmail.com",
+				"name": "Martín Ciparelli"
+			},
+			{
+				"email": "hasather@gmail.com",
+				"name": "David Håsäther"
+			},
+			{
+				"email": "amjad.masad@gmail.com",
+				"name": "Amjad Masad"
+			},
+			{
+				"email": "flannery.peter@ntlworld.com",
+				"name": "Peter Flannery"
+			},
+			{
+				"email": "liubko.qwert@gmail.com",
+				"name": "Liubomyr Mykhalchenko"
+			},
+			{
+				"email": "dmitry.soshnikov@gmail.com",
+				"name": "Dmitry Soshnikov"
+			},
+			{
+				"email": "victor@suumit.com",
+				"name": "Victor Berchet"
+			},
+			{
+				"email": "pselden4@gmail.com",
+				"name": "Paul Selden"
+			},
+			{
+				"email": "contact@svachon.com",
+				"name": "Steven Vachon"
+			},
+			{
+				"email": "denelxan@gmail.com",
+				"name": "Maga D. Zandaqo"
+			},
+			{
+				"email": "valeriy.sorokobatko@gmail.com",
+				"name": "Valeriy Sorokobatko"
+			},
+			{
+				"email": "iwillig@gmail.com",
+				"name": "Ivan Willig"
+			},
+			{
+				"email": "oliverjash@gmail.com",
+				"name": "Oliver Joseph Ash"
+			},
+			{
+				"email": "jeffpalentine@gmail.com",
+				"name": "Chris Truter"
+			},
+			{
+				"email": "marc.nieper@gmail.com",
+				"name": "Marc Nieper-Wißkirchen"
+			},
+			{
+				"email": "me@ro.ger.io",
+				"name": "Rogério Yokomizo"
+			},
+			{
+				"email": "caitpotter88@gmail.com",
+				"name": "Caitlin Potter"
+			},
+			{
+				"email": "srinivasan.sekar1990@gmail.com",
+				"name": "Srinivasan Sekar"
+			},
+			{
+				"email": "jeffshen86@gmail.com",
+				"name": "Jeff Shen"
+			},
+			{
+				"email": "erik.arvidsson@gmail.com",
+				"name": "Erik Arvidsson"
+			}
+		],
 		"dependencies": {
 			"commander": "2.9.x",
 			"glob": "5.0.x",
@@ -3355,6 +4079,11 @@ webpackJsonp([0],{
 			"traceur": "0.0.110",
 			"webcomponents.js": "^0.5.4-1"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "c04de74d14696c3373427de4fc08ecaf913fc3a1",
+			"tarball": "https://registry.npmjs.org/traceur/-/traceur-0.0.111.tgz"
+		},
 		"engines": {
 			"node": ">=0.10"
 		},
@@ -3367,6 +4096,7 @@ webpackJsonp([0],{
 			"dist/",
 			"traceur"
 		],
+		"gitHead": "2ddade7061e895b7dddb56ed4b89df310386860b",
 		"homepage": "https://github.com/google/traceur-compiler",
 		"keywords": [
 			"javascript",
@@ -3381,6 +4111,16 @@ webpackJsonp([0],{
 		],
 		"license": "Apache-2.0",
 		"main": "./src/node/api.js",
+		"maintainers": [
+			{
+				"email": "arv@chromium.org",
+				"name": "arv"
+			},
+			{
+				"email": "johnjbarton@johnjbarton.com",
+				"name": "johnjbarton"
+			}
+		],
 		"name": "traceur",
 		"optionalDependencies": {},
 		"readme": "ERROR: No README data found!",
@@ -3448,22 +4188,33 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
-				"/Users/fkling/git/astexplorer/node_modules/babel5"
+				"babel-core@^5.8.38",
+				"/Users/fkling/git/astexplorer/packages/babel5"
 			]
 		],
 		"_from": "babel-core@>=5.8.38 <6.0.0",
 		"_id": "babel-core@5.8.38",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/babel5/babel-core",
+		"_nodeVersion": "5.5.0",
+		"_npmOperationalInternal": {
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/babel-core-5.8.38.tgz_1458687002807_0.9978649774566293"
+		},
+		"_npmUser": {
+			"email": "sebmck@gmail.com",
+			"name": "sebmck"
+		},
+		"_npmVersion": "3.3.12",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "babel-core",
-			"raw": "babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
-			"rawSpec": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
+			"raw": "babel-core@^5.8.38",
+			"rawSpec": "^5.8.38",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
-			"type": "remote"
+			"spec": ">=5.8.38 <6.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/babel5"
@@ -3471,8 +4222,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
 		"_shasum": "1fcaee79d7e61b750b00b8e54f6dfc9d0af86558",
 		"_shrinkwrap": null,
-		"_spec": "babel-core@https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/babel5",
+		"_spec": "babel-core@^5.8.38",
+		"_where": "/Users/fkling/git/astexplorer/packages/babel5",
 		"author": {
 			"email": "sebmck@gmail.com",
 			"name": "Sebastian McKenzie"
@@ -3533,6 +4284,11 @@ webpackJsonp([0],{
 		},
 		"description": "A compiler for writing next generation JavaScript",
 		"devDependencies": {},
+		"directories": {},
+		"dist": {
+			"shasum": "1fcaee79d7e61b750b00b8e54f6dfc9d0af86558",
+			"tarball": "https://registry.npmjs.org/babel-core/-/babel-core-5.8.38.tgz"
+		},
 		"homepage": "https://babeljs.io/",
 		"keywords": [
 			"6to5",
@@ -3548,6 +4304,32 @@ webpackJsonp([0],{
 			"var"
 		],
 		"license": "MIT",
+		"maintainers": [
+			{
+				"email": "amjad.masad@gmail.com",
+				"name": "amasad"
+			},
+			{
+				"email": "hi@henryzoo.com",
+				"name": "hzoo"
+			},
+			{
+				"email": "npm-public@jessemccarthy.net",
+				"name": "jmm"
+			},
+			{
+				"email": "loganfsmyth@gmail.com",
+				"name": "loganfsmyth"
+			},
+			{
+				"email": "sebmck@gmail.com",
+				"name": "sebmck"
+			},
+			{
+				"email": "me@thejameskyle.com",
+				"name": "thejameskyle"
+			}
+		],
 		"name": "babel-core",
 		"optionalDependencies": {},
 		"readme": "ERROR: No README data found!",
@@ -3591,11 +4373,11 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"babel-core@6.14.0",
+				"babel-core@^6.14.0",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "babel-core@6.14.0",
+		"_from": "babel-core@>=6.14.0 <7.0.0",
 		"_id": "babel-core@6.14.0",
 		"_inCache": true,
 		"_installable": true,
@@ -3610,36 +4392,17 @@ webpackJsonp([0],{
 			"name": "hzoo"
 		},
 		"_npmVersion": "3.10.6",
-		"_phantomChildren": {
-			"babel-code-frame": "6.11.0",
-			"babel-core": "6.14.0",
-			"babel-messages": "6.8.0",
-			"babel-runtime": "6.11.6",
-			"babylon": "6.9.1",
-			"core-js": "2.4.1",
-			"debug": "2.2.0",
-			"esutils": "2.0.2",
-			"globals": "8.18.0",
-			"home-or-tmp": "1.0.0",
-			"invariant": "2.2.1",
-			"lodash": "4.14.1",
-			"mkdirp": "0.5.1",
-			"path-exists": "1.0.0",
-			"source-map-support": "0.2.10",
-			"to-fast-properties": "1.0.2"
-		},
+		"_phantomChildren": {},
 		"_requested": {
 			"name": "babel-core",
-			"raw": "babel-core@6.14.0",
-			"rawSpec": "6.14.0",
+			"raw": "babel-core@^6.14.0",
+			"rawSpec": "^6.14.0",
 			"scope": null,
-			"spec": "6.14.0",
-			"type": "version"
+			"spec": ">=6.14.0 <7.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
-			"#DEV:/",
 			"/",
-			"/babel-core/babel-register",
 			"/babel-plugin-transform-regenerator",
 			"/babel-register",
 			"/babel6"
@@ -3647,7 +4410,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/babel-core/-/babel-core-6.14.0.tgz",
 		"_shasum": "c9e13ed4e2f97329215496fd9fb48f2b3bcb9b42",
 		"_shrinkwrap": null,
-		"_spec": "babel-core@6.14.0",
+		"_spec": "babel-core@^6.14.0",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "sebmck@gmail.com",
@@ -3771,22 +4534,28 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"eslint@https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
-				"/Users/fkling/git/astexplorer/node_modules/eslint1"
+				"eslint@^1.10.3",
+				"/Users/fkling/git/astexplorer/packages/eslint1"
 			]
 		],
 		"_from": "eslint@>=1.10.3 <2.0.0",
 		"_id": "eslint@1.10.3",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/eslint1/eslint",
+		"_npmUser": {
+			"email": "nicholas@nczconsulting.com",
+			"name": "nzakas"
+		},
+		"_npmVersion": "1.4.28",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "eslint",
-			"raw": "eslint@https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
-			"rawSpec": "https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
+			"raw": "eslint@^1.10.3",
+			"rawSpec": "^1.10.3",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
-			"type": "remote"
+			"spec": ">=1.10.3 <2.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/eslint1"
@@ -3794,8 +4563,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
 		"_shasum": "fb19a91b13c158082bbca294b17d979bc8353a0a",
 		"_shrinkwrap": null,
-		"_spec": "eslint@https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/eslint1",
+		"_spec": "eslint@^1.10.3",
+		"_where": "/Users/fkling/git/astexplorer/packages/eslint1",
 		"author": {
 			"email": "nicholas+npm@nczconsulting.com",
 			"name": "Nicholas C. Zakas"
@@ -3872,6 +4641,11 @@ webpackJsonp([0],{
 			"sinon": "1.17.2",
 			"through": "^2.3.6"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "fb19a91b13c158082bbca294b17d979bc8353a0a",
+			"tarball": "https://registry.npmjs.org/eslint/-/eslint-1.10.3.tgz"
+		},
 		"engines": {
 			"node": ">=0.10"
 		},
@@ -3882,6 +4656,7 @@ webpackJsonp([0],{
 			"conf",
 			"lib"
 		],
+		"gitHead": "2436cc6c1816a7890e35dab38e609daee84d7530",
 		"homepage": "http://eslint.org",
 		"keywords": [
 			"ast",
@@ -3892,10 +4667,19 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/api.js",
+		"maintainers": [
+			{
+				"email": "nicholas@nczconsulting.com",
+				"name": "nzakas"
+			},
+			{
+				"email": "ivolodin@gmail.com",
+				"name": "ivolodin"
+			}
+		],
 		"name": "eslint",
 		"optionalDependencies": {},
-		"readme": "[![NPM version][npm-image]][npm-url]\n[![build status][travis-image]][travis-url]\n[![Test coverage][coveralls-image]][coveralls-url]\n[![Downloads][downloads-image]][downloads-url]\n[![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=282608)](https://www.bountysource.com/trackers/282608-eslint?utm_source=282608&utm_medium=shield&utm_campaign=TRACKER_BADGE)\n[![Join the chat at https://gitter.im/eslint/eslint](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eslint/eslint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\n# ESLint\n\n[Website](http://eslint.org) | [Configuring](http://eslint.org/docs/user-guide/configuring) | [Rules](http://eslint.org/docs/rules/) | [Contributing](http://eslint.org/docs/developer-guide/contributing) | [Twitter](https://twitter.com/geteslint) | [Mailing List](https://groups.google.com/group/eslint)\n\nESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code. In many ways, it is similar to JSLint and JSHint with a few exceptions:\n\n* ESLint uses [Espree](https://github.com/eslint/espree) for JavaScript parsing.\n* ESLint uses an AST to evaluate patterns in code.\n* ESLint is completely pluggable, every single rule is a plugin and you can add more at runtime.\n\n## Installation\n\nYou can install ESLint using npm:\n\n    npm install -g eslint\n\n## Usage\n\nIf it's your first time using ESLint, you should set up a config file using `--init`:\n\n    eslint --init\n\nAfter that, you can run ESLint on any JavaScript file:\n\n    eslint test.js test2.js\n\n## Configuration\n\nAfter running `eslint --init`, you'll have a `.eslintrc` file in your directory. In it, you'll see some rules configured like this:\n\n```json\n{\n    \"rules\": {\n        \"semi\": [2, \"always\"],\n        \"quotes\": [2, \"double\"]\n    }\n}\n```\n\nThe names `\"semi\"` and `\"quotes\"` are the names of [rules](http://eslint.org/docs/rules) in ESLint. The number is the error level of the rule and can be one of the three values:\n\n* `0` - turn the rule off\n* `1` - turn the rule on as a warning (doesn't affect exit code)\n* `2` - turn the rule on as an error (exit code will be 1)\n\nThe three error levels allow you fine-grained control over how ESLint applies rules (for more configuration options and details, see the [configuration docs](http://eslint.org/docs/user-guide/configuring)).\n\n## Sponsors\n\n* Development is sponsored by [Box](https://box.com)\n\n## Team\n\nThese folks keep the project moving and are resources for help:\n\n* Nicholas C. Zakas ([@nzakas](https://github.com/nzakas)) - project lead\n* Ilya Volodin ([@ilyavolodin](https://github.com/ilyavolodin)) - reviewer\n* Brandon Mills ([@btmills](https://github.com/btmills)) - reviewer\n* Gyandeep Singh ([@gyandeeps](https://github.com/gyandeeps)) - reviewer\n* Mathias Schreck ([@lo1tuma](https://github.com/lo1tuma)) - committer\n* Jamund Ferguson ([@xjamundx](https://github.com/xjamundx)) - committer\n* Ian VanSchooten ([@ianvs](https://github.com/ianvs)) - committer\n* Toru Nagashima ([@mysticatea](https://github.com/mysticatea)) - committer\n* Burak Yiğit Kaya ([@byk](https://github.com/byk)) - committer\n* Alberto Rodríguez ([@alberto](https://github.com/alberto)) - committer\n\n## Releases\n\nWe have scheduled releases every two weeks on Friday or Saturday.\n\n## Frequently Asked Questions\n\n### Why don't you like JSHint???\n\nI do like JSHint. And I like Anton and Rick. Neither of those were deciding factors in creating this tool. The fact is that I've had a dire need for a JavaScript tool with pluggable linting rules. I had hoped JSHint would be able to do this, however after chatting with Anton, I found that the planned plugin infrastructure wasn't going to suit my purpose.\n\n### I'm not giving up JSHint for this!\n\nThat's not really a question, but I got it. I'm not trying to convince you that ESLint is better than JSHint. The only thing I know is that ESLint is better than JSHint for what I'm doing. In the off chance you're doing something similar, it might be better for you. Otherwise, keep using JSHint, I'm certainly not going to tell you to stop using it.\n\n### How does ESLint performance compare to JSHint and JSCS?\n\nESLint is slower than JSHint, usually 2-3x slower on a single file. This is because ESLint uses Espree to construct an AST before it can evaluate your code whereas JSHint evaluates your code as it's being parsed. The speed is also based on the number of rules you enable; the more rules you enable, the slower the process.\n\nDespite being slower, we believe that ESLint is fast enough to replace JSHint without causing significant pain.\n\nESLint is faster than JSCS, as ESLint uses a single-pass traversal for analysis whereas JSCS using a querying model.\n\nIf you are using both JSHint and JSCS on your files, then using just ESLint will be faster.\n\n### Is ESLint just linting or does it also check style?\n\nESLint does both traditional linting (looking for problematic patterns) and style checking (enforcement of conventions). You can use it for both.\n\n### What about ECMAScript 6 support?\n\nESLint has full support for ECMAScript 6. By default, this support is off. You can enable ECMAScript 6 support through [configuration](http://eslint.org/docs/user-guide/configuring).\n\n### Does ESLint support JSX?\n\nYes, ESLint natively supports parsing JSX syntax (this must be enabled in [configuration](http://eslint.org/docs/user-guide/configuring).). Please note that supporting JSX syntax *is not* the same as supporting React. React applies specific semantics to JSX syntax that ESLint doesn't recognize. We recommend using [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) if you are using React and want React semantics.\n\n### What about ECMAScript 7/2016 and experimental features?\n\nESLint doesn't natively support experimental ECMAScript language features. You can use [babel-eslint](https://github.com/babel/babel-eslint) to use any option available in Babel.\n\n### Where to ask for help?\n\nJoin our [Mailing List](https://groups.google.com/group/eslint) or [Chatroom](https://gitter.im/eslint/eslint)\n\n\n[npm-image]: https://img.shields.io/npm/v/eslint.svg?style=flat-square\n[npm-url]: https://www.npmjs.com/package/eslint\n[travis-image]: https://img.shields.io/travis/eslint/eslint/master.svg?style=flat-square\n[travis-url]: https://travis-ci.org/eslint/eslint\n[coveralls-image]: https://img.shields.io/coveralls/eslint/eslint/master.svg?style=flat-square\n[coveralls-url]: https://coveralls.io/r/eslint/eslint?branch=master\n[downloads-image]: https://img.shields.io/npm/dm/eslint.svg?style=flat-square\n[downloads-url]: https://www.npmjs.com/package/eslint\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/eslint/eslint.git"
@@ -3946,22 +4730,33 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"eslint@https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
-				"/Users/fkling/git/astexplorer/node_modules/eslint2"
+				"eslint@^2.5.3",
+				"/Users/fkling/git/astexplorer/packages/eslint2"
 			]
 		],
 		"_from": "eslint@>=2.5.3 <3.0.0",
 		"_id": "eslint@2.13.1",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/eslint2/eslint",
+		"_nodeVersion": "4.4.2",
+		"_npmOperationalInternal": {
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/eslint-2.13.1.tgz_1466445641361_0.2213528158608824"
+		},
+		"_npmUser": {
+			"email": "nicholas@nczconsulting.com",
+			"name": "nzakas"
+		},
+		"_npmVersion": "2.15.0",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "eslint",
-			"raw": "eslint@https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
-			"rawSpec": "https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
+			"raw": "eslint@^2.5.3",
+			"rawSpec": "^2.5.3",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
-			"type": "remote"
+			"spec": ">=2.5.3 <3.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/eslint2"
@@ -3969,8 +4764,8 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
 		"_shasum": "e4cc8fa0f009fb829aaae23855a29360be1f6c11",
 		"_shrinkwrap": null,
-		"_spec": "eslint@https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz",
-		"_where": "/Users/fkling/git/astexplorer/node_modules/eslint2",
+		"_spec": "eslint@^2.5.3",
+		"_where": "/Users/fkling/git/astexplorer/packages/eslint2",
 		"author": {
 			"email": "nicholas+npm@nczconsulting.com",
 			"name": "Nicholas C. Zakas"
@@ -4051,6 +4846,11 @@ webpackJsonp([0],{
 			"temp": "^0.8.3",
 			"through": "^2.3.6"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "e4cc8fa0f009fb829aaae23855a29360be1f6c11",
+			"tarball": "https://registry.npmjs.org/eslint/-/eslint-2.13.1.tgz"
+		},
 		"engines": {
 			"node": ">=0.10"
 		},
@@ -4062,6 +4862,7 @@ webpackJsonp([0],{
 			"lib",
 			"messages"
 		],
+		"gitHead": "031a35614f9353b57c072ba14aff16f930ab6520",
 		"homepage": "http://eslint.org",
 		"keywords": [
 			"ast",
@@ -4072,10 +4873,19 @@ webpackJsonp([0],{
 		],
 		"license": "MIT",
 		"main": "./lib/api.js",
+		"maintainers": [
+			{
+				"email": "nicholas@nczconsulting.com",
+				"name": "nzakas"
+			},
+			{
+				"email": "ivolodin@gmail.com",
+				"name": "ivolodin"
+			}
+		],
 		"name": "eslint",
 		"optionalDependencies": {},
-		"readme": "[![NPM version][npm-image]][npm-url]\n[![build status][travis-image]][travis-url]\n[![Build status][appveyor-image]][appveyor-url]\n[![Test coverage][coveralls-image]][coveralls-url]\n[![Downloads][downloads-image]][downloads-url]\n[![Bountysource](https://www.bountysource.com/badge/tracker?tracker_id=282608)](https://www.bountysource.com/trackers/282608-eslint?utm_source=282608&utm_medium=shield&utm_campaign=TRACKER_BADGE)\n[![Join the chat at https://gitter.im/eslint/eslint](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eslint/eslint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\n# ESLint\n\n[Website](http://eslint.org) |\n[Configuring](http://eslint.org/docs/user-guide/configuring) |\n[Rules](http://eslint.org/docs/rules/) |\n[Contributing](http://eslint.org/docs/developer-guide/contributing) |\n[Reporting Bugs](http://eslint.org/docs/developer-guide/contributing/reporting-bugs) |\n[Code of Conduct](https://jquery.org/conduct/) |\n[Twitter](https://twitter.com/geteslint) |\n[Mailing List](https://groups.google.com/group/eslint) |\n[Chat Room](https://gitter.im/eslint/eslint)\n\nESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code. In many ways, it is similar to JSLint and JSHint with a few exceptions:\n\n* ESLint uses [Espree](https://github.com/eslint/espree) for JavaScript parsing.\n* ESLint uses an AST to evaluate patterns in code.\n* ESLint is completely pluggable, every single rule is a plugin and you can add more at runtime.\n\n## Installation\n\nYou can install ESLint using npm:\n\n    npm install -g eslint\n\n## Usage\n\nIf it's your first time using ESLint, you should set up a config file using `--init`:\n\n    eslint --init\n\nAfter that, you can run ESLint on any JavaScript file:\n\n    eslint test.js test2.js\n\n**Note:** `eslint --init` is intended for setting up and configuring ESLint on a per-project basis and will perform a local installation of ESLint and its plugins in the directory in which it is run. If you prefer using a global installation of ESLint, any plugins used in your configuration must also be installed globally.\n\n## Configuration\n\nAfter running `eslint --init`, you'll have a `.eslintrc` file in your directory. In it, you'll see some rules configured like this:\n\n```json\n{\n    \"rules\": {\n        \"semi\": [\"error\", \"always\"],\n        \"quotes\": [\"error\", \"double\"]\n    }\n}\n```\n\nThe names `\"semi\"` and `\"quotes\"` are the names of [rules](http://eslint.org/docs/rules) in ESLint. The first value is the error level of the rule and can be one of these values:\n\n* `\"off\"` or `0` - turn the rule off\n* `\"warn\"` or `1` - turn the rule on as a warning (doesn't affect exit code)\n* `\"error\"` or `2` - turn the rule on as an error (exit code will be 1)\n\nThe three error levels allow you fine-grained control over how ESLint applies rules (for more configuration options and details, see the [configuration docs](http://eslint.org/docs/user-guide/configuring)).\n\n## Sponsors\n\n* Development is sponsored by [Box](https://box.com)\n* Site search ([eslint.org](http://eslint.org)) is sponsored by [Algolia](https://www.algolia.com)\n\n## Team\n\nThese folks keep the project moving and are resources for help:\n\n* Nicholas C. Zakas ([@nzakas](https://github.com/nzakas)) - project lead\n* Ilya Volodin ([@ilyavolodin](https://github.com/ilyavolodin)) - reviewer\n* Brandon Mills ([@btmills](https://github.com/btmills)) - reviewer\n* Gyandeep Singh ([@gyandeeps](https://github.com/gyandeeps)) - reviewer\n* Toru Nagashima ([@mysticatea](https://github.com/mysticatea)) - reviewer\n* Alberto Rodríguez ([@alberto](https://github.com/alberto)) - reviewer\n* Mathias Schreck ([@lo1tuma](https://github.com/lo1tuma)) - committer\n* Jamund Ferguson ([@xjamundx](https://github.com/xjamundx)) - committer\n* Ian VanSchooten ([@ianvs](https://github.com/ianvs)) - committer\n* Burak Yiğit Kaya ([@byk](https://github.com/byk)) - committer\n* Kai Cataldo ([@kaicataldo](https://github.com/kaicataldo)) - committer\n* Michael Ficarra ([@michaelficarra](https://github.com/michaelficarra)) - committer\n* Mark Pedrotti ([@pedrottimark](https://github.com/pedrottimark)) - committer\n* Oleg Gaidarenko ([@markelog](https://github.com/markelog)) - committer\n* Mike Sherov [@mikesherov](https://github.com/mikesherov)) - committer\n* Henry Zhu ([@hzoo](https://github.com/hzoo)) - committer\n* Marat Dulin ([@mdevils](https://github.com/mdevils)) - committer\n* Alexej Yaroshevich ([@zxqfox](https://github.com/zxqfox)) - committer\n\n## Releases\n\nWe have scheduled releases every two weeks on Friday or Saturday.\n\n## Filing Issues\n\nBefore filing an issue, please be sure to read the guidelines for what you're reporting:\n\n* [Bug Report](http://eslint.org/docs/developer-guide/contributing/reporting-bugs)\n* [Propose a New Rule](http://eslint.org/docs/developer-guide/contributing/new-rules)\n* [Proposing a Rule Change](http://eslint.org/docs/developer-guide/contributing/rule-changes)\n* [Request a Change](http://eslint.org/docs/developer-guide/contributing/changes)\n\n## Semantic Versioning Policy\n\nESLint follows [semantic versioning](http://semver.org). However, due to the nature of ESLint as a code quality tool, it's not always clear when a minor or major version bump occurs. To help clarify this for everyone, we've defined the following semantic versioning policy for ESLint:\n\n* Patch release (intended to not break your lint build)\n    * A bug fix in a rule that results in ESLint reporting fewer errors.\n    * A bug fix to the CLI or core (including formatters).\n    * Improvements to documentation.\n    * Non-user-facing changes such as refactoring code, adding, deleting, or modifying tests, and increasing test coverage.\n    * Re-releasing after a failed release (i.e., publishing a release that doesn't work for anyone).\n* Minor release (might break your lint build)\n    * A bug fix in a rule that results in ESLint reporting more errors.\n    * A new rule is created.\n    * A new option to an existing rule is created.\n    * An existing rule is deprecated.\n    * A new CLI capability is created.\n    * New capabilities to the public API are added (new classes, new methods, new arguments to existing methods, etc.).\n    * A new formatter is created.\n* Major release (likely to break your lint build)\n    * `eslint:recommended` is updated.\n    * An existing rule is removed.\n    * An existing formatter is removed.\n    * Part of the public API is removed or changed in an incompatible way.\n\n## Frequently Asked Questions\n\n### How is ESLint different from JSHint?\n\nThe most significant difference is that ESlint has pluggable linting rules. That means you can use the rules it comes with, or you can extend it with rules created by others or by yourself!\n\n### How does ESLint performance compare to JSHint?\n\nESLint is slower than JSHint, usually 2-3x slower on a single file. This is because ESLint uses Espree to construct an AST before it can evaluate your code whereas JSHint evaluates your code as it's being parsed. The speed is also based on the number of rules you enable; the more rules you enable, the slower the process.\n\nDespite being slower, we believe that ESLint is fast enough to replace JSHint without causing significant pain.\n\n### I heard ESLint is going to replace JSCS?\n\nYes. Since we are solving the same problems, ESLint and JSCS teams have decided to join forces and work together in the development of ESLint instead of competing with each other. You can read more about this in both [ESLint](http://eslint.org/blog/2016/04/welcoming-jscs-to-eslint) and [JSCS](https://medium.com/@markelog/jscs-end-of-the-line-bc9bf0b3fdb2#.u76sx334n) announcements.\n\n### So, should I stop using JSCS and start using ESLint?\n\nNot yet. We are still working to smooth the transition. You can see our progress [here](https://github.com/eslint/eslint/milestones/JSCS%20Compatibility). We’ll announce when all of the changes necessary to support JSCS users in ESLint are complete and will start encouraging JSCS users to switch to ESLint at that time. Meanwhile, we recommend you to upgrade to JSCS 3.0 and provide feedback to the team.\n\n### Is ESLint just linting or does it also check style?\n\nESLint does both traditional linting (looking for problematic patterns) and style checking (enforcement of conventions). You can use it for both.\n\n### Does ESLint support JSX?\n\nYes, ESLint natively supports parsing JSX syntax (this must be enabled in [configuration](http://eslint.org/docs/user-guide/configuring).). Please note that supporting JSX syntax *is not* the same as supporting React. React applies specific semantics to JSX syntax that ESLint doesn't recognize. We recommend using [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react) if you are using React and want React semantics.\n\n### What about ECMAScript 6 support?\n\nESLint has full support for ECMAScript 6. By default, this support is off. You can enable ECMAScript 6 support through [configuration](http://eslint.org/docs/user-guide/configuring).\n\n### What about experimental features?\n\nESLint doesn't natively support experimental ECMAScript language features. You can use [babel-eslint](https://github.com/babel/babel-eslint) to use any option available in Babel.\n\nOnce a language feature has been adopted into the ECMAScript standard, we will accept\nissues and pull requests related to the new feature, subject to our [contributing\nguidelines](http://eslint.org/docs/developer-guide/contributing). Until then, please use\nthe appropriate parser and plugin(s) for your experimental feature.\n\n### Where to ask for help?\n\nJoin our [Mailing List](https://groups.google.com/group/eslint) or [Chatroom](https://gitter.im/eslint/eslint)\n\n\n[npm-image]: https://img.shields.io/npm/v/eslint.svg?style=flat-square\n[npm-url]: https://www.npmjs.com/package/eslint\n[travis-image]: https://img.shields.io/travis/eslint/eslint/master.svg?style=flat-square\n[travis-url]: https://travis-ci.org/eslint/eslint\n[appveyor-image]: https://ci.appveyor.com/api/projects/status/iwxmiobcvbw3b0av/branch/master?svg=true\n[appveyor-url]: https://ci.appveyor.com/project/nzakas/eslint/branch/master\n[coveralls-image]: https://img.shields.io/coveralls/eslint/eslint/master.svg?style=flat-square\n[coveralls-url]: https://coveralls.io/r/eslint/eslint?branch=master\n[downloads-image]: https://img.shields.io/npm/dm/eslint.svg?style=flat-square\n[downloads-url]: https://www.npmjs.com/package/eslint\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/eslint/eslint.git"
@@ -4102,7 +4912,7 @@ webpackJsonp([0],{
 /***/ "./src/parsers/js/transformers/jscodeshift/codeExample.txt":
 /***/ function(module, exports) {
 
-	module.exports = "export default function transformer(file, api) {\n  const j = api.jscodeshift;\n  const {expression, statement, statements} = j.template;\n\n  return j(file.source)\n    .find(j.Identifier)\n    .replaceWith(\n      p => j.identifier(p.node.name.split('').reverse().join(''))\n    )\n    .toSource();\n};\n"
+	module.exports = "// Press ctrl+space for code completion\nexport default function transformer(file, api) {\n  const j = api.jscodeshift;\n\n  return j(file.source)\n    .find(j.Identifier)\n    .forEach(path => {\n      j(path).replaceWith(\n        j.identifier(path.node.name.split('').reverse().join(''))\n      );\n    })\n    .toSource();\n}\n"
 
 /***/ },
 
@@ -4140,13 +4950,14 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"jscodeshift@0.3.28",
+				"jscodeshift@^0.3.28",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
-		"_from": "jscodeshift@0.3.28",
+		"_from": "jscodeshift@>=0.3.28 <0.4.0",
 		"_id": "jscodeshift@0.3.28",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/jscodeshift",
 		"_nodeVersion": "5.12.0",
 		"_npmOperationalInternal": {
@@ -4174,7 +4985,7 @@ webpackJsonp([0],{
 			"babel-plugin-runtime": "1.0.7",
 			"babel-plugin-undeclared-variables-check": "1.0.2",
 			"babel-plugin-undefined-to-void": "1.1.6",
-			"bluebird": "2.10.2",
+			"bluebird": "2.11.0",
 			"brace-expansion": "1.1.6",
 			"chalk": "1.1.3",
 			"convert-source-map": "1.3.0",
@@ -4203,19 +5014,18 @@ webpackJsonp([0],{
 		},
 		"_requested": {
 			"name": "jscodeshift",
-			"raw": "jscodeshift@0.3.28",
-			"rawSpec": "0.3.28",
+			"raw": "jscodeshift@^0.3.28",
+			"rawSpec": "^0.3.28",
 			"scope": null,
-			"spec": "0.3.28",
-			"type": "version"
+			"spec": ">=0.3.28 <0.4.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
 		],
-		"_resolved": "https://registry.npmjs.org/jscodeshift/-/jscodeshift-0.3.28.tgz",
 		"_shasum": "8e87be995ba3c9cba36e83808f22c1ac03f8eb87",
 		"_shrinkwrap": null,
-		"_spec": "jscodeshift@0.3.28",
+		"_spec": "jscodeshift@^0.3.28",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Felix Kling"
@@ -4313,22 +5123,33 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"typescript@https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
+				"typescript@^1.7.5",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "typescript@>=1.7.5 <2.0.0",
 		"_id": "typescript@1.8.10",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/typescript",
+		"_nodeVersion": "5.9.0",
+		"_npmOperationalInternal": {
+			"host": "packages-12-west.internal.npmjs.com",
+			"tmp": "tmp/typescript-1.8.10.tgz_1460493736776_0.9304528103675693"
+		},
+		"_npmUser": {
+			"email": "typescript@microsoft.com",
+			"name": "typescript"
+		},
+		"_npmVersion": "2.14.2",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "typescript",
-			"raw": "typescript@https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
-			"rawSpec": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
+			"raw": "typescript@^1.7.5",
+			"rawSpec": "^1.7.5",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
-			"type": "remote"
+			"spec": ">=1.7.5 <2.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -4336,7 +5157,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
 		"_shasum": "b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e",
 		"_shrinkwrap": null,
-		"_spec": "typescript@https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz",
+		"_spec": "typescript@^1.7.5",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"name": "Microsoft Corp."
@@ -4367,9 +5188,15 @@ webpackJsonp([0],{
 			"tslint": "next",
 			"typescript": "next"
 		},
+		"directories": {},
+		"dist": {
+			"shasum": "b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e",
+			"tarball": "https://registry.npmjs.org/typescript/-/typescript-1.8.10.tgz"
+		},
 		"engines": {
 			"node": ">=0.8.0"
 		},
+		"gitHead": "794c57478ec2a44ee15fb3e245a4c5d2d1612375",
 		"homepage": "http://typescriptlang.org/",
 		"keywords": [
 			"TypeScript",
@@ -4380,10 +5207,15 @@ webpackJsonp([0],{
 		],
 		"license": "Apache-2.0",
 		"main": "./lib/typescript.js",
+		"maintainers": [
+			{
+				"email": "typescript@microsoft.com",
+				"name": "typescript"
+			}
+		],
 		"name": "typescript",
 		"optionalDependencies": {},
-		"readme": "[![Build Status](https://travis-ci.org/Microsoft/TypeScript.svg?branch=master)](https://travis-ci.org/Microsoft/TypeScript)\r\n[![npm version](https://badge.fury.io/js/typescript.svg)](https://www.npmjs.com/package/typescript)\r\n[![Downloads](https://img.shields.io/npm/dm/TypeScript.svg)](https://www.npmjs.com/package/typescript)\r\n\r\n# TypeScript\r\n\r\n[![Join the chat at https://gitter.im/Microsoft/TypeScript](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Microsoft/TypeScript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\r\n\r\n[TypeScript](http://www.typescriptlang.org/) is a language for application-scale JavaScript. TypeScript adds optional types, classes, and modules to JavaScript. TypeScript supports tools for large-scale JavaScript applications for any browser, for any host, on any OS. TypeScript compiles to readable, standards-based JavaScript. Try it out at the [playground](http://www.typescriptlang.org/Playground), and stay up to date via [our blog](http://blogs.msdn.com/typescript) and [Twitter account](https://twitter.com/typescriptlang).\r\n\r\n## Installing\r\n\r\nFor the latest stable version:\r\n\r\n```\r\nnpm install -g typescript\r\n```\r\n\r\nFor our nightly builds:\r\n\r\n```\r\nnpm install -g typescript@next\r\n```\r\n\r\n## Contribute\r\n\r\nThere are many ways to [contribute](https://github.com/Microsoft/TypeScript/blob/master/CONTRIBUTING.md) to TypeScript.\r\n* [Submit bugs](https://github.com/Microsoft/TypeScript/issues) and help us verify fixes as they are checked in.\r\n* Review the [source code changes](https://github.com/Microsoft/TypeScript/pulls).\r\n* Engage with other TypeScript users and developers on [StackOverflow](http://stackoverflow.com/questions/tagged/typescript). \r\n* Join the [#typescript](http://twitter.com/#!/search/realtime/%23typescript) discussion on Twitter.\r\n* [Contribute bug fixes](https://github.com/Microsoft/TypeScript/blob/master/CONTRIBUTING.md).\r\n* Read the language specification ([docx](https://github.com/Microsoft/TypeScript/blob/master/doc/TypeScript%20Language%20Specification.docx?raw=true), [pdf](https://github.com/Microsoft/TypeScript/blob/master/doc/TypeScript%20Language%20Specification.pdf?raw=true), [md](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md)).\r\n\r\n\r\n## Documentation\r\n\r\n*  [Quick tutorial](http://www.typescriptlang.org/Tutorial)\r\n*  [Programming handbook](http://www.typescriptlang.org/Handbook)\r\n*  [Language specification](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md)\r\n*  [Homepage](http://www.typescriptlang.org/)\r\n\r\n## Building\r\n\r\nIn order to build the TypeScript compiler, ensure that you have [Git](http://git-scm.com/downloads) and [Node.js](http://nodejs.org/) installed.\r\n\r\nClone a copy of the repo:\r\n\r\n```\r\ngit clone https://github.com/Microsoft/TypeScript.git\r\n```\r\n\r\nChange to the TypeScript directory:\r\n\r\n```\r\ncd TypeScript\r\n```\r\n\r\nInstall Jake tools and dev dependencies:\r\n\r\n```\r\nnpm install -g jake\r\nnpm install\r\n```\r\n\r\nUse one of the following to build and test:\r\n\r\n```\r\njake local            # Build the compiler into built/local \r\njake clean            # Delete the built compiler \r\njake LKG              # Replace the last known good with the built one.\r\n                      # Bootstrapping step to be executed when the built compiler reaches a stable state.\r\njake tests            # Build the test infrastructure using the built compiler. \r\njake runtests         # Run tests using the built compiler and test infrastructure. \r\n                      # You can override the host or specify a test for this command. \r\n                      # Use host=<hostName> or tests=<testPath>. \r\njake runtests-browser # Runs the tests using the built run.js file. Syntax is jake runtests. Optional\r\n                        parameters 'host=', 'tests=[regex], reporter=[list|spec|json|<more>]'.\r\njake baseline-accept  # This replaces the baseline test results with the results obtained from jake runtests.\r\njake lint             # Runs tslint on the TypeScript source.\r\njake -T               # List the above commands. \r\n```\r\n\r\n\r\n## Usage\r\n\r\n```shell\r\nnode built/local/tsc.js hello.ts\r\n```\r\n\r\n\r\n## Roadmap\r\n\r\nFor details on our planned features and future direction please refer to our [roadmap](https://github.com/Microsoft/TypeScript/wiki/Roadmap).\r\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git+https://github.com/Microsoft/TypeScript.git"
@@ -4511,22 +5343,28 @@ webpackJsonp([0],{
 	module.exports = {
 		"_args": [
 			[
-				"webidl2@https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
+				"webidl2@^2.0.11",
 				"/Users/fkling/git/astexplorer"
 			]
 		],
 		"_from": "webidl2@>=2.0.11 <3.0.0",
 		"_id": "webidl2@2.0.11",
 		"_inCache": true,
+		"_installable": true,
 		"_location": "/webidl2",
+		"_npmUser": {
+			"email": "robin@berjon.com",
+			"name": "robin.berjon"
+		},
+		"_npmVersion": "1.4.28",
 		"_phantomChildren": {},
 		"_requested": {
 			"name": "webidl2",
-			"raw": "webidl2@https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
-			"rawSpec": "https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
+			"raw": "webidl2@^2.0.11",
+			"rawSpec": "^2.0.11",
 			"scope": null,
-			"spec": "https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
-			"type": "remote"
+			"spec": ">=2.0.11 <3.0.0",
+			"type": "range"
 		},
 		"_requiredBy": [
 			"/"
@@ -4534,7 +5372,7 @@ webpackJsonp([0],{
 		"_resolved": "https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
 		"_shasum": "788ba6daad0a14e20fc396b860296a07b55b8a17",
 		"_shrinkwrap": null,
-		"_spec": "webidl2@https://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz",
+		"_spec": "webidl2@^2.0.11",
 		"_where": "/Users/fkling/git/astexplorer",
 		"author": {
 			"email": "robin@berjon.com",
@@ -4553,13 +5391,24 @@ webpackJsonp([0],{
 			"mocha": "2.2.5",
 			"underscore": "1.8.3"
 		},
-		"homepage": "https://github.com/darobin/webidl2.js#readme",
+		"directories": {},
+		"dist": {
+			"shasum": "788ba6daad0a14e20fc396b860296a07b55b8a17",
+			"tarball": "http://registry.npmjs.org/webidl2/-/webidl2-2.0.11.tgz"
+		},
+		"gitHead": "bd216bcd5596d60734450adc938155deab1e1a80",
+		"homepage": "https://github.com/darobin/webidl2.js",
 		"license": "MIT",
 		"main": "index",
+		"maintainers": [
+			{
+				"email": "robin@berjon.com",
+				"name": "robin.berjon"
+			}
+		],
 		"name": "webidl2",
 		"optionalDependencies": {},
-		"readme": "\n# WebIDL 2\n\n[![NPM version](https://badge.fury.io/js/webidl2.png)](http://badge.fury.io/js/webidl2)\n\nPurpose\n=======\n\nThis is a parser for the [WebIDL](http://dev.w3.org/2006/webapi/WebIDL/) language. If\nyou don't know what that is, then you probably don't need it. It is meant to be used\nboth in Node and in the browser (the parser likely works in other JS environments, but\nnot the test suite).\n\nWhat of v1?\n-----------\nThere was a previous incarnation of this project. I had written it in the most quick\nand dirty manner that was handy because I required it as a dependency in an experiment.\nAs these things tend to happen, some people started using that, which then had to be\nmaintained. But since it was not built on solid foundations, it was painful to keep\nup to date with the specification, which is a bit of a moving target.\n\nSo I started from scratch. Compared to the previous version (which used a parser generator)\nthis one is about 6x less code (which translates to 4x smaller minified or 2x smaller \nminizipped) and 4x faster. The test suite is reasonably complete (95% coverage), much more\nthan previously. This version is up to date with WebIDL, rather than a couple years' behind.\nIt also has *far* better error reporting.\n\nThe AST you get from parsing is very similar to the one you got in v1, but some adjustments \nhave been made in order to be more systematic, and to map better to what's actually in the spec \nnow. If you used v1, you will need to tweak your code but the result ought to be simpler and\nyou ought to be able to be a fair bit less defensive against irregularities in the way \ninformation is represented.\n\nInstallation\n============\n\nJust the usual. For Node:\n\n    npm install webidl2\n    \nIn the browser:\n\n    <script src='webidl2.js'></script>\n\nDocumentation\n=============\n\nThe API to WebIDL2 is trivial: you parse a string of WebIDL and it returns a syntax tree.\n\nParsing\n-------\nIn Node, that happens with:\n\n    var WebIDL2 = require(\"webidl2\");\n    var tree = WebIDL2.parse(\"string of WebIDL\");\n\nIn the browser:\n\n    <script src='webidl2.js'></script>\n    <script>\n      var tree = WebIDL2.parse(\"string of WebIDL\");\n    </script>\n\nAdvanced Parsing\n----------------\n\n`parse()` can optionally accept a second parameter, an options object, which can be used to\nmodify parsing behavior.\n\nThe following options are recognized:\n```javascript\n{\n    allowNestedTypedefs: false # \n}\n```\nAnd their meanings are as follows:\n\n* `allowNestedTypedefs`: Boolean indicating whether the parser should accept `typedef`s as valid members of `interface`s. This is non-standard syntax and therefore the default is `false`.\n\nErrors\n------\nWhen there is a syntax error in the WebIDL, it throws an exception object with the following\nproperties:\n\n* `message`: the error message\n* `line`: the line at which the error occurred.\n* `input`: a short peek at the text at the point where the error happened\n* `tokens`: the five tokens at the point of error, as understood by the tokeniser\n  (this is the same content as `input`, but seen from the tokeniser's point of view)\n\nThe exception also has a `toString()` method that hopefully should produce a decent\nerror message.\n\nAST (Abstract Syntax Tree)\n--------------------------\nThe `parse()` method returns a tree object representing the parse tree of the IDL.\nComment and white space are not represented in the AST.\n\nThe root of this object is always an array of definitions (where definitions are\nany of interfaces, exceptions, callbacks, etc. — anything that can occur at the root\nof the IDL).\n\n### IDL Type\n\nThis structure is used in many other places (operation return types, argument types, etc.).\nIt captures a WebIDL type with a number of options. Types look like this and are typically\nattached to a field called `idlType`:\n\n    {\n        \"sequence\": false,\n        \"generic\": null,\n        \"nullable\": false,\n        \"array\": false,\n        \"union\": false,\n        \"idlType\": \"void\"\n    }\n\nWhere the fields are as follows:\n\n* `sequence`: Boolean indicating whether this is a sequence or not. Deprecated. Use\n  `generic` instead.\n* `generic`: String indicating the generic type (e.g. \"Promise\", \"sequence\"). `null`\n  otherwise.\n* `nullable`: Boolean indicating whether this is nullable or not.\n* `array`: Either `false` to indicate that it is not an array, or a number for the level of\n  array nesting.\n* `union`: Boolean indicating whether this is a union type or not.\n* `idlType`: Can be different things depending on context. In most cases, this will just\n  be a string with the type name. But the reason this field isn't called \"typeName\" is\n  because it can take more complex values. If the type is a union, then this contains an\n  array of the types it unites. If it is a generic type, it contains the IDL type\n  description for the type in the sequence, the eventual value of the promise, etc.\n\n#### Interactions between `nullable` and `array`\n\nA more complex data model for our AST would likely represent `Foo[][][]` as a series of\nnested types four levels deep with three anonymous array types eventually containing a \n`Foo` type. But experience shows that such structures are cumbersome to use, and so we\nhave a simpler model in which the depth of the array is specified with the `array` field.\n\nThis is all fine and well, and in the vast majority of cases is actually simpler. But it\ndoes run afoul of cases in which it is necessary to distinguish between `Foo[][][]?`,\n`Foo?[][][]`, `Foo[][]?[]`, or even `Foo?[]?[]?[]?`.\n\nFor this, when a type is an array type an additional `nullableArray` field is made available\nthat captures which of the arrays contain nullable elements. It contains booleans that are\ntrue if the given array depth contains nullable elements, and false otherwise (mapping that to\nthe syntax, and item is true if there is a `?` preceding the `[]`). These examples ought to\nclarify the model:\n\n    Foo[][][]?\n        -> nullable: true\n        -> nullableArray: [false, false, false]\n    Foo?[][][]\n        -> nullable: false\n        -> nullableArray: [true, false, false]\n    Foo[][]?[]\n        -> nullable: false\n        -> nullableArray: [false, false, true]\n    Foo?[]?[]?[]?\n        -> nullable: true\n        -> nullableArray: [true, true, true]\n\nOf particular importance, please note that the overall type is only `nullable` if there is\na `?` at the end.\n\n### Interface\nInterfaces look like this:\n\n    {\n        \"type\": \"interface\",\n        \"name\": \"Animal\",\n        \"partial\": false,\n        \"members\": [...],\n        \"inheritance\": null,\n        \"extAttrs\": [...]\n    },\n    {\n        \"type\": \"interface\",\n        \"name\": \"Human\",\n        \"partial\": false,\n        \"members\": [...],\n        \"inheritance\": \"Animal\",\n        \"extAttrs\": [...]\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"interface\".\n* `name`: The name of the interface\n* `partial`: A boolean indicating whether it's a partial interface.\n* `members`: An array of interface members (attributes, operations, etc.). Empty if there are none.\n* `inheritance`: A string giving the name of an interface this one inherits from, `null` otherwise.\n  **NOTE**: In v1 this was an array, but multiple inheritance is no longer supported so this didn't make\n  sense.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Callback Interfaces\n\nThese are captured by the same structure as [Interfaces](#interface) except that\ntheir `type` field is \"callback interface\".\n\n### Callback\n\nA callback looks like this:\n\n  {\n      \"type\": \"callback\",\n      \"name\": \"AsyncOperationCallback\",\n      \"idlType\": {\n          \"sequence\": false,\n          \"generic\": null,\n          \"nullable\": false,\n          \"array\": false,\n          \"union\": false,\n          \"idlType\": \"void\"\n      },\n      \"arguments\": [...],\n      \"extAttrs\": []\n  }\n\nThe fields are as follows:\n\n* `type`: Always \"callback\".\n* `name`: The name of the callback.\n* `idlType`: An [IDL Type](#idl-type) describing what the callback returns.\n* `arguments`: A list of [arguments](#arguments), as in function paramters.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Dictionary\n\nA dictionary looks like this:\n\n    {\n        \"type\": \"dictionary\",\n        \"name\": \"PaintOptions\",\n        \"partial\": false,\n        \"members\": [\n            {\n                \"type\": \"field\",\n                \"name\": \"fillPattern\",\n                \"required\": false,\n                \"idlType\": {\n                    \"sequence\": false,\n                    \"generic\": null,\n                    \"nullable\": true,\n                    \"array\": false,\n                    \"union\": false,\n                    \"idlType\": \"DOMString\"\n                },\n                \"extAttrs\": [],\n                \"default\": {\n                    \"type\": \"string\",\n                    \"value\": \"black\"\n                }\n            }\n        ],\n        \"inheritance\": null,\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"dictionary\".\n* `name`: The dictionary name.\n* `partial`: Boolean indicating whether it's a partial dictionary.\n* `members`: An array of members (see below).\n* `inheritance`: A string indicating which dictionary is being inherited from, `null` otherwise.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\nAll the members are fields as follows:\n\n* `type`: Always \"field\".\n* `name`: The name of the field.\n* `required`: Boolean indicating whether this is a [required](https://heycam.github.io/webidl/#required-dictionary-member) field.\n* `idlType`: An [IDL Type](#idl-type) describing what field's type.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n* `default`: A [default value](#default-and-const-values), absent if there is none.\n\n### Exception\n\nAn exception looks like this:\n\n    {\n        \"type\": \"exception\",\n        \"name\": \"HierarchyRequestError\",\n        \"members\": [\n            {\n                \"type\": \"field\",\n                \"name\": \"code\",\n                \"idlType\": {\n                    \"sequence\": false,\n                    \"generic\": null,\n                    \"nullable\": false,\n                    \"array\": false,\n                    \"union\": false,\n                    \"idlType\": \"unsigned short\"\n                },\n                \"extAttrs\": []\n            }\n        ],\n        \"inheritance\": \"DOMException\",\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"exception\".\n* `name`: The exception name.\n* `members`: An array of members (constants or fields, where fields are described below).\n* `inheritance`: A string indicating which exception is being inherited from, `null` otherwise.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\nMembers that aren't [constants](#constants) have the following fields:\n\n* `type`: Always \"field\".\n* `name`: The field's name.\n* `idlType`: An [IDL Type](#idl-type) describing what field's type.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Enum\n\nAn enum looks like this:\n\n    {\n        \"type\": \"enum\",\n        \"name\": \"MealType\",\n        \"values\": [\n            \"rice\",\n            \"noodles\",\n            \"other\"\n        ],\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"enum\".\n* `name`: The enum's name.\n* `value`: An array of values (strings).\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Typedef\n\nA typedef looks like this:\n\n    {\n        \"type\": \"typedef\",\n        \"typeExtAttrs\": [],\n        \"idlType\": {\n            \"sequence\": true,\n            \"generic\": \"sequence\",\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": {\n                \"sequence\": false,\n                \"generic\": null,\n                \"nullable\": false,\n                \"array\": false,\n                \"union\": false,\n                \"idlType\": \"Point\"\n            }\n        },\n        \"name\": \"PointSequence\",\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"typedef\".\n* `name`: The typedef's name.\n* `idlType`: An [IDL Type](#idl-type) describing what typedef's type.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n* `typeExtAttrs`: A list of [extended attributes](#extended-attributes) that apply to the \ntype rather than to the typedef as a whole.\n\n### Implements\n\nAn implements definition looks like this:\n\n    {\n        \"type\": \"implements\",\n        \"target\": \"Node\",\n        \"implements\": \"EventTarget\",\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"implements\".\n* `target`: The interface that implements another.\n* `implements`: The interface that is being implemented by the target.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Operation Member\n\nAn operation looks like this:\n\n    {\n        \"type\": \"operation\",\n        \"getter\": false,\n        \"setter\": false,\n        \"creator\": false,\n        \"deleter\": false,\n        \"legacycaller\": false,\n        \"static\": false,\n        \"stringifier\": false,\n        \"idlType\": {\n            \"sequence\": false,\n            \"generic\": null,\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": \"void\"\n        },\n        \"name\": \"intersection\",\n        \"arguments\": [\n            {\n                \"optional\": false,\n                \"variadic\": true,\n                \"extAttrs\": [],\n                \"idlType\": {\n                    \"sequence\": false,\n                    \"generic\": null,\n                    \"nullable\": false,\n                    \"array\": false,\n                    \"union\": false,\n                    \"idlType\": \"long\"\n                },\n                \"name\": \"ints\"\n            }\n        ],\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"operation\".\n* `getter`: True if a getter operation.\n* `setter`: True if a setter operation.\n* `creator`: True if a creator operation.\n* `deleter`: True if a deleter operation.\n* `legacycaller`: True if a legacycaller operation.\n* `static`: True if a static operation.\n* `stringifier`: True if a stringifier operation.\n* `idlType`: An [IDL Type](#idl-type) of what the operation returns. If a stringifier, may be absent.\n* `name`: The name of the operation. If a stringifier, may be `null`.\n* `arguments`: An array of [arguments](#arguments) for the operation.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Attribute Member\n\nAn attribute member looks like this:\n\n    {\n        \"type\": \"attribute\",\n        \"static\": false,\n        \"stringifier\": false,\n        \"inherit\": false,\n        \"readonly\": false,\n        \"idlType\": {\n            \"sequence\": false,\n            \"generic\": null,\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": \"RegExp\"\n        },\n        \"name\": \"regexp\",\n        \"extAttrs\": []\n    }\n    \nThe fields are as follows:\n\n* `type`: Always \"attribute\".\n* `name`: The attribute's name.\n* `static`: True if it's a static attribute.\n* `stringifier`: True if it's a stringifier attribute.\n* `inherit`: True if it's an inherit attribute.\n* `readonly`: True if it's a read-only attribute.\n* `idlType`: An [IDL Type](#idl-type) for the attribute.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Constant Member\n\nA constant member looks like this:\n\n    {\n        \"type\": \"const\",\n        \"nullable\": false,\n        \"idlType\": \"boolean\",\n        \"name\": \"DEBUG\",\n        \"value\": {\n            \"type\": \"boolean\",\n            \"value\": false\n        },\n        \"extAttrs\": []\n    }\n\nThe fields are as follows:\n\n* `type`: Always \"const\".\n* `nullable`: Whether its type is nullable.\n* `idlType`: The type of the constant (a simple type, the type name).\n* `name`: The name of the constant.\n* `value`: The constant value as described by [Const Values](#default-and-const-values)\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Serializer Member\n\nSerializers come in many shapes, which are best understood by looking at the\nexamples below that map the IDL to the produced AST.\n\n    // serializer;\n    {\n        \"type\": \"serializer\",\n        \"extAttrs\": []\n    }\n\n    // serializer DOMString serialize();\n    {\n        \"type\": \"serializer\",\n        \"idlType\": {\n            \"sequence\": false,\n            \"generic\": null,\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": \"DOMString\"\n        },\n        \"operation\": {\n            \"name\": \"serialize\",\n            \"arguments\": []\n        },\n        \"extAttrs\": []\n    }\n\n    // serializer = { from, to, amount, description };\n    {\n        \"type\": \"serializer\",\n        \"patternMap\": true,\n        \"names\": [\n            \"from\",\n            \"to\",\n            \"amount\",\n            \"description\"\n        ],\n        \"extAttrs\": []\n    }\n\n    // serializer = number;\n    {\n        \"type\": \"serializer\",\n        \"name\": \"number\",\n        \"extAttrs\": []\n    }\n\n    // serializer = [ name, number ];\n    {\n        \"type\": \"serializer\",\n        \"patternList\": true,\n        \"names\": [\n            \"name\",\n            \"number\"\n        ],\n        \"extAttrs\": []\n    }\n\nThe common fields are as follows:\n\n* `type`: Always \"serializer\".\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\nFor a simple serializer, that's all there is. If the serializer is an operation, it will\nhave:\n\n* `idlType`: An [IDL Type](#idl-type) describing what the serializer returns.\n* `operation`: An object with the following fields:\n    * `name`: The name of the operation.\n    * `arguments`: An array of [arguments](#arguments) for the operation.\n\nIf the serializer is a pattern map:\n\n* `patternMap`: Always true.\n* `names`: An array of names in the pattern map.\n\nIf the serializer is a pattern list:\n\n* `patternList`: Always true.\n* `names`: An array of names in the pattern list.\n\nFinally, if the serializer is a named serializer:\n\n* `name`: The serializer's name.\n\n### Iterator Member\n\nIterator members look like this\n\n    {\n        \"type\": \"iterator\",\n        \"getter\": false,\n        \"setter\": false,\n        \"creator\": false,\n        \"deleter\": false,\n        \"legacycaller\": false,\n        \"static\": false,\n        \"stringifier\": false,\n        \"idlType\": {\n            \"sequence\": false,\n            \"generic\": null,\n            \"nullable\": false,\n            \"array\": false,\n            \"union\": false,\n            \"idlType\": \"Session2\"\n        },\n        \"iteratorObject\": \"SessionIterator\",\n        \"extAttrs\": []\n    }\n\n* `type`: Always \"iterator\".\n* `iteratorObject`: The string on the right-hand side; absent if there isn't one.\n* the rest: same as on [operations](#operation-member).\n\n### Arguments\n\nThe arguments (e.g. for an operation) look like this:\n\n    \"arguments\": [\n        {\n            \"optional\": false,\n            \"variadic\": true,\n            \"extAttrs\": [],\n            \"idlType\": {\n                \"sequence\": false,\n                \"generic\": null,\n                \"nullable\": false,\n                \"array\": false,\n                \"union\": false,\n                \"idlType\": \"long\"\n            },\n            \"name\": \"ints\"\n        }\n    ]\n\nThe fields are as follows:\n\n* `optional`: True if the argument is optional.\n* `variadic`: True if the argument is variadic.\n* `idlType`: An [IDL Type](#idl-type) describing the type of the argument.\n* `name`: The argument's name.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n### Extended Attributes\n\nExtended attributes are arrays of items that look like this:\n\n    \"extAttrs\": [\n        {\n            \"name\": \"TreatNullAs\",\n            \"arguments\": null,\n            \"rhs\": {\n                \"type\": \"identifier\",\n                \"value\": \"EmptyString\"\n            }\n        }\n    ]\n\nThe fields are as follows:\n\n* `name`: The extended attribute's name.\n* `arguments`: If the extended attribute takes arguments (e.g. `[Foo()]`) or if\n  its right-hand side does (e.g. `[NamedConstructor=Name(DOMString blah)]`) they\n  are listed here. Note that an empty arguments list will produce an empty array,\n  whereas the lack thereof will yield a `null`. If there is an `rhs` field then\n  they are the right-hand side's arguments, otherwise they apply to the extended\n  attribute directly.\n* `rhs`: If there is a right-hand side, this will capture its `type` (which can be\n  \"identifier\" or \"identifier-list\") and its `value`.\n* `typePair`: If the extended attribute is a `MapClass` this will capture the\n  map's key type and value type respectively.\n\n### Default and Const Values\n\nDictionary fields and operation arguments can take default values, and constants take\nvalues, all of which have the following fields:\n\n* `type`: One of string, number, boolean, null, Infinity, NaN, or sequence.\n\nFor string, number, boolean, and sequence:\n\n* `value`: The value of the given type. For sequence, the only possible value is `[]`.\n\nFor Infinity:\n\n* `negative`: Boolean indicating whether this is negative Infinity or not.\n\n### `iterable<>`, `legacyiterable<>`, `maplike<>`, `setlike<>` declarations\n\nThese appear as members of interfaces that look like this:\n\n        {\n            \"type\": \"maplike\", // or \"legacyiterable\" / \"iterable\" / \"setlike\"\n            \"idlType\": /* One or two types */,\n            \"readonly\": false, // only for maplike and setlike\n            \"extAttrs\": []\n        }\n\nThe fields are as follows:\n\n* `type`: Always one of \"iterable\", \"legacyiterable\", \"maplike\" or \"setlike\".\n* `idlType`: An [IDL Type](#idl-type) (or an array of two types) representing the declared type arguments.\n* `readonly`: Whether the maplike or setlike is declared as read only.\n* `extAttrs`: A list of [extended attributes](#extended-attributes).\n\n\nTesting\n=======\n\nIn order to run the tests you need to ensure that the widlproc submodule inside `test` is\ninitialised and up to date:\n\n    git submodule init\n    git submodule update\n\nRunning\n-------\nThe test runs with mocha and expect.js. Normally, running mocha in the root directory\nshould be enough once you're set up.\n\nCoverage\n--------\nCurrent test coverage, as documented in `coverage.html`, is 95%. You can run your own\ncoverage analysis with:\n\n    jscoverage lib lib-cov\n    \nThat will create the lib-cov directory with instrumented code; the test suite knows\nto use that if needed. You can then run the tests with:\n\n    JSCOV=1 mocha --reporter html-cov > coverage.html\n\nNote that I've been getting weirdly overescaped results from the html-cov reporter,\nso you might wish to try this instead:\n\n    JSCOV=1 mocha  --reporter html-cov | sed \"s/&lt;/</g\" | sed \"s/&gt;/>/g\" | sed \"s/&quot;/\\\"/g\" > coverage.html\n\nBrowser tests\n-------------\nIn order to test in the browser, get inside `test/web` and run `make-web-tests.js`. This\nwill generate a `browser-tests.html` file that you can open in a browser. As of this\nwriting tests pass in the latest Firefox, Chrome, Opera, and Safari. Testing on IE\nand older versions will happen progressively.\n\nTODO\n====\n\n* add some tests to address coverage limitations\n* add a push API for processors that need to process things like comments\n",
-		"readmeFilename": "README.md",
+		"readme": "ERROR: No README data found!",
 		"repository": {
 			"type": "git",
 			"url": "git://github.com/darobin/webidl2.js.git"
@@ -4738,14 +5587,14 @@ webpackJsonp([0],{
 /***/ "./node_modules/lodash/isPlainObject.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	function isPlainObject(t){if(!isObjectLike(t)||objectToString.call(t)!=objectTag||isHostObject(t))return!1;var o=getPrototype(t);if(null===o)return!0;var e=hasOwnProperty.call(o,"constructor")&&o.constructor;return"function"==typeof e&&e instanceof e&&funcToString.call(e)==objectCtorString}var getPrototype=__webpack_require__("./node_modules/lodash/_getPrototype.js"),isHostObject=__webpack_require__("./node_modules/lodash/_isHostObject.js"),isObjectLike=__webpack_require__("./node_modules/lodash/isObjectLike.js"),objectTag="[object Object]",objectProto=Object.prototype,funcToString=Function.prototype.toString,hasOwnProperty=objectProto.hasOwnProperty,objectCtorString=funcToString.call(Object),objectToString=objectProto.toString;module.exports=isPlainObject;
+	function isPlainObject(t){if(!isObjectLike(t)||objectToString.call(t)!=objectTag)return!1;var o=getPrototype(t);if(null===o)return!0;var r=hasOwnProperty.call(o,"constructor")&&o.constructor;return"function"==typeof r&&r instanceof r&&funcToString.call(r)==objectCtorString}var getPrototype=__webpack_require__("./node_modules/lodash/_getPrototype.js"),isObjectLike=__webpack_require__("./node_modules/lodash/isObjectLike.js"),objectTag="[object Object]",funcProto=Function.prototype,objectProto=Object.prototype,funcToString=funcProto.toString,hasOwnProperty=objectProto.hasOwnProperty,objectCtorString=funcToString.call(Object),objectToString=objectProto.toString;module.exports=isPlainObject;
 
 /***/ },
 
 /***/ "./node_modules/lodash/_getPrototype.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	var overArg=__webpack_require__("./node_modules/lodash/_overArg.js"),nativeGetPrototype=Object.getPrototypeOf,getPrototype=overArg(nativeGetPrototype,Object);module.exports=getPrototype;
+	var overArg=__webpack_require__("./node_modules/lodash/_overArg.js"),getPrototype=overArg(Object.getPrototypeOf,Object);module.exports=getPrototype;
 
 /***/ },
 
@@ -4756,39 +5605,39 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ "./node_modules/lodash/_isHostObject.js":
-/***/ function(module, exports) {
-
-	function isHostObject(t){var o=!1;if(null!=t&&"function"!=typeof t.toString)try{o=!!(t+"")}catch(n){}return o}module.exports=isHostObject;
-
-/***/ },
-
 /***/ "./node_modules/lodash/isObjectLike.js":
 /***/ function(module, exports) {
 
-	function isObjectLike(e){return!!e&&"object"==typeof e}module.exports=isObjectLike;
+	function isObjectLike(e){return null!=e&&"object"==typeof e}module.exports=isObjectLike;
 
 /***/ },
 
 /***/ "./node_modules/symbol-observable/index.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {"use strict";module.exports=__webpack_require__("./node_modules/symbol-observable/ponyfill.js")(global||window||this);
+	module.exports=__webpack_require__("./node_modules/symbol-observable/lib/index.js");
+
+/***/ },
+
+/***/ "./node_modules/symbol-observable/lib/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(exports,"__esModule",{value:!0});var _ponyfill=__webpack_require__("./node_modules/symbol-observable/lib/ponyfill.js"),_ponyfill2=_interopRequireDefault(_ponyfill),root=void 0;"undefined"!=typeof global?root=global:"undefined"!=typeof window&&(root=window);var result=(0,_ponyfill2["default"])(root);exports["default"]=result;
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
 
-/***/ "./node_modules/symbol-observable/ponyfill.js":
+/***/ "./node_modules/symbol-observable/lib/ponyfill.js":
 /***/ function(module, exports) {
 
-	"use strict";module.exports=function(e){var b,o=e.Symbol;return"function"==typeof o?o.observable?b=o.observable:(b=o("observable"),o.observable=b):b="@@observable",b};
+	"use strict";function symbolObservablePonyfill(e){var b,l=e.Symbol;return"function"==typeof l?l.observable?b=l.observable:(b=l("observable"),l.observable=b):b="@@observable",b}Object.defineProperty(exports,"__esModule",{value:!0}),exports["default"]=symbolObservablePonyfill;
 
 /***/ },
 
 /***/ "./node_modules/redux/lib/combineReducers.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function getUndefinedStateErrorMessage(e,t){var n=t&&t.type,r=n&&'"'+n.toString()+'"'||"an action";return"Given action "+r+', reducer "'+e+'" returned undefined. To ignore an action, you must explicitly return the previous state.'}function getUnexpectedStateShapeWarningMessage(e,t,n){var r=Object.keys(t),i=n&&n.type===_createStore.ActionTypes.INIT?"initialState argument passed to createStore":"previous state received by the reducer";if(0===r.length)return"Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";if(!(0,_isPlainObject2["default"])(e))return"The "+i+' has unexpected type of "'+{}.toString.call(e).match(/\s([a-z|A-Z]+)/)[1]+'". Expected argument to be an object with the following '+('keys: "'+r.join('", "')+'"');var a=Object.keys(e).filter(function(e){return!t.hasOwnProperty(e)});return a.length>0?"Unexpected "+(a.length>1?"keys":"key")+" "+('"'+a.join('", "')+'" found in '+i+". ")+"Expected to find one of the known reducer keys instead: "+('"'+r.join('", "')+'". Unexpected keys will be ignored.'):void 0}function assertReducerSanity(e){Object.keys(e).forEach(function(t){var n=e[t],r=n(void 0,{type:_createStore.ActionTypes.INIT});if("undefined"==typeof r)throw new Error('Reducer "'+t+'" returned undefined during initialization. If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined.');var i="@@redux/PROBE_UNKNOWN_ACTION_"+Math.random().toString(36).substring(7).split("").join(".");if("undefined"==typeof n(void 0,{type:i}))throw new Error('Reducer "'+t+'" returned undefined when probed with a random type. '+("Don't try to handle "+_createStore.ActionTypes.INIT+' or other actions in "redux/*" ')+"namespace. They are considered private. Instead, you must return the current state for any unknown actions, unless it is undefined, in which case you must return the initial state, regardless of the action type. The initial state may not be undefined.")})}function combineReducers(e){for(var t=Object.keys(e),n={},r=0;r<t.length;r++){var i=t[r];"function"==typeof e[i]&&(n[i]=e[i])}var a,o=Object.keys(n);try{assertReducerSanity(n)}catch(u){a=u}return function(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0],t=arguments[1];if(a)throw a;if(false){var r=getUnexpectedStateShapeWarningMessage(e,n,t);r&&(0,_warning2["default"])(r)}for(var i=!1,u={},s=0;s<o.length;s++){var d=o[s],c=n[d],f=e[d],l=c(f,t);if("undefined"==typeof l){var h=getUndefinedStateErrorMessage(d,t);throw new Error(h)}u[d]=l,i=i||l!==f}return i?u:e}}exports.__esModule=!0,exports["default"]=combineReducers;var _createStore=__webpack_require__("./node_modules/redux/lib/createStore.js"),_isPlainObject=__webpack_require__("./node_modules/lodash/isPlainObject.js"),_isPlainObject2=_interopRequireDefault(_isPlainObject),_warning=__webpack_require__("./node_modules/redux/lib/utils/warning.js"),_warning2=_interopRequireDefault(_warning);
+	"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function getUndefinedStateErrorMessage(e,t){var n=t&&t.type,r=n&&'"'+n.toString()+'"'||"an action";return"Given action "+r+', reducer "'+e+'" returned undefined. To ignore an action, you must explicitly return the previous state.'}function getUnexpectedStateShapeWarningMessage(e,t,n,r){var i=Object.keys(t),a=n&&n.type===_createStore.ActionTypes.INIT?"preloadedState argument passed to createStore":"previous state received by the reducer";if(0===i.length)return"Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";if(!(0,_isPlainObject2["default"])(e))return"The "+a+' has unexpected type of "'+{}.toString.call(e).match(/\s([a-z|A-Z]+)/)[1]+'". Expected argument to be an object with the following '+('keys: "'+i.join('", "')+'"');var o=Object.keys(e).filter(function(e){return!t.hasOwnProperty(e)&&!r[e]});return o.forEach(function(e){r[e]=!0}),o.length>0?"Unexpected "+(o.length>1?"keys":"key")+" "+('"'+o.join('", "')+'" found in '+a+". ")+"Expected to find one of the known reducer keys instead: "+('"'+i.join('", "')+'". Unexpected keys will be ignored.'):void 0}function assertReducerSanity(e){Object.keys(e).forEach(function(t){var n=e[t],r=n(void 0,{type:_createStore.ActionTypes.INIT});if("undefined"==typeof r)throw new Error('Reducer "'+t+'" returned undefined during initialization. If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined.');var i="@@redux/PROBE_UNKNOWN_ACTION_"+Math.random().toString(36).substring(7).split("").join(".");if("undefined"==typeof n(void 0,{type:i}))throw new Error('Reducer "'+t+'" returned undefined when probed with a random type. '+("Don't try to handle "+_createStore.ActionTypes.INIT+' or other actions in "redux/*" ')+"namespace. They are considered private. Instead, you must return the current state for any unknown actions, unless it is undefined, in which case you must return the initial state, regardless of the action type. The initial state may not be undefined.")})}function combineReducers(e){for(var t=Object.keys(e),n={},r=0;r<t.length;r++){var i=t[r];"production"!==("production")&&"undefined"==typeof e[i]&&(0,_warning2["default"])('No reducer provided for key "'+i+'"'),"function"==typeof e[i]&&(n[i]=e[i])}var a=Object.keys(n);if(false)var o={};var u;try{assertReducerSanity(n)}catch(s){u=s}return function(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0],t=arguments[1];if(u)throw u;if(false){var r=getUnexpectedStateShapeWarningMessage(e,n,t,o);r&&(0,_warning2["default"])(r)}for(var i=!1,s={},d=0;d<a.length;d++){var c=a[d],f=n[c],p=e[c],l=f(p,t);if("undefined"==typeof l){var h=getUndefinedStateErrorMessage(c,t);throw new Error(h)}s[c]=l,i=i||l!==p}return i?s:e}}exports.__esModule=!0,exports["default"]=combineReducers;var _createStore=__webpack_require__("./node_modules/redux/lib/createStore.js"),_isPlainObject=__webpack_require__("./node_modules/lodash/isPlainObject.js"),_isPlainObject2=_interopRequireDefault(_isPlainObject),_warning=__webpack_require__("./node_modules/redux/lib/utils/warning.js"),_warning2=_interopRequireDefault(_warning);
 
 /***/ },
 
@@ -4816,7 +5665,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/redux/lib/compose.js":
 /***/ function(module, exports) {
 
-	"use strict";function compose(){for(var e=arguments.length,r=Array(e),t=0;t<e;t++)r[t]=arguments[t];if(0===r.length)return function(e){return e};var n=function(){var e=r[r.length-1],t=r.slice(0,-1);return{v:function(){return t.reduceRight(function(e,r){return r(e)},e.apply(void 0,arguments))}}}();return"object"==typeof n?n.v:void 0}exports.__esModule=!0,exports["default"]=compose;
+	"use strict";function compose(){for(var e=arguments.length,r=Array(e),t=0;t<e;t++)r[t]=arguments[t];if(0===r.length)return function(e){return e};if(1===r.length)return r[0];var n=r[r.length-1],u=r.slice(0,-1);return function(){return u.reduceRight(function(e,r){return r(e)},n.apply(void 0,arguments))}}exports.__esModule=!0,exports["default"]=compose;
 
 /***/ },
 
@@ -5021,7 +5870,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/reselect/lib/index.js":
 /***/ function(module, exports) {
 
-	"use strict";function _toConsumableArray(e){if(Array.isArray(e)){for(var r=0,t=Array(e.length);r<e.length;r++)t[r]=e[r];return t}return Array.from(e)}function defaultEqualityCheck(e,r){return e===r}function defaultMemoize(e){var r=arguments.length<=1||void 0===arguments[1]?defaultEqualityCheck:arguments[1],t=null,n=null;return function(){for(var o=arguments.length,c=Array(o),a=0;a<o;a++)c[a]=arguments[a];return null!==t&&t.length===c.length&&c.every(function(e,n){return r(e,t[n])})?n:(n=e.apply(void 0,c),t=c,n)}}function getDependencies(e){var r=Array.isArray(e[0])?e[0]:e;if(!r.every(function(e){return"function"==typeof e})){var t=r.map(function(e){return typeof e}).join(", ");throw new Error("Selector creators expect all input-selectors to be functions, "+("instead received the following types: ["+t+"]"))}return r}function createSelectorCreator(e){for(var r=arguments.length,t=Array(r>1?r-1:0),n=1;n<r;n++)t[n-1]=arguments[n];return function(){for(var r=arguments.length,n=Array(r),o=0;o<r;o++)n[o]=arguments[o];var c=0,a=n.pop(),u=getDependencies(n),i=e.apply(void 0,[function(){return c++,a.apply(void 0,arguments)}].concat(t)),l=function(e,r){for(var t=arguments.length,n=Array(t>2?t-2:0),o=2;o<t;o++)n[o-2]=arguments[o];var c=u.map(function(t){return t.apply(void 0,[e,r].concat(n))});return i.apply(void 0,_toConsumableArray(c))};return l.resultFunc=a,l.recomputations=function(){return c},l.resetRecomputations=function(){return c=0},l}}function createSelector(){return createSelectorCreator(defaultMemoize).apply(void 0,arguments)}function createStructuredSelector(e){var r=arguments.length<=1||void 0===arguments[1]?createSelector:arguments[1];if("object"!=typeof e)throw new Error("createStructuredSelector expects first argument to be an object where each property is a selector, instead received a "+typeof e);var t=Object.keys(e);return r(t.map(function(r){return e[r]}),function(){for(var e=arguments.length,r=Array(e),n=0;n<e;n++)r[n]=arguments[n];return r.reduce(function(e,r,n){return e[t[n]]=r,e},{})})}exports.__esModule=!0,exports.defaultMemoize=defaultMemoize,exports.createSelectorCreator=createSelectorCreator,exports.createSelector=createSelector,exports.createStructuredSelector=createStructuredSelector;
+	"use strict";function _toConsumableArray(e){if(Array.isArray(e)){for(var r=0,t=Array(e.length);r<e.length;r++)t[r]=e[r];return t}return Array.from(e)}function defaultEqualityCheck(e,r){return e===r}function defaultMemoize(e){var r=arguments.length<=1||void 0===arguments[1]?defaultEqualityCheck:arguments[1],t=null,n=null;return function(){for(var o=arguments.length,a=Array(o),c=0;c<o;c++)a[c]=arguments[c];return null!==t&&t.length===a.length&&a.every(function(e,n){return r(e,t[n])})||(n=e.apply(void 0,a)),t=a,n}}function getDependencies(e){var r=Array.isArray(e[0])?e[0]:e;if(!r.every(function(e){return"function"==typeof e})){var t=r.map(function(e){return typeof e}).join(", ");throw new Error("Selector creators expect all input-selectors to be functions, "+("instead received the following types: ["+t+"]"))}return r}function createSelectorCreator(e){for(var r=arguments.length,t=Array(r>1?r-1:0),n=1;n<r;n++)t[n-1]=arguments[n];return function(){for(var r=arguments.length,n=Array(r),o=0;o<r;o++)n[o]=arguments[o];var a=0,c=n.pop(),u=getDependencies(n),i=e.apply(void 0,[function(){return a++,c.apply(void 0,arguments)}].concat(t)),l=function(e,r){for(var t=arguments.length,n=Array(t>2?t-2:0),o=2;o<t;o++)n[o-2]=arguments[o];var a=u.map(function(t){return t.apply(void 0,[e,r].concat(n))});return i.apply(void 0,_toConsumableArray(a))};return l.resultFunc=c,l.recomputations=function(){return a},l.resetRecomputations=function(){return a=0},l}}function createStructuredSelector(e){var r=arguments.length<=1||void 0===arguments[1]?createSelector:arguments[1];if("object"!=typeof e)throw new Error("createStructuredSelector expects first argument to be an object where each property is a selector, instead received a "+typeof e);var t=Object.keys(e);return r(t.map(function(r){return e[r]}),function(){for(var e=arguments.length,r=Array(e),n=0;n<e;n++)r[n]=arguments[n];return r.reduce(function(e,r,n){return e[t[n]]=r,e},{})})}exports.__esModule=!0,exports.defaultMemoize=defaultMemoize,exports.createSelectorCreator=createSelectorCreator,exports.createStructuredSelector=createStructuredSelector;var createSelector=exports.createSelector=createSelectorCreator(defaultMemoize);
 
 /***/ },
 
@@ -5176,7 +6025,7 @@ webpackJsonp([0],{
 /***/ "./src/JSCodeshiftEditor.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function loadTern(){__webpack_require__.e/* require */(28, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__("./node_modules/codemirror/addon/hint/show-hint.js"),__webpack_require__("./node_modules/codemirror/addon/tern/tern.js"),__webpack_require__("./node_modules/acorn/dist/acorn.js")]; (function(e,r,t){global.acorn=t,__webpack_require__.e/* require */(29, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__("./node_modules/tern/lib/tern.js"),__webpack_require__("./node_modules/tern/plugin/doc_comment.js"),__webpack_require__("./node_modules/tern/lib/infer.js"),__webpack_require__("./src/defs/jscodeshift.json"),__webpack_require__("./node_modules/tern/defs/ecma5.json"),__webpack_require__("./node_modules/tern/defs/ecma6.json")]; (function(e,r,t,o,i,n){global.tern=e,e.registerPlugin("transformer",function(e){e.on("afterLoad",function(e){var r=e.scope.props.transformer;if(r){var o=r.getFunctionType(),i=t.cx();o.propagate(new t.IsCallee(t.cx().topScope,[i.definitions.jscodeshift.file,i.definitions.jscodeshift.apiObject],null,t.ANull))}})}),server=new _codemirror2["default"].TernServer({defs:[o,n,i],plugins:{transformer:{strong:!0}}})}.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));})}.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));})}Object.defineProperty(exports,"__esModule",{value:!0});var _getPrototypeOf=__webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js"),_getPrototypeOf2=_interopRequireDefault(_getPrototypeOf),_classCallCheck2=__webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js"),_classCallCheck3=_interopRequireDefault(_classCallCheck2),_createClass2=__webpack_require__("./node_modules/babel-runtime/helpers/createClass.js"),_createClass3=_interopRequireDefault(_createClass2),_possibleConstructorReturn2=__webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js"),_possibleConstructorReturn3=_interopRequireDefault(_possibleConstructorReturn2),_inherits2=__webpack_require__("./node_modules/babel-runtime/helpers/inherits.js"),_inherits3=_interopRequireDefault(_inherits2),_codemirror=__webpack_require__("./node_modules/codemirror/lib/codemirror.js"),_codemirror2=_interopRequireDefault(_codemirror),_pubsubJs=__webpack_require__("./node_modules/pubsub-js/src/pubsub.js"),_pubsubJs2=_interopRequireDefault(_pubsubJs),_react=__webpack_require__("./node_modules/react/react.js"),_react2=_interopRequireDefault(_react);__webpack_require__("./node_modules/codemirror/addon/hint/show-hint.css"),__webpack_require__("./node_modules/codemirror/addon/tern/tern.css");var server=void 0,JSCodeshiftEditor=function(e){function r(e){(0,_classCallCheck3["default"])(this,r);var t=(0,_possibleConstructorReturn3["default"])(this,(r.__proto__||(0,_getPrototypeOf2["default"])(r)).call(this,e));return loadTern(),t}return(0,_inherits3["default"])(r,e),(0,_createClass3["default"])(r,[{key:"getValue",value:function(){return this.codeMirror&&this.codeMirror.getValue()}},{key:"_getErrorLine",value:function(e){return e.loc?e.loc.line:e.lineNumber||e.line}},{key:"_setError",value:function(e){if(this.codeMirror){var r=this.props.error;if(r){var t=this._getErrorLine(r);t&&this.codeMirror.removeLineClass(t-1,"text","errorMarker")}if(e){var o=this._getErrorLine(e);o&&this.codeMirror.addLineClass(o-1,"text","errorMarker")}}}},{key:"componentWillReceiveProps",value:function(e){e.defaultValue!==this.props.defaultValue&&this.codeMirror.setValue(e.defaultValue),e.mode!==this.props.mode&&this.codeMirror.setOption("mode",e.mode),this._setError(e.error)}},{key:"shouldComponentUpdate",value:function(){return!1}},{key:"_posFromIndex",value:function(e,r){return(this.props.posFromIndex?this.props:e).posFromIndex(r)}},{key:"componentDidMount",value:function(){var e=this;this._CMHandlers=[],this._subscriptions=[],this.codeMirror=(0,_codemirror2["default"])(this.refs.container,{value:this.props.defaultValue,mode:"javascript",lineNumbers:!0}),this.codeMirror.setOption("extraKeys",{"Ctrl-Space":function(e){return server&&server.complete(e)},"Ctrl-I":function(e){return server&&server.showType(e)},"Ctrl-O":function(e){return server&&server.showDocs(e)}}),this.props.onContentChange&&this._onContentChange(),this._bindCMHandler("changes",function(){clearTimeout(e._updateTimer),e._updateTimer=setTimeout(e._onContentChange.bind(e),200)}),this._bindCMHandler("cursorActivity",function(r){clearTimeout(e._updateTimer),e._updateTimer=setTimeout(e._onActivity.bind(e),100),server&&server.updateArgHints(r)}),this._subscriptions.push(_pubsubJs2["default"].subscribe("PANEL_RESIZE",function(){e.codeMirror&&e.codeMirror.refresh()})),this.props.error&&this._setError(this.props.error)}},{key:"componentWillUnmount",value:function(){this._unbindHandlers(),this._markerRange=null,this._mark=null;var e=this.refs.container;e.removeChild(e.children[0]),this.codeMirror=null}},{key:"_bindCMHandler",value:function(e,r){this._CMHandlers.push(e,r),this.codeMirror.on(e,r)}},{key:"_unbindHandlers",value:function(){for(var e=this._CMHandlers,r=0;r<e.length;r+=2)this.codeMirror.off(e[r],e[r+1]);this._subscriptions.forEach(function(e){_pubsubJs2["default"].unsubscribe(e)})}},{key:"_onContentChange",value:function(){var e=this.codeMirror.getDoc();this.props.onContentChange({value:e.getValue(),cursor:e.indexFromPos(e.getCursor())})}},{key:"_onActivity",value:function(){this.props.onActivity(this.codeMirror.getDoc().indexFromPos(this.codeMirror.getCursor()))}},{key:"render",value:function(){return _react2["default"].createElement("div",{className:"editor",ref:"container"})}}]),r}(_react2["default"].Component);exports["default"]=JSCodeshiftEditor,JSCodeshiftEditor.propTypes={defaultValue:_react2["default"].PropTypes.string,onContentChange:_react2["default"].PropTypes.func,onActivity:_react2["default"].PropTypes.func,error:_react2["default"].PropTypes.object,mode:_react2["default"].PropTypes.string,posFromIndex:_react2["default"].PropTypes.func},JSCodeshiftEditor.defaultProps={onContentChange:function(){},onActivity:function(){}};
+	/* WEBPACK VAR INJECTION */(function(global) {"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function loadTern(){__webpack_require__.e/* require */(28, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__("./node_modules/codemirror/addon/hint/show-hint.js"),__webpack_require__("./node_modules/codemirror/addon/tern/tern.js"),__webpack_require__("./node_modules/acorn/dist/acorn.js")]; (function(e,r,t){global.acorn=t,__webpack_require__.e/* require */(29, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__("./node_modules/tern/lib/tern.js"),__webpack_require__("./node_modules/tern/plugin/doc_comment.js"),__webpack_require__("./node_modules/tern/lib/infer.js"),__webpack_require__("./src/defs/jscodeshift.json"),__webpack_require__("./node_modules/tern/defs/ecmascript.json")]; (function(e,r,t,o,i){global.tern=e,e.registerPlugin("transformer",function(e){e.on("afterLoad",function(e){var r=e.scope.props.transformer;if(r){var o=r.getFunctionType(),i=t.cx();o.propagate(new t.IsCallee(t.cx().topScope,[i.definitions.jscodeshift.file,i.definitions.jscodeshift.apiObject],null,t.ANull))}})}),server=new _codemirror2["default"].TernServer({defs:[o,i],plugins:{transformer:{strong:!0}}})}.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));})}.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));})}Object.defineProperty(exports,"__esModule",{value:!0});var _getPrototypeOf=__webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js"),_getPrototypeOf2=_interopRequireDefault(_getPrototypeOf),_classCallCheck2=__webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js"),_classCallCheck3=_interopRequireDefault(_classCallCheck2),_createClass2=__webpack_require__("./node_modules/babel-runtime/helpers/createClass.js"),_createClass3=_interopRequireDefault(_createClass2),_possibleConstructorReturn2=__webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js"),_possibleConstructorReturn3=_interopRequireDefault(_possibleConstructorReturn2),_inherits2=__webpack_require__("./node_modules/babel-runtime/helpers/inherits.js"),_inherits3=_interopRequireDefault(_inherits2),_codemirror=__webpack_require__("./node_modules/codemirror/lib/codemirror.js"),_codemirror2=_interopRequireDefault(_codemirror),_pubsubJs=__webpack_require__("./node_modules/pubsub-js/src/pubsub.js"),_pubsubJs2=_interopRequireDefault(_pubsubJs),_react=__webpack_require__("./node_modules/react/react.js"),_react2=_interopRequireDefault(_react);__webpack_require__("./node_modules/codemirror/addon/hint/show-hint.css"),__webpack_require__("./node_modules/codemirror/addon/tern/tern.css");var server=void 0,JSCodeshiftEditor=function(e){function r(e){(0,_classCallCheck3["default"])(this,r);var t=(0,_possibleConstructorReturn3["default"])(this,(r.__proto__||(0,_getPrototypeOf2["default"])(r)).call(this,e));return loadTern(),t}return(0,_inherits3["default"])(r,e),(0,_createClass3["default"])(r,[{key:"getValue",value:function(){return this.codeMirror&&this.codeMirror.getValue()}},{key:"_getErrorLine",value:function(e){return e.loc?e.loc.line:e.lineNumber||e.line}},{key:"_setError",value:function(e){if(this.codeMirror){var r=this.props.error;if(r){var t=this._getErrorLine(r);t&&this.codeMirror.removeLineClass(t-1,"text","errorMarker")}if(e){var o=this._getErrorLine(e);o&&this.codeMirror.addLineClass(o-1,"text","errorMarker")}}}},{key:"componentWillReceiveProps",value:function(e){e.defaultValue!==this.props.defaultValue&&this.codeMirror.setValue(e.defaultValue),e.mode!==this.props.mode&&this.codeMirror.setOption("mode",e.mode),this._setError(e.error)}},{key:"shouldComponentUpdate",value:function(){return!1}},{key:"_posFromIndex",value:function(e,r){return(this.props.posFromIndex?this.props:e).posFromIndex(r)}},{key:"componentDidMount",value:function(){var e=this;this._CMHandlers=[],this._subscriptions=[],this.codeMirror=(0,_codemirror2["default"])(this.refs.container,{value:this.props.defaultValue,mode:"javascript",lineNumbers:!0}),this.codeMirror.setOption("extraKeys",{"Ctrl-Space":function(e){return server&&server.complete(e)},"Ctrl-I":function(e){return server&&server.showType(e)},"Ctrl-O":function(e){return server&&server.showDocs(e)}}),this.props.onContentChange&&this._onContentChange(),this._bindCMHandler("changes",function(){clearTimeout(e._updateTimer),e._updateTimer=setTimeout(e._onContentChange.bind(e),200)}),this._bindCMHandler("cursorActivity",function(r){clearTimeout(e._updateTimer),e._updateTimer=setTimeout(e._onActivity.bind(e),100),server&&server.updateArgHints(r)}),this._subscriptions.push(_pubsubJs2["default"].subscribe("PANEL_RESIZE",function(){e.codeMirror&&e.codeMirror.refresh()})),this.props.error&&this._setError(this.props.error)}},{key:"componentWillUnmount",value:function(){this._unbindHandlers(),this._markerRange=null,this._mark=null;var e=this.refs.container;e.removeChild(e.children[0]),this.codeMirror=null}},{key:"_bindCMHandler",value:function(e,r){this._CMHandlers.push(e,r),this.codeMirror.on(e,r)}},{key:"_unbindHandlers",value:function(){for(var e=this._CMHandlers,r=0;r<e.length;r+=2)this.codeMirror.off(e[r],e[r+1]);this._subscriptions.forEach(function(e){_pubsubJs2["default"].unsubscribe(e)})}},{key:"_onContentChange",value:function(){var e=this.codeMirror.getDoc();this.props.onContentChange({value:e.getValue(),cursor:e.indexFromPos(e.getCursor())})}},{key:"_onActivity",value:function(){this.props.onActivity(this.codeMirror.getDoc().indexFromPos(this.codeMirror.getCursor()))}},{key:"render",value:function(){return _react2["default"].createElement("div",{className:"editor",ref:"container"})}}]),r}(_react2["default"].Component);exports["default"]=JSCodeshiftEditor,JSCodeshiftEditor.propTypes={defaultValue:_react2["default"].PropTypes.string,onContentChange:_react2["default"].PropTypes.func,onActivity:_react2["default"].PropTypes.func,error:_react2["default"].PropTypes.object,mode:_react2["default"].PropTypes.string,posFromIndex:_react2["default"].PropTypes.func},JSCodeshiftEditor.defaultProps={onContentChange:function(){},onActivity:function(){}};
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
@@ -5373,7 +6222,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/BeforeInputEventPlugin.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function isPresto(){var e=window.opera;return"object"==typeof e&&"function"==typeof e.version&&parseInt(e.version(),10)<=12}function isKeypressCommand(e){return(e.ctrlKey||e.altKey||e.metaKey)&&!(e.ctrlKey&&e.altKey)}function getCompositionEventType(e){switch(e){case topLevelTypes.topCompositionStart:return eventTypes.compositionStart;case topLevelTypes.topCompositionEnd:return eventTypes.compositionEnd;case topLevelTypes.topCompositionUpdate:return eventTypes.compositionUpdate}}function isFallbackCompositionStart(e,t){return e===topLevelTypes.topKeyDown&&t.keyCode===START_KEYCODE}function isFallbackCompositionEnd(e,t){switch(e){case topLevelTypes.topKeyUp:return END_KEYCODES.indexOf(t.keyCode)!==-1;case topLevelTypes.topKeyDown:return t.keyCode!==START_KEYCODE;case topLevelTypes.topKeyPress:case topLevelTypes.topMouseDown:case topLevelTypes.topBlur:return!0;default:return!1}}function getDataFromCustomEvent(e){var t=e.detail;return"object"==typeof t&&"data"in t?t.data:null}function extractCompositionEvent(e,t,o,n){var p,s;if(canUseCompositionEvent?p=getCompositionEventType(e):currentComposition?isFallbackCompositionEnd(e,o)&&(p=eventTypes.compositionEnd):isFallbackCompositionStart(e,o)&&(p=eventTypes.compositionStart),!p)return null;useFallbackCompositionData&&(currentComposition||p!==eventTypes.compositionStart?p===eventTypes.compositionEnd&&currentComposition&&(s=currentComposition.getData()):currentComposition=FallbackCompositionState.getPooled(n));var i=SyntheticCompositionEvent.getPooled(p,t,o,n);if(s)i.data=s;else{var r=getDataFromCustomEvent(o);null!==r&&(i.data=r)}return EventPropagators.accumulateTwoPhaseDispatches(i),i}function getNativeBeforeInputChars(e,t){switch(e){case topLevelTypes.topCompositionEnd:return getDataFromCustomEvent(t);case topLevelTypes.topKeyPress:var o=t.which;return o!==SPACEBAR_CODE?null:(hasSpaceKeypress=!0,SPACEBAR_CHAR);case topLevelTypes.topTextInput:var n=t.data;return n===SPACEBAR_CHAR&&hasSpaceKeypress?null:n;default:return null}}function getFallbackBeforeInputChars(e,t){if(currentComposition){if(e===topLevelTypes.topCompositionEnd||isFallbackCompositionEnd(e,t)){var o=currentComposition.getData();return FallbackCompositionState.release(currentComposition),currentComposition=null,o}return null}switch(e){case topLevelTypes.topPaste:return null;case topLevelTypes.topKeyPress:return t.which&&!isKeypressCommand(t)?String.fromCharCode(t.which):null;case topLevelTypes.topCompositionEnd:return useFallbackCompositionData?null:t.data;default:return null}}function extractBeforeInputEvent(e,t,o,n){var p;if(p=canUseTextInputEvent?getNativeBeforeInputChars(e,o):getFallbackBeforeInputChars(e,o),!p)return null;var s=SyntheticInputEvent.getPooled(eventTypes.beforeInput,t,o,n);return s.data=p,EventPropagators.accumulateTwoPhaseDispatches(s),s}var EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPropagators=__webpack_require__("./node_modules/react/lib/EventPropagators.js"),ExecutionEnvironment=__webpack_require__("./node_modules/fbjs/lib/ExecutionEnvironment.js"),FallbackCompositionState=__webpack_require__("./node_modules/react/lib/FallbackCompositionState.js"),SyntheticCompositionEvent=__webpack_require__("./node_modules/react/lib/SyntheticCompositionEvent.js"),SyntheticInputEvent=__webpack_require__("./node_modules/react/lib/SyntheticInputEvent.js"),keyOf=__webpack_require__("./node_modules/fbjs/lib/keyOf.js"),END_KEYCODES=[9,13,27,32],START_KEYCODE=229,canUseCompositionEvent=ExecutionEnvironment.canUseDOM&&"CompositionEvent"in window,documentMode=null;ExecutionEnvironment.canUseDOM&&"documentMode"in document&&(documentMode=document.documentMode);var canUseTextInputEvent=ExecutionEnvironment.canUseDOM&&"TextEvent"in window&&!documentMode&&!isPresto(),useFallbackCompositionData=ExecutionEnvironment.canUseDOM&&(!canUseCompositionEvent||documentMode&&documentMode>8&&documentMode<=11),SPACEBAR_CODE=32,SPACEBAR_CHAR=String.fromCharCode(SPACEBAR_CODE),topLevelTypes=EventConstants.topLevelTypes,eventTypes={beforeInput:{phasedRegistrationNames:{bubbled:keyOf({onBeforeInput:null}),captured:keyOf({onBeforeInputCapture:null})},dependencies:[topLevelTypes.topCompositionEnd,topLevelTypes.topKeyPress,topLevelTypes.topTextInput,topLevelTypes.topPaste]},compositionEnd:{phasedRegistrationNames:{bubbled:keyOf({onCompositionEnd:null}),captured:keyOf({onCompositionEndCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topCompositionEnd,topLevelTypes.topKeyDown,topLevelTypes.topKeyPress,topLevelTypes.topKeyUp,topLevelTypes.topMouseDown]},compositionStart:{phasedRegistrationNames:{bubbled:keyOf({onCompositionStart:null}),captured:keyOf({onCompositionStartCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topCompositionStart,topLevelTypes.topKeyDown,topLevelTypes.topKeyPress,topLevelTypes.topKeyUp,topLevelTypes.topMouseDown]},compositionUpdate:{phasedRegistrationNames:{bubbled:keyOf({onCompositionUpdate:null}),captured:keyOf({onCompositionUpdateCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topCompositionUpdate,topLevelTypes.topKeyDown,topLevelTypes.topKeyPress,topLevelTypes.topKeyUp,topLevelTypes.topMouseDown]}},hasSpaceKeypress=!1,currentComposition=null,BeforeInputEventPlugin={eventTypes:eventTypes,extractEvents:function(e,t,o,n){return[extractCompositionEvent(e,t,o,n),extractBeforeInputEvent(e,t,o,n)]}};module.exports=BeforeInputEventPlugin;
+	"use strict";function isPresto(){var e=window.opera;return"object"==typeof e&&"function"==typeof e.version&&parseInt(e.version(),10)<=12}function isKeypressCommand(e){return(e.ctrlKey||e.altKey||e.metaKey)&&!(e.ctrlKey&&e.altKey)}function getCompositionEventType(e){switch(e){case topLevelTypes.topCompositionStart:return eventTypes.compositionStart;case topLevelTypes.topCompositionEnd:return eventTypes.compositionEnd;case topLevelTypes.topCompositionUpdate:return eventTypes.compositionUpdate}}function isFallbackCompositionStart(e,t){return e===topLevelTypes.topKeyDown&&t.keyCode===START_KEYCODE}function isFallbackCompositionEnd(e,t){switch(e){case topLevelTypes.topKeyUp:return END_KEYCODES.indexOf(t.keyCode)!==-1;case topLevelTypes.topKeyDown:return t.keyCode!==START_KEYCODE;case topLevelTypes.topKeyPress:case topLevelTypes.topMouseDown:case topLevelTypes.topBlur:return!0;default:return!1}}function getDataFromCustomEvent(e){var t=e.detail;return"object"==typeof t&&"data"in t?t.data:null}function extractCompositionEvent(e,t,o,n){var p,s;if(canUseCompositionEvent?p=getCompositionEventType(e):currentComposition?isFallbackCompositionEnd(e,o)&&(p=eventTypes.compositionEnd):isFallbackCompositionStart(e,o)&&(p=eventTypes.compositionStart),!p)return null;useFallbackCompositionData&&(currentComposition||p!==eventTypes.compositionStart?p===eventTypes.compositionEnd&&currentComposition&&(s=currentComposition.getData()):currentComposition=FallbackCompositionState.getPooled(n));var i=SyntheticCompositionEvent.getPooled(p,t,o,n);if(s)i.data=s;else{var r=getDataFromCustomEvent(o);null!==r&&(i.data=r)}return EventPropagators.accumulateTwoPhaseDispatches(i),i}function getNativeBeforeInputChars(e,t){switch(e){case topLevelTypes.topCompositionEnd:return getDataFromCustomEvent(t);case topLevelTypes.topKeyPress:var o=t.which;return o!==SPACEBAR_CODE?null:(hasSpaceKeypress=!0,SPACEBAR_CHAR);case topLevelTypes.topTextInput:var n=t.data;return n===SPACEBAR_CHAR&&hasSpaceKeypress?null:n;default:return null}}function getFallbackBeforeInputChars(e,t){if(currentComposition){if(e===topLevelTypes.topCompositionEnd||!canUseCompositionEvent&&isFallbackCompositionEnd(e,t)){var o=currentComposition.getData();return FallbackCompositionState.release(currentComposition),currentComposition=null,o}return null}switch(e){case topLevelTypes.topPaste:return null;case topLevelTypes.topKeyPress:return t.which&&!isKeypressCommand(t)?String.fromCharCode(t.which):null;case topLevelTypes.topCompositionEnd:return useFallbackCompositionData?null:t.data;default:return null}}function extractBeforeInputEvent(e,t,o,n){var p;if(p=canUseTextInputEvent?getNativeBeforeInputChars(e,o):getFallbackBeforeInputChars(e,o),!p)return null;var s=SyntheticInputEvent.getPooled(eventTypes.beforeInput,t,o,n);return s.data=p,EventPropagators.accumulateTwoPhaseDispatches(s),s}var EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPropagators=__webpack_require__("./node_modules/react/lib/EventPropagators.js"),ExecutionEnvironment=__webpack_require__("./node_modules/fbjs/lib/ExecutionEnvironment.js"),FallbackCompositionState=__webpack_require__("./node_modules/react/lib/FallbackCompositionState.js"),SyntheticCompositionEvent=__webpack_require__("./node_modules/react/lib/SyntheticCompositionEvent.js"),SyntheticInputEvent=__webpack_require__("./node_modules/react/lib/SyntheticInputEvent.js"),keyOf=__webpack_require__("./node_modules/fbjs/lib/keyOf.js"),END_KEYCODES=[9,13,27,32],START_KEYCODE=229,canUseCompositionEvent=ExecutionEnvironment.canUseDOM&&"CompositionEvent"in window,documentMode=null;ExecutionEnvironment.canUseDOM&&"documentMode"in document&&(documentMode=document.documentMode);var canUseTextInputEvent=ExecutionEnvironment.canUseDOM&&"TextEvent"in window&&!documentMode&&!isPresto(),useFallbackCompositionData=ExecutionEnvironment.canUseDOM&&(!canUseCompositionEvent||documentMode&&documentMode>8&&documentMode<=11),SPACEBAR_CODE=32,SPACEBAR_CHAR=String.fromCharCode(SPACEBAR_CODE),topLevelTypes=EventConstants.topLevelTypes,eventTypes={beforeInput:{phasedRegistrationNames:{bubbled:keyOf({onBeforeInput:null}),captured:keyOf({onBeforeInputCapture:null})},dependencies:[topLevelTypes.topCompositionEnd,topLevelTypes.topKeyPress,topLevelTypes.topTextInput,topLevelTypes.topPaste]},compositionEnd:{phasedRegistrationNames:{bubbled:keyOf({onCompositionEnd:null}),captured:keyOf({onCompositionEndCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topCompositionEnd,topLevelTypes.topKeyDown,topLevelTypes.topKeyPress,topLevelTypes.topKeyUp,topLevelTypes.topMouseDown]},compositionStart:{phasedRegistrationNames:{bubbled:keyOf({onCompositionStart:null}),captured:keyOf({onCompositionStartCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topCompositionStart,topLevelTypes.topKeyDown,topLevelTypes.topKeyPress,topLevelTypes.topKeyUp,topLevelTypes.topMouseDown]},compositionUpdate:{phasedRegistrationNames:{bubbled:keyOf({onCompositionUpdate:null}),captured:keyOf({onCompositionUpdateCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topCompositionUpdate,topLevelTypes.topKeyDown,topLevelTypes.topKeyPress,topLevelTypes.topKeyUp,topLevelTypes.topMouseDown]}},hasSpaceKeypress=!1,currentComposition=null,BeforeInputEventPlugin={eventTypes:eventTypes,extractEvents:function(e,t,o,n){return[extractCompositionEvent(e,t,o,n),extractBeforeInputEvent(e,t,o,n)]}};module.exports=BeforeInputEventPlugin;
 
 /***/ },
 
@@ -5464,7 +6313,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/SyntheticEvent.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function SyntheticEvent(e,t,n,r){"production"!==("production")&&(delete this.nativeEvent,delete this.preventDefault,delete this.stopPropagation),this.dispatchConfig=e,this._targetInst=t,this.nativeEvent=n;var o=this.constructor.Interface;for(var i in o)if(o.hasOwnProperty(i)){"production"!==("production")&&delete this[i];var s=o[i];s?this[i]=s(n):"target"===i?this.target=r:this[i]=n[i]}var a=null!=n.defaultPrevented?n.defaultPrevented:n.returnValue===!1;return a?this.isDefaultPrevented=emptyFunction.thatReturnsTrue:this.isDefaultPrevented=emptyFunction.thatReturnsFalse,this.isPropagationStopped=emptyFunction.thatReturnsFalse,this}function getPooledWarningPropertyDefinition(e,t){function n(e){var t=i?"setting the method":"setting the property";return o(t,"This is effectively a no-op"),e}function r(){var e=i?"accessing the method":"accessing the property",n=i?"This is a no-op function":"This is set to null";return o(e,n),t}function o(t,n){var r=!1; false?warning(r,"This synthetic event is reused for performance reasons. If you're seeing this, you're %s `%s` on a released/nullified synthetic event. %s. If you must keep the original synthetic event around, use event.persist(). See https://fb.me/react-event-pooling for more information.",t,e,n):void 0}var i="function"==typeof t;return{configurable:!0,set:n,get:r}}var _assign=__webpack_require__("./node_modules/object-assign/index.js"),PooledClass=__webpack_require__("./node_modules/react/lib/PooledClass.js"),emptyFunction=__webpack_require__("./node_modules/fbjs/lib/emptyFunction.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),didWarnForAddedNewProperty=!1,isProxySupported="function"==typeof Proxy,shouldBeReleasedProperties=["dispatchConfig","_targetInst","nativeEvent","isDefaultPrevented","isPropagationStopped","_dispatchListeners","_dispatchInstances"],EventInterface={type:null,target:null,currentTarget:emptyFunction.thatReturnsNull,eventPhase:null,bubbles:null,cancelable:null,timeStamp:function(e){return e.timeStamp||Date.now()},defaultPrevented:null,isTrusted:null};_assign(SyntheticEvent.prototype,{preventDefault:function(){this.defaultPrevented=!0;var e=this.nativeEvent;e&&(e.preventDefault?e.preventDefault():e.returnValue=!1,this.isDefaultPrevented=emptyFunction.thatReturnsTrue)},stopPropagation:function(){var e=this.nativeEvent;e&&(e.stopPropagation?e.stopPropagation():"unknown"!=typeof e.cancelBubble&&(e.cancelBubble=!0),this.isPropagationStopped=emptyFunction.thatReturnsTrue)},persist:function(){this.isPersistent=emptyFunction.thatReturnsTrue},isPersistent:emptyFunction.thatReturnsFalse,destructor:function(){var e=this.constructor.Interface;for(var t in e) false?Object.defineProperty(this,t,getPooledWarningPropertyDefinition(t,e[t])):this[t]=null;for(var n=0;n<shouldBeReleasedProperties.length;n++)this[shouldBeReleasedProperties[n]]=null;"production"!==("production")&&(Object.defineProperty(this,"nativeEvent",getPooledWarningPropertyDefinition("nativeEvent",null)),Object.defineProperty(this,"preventDefault",getPooledWarningPropertyDefinition("preventDefault",emptyFunction)),Object.defineProperty(this,"stopPropagation",getPooledWarningPropertyDefinition("stopPropagation",emptyFunction)))}}),SyntheticEvent.Interface=EventInterface,"production"!==("production")&&isProxySupported&&(SyntheticEvent=new Proxy(SyntheticEvent,{construct:function(e,t){return this.apply(e,Object.create(e.prototype),t)},apply:function(e,t,n){return new Proxy(e.apply(t,n),{set:function(e,t,n){return"isPersistent"===t||e.constructor.Interface.hasOwnProperty(t)||shouldBeReleasedProperties.indexOf(t)!==-1||( false?warning(didWarnForAddedNewProperty||e.isPersistent(),"This synthetic event is reused for performance reasons. If you're seeing this, you're adding a new property in the synthetic event object. The property is never released. See https://fb.me/react-event-pooling for more information."):void 0,didWarnForAddedNewProperty=!0),e[t]=n,!0}})}})),SyntheticEvent.augmentClass=function(e,t){var n=this,r=function(){};r.prototype=n.prototype;var o=new r;_assign(o,e.prototype),e.prototype=o,e.prototype.constructor=e,e.Interface=_assign({},n.Interface,t),e.augmentClass=n.augmentClass,PooledClass.addPoolingTo(e,PooledClass.fourArgumentPooler)},PooledClass.addPoolingTo(SyntheticEvent,PooledClass.fourArgumentPooler),module.exports=SyntheticEvent;
+	"use strict";function SyntheticEvent(e,t,n,r){"production"!==("production")&&(delete this.nativeEvent,delete this.preventDefault,delete this.stopPropagation),this.dispatchConfig=e,this._targetInst=t,this.nativeEvent=n;var o=this.constructor.Interface;for(var i in o)if(o.hasOwnProperty(i)){"production"!==("production")&&delete this[i];var s=o[i];s?this[i]=s(n):"target"===i?this.target=r:this[i]=n[i]}var a=null!=n.defaultPrevented?n.defaultPrevented:n.returnValue===!1;return a?this.isDefaultPrevented=emptyFunction.thatReturnsTrue:this.isDefaultPrevented=emptyFunction.thatReturnsFalse,this.isPropagationStopped=emptyFunction.thatReturnsFalse,this}function getPooledWarningPropertyDefinition(e,t){function n(e){var t=i?"setting the method":"setting the property";return o(t,"This is effectively a no-op"),e}function r(){var e=i?"accessing the method":"accessing the property",n=i?"This is a no-op function":"This is set to null";return o(e,n),t}function o(t,n){var r=!1; false?warning(r,"This synthetic event is reused for performance reasons. If you're seeing this, you're %s `%s` on a released/nullified synthetic event. %s. If you must keep the original synthetic event around, use event.persist(). See https://fb.me/react-event-pooling for more information.",t,e,n):void 0}var i="function"==typeof t;return{configurable:!0,set:n,get:r}}var _assign=__webpack_require__("./node_modules/object-assign/index.js"),PooledClass=__webpack_require__("./node_modules/react/lib/PooledClass.js"),emptyFunction=__webpack_require__("./node_modules/fbjs/lib/emptyFunction.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),didWarnForAddedNewProperty=!1,isProxySupported="function"==typeof Proxy,shouldBeReleasedProperties=["dispatchConfig","_targetInst","nativeEvent","isDefaultPrevented","isPropagationStopped","_dispatchListeners","_dispatchInstances"],EventInterface={type:null,target:null,currentTarget:emptyFunction.thatReturnsNull,eventPhase:null,bubbles:null,cancelable:null,timeStamp:function(e){return e.timeStamp||Date.now()},defaultPrevented:null,isTrusted:null};_assign(SyntheticEvent.prototype,{preventDefault:function(){this.defaultPrevented=!0;var e=this.nativeEvent;e&&(e.preventDefault?e.preventDefault():"unknown"!=typeof e.returnValue&&(e.returnValue=!1),this.isDefaultPrevented=emptyFunction.thatReturnsTrue)},stopPropagation:function(){var e=this.nativeEvent;e&&(e.stopPropagation?e.stopPropagation():"unknown"!=typeof e.cancelBubble&&(e.cancelBubble=!0),this.isPropagationStopped=emptyFunction.thatReturnsTrue)},persist:function(){this.isPersistent=emptyFunction.thatReturnsTrue},isPersistent:emptyFunction.thatReturnsFalse,destructor:function(){var e=this.constructor.Interface;for(var t in e) false?Object.defineProperty(this,t,getPooledWarningPropertyDefinition(t,e[t])):this[t]=null;for(var n=0;n<shouldBeReleasedProperties.length;n++)this[shouldBeReleasedProperties[n]]=null;"production"!==("production")&&(Object.defineProperty(this,"nativeEvent",getPooledWarningPropertyDefinition("nativeEvent",null)),Object.defineProperty(this,"preventDefault",getPooledWarningPropertyDefinition("preventDefault",emptyFunction)),Object.defineProperty(this,"stopPropagation",getPooledWarningPropertyDefinition("stopPropagation",emptyFunction)))}}),SyntheticEvent.Interface=EventInterface,"production"!==("production")&&isProxySupported&&(SyntheticEvent=new Proxy(SyntheticEvent,{construct:function(e,t){return this.apply(e,Object.create(e.prototype),t)},apply:function(e,t,n){return new Proxy(e.apply(t,n),{set:function(e,t,n){return"isPersistent"===t||e.constructor.Interface.hasOwnProperty(t)||shouldBeReleasedProperties.indexOf(t)!==-1||( false?warning(didWarnForAddedNewProperty||e.isPersistent(),"This synthetic event is reused for performance reasons. If you're seeing this, you're adding a new property in the synthetic event object. The property is never released. See https://fb.me/react-event-pooling for more information."):void 0,didWarnForAddedNewProperty=!0),e[t]=n,!0}})}})),SyntheticEvent.augmentClass=function(e,t){var n=this,r=function(){};r.prototype=n.prototype;var o=new r;_assign(o,e.prototype),e.prototype=o,e.prototype.constructor=e,e.Interface=_assign({},n.Interface,t),e.augmentClass=n.augmentClass,PooledClass.addPoolingTo(e,PooledClass.fourArgumentPooler)},PooledClass.addPoolingTo(SyntheticEvent,PooledClass.fourArgumentPooler),module.exports=SyntheticEvent;
 
 /***/ },
 
@@ -5478,7 +6327,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/ChangeEventPlugin.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function shouldUseChangeEvent(e){var t=e.nodeName&&e.nodeName.toLowerCase();return"select"===t||"input"===t&&"file"===e.type}function manualDispatchChangeEvent(e){var t=SyntheticEvent.getPooled(eventTypes.change,activeElementInst,e,getEventTarget(e));EventPropagators.accumulateTwoPhaseDispatches(t),ReactUpdates.batchedUpdates(runEventInBatch,t)}function runEventInBatch(e){EventPluginHub.enqueueEvents(e),EventPluginHub.processEventQueue(!1)}function startWatchingForChangeEventIE8(e,t){activeElement=e,activeElementInst=t,activeElement.attachEvent("onchange",manualDispatchChangeEvent)}function stopWatchingForChangeEventIE8(){activeElement&&(activeElement.detachEvent("onchange",manualDispatchChangeEvent),activeElement=null,activeElementInst=null)}function getTargetInstForChangeEvent(e,t){if(e===topLevelTypes.topChange)return t}function handleEventsForChangeEventIE8(e,t,n){e===topLevelTypes.topFocus?(stopWatchingForChangeEventIE8(),startWatchingForChangeEventIE8(t,n)):e===topLevelTypes.topBlur&&stopWatchingForChangeEventIE8()}function startWatchingForValueChange(e,t){activeElement=e,activeElementInst=t,activeElementValue=e.value,activeElementValueProp=Object.getOwnPropertyDescriptor(e.constructor.prototype,"value"),Object.defineProperty(activeElement,"value",newValueProp),activeElement.attachEvent?activeElement.attachEvent("onpropertychange",handlePropertyChange):activeElement.addEventListener("propertychange",handlePropertyChange,!1)}function stopWatchingForValueChange(){activeElement&&(delete activeElement.value,activeElement.detachEvent?activeElement.detachEvent("onpropertychange",handlePropertyChange):activeElement.removeEventListener("propertychange",handlePropertyChange,!1),activeElement=null,activeElementInst=null,activeElementValue=null,activeElementValueProp=null)}function handlePropertyChange(e){if("value"===e.propertyName){var t=e.srcElement.value;t!==activeElementValue&&(activeElementValue=t,manualDispatchChangeEvent(e))}}function getTargetInstForInputEvent(e,t){if(e===topLevelTypes.topInput)return t}function handleEventsForInputEventIE(e,t,n){e===topLevelTypes.topFocus?(stopWatchingForValueChange(),startWatchingForValueChange(t,n)):e===topLevelTypes.topBlur&&stopWatchingForValueChange()}function getTargetInstForInputEventIE(e,t){if((e===topLevelTypes.topSelectionChange||e===topLevelTypes.topKeyUp||e===topLevelTypes.topKeyDown)&&activeElement&&activeElement.value!==activeElementValue)return activeElementValue=activeElement.value,activeElementInst}function shouldUseClickEvent(e){return e.nodeName&&"input"===e.nodeName.toLowerCase()&&("checkbox"===e.type||"radio"===e.type)}function getTargetInstForClickEvent(e,t){if(e===topLevelTypes.topClick)return t}var EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPluginHub=__webpack_require__("./node_modules/react/lib/EventPluginHub.js"),EventPropagators=__webpack_require__("./node_modules/react/lib/EventPropagators.js"),ExecutionEnvironment=__webpack_require__("./node_modules/fbjs/lib/ExecutionEnvironment.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),ReactUpdates=__webpack_require__("./node_modules/react/lib/ReactUpdates.js"),SyntheticEvent=__webpack_require__("./node_modules/react/lib/SyntheticEvent.js"),getEventTarget=__webpack_require__("./node_modules/react/lib/getEventTarget.js"),isEventSupported=__webpack_require__("./node_modules/react/lib/isEventSupported.js"),isTextInputElement=__webpack_require__("./node_modules/react/lib/isTextInputElement.js"),keyOf=__webpack_require__("./node_modules/fbjs/lib/keyOf.js"),topLevelTypes=EventConstants.topLevelTypes,eventTypes={change:{phasedRegistrationNames:{bubbled:keyOf({onChange:null}),captured:keyOf({onChangeCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topChange,topLevelTypes.topClick,topLevelTypes.topFocus,topLevelTypes.topInput,topLevelTypes.topKeyDown,topLevelTypes.topKeyUp,topLevelTypes.topSelectionChange]}},activeElement=null,activeElementInst=null,activeElementValue=null,activeElementValueProp=null,doesChangeEventBubble=!1;ExecutionEnvironment.canUseDOM&&(doesChangeEventBubble=isEventSupported("change")&&(!("documentMode"in document)||document.documentMode>8));var isInputEventSupported=!1;ExecutionEnvironment.canUseDOM&&(isInputEventSupported=isEventSupported("input")&&(!("documentMode"in document)||document.documentMode>11));var newValueProp={get:function(){return activeElementValueProp.get.call(this)},set:function(e){activeElementValue=""+e,activeElementValueProp.set.call(this,e)}},ChangeEventPlugin={eventTypes:eventTypes,extractEvents:function(e,t,n,a){var o,l,r=t?ReactDOMComponentTree.getNodeFromInstance(t):window;if(shouldUseChangeEvent(r)?doesChangeEventBubble?o=getTargetInstForChangeEvent:l=handleEventsForChangeEventIE8:isTextInputElement(r)?isInputEventSupported?o=getTargetInstForInputEvent:(o=getTargetInstForInputEventIE,l=handleEventsForInputEventIE):shouldUseClickEvent(r)&&(o=getTargetInstForClickEvent),o){var v=o(e,t);if(v){var p=SyntheticEvent.getPooled(eventTypes.change,v,n,a);return p.type="change",EventPropagators.accumulateTwoPhaseDispatches(p),p}}l&&l(e,r,t)}};module.exports=ChangeEventPlugin;
+	"use strict";function shouldUseChangeEvent(e){var t=e.nodeName&&e.nodeName.toLowerCase();return"select"===t||"input"===t&&"file"===e.type}function manualDispatchChangeEvent(e){var t=SyntheticEvent.getPooled(eventTypes.change,activeElementInst,e,getEventTarget(e));EventPropagators.accumulateTwoPhaseDispatches(t),ReactUpdates.batchedUpdates(runEventInBatch,t)}function runEventInBatch(e){EventPluginHub.enqueueEvents(e),EventPluginHub.processEventQueue(!1)}function startWatchingForChangeEventIE8(e,t){activeElement=e,activeElementInst=t,activeElement.attachEvent("onchange",manualDispatchChangeEvent)}function stopWatchingForChangeEventIE8(){activeElement&&(activeElement.detachEvent("onchange",manualDispatchChangeEvent),activeElement=null,activeElementInst=null)}function getTargetInstForChangeEvent(e,t){if(e===topLevelTypes.topChange)return t}function handleEventsForChangeEventIE8(e,t,n){e===topLevelTypes.topFocus?(stopWatchingForChangeEventIE8(),startWatchingForChangeEventIE8(t,n)):e===topLevelTypes.topBlur&&stopWatchingForChangeEventIE8()}function startWatchingForValueChange(e,t){activeElement=e,activeElementInst=t,activeElementValue=e.value,activeElementValueProp=Object.getOwnPropertyDescriptor(e.constructor.prototype,"value"),Object.defineProperty(activeElement,"value",newValueProp),activeElement.attachEvent?activeElement.attachEvent("onpropertychange",handlePropertyChange):activeElement.addEventListener("propertychange",handlePropertyChange,!1)}function stopWatchingForValueChange(){activeElement&&(delete activeElement.value,activeElement.detachEvent?activeElement.detachEvent("onpropertychange",handlePropertyChange):activeElement.removeEventListener("propertychange",handlePropertyChange,!1),activeElement=null,activeElementInst=null,activeElementValue=null,activeElementValueProp=null)}function handlePropertyChange(e){if("value"===e.propertyName){var t=e.srcElement.value;t!==activeElementValue&&(activeElementValue=t,manualDispatchChangeEvent(e))}}function getTargetInstForInputEvent(e,t){if(e===topLevelTypes.topInput)return t}function handleEventsForInputEventIE(e,t,n){e===topLevelTypes.topFocus?(stopWatchingForValueChange(),startWatchingForValueChange(t,n)):e===topLevelTypes.topBlur&&stopWatchingForValueChange()}function getTargetInstForInputEventIE(e,t){if((e===topLevelTypes.topSelectionChange||e===topLevelTypes.topKeyUp||e===topLevelTypes.topKeyDown)&&activeElement&&activeElement.value!==activeElementValue)return activeElementValue=activeElement.value,activeElementInst}function shouldUseClickEvent(e){return e.nodeName&&"input"===e.nodeName.toLowerCase()&&("checkbox"===e.type||"radio"===e.type)}function getTargetInstForClickEvent(e,t){if(e===topLevelTypes.topClick)return t}var EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPluginHub=__webpack_require__("./node_modules/react/lib/EventPluginHub.js"),EventPropagators=__webpack_require__("./node_modules/react/lib/EventPropagators.js"),ExecutionEnvironment=__webpack_require__("./node_modules/fbjs/lib/ExecutionEnvironment.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),ReactUpdates=__webpack_require__("./node_modules/react/lib/ReactUpdates.js"),SyntheticEvent=__webpack_require__("./node_modules/react/lib/SyntheticEvent.js"),getEventTarget=__webpack_require__("./node_modules/react/lib/getEventTarget.js"),isEventSupported=__webpack_require__("./node_modules/react/lib/isEventSupported.js"),isTextInputElement=__webpack_require__("./node_modules/react/lib/isTextInputElement.js"),keyOf=__webpack_require__("./node_modules/fbjs/lib/keyOf.js"),topLevelTypes=EventConstants.topLevelTypes,eventTypes={change:{phasedRegistrationNames:{bubbled:keyOf({onChange:null}),captured:keyOf({onChangeCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topChange,topLevelTypes.topClick,topLevelTypes.topFocus,topLevelTypes.topInput,topLevelTypes.topKeyDown,topLevelTypes.topKeyUp,topLevelTypes.topSelectionChange]}},activeElement=null,activeElementInst=null,activeElementValue=null,activeElementValueProp=null,doesChangeEventBubble=!1;ExecutionEnvironment.canUseDOM&&(doesChangeEventBubble=isEventSupported("change")&&(!document.documentMode||document.documentMode>8));var isInputEventSupported=!1;ExecutionEnvironment.canUseDOM&&(isInputEventSupported=isEventSupported("input")&&(!document.documentMode||document.documentMode>11));var newValueProp={get:function(){return activeElementValueProp.get.call(this)},set:function(e){activeElementValue=""+e,activeElementValueProp.set.call(this,e)}},ChangeEventPlugin={eventTypes:eventTypes,extractEvents:function(e,t,n,a){var o,l,r=t?ReactDOMComponentTree.getNodeFromInstance(t):window;if(shouldUseChangeEvent(r)?doesChangeEventBubble?o=getTargetInstForChangeEvent:l=handleEventsForChangeEventIE8:isTextInputElement(r)?isInputEventSupported?o=getTargetInstForInputEvent:(o=getTargetInstForInputEventIE,l=handleEventsForInputEventIE):shouldUseClickEvent(r)&&(o=getTargetInstForClickEvent),o){var v=o(e,t);if(v){var p=SyntheticEvent.getPooled(eventTypes.change,v,n,a);return p.type="change",EventPropagators.accumulateTwoPhaseDispatches(p),p}}l&&l(e,r,t)}};module.exports=ChangeEventPlugin;
 
 /***/ },
 
@@ -5604,7 +6453,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/HTMLDOMPropertyConfig.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";var DOMProperty=__webpack_require__("./node_modules/react/lib/DOMProperty.js"),MUST_USE_PROPERTY=DOMProperty.injection.MUST_USE_PROPERTY,HAS_BOOLEAN_VALUE=DOMProperty.injection.HAS_BOOLEAN_VALUE,HAS_NUMERIC_VALUE=DOMProperty.injection.HAS_NUMERIC_VALUE,HAS_POSITIVE_NUMERIC_VALUE=DOMProperty.injection.HAS_POSITIVE_NUMERIC_VALUE,HAS_OVERLOADED_BOOLEAN_VALUE=DOMProperty.injection.HAS_OVERLOADED_BOOLEAN_VALUE,HTMLDOMPropertyConfig={isCustomAttribute:RegExp.prototype.test.bind(new RegExp("^(data|aria)-["+DOMProperty.ATTRIBUTE_NAME_CHAR+"]*$")),Properties:{accept:0,acceptCharset:0,accessKey:0,action:0,allowFullScreen:HAS_BOOLEAN_VALUE,allowTransparency:0,alt:0,async:HAS_BOOLEAN_VALUE,autoComplete:0,autoPlay:HAS_BOOLEAN_VALUE,capture:HAS_BOOLEAN_VALUE,cellPadding:0,cellSpacing:0,charSet:0,challenge:0,checked:MUST_USE_PROPERTY|HAS_BOOLEAN_VALUE,cite:0,classID:0,className:0,cols:HAS_POSITIVE_NUMERIC_VALUE,colSpan:0,content:0,contentEditable:0,contextMenu:0,controls:HAS_BOOLEAN_VALUE,coords:0,crossOrigin:0,data:0,dateTime:0,"default":HAS_BOOLEAN_VALUE,defer:HAS_BOOLEAN_VALUE,dir:0,disabled:HAS_BOOLEAN_VALUE,download:HAS_OVERLOADED_BOOLEAN_VALUE,draggable:0,encType:0,form:0,formAction:0,formEncType:0,formMethod:0,formNoValidate:HAS_BOOLEAN_VALUE,formTarget:0,frameBorder:0,headers:0,height:0,hidden:HAS_BOOLEAN_VALUE,high:0,href:0,hrefLang:0,htmlFor:0,httpEquiv:0,icon:0,id:0,inputMode:0,integrity:0,is:0,keyParams:0,keyType:0,kind:0,label:0,lang:0,list:0,loop:HAS_BOOLEAN_VALUE,low:0,manifest:0,marginHeight:0,marginWidth:0,max:0,maxLength:0,media:0,mediaGroup:0,method:0,min:0,minLength:0,multiple:MUST_USE_PROPERTY|HAS_BOOLEAN_VALUE,muted:MUST_USE_PROPERTY|HAS_BOOLEAN_VALUE,name:0,nonce:0,noValidate:HAS_BOOLEAN_VALUE,open:HAS_BOOLEAN_VALUE,optimum:0,pattern:0,placeholder:0,poster:0,preload:0,profile:0,radioGroup:0,readOnly:HAS_BOOLEAN_VALUE,referrerPolicy:0,rel:0,required:HAS_BOOLEAN_VALUE,reversed:HAS_BOOLEAN_VALUE,role:0,rows:HAS_POSITIVE_NUMERIC_VALUE,rowSpan:HAS_NUMERIC_VALUE,sandbox:0,scope:0,scoped:HAS_BOOLEAN_VALUE,scrolling:0,seamless:HAS_BOOLEAN_VALUE,selected:MUST_USE_PROPERTY|HAS_BOOLEAN_VALUE,shape:0,size:HAS_POSITIVE_NUMERIC_VALUE,sizes:0,span:HAS_POSITIVE_NUMERIC_VALUE,spellCheck:0,src:0,srcDoc:0,srcLang:0,srcSet:0,start:HAS_NUMERIC_VALUE,step:0,style:0,summary:0,tabIndex:0,target:0,title:0,type:0,useMap:0,value:0,width:0,wmode:0,wrap:0,about:0,datatype:0,inlist:0,prefix:0,property:0,resource:0,"typeof":0,vocab:0,autoCapitalize:0,autoCorrect:0,autoSave:0,color:0,itemProp:0,itemScope:HAS_BOOLEAN_VALUE,itemType:0,itemID:0,itemRef:0,results:0,security:0,unselectable:0},DOMAttributeNames:{acceptCharset:"accept-charset",className:"class",htmlFor:"for",httpEquiv:"http-equiv"},DOMPropertyNames:{}};module.exports=HTMLDOMPropertyConfig;
+	"use strict";var DOMProperty=__webpack_require__("./node_modules/react/lib/DOMProperty.js"),MUST_USE_PROPERTY=DOMProperty.injection.MUST_USE_PROPERTY,HAS_BOOLEAN_VALUE=DOMProperty.injection.HAS_BOOLEAN_VALUE,HAS_NUMERIC_VALUE=DOMProperty.injection.HAS_NUMERIC_VALUE,HAS_POSITIVE_NUMERIC_VALUE=DOMProperty.injection.HAS_POSITIVE_NUMERIC_VALUE,HAS_OVERLOADED_BOOLEAN_VALUE=DOMProperty.injection.HAS_OVERLOADED_BOOLEAN_VALUE,HTMLDOMPropertyConfig={isCustomAttribute:RegExp.prototype.test.bind(new RegExp("^(data|aria)-["+DOMProperty.ATTRIBUTE_NAME_CHAR+"]*$")),Properties:{accept:0,acceptCharset:0,accessKey:0,action:0,allowFullScreen:HAS_BOOLEAN_VALUE,allowTransparency:0,alt:0,as:0,async:HAS_BOOLEAN_VALUE,autoComplete:0,autoPlay:HAS_BOOLEAN_VALUE,capture:HAS_BOOLEAN_VALUE,cellPadding:0,cellSpacing:0,charSet:0,challenge:0,checked:MUST_USE_PROPERTY|HAS_BOOLEAN_VALUE,cite:0,classID:0,className:0,cols:HAS_POSITIVE_NUMERIC_VALUE,colSpan:0,content:0,contentEditable:0,contextMenu:0,controls:HAS_BOOLEAN_VALUE,coords:0,crossOrigin:0,data:0,dateTime:0,"default":HAS_BOOLEAN_VALUE,defer:HAS_BOOLEAN_VALUE,dir:0,disabled:HAS_BOOLEAN_VALUE,download:HAS_OVERLOADED_BOOLEAN_VALUE,draggable:0,encType:0,form:0,formAction:0,formEncType:0,formMethod:0,formNoValidate:HAS_BOOLEAN_VALUE,formTarget:0,frameBorder:0,headers:0,height:0,hidden:HAS_BOOLEAN_VALUE,high:0,href:0,hrefLang:0,htmlFor:0,httpEquiv:0,icon:0,id:0,inputMode:0,integrity:0,is:0,keyParams:0,keyType:0,kind:0,label:0,lang:0,list:0,loop:HAS_BOOLEAN_VALUE,low:0,manifest:0,marginHeight:0,marginWidth:0,max:0,maxLength:0,media:0,mediaGroup:0,method:0,min:0,minLength:0,multiple:MUST_USE_PROPERTY|HAS_BOOLEAN_VALUE,muted:MUST_USE_PROPERTY|HAS_BOOLEAN_VALUE,name:0,nonce:0,noValidate:HAS_BOOLEAN_VALUE,open:HAS_BOOLEAN_VALUE,optimum:0,pattern:0,placeholder:0,playsInline:HAS_BOOLEAN_VALUE,poster:0,preload:0,profile:0,radioGroup:0,readOnly:HAS_BOOLEAN_VALUE,referrerPolicy:0,rel:0,required:HAS_BOOLEAN_VALUE,reversed:HAS_BOOLEAN_VALUE,role:0,rows:HAS_POSITIVE_NUMERIC_VALUE,rowSpan:HAS_NUMERIC_VALUE,sandbox:0,scope:0,scoped:HAS_BOOLEAN_VALUE,scrolling:0,seamless:HAS_BOOLEAN_VALUE,selected:MUST_USE_PROPERTY|HAS_BOOLEAN_VALUE,shape:0,size:HAS_POSITIVE_NUMERIC_VALUE,sizes:0,span:HAS_POSITIVE_NUMERIC_VALUE,spellCheck:0,src:0,srcDoc:0,srcLang:0,srcSet:0,start:HAS_NUMERIC_VALUE,step:0,style:0,summary:0,tabIndex:0,target:0,title:0,type:0,useMap:0,value:0,width:0,wmode:0,wrap:0,about:0,datatype:0,inlist:0,prefix:0,property:0,resource:0,"typeof":0,vocab:0,autoCapitalize:0,autoCorrect:0,autoSave:0,color:0,itemProp:0,itemScope:HAS_BOOLEAN_VALUE,itemType:0,itemID:0,itemRef:0,results:0,security:0,unselectable:0},DOMAttributeNames:{acceptCharset:"accept-charset",className:"class",htmlFor:"for",httpEquiv:"http-equiv"},DOMPropertyNames:{}};module.exports=HTMLDOMPropertyConfig;
 
 /***/ },
 
@@ -5639,7 +6488,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/setInnerHTML.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";var ExecutionEnvironment=__webpack_require__("./node_modules/fbjs/lib/ExecutionEnvironment.js"),DOMNamespaces=__webpack_require__("./node_modules/react/lib/DOMNamespaces.js"),WHITESPACE_TEST=/^[ \r\n\t\f]/,NONVISIBLE_TEST=/<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/,createMicrosoftUnsafeLocalFunction=__webpack_require__("./node_modules/react/lib/createMicrosoftUnsafeLocalFunction.js"),reusableSVGContainer,setInnerHTML=createMicrosoftUnsafeLocalFunction(function(e,n){if(e.namespaceURI!==DOMNamespaces.svg||"innerHTML"in e)e.innerHTML=n;else{reusableSVGContainer=reusableSVGContainer||document.createElement("div"),reusableSVGContainer.innerHTML="<svg>"+n+"</svg>";for(var t=reusableSVGContainer.firstChild.childNodes,r=0;r<t.length;r++)e.appendChild(t[r])}});if(ExecutionEnvironment.canUseDOM){var testElement=document.createElement("div");testElement.innerHTML=" ",""===testElement.innerHTML&&(setInnerHTML=function(e,n){if(e.parentNode&&e.parentNode.replaceChild(e,e),WHITESPACE_TEST.test(n)||"<"===n[0]&&NONVISIBLE_TEST.test(n)){e.innerHTML=String.fromCharCode(65279)+n;var t=e.firstChild;1===t.data.length?e.removeChild(t):t.deleteData(0,1)}else e.innerHTML=n}),testElement=null}module.exports=setInnerHTML;
+	"use strict";var ExecutionEnvironment=__webpack_require__("./node_modules/fbjs/lib/ExecutionEnvironment.js"),DOMNamespaces=__webpack_require__("./node_modules/react/lib/DOMNamespaces.js"),WHITESPACE_TEST=/^[ \r\n\t\f]/,NONVISIBLE_TEST=/<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/,createMicrosoftUnsafeLocalFunction=__webpack_require__("./node_modules/react/lib/createMicrosoftUnsafeLocalFunction.js"),reusableSVGContainer,setInnerHTML=createMicrosoftUnsafeLocalFunction(function(e,n){if(e.namespaceURI!==DOMNamespaces.svg||"innerHTML"in e)e.innerHTML=n;else{reusableSVGContainer=reusableSVGContainer||document.createElement("div"),reusableSVGContainer.innerHTML="<svg>"+n+"</svg>";for(var t=reusableSVGContainer.firstChild;t.firstChild;)e.appendChild(t.firstChild)}});if(ExecutionEnvironment.canUseDOM){var testElement=document.createElement("div");testElement.innerHTML=" ",""===testElement.innerHTML&&(setInnerHTML=function(e,n){if(e.parentNode&&e.parentNode.replaceChild(e,e),WHITESPACE_TEST.test(n)||"<"===n[0]&&NONVISIBLE_TEST.test(n)){e.innerHTML=String.fromCharCode(65279)+n;var t=e.firstChild;1===t.data.length?e.removeChild(t):t.deleteData(0,1)}else e.innerHTML=n}),testElement=null}module.exports=setInnerHTML;
 
 /***/ },
 
@@ -5709,7 +6558,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/ReactDOMComponent.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function getDeclarationErrorAddendum(e){if(e){var t=e._currentElement._owner||null;if(t){var n=t.getName();if(n)return" This DOM node was rendered by `"+n+"`."}}return""}function friendlyStringify(e){if("object"==typeof e){if(Array.isArray(e))return"["+e.map(friendlyStringify).join(", ")+"]";var t=[];for(var n in e)if(Object.prototype.hasOwnProperty.call(e,n)){var r=/^[a-z$_][\w$_]*$/i.test(n)?n:JSON.stringify(n);t.push(r+": "+friendlyStringify(e[n]))}return"{"+t.join(", ")+"}"}return"string"==typeof e?JSON.stringify(e):"function"==typeof e?"[function object]":String(e)}function checkAndWarnForMutatedStyle(e,t,n){if(null!=e&&null!=t&&!shallowEqual(e,t)){var r,o=n._tag,a=n._currentElement._owner;a&&(r=a.getName());var s=r+"|"+o;styleMutationWarning.hasOwnProperty(s)||(styleMutationWarning[s]=!0, false?warning(!1,"`%s` was passed a style object that has previously been mutated. Mutating `style` is deprecated. Consider cloning it beforehand. Check the `render` %s. Previous style: %s. Mutated style: %s.",o,a?"of `"+r+"`":"using <"+o+">",friendlyStringify(e),friendlyStringify(t)):void 0)}}function assertValidProps(e,t){t&&(voidElementTags[e._tag]&&(null!=t.children||null!=t.dangerouslySetInnerHTML? false?invariant(!1,"%s is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`.%s",e._tag,e._currentElement._owner?" Check the render method of "+e._currentElement._owner.getName()+".":""):_prodInvariant("137",e._tag,e._currentElement._owner?" Check the render method of "+e._currentElement._owner.getName()+".":""):void 0),null!=t.dangerouslySetInnerHTML&&(null!=t.children? false?invariant(!1,"Can only set one of `children` or `props.dangerouslySetInnerHTML`."):_prodInvariant("60"):void 0,"object"==typeof t.dangerouslySetInnerHTML&&HTML in t.dangerouslySetInnerHTML?void 0: false?invariant(!1,"`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://fb.me/react-invariant-dangerously-set-inner-html for more information."):_prodInvariant("61")),"production"!==("production")&&( false?warning(null==t.innerHTML,"Directly setting property `innerHTML` is not permitted. For more information, lookup documentation on `dangerouslySetInnerHTML`."):void 0, false?warning(t.suppressContentEditableWarning||!t.contentEditable||null==t.children,"A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional."):void 0, false?warning(null==t.onFocusIn&&null==t.onFocusOut,"React uses onFocus and onBlur instead of onFocusIn and onFocusOut. All React events are normalized to bubble, so onFocusIn and onFocusOut are not needed/supported by React."):void 0),null!=t.style&&"object"!=typeof t.style? false?invariant(!1,"The `style` prop expects a mapping from style properties to values, not a string. For example, style={{marginRight: spacing + 'em'}} when using JSX.%s",getDeclarationErrorAddendum(e)):_prodInvariant("62",getDeclarationErrorAddendum(e)):void 0)}function enqueuePutListener(e,t,n,r){if(!(r instanceof ReactServerRenderingTransaction)){"production"!==("production")&&( false?warning("onScroll"!==t||isEventSupported("scroll",!0),"This browser doesn't support the `onScroll` event"):void 0);var o=e._hostContainerInfo,a=o._node&&o._node.nodeType===DOC_FRAGMENT_TYPE,s=a?o._node:o._ownerDocument;listenTo(t,s),r.getReactMountReady().enqueue(putListener,{inst:e,registrationName:t,listener:n})}}function putListener(){var e=this;EventPluginHub.putListener(e.inst,e.registrationName,e.listener)}function inputPostMount(){var e=this;ReactDOMInput.postMountWrapper(e)}function textareaPostMount(){var e=this;ReactDOMTextarea.postMountWrapper(e)}function optionPostMount(){var e=this;ReactDOMOption.postMountWrapper(e)}function trapBubbledEventsLocal(){var e=this;e._rootNodeID?void 0: false?invariant(!1,"Must be mounted to trap events"):_prodInvariant("63");var t=getNode(e);switch(t?void 0: false?invariant(!1,"trapBubbledEvent(...): Requires node to be rendered."):_prodInvariant("64"),e._tag){case"iframe":case"object":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topLoad,"load",t)];break;case"video":case"audio":e._wrapperState.listeners=[];for(var n in mediaEvents)mediaEvents.hasOwnProperty(n)&&e._wrapperState.listeners.push(ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes[n],mediaEvents[n],t));break;case"source":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topError,"error",t)];break;case"img":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topError,"error",t),ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topLoad,"load",t)];break;case"form":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topReset,"reset",t),ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topSubmit,"submit",t)];break;case"input":case"select":case"textarea":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topInvalid,"invalid",t)]}}function postUpdateSelectWrapper(){ReactDOMSelect.postUpdateWrapper(this)}function validateDangerousTag(e){hasOwnProperty.call(validatedTagCache,e)||(VALID_TAG_REGEX.test(e)?void 0: false?invariant(!1,"Invalid tag: %s",e):_prodInvariant("65",e),validatedTagCache[e]=!0)}function isCustomComponent(e,t){return e.indexOf("-")>=0||null!=t.is}function ReactDOMComponent(e){var t=e.type;validateDangerousTag(t),this._currentElement=e,this._tag=t.toLowerCase(),this._namespaceURI=null,this._renderedChildren=null,this._previousStyle=null,this._previousStyleCopy=null,this._hostNode=null,this._hostParent=null,this._rootNodeID=0,this._domID=0,this._hostContainerInfo=null,this._wrapperState=null,this._topLevelWrapper=null,this._flags=0,"production"!==("production")&&(this._ancestorInfo=null,setContentChildForInstrumentation.call(this,null))}var _prodInvariant=__webpack_require__("./node_modules/react/lib/reactProdInvariant.js"),_assign=__webpack_require__("./node_modules/object-assign/index.js"),AutoFocusUtils=__webpack_require__("./node_modules/react/lib/AutoFocusUtils.js"),CSSPropertyOperations=__webpack_require__("./node_modules/react/lib/CSSPropertyOperations.js"),DOMLazyTree=__webpack_require__("./node_modules/react/lib/DOMLazyTree.js"),DOMNamespaces=__webpack_require__("./node_modules/react/lib/DOMNamespaces.js"),DOMProperty=__webpack_require__("./node_modules/react/lib/DOMProperty.js"),DOMPropertyOperations=__webpack_require__("./node_modules/react/lib/DOMPropertyOperations.js"),EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPluginHub=__webpack_require__("./node_modules/react/lib/EventPluginHub.js"),EventPluginRegistry=__webpack_require__("./node_modules/react/lib/EventPluginRegistry.js"),ReactBrowserEventEmitter=__webpack_require__("./node_modules/react/lib/ReactBrowserEventEmitter.js"),ReactDOMButton=__webpack_require__("./node_modules/react/lib/ReactDOMButton.js"),ReactDOMComponentFlags=__webpack_require__("./node_modules/react/lib/ReactDOMComponentFlags.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),ReactDOMInput=__webpack_require__("./node_modules/react/lib/ReactDOMInput.js"),ReactDOMOption=__webpack_require__("./node_modules/react/lib/ReactDOMOption.js"),ReactDOMSelect=__webpack_require__("./node_modules/react/lib/ReactDOMSelect.js"),ReactDOMTextarea=__webpack_require__("./node_modules/react/lib/ReactDOMTextarea.js"),ReactInstrumentation=__webpack_require__("./node_modules/react/lib/ReactInstrumentation.js"),ReactMultiChild=__webpack_require__("./node_modules/react/lib/ReactMultiChild.js"),ReactServerRenderingTransaction=__webpack_require__("./node_modules/react/lib/ReactServerRenderingTransaction.js"),emptyFunction=__webpack_require__("./node_modules/fbjs/lib/emptyFunction.js"),escapeTextContentForBrowser=__webpack_require__("./node_modules/react/lib/escapeTextContentForBrowser.js"),invariant=__webpack_require__("./node_modules/fbjs/lib/invariant.js"),isEventSupported=__webpack_require__("./node_modules/react/lib/isEventSupported.js"),keyOf=__webpack_require__("./node_modules/fbjs/lib/keyOf.js"),shallowEqual=__webpack_require__("./node_modules/fbjs/lib/shallowEqual.js"),validateDOMNesting=__webpack_require__("./node_modules/react/lib/validateDOMNesting.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),Flags=ReactDOMComponentFlags,deleteListener=EventPluginHub.deleteListener,getNode=ReactDOMComponentTree.getNodeFromInstance,listenTo=ReactBrowserEventEmitter.listenTo,registrationNameModules=EventPluginRegistry.registrationNameModules,CONTENT_TYPES={string:!0,number:!0},STYLE=keyOf({style:null}),HTML=keyOf({__html:null}),RESERVED_PROPS={children:null,dangerouslySetInnerHTML:null,suppressContentEditableWarning:null},DOC_FRAGMENT_TYPE=11,styleMutationWarning={},setContentChildForInstrumentation=emptyFunction;"production"!==("production")&&(setContentChildForInstrumentation=function(e){var t=null!=this._contentDebugID,n=this._debugID,r=-n;return null==e?(t&&ReactInstrumentation.debugTool.onUnmountComponent(this._contentDebugID),void(this._contentDebugID=null)):(this._contentDebugID=r,void(t?(ReactInstrumentation.debugTool.onBeforeUpdateComponent(r,e),ReactInstrumentation.debugTool.onUpdateComponent(r)):(ReactInstrumentation.debugTool.onBeforeMountComponent(r,e,n),ReactInstrumentation.debugTool.onMountComponent(r),ReactInstrumentation.debugTool.onSetChildren(n,[r]))))});var mediaEvents={topAbort:"abort",topCanPlay:"canplay",topCanPlayThrough:"canplaythrough",topDurationChange:"durationchange",topEmptied:"emptied",topEncrypted:"encrypted",topEnded:"ended",topError:"error",topLoadedData:"loadeddata",topLoadedMetadata:"loadedmetadata",topLoadStart:"loadstart",topPause:"pause",topPlay:"play",topPlaying:"playing",topProgress:"progress",topRateChange:"ratechange",topSeeked:"seeked",topSeeking:"seeking",topStalled:"stalled",topSuspend:"suspend",topTimeUpdate:"timeupdate",topVolumeChange:"volumechange",topWaiting:"waiting"},omittedCloseTags={area:!0,base:!0,br:!0,col:!0,embed:!0,hr:!0,img:!0,input:!0,keygen:!0,link:!0,meta:!0,param:!0,source:!0,track:!0,wbr:!0},newlineEatingTags={listing:!0,pre:!0,textarea:!0},voidElementTags=_assign({menuitem:!0},omittedCloseTags),VALID_TAG_REGEX=/^[a-zA-Z][a-zA-Z:_\.\-\d]*$/,validatedTagCache={},hasOwnProperty={}.hasOwnProperty,globalIdCounter=1;ReactDOMComponent.displayName="ReactDOMComponent",ReactDOMComponent.Mixin={mountComponent:function(e,t,n,r){this._rootNodeID=globalIdCounter++,this._domID=n._idCounter++,this._hostParent=t,this._hostContainerInfo=n;var o=this._currentElement.props;switch(this._tag){case"audio":case"form":case"iframe":case"img":case"link":case"object":case"source":case"video":this._wrapperState={listeners:null},e.getReactMountReady().enqueue(trapBubbledEventsLocal,this);break;case"button":o=ReactDOMButton.getHostProps(this,o,t);break;case"input":ReactDOMInput.mountWrapper(this,o,t),o=ReactDOMInput.getHostProps(this,o),e.getReactMountReady().enqueue(trapBubbledEventsLocal,this);break;case"option":ReactDOMOption.mountWrapper(this,o,t),o=ReactDOMOption.getHostProps(this,o);break;case"select":ReactDOMSelect.mountWrapper(this,o,t),o=ReactDOMSelect.getHostProps(this,o),e.getReactMountReady().enqueue(trapBubbledEventsLocal,this);break;case"textarea":ReactDOMTextarea.mountWrapper(this,o,t),o=ReactDOMTextarea.getHostProps(this,o),e.getReactMountReady().enqueue(trapBubbledEventsLocal,this)}assertValidProps(this,o);var a,s;if(null!=t?(a=t._namespaceURI,s=t._tag):n._tag&&(a=n._namespaceURI,s=n._tag),(null==a||a===DOMNamespaces.svg&&"foreignobject"===s)&&(a=DOMNamespaces.html),a===DOMNamespaces.html&&("svg"===this._tag?a=DOMNamespaces.svg:"math"===this._tag&&(a=DOMNamespaces.mathml)),this._namespaceURI=a,"production"!==("production")){var i;null!=t?i=t._ancestorInfo:n._tag&&(i=n._ancestorInfo),i&&validateDOMNesting(this._tag,this,i),this._ancestorInfo=validateDOMNesting.updatedAncestorInfo(i,this._tag,this)}var u;if(e.useCreateElement){var l,p=n._ownerDocument;if(a===DOMNamespaces.html)if("script"===this._tag){var c=p.createElement("div"),d=this._currentElement.type;c.innerHTML="<"+d+"></"+d+">",l=c.removeChild(c.firstChild)}else l=o.is?p.createElement(this._currentElement.type,o.is):p.createElement(this._currentElement.type);else l=p.createElementNS(a,this._currentElement.type);ReactDOMComponentTree.precacheNode(this,l),this._flags|=Flags.hasCachedChildNodes,this._hostParent||DOMPropertyOperations.setAttributeForRoot(l),this._updateDOMProperties(null,o,e);var h=DOMLazyTree(l);this._createInitialChildren(e,o,r,h),u=h}else{var g=this._createOpenTagMarkupAndPutListeners(e,o),m=this._createContentMarkup(e,o,r);u=!m&&omittedCloseTags[this._tag]?g+"/>":g+">"+m+"</"+this._currentElement.type+">"}switch(this._tag){case"input":e.getReactMountReady().enqueue(inputPostMount,this),o.autoFocus&&e.getReactMountReady().enqueue(AutoFocusUtils.focusDOMComponent,this);break;case"textarea":e.getReactMountReady().enqueue(textareaPostMount,this),o.autoFocus&&e.getReactMountReady().enqueue(AutoFocusUtils.focusDOMComponent,this);break;case"select":o.autoFocus&&e.getReactMountReady().enqueue(AutoFocusUtils.focusDOMComponent,this);break;case"button":o.autoFocus&&e.getReactMountReady().enqueue(AutoFocusUtils.focusDOMComponent,this);break;case"option":e.getReactMountReady().enqueue(optionPostMount,this)}return u},_createOpenTagMarkupAndPutListeners:function(e,t){var n="<"+this._currentElement.type;for(var r in t)if(t.hasOwnProperty(r)){var o=t[r];if(null!=o)if(registrationNameModules.hasOwnProperty(r))o&&enqueuePutListener(this,r,o,e);else{r===STYLE&&(o&&("production"!==("production")&&(this._previousStyle=o),o=this._previousStyleCopy=_assign({},t.style)),o=CSSPropertyOperations.createMarkupForStyles(o,this));var a=null;null!=this._tag&&isCustomComponent(this._tag,t)?RESERVED_PROPS.hasOwnProperty(r)||(a=DOMPropertyOperations.createMarkupForCustomAttribute(r,o)):a=DOMPropertyOperations.createMarkupForProperty(r,o),a&&(n+=" "+a)}}return e.renderToStaticMarkup?n:(this._hostParent||(n+=" "+DOMPropertyOperations.createMarkupForRoot()),n+=" "+DOMPropertyOperations.createMarkupForID(this._domID))},_createContentMarkup:function(e,t,n){var r="",o=t.dangerouslySetInnerHTML;if(null!=o)null!=o.__html&&(r=o.__html);else{var a=CONTENT_TYPES[typeof t.children]?t.children:null,s=null!=a?null:t.children;if(null!=a)r=escapeTextContentForBrowser(a),"production"!==("production")&&setContentChildForInstrumentation.call(this,a);else if(null!=s){var i=this.mountChildren(s,e,n);r=i.join("")}}return newlineEatingTags[this._tag]&&"\n"===r.charAt(0)?"\n"+r:r},_createInitialChildren:function(e,t,n,r){var o=t.dangerouslySetInnerHTML;if(null!=o)null!=o.__html&&DOMLazyTree.queueHTML(r,o.__html);else{var a=CONTENT_TYPES[typeof t.children]?t.children:null,s=null!=a?null:t.children;if(null!=a)"production"!==("production")&&setContentChildForInstrumentation.call(this,a),DOMLazyTree.queueText(r,a);else if(null!=s)for(var i=this.mountChildren(s,e,n),u=0;u<i.length;u++)DOMLazyTree.queueChild(r,i[u])}},receiveComponent:function(e,t,n){var r=this._currentElement;this._currentElement=e,this.updateComponent(t,r,e,n)},updateComponent:function(e,t,n,r){var o=t.props,a=this._currentElement.props;switch(this._tag){case"button":o=ReactDOMButton.getHostProps(this,o),a=ReactDOMButton.getHostProps(this,a);break;case"input":o=ReactDOMInput.getHostProps(this,o),a=ReactDOMInput.getHostProps(this,a);break;case"option":o=ReactDOMOption.getHostProps(this,o),a=ReactDOMOption.getHostProps(this,a);break;case"select":o=ReactDOMSelect.getHostProps(this,o),a=ReactDOMSelect.getHostProps(this,a);break;case"textarea":o=ReactDOMTextarea.getHostProps(this,o),a=ReactDOMTextarea.getHostProps(this,a)}switch(assertValidProps(this,a),this._updateDOMProperties(o,a,e),this._updateDOMChildren(o,a,e,r),this._tag){case"input":ReactDOMInput.updateWrapper(this);break;case"textarea":ReactDOMTextarea.updateWrapper(this);break;case"select":e.getReactMountReady().enqueue(postUpdateSelectWrapper,this)}},_updateDOMProperties:function(e,t,n){var r,o,a;for(r in e)if(!t.hasOwnProperty(r)&&e.hasOwnProperty(r)&&null!=e[r])if(r===STYLE){var s=this._previousStyleCopy;for(o in s)s.hasOwnProperty(o)&&(a=a||{},a[o]="");this._previousStyleCopy=null}else registrationNameModules.hasOwnProperty(r)?e[r]&&deleteListener(this,r):isCustomComponent(this._tag,e)?RESERVED_PROPS.hasOwnProperty(r)||DOMPropertyOperations.deleteValueForAttribute(getNode(this),r):(DOMProperty.properties[r]||DOMProperty.isCustomAttribute(r))&&DOMPropertyOperations.deleteValueForProperty(getNode(this),r);for(r in t){var i=t[r],u=r===STYLE?this._previousStyleCopy:null!=e?e[r]:void 0;if(t.hasOwnProperty(r)&&i!==u&&(null!=i||null!=u))if(r===STYLE)if(i?("production"!==("production")&&(checkAndWarnForMutatedStyle(this._previousStyleCopy,this._previousStyle,this),this._previousStyle=i),i=this._previousStyleCopy=_assign({},i)):this._previousStyleCopy=null,u){for(o in u)!u.hasOwnProperty(o)||i&&i.hasOwnProperty(o)||(a=a||{},a[o]="");for(o in i)i.hasOwnProperty(o)&&u[o]!==i[o]&&(a=a||{},a[o]=i[o])}else a=i;else if(registrationNameModules.hasOwnProperty(r))i?enqueuePutListener(this,r,i,n):u&&deleteListener(this,r);else if(isCustomComponent(this._tag,t))RESERVED_PROPS.hasOwnProperty(r)||DOMPropertyOperations.setValueForAttribute(getNode(this),r,i);else if(DOMProperty.properties[r]||DOMProperty.isCustomAttribute(r)){var l=getNode(this);null!=i?DOMPropertyOperations.setValueForProperty(l,r,i):DOMPropertyOperations.deleteValueForProperty(l,r)}}a&&CSSPropertyOperations.setValueForStyles(getNode(this),a,this)},_updateDOMChildren:function(e,t,n,r){var o=CONTENT_TYPES[typeof e.children]?e.children:null,a=CONTENT_TYPES[typeof t.children]?t.children:null,s=e.dangerouslySetInnerHTML&&e.dangerouslySetInnerHTML.__html,i=t.dangerouslySetInnerHTML&&t.dangerouslySetInnerHTML.__html,u=null!=o?null:e.children,l=null!=a?null:t.children,p=null!=o||null!=s,c=null!=a||null!=i;null!=u&&null==l?this.updateChildren(null,n,r):p&&!c&&(this.updateTextContent(""),"production"!==("production")&&ReactInstrumentation.debugTool.onSetChildren(this._debugID,[])),null!=a?o!==a&&(this.updateTextContent(""+a),"production"!==("production")&&setContentChildForInstrumentation.call(this,a)):null!=i?(s!==i&&this.updateMarkup(""+i),"production"!==("production")&&ReactInstrumentation.debugTool.onSetChildren(this._debugID,[])):null!=l&&("production"!==("production")&&setContentChildForInstrumentation.call(this,null),this.updateChildren(l,n,r))},getHostNode:function(){return getNode(this)},unmountComponent:function(e){switch(this._tag){case"audio":case"form":case"iframe":case"img":case"link":case"object":case"source":case"video":var t=this._wrapperState.listeners;if(t)for(var n=0;n<t.length;n++)t[n].remove();break;case"html":case"head":case"body": false?invariant(!1,"<%s> tried to unmount. Because of cross-browser quirks it is impossible to unmount some top-level components (eg <html>, <head>, and <body>) reliably and efficiently. To fix this, have a single top-level component that never unmounts render these elements.",this._tag):_prodInvariant("66",this._tag)}this.unmountChildren(e),ReactDOMComponentTree.uncacheNode(this),EventPluginHub.deleteAllListeners(this),this._rootNodeID=0,this._domID=0,this._wrapperState=null,"production"!==("production")&&setContentChildForInstrumentation.call(this,null)},getPublicInstance:function(){return getNode(this)}},_assign(ReactDOMComponent.prototype,ReactDOMComponent.Mixin,ReactMultiChild.Mixin),module.exports=ReactDOMComponent;
+	"use strict";function getDeclarationErrorAddendum(e){if(e){var t=e._currentElement._owner||null;if(t){var n=t.getName();if(n)return" This DOM node was rendered by `"+n+"`."}}return""}function friendlyStringify(e){if("object"==typeof e){if(Array.isArray(e))return"["+e.map(friendlyStringify).join(", ")+"]";var t=[];for(var n in e)if(Object.prototype.hasOwnProperty.call(e,n)){var r=/^[a-z$_][\w$_]*$/i.test(n)?n:JSON.stringify(n);t.push(r+": "+friendlyStringify(e[n]))}return"{"+t.join(", ")+"}"}return"string"==typeof e?JSON.stringify(e):"function"==typeof e?"[function object]":String(e)}function checkAndWarnForMutatedStyle(e,t,n){if(null!=e&&null!=t&&!shallowEqual(e,t)){var r,o=n._tag,a=n._currentElement._owner;a&&(r=a.getName());var s=r+"|"+o;styleMutationWarning.hasOwnProperty(s)||(styleMutationWarning[s]=!0, false?warning(!1,"`%s` was passed a style object that has previously been mutated. Mutating `style` is deprecated. Consider cloning it beforehand. Check the `render` %s. Previous style: %s. Mutated style: %s.",o,a?"of `"+r+"`":"using <"+o+">",friendlyStringify(e),friendlyStringify(t)):void 0)}}function assertValidProps(e,t){t&&(voidElementTags[e._tag]&&(null!=t.children||null!=t.dangerouslySetInnerHTML? false?invariant(!1,"%s is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`.%s",e._tag,e._currentElement._owner?" Check the render method of "+e._currentElement._owner.getName()+".":""):_prodInvariant("137",e._tag,e._currentElement._owner?" Check the render method of "+e._currentElement._owner.getName()+".":""):void 0),null!=t.dangerouslySetInnerHTML&&(null!=t.children? false?invariant(!1,"Can only set one of `children` or `props.dangerouslySetInnerHTML`."):_prodInvariant("60"):void 0,"object"==typeof t.dangerouslySetInnerHTML&&HTML in t.dangerouslySetInnerHTML?void 0: false?invariant(!1,"`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://fb.me/react-invariant-dangerously-set-inner-html for more information."):_prodInvariant("61")),"production"!==("production")&&( false?warning(null==t.innerHTML,"Directly setting property `innerHTML` is not permitted. For more information, lookup documentation on `dangerouslySetInnerHTML`."):void 0, false?warning(t.suppressContentEditableWarning||!t.contentEditable||null==t.children,"A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional."):void 0, false?warning(null==t.onFocusIn&&null==t.onFocusOut,"React uses onFocus and onBlur instead of onFocusIn and onFocusOut. All React events are normalized to bubble, so onFocusIn and onFocusOut are not needed/supported by React."):void 0),null!=t.style&&"object"!=typeof t.style? false?invariant(!1,"The `style` prop expects a mapping from style properties to values, not a string. For example, style={{marginRight: spacing + 'em'}} when using JSX.%s",getDeclarationErrorAddendum(e)):_prodInvariant("62",getDeclarationErrorAddendum(e)):void 0)}function enqueuePutListener(e,t,n,r){if(!(r instanceof ReactServerRenderingTransaction)){"production"!==("production")&&( false?warning("onScroll"!==t||isEventSupported("scroll",!0),"This browser doesn't support the `onScroll` event"):void 0);var o=e._hostContainerInfo,a=o._node&&o._node.nodeType===DOC_FRAGMENT_TYPE,s=a?o._node:o._ownerDocument;listenTo(t,s),r.getReactMountReady().enqueue(putListener,{inst:e,registrationName:t,listener:n})}}function putListener(){var e=this;EventPluginHub.putListener(e.inst,e.registrationName,e.listener)}function inputPostMount(){var e=this;ReactDOMInput.postMountWrapper(e)}function textareaPostMount(){var e=this;ReactDOMTextarea.postMountWrapper(e)}function optionPostMount(){var e=this;ReactDOMOption.postMountWrapper(e)}function trapBubbledEventsLocal(){var e=this;e._rootNodeID?void 0: false?invariant(!1,"Must be mounted to trap events"):_prodInvariant("63");var t=getNode(e);switch(t?void 0: false?invariant(!1,"trapBubbledEvent(...): Requires node to be rendered."):_prodInvariant("64"),e._tag){case"iframe":case"object":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topLoad,"load",t)];break;case"video":case"audio":e._wrapperState.listeners=[];for(var n in mediaEvents)mediaEvents.hasOwnProperty(n)&&e._wrapperState.listeners.push(ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes[n],mediaEvents[n],t));break;case"source":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topError,"error",t)];break;case"img":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topError,"error",t),ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topLoad,"load",t)];break;case"form":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topReset,"reset",t),ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topSubmit,"submit",t)];break;case"input":case"select":case"textarea":e._wrapperState.listeners=[ReactBrowserEventEmitter.trapBubbledEvent(EventConstants.topLevelTypes.topInvalid,"invalid",t)]}}function postUpdateSelectWrapper(){ReactDOMSelect.postUpdateWrapper(this)}function validateDangerousTag(e){hasOwnProperty.call(validatedTagCache,e)||(VALID_TAG_REGEX.test(e)?void 0: false?invariant(!1,"Invalid tag: %s",e):_prodInvariant("65",e),validatedTagCache[e]=!0)}function isCustomComponent(e,t){return e.indexOf("-")>=0||null!=t.is}function ReactDOMComponent(e){var t=e.type;validateDangerousTag(t),this._currentElement=e,this._tag=t.toLowerCase(),this._namespaceURI=null,this._renderedChildren=null,this._previousStyle=null,this._previousStyleCopy=null,this._hostNode=null,this._hostParent=null,this._rootNodeID=0,this._domID=0,this._hostContainerInfo=null,this._wrapperState=null,this._topLevelWrapper=null,this._flags=0,"production"!==("production")&&(this._ancestorInfo=null,setAndValidateContentChildDev.call(this,null))}var _prodInvariant=__webpack_require__("./node_modules/react/lib/reactProdInvariant.js"),_assign=__webpack_require__("./node_modules/object-assign/index.js"),AutoFocusUtils=__webpack_require__("./node_modules/react/lib/AutoFocusUtils.js"),CSSPropertyOperations=__webpack_require__("./node_modules/react/lib/CSSPropertyOperations.js"),DOMLazyTree=__webpack_require__("./node_modules/react/lib/DOMLazyTree.js"),DOMNamespaces=__webpack_require__("./node_modules/react/lib/DOMNamespaces.js"),DOMProperty=__webpack_require__("./node_modules/react/lib/DOMProperty.js"),DOMPropertyOperations=__webpack_require__("./node_modules/react/lib/DOMPropertyOperations.js"),EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPluginHub=__webpack_require__("./node_modules/react/lib/EventPluginHub.js"),EventPluginRegistry=__webpack_require__("./node_modules/react/lib/EventPluginRegistry.js"),ReactBrowserEventEmitter=__webpack_require__("./node_modules/react/lib/ReactBrowserEventEmitter.js"),ReactDOMButton=__webpack_require__("./node_modules/react/lib/ReactDOMButton.js"),ReactDOMComponentFlags=__webpack_require__("./node_modules/react/lib/ReactDOMComponentFlags.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),ReactDOMInput=__webpack_require__("./node_modules/react/lib/ReactDOMInput.js"),ReactDOMOption=__webpack_require__("./node_modules/react/lib/ReactDOMOption.js"),ReactDOMSelect=__webpack_require__("./node_modules/react/lib/ReactDOMSelect.js"),ReactDOMTextarea=__webpack_require__("./node_modules/react/lib/ReactDOMTextarea.js"),ReactInstrumentation=__webpack_require__("./node_modules/react/lib/ReactInstrumentation.js"),ReactMultiChild=__webpack_require__("./node_modules/react/lib/ReactMultiChild.js"),ReactServerRenderingTransaction=__webpack_require__("./node_modules/react/lib/ReactServerRenderingTransaction.js"),emptyFunction=__webpack_require__("./node_modules/fbjs/lib/emptyFunction.js"),escapeTextContentForBrowser=__webpack_require__("./node_modules/react/lib/escapeTextContentForBrowser.js"),invariant=__webpack_require__("./node_modules/fbjs/lib/invariant.js"),isEventSupported=__webpack_require__("./node_modules/react/lib/isEventSupported.js"),keyOf=__webpack_require__("./node_modules/fbjs/lib/keyOf.js"),shallowEqual=__webpack_require__("./node_modules/fbjs/lib/shallowEqual.js"),validateDOMNesting=__webpack_require__("./node_modules/react/lib/validateDOMNesting.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),Flags=ReactDOMComponentFlags,deleteListener=EventPluginHub.deleteListener,getNode=ReactDOMComponentTree.getNodeFromInstance,listenTo=ReactBrowserEventEmitter.listenTo,registrationNameModules=EventPluginRegistry.registrationNameModules,CONTENT_TYPES={string:!0,number:!0},STYLE=keyOf({style:null}),HTML=keyOf({__html:null}),RESERVED_PROPS={children:null,dangerouslySetInnerHTML:null,suppressContentEditableWarning:null},DOC_FRAGMENT_TYPE=11,styleMutationWarning={},setAndValidateContentChildDev=emptyFunction;"production"!==("production")&&(setAndValidateContentChildDev=function(e){var t=null!=this._contentDebugID,n=this._debugID,r=-n;return null==e?(t&&ReactInstrumentation.debugTool.onUnmountComponent(this._contentDebugID),void(this._contentDebugID=null)):(validateDOMNesting(null,String(e),this,this._ancestorInfo),this._contentDebugID=r,void(t?(ReactInstrumentation.debugTool.onBeforeUpdateComponent(r,e),ReactInstrumentation.debugTool.onUpdateComponent(r)):(ReactInstrumentation.debugTool.onBeforeMountComponent(r,e,n),ReactInstrumentation.debugTool.onMountComponent(r),ReactInstrumentation.debugTool.onSetChildren(n,[r]))))});var mediaEvents={topAbort:"abort",topCanPlay:"canplay",topCanPlayThrough:"canplaythrough",topDurationChange:"durationchange",topEmptied:"emptied",topEncrypted:"encrypted",topEnded:"ended",topError:"error",topLoadedData:"loadeddata",topLoadedMetadata:"loadedmetadata",topLoadStart:"loadstart",topPause:"pause",topPlay:"play",topPlaying:"playing",topProgress:"progress",topRateChange:"ratechange",topSeeked:"seeked",topSeeking:"seeking",topStalled:"stalled",topSuspend:"suspend",topTimeUpdate:"timeupdate",topVolumeChange:"volumechange",topWaiting:"waiting"},omittedCloseTags={area:!0,base:!0,br:!0,col:!0,embed:!0,hr:!0,img:!0,input:!0,keygen:!0,link:!0,meta:!0,param:!0,source:!0,track:!0,wbr:!0},newlineEatingTags={listing:!0,pre:!0,textarea:!0},voidElementTags=_assign({menuitem:!0},omittedCloseTags),VALID_TAG_REGEX=/^[a-zA-Z][a-zA-Z:_\.\-\d]*$/,validatedTagCache={},hasOwnProperty={}.hasOwnProperty,globalIdCounter=1;ReactDOMComponent.displayName="ReactDOMComponent",ReactDOMComponent.Mixin={mountComponent:function(e,t,n,r){this._rootNodeID=globalIdCounter++,this._domID=n._idCounter++,this._hostParent=t,this._hostContainerInfo=n;var o=this._currentElement.props;switch(this._tag){case"audio":case"form":case"iframe":case"img":case"link":case"object":case"source":case"video":this._wrapperState={listeners:null},e.getReactMountReady().enqueue(trapBubbledEventsLocal,this);break;case"button":o=ReactDOMButton.getHostProps(this,o,t);break;case"input":ReactDOMInput.mountWrapper(this,o,t),o=ReactDOMInput.getHostProps(this,o),e.getReactMountReady().enqueue(trapBubbledEventsLocal,this);break;case"option":ReactDOMOption.mountWrapper(this,o,t),o=ReactDOMOption.getHostProps(this,o);break;case"select":ReactDOMSelect.mountWrapper(this,o,t),o=ReactDOMSelect.getHostProps(this,o),e.getReactMountReady().enqueue(trapBubbledEventsLocal,this);break;case"textarea":ReactDOMTextarea.mountWrapper(this,o,t),o=ReactDOMTextarea.getHostProps(this,o),e.getReactMountReady().enqueue(trapBubbledEventsLocal,this)}assertValidProps(this,o);var a,s;if(null!=t?(a=t._namespaceURI,s=t._tag):n._tag&&(a=n._namespaceURI,s=n._tag),(null==a||a===DOMNamespaces.svg&&"foreignobject"===s)&&(a=DOMNamespaces.html),a===DOMNamespaces.html&&("svg"===this._tag?a=DOMNamespaces.svg:"math"===this._tag&&(a=DOMNamespaces.mathml)),this._namespaceURI=a,"production"!==("production")){var i;null!=t?i=t._ancestorInfo:n._tag&&(i=n._ancestorInfo),i&&validateDOMNesting(this._tag,null,this,i),this._ancestorInfo=validateDOMNesting.updatedAncestorInfo(i,this._tag,this)}var l;if(e.useCreateElement){var u,p=n._ownerDocument;if(a===DOMNamespaces.html)if("script"===this._tag){var c=p.createElement("div"),d=this._currentElement.type;c.innerHTML="<"+d+"></"+d+">",u=c.removeChild(c.firstChild)}else u=o.is?p.createElement(this._currentElement.type,o.is):p.createElement(this._currentElement.type);else u=p.createElementNS(a,this._currentElement.type);ReactDOMComponentTree.precacheNode(this,u),this._flags|=Flags.hasCachedChildNodes,this._hostParent||DOMPropertyOperations.setAttributeForRoot(u),this._updateDOMProperties(null,o,e);var h=DOMLazyTree(u);this._createInitialChildren(e,o,r,h),l=h}else{var g=this._createOpenTagMarkupAndPutListeners(e,o),v=this._createContentMarkup(e,o,r);l=!v&&omittedCloseTags[this._tag]?g+"/>":g+">"+v+"</"+this._currentElement.type+">"}switch(this._tag){case"input":e.getReactMountReady().enqueue(inputPostMount,this),o.autoFocus&&e.getReactMountReady().enqueue(AutoFocusUtils.focusDOMComponent,this);break;case"textarea":e.getReactMountReady().enqueue(textareaPostMount,this),o.autoFocus&&e.getReactMountReady().enqueue(AutoFocusUtils.focusDOMComponent,this);break;case"select":o.autoFocus&&e.getReactMountReady().enqueue(AutoFocusUtils.focusDOMComponent,this);break;case"button":o.autoFocus&&e.getReactMountReady().enqueue(AutoFocusUtils.focusDOMComponent,this);break;case"option":e.getReactMountReady().enqueue(optionPostMount,this)}return l},_createOpenTagMarkupAndPutListeners:function(e,t){var n="<"+this._currentElement.type;for(var r in t)if(t.hasOwnProperty(r)){var o=t[r];if(null!=o)if(registrationNameModules.hasOwnProperty(r))o&&enqueuePutListener(this,r,o,e);else{r===STYLE&&(o&&("production"!==("production")&&(this._previousStyle=o),o=this._previousStyleCopy=_assign({},t.style)),o=CSSPropertyOperations.createMarkupForStyles(o,this));var a=null;null!=this._tag&&isCustomComponent(this._tag,t)?RESERVED_PROPS.hasOwnProperty(r)||(a=DOMPropertyOperations.createMarkupForCustomAttribute(r,o)):a=DOMPropertyOperations.createMarkupForProperty(r,o),a&&(n+=" "+a)}}return e.renderToStaticMarkup?n:(this._hostParent||(n+=" "+DOMPropertyOperations.createMarkupForRoot()),n+=" "+DOMPropertyOperations.createMarkupForID(this._domID))},_createContentMarkup:function(e,t,n){var r="",o=t.dangerouslySetInnerHTML;if(null!=o)null!=o.__html&&(r=o.__html);else{var a=CONTENT_TYPES[typeof t.children]?t.children:null,s=null!=a?null:t.children;if(null!=a)r=escapeTextContentForBrowser(a),"production"!==("production")&&setAndValidateContentChildDev.call(this,a);else if(null!=s){var i=this.mountChildren(s,e,n);r=i.join("")}}return newlineEatingTags[this._tag]&&"\n"===r.charAt(0)?"\n"+r:r},_createInitialChildren:function(e,t,n,r){var o=t.dangerouslySetInnerHTML;if(null!=o)null!=o.__html&&DOMLazyTree.queueHTML(r,o.__html);else{var a=CONTENT_TYPES[typeof t.children]?t.children:null,s=null!=a?null:t.children;if(null!=a)"production"!==("production")&&setAndValidateContentChildDev.call(this,a),DOMLazyTree.queueText(r,a);else if(null!=s)for(var i=this.mountChildren(s,e,n),l=0;l<i.length;l++)DOMLazyTree.queueChild(r,i[l])}},receiveComponent:function(e,t,n){var r=this._currentElement;this._currentElement=e,this.updateComponent(t,r,e,n)},updateComponent:function(e,t,n,r){var o=t.props,a=this._currentElement.props;switch(this._tag){case"button":o=ReactDOMButton.getHostProps(this,o),a=ReactDOMButton.getHostProps(this,a);break;case"input":o=ReactDOMInput.getHostProps(this,o),a=ReactDOMInput.getHostProps(this,a);break;case"option":o=ReactDOMOption.getHostProps(this,o),a=ReactDOMOption.getHostProps(this,a);break;case"select":o=ReactDOMSelect.getHostProps(this,o),a=ReactDOMSelect.getHostProps(this,a);break;case"textarea":o=ReactDOMTextarea.getHostProps(this,o),a=ReactDOMTextarea.getHostProps(this,a)}switch(assertValidProps(this,a),this._updateDOMProperties(o,a,e),this._updateDOMChildren(o,a,e,r),this._tag){case"input":ReactDOMInput.updateWrapper(this);break;case"textarea":ReactDOMTextarea.updateWrapper(this);break;case"select":e.getReactMountReady().enqueue(postUpdateSelectWrapper,this)}},_updateDOMProperties:function(e,t,n){var r,o,a;for(r in e)if(!t.hasOwnProperty(r)&&e.hasOwnProperty(r)&&null!=e[r])if(r===STYLE){var s=this._previousStyleCopy;for(o in s)s.hasOwnProperty(o)&&(a=a||{},a[o]="");this._previousStyleCopy=null}else registrationNameModules.hasOwnProperty(r)?e[r]&&deleteListener(this,r):isCustomComponent(this._tag,e)?RESERVED_PROPS.hasOwnProperty(r)||DOMPropertyOperations.deleteValueForAttribute(getNode(this),r):(DOMProperty.properties[r]||DOMProperty.isCustomAttribute(r))&&DOMPropertyOperations.deleteValueForProperty(getNode(this),r);for(r in t){var i=t[r],l=r===STYLE?this._previousStyleCopy:null!=e?e[r]:void 0;if(t.hasOwnProperty(r)&&i!==l&&(null!=i||null!=l))if(r===STYLE)if(i?("production"!==("production")&&(checkAndWarnForMutatedStyle(this._previousStyleCopy,this._previousStyle,this),this._previousStyle=i),i=this._previousStyleCopy=_assign({},i)):this._previousStyleCopy=null,l){for(o in l)!l.hasOwnProperty(o)||i&&i.hasOwnProperty(o)||(a=a||{},a[o]="");for(o in i)i.hasOwnProperty(o)&&l[o]!==i[o]&&(a=a||{},a[o]=i[o])}else a=i;else if(registrationNameModules.hasOwnProperty(r))i?enqueuePutListener(this,r,i,n):l&&deleteListener(this,r);else if(isCustomComponent(this._tag,t))RESERVED_PROPS.hasOwnProperty(r)||DOMPropertyOperations.setValueForAttribute(getNode(this),r,i);else if(DOMProperty.properties[r]||DOMProperty.isCustomAttribute(r)){var u=getNode(this);null!=i?DOMPropertyOperations.setValueForProperty(u,r,i):DOMPropertyOperations.deleteValueForProperty(u,r)}}a&&CSSPropertyOperations.setValueForStyles(getNode(this),a,this)},_updateDOMChildren:function(e,t,n,r){var o=CONTENT_TYPES[typeof e.children]?e.children:null,a=CONTENT_TYPES[typeof t.children]?t.children:null,s=e.dangerouslySetInnerHTML&&e.dangerouslySetInnerHTML.__html,i=t.dangerouslySetInnerHTML&&t.dangerouslySetInnerHTML.__html,l=null!=o?null:e.children,u=null!=a?null:t.children,p=null!=o||null!=s,c=null!=a||null!=i;null!=l&&null==u?this.updateChildren(null,n,r):p&&!c&&(this.updateTextContent(""),"production"!==("production")&&ReactInstrumentation.debugTool.onSetChildren(this._debugID,[])),null!=a?o!==a&&(this.updateTextContent(""+a),"production"!==("production")&&setAndValidateContentChildDev.call(this,a)):null!=i?(s!==i&&this.updateMarkup(""+i),"production"!==("production")&&ReactInstrumentation.debugTool.onSetChildren(this._debugID,[])):null!=u&&("production"!==("production")&&setAndValidateContentChildDev.call(this,null),this.updateChildren(u,n,r))},getHostNode:function(){return getNode(this)},unmountComponent:function(e){switch(this._tag){case"audio":case"form":case"iframe":case"img":case"link":case"object":case"source":case"video":var t=this._wrapperState.listeners;if(t)for(var n=0;n<t.length;n++)t[n].remove();break;case"html":case"head":case"body": false?invariant(!1,"<%s> tried to unmount. Because of cross-browser quirks it is impossible to unmount some top-level components (eg <html>, <head>, and <body>) reliably and efficiently. To fix this, have a single top-level component that never unmounts render these elements.",this._tag):_prodInvariant("66",this._tag)}this.unmountChildren(e),ReactDOMComponentTree.uncacheNode(this),EventPluginHub.deleteAllListeners(this),this._rootNodeID=0,this._domID=0,this._wrapperState=null,"production"!==("production")&&setAndValidateContentChildDev.call(this,null)},getPublicInstance:function(){return getNode(this)}},_assign(ReactDOMComponent.prototype,ReactDOMComponent.Mixin,ReactMultiChild.Mixin),module.exports=ReactDOMComponent;
 
 /***/ },
 
@@ -5800,7 +6649,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/ReactBrowserEventEmitter.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function getListeningForDocument(e){return Object.prototype.hasOwnProperty.call(e,topListenersIDKey)||(e[topListenersIDKey]=reactTopListenersCounter++,alreadyListeningTo[e[topListenersIDKey]]={}),alreadyListeningTo[e[topListenersIDKey]]}var _assign=__webpack_require__("./node_modules/object-assign/index.js"),EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPluginRegistry=__webpack_require__("./node_modules/react/lib/EventPluginRegistry.js"),ReactEventEmitterMixin=__webpack_require__("./node_modules/react/lib/ReactEventEmitterMixin.js"),ViewportMetrics=__webpack_require__("./node_modules/react/lib/ViewportMetrics.js"),getVendorPrefixedEventName=__webpack_require__("./node_modules/react/lib/getVendorPrefixedEventName.js"),isEventSupported=__webpack_require__("./node_modules/react/lib/isEventSupported.js"),hasEventPageXY,alreadyListeningTo={},isMonitoringScrollValue=!1,reactTopListenersCounter=0,topEventMapping={topAbort:"abort",topAnimationEnd:getVendorPrefixedEventName("animationend")||"animationend",topAnimationIteration:getVendorPrefixedEventName("animationiteration")||"animationiteration",topAnimationStart:getVendorPrefixedEventName("animationstart")||"animationstart",topBlur:"blur",topCanPlay:"canplay",topCanPlayThrough:"canplaythrough",topChange:"change",topClick:"click",topCompositionEnd:"compositionend",topCompositionStart:"compositionstart",topCompositionUpdate:"compositionupdate",topContextMenu:"contextmenu",topCopy:"copy",topCut:"cut",topDoubleClick:"dblclick",topDrag:"drag",topDragEnd:"dragend",topDragEnter:"dragenter",topDragExit:"dragexit",topDragLeave:"dragleave",topDragOver:"dragover",topDragStart:"dragstart",topDrop:"drop",topDurationChange:"durationchange",topEmptied:"emptied",topEncrypted:"encrypted",topEnded:"ended",topError:"error",topFocus:"focus",topInput:"input",topKeyDown:"keydown",topKeyPress:"keypress",topKeyUp:"keyup",topLoadedData:"loadeddata",topLoadedMetadata:"loadedmetadata",topLoadStart:"loadstart",topMouseDown:"mousedown",topMouseMove:"mousemove",topMouseOut:"mouseout",topMouseOver:"mouseover",topMouseUp:"mouseup",topPaste:"paste",topPause:"pause",topPlay:"play",topPlaying:"playing",topProgress:"progress",topRateChange:"ratechange",topScroll:"scroll",topSeeked:"seeked",topSeeking:"seeking",topSelectionChange:"selectionchange",topStalled:"stalled",topSuspend:"suspend",topTextInput:"textInput",topTimeUpdate:"timeupdate",topTouchCancel:"touchcancel",topTouchEnd:"touchend",topTouchMove:"touchmove",topTouchStart:"touchstart",topTransitionEnd:getVendorPrefixedEventName("transitionend")||"transitionend",topVolumeChange:"volumechange",topWaiting:"waiting",topWheel:"wheel"},topListenersIDKey="_reactListenersID"+String(Math.random()).slice(2),ReactBrowserEventEmitter=_assign({},ReactEventEmitterMixin,{ReactEventListener:null,injection:{injectReactEventListener:function(e){e.setHandleTopLevel(ReactBrowserEventEmitter.handleTopLevel),ReactBrowserEventEmitter.ReactEventListener=e}},setEnabled:function(e){ReactBrowserEventEmitter.ReactEventListener&&ReactBrowserEventEmitter.ReactEventListener.setEnabled(e)},isEnabled:function(){return!(!ReactBrowserEventEmitter.ReactEventListener||!ReactBrowserEventEmitter.ReactEventListener.isEnabled())},listenTo:function(e,t){for(var n=t,o=getListeningForDocument(n),r=EventPluginRegistry.registrationNameDependencies[e],a=EventConstants.topLevelTypes,i=0;i<r.length;i++){var p=r[i];o.hasOwnProperty(p)&&o[p]||(p===a.topWheel?isEventSupported("wheel")?ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topWheel,"wheel",n):isEventSupported("mousewheel")?ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topWheel,"mousewheel",n):ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topWheel,"DOMMouseScroll",n):p===a.topScroll?isEventSupported("scroll",!0)?ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(a.topScroll,"scroll",n):ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topScroll,"scroll",ReactBrowserEventEmitter.ReactEventListener.WINDOW_HANDLE):p===a.topFocus||p===a.topBlur?(isEventSupported("focus",!0)?(ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(a.topFocus,"focus",n),ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(a.topBlur,"blur",n)):isEventSupported("focusin")&&(ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topFocus,"focusin",n),ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topBlur,"focusout",n)),o[a.topBlur]=!0,o[a.topFocus]=!0):topEventMapping.hasOwnProperty(p)&&ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(p,topEventMapping[p],n),o[p]=!0)}},trapBubbledEvent:function(e,t,n){return ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(e,t,n)},trapCapturedEvent:function(e,t,n){return ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(e,t,n)},ensureScrollValueMonitoring:function(){if(void 0===hasEventPageXY&&(hasEventPageXY=document.createEvent&&"pageX"in document.createEvent("MouseEvent")),!hasEventPageXY&&!isMonitoringScrollValue){var e=ViewportMetrics.refreshScrollValues;ReactBrowserEventEmitter.ReactEventListener.monitorScrollValue(e),isMonitoringScrollValue=!0}}});module.exports=ReactBrowserEventEmitter;
+	"use strict";function getListeningForDocument(e){return Object.prototype.hasOwnProperty.call(e,topListenersIDKey)||(e[topListenersIDKey]=reactTopListenersCounter++,alreadyListeningTo[e[topListenersIDKey]]={}),alreadyListeningTo[e[topListenersIDKey]]}var _assign=__webpack_require__("./node_modules/object-assign/index.js"),EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPluginRegistry=__webpack_require__("./node_modules/react/lib/EventPluginRegistry.js"),ReactEventEmitterMixin=__webpack_require__("./node_modules/react/lib/ReactEventEmitterMixin.js"),ViewportMetrics=__webpack_require__("./node_modules/react/lib/ViewportMetrics.js"),getVendorPrefixedEventName=__webpack_require__("./node_modules/react/lib/getVendorPrefixedEventName.js"),isEventSupported=__webpack_require__("./node_modules/react/lib/isEventSupported.js"),hasEventPageXY,alreadyListeningTo={},isMonitoringScrollValue=!1,reactTopListenersCounter=0,topEventMapping={topAbort:"abort",topAnimationEnd:getVendorPrefixedEventName("animationend")||"animationend",topAnimationIteration:getVendorPrefixedEventName("animationiteration")||"animationiteration",topAnimationStart:getVendorPrefixedEventName("animationstart")||"animationstart",topBlur:"blur",topCanPlay:"canplay",topCanPlayThrough:"canplaythrough",topChange:"change",topClick:"click",topCompositionEnd:"compositionend",topCompositionStart:"compositionstart",topCompositionUpdate:"compositionupdate",topContextMenu:"contextmenu",topCopy:"copy",topCut:"cut",topDoubleClick:"dblclick",topDrag:"drag",topDragEnd:"dragend",topDragEnter:"dragenter",topDragExit:"dragexit",topDragLeave:"dragleave",topDragOver:"dragover",topDragStart:"dragstart",topDrop:"drop",topDurationChange:"durationchange",topEmptied:"emptied",topEncrypted:"encrypted",topEnded:"ended",topError:"error",topFocus:"focus",topInput:"input",topKeyDown:"keydown",topKeyPress:"keypress",topKeyUp:"keyup",topLoadedData:"loadeddata",topLoadedMetadata:"loadedmetadata",topLoadStart:"loadstart",topMouseDown:"mousedown",topMouseMove:"mousemove",topMouseOut:"mouseout",topMouseOver:"mouseover",topMouseUp:"mouseup",topPaste:"paste",topPause:"pause",topPlay:"play",topPlaying:"playing",topProgress:"progress",topRateChange:"ratechange",topScroll:"scroll",topSeeked:"seeked",topSeeking:"seeking",topSelectionChange:"selectionchange",topStalled:"stalled",topSuspend:"suspend",topTextInput:"textInput",topTimeUpdate:"timeupdate",topTouchCancel:"touchcancel",topTouchEnd:"touchend",topTouchMove:"touchmove",topTouchStart:"touchstart",topTransitionEnd:getVendorPrefixedEventName("transitionend")||"transitionend",topVolumeChange:"volumechange",topWaiting:"waiting",topWheel:"wheel"},topListenersIDKey="_reactListenersID"+String(Math.random()).slice(2),ReactBrowserEventEmitter=_assign({},ReactEventEmitterMixin,{ReactEventListener:null,injection:{injectReactEventListener:function(e){e.setHandleTopLevel(ReactBrowserEventEmitter.handleTopLevel),ReactBrowserEventEmitter.ReactEventListener=e}},setEnabled:function(e){ReactBrowserEventEmitter.ReactEventListener&&ReactBrowserEventEmitter.ReactEventListener.setEnabled(e)},isEnabled:function(){return!(!ReactBrowserEventEmitter.ReactEventListener||!ReactBrowserEventEmitter.ReactEventListener.isEnabled())},listenTo:function(e,t){for(var n=t,o=getListeningForDocument(n),r=EventPluginRegistry.registrationNameDependencies[e],a=EventConstants.topLevelTypes,i=0;i<r.length;i++){var p=r[i];o.hasOwnProperty(p)&&o[p]||(p===a.topWheel?isEventSupported("wheel")?ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topWheel,"wheel",n):isEventSupported("mousewheel")?ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topWheel,"mousewheel",n):ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topWheel,"DOMMouseScroll",n):p===a.topScroll?isEventSupported("scroll",!0)?ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(a.topScroll,"scroll",n):ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topScroll,"scroll",ReactBrowserEventEmitter.ReactEventListener.WINDOW_HANDLE):p===a.topFocus||p===a.topBlur?(isEventSupported("focus",!0)?(ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(a.topFocus,"focus",n),ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(a.topBlur,"blur",n)):isEventSupported("focusin")&&(ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topFocus,"focusin",n),ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(a.topBlur,"focusout",n)),o[a.topBlur]=!0,o[a.topFocus]=!0):topEventMapping.hasOwnProperty(p)&&ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(p,topEventMapping[p],n),o[p]=!0)}},trapBubbledEvent:function(e,t,n){return ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent(e,t,n)},trapCapturedEvent:function(e,t,n){return ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent(e,t,n)},supportsEventPageXY:function(){if(!document.createEvent)return!1;var e=document.createEvent("MouseEvent");return null!=e&&"pageX"in e},ensureScrollValueMonitoring:function(){if(void 0===hasEventPageXY&&(hasEventPageXY=ReactBrowserEventEmitter.supportsEventPageXY()),!hasEventPageXY&&!isMonitoringScrollValue){var e=ViewportMetrics.refreshScrollValues;ReactBrowserEventEmitter.ReactEventListener.monitorScrollValue(e),isMonitoringScrollValue=!0}}});module.exports=ReactBrowserEventEmitter;
 
 /***/ },
 
@@ -5835,7 +6684,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/ReactDOMInput.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function forceUpdateIfMounted(){this._rootNodeID&&ReactDOMInput.updateWrapper(this)}function isControlled(e){var t="checkbox"===e.type||"radio"===e.type;return t?void 0!==e.checked:void 0!==e.value}function _handleChange(e){var t=this._currentElement.props,n=LinkedValueUtils.executeOnChange(t,e);ReactUpdates.asap(forceUpdateIfMounted,this);var o=t.name;if("radio"===t.type&&null!=o){for(var r=ReactDOMComponentTree.getNodeFromInstance(this),a=r;a.parentNode;)a=a.parentNode;for(var l=a.querySelectorAll("input[name="+JSON.stringify(""+o)+'][type="radio"]'),d=0;d<l.length;d++){var i=l[d];if(i!==r&&i.form===r.form){var c=ReactDOMComponentTree.getInstanceFromNode(i);c?void 0: false?invariant(!1,"ReactDOMInput: Mixing React and non-React radio inputs with the same `name` is not supported."):_prodInvariant("90"),ReactUpdates.asap(forceUpdateIfMounted,c)}}}return n}var _prodInvariant=__webpack_require__("./node_modules/react/lib/reactProdInvariant.js"),_assign=__webpack_require__("./node_modules/object-assign/index.js"),DisabledInputUtils=__webpack_require__("./node_modules/react/lib/DisabledInputUtils.js"),DOMPropertyOperations=__webpack_require__("./node_modules/react/lib/DOMPropertyOperations.js"),LinkedValueUtils=__webpack_require__("./node_modules/react/lib/LinkedValueUtils.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),ReactUpdates=__webpack_require__("./node_modules/react/lib/ReactUpdates.js"),invariant=__webpack_require__("./node_modules/fbjs/lib/invariant.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),didWarnValueLink=!1,didWarnCheckedLink=!1,didWarnValueDefaultValue=!1,didWarnCheckedDefaultChecked=!1,didWarnControlledToUncontrolled=!1,didWarnUncontrolledToControlled=!1,ReactDOMInput={getHostProps:function(e,t){var n=LinkedValueUtils.getValue(t),o=LinkedValueUtils.getChecked(t),r=_assign({type:void 0,step:void 0,min:void 0,max:void 0},DisabledInputUtils.getHostProps(e,t),{defaultChecked:void 0,defaultValue:void 0,value:null!=n?n:e._wrapperState.initialValue,checked:null!=o?o:e._wrapperState.initialChecked,onChange:e._wrapperState.onChange});return r},mountWrapper:function(e,t){if(false){LinkedValueUtils.checkPropTypes("input",t,e._currentElement._owner);var n=e._currentElement._owner;void 0===t.valueLink||didWarnValueLink||("production"!==process.env.NODE_ENV?warning(!1,"`valueLink` prop on `input` is deprecated; set `value` and `onChange` instead."):void 0,didWarnValueLink=!0),void 0===t.checkedLink||didWarnCheckedLink||("production"!==process.env.NODE_ENV?warning(!1,"`checkedLink` prop on `input` is deprecated; set `value` and `onChange` instead."):void 0,didWarnCheckedLink=!0),void 0===t.checked||void 0===t.defaultChecked||didWarnCheckedDefaultChecked||("production"!==process.env.NODE_ENV?warning(!1,"%s contains an input of type %s with both checked and defaultChecked props. Input elements must be either controlled or uncontrolled (specify either the checked prop, or the defaultChecked prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://fb.me/react-controlled-components",n&&n.getName()||"A component",t.type):void 0,didWarnCheckedDefaultChecked=!0),void 0===t.value||void 0===t.defaultValue||didWarnValueDefaultValue||("production"!==process.env.NODE_ENV?warning(!1,"%s contains an input of type %s with both value and defaultValue props. Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://fb.me/react-controlled-components",n&&n.getName()||"A component",t.type):void 0,didWarnValueDefaultValue=!0)}var o=t.defaultValue;e._wrapperState={initialChecked:null!=t.checked?t.checked:t.defaultChecked,initialValue:null!=t.value?t.value:o,listeners:null,onChange:_handleChange.bind(e)},"production"!==("production")&&(e._wrapperState.controlled=isControlled(t))},updateWrapper:function(e){var t=e._currentElement.props;if(false){var n=isControlled(t),o=e._currentElement._owner;e._wrapperState.controlled||!n||didWarnUncontrolledToControlled||("production"!==process.env.NODE_ENV?warning(!1,"%s is changing an uncontrolled input of type %s to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://fb.me/react-controlled-components",o&&o.getName()||"A component",t.type):void 0,didWarnUncontrolledToControlled=!0),!e._wrapperState.controlled||n||didWarnControlledToUncontrolled||("production"!==process.env.NODE_ENV?warning(!1,"%s is changing a controlled input of type %s to be uncontrolled. Input elements should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://fb.me/react-controlled-components",o&&o.getName()||"A component",t.type):void 0,didWarnControlledToUncontrolled=!0)}var r=t.checked;null!=r&&DOMPropertyOperations.setValueForProperty(ReactDOMComponentTree.getNodeFromInstance(e),"checked",r||!1);var a=ReactDOMComponentTree.getNodeFromInstance(e),l=LinkedValueUtils.getValue(t);if(null!=l){var d=""+l;d!==a.value&&(a.value=d)}else null==t.value&&null!=t.defaultValue&&(a.defaultValue=""+t.defaultValue),null==t.checked&&null!=t.defaultChecked&&(a.defaultChecked=!!t.defaultChecked)},postMountWrapper:function(e){var t=e._currentElement.props,n=ReactDOMComponentTree.getNodeFromInstance(e);switch(t.type){case"submit":case"reset":break;case"color":case"date":case"datetime":case"datetime-local":case"month":case"time":case"week":n.value="",n.value=n.defaultValue;break;default:n.value=n.value}var o=n.name;""!==o&&(n.name=""),n.defaultChecked=!n.defaultChecked,n.defaultChecked=!n.defaultChecked,""!==o&&(n.name=o)}};module.exports=ReactDOMInput;
+	"use strict";function forceUpdateIfMounted(){this._rootNodeID&&ReactDOMInput.updateWrapper(this)}function isControlled(e){var t="checkbox"===e.type||"radio"===e.type;return t?null!=e.checked:null!=e.value}function _handleChange(e){var t=this._currentElement.props,n=LinkedValueUtils.executeOnChange(t,e);ReactUpdates.asap(forceUpdateIfMounted,this);var o=t.name;if("radio"===t.type&&null!=o){for(var r=ReactDOMComponentTree.getNodeFromInstance(this),a=r;a.parentNode;)a=a.parentNode;for(var l=a.querySelectorAll("input[name="+JSON.stringify(""+o)+'][type="radio"]'),d=0;d<l.length;d++){var i=l[d];if(i!==r&&i.form===r.form){var c=ReactDOMComponentTree.getInstanceFromNode(i);c?void 0: false?invariant(!1,"ReactDOMInput: Mixing React and non-React radio inputs with the same `name` is not supported."):_prodInvariant("90"),ReactUpdates.asap(forceUpdateIfMounted,c)}}}return n}var _prodInvariant=__webpack_require__("./node_modules/react/lib/reactProdInvariant.js"),_assign=__webpack_require__("./node_modules/object-assign/index.js"),DisabledInputUtils=__webpack_require__("./node_modules/react/lib/DisabledInputUtils.js"),DOMPropertyOperations=__webpack_require__("./node_modules/react/lib/DOMPropertyOperations.js"),LinkedValueUtils=__webpack_require__("./node_modules/react/lib/LinkedValueUtils.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),ReactUpdates=__webpack_require__("./node_modules/react/lib/ReactUpdates.js"),invariant=__webpack_require__("./node_modules/fbjs/lib/invariant.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),didWarnValueLink=!1,didWarnCheckedLink=!1,didWarnValueDefaultValue=!1,didWarnCheckedDefaultChecked=!1,didWarnControlledToUncontrolled=!1,didWarnUncontrolledToControlled=!1,ReactDOMInput={getHostProps:function(e,t){var n=LinkedValueUtils.getValue(t),o=LinkedValueUtils.getChecked(t),r=_assign({type:void 0,step:void 0,min:void 0,max:void 0},DisabledInputUtils.getHostProps(e,t),{defaultChecked:void 0,defaultValue:void 0,value:null!=n?n:e._wrapperState.initialValue,checked:null!=o?o:e._wrapperState.initialChecked,onChange:e._wrapperState.onChange});return r},mountWrapper:function(e,t){if(false){LinkedValueUtils.checkPropTypes("input",t,e._currentElement._owner);var n=e._currentElement._owner;void 0===t.valueLink||didWarnValueLink||("production"!==process.env.NODE_ENV?warning(!1,"`valueLink` prop on `input` is deprecated; set `value` and `onChange` instead."):void 0,didWarnValueLink=!0),void 0===t.checkedLink||didWarnCheckedLink||("production"!==process.env.NODE_ENV?warning(!1,"`checkedLink` prop on `input` is deprecated; set `value` and `onChange` instead."):void 0,didWarnCheckedLink=!0),void 0===t.checked||void 0===t.defaultChecked||didWarnCheckedDefaultChecked||("production"!==process.env.NODE_ENV?warning(!1,"%s contains an input of type %s with both checked and defaultChecked props. Input elements must be either controlled or uncontrolled (specify either the checked prop, or the defaultChecked prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://fb.me/react-controlled-components",n&&n.getName()||"A component",t.type):void 0,didWarnCheckedDefaultChecked=!0),void 0===t.value||void 0===t.defaultValue||didWarnValueDefaultValue||("production"!==process.env.NODE_ENV?warning(!1,"%s contains an input of type %s with both value and defaultValue props. Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://fb.me/react-controlled-components",n&&n.getName()||"A component",t.type):void 0,didWarnValueDefaultValue=!0)}var o=t.defaultValue;e._wrapperState={initialChecked:null!=t.checked?t.checked:t.defaultChecked,initialValue:null!=t.value?t.value:o,listeners:null,onChange:_handleChange.bind(e)},"production"!==("production")&&(e._wrapperState.controlled=isControlled(t))},updateWrapper:function(e){var t=e._currentElement.props;if(false){var n=isControlled(t),o=e._currentElement._owner;e._wrapperState.controlled||!n||didWarnUncontrolledToControlled||("production"!==process.env.NODE_ENV?warning(!1,"%s is changing an uncontrolled input of type %s to be controlled. Input elements should not switch from uncontrolled to controlled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://fb.me/react-controlled-components",o&&o.getName()||"A component",t.type):void 0,didWarnUncontrolledToControlled=!0),!e._wrapperState.controlled||n||didWarnControlledToUncontrolled||("production"!==process.env.NODE_ENV?warning(!1,"%s is changing a controlled input of type %s to be uncontrolled. Input elements should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://fb.me/react-controlled-components",o&&o.getName()||"A component",t.type):void 0,didWarnControlledToUncontrolled=!0)}var r=t.checked;null!=r&&DOMPropertyOperations.setValueForProperty(ReactDOMComponentTree.getNodeFromInstance(e),"checked",r||!1);var a=ReactDOMComponentTree.getNodeFromInstance(e),l=LinkedValueUtils.getValue(t);if(null!=l){var d=""+l;d!==a.value&&(a.value=d)}else null==t.value&&null!=t.defaultValue&&(a.defaultValue=""+t.defaultValue),null==t.checked&&null!=t.defaultChecked&&(a.defaultChecked=!!t.defaultChecked)},postMountWrapper:function(e){var t=e._currentElement.props,n=ReactDOMComponentTree.getNodeFromInstance(e);switch(t.type){case"submit":case"reset":break;case"color":case"date":case"datetime":case"datetime-local":case"month":case"time":case"week":n.value="",n.value=n.defaultValue;break;default:n.value=n.value}var o=n.name;""!==o&&(n.name=""),n.defaultChecked=!n.defaultChecked,n.defaultChecked=!n.defaultChecked,""!==o&&(n.name=o)}};module.exports=ReactDOMInput;
 
 /***/ },
 
@@ -5913,7 +6762,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/ReactCompositeComponent.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function StatelessComponent(e){}function warnIfInvalidElement(e,t){"production"!==("production")&&( false?warning(null===t||t===!1||ReactElement.isValidElement(t),"%s(...): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.",e.displayName||e.name||"Component"):void 0, false?warning(!e.childContextTypes,"%s(...): childContextTypes cannot be defined on a functional component.",e.displayName||e.name||"Component"):void 0)}function invokeComponentDidMountWithTimer(){var e=this._instance;0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"componentDidMount"),e.componentDidMount(),0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"componentDidMount")}function invokeComponentDidUpdateWithTimer(e,t,n){var o=this._instance;0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"componentDidUpdate"),o.componentDidUpdate(e,t,n),0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"componentDidUpdate")}function shouldConstruct(e){return!(!e.prototype||!e.prototype.isReactComponent)}function isPureComponent(e){return!(!e.prototype||!e.prototype.isPureReactComponent)}var _prodInvariant=__webpack_require__("./node_modules/react/lib/reactProdInvariant.js"),_assign=__webpack_require__("./node_modules/object-assign/index.js"),ReactComponentEnvironment=__webpack_require__("./node_modules/react/lib/ReactComponentEnvironment.js"),ReactCurrentOwner=__webpack_require__("./node_modules/react/lib/ReactCurrentOwner.js"),ReactElement=__webpack_require__("./node_modules/react/lib/ReactElement.js"),ReactErrorUtils=__webpack_require__("./node_modules/react/lib/ReactErrorUtils.js"),ReactInstanceMap=__webpack_require__("./node_modules/react/lib/ReactInstanceMap.js"),ReactInstrumentation=__webpack_require__("./node_modules/react/lib/ReactInstrumentation.js"),ReactNodeTypes=__webpack_require__("./node_modules/react/lib/ReactNodeTypes.js"),ReactPropTypeLocations=__webpack_require__("./node_modules/react/lib/ReactPropTypeLocations.js"),ReactReconciler=__webpack_require__("./node_modules/react/lib/ReactReconciler.js"),checkReactTypeSpec=__webpack_require__("./node_modules/react/lib/checkReactTypeSpec.js"),emptyObject=__webpack_require__("./node_modules/fbjs/lib/emptyObject.js"),invariant=__webpack_require__("./node_modules/fbjs/lib/invariant.js"),shallowEqual=__webpack_require__("./node_modules/fbjs/lib/shallowEqual.js"),shouldUpdateReactComponent=__webpack_require__("./node_modules/react/lib/shouldUpdateReactComponent.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),CompositeTypes={ImpureClass:0,PureClass:1,StatelessFunctional:2};StatelessComponent.prototype.render=function(){var e=ReactInstanceMap.get(this)._currentElement.type,t=e(this.props,this.context,this.updater);return warnIfInvalidElement(e,t),t};var nextMountID=1,ReactCompositeComponentMixin={construct:function(e){this._currentElement=e,this._rootNodeID=0,this._compositeType=null,this._instance=null,this._hostParent=null,this._hostContainerInfo=null,this._updateBatchNumber=null,this._pendingElement=null,this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1,this._renderedNodeType=null,this._renderedComponent=null,this._context=null,this._mountOrder=0,this._topLevelWrapper=null,this._pendingCallbacks=null,this._calledComponentWillUnmount=!1,"production"!==("production")&&(this._warnedAboutRefsInRender=!1)},mountComponent:function(e,t,n,o){this._context=o,this._mountOrder=nextMountID++,this._hostParent=t,this._hostContainerInfo=n;var i,s=this._currentElement.props,r=this._processContext(o),a=this._currentElement.type,c=e.getUpdateQueue(),p=shouldConstruct(a),u=this._constructComponent(p,s,r,c);if(p||null!=u&&null!=u.render?isPureComponent(a)?this._compositeType=CompositeTypes.PureClass:this._compositeType=CompositeTypes.ImpureClass:(i=u,warnIfInvalidElement(a,i),null===u||u===!1||ReactElement.isValidElement(u)?void 0: false?invariant(!1,"%s(...): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.",a.displayName||a.name||"Component"):_prodInvariant("105",a.displayName||a.name||"Component"),u=new StatelessComponent(a),this._compositeType=CompositeTypes.StatelessFunctional),"production"!==("production")){null==u.render&&( false?warning(!1,"%s(...): No `render` method found on the returned component instance: you may have forgotten to define `render`.",a.displayName||a.name||"Component"):void 0);var d=u.props!==s,l=a.displayName||a.name||"Component"; false?warning(void 0===u.props||!d,"%s(...): When calling super() in `%s`, make sure to pass up the same props that your component's constructor was passed.",l,l):void 0}u.props=s,u.context=r,u.refs=emptyObject,u.updater=c,this._instance=u,ReactInstanceMap.set(u,this),"production"!==("production")&&( false?warning(!u.getInitialState||u.getInitialState.isReactClassApproved,"getInitialState was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Did you mean to define a state property instead?",this.getName()||"a component"):void 0, false?warning(!u.getDefaultProps||u.getDefaultProps.isReactClassApproved,"getDefaultProps was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Use a static property to define defaultProps instead.",this.getName()||"a component"):void 0, false?warning(!u.propTypes,"propTypes was defined as an instance property on %s. Use a static property to define propTypes instead.",this.getName()||"a component"):void 0, false?warning(!u.contextTypes,"contextTypes was defined as an instance property on %s. Use a static property to define contextTypes instead.",this.getName()||"a component"):void 0, false?warning("function"!=typeof u.componentShouldUpdate,"%s has a method called componentShouldUpdate(). Did you mean shouldComponentUpdate()? The name is phrased as a question because the function is expected to return a value.",this.getName()||"A component"):void 0, false?warning("function"!=typeof u.componentDidUnmount,"%s has a method called componentDidUnmount(). But there is no such lifecycle method. Did you mean componentWillUnmount()?",this.getName()||"A component"):void 0, false?warning("function"!=typeof u.componentWillRecieveProps,"%s has a method called componentWillRecieveProps(). Did you mean componentWillReceiveProps()?",this.getName()||"A component"):void 0);var m=u.state;void 0===m&&(u.state=m=null),"object"!=typeof m||Array.isArray(m)? false?invariant(!1,"%s.state: must be set to an object or null",this.getName()||"ReactCompositeComponent"):_prodInvariant("106",this.getName()||"ReactCompositeComponent"):void 0,this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1;var h;return h=u.unstable_handleError?this.performInitialMountWithErrorHandling(i,t,n,e,o):this.performInitialMount(i,t,n,e,o),u.componentDidMount&&( false?e.getReactMountReady().enqueue(invokeComponentDidMountWithTimer,this):e.getReactMountReady().enqueue(u.componentDidMount,u)),h},_constructComponent:function(e,t,n,o){if(true)return this._constructComponentWithoutOwner(e,t,n,o);ReactCurrentOwner.current=this;try{return this._constructComponentWithoutOwner(e,t,n,o)}finally{ReactCurrentOwner.current=null}},_constructComponentWithoutOwner:function(e,t,n,o){var i,s=this._currentElement.type;return e?("production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"ctor"),i=new s(t,n,o),"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"ctor")):("production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"render"),i=s(t,n,o),"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"render")),i},performInitialMountWithErrorHandling:function(e,t,n,o,i){var s,r=o.checkpoint();try{s=this.performInitialMount(e,t,n,o,i)}catch(a){"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onError(),o.rollback(r),this._instance.unstable_handleError(a),this._pendingStateQueue&&(this._instance.state=this._processPendingState(this._instance.props,this._instance.context)),r=o.checkpoint(),this._renderedComponent.unmountComponent(!0),o.rollback(r),s=this.performInitialMount(e,t,n,o,i)}return s},performInitialMount:function(e,t,n,o,i){var s=this._instance;s.componentWillMount&&("production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"componentWillMount"),s.componentWillMount(),"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"componentWillMount"),this._pendingStateQueue&&(s.state=this._processPendingState(s.props,s.context))),void 0===e&&(e=this._renderValidatedComponent());var r=ReactNodeTypes.getType(e);this._renderedNodeType=r;var a=this._instantiateReactComponent(e,r!==ReactNodeTypes.EMPTY);this._renderedComponent=a;var c=0;"production"!==("production")&&(c=this._debugID);var p=ReactReconciler.mountComponent(a,o,t,n,this._processChildContext(i),c);return"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onSetChildren(this._debugID,0!==a._debugID?[a._debugID]:[]),p},getHostNode:function(){return ReactReconciler.getHostNode(this._renderedComponent)},unmountComponent:function(e){if(this._renderedComponent){var t=this._instance;if(t.componentWillUnmount&&!t._calledComponentWillUnmount){if(t._calledComponentWillUnmount=!0,"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"componentWillUnmount"),e){var n=this.getName()+".componentWillUnmount()";ReactErrorUtils.invokeGuardedCallback(n,t.componentWillUnmount.bind(t))}else t.componentWillUnmount();"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"componentWillUnmount")}this._renderedComponent&&(ReactReconciler.unmountComponent(this._renderedComponent,e),this._renderedNodeType=null,this._renderedComponent=null,this._instance=null),this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1,this._pendingCallbacks=null,this._pendingElement=null,this._context=null,this._rootNodeID=0,this._topLevelWrapper=null,ReactInstanceMap.remove(t)}},_maskContext:function(e){var t=this._currentElement.type,n=t.contextTypes;if(!n)return emptyObject;var o={};for(var i in n)o[i]=e[i];return o},_processContext:function(e){var t=this._maskContext(e);if(false){var n=this._currentElement.type;n.contextTypes&&this._checkContextTypes(n.contextTypes,t,ReactPropTypeLocations.context)}return t},_processChildContext:function(e){var t=this._currentElement.type,n=this._instance;"production"!==("production")&&ReactInstrumentation.debugTool.onBeginProcessingChildContext();var o=n.getChildContext&&n.getChildContext();if("production"!==("production")&&ReactInstrumentation.debugTool.onEndProcessingChildContext(),o){"object"!=typeof t.childContextTypes? false?invariant(!1,"%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().",this.getName()||"ReactCompositeComponent"):_prodInvariant("107",this.getName()||"ReactCompositeComponent"):void 0,"production"!==("production")&&this._checkContextTypes(t.childContextTypes,o,ReactPropTypeLocations.childContext);for(var i in o)i in t.childContextTypes?void 0: false?invariant(!1,'%s.getChildContext(): key "%s" is not defined in childContextTypes.',this.getName()||"ReactCompositeComponent",i):_prodInvariant("108",this.getName()||"ReactCompositeComponent",i);return _assign({},e,o)}return e},_checkContextTypes:function(e,t,n){checkReactTypeSpec(e,t,n,this.getName(),null,this._debugID)},receiveComponent:function(e,t,n){var o=this._currentElement,i=this._context;this._pendingElement=null,this.updateComponent(t,o,e,i,n)},performUpdateIfNecessary:function(e){null!=this._pendingElement?ReactReconciler.receiveComponent(this,this._pendingElement,e,this._context):null!==this._pendingStateQueue||this._pendingForceUpdate?this.updateComponent(e,this._currentElement,this._currentElement,this._context,this._context):this._updateBatchNumber=null},updateComponent:function(e,t,n,o,i){var s=this._instance;null==s? false?invariant(!1,"Attempted to update component `%s` that has already been unmounted (or failed to mount).",this.getName()||"ReactCompositeComponent"):_prodInvariant("136",this.getName()||"ReactCompositeComponent"):void 0;var r,a=!1;this._context===i?r=s.context:(r=this._processContext(i),a=!0);var c=t.props,p=n.props;t!==n&&(a=!0),a&&s.componentWillReceiveProps&&("production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"componentWillReceiveProps"),s.componentWillReceiveProps(p,r),"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"componentWillReceiveProps"));var u=this._processPendingState(p,r),d=!0;this._pendingForceUpdate||(s.shouldComponentUpdate?("production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"shouldComponentUpdate"),d=s.shouldComponentUpdate(p,u,r),"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"shouldComponentUpdate")):this._compositeType===CompositeTypes.PureClass&&(d=!shallowEqual(c,p)||!shallowEqual(s.state,u))),"production"!==("production")&&( false?warning(void 0!==d,"%s.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false.",this.getName()||"ReactCompositeComponent"):void 0),this._updateBatchNumber=null,d?(this._pendingForceUpdate=!1,this._performComponentUpdate(n,p,u,r,e,i)):(this._currentElement=n,this._context=i,s.props=p,s.state=u,s.context=r)},_processPendingState:function(e,t){var n=this._instance,o=this._pendingStateQueue,i=this._pendingReplaceState;if(this._pendingReplaceState=!1,this._pendingStateQueue=null,!o)return n.state;if(i&&1===o.length)return o[0];for(var s=_assign({},i?o[0]:n.state),r=i?1:0;r<o.length;r++){var a=o[r];_assign(s,"function"==typeof a?a.call(n,s,e,t):a)}return s},_performComponentUpdate:function(e,t,n,o,i,s){var r,a,c,p=this._instance,u=Boolean(p.componentDidUpdate);u&&(r=p.props,a=p.state,c=p.context),p.componentWillUpdate&&("production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"componentWillUpdate"),p.componentWillUpdate(t,n,o),"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"componentWillUpdate")),this._currentElement=e,this._context=s,p.props=t,p.state=n,p.context=o,this._updateRenderedComponent(i,s),u&&( false?i.getReactMountReady().enqueue(invokeComponentDidUpdateWithTimer.bind(this,r,a,c),this):i.getReactMountReady().enqueue(p.componentDidUpdate.bind(p,r,a,c),p))},_updateRenderedComponent:function(e,t){var n=this._renderedComponent,o=n._currentElement,i=this._renderValidatedComponent();if(shouldUpdateReactComponent(o,i))ReactReconciler.receiveComponent(n,i,e,this._processChildContext(t));else{var s=ReactReconciler.getHostNode(n);ReactReconciler.unmountComponent(n,!1);var r=ReactNodeTypes.getType(i);this._renderedNodeType=r;var a=this._instantiateReactComponent(i,r!==ReactNodeTypes.EMPTY);this._renderedComponent=a;var c=0;"production"!==("production")&&(c=this._debugID);var p=ReactReconciler.mountComponent(a,e,this._hostParent,this._hostContainerInfo,this._processChildContext(t),c);"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onSetChildren(this._debugID,0!==a._debugID?[a._debugID]:[]),this._replaceNodeWithMarkup(s,p,n)}},_replaceNodeWithMarkup:function(e,t,n){ReactComponentEnvironment.replaceNodeWithMarkup(e,t,n)},_renderValidatedComponentWithoutOwnerOrContext:function(){var e=this._instance;"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID,"render");var t=e.render();return"production"!==("production")&&0!==this._debugID&&ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID,"render"),"production"!==("production")&&void 0===t&&e.render._isMockFunction&&(t=null),t},_renderValidatedComponent:function(){var e;if("production"!==("production")||this._compositeType!==CompositeTypes.StatelessFunctional){ReactCurrentOwner.current=this;try{e=this._renderValidatedComponentWithoutOwnerOrContext()}finally{ReactCurrentOwner.current=null}}else e=this._renderValidatedComponentWithoutOwnerOrContext();return null===e||e===!1||ReactElement.isValidElement(e)?void 0: false?invariant(!1,"%s.render(): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.",this.getName()||"ReactCompositeComponent"):_prodInvariant("109",this.getName()||"ReactCompositeComponent"),e},attachRef:function(e,t){var n=this.getPublicInstance();null==n? false?invariant(!1,"Stateless function components cannot have refs."):_prodInvariant("110"):void 0;var o=t.getPublicInstance();if(false){var i=t&&t.getName?t.getName():"a component";"production"!==process.env.NODE_ENV?warning(null!=o,'Stateless function components cannot be given refs (See ref "%s" in %s created by %s). Attempts to access this ref will fail.',e,i,this.getName()):void 0}var s=n.refs===emptyObject?n.refs={}:n.refs;s[e]=o},detachRef:function(e){var t=this.getPublicInstance().refs;delete t[e]},getName:function(){var e=this._currentElement.type,t=this._instance&&this._instance.constructor;return e.displayName||t&&t.displayName||e.name||t&&t.name||null},getPublicInstance:function(){var e=this._instance;return this._compositeType===CompositeTypes.StatelessFunctional?null:e},_instantiateReactComponent:null},ReactCompositeComponent={Mixin:ReactCompositeComponentMixin};module.exports=ReactCompositeComponent;
+	"use strict";function StatelessComponent(e){}function warnIfInvalidElement(e,t){"production"!==("production")&&( false?warning(null===t||t===!1||ReactElement.isValidElement(t),"%s(...): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.",e.displayName||e.name||"Component"):void 0, false?warning(!e.childContextTypes,"%s(...): childContextTypes cannot be defined on a functional component.",e.displayName||e.name||"Component"):void 0)}function shouldConstruct(e){return!(!e.prototype||!e.prototype.isReactComponent)}function isPureComponent(e){return!(!e.prototype||!e.prototype.isPureReactComponent)}function measureLifeCyclePerf(e,t,n){if(0===t)return e();ReactInstrumentation.debugTool.onBeginLifeCycleTimer(t,n);try{return e()}finally{ReactInstrumentation.debugTool.onEndLifeCycleTimer(t,n)}}var _prodInvariant=__webpack_require__("./node_modules/react/lib/reactProdInvariant.js"),_assign=__webpack_require__("./node_modules/object-assign/index.js"),ReactComponentEnvironment=__webpack_require__("./node_modules/react/lib/ReactComponentEnvironment.js"),ReactCurrentOwner=__webpack_require__("./node_modules/react/lib/ReactCurrentOwner.js"),ReactElement=__webpack_require__("./node_modules/react/lib/ReactElement.js"),ReactErrorUtils=__webpack_require__("./node_modules/react/lib/ReactErrorUtils.js"),ReactInstanceMap=__webpack_require__("./node_modules/react/lib/ReactInstanceMap.js"),ReactInstrumentation=__webpack_require__("./node_modules/react/lib/ReactInstrumentation.js"),ReactNodeTypes=__webpack_require__("./node_modules/react/lib/ReactNodeTypes.js"),ReactPropTypeLocations=__webpack_require__("./node_modules/react/lib/ReactPropTypeLocations.js"),ReactReconciler=__webpack_require__("./node_modules/react/lib/ReactReconciler.js"),checkReactTypeSpec=__webpack_require__("./node_modules/react/lib/checkReactTypeSpec.js"),emptyObject=__webpack_require__("./node_modules/fbjs/lib/emptyObject.js"),invariant=__webpack_require__("./node_modules/fbjs/lib/invariant.js"),shallowEqual=__webpack_require__("./node_modules/fbjs/lib/shallowEqual.js"),shouldUpdateReactComponent=__webpack_require__("./node_modules/react/lib/shouldUpdateReactComponent.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),CompositeTypes={ImpureClass:0,PureClass:1,StatelessFunctional:2};StatelessComponent.prototype.render=function(){var e=ReactInstanceMap.get(this)._currentElement.type,t=e(this.props,this.context,this.updater);return warnIfInvalidElement(e,t),t};var nextMountID=1,ReactCompositeComponentMixin={construct:function(e){this._currentElement=e,this._rootNodeID=0,this._compositeType=null,this._instance=null,this._hostParent=null,this._hostContainerInfo=null,this._updateBatchNumber=null,this._pendingElement=null,this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1,this._renderedNodeType=null,this._renderedComponent=null,this._context=null,this._mountOrder=0,this._topLevelWrapper=null,this._pendingCallbacks=null,this._calledComponentWillUnmount=!1,"production"!==("production")&&(this._warnedAboutRefsInRender=!1)},mountComponent:function(e,t,n,o){var i=this;this._context=o,this._mountOrder=nextMountID++,this._hostParent=t,this._hostContainerInfo=n;var r,s=this._currentElement.props,a=this._processContext(o),c=this._currentElement.type,p=e.getUpdateQueue(),u=shouldConstruct(c),d=this._constructComponent(u,s,a,p);if(u||null!=d&&null!=d.render?isPureComponent(c)?this._compositeType=CompositeTypes.PureClass:this._compositeType=CompositeTypes.ImpureClass:(r=d,warnIfInvalidElement(c,r),null===d||d===!1||ReactElement.isValidElement(d)?void 0: false?invariant(!1,"%s(...): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.",c.displayName||c.name||"Component"):_prodInvariant("105",c.displayName||c.name||"Component"),d=new StatelessComponent(c),this._compositeType=CompositeTypes.StatelessFunctional),"production"!==("production")){null==d.render&&( false?warning(!1,"%s(...): No `render` method found on the returned component instance: you may have forgotten to define `render`.",c.displayName||c.name||"Component"):void 0);var l=d.props!==s,m=c.displayName||c.name||"Component"; false?warning(void 0===d.props||!l,"%s(...): When calling super() in `%s`, make sure to pass up the same props that your component's constructor was passed.",m,m):void 0}d.props=s,d.context=a,d.refs=emptyObject,d.updater=p,this._instance=d,ReactInstanceMap.set(d,this),"production"!==("production")&&( false?warning(!d.getInitialState||d.getInitialState.isReactClassApproved,"getInitialState was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Did you mean to define a state property instead?",this.getName()||"a component"):void 0, false?warning(!d.getDefaultProps||d.getDefaultProps.isReactClassApproved,"getDefaultProps was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Use a static property to define defaultProps instead.",this.getName()||"a component"):void 0, false?warning(!d.propTypes,"propTypes was defined as an instance property on %s. Use a static property to define propTypes instead.",this.getName()||"a component"):void 0, false?warning(!d.contextTypes,"contextTypes was defined as an instance property on %s. Use a static property to define contextTypes instead.",this.getName()||"a component"):void 0, false?warning("function"!=typeof d.componentShouldUpdate,"%s has a method called componentShouldUpdate(). Did you mean shouldComponentUpdate()? The name is phrased as a question because the function is expected to return a value.",this.getName()||"A component"):void 0, false?warning("function"!=typeof d.componentDidUnmount,"%s has a method called componentDidUnmount(). But there is no such lifecycle method. Did you mean componentWillUnmount()?",this.getName()||"A component"):void 0, false?warning("function"!=typeof d.componentWillRecieveProps,"%s has a method called componentWillRecieveProps(). Did you mean componentWillReceiveProps()?",this.getName()||"A component"):void 0);var h=d.state;void 0===h&&(d.state=h=null),"object"!=typeof h||Array.isArray(h)? false?invariant(!1,"%s.state: must be set to an object or null",this.getName()||"ReactCompositeComponent"):_prodInvariant("106",this.getName()||"ReactCompositeComponent"):void 0,this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1;var _;return _=d.unstable_handleError?this.performInitialMountWithErrorHandling(r,t,n,e,o):this.performInitialMount(r,t,n,e,o),d.componentDidMount&&( false?e.getReactMountReady().enqueue(function(){measureLifeCyclePerf(function(){return d.componentDidMount()},i._debugID,"componentDidMount")}):e.getReactMountReady().enqueue(d.componentDidMount,d)),_},_constructComponent:function(e,t,n,o){if(true)return this._constructComponentWithoutOwner(e,t,n,o);ReactCurrentOwner.current=this;try{return this._constructComponentWithoutOwner(e,t,n,o)}finally{ReactCurrentOwner.current=null}},_constructComponentWithoutOwner:function(e,t,n,o){var i=this._currentElement.type;return e? false?measureLifeCyclePerf(function(){return new i(t,n,o)},this._debugID,"ctor"):new i(t,n,o): false?measureLifeCyclePerf(function(){return i(t,n,o)},this._debugID,"render"):i(t,n,o)},performInitialMountWithErrorHandling:function(e,t,n,o,i){var r,s=o.checkpoint();try{r=this.performInitialMount(e,t,n,o,i)}catch(a){o.rollback(s),this._instance.unstable_handleError(a),this._pendingStateQueue&&(this._instance.state=this._processPendingState(this._instance.props,this._instance.context)),s=o.checkpoint(),this._renderedComponent.unmountComponent(!0),o.rollback(s),r=this.performInitialMount(e,t,n,o,i)}return r},performInitialMount:function(e,t,n,o,i){var r=this._instance,s=0;"production"!==("production")&&(s=this._debugID),r.componentWillMount&&( false?measureLifeCyclePerf(function(){return r.componentWillMount()},s,"componentWillMount"):r.componentWillMount(),this._pendingStateQueue&&(r.state=this._processPendingState(r.props,r.context))),void 0===e&&(e=this._renderValidatedComponent());var a=ReactNodeTypes.getType(e);this._renderedNodeType=a;var c=this._instantiateReactComponent(e,a!==ReactNodeTypes.EMPTY);this._renderedComponent=c;var p=ReactReconciler.mountComponent(c,o,t,n,this._processChildContext(i),s);if(false){var u=0!==c._debugID?[c._debugID]:[];ReactInstrumentation.debugTool.onSetChildren(s,u)}return p},getHostNode:function(){return ReactReconciler.getHostNode(this._renderedComponent)},unmountComponent:function(e){if(this._renderedComponent){var t=this._instance;if(t.componentWillUnmount&&!t._calledComponentWillUnmount)if(t._calledComponentWillUnmount=!0,e){var n=this.getName()+".componentWillUnmount()";ReactErrorUtils.invokeGuardedCallback(n,t.componentWillUnmount.bind(t))}else false?measureLifeCyclePerf(function(){return t.componentWillUnmount()},this._debugID,"componentWillUnmount"):t.componentWillUnmount();this._renderedComponent&&(ReactReconciler.unmountComponent(this._renderedComponent,e),this._renderedNodeType=null,this._renderedComponent=null,this._instance=null),this._pendingStateQueue=null,this._pendingReplaceState=!1,this._pendingForceUpdate=!1,this._pendingCallbacks=null,this._pendingElement=null,this._context=null,this._rootNodeID=0,this._topLevelWrapper=null,ReactInstanceMap.remove(t)}},_maskContext:function(e){var t=this._currentElement.type,n=t.contextTypes;if(!n)return emptyObject;var o={};for(var i in n)o[i]=e[i];return o},_processContext:function(e){var t=this._maskContext(e);if(false){var n=this._currentElement.type;n.contextTypes&&this._checkContextTypes(n.contextTypes,t,ReactPropTypeLocations.context)}return t},_processChildContext:function(e){var t,n=this._currentElement.type,o=this._instance;if(o.getChildContext)if(false){ReactInstrumentation.debugTool.onBeginProcessingChildContext();try{t=o.getChildContext()}finally{ReactInstrumentation.debugTool.onEndProcessingChildContext()}}else t=o.getChildContext();if(t){"object"!=typeof n.childContextTypes? false?invariant(!1,"%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().",this.getName()||"ReactCompositeComponent"):_prodInvariant("107",this.getName()||"ReactCompositeComponent"):void 0,"production"!==("production")&&this._checkContextTypes(n.childContextTypes,t,ReactPropTypeLocations.childContext);for(var i in t)i in n.childContextTypes?void 0: false?invariant(!1,'%s.getChildContext(): key "%s" is not defined in childContextTypes.',this.getName()||"ReactCompositeComponent",i):_prodInvariant("108",this.getName()||"ReactCompositeComponent",i);return _assign({},e,t)}return e},_checkContextTypes:function(e,t,n){checkReactTypeSpec(e,t,n,this.getName(),null,this._debugID)},receiveComponent:function(e,t,n){var o=this._currentElement,i=this._context;this._pendingElement=null,this.updateComponent(t,o,e,i,n)},performUpdateIfNecessary:function(e){null!=this._pendingElement?ReactReconciler.receiveComponent(this,this._pendingElement,e,this._context):null!==this._pendingStateQueue||this._pendingForceUpdate?this.updateComponent(e,this._currentElement,this._currentElement,this._context,this._context):this._updateBatchNumber=null},updateComponent:function(e,t,n,o,i){var r=this._instance;null==r? false?invariant(!1,"Attempted to update component `%s` that has already been unmounted (or failed to mount).",this.getName()||"ReactCompositeComponent"):_prodInvariant("136",this.getName()||"ReactCompositeComponent"):void 0;var s,a=!1;this._context===i?s=r.context:(s=this._processContext(i),a=!0);var c=t.props,p=n.props;t!==n&&(a=!0),a&&r.componentWillReceiveProps&&( false?measureLifeCyclePerf(function(){return r.componentWillReceiveProps(p,s)},this._debugID,"componentWillReceiveProps"):r.componentWillReceiveProps(p,s));var u=this._processPendingState(p,s),d=!0;this._pendingForceUpdate||(r.shouldComponentUpdate?d= false?measureLifeCyclePerf(function(){return r.shouldComponentUpdate(p,u,s)},this._debugID,"shouldComponentUpdate"):r.shouldComponentUpdate(p,u,s):this._compositeType===CompositeTypes.PureClass&&(d=!shallowEqual(c,p)||!shallowEqual(r.state,u))),"production"!==("production")&&( false?warning(void 0!==d,"%s.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false.",this.getName()||"ReactCompositeComponent"):void 0),this._updateBatchNumber=null,d?(this._pendingForceUpdate=!1,this._performComponentUpdate(n,p,u,s,e,i)):(this._currentElement=n,this._context=i,r.props=p,r.state=u,r.context=s)},_processPendingState:function(e,t){var n=this._instance,o=this._pendingStateQueue,i=this._pendingReplaceState;if(this._pendingReplaceState=!1,this._pendingStateQueue=null,!o)return n.state;if(i&&1===o.length)return o[0];for(var r=_assign({},i?o[0]:n.state),s=i?1:0;s<o.length;s++){var a=o[s];_assign(r,"function"==typeof a?a.call(n,r,e,t):a)}return r},_performComponentUpdate:function(e,t,n,o,i,r){var s,a,c,p=this,u=this._instance,d=Boolean(u.componentDidUpdate);d&&(s=u.props,a=u.state,c=u.context),u.componentWillUpdate&&( false?measureLifeCyclePerf(function(){return u.componentWillUpdate(t,n,o)},this._debugID,"componentWillUpdate"):u.componentWillUpdate(t,n,o)),this._currentElement=e,this._context=r,u.props=t,u.state=n,u.context=o,this._updateRenderedComponent(i,r),d&&( false?i.getReactMountReady().enqueue(function(){measureLifeCyclePerf(u.componentDidUpdate.bind(u,s,a,c),p._debugID,"componentDidUpdate")}):i.getReactMountReady().enqueue(u.componentDidUpdate.bind(u,s,a,c),u))},_updateRenderedComponent:function(e,t){var n=this._renderedComponent,o=n._currentElement,i=this._renderValidatedComponent(),r=0;if("production"!==("production")&&(r=this._debugID),shouldUpdateReactComponent(o,i))ReactReconciler.receiveComponent(n,i,e,this._processChildContext(t));else{var s=ReactReconciler.getHostNode(n);ReactReconciler.unmountComponent(n,!1);var a=ReactNodeTypes.getType(i);this._renderedNodeType=a;var c=this._instantiateReactComponent(i,a!==ReactNodeTypes.EMPTY);this._renderedComponent=c;var p=ReactReconciler.mountComponent(c,e,this._hostParent,this._hostContainerInfo,this._processChildContext(t),r);if(false){var u=0!==c._debugID?[c._debugID]:[];ReactInstrumentation.debugTool.onSetChildren(r,u)}this._replaceNodeWithMarkup(s,p,n)}},_replaceNodeWithMarkup:function(e,t,n){ReactComponentEnvironment.replaceNodeWithMarkup(e,t,n)},_renderValidatedComponentWithoutOwnerOrContext:function(){var e,t=this._instance;return e= false?measureLifeCyclePerf(function(){return t.render()},this._debugID,"render"):t.render(),"production"!==("production")&&void 0===e&&t.render._isMockFunction&&(e=null),e},_renderValidatedComponent:function(){var e;if("production"!==("production")||this._compositeType!==CompositeTypes.StatelessFunctional){ReactCurrentOwner.current=this;try{e=this._renderValidatedComponentWithoutOwnerOrContext()}finally{ReactCurrentOwner.current=null}}else e=this._renderValidatedComponentWithoutOwnerOrContext();return null===e||e===!1||ReactElement.isValidElement(e)?void 0: false?invariant(!1,"%s.render(): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.",this.getName()||"ReactCompositeComponent"):_prodInvariant("109",this.getName()||"ReactCompositeComponent"),e},attachRef:function(e,t){var n=this.getPublicInstance();null==n? false?invariant(!1,"Stateless function components cannot have refs."):_prodInvariant("110"):void 0;var o=t.getPublicInstance();if(false){var i=t&&t.getName?t.getName():"a component";"production"!==process.env.NODE_ENV?warning(null!=o||t._compositeType!==CompositeTypes.StatelessFunctional,'Stateless function components cannot be given refs (See ref "%s" in %s created by %s). Attempts to access this ref will fail.',e,i,this.getName()):void 0}var r=n.refs===emptyObject?n.refs={}:n.refs;r[e]=o},detachRef:function(e){var t=this.getPublicInstance().refs;delete t[e]},getName:function(){var e=this._currentElement.type,t=this._instance&&this._instance.constructor;return e.displayName||t&&t.displayName||e.name||t&&t.name||null},getPublicInstance:function(){var e=this._instance;return this._compositeType===CompositeTypes.StatelessFunctional?null:e},_instantiateReactComponent:null},ReactCompositeComponent={Mixin:ReactCompositeComponentMixin};module.exports=ReactCompositeComponent;
 
 /***/ },
 
@@ -5992,7 +6841,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/validateDOMNesting.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";var _assign=__webpack_require__("./node_modules/object-assign/index.js"),emptyFunction=__webpack_require__("./node_modules/fbjs/lib/emptyFunction.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),validateDOMNesting=emptyFunction;if(false){var specialTags=["address","applet","area","article","aside","base","basefont","bgsound","blockquote","body","br","button","caption","center","col","colgroup","dd","details","dir","div","dl","dt","embed","fieldset","figcaption","figure","footer","form","frame","frameset","h1","h2","h3","h4","h5","h6","head","header","hgroup","hr","html","iframe","img","input","isindex","li","link","listing","main","marquee","menu","menuitem","meta","nav","noembed","noframes","noscript","object","ol","p","param","plaintext","pre","script","section","select","source","style","summary","table","tbody","td","template","textarea","tfoot","th","thead","title","tr","track","ul","wbr","xmp"],inScopeTags=["applet","caption","html","table","td","th","marquee","object","template","foreignObject","desc","title"],buttonScopeTags=inScopeTags.concat(["button"]),impliedEndTags=["dd","dt","li","option","optgroup","p","rp","rt"],emptyAncestorInfo={current:null,formTag:null,aTagInScope:null,buttonTagInScope:null,nobrTagInScope:null,pTagInButtonScope:null,listItemTagAutoclosing:null,dlItemTagAutoclosing:null},updatedAncestorInfo=function(e,t,a){var n=_assign({},e||emptyAncestorInfo),r={tag:t,instance:a};return inScopeTags.indexOf(t)!==-1&&(n.aTagInScope=null,n.buttonTagInScope=null,n.nobrTagInScope=null),buttonScopeTags.indexOf(t)!==-1&&(n.pTagInButtonScope=null),specialTags.indexOf(t)!==-1&&"address"!==t&&"div"!==t&&"p"!==t&&(n.listItemTagAutoclosing=null,n.dlItemTagAutoclosing=null),n.current=r,"form"===t&&(n.formTag=r),"a"===t&&(n.aTagInScope=r),"button"===t&&(n.buttonTagInScope=r),"nobr"===t&&(n.nobrTagInScope=r),"p"===t&&(n.pTagInButtonScope=r),"li"===t&&(n.listItemTagAutoclosing=r),"dd"!==t&&"dt"!==t||(n.dlItemTagAutoclosing=r),n},isTagValidWithParent=function(e,t){switch(t){case"select":return"option"===e||"optgroup"===e||"#text"===e;case"optgroup":return"option"===e||"#text"===e;case"option":return"#text"===e;case"tr":return"th"===e||"td"===e||"style"===e||"script"===e||"template"===e;case"tbody":case"thead":case"tfoot":return"tr"===e||"style"===e||"script"===e||"template"===e;case"colgroup":return"col"===e||"template"===e;case"table":return"caption"===e||"colgroup"===e||"tbody"===e||"tfoot"===e||"thead"===e||"style"===e||"script"===e||"template"===e;case"head":return"base"===e||"basefont"===e||"bgsound"===e||"link"===e||"meta"===e||"title"===e||"noscript"===e||"noframes"===e||"style"===e||"script"===e||"template"===e;case"html":return"head"===e||"body"===e;case"#document":return"html"===e}switch(e){case"h1":case"h2":case"h3":case"h4":case"h5":case"h6":return"h1"!==t&&"h2"!==t&&"h3"!==t&&"h4"!==t&&"h5"!==t&&"h6"!==t;case"rp":case"rt":return impliedEndTags.indexOf(t)===-1;case"body":case"caption":case"col":case"colgroup":case"frame":case"head":case"html":case"tbody":case"td":case"tfoot":case"th":case"thead":case"tr":return null==t}return!0},findInvalidAncestorForTag=function(e,t){switch(e){case"address":case"article":case"aside":case"blockquote":case"center":case"details":case"dialog":case"dir":case"div":case"dl":case"fieldset":case"figcaption":case"figure":case"footer":case"header":case"hgroup":case"main":case"menu":case"nav":case"ol":case"p":case"section":case"summary":case"ul":case"pre":case"listing":case"table":case"hr":case"xmp":case"h1":case"h2":case"h3":case"h4":case"h5":case"h6":return t.pTagInButtonScope;case"form":return t.formTag||t.pTagInButtonScope;case"li":return t.listItemTagAutoclosing;case"dd":case"dt":return t.dlItemTagAutoclosing;case"button":return t.buttonTagInScope;case"a":return t.aTagInScope;case"nobr":return t.nobrTagInScope}return null},findOwnerStack=function(e){if(!e)return[];var t=[];do t.push(e);while(e=e._currentElement._owner);return t.reverse(),t},didWarn={};validateDOMNesting=function(e,t,a){a=a||emptyAncestorInfo;var n=a.current,r=n&&n.tag,o=isTagValidWithParent(e,r)?null:n,s=o?null:findInvalidAncestorForTag(e,a),c=o||s;if(c){var i,l=c.tag,u=c.instance,d=t&&t._currentElement._owner,p=u&&u._currentElement._owner,g=findOwnerStack(d),m=findOwnerStack(p),f=Math.min(g.length,m.length),h=-1;for(i=0;i<f&&g[i]===m[i];i++)h=i;var b="(unknown)",T=g.slice(h+1).map(function(e){return e.getName()||b}),I=m.slice(h+1).map(function(e){return e.getName()||b}),v=[].concat(h!==-1?g[h].getName()||b:[],I,l,s?["..."]:[],T,e).join(" > "),S=!!o+"|"+e+"|"+l+"|"+v;if(didWarn[S])return;didWarn[S]=!0;var y=e;if("#text"!==e&&(y="<"+e+">"),o){var A="";"table"===l&&"tr"===e&&(A+=" Add a <tbody> to your code to match the DOM tree generated by the browser."),"production"!==process.env.NODE_ENV?warning(!1,"validateDOMNesting(...): %s cannot appear as a child of <%s>. See %s.%s",y,l,v,A):void 0}else"production"!==process.env.NODE_ENV?warning(!1,"validateDOMNesting(...): %s cannot appear as a descendant of <%s>. See %s.",y,l,v):void 0}},validateDOMNesting.updatedAncestorInfo=updatedAncestorInfo,validateDOMNesting.isTagValidInContext=function(e,t){t=t||emptyAncestorInfo;var a=t.current,n=a&&a.tag;return isTagValidWithParent(e,n)&&!findInvalidAncestorForTag(e,t)}}module.exports=validateDOMNesting;
+	"use strict";var _assign=__webpack_require__("./node_modules/object-assign/index.js"),emptyFunction=__webpack_require__("./node_modules/fbjs/lib/emptyFunction.js"),warning=__webpack_require__("./node_modules/fbjs/lib/warning.js"),validateDOMNesting=emptyFunction;if(false){var specialTags=["address","applet","area","article","aside","base","basefont","bgsound","blockquote","body","br","button","caption","center","col","colgroup","dd","details","dir","div","dl","dt","embed","fieldset","figcaption","figure","footer","form","frame","frameset","h1","h2","h3","h4","h5","h6","head","header","hgroup","hr","html","iframe","img","input","isindex","li","link","listing","main","marquee","menu","menuitem","meta","nav","noembed","noframes","noscript","object","ol","p","param","plaintext","pre","script","section","select","source","style","summary","table","tbody","td","template","textarea","tfoot","th","thead","title","tr","track","ul","wbr","xmp"],inScopeTags=["applet","caption","html","table","td","th","marquee","object","template","foreignObject","desc","title"],buttonScopeTags=inScopeTags.concat(["button"]),impliedEndTags=["dd","dt","li","option","optgroup","p","rp","rt"],emptyAncestorInfo={current:null,formTag:null,aTagInScope:null,buttonTagInScope:null,nobrTagInScope:null,pTagInButtonScope:null,listItemTagAutoclosing:null,dlItemTagAutoclosing:null},updatedAncestorInfo=function(e,t,a){var n=_assign({},e||emptyAncestorInfo),o={tag:t,instance:a};return inScopeTags.indexOf(t)!==-1&&(n.aTagInScope=null,n.buttonTagInScope=null,n.nobrTagInScope=null),buttonScopeTags.indexOf(t)!==-1&&(n.pTagInButtonScope=null),specialTags.indexOf(t)!==-1&&"address"!==t&&"div"!==t&&"p"!==t&&(n.listItemTagAutoclosing=null,n.dlItemTagAutoclosing=null),n.current=o,"form"===t&&(n.formTag=o),"a"===t&&(n.aTagInScope=o),"button"===t&&(n.buttonTagInScope=o),"nobr"===t&&(n.nobrTagInScope=o),"p"===t&&(n.pTagInButtonScope=o),"li"===t&&(n.listItemTagAutoclosing=o),"dd"!==t&&"dt"!==t||(n.dlItemTagAutoclosing=o),n},isTagValidWithParent=function(e,t){switch(t){case"select":return"option"===e||"optgroup"===e||"#text"===e;case"optgroup":return"option"===e||"#text"===e;case"option":return"#text"===e;case"tr":return"th"===e||"td"===e||"style"===e||"script"===e||"template"===e;case"tbody":case"thead":case"tfoot":return"tr"===e||"style"===e||"script"===e||"template"===e;case"colgroup":return"col"===e||"template"===e;case"table":return"caption"===e||"colgroup"===e||"tbody"===e||"tfoot"===e||"thead"===e||"style"===e||"script"===e||"template"===e;case"head":return"base"===e||"basefont"===e||"bgsound"===e||"link"===e||"meta"===e||"title"===e||"noscript"===e||"noframes"===e||"style"===e||"script"===e||"template"===e;case"html":return"head"===e||"body"===e;case"#document":return"html"===e}switch(e){case"h1":case"h2":case"h3":case"h4":case"h5":case"h6":return"h1"!==t&&"h2"!==t&&"h3"!==t&&"h4"!==t&&"h5"!==t&&"h6"!==t;case"rp":case"rt":return impliedEndTags.indexOf(t)===-1;case"body":case"caption":case"col":case"colgroup":case"frame":case"head":case"html":case"tbody":case"td":case"tfoot":case"th":case"thead":case"tr":return null==t}return!0},findInvalidAncestorForTag=function(e,t){switch(e){case"address":case"article":case"aside":case"blockquote":case"center":case"details":case"dialog":case"dir":case"div":case"dl":case"fieldset":case"figcaption":case"figure":case"footer":case"header":case"hgroup":case"main":case"menu":case"nav":case"ol":case"p":case"section":case"summary":case"ul":case"pre":case"listing":case"table":case"hr":case"xmp":case"h1":case"h2":case"h3":case"h4":case"h5":case"h6":return t.pTagInButtonScope;case"form":return t.formTag||t.pTagInButtonScope;case"li":return t.listItemTagAutoclosing;case"dd":case"dt":return t.dlItemTagAutoclosing;case"button":return t.buttonTagInScope;case"a":return t.aTagInScope;case"nobr":return t.nobrTagInScope}return null},findOwnerStack=function(e){if(!e)return[];var t=[];do t.push(e);while(e=e._currentElement._owner);return t.reverse(),t},didWarn={};validateDOMNesting=function(e,t,a,n){n=n||emptyAncestorInfo;var o=n.current,r=o&&o.tag;null!=t&&("production"!==process.env.NODE_ENV?warning(null==e,"validateDOMNesting: when childText is passed, childTag should be null"):void 0,e="#text");var s=isTagValidWithParent(e,r)?null:o,c=s?null:findInvalidAncestorForTag(e,n),i=s||c;if(i){var l,u=i.tag,d=i.instance,p=a&&a._currentElement._owner,g=d&&d._currentElement._owner,m=findOwnerStack(p),h=findOwnerStack(g),f=Math.min(m.length,h.length),b=-1;for(l=0;l<f&&m[l]===h[l];l++)b=l;var T="(unknown)",v=m.slice(b+1).map(function(e){return e.getName()||T}),I=h.slice(b+1).map(function(e){return e.getName()||T}),S=[].concat(b!==-1?m[b].getName()||T:[],I,u,c?["..."]:[],v,e).join(" > "),y=!!s+"|"+e+"|"+u+"|"+S;if(didWarn[y])return;didWarn[y]=!0;var w=e,O="";if("#text"===e?/\S/.test(t)?w="Text nodes":(w="Whitespace text nodes",O=" Make sure you don't have any extra whitespace between tags on each line of your source code."):w="<"+e+">",s){var x="";"table"===u&&"tr"===e&&(x+=" Add a <tbody> to your code to match the DOM tree generated by the browser."),"production"!==process.env.NODE_ENV?warning(!1,"validateDOMNesting(...): %s cannot appear as a child of <%s>.%s See %s.%s",w,u,O,S,x):void 0}else"production"!==process.env.NODE_ENV?warning(!1,"validateDOMNesting(...): %s cannot appear as a descendant of <%s>. See %s.",w,u,S):void 0}},validateDOMNesting.updatedAncestorInfo=updatedAncestorInfo,validateDOMNesting.isTagValidInContext=function(e,t){t=t||emptyAncestorInfo;var a=t.current,n=a&&a.tag;return isTagValidWithParent(e,n)&&!findInvalidAncestorForTag(e,t)}}module.exports=validateDOMNesting;
 
 /***/ },
 
@@ -6013,7 +6862,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/ReactDOMTextComponent.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";var _prodInvariant=__webpack_require__("./node_modules/react/lib/reactProdInvariant.js"),_assign=__webpack_require__("./node_modules/object-assign/index.js"),DOMChildrenOperations=__webpack_require__("./node_modules/react/lib/DOMChildrenOperations.js"),DOMLazyTree=__webpack_require__("./node_modules/react/lib/DOMLazyTree.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),escapeTextContentForBrowser=__webpack_require__("./node_modules/react/lib/escapeTextContentForBrowser.js"),invariant=__webpack_require__("./node_modules/fbjs/lib/invariant.js"),validateDOMNesting=__webpack_require__("./node_modules/react/lib/validateDOMNesting.js"),ReactDOMTextComponent=function(e){this._currentElement=e,this._stringText=""+e,this._hostNode=null,this._hostParent=null,this._domID=0,this._mountIndex=0,this._closingComment=null,this._commentNodes=null};_assign(ReactDOMTextComponent.prototype,{mountComponent:function(e,t,n,r){if(false){var o;null!=t?o=t._ancestorInfo:null!=n&&(o=n._ancestorInfo),o&&validateDOMNesting("#text",this,o)}var i=n._idCounter++,s=" react-text: "+i+" ",a=" /react-text ";if(this._domID=i,this._hostParent=t,e.useCreateElement){var c=n._ownerDocument,m=c.createComment(s),u=c.createComment(a),h=DOMLazyTree(c.createDocumentFragment());return DOMLazyTree.queueChild(h,DOMLazyTree(m)),this._stringText&&DOMLazyTree.queueChild(h,DOMLazyTree(c.createTextNode(this._stringText))),DOMLazyTree.queueChild(h,DOMLazyTree(u)),ReactDOMComponentTree.precacheNode(this,m),this._closingComment=u,h}var l=escapeTextContentForBrowser(this._stringText);return e.renderToStaticMarkup?l:"<!--"+s+"-->"+l+"<!--"+a+"-->"},receiveComponent:function(e,t){if(e!==this._currentElement){this._currentElement=e;var n=""+e;if(n!==this._stringText){this._stringText=n;var r=this.getHostNode();DOMChildrenOperations.replaceDelimitedText(r[0],r[1],n)}}},getHostNode:function(){var e=this._commentNodes;if(e)return e;if(!this._closingComment)for(var t=ReactDOMComponentTree.getNodeFromInstance(this),n=t.nextSibling;;){if(null==n? false?invariant(!1,"Missing closing comment for text component %s",this._domID):_prodInvariant("67",this._domID):void 0,8===n.nodeType&&" /react-text "===n.nodeValue){this._closingComment=n;break}n=n.nextSibling}return e=[this._hostNode,this._closingComment],this._commentNodes=e,e},unmountComponent:function(){this._closingComment=null,this._commentNodes=null,ReactDOMComponentTree.uncacheNode(this)}}),module.exports=ReactDOMTextComponent;
+	"use strict";var _prodInvariant=__webpack_require__("./node_modules/react/lib/reactProdInvariant.js"),_assign=__webpack_require__("./node_modules/object-assign/index.js"),DOMChildrenOperations=__webpack_require__("./node_modules/react/lib/DOMChildrenOperations.js"),DOMLazyTree=__webpack_require__("./node_modules/react/lib/DOMLazyTree.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),escapeTextContentForBrowser=__webpack_require__("./node_modules/react/lib/escapeTextContentForBrowser.js"),invariant=__webpack_require__("./node_modules/fbjs/lib/invariant.js"),validateDOMNesting=__webpack_require__("./node_modules/react/lib/validateDOMNesting.js"),ReactDOMTextComponent=function(e){this._currentElement=e,this._stringText=""+e,this._hostNode=null,this._hostParent=null,this._domID=0,this._mountIndex=0,this._closingComment=null,this._commentNodes=null};_assign(ReactDOMTextComponent.prototype,{mountComponent:function(e,t,n,r){if(false){var o;null!=t?o=t._ancestorInfo:null!=n&&(o=n._ancestorInfo),o&&validateDOMNesting(null,this._stringText,this,o)}var i=n._idCounter++,s=" react-text: "+i+" ",a=" /react-text ";if(this._domID=i,this._hostParent=t,e.useCreateElement){var c=n._ownerDocument,m=c.createComment(s),u=c.createComment(a),l=DOMLazyTree(c.createDocumentFragment());return DOMLazyTree.queueChild(l,DOMLazyTree(m)),this._stringText&&DOMLazyTree.queueChild(l,DOMLazyTree(c.createTextNode(this._stringText))),DOMLazyTree.queueChild(l,DOMLazyTree(u)),ReactDOMComponentTree.precacheNode(this,m),this._closingComment=u,l}var h=escapeTextContentForBrowser(this._stringText);return e.renderToStaticMarkup?h:"<!--"+s+"-->"+h+"<!--"+a+"-->"},receiveComponent:function(e,t){if(e!==this._currentElement){this._currentElement=e;var n=""+e;if(n!==this._stringText){this._stringText=n;var r=this.getHostNode();DOMChildrenOperations.replaceDelimitedText(r[0],r[1],n)}}},getHostNode:function(){var e=this._commentNodes;if(e)return e;if(!this._closingComment)for(var t=ReactDOMComponentTree.getNodeFromInstance(this),n=t.nextSibling;;){if(null==n? false?invariant(!1,"Missing closing comment for text component %s",this._domID):_prodInvariant("67",this._domID):void 0,8===n.nodeType&&" /react-text "===n.nodeValue){this._closingComment=n;break}n=n.nextSibling}return e=[this._hostNode,this._closingComment],this._commentNodes=e,e},unmountComponent:function(){this._closingComment=null,this._commentNodes=null,ReactDOMComponentTree.uncacheNode(this)}}),module.exports=ReactDOMTextComponent;
 
 /***/ },
 
@@ -6118,7 +6967,7 @@ webpackJsonp([0],{
 /***/ "./node_modules/react/lib/SelectEventPlugin.js":
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";function getSelection(e){if("selectionStart"in e&&ReactInputSelection.hasSelectionCapabilities(e))return{start:e.selectionStart,end:e.selectionEnd};if(window.getSelection){var t=window.getSelection();return{anchorNode:t.anchorNode,anchorOffset:t.anchorOffset,focusNode:t.focusNode,focusOffset:t.focusOffset}}if(document.selection){var n=document.selection.createRange();return{parentElement:n.parentElement(),text:n.text,top:n.boundingTop,left:n.boundingLeft}}}function constructSelectEvent(e,t){if(mouseDown||null==activeElement||activeElement!==getActiveElement())return null;var n=getSelection(activeElement);if(!lastSelection||!shallowEqual(lastSelection,n)){lastSelection=n;var o=SyntheticEvent.getPooled(eventTypes.select,activeElementInst,e,t);return o.type="select",o.target=activeElement,EventPropagators.accumulateTwoPhaseDispatches(o),o}return null}var EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPropagators=__webpack_require__("./node_modules/react/lib/EventPropagators.js"),ExecutionEnvironment=__webpack_require__("./node_modules/fbjs/lib/ExecutionEnvironment.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),ReactInputSelection=__webpack_require__("./node_modules/react/lib/ReactInputSelection.js"),SyntheticEvent=__webpack_require__("./node_modules/react/lib/SyntheticEvent.js"),getActiveElement=__webpack_require__("./node_modules/fbjs/lib/getActiveElement.js"),isTextInputElement=__webpack_require__("./node_modules/react/lib/isTextInputElement.js"),keyOf=__webpack_require__("./node_modules/fbjs/lib/keyOf.js"),shallowEqual=__webpack_require__("./node_modules/fbjs/lib/shallowEqual.js"),topLevelTypes=EventConstants.topLevelTypes,skipSelectionChangeEvent=ExecutionEnvironment.canUseDOM&&"documentMode"in document&&document.documentMode<=11,eventTypes={select:{phasedRegistrationNames:{bubbled:keyOf({onSelect:null}),captured:keyOf({onSelectCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topContextMenu,topLevelTypes.topFocus,topLevelTypes.topKeyDown,topLevelTypes.topMouseDown,topLevelTypes.topMouseUp,topLevelTypes.topSelectionChange]}},activeElement=null,activeElementInst=null,lastSelection=null,mouseDown=!1,hasListener=!1,ON_SELECT_KEY=keyOf({onSelect:null}),SelectEventPlugin={eventTypes:eventTypes,extractEvents:function(e,t,n,o){if(!hasListener)return null;var l=t?ReactDOMComponentTree.getNodeFromInstance(t):window;switch(e){case topLevelTypes.topFocus:(isTextInputElement(l)||"true"===l.contentEditable)&&(activeElement=l,activeElementInst=t,lastSelection=null);break;case topLevelTypes.topBlur:activeElement=null,activeElementInst=null,lastSelection=null;break;case topLevelTypes.topMouseDown:mouseDown=!0;break;case topLevelTypes.topContextMenu:case topLevelTypes.topMouseUp:return mouseDown=!1,constructSelectEvent(n,o);case topLevelTypes.topSelectionChange:if(skipSelectionChangeEvent)break;case topLevelTypes.topKeyDown:case topLevelTypes.topKeyUp:return constructSelectEvent(n,o)}return null},didPutListener:function(e,t,n){t===ON_SELECT_KEY&&(hasListener=!0)}};module.exports=SelectEventPlugin;
+	"use strict";function getSelection(e){if("selectionStart"in e&&ReactInputSelection.hasSelectionCapabilities(e))return{start:e.selectionStart,end:e.selectionEnd};if(window.getSelection){var t=window.getSelection();return{anchorNode:t.anchorNode,anchorOffset:t.anchorOffset,focusNode:t.focusNode,focusOffset:t.focusOffset}}if(document.selection){var n=document.selection.createRange();return{parentElement:n.parentElement(),text:n.text,top:n.boundingTop,left:n.boundingLeft}}}function constructSelectEvent(e,t){if(mouseDown||null==activeElement||activeElement!==getActiveElement())return null;var n=getSelection(activeElement);if(!lastSelection||!shallowEqual(lastSelection,n)){lastSelection=n;var o=SyntheticEvent.getPooled(eventTypes.select,activeElementInst,e,t);return o.type="select",o.target=activeElement,EventPropagators.accumulateTwoPhaseDispatches(o),o}return null}var EventConstants=__webpack_require__("./node_modules/react/lib/EventConstants.js"),EventPropagators=__webpack_require__("./node_modules/react/lib/EventPropagators.js"),ExecutionEnvironment=__webpack_require__("./node_modules/fbjs/lib/ExecutionEnvironment.js"),ReactDOMComponentTree=__webpack_require__("./node_modules/react/lib/ReactDOMComponentTree.js"),ReactInputSelection=__webpack_require__("./node_modules/react/lib/ReactInputSelection.js"),SyntheticEvent=__webpack_require__("./node_modules/react/lib/SyntheticEvent.js"),getActiveElement=__webpack_require__("./node_modules/fbjs/lib/getActiveElement.js"),isTextInputElement=__webpack_require__("./node_modules/react/lib/isTextInputElement.js"),keyOf=__webpack_require__("./node_modules/fbjs/lib/keyOf.js"),shallowEqual=__webpack_require__("./node_modules/fbjs/lib/shallowEqual.js"),topLevelTypes=EventConstants.topLevelTypes,skipSelectionChangeEvent=ExecutionEnvironment.canUseDOM&&"documentMode"in document&&document.documentMode<=11,eventTypes={select:{phasedRegistrationNames:{bubbled:keyOf({onSelect:null}),captured:keyOf({onSelectCapture:null})},dependencies:[topLevelTypes.topBlur,topLevelTypes.topContextMenu,topLevelTypes.topFocus,topLevelTypes.topKeyDown,topLevelTypes.topKeyUp,topLevelTypes.topMouseDown,topLevelTypes.topMouseUp,topLevelTypes.topSelectionChange]}},activeElement=null,activeElementInst=null,lastSelection=null,mouseDown=!1,hasListener=!1,ON_SELECT_KEY=keyOf({onSelect:null}),SelectEventPlugin={eventTypes:eventTypes,extractEvents:function(e,t,n,o){if(!hasListener)return null;var l=t?ReactDOMComponentTree.getNodeFromInstance(t):window;switch(e){case topLevelTypes.topFocus:(isTextInputElement(l)||"true"===l.contentEditable)&&(activeElement=l,activeElementInst=t,lastSelection=null);break;case topLevelTypes.topBlur:activeElement=null,activeElementInst=null,lastSelection=null;break;case topLevelTypes.topMouseDown:mouseDown=!0;break;case topLevelTypes.topContextMenu:case topLevelTypes.topMouseUp:return mouseDown=!1,constructSelectEvent(n,o);case topLevelTypes.topSelectionChange:if(skipSelectionChangeEvent)break;case topLevelTypes.topKeyDown:case topLevelTypes.topKeyUp:return constructSelectEvent(n,o)}return null},didPutListener:function(e,t,n){t===ON_SELECT_KEY&&(hasListener=!0)}};module.exports=SelectEventPlugin;
 
 /***/ },
 
