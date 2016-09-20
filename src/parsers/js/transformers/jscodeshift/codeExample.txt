@@ -1,11 +1,12 @@
 export default function transformer(file, api) {
   const j = api.jscodeshift;
-  const {expression, statement, statements} = j.template;
 
   return j(file.source)
     .find(j.Identifier)
-    .replaceWith(
-      p => j.identifier(p.node.name.split('').reverse().join(''))
-    )
+    .forEach(path => {
+      j(path).replaceWith(
+        j.identifier(path.node.name.split('').reverse().join(''))
+      );
+    })
     .toSource();
-};
+}
