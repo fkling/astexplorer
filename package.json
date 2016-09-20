@@ -86,7 +86,7 @@
     "reselect": "^2.0.3",
     "shift-parser": "^5.0.2",
     "source-map": "^0.5.3",
-    "tern": "^0.17.0",
+    "tern": "^0.20.0",
     "traceur": "0.0.111",
     "typescript": "^1.7.5",
     "webidl2": "^2.0.11"

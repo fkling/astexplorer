@@ -4246,14 +4246,19 @@
       }
     },
     "tern": {
-      "version": "0.17.0",
-      "from": "tern@>=0.17.0 <0.18.0",
-      "resolved": "https://registry.npmjs.org/tern/-/tern-0.17.0.tgz",
+      "version": "0.20.0",
+      "from": "tern@latest",
+      "resolved": "https://registry.npmjs.org/tern/-/tern-0.20.0.tgz",
       "dependencies": {
         "acorn": {
-          "version": "2.7.0",
-          "from": "acorn@>=2.7.0 <3.0.0",
-          "resolved": "https://registry.npmjs.org/acorn/-/acorn-2.7.0.tgz"
+          "version": "3.3.0",
+          "from": "acorn@>=3.2.0 <4.0.0",
+          "resolved": "https://registry.npmjs.org/acorn/-/acorn-3.3.0.tgz"
+        },
+        "enhanced-resolve": {
+          "version": "2.3.0",
+          "from": "enhanced-resolve@>=2.2.2 <3.0.0",
+          "resolved": "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-2.3.0.tgz"
         },
         "glob": {
           "version": "3.2.11",
@@ -4267,15 +4272,25 @@
             }
           }
         },
+        "memory-fs": {
+          "version": "0.3.0",
+          "from": "memory-fs@>=0.3.0 <0.4.0",
+          "resolved": "https://registry.npmjs.org/memory-fs/-/memory-fs-0.3.0.tgz"
+        },
         "minimatch": {
           "version": "0.2.14",
           "from": "minimatch@>=0.2.0 <0.3.0",
           "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.2.14.tgz"
         },
-        "typescript": {
-          "version": "1.0.1",
-          "from": "typescript@1.0.1",
-          "resolved": "https://registry.npmjs.org/typescript/-/typescript-1.0.1.tgz"
+        "resolve-from": {
+          "version": "2.0.0",
+          "from": "resolve-from@2.0.0",
+          "resolved": "https://registry.npmjs.org/resolve-from/-/resolve-from-2.0.0.tgz"
+        },
+        "tapable": {
+          "version": "0.2.4",
+          "from": "tapable@>=0.2.3 <0.3.0",
+          "resolved": "https://registry.npmjs.org/tapable/-/tapable-0.2.4.tgz"
         }
       }
     },

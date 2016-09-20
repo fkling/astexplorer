@@ -162,10 +162,9 @@ function loadTern() {
           'tern/plugin/doc_comment',
           'tern/lib/infer',
           './defs/jscodeshift.json',
-          'tern/defs/ecma5.json',
-          'tern/defs/ecma6.json',
+          'tern/defs/ecmascript.json',
         ],
-        (tern, _, infer, jscs_def, ecma5_def, ecma6_def) => {
+        (tern, _, infer, jscs_def, ecmascript) => {
           global.tern = tern;
           tern.registerPlugin('transformer', server => {
             server.on('afterLoad', file => {
@@ -187,7 +186,7 @@ function loadTern() {
           });
 
           server = new CodeMirror.TernServer({
-            defs: [jscs_def, ecma6_def, ecma5_def],
+            defs: [jscs_def, ecmascript],
             plugins: {
               transformer: {strong: true},
             },
