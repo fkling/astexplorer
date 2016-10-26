@@ -20,6 +20,7 @@ const defaultOptions = {
     'functionBind',
     'jsx',
     'objectRestSpread',
+    'dynamicImport'
   ],
 };
 const parserSettingsConfiguration = {
