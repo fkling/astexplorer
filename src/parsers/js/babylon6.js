@@ -4,7 +4,7 @@ import pkg from 'babylon6/babylon-package';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'babylon6';
-const defaultOptions = {
+export const defaultOptions = {
   sourceType: 'module',
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
@@ -20,10 +20,10 @@ const defaultOptions = {
     'functionBind',
     'jsx',
     'objectRestSpread',
-    'dynamicImport'
+    'dynamicImport',
   ],
 };
-const parserSettingsConfiguration = {
+export const parserSettingsConfiguration = {
   fields: [
     ['sourceType', ['module', 'script']],
     'allowReturnOutsideFunction',

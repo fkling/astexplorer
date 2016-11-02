@@ -3,11 +3,16 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'recast/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
+import flowParser, * as flowSettings from './flow';
+import babylonParser, * as babylonSettings from './babylon6';
+
 const ID = 'recast';
 const defaultOptions = {
   tolerant: false,
   range: true,
   parser: 'esprima',
+  flow: flowSettings.defaultOptions,
+  babylon: babylonSettings.defaultOptions,
 };
 
 const parserSettingsConfiguration = {
@@ -15,6 +20,18 @@ const parserSettingsConfiguration = {
     ['parser', ['esprima', 'babel5', 'babylon6', 'flow']],
     'range',
     'tolerant',
+    {
+      key: 'flow',
+      title: 'Flow Settings',
+      fields: flowSettings.parserSettingsConfiguration.fields,
+      settings: settings => settings.flow || defaultOptions.flow,
+    },
+    {
+      key: 'babylon',
+      title: 'Babylon 6 Settings',
+      fields: babylonSettings.parserSettingsConfiguration.fields,
+      settings: settings => settings.babylon || defaultOptions.babylon,
+    },
   ],
   required: new Set(['range']),
 };
@@ -46,9 +63,28 @@ export default {
 
   parse({ recast, parsers }, code, options) {
     options = {...defaultOptions, ...options};
+    const flowOptions = options.flow;
+    const babylonOptions = options.babylon;
+    delete options.flow;
+    delete options.babylon;
+
     switch (options.parser) {
       case 'esprima':
         delete options.parser; // default parser
+        break;
+      case 'flow':
+        options.parser = {
+          parse(code) {
+            return flowParser.parse(parsers.flow, code, flowOptions);
+          },
+        };
+        break;
+      case 'babylon6':
+        options.parser = {
+          parse(code) {
+            return babylonParser.parse(parsers.babylon6, code, babylonOptions);
+          },
+        };
         break;
       default:
         options.parser = parsers[options.parser];

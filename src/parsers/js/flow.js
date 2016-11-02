@@ -4,14 +4,14 @@ import pkg from 'flow-parser/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'flow';
-const defaultOptions = {
+export const defaultOptions = {
   esproposal_class_instance_fields: true,
   esproposal_class_static_fields: true,
   esproposal_decorators: true,
   esproposal_export_star_as: true,
   types: true,
 };
-const parserSettingsConfiguration = {
+export const parserSettingsConfiguration = {
   fields: [
     'esproposal_class_instance_fields',
     'esproposal_class_static_fields',
