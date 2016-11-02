@@ -125,9 +125,10 @@ as possible!
 
 1. Clone the repository.
 2. Run `git submodule update --init` to initialize / update all submodules.
-3. Install all dependencies with `npm install`.
+3. Install all dependencies with `yarn install` (you can run `npm install` as 
+   well).
 
-Run `npm run build` for the final minimized version.  
-Run `npm run watch` for incremental builds.
+Run `yarn run build` for the final minimized version.  
+Run `yarn run watch` for incremental builds.
 
 Run `npm start` to start a simple static webserver.
