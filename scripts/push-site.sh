@@ -30,6 +30,7 @@ cp CNAME "$TARGETPATH/CNAME"
 # Commit changes
 pushd $TARGETPATH
 echo "Committing..."
+touch .nojekyll
 git add -A
 if git diff --quiet && git diff --cached --quite; then
   echo "No changes, nothing to commit..."
