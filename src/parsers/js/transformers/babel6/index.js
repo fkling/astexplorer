@@ -1,5 +1,6 @@
 import compileModule from '../../../utils/compileModule';
 import pkg from 'babel6/babel6-package';
+import recast from 'recast';
 
 const ID = 'babelv6';
 
@@ -24,6 +25,12 @@ export default {
     );
 
     return babel.transform(code, {
+      parserOpts: {
+        parser: recast.parse,
+      },
+      generatorOpts: {
+        generator: recast.print,
+      },
       presets: [syntaxPreset],
       plugins: [(transform.default || transform)(babel)],
       sourceMaps: true,
