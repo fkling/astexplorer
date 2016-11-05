@@ -1,5 +1,8 @@
-export default function ({types: t}) {
+export default function (babel) {
+  let { types: t } = babel;
+  
   return {
+    name: "ast-transform", // not required
     visitor: {
       Identifier(path) {
         path.node.name = path.node.name.split('').reverse().join('');
