@@ -1,5 +1,5 @@
 export default function (babel) {
-  let { types: t } = babel;
+  const { types: t } = babel;
   
   return {
     name: "ast-transform", // not required
