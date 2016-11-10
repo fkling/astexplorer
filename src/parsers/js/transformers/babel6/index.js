@@ -15,11 +15,10 @@ export default {
   loadTransformer(callback) {
     require([
       'babel6',
-      'babel-preset-syntax-from-presets',
-    ], (babel, syntaxPreset) => callback({ babel, syntaxPreset }));
+    ], (babel) => callback({ babel }));
   },
 
-  transform({ babel, syntaxPreset, presets }, transformCode, code) {
+  transform({ babel, presets }, transformCode, code) {
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode
     );
@@ -27,11 +26,24 @@ export default {
     return babel.transform(code, {
       parserOpts: {
         parser: recast.parse,
+        plugins: [
+          'asyncGenerators',
+          'classConstructorCall',
+          'classProperties',
+          'decorators',
+          'doExpressions',
+          'exportExtensions',
+          'flow',
+          'functionSent',
+          'functionBind',
+          'jsx',
+          'objectRestSpread',
+          'dynamicImport',
+        ],
       },
       generatorOpts: {
         generator: recast.print,
       },
-      presets: [syntaxPreset],
       plugins: [(transform.default || transform)(babel)],
       sourceMaps: true,
     });

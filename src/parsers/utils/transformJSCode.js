@@ -1,10 +1,10 @@
 import * as babel from 'babel6';
 import es2015 from 'babel-preset-es2015';
-import stage1 from 'babel-preset-stage-1';
+import stage0 from 'babel-preset-stage-0';
 import flowStripTypes from 'babel-plugin-transform-flow-strip-types';
 
 const options = {
-  presets: [es2015, stage1],
+  presets: [es2015, stage0],
   plugins: [flowStripTypes],
   ast: false,
   babelrc: false,

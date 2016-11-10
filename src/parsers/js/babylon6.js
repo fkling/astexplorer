@@ -23,6 +23,7 @@ export const defaultOptions = {
     'dynamicImport',
   ],
 };
+
 export const parserSettingsConfiguration = {
   fields: [
     ['sourceType', ['module', 'script']],
