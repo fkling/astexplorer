@@ -17,12 +17,13 @@ function transform(transformer, transformCode, code) {
   }
   // Use Promise.resolve(null) to return all errors as rejected promises
   return transformer._promise.then(([realTransformer, toES5]) => {
+    let es5Code = toES5(transformCode);
     // assert that there are no obvious infinite loops
-    halts(transformCode);
+    halts(es5Code);
     // guard against non-obvious loops with a timeout of 5 seconds
     let start = Date.now();
-    transformCode = loopProtect(
-      transformCode,
+    es5Code = loopProtect(
+      es5Code,
       [
         // this function gets called in all possible loops
         // it gets passed the line number as its only argument
@@ -35,7 +36,7 @@ function transform(transformer, transformCode, code) {
     );
     let result = transformer.transform(
       realTransformer,
-      toES5(transformCode),
+      es5Code,
       code
     );
     return Promise.resolve(result).then(result => {
