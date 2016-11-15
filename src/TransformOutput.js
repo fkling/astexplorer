@@ -88,6 +88,7 @@ export default class TransformOutput extends React.Component {
         ({ result, map }) => ({ result, map, error: null }),
         error => {
           console.error(error); // eslint-disable-line no-console
+          console.error(error.stack); // eslint-disable-line no-console
           return { error };
         }
       ).then(state => this.setState(state));
