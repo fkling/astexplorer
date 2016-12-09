@@ -13,3 +13,10 @@ export default class JSON extends React.Component {
     );
   }
 }
+
+JSON.propTypes = {
+  ast: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.object,
+  ]),
+};

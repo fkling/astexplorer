@@ -10,16 +10,16 @@ export default class CompactArrayView extends React.Component {
     let count = array.length;
 
     if (count === 0) {
-      return <span className="p">{"[ ]"}</span>;
+      return <span className="p">{'[ ]'}</span>;
     }
     else {
       return (
         <span>
-          <span className="p">{"["}</span>
+          <span className="p">{'['}</span>
           <span className="compact placeholder ge" onClick={this.props.onClick}>
             {count + ' element' + (count > 1 ? 's' : '')}
           </span>
-          <span className="p">{"]"}</span>
+          <span className="p">{']'}</span>
         </span>
       );
     }
