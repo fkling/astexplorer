@@ -18,7 +18,7 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage,
+  homepage: pkg.homepage || 'https://github.com/w3c/webidl2.js',
 
   getNodeName(node) {
     if (node.name) {
