@@ -9,7 +9,7 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage,
+  homepage: pkg.homepage || 'https://github.com/NV/CSSOM',
   locationProps: new Set(['__starts', '__ends']),
 
   loadParser(callback) {

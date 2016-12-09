@@ -27,7 +27,7 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage,
+  homepage: pkg.homepage || 'https://flowtype.org/',
   locationProps: new Set(['range', 'loc']),
 
   loadParser(callback) {

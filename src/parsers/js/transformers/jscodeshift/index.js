@@ -9,7 +9,7 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage,
+  homepage: pkg.homepage || 'https://github.com/facebook/jscodeshift',
 
   defaultParserID: 'recast',
 
