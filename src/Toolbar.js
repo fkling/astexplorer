@@ -1,8 +1,9 @@
 import React from 'react';
-import cx from 'classnames';
-import CategoryButton from './CategoryButton';
-import ParserButton from './ParserButton';
-import TransformButton from './TransformButton';
+import CategoryButton from './components/buttons/CategoryButton';
+import ForkButton from './components/buttons/ForkButton';
+import ParserButton from './components/buttons/ParserButton';
+import SaveButton from './components/buttons/SaveButton';
+import TransformButton from './components/buttons/TransformButton';
 
 export default function Toolbar(props) {
   let {parser, transformer, showTransformer} = props;
@@ -32,40 +33,8 @@ export default function Toolbar(props) {
   return (
     <div id="Toolbar">
       <h1>AST Explorer</h1>
-      <button
-        type="button"
-        disabled={
-          !props.canSave || props.saving || props.forking
-        }
-        onClick={props.onSave}>
-        <i
-          className={cx({
-            fa: true,
-            'fa-spinner': props.saving,
-            'fa-floppy-o': !props.saving,
-            'fa-lg': true,
-            'fa-fw': true,
-          })}
-        />
-        Save
-      </button>
-      <button
-        type="button"
-        disabled={
-          !props.canFork || props.saving || props.forking
-        }
-        onClick={props.onFork}>
-        <i
-          className={cx({
-            fa: true,
-            'fa-spinner': props.forking,
-            'fa-code-fork': !props.forking,
-            'fa-lg': true,
-            'fa-fw': true,
-          })}
-        />
-        Fork
-      </button>
+      <SaveButton {...props} />
+      <ForkButton {...props} />
       <CategoryButton {...props} />
       <ParserButton {...props} />
       <TransformButton {...props} />
@@ -98,4 +67,3 @@ Toolbar.propTypes = {
   canSave: React.PropTypes.bool,
   canFork: React.PropTypes.bool,
 };
-

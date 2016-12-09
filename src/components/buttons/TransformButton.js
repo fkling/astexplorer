@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import {getTransformerByID} from './parsers';
+import {getTransformerByID} from '../../parsers';
 
 export default class TransformButton extends React.Component {
   constructor(props) {
