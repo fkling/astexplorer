@@ -63,7 +63,7 @@ you can drag and drop JS files).
 - Editing the source or moving the cursor around will automatically highlight the
 corresponding AST node (or its ancestors of it isn't expanded):
 ![source highlight](assets/ast.png)
-- You can use `$node` in the console to refer to the last opened/toggled AST 
+- You can use `$node` in the console to refer to the last opened/toggled AST
 node.
 
 [acorn-jsx]: https://github.com/RReverser/acorn-jsx
@@ -99,7 +99,7 @@ as possible!
 
 #### How to add a new parser
 
-1. Install the new parser as dependency: `npm install -S theParser`
+1. Install the new parser as dependency: `yarn add theParser` (or `npm install -S theParser`)
 2. Copy one of the existing examples in `src/parsers/{language}`.
 3. Adjust the code as necessary:
   - Update metadata.
@@ -125,10 +125,10 @@ as possible!
 
 1. Clone the repository.
 2. Run `git submodule update --init` to initialize / update all submodules.
-3. Install all dependencies with `yarn install` (you can run `npm install` as 
+3. Install all dependencies with `yarn install` (you can run `npm install` as
    well).
 
 Run `yarn run build` for the final minimized version.  
 Run `yarn run watch` for incremental builds.
 
-Run `npm start` to start a simple static webserver.
+Run `yarn start` to start a simple static webserver.
