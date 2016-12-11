@@ -7,6 +7,7 @@ const categoryIcon = {
   css: 'fa-css3',
   graphql: 'icon-GraphQL_Logo',
   htmlmixed: 'fa-html5',
+  sql: 'fa-database',
   webidl: 'fa-th-list',
 };
 
