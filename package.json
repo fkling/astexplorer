@@ -83,6 +83,7 @@
     "reselect": "^2.0.3",
     "shift-parser": "^5.0.2",
     "source-map": "^0.5.3",
+    "sqlite-parser": "^1.0.0-rc3",
     "tern": "^0.20.0",
     "traceur": "0.0.111",
     "typescript": "^2.0.9",
