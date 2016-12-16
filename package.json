@@ -93,6 +93,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "watch": "webpack -dw",
     "push": "./scripts/push-site.sh",
-    "eslint": "eslint src/"
+    "eslint": "eslint src/",
+    "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml"
   }
 }
