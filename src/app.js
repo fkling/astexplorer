@@ -1,9 +1,8 @@
-import * as sagas from './store/sagas';
+import * as LocalStorage from './LocalStorage';
 import ASTOutputContainer from './containers/ASTOutputContainer';
 import CodeEditorContainer from './containers/CodeEditorContainer';
 import ErrorMessageContainer from './containers/ErrorMessageContainer';
 import LoadingIndictorContainer from './containers/LoadingIndicatorContainer';
-import * as LocalStorage from './LocalStorage';
 import PasteDropTargetContainer from './containers/PasteDropTargetContainer';
 import PubSub from 'pubsub-js';
 import React from 'react';
@@ -13,6 +12,7 @@ import ToolbarContainer from './containers/ToolbarContainer';
 import TransformerContainer from './containers/TransformerContainer';
 import createSagaMiddleware from 'redux-saga'
 import debounce from './utils/debounce';
+import saga from './store/sagas';
 import {Provider, connect} from 'react-redux';
 import {astexplorer, persist, revive} from './store/reducers';
 import {createStore, applyMiddleware, compose} from 'redux';
@@ -65,16 +65,12 @@ const AppContainer = connect(
 )(App);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   enableBatching(astexplorer),
   revive(LocalStorage.readState()),
   composeEnhancers(
-    applyMiddleware(
-      createSagaMiddleware(
-        sagas.watchSnippetURI,
-        sagas.watchSave
-      )
-    )
+    applyMiddleware(sagaMiddleware)
   )
 );
 store.subscribe(debounce(() => {
@@ -84,6 +80,7 @@ store.subscribe(debounce(() => {
     LocalStorage.writeState(persist(state));
   }
 }));
+sagaMiddleware.run(saga);
 
 render(
   <Provider store={store}>

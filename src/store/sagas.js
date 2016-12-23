@@ -1,7 +1,8 @@
 /*eslint no-constant-condition:0*/
 
 import * as actions from './actions';
-import { put, take, select, call } from 'redux-saga/effects'
+import {takeEvery} from 'redux-saga'
+import { put, select, call } from 'redux-saga/effects'
 import {batchActions} from 'redux-batched-actions';
 import Snippet from '../Snippet';
 import {logEvent, logError} from '../utils/logger';
@@ -79,50 +80,49 @@ function* save(fork) {
   }
 }
 
-export function* watchSave() {
-  while (true) {
-    const {fork} = yield take(actions.SAVE);
-    yield put(actions.startSave(fork));
-    yield* save(fork);
-    yield put(actions.endSave(fork));
-  }
+export function* watchSave({fork}) {
+  yield put(actions.startSave(fork));
+  yield* save(fork);
+  yield put(actions.endSave(fork));
 }
 
-export function* watchSnippetURI() {
-  while (true) {
-    yield take(actions.LOAD_SNIPPET);
-    const {saving, forking} = yield [select(isSaving), select(isForking)];
-    if (saving || forking) {
-      continue;
-    }
+function* watchSnippetURI() {
+  const {saving, forking} = yield [select(isSaving), select(isForking)];
+  if (saving || forking) {
+    return;
+  }
+
+  yield put(batchActions([
+    actions.setError(null),
+    actions.startLoadingSnippet(),
+  ]));
+  let data;
+  try {
+    data = yield call(Snippet.fetchFromURL);
+  } catch(error) {
+    const errorMessage = 'Failed to fetch revision: ' + error.message;
+    logError(errorMessage);
 
     yield put(batchActions([
-      actions.setError(null),
-      actions.startLoadingSnippet(),
-    ]));
-    let data;
-    try {
-      data = yield call(Snippet.fetchFromURL);
-    } catch(error) {
-      const errorMessage = 'Failed to fetch revision: ' + error.message;
-      logError(errorMessage);
-
-      yield put(batchActions([
-        actions.setError(new Error(errorMessage)),
-        actions.doneLoadingSnippet(),
-      ]));
-      continue;
-    }
-
-    if (data) {
-      logEvent('snippet', 'load');
-    }
-
-    yield put(batchActions([
-      data ?
-        actions.setSnippet(data.snippet, data.revision) :
-        actions.clearSnippet(),
+      actions.setError(new Error(errorMessage)),
       actions.doneLoadingSnippet(),
     ]));
+    return;
   }
+
+  if (data) {
+    logEvent('snippet', 'load');
+  }
+
+  yield put(batchActions([
+    data ?
+      actions.setSnippet(data.snippet, data.revision) :
+      actions.clearSnippet(),
+    actions.doneLoadingSnippet(),
+  ]));
+}
+
+export default function*() {
+  yield takeEvery(actions.LOAD_SNIPPET, watchSnippetURI);
+  yield takeEvery(actions.SAVE, watchSave);
 }
