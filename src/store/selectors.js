@@ -1,78 +1,103 @@
 import {createSelector} from 'reselect';
 import isEqual from 'lodash.isequal';
+import {getParserByID, getTransformerByID} from '../parsers';
 
-function getParser(state) {
-  return state.parser;
+// UI related
+
+export function getCursor(state) {
+  return state.cursor;
 }
 
-function getParserSettings(state) {
-  return state.parserSettings;
+export function getError(state) {
+  return state.error;
 }
 
-function getSnippet(state) {
-  return state.selectedSnippet;
+export function isLoadingSnippet(state) {
+  return state.loadingSnippet;
 }
 
-function getCode(state) {
-  return state.code;
+export function showSettingsDialog(state) {
+  return state.showSettingsDialog;
 }
 
-function getRevision(state) {
-  return state.selectedRevision;
+export function isForking(state) {
+  return state.forking;
 }
 
-function getCodeExample(state) {
-  return state.parser.category.codeExample;
+export function isSaving(state) {
+  return state.saving;
 }
 
-function getDroppedText(state) {
-  return state.droppedText;
+// Parser related
+
+export function getParser(state) {
+  return getParserByID(state.workbench.parser);
 }
 
-function getTransformExample(state) {
-  return state.transform.transformer ?
-    state.transform.transformer.defaultTransform :
-    '';
+export function getParserSettings(state) {
+  return state.workbench.parserSettings;
 }
 
-function getTransformCode(state) {
-  return state.transform.code;
+export function getParseError(state) {
+  return state.workbench.parseError;
 }
 
-function showTransformer(state) {
-  return state.transform.showTransformer;
+// Code related
+
+export function getSnippet(state) {
+  return state.activeSnippet;
 }
+
+export function getRevision(state) {
+  return state.activeRevision;
+}
+
+export function getCode(state) {
+  return state.workbench.code;
+}
+
+export function getInitialCode(state) {
+  return state.workbench.initialCode;
+}
+
+const isCodeDirty = createSelector(
+  [getCode, getInitialCode],
+  (code, initialCode) => code !== initialCode
+);
+
+// Transform related
+
+export function getTransformCode(state) {
+  return state.workbench.transform.code;
+}
+
+export function getInitialTransformCode(state) {
+  return state.workbench.transform.initialCode;
+}
+
+export function getTransformer(state) {
+  return getTransformerByID(state.workbench.transform.transformer);
+}
+
+export function showTransformer(state) {
+  return state.showTransformPanel;
+}
+
+const isTransformDirty = createSelector(
+  [getTransformCode, getInitialTransformCode],
+  (code, initialCode) => code !== initialCode
+);
 
 export const canFork = createSelector(
   [getSnippet],
   (snippet) => !!snippet
 );
 
-const defaultValue = createSelector(
-  [getRevision, getCodeExample, getDroppedText, getParser],
-  (revision, codeExample, droppedText, parser) => revision ?
-    revision.get('code') ||  parser.category.codeExample :
-    (droppedText != null ? droppedText : codeExample)
-);
-export {defaultValue};
-
-const defaultTransformCode = createSelector(
-  [getRevision, getTransformExample],
-  (revision, example) => revision ?
-    revision.get('transform') || example :
-    example
-);
-export {defaultTransformCode};
-
-export const canSaveCode = createSelector(
-  [defaultValue, getCode],
-  (defaultCode, code) => defaultCode !== code
-);
+const canSaveCode = isCodeDirty;
 
 export const canSaveTransform = createSelector(
-  [showTransformer, defaultTransformCode, getTransformCode],
-  (showTransformer, defaultCode, code) =>
-    showTransformer && defaultCode !== code
+  [showTransformer, isTransformDirty],
+  (showTransformer, dirty) => showTransformer && dirty
 );
 
 const didParserSettingsChange = createSelector(

@@ -5,43 +5,34 @@ import {
   openSettingsDialog,
   selectTransformer,
   hideTransformer,
-  setWorkbenchState,
+  setParser,
 } from '../store/actions';
 import Toolbar from '../Toolbar';
-import {canSave, canFork} from '../store/selectors';
-import * as LocalStorage from '../LocalStorage';
+import * as selectors from '../store/selectors';
 import {logEvent} from '../utils/logger';
 
 function mapStateToProps(state) {
-  const {
-    parser,
-    transform: {transformer, showTransformer},
-  } = state;
+  const parser = selectors.getParser(state);
 
   return {
-    forking: state.forking,
-    saving: state.saving,
-    canSave: canSave(state),
-    canFork: canFork(state),
+    forking: selectors.isForking(state),
+    saving: selectors.isSaving(state),
+    canSave: selectors.canSave(state),
+    canFork: selectors.canFork(state),
     category: parser.category,
     parser,
-    transformer,
-    showTransformer,
+    transformer: selectors.getTransformer(state),
+    showTransformer: selectors.showTransformer(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onParserChange: parser => {
-      LocalStorage.setParser(parser);
-      dispatch(setWorkbenchState({
-        parser,
-        parserSettings: LocalStorage.getParserSettings(parser.id) || {},
-      }));
+      dispatch(setParser(parser));
       logEvent('parser', 'select', parser.id);
     },
     onCategoryChange: category => {
-      LocalStorage.setCategory(category.id);
       dispatch(selectCategory(category));
       logEvent('category', 'select', category.id);
     },

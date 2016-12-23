@@ -76,7 +76,8 @@ export default class TransformOutput extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.transformCode !== nextProps.transformCode ||
-        this.props.code !== nextProps.code) {
+        this.props.code !== nextProps.code ||
+        this.props.transformer !== nextProps.transformer) {
       if (console.clear) { // eslint-disable-line no-console
         console.clear(); // eslint-disable-line no-console
       }
