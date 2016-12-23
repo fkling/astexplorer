@@ -64,7 +64,7 @@ export default class Editor extends React.Component {
 
     this._bindCMHandler('changes', () => {
       clearTimeout(this._updateTimer);
-      this._updateTimer = setTimeout(this._onContentChange.bind(this), 200);
+      this._updateTimer = setTimeout(this._onContentChange.bind(this, true), 200);
     });
     this._bindCMHandler('cursorActivity', () => {
       clearTimeout(this._updateTimer);

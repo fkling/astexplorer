@@ -1,9 +1,10 @@
 import {connect} from 'react-redux';
 import LoadingIndicator from '../LoadingIndicator';
+import {isLoadingSnippet} from '../store/selectors';
 
 function mapStateToProps(state) {
   return {
-    visible: state.loadingSnippet,
+    visible: isLoadingSnippet(state),
   };
 }
 

@@ -1,5 +1,4 @@
 import * as LocalStorage from './LocalStorage';
-import * as sagas from './store/sagas';
 import ASTOutputContainer from './containers/ASTOutputContainer';
 import CodeEditorContainer from './containers/CodeEditorContainer';
 import ErrorMessageContainer from './containers/ErrorMessageContainer';
@@ -12,12 +11,13 @@ import SplitPane from './SplitPane';
 import ToolbarContainer from './containers/ToolbarContainer';
 import TransformerContainer from './containers/TransformerContainer';
 import createSagaMiddleware from 'redux-saga'
+import debounce from './utils/debounce';
+import saga from './store/sagas';
 import {Provider, connect} from 'react-redux';
-import {astexplorer, initialState} from './store/reducers';
-import {createStore, applyMiddleware} from 'redux';
-import {defaultTransformCode} from './store/selectors';
+import {astexplorer, persist, revive} from './store/reducers';
+import {createStore, applyMiddleware, compose} from 'redux';
+import {canSaveTransform, getRevision} from './store/selectors';
 import {enableBatching} from 'redux-batched-actions';
-import {getCategoryByID, getDefaultParser, getParserByID} from './parsers';
 import {loadSnippet} from './store/actions';
 import {render} from 'react-dom';
 
@@ -59,32 +59,28 @@ App.propTypes = {
 
 const AppContainer = connect(
   state => ({
-    showTransformer: state.transform.showTransformer,
+    showTransformer: state.showTransformPanel,
     hasError: !!state.error,
   })
 )(App);
 
-const parser = getParserByID(LocalStorage.getParser()) ||
-  getDefaultParser(getCategoryByID(LocalStorage.getCategory()));
-const parserSettings = LocalStorage.getParserSettings(parser.id) || {};
-
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   enableBatching(astexplorer),
-  {
-    ...initialState,
-    parser,
-    parserSettings,
-  },
-  applyMiddleware(
-    createSagaMiddleware(
-      sagas.watchSelectTransformer,
-      sagas.watchSnippetURI,
-      sagas.watchCategoryChange,
-      sagas.watchSave,
-      sagas.watchDropText
-    )
+  revive(LocalStorage.readState()),
+  composeEnhancers(
+    applyMiddleware(sagaMiddleware)
   )
 );
+store.subscribe(debounce(() => {
+  const state = store.getState();
+  // We are not persisting the state while looking at an existing revision
+  if (!getRevision(state)) {
+    LocalStorage.writeState(persist(state));
+  }
+}));
+sagaMiddleware.run(saga);
 
 render(
   <Provider store={store}>
@@ -96,11 +92,14 @@ render(
 global.onhashchange = () => {
   store.dispatch(loadSnippet());
 };
-global.onhashchange();
+
+if (location.hash.length > 1) {
+  store.dispatch(loadSnippet());
+}
 
 global.onbeforeunload = () => {
   const state = store.getState();
-  if (state.transform.code !== defaultTransformCode(state)) {
+  if (canSaveTransform(state)) {
     return 'You have unsaved transform code. Do you really want to leave?';
   }
 };
