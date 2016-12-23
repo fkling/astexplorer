@@ -78,7 +78,7 @@
     "pubsub-js": "^1.4.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-redux": "^4.4.0",
+    "react-redux": "^5.0.1",
     "recast": "^0.11.18",
     "redux": "^3.3.1",
     "redux-batched-actions": "^0.1.2",
