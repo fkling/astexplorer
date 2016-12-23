@@ -123,12 +123,7 @@ export default class Snippet extends Parse.Object {
   static fetchFromURL() {
     let urlParameters = getIDAndRevisionFromHash();
     if (urlParameters) {
-      return Snippet.fetch(urlParameters.id, urlParameters.rev).then(
-        data => {
-          data.revisionNumber = urlParameters.rev;
-          return data;
-        }
-      );
+      return Snippet.fetch(urlParameters.id, urlParameters.rev);
     }
     return Promise.resolve(null);
   }

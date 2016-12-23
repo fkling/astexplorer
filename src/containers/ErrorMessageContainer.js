@@ -1,10 +1,11 @@
 import {connect} from 'react-redux';
 import ErrorMessage from '../ErrorMessage';
 import {setError} from '../store/actions';
+import {getError} from '../store/selectors';
 
 function mapStateToProps(state) {
   return {
-    error: state.error,
+    error: getError(state),
   };
 }
 
