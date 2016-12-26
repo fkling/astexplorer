@@ -11,7 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage || 'https://github.com/facebook/jscodeshift',
 
-  defaultParserID: 'recast',
+  defaultParserID: 'babylon6',
 
   loadTransformer(callback) {
     require(['jscodeshift'], jscodeshift => {
