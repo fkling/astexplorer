@@ -20,7 +20,7 @@ export default {
   },
 
   getNodeName(node) {
-    return node.name || node.type;
+    return node.type;
   },
 
   opensByDefault(node, key) {
