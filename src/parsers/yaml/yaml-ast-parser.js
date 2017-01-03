@@ -13,6 +13,9 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage || 'https://www.npmjs.com/package/yaml-ast-parser',
 
+  _ignoredProperties: new Set(['parent', 'errors']),
+  locationProps: new Set(['startPosition', 'endPosition']),
+
   nodeToRange(node) {
     return [node.startPosition, node.endPosition];
   },
@@ -28,6 +31,4 @@ export default {
   parse({ load }, code) {
     return load(code);
   },
-
-  _ignoredProperties: new Set(['parent', 'errors'])
 };
