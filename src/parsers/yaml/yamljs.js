@@ -1,6 +1,6 @@
 import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
-import pkg from 'yamljs/package.json';
+import pkg from 'yaml-js/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'yaml';
@@ -11,27 +11,21 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage || 'https://github.com/jeremyfa/yaml.js',
+  homepage: pkg.homepage || 'https://www.npmjs.com/package/yaml-js',
+
+  nodeToRange(node) {
+    return [node.start_mark, node.end_mark];
+  },
 
   getNodeName(node) {
-    if (node.name) {
-        return node.name + (node.optional ? '?' : '');
-    } else if (node.type) {
-        return node.type;
-    } else if (node.idlType) {
-        return node.idlType.idlType || node.idlType;
-    }
+    return node.type;
   },
 
   loadParser(callback) {
-    require(['yamljs'], callback);
+    require(['yaml-js'], callback);
   },
 
-  parse({ dump }, code) {
-    return dump(code);
-  },
-
-  opensByDefault(node, key) {
-    return key === 'members';
+  parse({ compose }, code) {
+    return compose(code);
   },
 };
