@@ -88,7 +88,7 @@
     "traceur": "0.0.111",
     "typescript": "^2.0.9",
     "webidl2": "^2.0.11",
-    "yaml-js": "^0.1.4"
+    "yaml-ast-parser": "^0.0.31"
   },
   "scripts": {
     "start": "http-server out",

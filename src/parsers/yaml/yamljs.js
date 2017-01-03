@@ -1,9 +1,9 @@
 import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
-import pkg from 'yaml-js/package.json';
+import pkg from 'yaml-ast-parser/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
-const ID = 'yaml';
+const ID = 'yaml-ast-parser';
 
 export default {
   ...defaultParserInterface,
@@ -11,12 +11,11 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage || 'https://www.npmjs.com/package/yaml-js',
+  homepage: pkg.homepage || 'https://www.npmjs.com/package/yaml-ast-parser',
 
   nodeToRange(node) {
-    // for large files buffer can make the AST messy. Here is a good opportunity to delete it.
-    delete node.buffer;
-    return [node.start_mark, node.end_mark];
+    delete node.parent;
+    return [node.startPosition, node.endPosition];
   },
 
   getNodeName(node) {
@@ -24,10 +23,10 @@ export default {
   },
 
   loadParser(callback) {
-    require(['yaml-js'], callback);
+    require(['yaml-ast-parser'], callback);
   },
 
-  parse({ compose }, code) {
-    return compose(code);
+  parse({ load }, code) {
+    return load(code);
   },
 };
