@@ -20,6 +20,7 @@ import {canSaveTransform, getRevision} from './store/selectors';
 import {enableBatching} from 'redux-batched-actions';
 import {loadSnippet} from './store/actions';
 import {render} from 'react-dom';
+import * as parse from './storage/parse';
 
 function resize() {
   PubSub.publish('PANEL_RESIZE');
@@ -80,7 +81,7 @@ store.subscribe(debounce(() => {
     LocalStorage.writeState(persist(state));
   }
 }));
-sagaMiddleware.run(saga);
+sagaMiddleware.run(saga, parse);
 
 render(
   <Provider store={store}>

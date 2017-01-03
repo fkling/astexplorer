@@ -4,7 +4,6 @@ import * as actions from './actions';
 import {takeEvery} from 'redux-saga'
 import { put, select, call } from 'redux-saga/effects'
 import {batchActions} from 'redux-batched-actions';
-import Snippet from '../Snippet';
 import {logEvent, logError} from '../utils/logger';
 import {
   getParser,
@@ -12,7 +11,7 @@ import {
   getCode,
   isSaving,
   isForking,
-  getSnippet,
+  getRevision,
   getTransformer,
   getTransformCode,
   showTransformer,
@@ -23,10 +22,10 @@ function updateHashWithIDAndRevision(id, rev) {
   global.location.hash = newHash;
 }
 
-function* save(fork) {
+function* save(fork, storageAdapter) {
   let action = 'new_revision';
   let [
-    snippet,
+    revision,
     parser,
     parserSettings,
     code,
@@ -34,7 +33,7 @@ function* save(fork) {
     transformer,
     showTransformPanel,
   ] = yield [
-    select(getSnippet),
+    select(getRevision),
     select(getParser),
     select(getParserSettings),
     select(getCode),
@@ -42,8 +41,7 @@ function* save(fork) {
     select(getTransformer),
     select(showTransformer),
   ];
-  if (fork || !snippet) {
-    snippet = new Snippet();
+  if (fork || !revision) {
     action = fork ? 'fork' : 'create';
   }
 
@@ -70,9 +68,11 @@ function* save(fork) {
   logEvent('snippet', action, data.toolID);
 
   try {
-    const response = yield snippet.createNewRevision(data);
-    if (response) {
-      updateHashWithIDAndRevision(snippet.id, response.revisionNumber);
+    const newRevision = yield fork ?
+      storageAdapter.fork(revision.getSnippetID(), data) :
+      storageAdapter.save(revision && revision.getSnippetID(), data);
+    if (newRevision) {
+      updateHashWithIDAndRevision(newRevision.getSnippetID(), newRevision.getRevisionID());
     }
   } catch (error) {
     logError(error.message);
@@ -80,13 +80,13 @@ function* save(fork) {
   }
 }
 
-export function* watchSave({fork}) {
+export function* watchSave(storageAdapter, {fork}) {
   yield put(actions.startSave(fork));
-  yield* save(fork);
+  yield* save(fork, storageAdapter);
   yield put(actions.endSave(fork));
 }
 
-function* watchSnippetURI() {
+function* watchSnippetURI(storageAdapter) {
   const {saving, forking} = yield [select(isSaving), select(isForking)];
   if (saving || forking) {
     return;
@@ -96,9 +96,9 @@ function* watchSnippetURI() {
     actions.setError(null),
     actions.startLoadingSnippet(),
   ]));
-  let data;
+  let revision;
   try {
-    data = yield call(Snippet.fetchFromURL);
+    revision = yield call(storageAdapter.fetchFromURL);
   } catch(error) {
     const errorMessage = 'Failed to fetch revision: ' + error.message;
     logError(errorMessage);
@@ -110,19 +110,19 @@ function* watchSnippetURI() {
     return;
   }
 
-  if (data) {
+  if (revision) {
     logEvent('snippet', 'load');
   }
 
   yield put(batchActions([
-    data ?
-      actions.setSnippet(data.snippet, data.revision) :
+    revision ?
+      actions.setSnippet(revision) :
       actions.clearSnippet(),
     actions.doneLoadingSnippet(),
   ]));
 }
 
-export default function*() {
-  yield takeEvery(actions.LOAD_SNIPPET, watchSnippetURI);
-  yield takeEvery(actions.SAVE, watchSave);
+export default function*(storageAdapter) {
+  yield takeEvery(actions.LOAD_SNIPPET, watchSnippetURI, storageAdapter);
+  yield takeEvery(actions.SAVE, watchSave, storageAdapter);
 }

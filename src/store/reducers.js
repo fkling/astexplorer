@@ -15,7 +15,6 @@ const initialState = {
   showTransformPanel: false,
 
   // Snippet related state
-  selectedSnippet: null,
   selectedRevision: null,
 
   // Workbench settings
@@ -85,7 +84,6 @@ export function astexplorer(state=initialState, action) {
     showTransformPanel: showTransformPanel(state.showTransformPanel, action),
 
     // Snippet related state
-    activeSnippet: activeSnippet(state.activeSnippet, action),
     activeRevision: activeRevision(state.activeRevision, action),
 
     // Workbench settings
@@ -333,18 +331,6 @@ function showTransformPanel(state=initialState.showTransformPanel, action) {
       return false;
     case actions.SET_SNIPPET:
       return Boolean(action.revision.getTransformerID());
-    default:
-      return state;
-  }
-}
-
-function activeSnippet(state=initialState.selectedSnippet, action) {
-  switch (action.type) {
-    case actions.SET_SNIPPET:
-      return action.snippet;
-    case actions.SELECT_CATEGORY:
-    case actions.CLEAR_SNIPPET:
-      return null;
     default:
       return state;
   }

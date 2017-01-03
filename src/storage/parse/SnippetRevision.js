@@ -1,10 +1,27 @@
 import Parse from './Parse';
-import {getTransformerByID, getParserByID} from './parsers';
+import {getTransformerByID, getParserByID} from '../../parsers';
 
 export default class SnippetRevision extends Parse.Object {
 	constructor() {
 		super('SnippetRevision');
 	}
+
+  setSnippet(snippet) {
+    this._snippet = snippet;
+  }
+
+  getSnippetID() {
+    return this._snippet.id;
+  }
+
+  getRevisionID() {
+    const revisions = this._snippet.get('revisions');
+    for (let i = 0; i < revisions.length; i++) {
+      if (revisions[i].id === this.id) {
+        return i;
+      }
+    }
+  }
 
   getTransformerID() {
     const transformerID = this.get('toolID');

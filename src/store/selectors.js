@@ -43,11 +43,6 @@ export function getParseError(state) {
 }
 
 // Code related
-
-export function getSnippet(state) {
-  return state.activeSnippet;
-}
-
 export function getRevision(state) {
   return state.activeRevision;
 }
@@ -89,8 +84,8 @@ const isTransformDirty = createSelector(
 );
 
 export const canFork = createSelector(
-  [getSnippet],
-  (snippet) => !!snippet
+  [getRevision],
+  (revision) => !!revision
 );
 
 const canSaveCode = isCodeDirty;

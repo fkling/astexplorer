@@ -40,8 +40,8 @@ export function endSave(fork) {
   return {type: END_SAVE, fork};
 }
 
-export function setSnippet(snippet, revision) {
-  return {type: SET_SNIPPET, snippet, revision};
+export function setSnippet(revision) {
+  return {type: SET_SNIPPET, revision};
 }
 
 export function setParseError(error) {
