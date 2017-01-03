@@ -4,6 +4,14 @@ import pkg from 'yaml-ast-parser/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'yaml-ast-parser';
+const kindEnum = [
+    'Scalar',
+    'Mapping',
+    'Map',
+    'Sequence',
+    'AnchorRef',
+    'IncludeRef',
+];
 
 export default {
   ...defaultParserInterface,
@@ -13,7 +21,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage || 'https://www.npmjs.com/package/yaml-ast-parser',
 
-  _ignoredProperties: new Set(['parent', 'errors']),
+  _ignoredProperties: new Set(['parent', 'errors', 'kind']),
   locationProps: new Set(['startPosition', 'endPosition']),
 
   nodeToRange(node) {
@@ -21,7 +29,7 @@ export default {
   },
 
   getNodeName(node) {
-    return node.type;
+    return kindEnum[node.kind];
   },
 
   loadParser(callback) {
