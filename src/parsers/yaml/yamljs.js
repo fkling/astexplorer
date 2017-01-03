@@ -14,6 +14,8 @@ export default {
   homepage: pkg.homepage || 'https://www.npmjs.com/package/yaml-js',
 
   nodeToRange(node) {
+    // for large files buffer can make the AST messy. Here is a good opportunity to delete it.
+    delete node.buffer;
     return [node.start_mark, node.end_mark];
   },
 
