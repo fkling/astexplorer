@@ -4,14 +4,7 @@ import pkg from 'yaml-ast-parser/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'yaml-ast-parser';
-const kindEnum = [
-    'Scalar',
-    'Mapping',
-    'Map',
-    'Sequence',
-    'AnchorRef',
-    'IncludeRef',
-];
+let Kind = null;
 
 export default {
   ...defaultParserInterface,
@@ -29,11 +22,14 @@ export default {
   },
 
   getNodeName(node) {
-    return kindEnum[node.kind];
+    return Kind[node.kind];
   },
 
   loadParser(callback) {
-    require(['yaml-ast-parser'], callback);
+    require(['yaml-ast-parser'], function(yamlAstParser) {
+      Kind = yamlAstParser.Kind;
+      callback(yamlAstParser);
+    });
   },
 
   parse({ load }, code) {
