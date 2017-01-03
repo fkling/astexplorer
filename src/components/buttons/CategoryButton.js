@@ -9,6 +9,7 @@ const categoryIcon = {
   htmlmixed: 'fa-html5',
   sql: 'fa-database',
   webidl: 'fa-th-list',
+  yaml: 'fa-yc',
 };
 
 export default class CategoryButton extends React.Component {

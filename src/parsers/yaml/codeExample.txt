@@ -1,0 +1,10 @@
+# YAML
+
+stuff:
+    - 1
+    - 2
+    - 3
+
+obj:
+  foo: bar
+  baz: 100
