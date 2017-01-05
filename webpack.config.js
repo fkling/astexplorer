@@ -165,6 +165,7 @@ module.exports = Object.assign({
     path: './out',
     filename: DEV ? '[name].js' : '[name]-[chunkhash].js',
     chunkFilename: DEV ? '[name].js' : '[name]-[chunkhash].js',
+    publicPath: DEV ? '' : 'https://cdn.astexplorer.net/',
   },
 },
 
