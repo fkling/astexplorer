@@ -363,12 +363,14 @@ li.entry {
 }
 
 .compact,
-.tokenName {
+.tokenName,
+.entry.toggable > .key {
   cursor: pointer;
 }
 
 .compact:hover,
-.tokenName:hover {
+.tokenName:hover,
+.entry.toggable > .key:hover > .name {
   text-decoration: underline;
 }
 
