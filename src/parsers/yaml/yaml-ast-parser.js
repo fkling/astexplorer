@@ -1,7 +1,5 @@
-import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'yaml-ast-parser/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'yaml-ast-parser';
 let Kind = null;
@@ -18,7 +16,9 @@ export default {
   locationProps: new Set(['startPosition', 'endPosition']),
 
   nodeToRange(node) {
-    return [node.startPosition, node.endPosition];
+    if (typeof node.startPosition === 'number') {
+      return [node.startPosition, node.endPosition];
+    }
   },
 
   getNodeName(node) {
