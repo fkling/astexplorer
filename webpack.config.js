@@ -170,7 +170,9 @@ module.exports = Object.assign({
 },
 
 DEV ?
-  {} :
+  {
+    devtool: 'sourcemap',
+  } :
   {
     recordsPath: path.join(__dirname, 'records.json'),
     'uglify-loader': {

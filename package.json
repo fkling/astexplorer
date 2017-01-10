@@ -87,7 +87,8 @@
     "tern": "^0.20.0",
     "traceur": "0.0.111",
     "typescript": "^2.0.9",
-    "webidl2": "^2.0.11"
+    "webidl2": "^2.0.11",
+    "yaml-ast-parser": "^0.0.31"
   },
   "scripts": {
     "start": "http-server out",
