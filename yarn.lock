@@ -2518,6 +2518,13 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
+glimmer-syntax@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/glimmer-syntax/-/glimmer-syntax-0.5.3.tgz#3233f711ad3996d56dc9eb02094bc1e55e6eaba4"
+  dependencies:
+    handlebars "^3.0.3"
+    simple-html-tokenizer "^0.2.5"
+
 glob-base@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/glob-base/-/glob-base-0.3.0.tgz#dbb164f6221b1c0b1ccf82aea328b497df0ea3c4"
@@ -2601,6 +2608,15 @@ halting-problem@^1.0.2:
   resolved "https://registry.yarnpkg.com/halting-problem/-/halting-problem-1.0.3.tgz#bb56733e365287e62b227db9033270c7e8df532f"
   dependencies:
     acorn "^2.4.0"
+
+handlebars@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-3.0.3.tgz#0e09651a2f0fb3c949160583710d551f92e6d2ad"
+  dependencies:
+    optimist "^0.6.1"
+    source-map "^0.1.40"
+  optionalDependencies:
+    uglify-js "~2.3"
 
 handlebars@^4.0.0:
   version "4.0.6"
@@ -3829,6 +3845,12 @@ optimist@0.6.x, optimist@^0.6.1, optimist@~0.6.0:
     minimist "~0.0.1"
     wordwrap "~0.0.2"
 
+optimist@~0.3.5:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.3.7.tgz#c90941ad59e4273328923074d2cf2e7cbc6ec0d9"
+  dependencies:
+    wordwrap "~0.0.2"
+
 optionator@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.6.0.tgz#b63ecbbf0e315fad4bc9827b45dc7ba45284fcb6"
@@ -4805,6 +4827,10 @@ simple-fmt@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/simple-fmt/-/simple-fmt-0.1.0.tgz#191bf566a59e6530482cb25ab53b4a8dc85c3a6b"
 
+simple-html-tokenizer@^0.2.5:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.2.6.tgz#a6efab7bc705cf3a96f1aaeaa1a76365f0d16c33"
+
 simple-is@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/simple-is/-/simple-is-0.2.0.tgz#2abb75aade39deb5cc815ce10e6191164850baf0"
@@ -4874,7 +4900,7 @@ source-map@0.1.32:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@0.1.x, source-map@^0.1.38, source-map@~0.1.38:
+source-map@0.1.x, source-map@^0.1.38, source-map@^0.1.40, source-map@~0.1.38, source-map@~0.1.7:
   version "0.1.43"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.1.43.tgz#c24bc146ca517c1471f5dacbe2571b2b7f9e3346"
   dependencies:
@@ -5207,6 +5233,14 @@ uglify-js@^2.4.16, uglify-js@^2.6, uglify-js@~2.7.3:
     source-map "~0.5.1"
     uglify-to-browserify "~1.0.0"
     yargs "~3.10.0"
+
+uglify-js@~2.3:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.3.6.tgz#fa0984770b428b7a9b2a8058f46355d14fef211a"
+  dependencies:
+    async "~0.2.6"
+    optimist "~0.3.5"
+    source-map "~0.1.7"
 
 uglify-loader@^1.3.0:
   version "1.4.0"
