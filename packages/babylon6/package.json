@@ -4,6 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "babylon": "^6.1.21"
+    "babylon": "^6.15"
   }
 }
