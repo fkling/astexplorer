@@ -14,9 +14,8 @@ git worktree add $TARGETPATH gh-pages
 
 # Updating
 pushd $TARGETPATH
-echo "Clear target..."
+echo "Update target..."
 git pull
-git rm -rf ./*
 popd
 
 echo "Building..."
