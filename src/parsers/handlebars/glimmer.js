@@ -9,7 +9,7 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage,
+  homepage: pkg.homepage || 'https://github.com/tildeio/glimmer',
 
   loadParser(callback) {
     require(['glimmer-syntax'], (glimmer) => callback(glimmer.preprocess));
