@@ -86,9 +86,10 @@ module.exports = Object.assign({
       },
       {
         test: /\.jsx?$/,
-        exclude: [
-          /node_modules(?!(\/jscodeshift\/dist))/,
-          path.join(__dirname, './packages/'),
+        include: [
+          path.join(__dirname, 'src'),
+          path.join(__dirname, 'node_modules', 'jscodeshift', 'dist'),
+          path.join(__dirname, 'node_modules', 'glimmer-syntax', 'dist'),
         ],
         loader: 'babel',
         query: {
