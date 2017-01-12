@@ -6,6 +6,7 @@ const categoryIcon = {
   javascript: 'fa-jsfiddle',
   css: 'fa-css3',
   graphql: 'icon-GraphQL_Logo',
+  handlebars: 'icon-handlebars',
   htmlmixed: 'fa-html5',
   sql: 'fa-database',
   webidl: 'fa-th-list',
