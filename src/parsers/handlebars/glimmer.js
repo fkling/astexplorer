@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultHandlebarsParserInterface';
-import pkg from 'glimmer-syntax/package.json';
+import pkg from '@glimmer/syntax/package.json';
 
 const ID = 'glimmer';
 
@@ -12,7 +12,7 @@ export default {
   homepage: pkg.homepage || 'https://github.com/tildeio/glimmer',
 
   loadParser(callback) {
-    require(['glimmer-syntax'], (glimmer) => callback(glimmer.preprocess));
+    require(['@glimmer/syntax'], (glimmer) => callback(glimmer.preprocess));
   },
 
   opensByDefault(node, key) {
