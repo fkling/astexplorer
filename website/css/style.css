@@ -1,0 +1,469 @@
+@import "~codemirror/lib/codemirror.css";
+@import "~codemirror/addon/fold/foldgutter.css";
+@import "./highlight.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "../fontcustom/fontcustom.css";
+
+html {
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: Verdana, non-serif;
+}
+
+.cover {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hasError {
+  filter: blur(3px);
+}
+
+.loadingIndicator {
+  font-size: 200%;
+  color: #555;
+}
+
+.dropTarget {
+  position: absolute;
+  top: 0;
+  bottom: 26px;
+  left: 0;
+  right: 0;
+}
+
+.dropIndicator {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 3px dashed #888;
+  border-radius: 10px;
+}
+
+.dropIndicator > div {
+  max-width: 90%;
+  color: #888;
+  font-size: 32px;
+}
+
+.banner {
+  background-color: #b8dff7;
+  border-right: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 26px);
+}
+
+#Toolbar {
+  flex-shrink: 0;
+  flex-grow: 0;
+  font-family: monospace;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #ddd;
+  color: #454545;
+  padding-left: 10px;
+  background-color: #efefef;
+  z-index: 200;
+}
+
+#Toolbar,
+#Toolbar .menuButton ul {
+  background-color: #efefef;
+}
+
+#Toolbar > *,
+#Toolbar button {
+  box-sizing: border-box;
+  background-color: transparent;
+  margin: 0;
+  min-width: 90px;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-block;
+  color: inherit;
+  font-family: inherit;
+}
+
+#Toolbar > * {
+  height: 35px;
+  border: 1px solid transparent;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  vertical-align: top;
+}
+
+#Toolbar > *  button {
+  height: 100%;
+  border: none;
+}
+
+#Toolbar > h1 {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: top;
+}
+
+#Toolbar > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#Toolbar .menuButton {
+  position: relative;
+  height: auto;
+}
+
+#Toolbar .menuButton:hover > ul {
+  display: block;
+}
+
+#Toolbar .menuButton ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: none;
+  border-bottom: 1px solid #ddd;
+  min-width: 100%;
+}
+
+#Toolbar .menuButton ul li {
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+#Toolbar > *.disabled,
+#Toolbar button:disabled,
+#Toolbar button:disabled:hover,
+#Toolbar button:disabled:active {
+  background-color: transparent;
+  color: #888;
+  cursor: default;
+}
+
+#Toolbar .menuButton li.selected {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+#Toolbar .menuButton li:hover,
+#Toolbar > a:hover,
+#Toolbar > button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#Toolbar > a:active,
+#Toolbar > button:active {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#Toolbar .categoryButton > ul button {
+  text-align: left;
+}
+
+#info {
+  color: #898989;
+  cursor: default;
+  float: right;
+  padding-right: 20px;
+  border: none;
+}
+
+#info.small {
+  font-size: 14px;
+  line-height: 1.3em;
+}
+
+.errorMessage {
+  font-family: Verdana, non-serif;
+  font-size: 1.2em;
+}
+
+.errorMessage h3 {
+  padding-top: 0;
+  margin-top: 0;
+  color: #CC0000;
+}
+
+#contribution {
+  font-size: 0.9em;
+  color: #555;
+  position: absolute;
+  height: 25px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 25px;
+  background-color: #efefef;
+  border-top: 1px solid #ddd;
+}
+
+.splitpane-content {
+  flex-grow: 2;
+  flex-basis: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.splitpane {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.splitpane-divider {
+  background-color: #ddd;
+}
+
+.splitpane-divider:hover {
+  background-color: #999;
+  cursor: col-resize;
+}
+
+.splitpane-divider.vertical:hover {
+  cursor: row-resize;
+}
+
+.output {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  border: none;
+}
+
+.output .toolbar {
+  font-size: 14px;
+  margin-left: -1px;
+  border-bottom: 1px solid #ddd;
+}
+
+.output .toolbar > button {
+  margin: 0;
+  height: 100%;
+  min-width: 90px;
+  border: 1px solid transparent;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  font-size: 14px;
+  background-color: transparent;
+  display: inline-block;
+  vertical-align: top;
+  outline: none;
+  cursor: pointer;
+}
+
+.output .toolbar > button.active {
+  border-color: #999;
+  background-color: #999;
+  color: #f5f5f5;
+}
+
+.output .toolbar .time {
+  float: right;
+  margin-right: 10px;
+  font-size: 10px;
+  line-height: 25px;
+}
+
+.output > .container {
+  overflow: auto;
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#JSONEditor .CodeMirror {
+  font-size: 0.9em;
+}
+
+#JSONEditor .CodeMirror,
+#JSONEditor .CodeMirror-gutters {
+  background-color: #efefef;
+}
+
+.editor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+li.entry {
+  margin: 0;
+  list-style: none;
+  padding: 5px;
+  position: relative;
+}
+
+.CodeMirror .marked,
+.entry.focused {
+  border-radius: 2px;
+  background-color: rgba(255,240,6,0.4);
+}
+
+.entry > .value .s {
+  cursor: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.entry.toggable::before {
+  content: '+';
+  color: green;
+  position: absolute;
+  left: -10px;
+}
+
+.entry.toggable.open::before {
+  content: '-';
+  color: red;
+}
+
+.entry .invokeable {
+  cursor: pointer;
+}
+
+.entry .invokeable:hover {
+  text-decoration: underline;
+}
+
+.placeholder {
+  font-size: 0.9em;
+}
+
+.compact,
+.tokenName,
+.entry.toggable > .key {
+  cursor: pointer;
+}
+
+.compact:hover,
+.tokenName:hover,
+.entry.toggable > .key:hover > .name {
+  text-decoration: underline;
+}
+
+.CodeMirror {
+  height: 100%;
+}
+
+.CodeMirror-scroll {
+  overflow: auto;
+}
+
+.editor .CodeMirror-gutters {
+  background-color: white;
+  border: none;
+}
+
+.CodeMirror .ErrorGutter {
+  width: .7em;
+}
+
+.CodeMirror pre.errorMarker {
+  background-color: #EB9494;
+}
+
+/* Dialog */
+#SettingsDialog {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  bottom: 0;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+#SettingsDialog .inner {
+  max-height: 90vh;
+  background-color: white;
+  box-shadow: 0px 0px 10px #555;
+  border-radius: 3px;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+#SettingsDialog .header {
+  flex-shrink: 0;
+  padding: 10px 10px 0px 10px;
+}
+
+#SettingsDialog .body {
+  overflow: auto;
+  padding: 10px;
+}
+
+#SettingsDialog .footer {
+  flex-shrink: 0;
+  padding: 0 10px 10px 10px;
+  text-align: right;
+}
+
+#SettingsDialog .inner h3 {
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+#SettingsDialog ul.settings {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#SettingsDialog ul.settings li {
+  padding: 3px 0;
+}
+
+
+body .CodeMirror-hints,
+body .CodeMirror-Tern-tooltip {
+  z-index: 1000;
+}
