@@ -1,5 +1,5 @@
 import compileModule from '../../../utils/compileModule';
-import pkg from 'glimmer-syntax/package.json';
+import pkg from '@glimmer/syntax/package.json';
 
 const ID = 'glimmer';
 
@@ -12,7 +12,7 @@ export default {
   defaultParserID: 'glimmer',
 
   loadTransformer(callback) {
-    require(['glimmer-syntax'], callback);
+    require(['@glimmer/syntax'], callback);
   },
 
   transform(glimmer, transformCode, code) {

@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@glimmer/syntax@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.21.0.tgz#9b5a6de585c2299b21fa0f1d2a9daf5576bb7e49"
+  dependencies:
+    handlebars "^3.0.3"
+    simple-html-tokenizer "^0.3.0"
+
 "@types/node@^6.0.46":
   version "6.0.54"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.54.tgz#65859962ba988052cbdd5c48881395acfdd46931"
@@ -1067,9 +1074,13 @@ babylon@^5.8.38:
   version "5.8.38"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-5.8.38.tgz#ec9b120b11bf6ccd4173a18bf217e60b79859ffd"
 
-babylon@^6.0.18, babylon@^6.1.21, babylon@^6.11.0, babylon@^6.8.0, babylon@^6.8.1:
+babylon@^6.0.18, babylon@^6.11.0, babylon@^6.8.0, babylon@^6.8.1:
   version "6.14.1"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.14.1.tgz#956275fab72753ad9b3435d7afe58f8bf0a29815"
+
+babylon@^6.15:
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.15.0.tgz#ba65cfa1a80e1759b0e89fb562e27dccae70348e"
 
 balanced-match@^0.4.1, balanced-match@^0.4.2:
   version "0.4.2"
@@ -2517,13 +2528,6 @@ getpass@^0.1.1:
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.6.tgz#283ffd9fc1256840875311c1b60e8c40187110e6"
   dependencies:
     assert-plus "^1.0.0"
-
-glimmer-syntax@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/glimmer-syntax/-/glimmer-syntax-0.5.3.tgz#3233f711ad3996d56dc9eb02094bc1e55e6eaba4"
-  dependencies:
-    handlebars "^3.0.3"
-    simple-html-tokenizer "^0.2.5"
 
 glob-base@^0.3.0:
   version "0.3.0"
@@ -4827,9 +4831,9 @@ simple-fmt@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/simple-fmt/-/simple-fmt-0.1.0.tgz#191bf566a59e6530482cb25ab53b4a8dc85c3a6b"
 
-simple-html-tokenizer@^0.2.5:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.2.6.tgz#a6efab7bc705cf3a96f1aaeaa1a76365f0d16c33"
+simple-html-tokenizer@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.3.0.tgz#9b8b5559d80e331a544dd13dd59382e5d0d94411"
 
 simple-is@~0.2.0:
   version "0.2.0"
