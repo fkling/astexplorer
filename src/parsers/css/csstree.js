@@ -18,7 +18,7 @@ export default {
 
   parse(csstree, code) {
     return JSON.parse(JSON.stringify(csstree.parse(code, {
-      positions: true
+      positions: true,
     })));
   },
 
@@ -34,5 +34,5 @@ export default {
 
   opensByDefault(node, key) {
     return key === 'children';
-  }
+  },
 };
