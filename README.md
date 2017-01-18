@@ -20,6 +20,7 @@ The AST explorer provides following code parsers:
   - [flow-parser][]
 - CSS:
   - [cssom][]
+  - [csstree][]
   - [postcss][] + [postcss-safe-parser][] & [postcss-scss][]
   - [rework][]
 - HTML:
