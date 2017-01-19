@@ -90,7 +90,10 @@ module.exports = Object.assign({
         include: [
           path.join(__dirname, 'src'),
           path.join(__dirname, 'node_modules', 'jscodeshift', 'dist'),
+          path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
+          path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
+          path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
         ],
         loader: 'babel',
         query: {
