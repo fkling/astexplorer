@@ -17,9 +17,9 @@ export default {
   },
 
   parse(csstree, code) {
-    return JSON.parse(JSON.stringify(csstree.parse(code, {
+    return csstree.toPlainObject(csstree.parse(code, {
       positions: true,
-    })));
+    }));
   },
 
   getNodeName(node) {
