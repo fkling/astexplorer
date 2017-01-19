@@ -1068,7 +1068,7 @@ babel-types@^6.0.19, babel-types@^6.13.0, babel-types@^6.16.0, babel-types@^6.18
 "babylon6@file:packages/babylon6":
   version "1.0.0"
   dependencies:
-    babylon "^6.1.21"
+    babylon "^6.15"
 
 babylon@^5.8.38:
   version "5.8.38"
@@ -1655,6 +1655,12 @@ css-selector-tokenizer@^0.6.0:
     cssesc "^0.1.0"
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
+
+css-tree@1.0.0-alpha12:
+  version "1.0.0-alpha12"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha12.tgz#0f0eddd8c5dd21cc751ef813eebe9b5df752bad1"
+  dependencies:
+    source-map "^0.5.3"
 
 css@^2.2.1:
   version "2.2.1"
