@@ -34,6 +34,6 @@ export default {
     let json = JSON.parse(JSON.parse(result).block);
 
     // pretty print JSON
-    return JSON.stringify(json, null, 2);
+    return { code: json };
   },
 };

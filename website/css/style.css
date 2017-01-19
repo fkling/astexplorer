@@ -314,6 +314,10 @@ html {
   bottom: 0;
 }
 
+.output > .no-toolbar {
+  top: 0;
+}
+
 #JSONEditor .CodeMirror {
   font-size: 0.9em;
 }

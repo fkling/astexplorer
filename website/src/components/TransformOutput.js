@@ -1,8 +1,11 @@
 /*eslint no-new-func: 0*/
 import Editor from './Editor';
+import JSONEditor from './JSONEditor';
 import React from 'react';
 import halts, {loopProtect} from 'halting-problem';
 import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
+
+import stringify from 'json-stringify-safe';
 
 function loadJSTransformer(callback) {
   require(['../parsers/utils/transformJSCode'], toES5 => callback(toES5.default));
@@ -140,14 +143,20 @@ export default class TransformOutput extends React.Component {
             lineNumbers={false}
             readOnly={true}
             value={this.state.error.message}
-          /> :
-          <Editor
-            posFromIndex={this._posFromIndex}
-            mode={this.props.mode}
-            key="output"
-            readOnly={true}
-            value={this.state.result}
-          />
+          /> : (
+            typeof this.state.result === 'string' ?
+            <Editor
+              posFromIndex={this._posFromIndex}
+              mode={this.props.mode}
+              key="output"
+              readOnly={true}
+              value={this.state.result}
+            /> :
+            <JSONEditor
+              className="container no-toolbar"
+              value={stringify(this.state.result, null, 2)}
+            />
+          )
         }
       </div>
     );
