@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@glimmer/syntax@^0.21.0":
+"@glimmer/syntax@^0.21.2":
   version "0.21.2"
   resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.21.2.tgz#6a1469cf1eeefbf2d28fe5113b2795c9090cc16d"
   dependencies:
