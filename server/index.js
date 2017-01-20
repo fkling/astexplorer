@@ -33,10 +33,14 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong');
 });
 
-app.use(express.static(path.join(__dirname, '..', 'out')));
+if (process.env.STATIC) {
+  app.use(express.static(path.join(__dirname, process.env.STATIC)));
+}
 
 const PORT = process.env.PORT || 8080;
 app.listen(
   PORT,
-  () => console.log(`astexplorer server listening on port ${PORT}!`)
+  () => {
+    console.log(`Server listening on port ${PORT}!`);
+  }
 );
