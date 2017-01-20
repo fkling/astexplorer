@@ -27,6 +27,7 @@
     "js-yaml": "^3.5.2",
     "json-loader": "^0.5.3",
     "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.4",
     "style-loader": "^0.13.0",
     "uglify-loader": "^1.3.0",
     "url-loader": "^0.5.7",
@@ -96,7 +97,7 @@
   },
   "scripts": {
     "start": "http-server out",
-    "build": "cross-env NODE_ENV=production API_HOST='https://api.astexplorer.net' webpack",
+    "build": "rimraf ../out/* && cross-env NODE_ENV=production API_HOST='https://api.astexplorer.net' webpack",
     "watch": "webpack -dw",
     "push": "./scripts/push-site.sh",
     "lint": "eslint src/",
