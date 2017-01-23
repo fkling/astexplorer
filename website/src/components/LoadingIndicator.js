@@ -1,15 +1,14 @@
 import React from 'react';
 
 export default function LoadingIndicator(props) {
-  return (
+  return props.visible ?
     <div
-      className="loadingIndicator cover"
-      style={{display: props.visible ? 'flex' : 'none'}}>
+      className="loadingIndicator cover">
       <div>
-        <i className="fa fa-lg fa-circle-o-notch fa-spin"></i>
+        <i className="fa fa-lg fa-spinner fa-pulse"></i>
       </div>
-    </div>
-  );
+    </div> :
+    null;
 }
 
 LoadingIndicator.propTypes = {
