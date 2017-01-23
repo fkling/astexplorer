@@ -139,14 +139,14 @@ export default class TransformOutput extends React.Component {
             key="error"
             lineNumbers={false}
             readOnly={true}
-            defaultValue={this.state.error.message}
+            value={this.state.error.message}
           /> :
           <Editor
             posFromIndex={this._posFromIndex}
             mode={this.props.mode}
             key="output"
             readOnly={true}
-            defaultValue={this.state.result}
+            value={this.state.result}
           />
         }
       </div>

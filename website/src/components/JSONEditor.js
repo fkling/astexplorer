@@ -8,10 +8,6 @@ import React from 'react';
 
 export default class Editor extends React.Component {
 
-  getValue() {
-    return this.codeMirror && this.codeMirror.getValue();
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.codeMirror.getValue()) {
       // preserve scroll position
@@ -26,7 +22,6 @@ export default class Editor extends React.Component {
   }
 
   componentDidMount() {
-    this._CMHandlers = [];
     this._subscriptions = [];
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
       this.refs.container,
@@ -39,10 +34,6 @@ export default class Editor extends React.Component {
         gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
       }
     );
-
-    if (this.props.onContentChange) {
-      this._onContentChange();
-    }
 
     this._subscriptions.push(
       PubSub.subscribe('PANEL_RESIZE', () => {
@@ -60,16 +51,8 @@ export default class Editor extends React.Component {
     this.codeMirror = null;
   }
 
-  _bindCMHandler(event, handler) {
-    this._CMHandlers.push(event, handler);
-    this.codeMirror.on(event, handler);
-  }
-
   _unbindHandlers() {
-    let cmHandlers = this._CMHandlers;
-    for (let i = 0; i < cmHandlers.length; i += 2) {
-      this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
-    }
+    this._subscriptions.forEach(PubSub.unsubscribe);
   }
 
   render() {
@@ -82,5 +65,4 @@ export default class Editor extends React.Component {
 Editor.propTypes = {
   value: React.PropTypes.string,
   className: React.PropTypes.string,
-  onContentChange: React.PropTypes.func,
 };

@@ -14,7 +14,7 @@ export default function Transformer(props) {
     props.transformer.id === 'jscodeshift' ? JSCodeshiftEditor : Editor,
     {
       highlight: false,
-      defaultValue: props.defaultTransformCode,
+      value: props.transformCode,
       onContentChange: props.onContentChange,
     }
   );

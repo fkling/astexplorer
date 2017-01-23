@@ -4,6 +4,31 @@ import React from 'react';
 
 export default class Editor extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.state.value) {
+      this.setState(
+        {value: nextProps.value},
+        () => this.codeMirror.setValue(nextProps.value)
+      );
+    }
+    if (nextProps.mode !== this.props.mode) {
+      this.codeMirror.setOption('mode', nextProps.mode);
+    }
+    this._setError(nextProps.error);
+  }
+
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
   getValue() {
     return this.codeMirror && this.codeMirror.getValue();
   }
@@ -31,20 +56,6 @@ export default class Editor extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.defaultValue !== this.props.defaultValue) {
-      this.codeMirror.setValue(nextProps.defaultValue);
-    }
-    if (nextProps.mode !== this.props.mode) {
-      this.codeMirror.setOption('mode', nextProps.mode);
-    }
-    this._setError(nextProps.error);
-  }
-
-  shouldComponentUpdate() {
-    return false;
-  }
-
   _posFromIndex(doc, index) {
     return (this.props.posFromIndex ? this.props : doc).posFromIndex(index);
   }
@@ -55,7 +66,7 @@ export default class Editor extends React.Component {
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
       this.refs.container,
       {
-        value: this.props.defaultValue,
+        value: this.state.value,
         mode: this.props.mode,
         lineNumbers: this.props.lineNumbers,
         readOnly: this.props.readOnly,
@@ -64,7 +75,7 @@ export default class Editor extends React.Component {
 
     this._bindCMHandler('changes', () => {
       clearTimeout(this._updateTimer);
-      this._updateTimer = setTimeout(this._onContentChange.bind(this, true), 200);
+      this._updateTimer = setTimeout(this._onContentChange.bind(this), 200);
     });
     this._bindCMHandler('cursorActivity', () => {
       clearTimeout(this._updateTimer);
@@ -146,20 +157,19 @@ export default class Editor extends React.Component {
     for (let i = 0; i < cmHandlers.length; i += 2) {
       this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
     }
-    this._subscriptions.forEach(token => {
-      PubSub.unsubscribe(token);
-    });
+    this._subscriptions.forEach(PubSub.unsubscribe);
   }
 
-  _onContentChange(withCursor) {
+  _onContentChange() {
     const doc = this.codeMirror.getDoc();
     const args = {
       value: doc.getValue(),
+      cursor: doc.indexFromPos(doc.getCursor()),
     };
-    if (withCursor) {
-      args.cursor = doc.indexFromPos(doc.getCursor());
-    }
-    this.props.onContentChange(args);
+    this.setState(
+      {value: args.value},
+      () => this.props.onContentChange(args)
+    );
   }
 
   _onActivity() {
@@ -174,8 +184,9 @@ export default class Editor extends React.Component {
     );
   }
 }
+
 Editor.propTypes = {
-  defaultValue: React.PropTypes.string,
+  value: React.PropTypes.string,
   highlight: React.PropTypes.bool,
   lineNumbers: React.PropTypes.bool,
   readOnly: React.PropTypes.bool,
@@ -187,6 +198,7 @@ Editor.propTypes = {
 };
 
 Editor.defaultProps = {
+  value: '',
   highlight: true,
   lineNumbers: true,
   readOnly: false,
