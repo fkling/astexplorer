@@ -15,12 +15,11 @@ export default class ForkButton extends React.Component {
           className={cx({
             fa: true,
             'fa-spinner': forking,
+            'fa-pulse': forking,
             'fa-code-fork': !forking,
-            'fa-lg': true,
             'fa-fw': true,
           })}
-        />
-        Fork
+        />&nbsp;Fork
       </button>
     );
   }

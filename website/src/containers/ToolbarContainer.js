@@ -3,9 +3,11 @@ import {
   save,
   selectCategory,
   openSettingsDialog,
+  openShareDialog,
   selectTransformer,
   hideTransformer,
   setParser,
+  reset,
 } from '../store/actions';
 import Toolbar from '../components/Toolbar';
 import * as selectors from '../store/selectors';
@@ -23,6 +25,7 @@ function mapStateToProps(state) {
     parser,
     transformer: selectors.getTransformer(state),
     showTransformer: selectors.showTransformer(state),
+    snippet: selectors.getRevision(state),
   };
 }
 
@@ -40,6 +43,10 @@ function mapDispatchToProps(dispatch) {
       dispatch(openSettingsDialog());
       logEvent('parser', 'open_settings');
     },
+    onShareButtonClick: () => {
+      dispatch(openShareDialog());
+      logEvent('ui', 'open_share');
+    },
     onTransformChange: transformer => {
       dispatch(transformer ? selectTransformer(transformer) : hideTransformer());
       if (transformer) {
@@ -48,6 +55,13 @@ function mapDispatchToProps(dispatch) {
     },
     onSave: () => dispatch(save(false)),
     onFork: () => dispatch(save(true)),
+    onNew: () => {
+      if (global.location.hash) {
+        global.location.hash = '';
+      } else {
+        dispatch(reset());
+      }
+    },
   };
 }
 

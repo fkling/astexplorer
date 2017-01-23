@@ -38,7 +38,7 @@ export default class SettingsDialog extends React.Component {
   render() {
     if (this.props.visible && this.props.parser.renderSettings) {
       return (
-        <div id="SettingsDialog" onClick={this._outerClick}>
+        <div id="SettingsDialog" className="dialog" onClick={this._outerClick}>
           <div className="inner">
             <div className="header">
               <h3>{this.props.parser.displayName} Settings</h3>

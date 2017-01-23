@@ -1,3 +1,4 @@
+import React from 'react';
 import Parse from './Parse';
 import {getTransformerByID, getParserByID} from '../../parsers';
 
@@ -64,6 +65,34 @@ export default class SnippetRevision extends Parse.Object {
     }
     const parserSettings = settings[this.getParserID()];
     return !!parserSettings && JSON.parse(parserSettings);
+  }
+
+  getShareInfo() {
+    const snippetID = this.getSnippetID();
+    const revisionID = this.getRevisionID();
+    const latestRevision = this._snippet.get('revisions').length - 1;
+    return (
+      <div className="shareInfo">
+        <dl>
+          <dt>Current Revision</dt>
+          <dd>
+            <input
+              readOnly={true}
+              onFocus={e => e.target.select()}
+              value={`https://astexplorer.net/#/gist/${snippetID}/${revisionID}`}
+            />
+          </dd>
+          <dt>Latest Revision</dt>
+          <dd>
+            <input
+              readOnly={true}
+              onFocus={e => e.target.select()}
+              value={`https://astexplorer.net/#/gist/${snippetID}/${latestRevision}`}
+            />
+          </dd>
+        </dl>
+      </div>
+    );
   }
 }
 

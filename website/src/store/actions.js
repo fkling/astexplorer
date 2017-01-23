@@ -13,12 +13,15 @@ export const SET_PARSE_ERROR = 'SET_PARSE_ERROR';
 export const SET_SNIPPET = 'SET_SNIPPET';
 export const OPEN_SETTINGS_DIALOG = 'OPEN_SETTINGS_DIALOG';
 export const CLOSE_SETTINGS_DIALOG = 'CLOSE_SETTINGS_DIALOG';
+export const OPEN_SHARE_DIALOG = 'OPEN_SHARE_DIALOG';
+export const CLOSE_SHARE_DIALOG = 'CLOSE_SHARE_DIALOG';
 export const SET_CODE = 'SET_CODE';
 export const SET_CURSOR = 'SET_CURSOR';
 export const DROP_TEXT = 'DROP_TEXT';
 export const SAVE = 'SAVE';
 export const START_SAVE = 'START_SAVE';
 export const END_SAVE = 'END_SAVE';
+export const RESET = 'RESET';
 
 export function setParser(parser) {
   return {type: SET_PARSER, parser};
@@ -76,6 +79,14 @@ export function closeSettingsDialog() {
   return {type: CLOSE_SETTINGS_DIALOG};
 }
 
+export function openShareDialog() {
+  return {type: OPEN_SHARE_DIALOG};
+}
+
+export function closeShareDialog() {
+  return {type: CLOSE_SHARE_DIALOG};
+}
+
 export function setError(error) {
   return {type: SET_ERROR, error};
 }
@@ -102,4 +113,8 @@ export function setCursor(cursor) {
 
 export function dropText(text, categoryId) {
   return {type: DROP_TEXT, text, categoryId};
+}
+
+export function reset() {
+  return {type: RESET};
 }

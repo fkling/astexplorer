@@ -8,6 +8,7 @@ import PasteDropTargetContainer from './containers/PasteDropTargetContainer';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import SettingsDialogContainer from './containers/SettingsDialogContainer';
+import ShareDialogContainer from './containers/ShareDialogContainer';
 import SplitPane from './components/SplitPane';
 import ToolbarContainer from './containers/ToolbarContainer';
 import TransformerContainer from './containers/TransformerContainer';
@@ -37,6 +38,7 @@ function App(props) {
         <PasteDropTargetContainer>
         <LoadingIndictorContainer />
         <SettingsDialogContainer />
+        <ShareDialogContainer />
         <div id="root">
           <ToolbarContainer />
           <GistBanner />

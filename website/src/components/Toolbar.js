@@ -1,8 +1,7 @@
 import React from 'react';
 import CategoryButton from './buttons/CategoryButton';
-import ForkButton from './buttons/ForkButton';
 import ParserButton from './buttons/ParserButton';
-import SaveButton from './buttons/SaveButton';
+import SnippetButton from './buttons/SnippetButton';
 import TransformButton from './buttons/TransformButton';
 
 export default function Toolbar(props) {
@@ -33,8 +32,7 @@ export default function Toolbar(props) {
   return (
     <div id="Toolbar">
       <h1>AST Explorer</h1>
-      <SaveButton {...props} />
-      <ForkButton {...props} />
+      <SnippetButton {...props} />
       <CategoryButton {...props} />
       <ParserButton {...props} />
       <TransformButton {...props} />
@@ -60,6 +58,7 @@ Toolbar.propTypes = {
   onFork: React.PropTypes.func,
   onParserChange: React.PropTypes.func,
   onParserSettingsButtonClick: React.PropTypes.func,
+  onShareButtonClick: React.PropTypes.func,
   onTransformChange: React.PropTypes.func,
   parser: React.PropTypes.object,
   transformer: React.PropTypes.object,

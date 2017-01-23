@@ -7,6 +7,7 @@ const initialState = {
 
   // UI related state
   showSettingsDialog: false,
+  showShareDialog: false,
   loadingSnippet: false,
   forking: false,
   saving: false,
@@ -76,6 +77,7 @@ export function astexplorer(state=initialState, action) {
   return {
     // UI related state
     showSettingsDialog: showSettingsDialog(state.showSettingsDialog, action),
+    showShareDialog: showShareDialog(state.showShareDialog, action),
     loadingSnippet: loadSnippet(state.loadingSnippet, action),
     saving: saving(state.saving, action),
     forking: forking(state.forking, action),
@@ -201,14 +203,16 @@ function workbench(state=initialState.workbench, action, fullState) {
         };
       }
     case actions.CLEAR_SNIPPET:
+    case actions.RESET:
       {
+        const reset = Boolean(actions.RESET);
         const newState = {
           ...state,
           parserSettings: fullState.parserSettings[state.parser] || {},
           code: getParserByID(state.parser).category.codeExample,
           initialCode: getParserByID(state.parser).category.codeExample,
         };
-        if (fullState.activeRevision && fullState.activeRevision.getTransformerID()) {
+        if (fullState.activeRevision && fullState.activeRevision.getTransformerID() || reset && state.transform.transformer) {
           // Clear transform as well
           const transformer = getTransformerByID(state.transform.transformer);
           newState.transform = {
@@ -261,6 +265,17 @@ function showSettingsDialog(state=initialState.showSettingsDialog, action) {
   }
 }
 
+function showShareDialog(state=initialState.showShareDialog, action) {
+  switch(action.type) {
+    case actions.OPEN_SHARE_DIALOG:
+      return true;
+    case actions.CLOSE_SHARE_DIALOG:
+      return false;
+    default:
+      return state;
+  }
+}
+
 function loadSnippet(state=initialState.loadingSnippet, action) {
   switch(action.type) {
     case actions.START_LOADING_SNIPPET:
@@ -305,6 +320,7 @@ function cursor(state=initialState.cursor, action) {
         return action.cursor;
       }
       return state;
+    case actions.RESET:
     case actions.SET_SNIPPET:
     case actions.CLEAR_SNIPPET:
       return null;
@@ -342,6 +358,7 @@ function activeRevision(state=initialState.selectedRevision, action) {
       return action.revision;
     case actions.SELECT_CATEGORY:
     case actions.CLEAR_SNIPPET:
+    case actions.RESET:
       return null;
     default:
       return state;

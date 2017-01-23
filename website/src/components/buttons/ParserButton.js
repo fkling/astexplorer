@@ -14,25 +14,20 @@ export default class ParserButton extends React.Component {
 
   render() {
     return (
-      <div className="button">
-        <div
-          className="menuButton"
-          style={{display: 'inline-block'}}>
-          <button
-            type="button">
-            <i className='fa fa-lg fa-code fa-fw' />
-            &nbsp;{this.props.parser.displayName}
-          </button>
-          <ul>
-            {this.props.category.parsers.map(parser => (
-              <li key={parser.id} onClick={this._onClick} data-id={parser.id}>
-                <button type="button" >
-                  {parser.displayName}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="button menuButton">
+        <span>
+          <i className='fa fa-lg fa-code fa-fw' />
+          &nbsp;{this.props.parser.displayName}
+        </span>
+        <ul>
+          {this.props.category.parsers.map(parser => (
+            <li key={parser.id} onClick={this._onClick} data-id={parser.id}>
+              <button type="button" >
+                {parser.displayName}
+              </button>
+            </li>
+          ))}
+        </ul>
         <button
           type="button"
           title="Parser Settings"

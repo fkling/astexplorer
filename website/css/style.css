@@ -80,8 +80,8 @@ html {
   flex-shrink: 0;
   flex-grow: 0;
   font-family: monospace;
-  height: 35px;
-  line-height: 35px;
+  height: 32px;
+  line-height: 32px;
   border-bottom: 1px solid #ddd;
   color: #454545;
   padding-left: 10px;
@@ -95,39 +95,43 @@ html {
 }
 
 #Toolbar > *,
+#Toolbar > .menuButton > span,
 #Toolbar button {
-  box-sizing: border-box;
   background-color: transparent;
+  box-sizing: border-box;
+  color: inherit;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 16px;
   margin: 0;
   min-width: 90px;
   outline: none;
-  cursor: pointer;
-  font-size: 16px;
-  display: inline-block;
-  color: inherit;
-  font-family: inherit;
+}
+
+#Toolbar > .menuButton > span {
+  cursor: default;
+  line-height: 29px;
+  padding: 2px 6px;
 }
 
 #Toolbar > * {
-  height: 35px;
-  border: 1px solid transparent;
-  border-left: 1px solid #ddd;
+  height: 32px;
   border-right: 1px solid #ddd;
   vertical-align: top;
 }
 
-#Toolbar > *  button {
+#Toolbar > * button {
   height: 100%;
   border: none;
+  cursor: pointer;
 }
 
 #Toolbar > h1 {
-  border: none;
   padding: 0;
+  padding-right: 10px;
   margin: 0;
   font-size: 18px;
   display: inline-block;
-  margin-right: 10px;
   vertical-align: top;
 }
 
@@ -138,7 +142,6 @@ html {
 
 #Toolbar .menuButton {
   position: relative;
-  height: auto;
 }
 
 #Toolbar .menuButton:hover > ul {
@@ -147,19 +150,26 @@ html {
 
 #Toolbar .menuButton ul {
   position: absolute;
-  top: 100%;
-  left: 0;
+  left: -1px;
   padding: 0;
   margin: 0;
   list-style: none;
   display: none;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
+  border-top: none;
   min-width: 100%;
 }
 
 #Toolbar .menuButton ul li {
-  padding: 0 10px;
   white-space: nowrap;
+}
+
+#Toolbar .menuButton ul button {
+  line-height: 28px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  text-align: left;
+  width: 100%;
 }
 
 #Toolbar > *.disabled,
@@ -175,19 +185,15 @@ html {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-#Toolbar .menuButton li:hover,
 #Toolbar > a:hover,
-#Toolbar > button:hover {
+#Toolbar > .button:hover,
+#Toolbar ul button:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
 #Toolbar > a:active,
-#Toolbar > button:active {
+#Toolbar button:active {
   background-color: rgba(0, 0, 0, 0.3);
-}
-
-#Toolbar .categoryButton > ul button {
-  text-align: left;
 }
 
 #info {
@@ -407,7 +413,7 @@ li.entry {
 }
 
 /* Dialog */
-#SettingsDialog {
+.dialog {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.7);
   bottom: 0;
@@ -421,7 +427,7 @@ li.entry {
   z-index: 1000;
 }
 
-#SettingsDialog .inner {
+.dialog .inner {
   max-height: 90vh;
   background-color: white;
   box-shadow: 0px 0px 10px #555;
@@ -431,23 +437,23 @@ li.entry {
   flex-direction: column;
 }
 
-#SettingsDialog .header {
+.dialog .header {
   flex-shrink: 0;
   padding: 10px 10px 0px 10px;
 }
 
-#SettingsDialog .body {
+.dialog .body {
   overflow: auto;
   padding: 10px;
 }
 
-#SettingsDialog .footer {
+.dialog .footer {
   flex-shrink: 0;
   padding: 0 10px 10px 10px;
   text-align: right;
 }
 
-#SettingsDialog .inner h3 {
+.dialog .inner h3 {
   margin: 0 0 10px 0;
   padding: 0;
 }
@@ -466,4 +472,16 @@ li.entry {
 body .CodeMirror-hints,
 body .CodeMirror-Tern-tooltip {
   z-index: 1000;
+}
+
+.shareInfo dd {
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.shareInfo input {
+  font-size: 15px;
+  padding: 5px;
+  width: calc(100% - 10px);
 }

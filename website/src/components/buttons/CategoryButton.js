@@ -27,7 +27,7 @@ export default class CategoryButton extends React.Component {
   render() {
     return (
       <div className="button menuButton categoryButton">
-        <button type="button">
+        <span>
           <i
             className={cx(categoryIcon[this.props.category.id] || 'fa-file-o', {
               fa: true,
@@ -36,7 +36,7 @@ export default class CategoryButton extends React.Component {
             })}
           />
           &nbsp;{this.props.category.displayName}
-        </button>
+        </span>
         <ul>
           {categories.map(category => (
             <li key={category.id} onClick={this._onClick} data-id={category.id}>
@@ -44,7 +44,6 @@ export default class CategoryButton extends React.Component {
                 <i
                   className={cx(categoryIcon[category.id] || 'fa-file-o', {
                     fa: true,
-                    'fa-lg': true,
                     'fa-fw': true,
                   })}
                 />

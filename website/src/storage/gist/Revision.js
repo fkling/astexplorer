@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default class Revision {
   constructor(gist) {
     this._gist = gist;
@@ -32,5 +34,40 @@ export default class Revision {
 
   getParserSettings() {
     return this._config.settings[this._config.parserID];
+  }
+
+  getShareInfo() {
+    const snippetID = this.getSnippetID();
+    const revisionID = this.getRevisionID();
+    return (
+      <div className="shareInfo">
+        <dl>
+          <dt>Current Revision</dt>
+          <dd>
+            <input
+              readOnly={true}
+              onFocus={e => e.target.select()}
+              value={`https://astexplorer.net/#/gist/${snippetID}/${revisionID}`}
+            />
+          </dd>
+          <dt>Latest Revision</dt>
+          <dd>
+            <input
+              readOnly={true}
+              onFocus={e => e.target.select()}
+              value={`https://astexplorer.net/#/gist/${snippetID}`}
+            />
+          </dd>
+          <dt>Gist</dt>
+          <dd>
+            <input
+              readOnly={true}
+              onFocus={e => e.target.select()}
+              value={`https://gist.github.com/${snippetID}/${revisionID}`}
+            />
+          </dd>
+        </dl>
+      </div>
+    );
   }
 }

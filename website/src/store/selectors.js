@@ -21,6 +21,10 @@ export function showSettingsDialog(state) {
   return state.showSettingsDialog;
 }
 
+export function showShareDialog(state) {
+  return state.showShareDialog;
+}
+
 export function isForking(state) {
   return state.forking;
 }
