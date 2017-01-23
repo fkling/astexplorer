@@ -6,10 +6,13 @@ export default class Revision {
     this._config = JSON.parse(gist.files['astexplorer.json'].content);
   }
 
+  getPath() {
+    return `/gist/${this.getSnippetID()}/${this.getRevisionID()}`;
+  }
+
   getSnippetID() {
     return this._gist.id;
   }
-
   getRevisionID() {
     return this._gist.history[0].version;
   }

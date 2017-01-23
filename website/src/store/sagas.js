@@ -2,6 +2,7 @@
 
 import * as actions from './actions';
 import {takeEvery} from 'redux-saga'
+import {take, fork, cancel, cancelled} from 'redux-saga/effects'
 import { put, select, call } from 'redux-saga/effects'
 import {batchActions} from 'redux-batched-actions';
 import {logEvent, logError} from '../utils/logger';
@@ -76,14 +77,34 @@ function* save(fork, storageAdapter) {
   }
 }
 
-export function* watchSave(storageAdapter, {fork}) {
+function* watchSave(storageAdapter, {fork}) {
   yield put(actions.startSave(fork));
   yield* save(fork, storageAdapter);
   yield put(actions.endSave(fork));
 }
 
+let goBackTask = null;
+
+function *goBack() {
+  try {
+    yield take(actions.CLEAR_ERROR);
+    global.location.hash = '';
+  } finally {
+    if (yield cancelled()) {
+      // URL must have been changed while error dialog is open, nothing to do
+    }
+  }
+}
+
 function* watchSnippetURI(storageAdapter) {
-  const {saving, forking} = yield [select(isSaving), select(isForking)];
+  if (goBackTask) {
+    yield cancel(goBackTask);
+  }
+
+  const [saving, forking] = yield [
+    select(isSaving),
+    select(isForking),
+  ];
   if (saving || forking) {
     return;
   }
@@ -103,6 +124,10 @@ function* watchSnippetURI(storageAdapter) {
       actions.setError(new Error(errorMessage)),
       actions.doneLoadingSnippet(),
     ]));
+
+    if (global.history) {
+      goBackTask = yield fork(goBack);
+    }
     return;
   }
 

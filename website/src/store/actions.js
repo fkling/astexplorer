@@ -1,4 +1,5 @@
 export const SET_ERROR = 'SET_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const LOAD_SNIPPET = 'LOAD_SNIPPET';
 export const START_LOADING_SNIPPET = 'START_LOADING_SNIPPET';
 export const DONE_LOADING_SNIPPET = 'DONE_LOADING_SNIPPET';
@@ -89,6 +90,10 @@ export function closeShareDialog() {
 
 export function setError(error) {
   return {type: SET_ERROR, error};
+}
+
+export function clearError() {
+  return {type: CLEAR_ERROR};
 }
 
 export function selectTransformer(transformer) {

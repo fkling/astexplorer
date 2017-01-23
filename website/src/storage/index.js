@@ -18,11 +18,23 @@ export default class StorageHandler {
     return this._backends[0];
   }
 
+  _owns(revision) {
+    for (const backend of this._backends) {
+      if (backend.owns(revision)) {
+        return backend;
+      }
+    }
+    return null;
+  }
+
   updateHash(revision) {
-    this._first().updateHash(revision);
+    global.location.hash = revision.getPath();
   }
 
   fetchFromURL() {
+    if (/^#?\/?$/.test(global.location.hash)) {
+      return Promise.resolve(null);
+    }
     for (const backend of this._backends) {
       if (backend.matchesURL()) {
         return backend.fetchFromURL();

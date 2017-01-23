@@ -7,6 +7,11 @@ export default class SnippetRevision extends Parse.Object {
 		super('SnippetRevision');
 	}
 
+  getPath() {
+    const rev = this.getRevisionID();
+    return '/' + this.getSnippetID() + (rev && rev !== 0 ? '/' + rev : '');
+  }
+
   setSnippet(snippet) {
     this._snippet = snippet;
   }

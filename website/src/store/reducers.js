@@ -333,6 +333,8 @@ function error(state=initialState.error, action) {
   switch (action.type) {
     case actions.SET_ERROR:
       return action.error;
+    case actions.CLEAR_ERROR:
+      return null;
     default:
       return state;
   }
@@ -344,6 +346,7 @@ function showTransformPanel(state=initialState.showTransformPanel, action) {
       return true;
     case actions.HIDE_TRANSFORMER:
     case actions.SELECT_CATEGORY:
+    case actions.CLEAR_SNIPPET:
       return false;
     case actions.SET_SNIPPET:
       return Boolean(action.revision.getTransformerID());

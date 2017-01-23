@@ -52,13 +52,12 @@ function fetchSnippet(snippetID, revisionID) {
   .then(response => new Revision(response));
 }
 
-export function matchesURL() {
-  return getIDAndRevisionFromHash() !== null;
+export function owns(snippet) {
+  return snippet instanceof Revision;
 }
 
-export function updateHash(revision) {
-  global.location.hash =
-    `/gist/${revision.getSnippetID()}/${revision.getRevisionID()}`;
+export function matchesURL() {
+  return getIDAndRevisionFromHash() !== null;
 }
 
 export function fetchFromURL() {

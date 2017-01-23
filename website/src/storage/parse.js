@@ -96,6 +96,10 @@ function fetchLatestRevision(snippetID) {
   );
 }
 
+export function owns(snippet) {
+  return snippet instanceof SnippetRevision;
+}
+
 export function matchesURL() {
   return getIDAndRevisionFromHash() !== null;
 }
