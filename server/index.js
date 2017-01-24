@@ -10,13 +10,13 @@ app.use(bodyParser.json());
 app.use(
   '/api/v1/gist',
   express.Router()
-    // Load gist
-    .get('/:snippetid/:revisionid?', loadGist)
-    // Create new "anonymous" gist
+    // Load snippet
+    .get('/:snippetid/:revisionid', loadGist)
+    // Create new "anonymous" snippet
     .post('/', saveAnonymousGist.create)
-    // Update "anonymous" gist
+    // Update "anonymous" snippet
     .patch('/:snippetid', saveAnonymousGist.update)
-    // Fork "anonymous" gist
+    // Fork "anonymous" snippet
     .post('/:snippetid/:revisionid', saveAnonymousGist.fork)
 );
 

@@ -1,25 +1,6 @@
 import api from './api';
 import Revision from './gist/Revision';
 
-const cache = {};
-// global.__cache = cache;
-
-function getFromCache(snippetID, rev) {
-  let cacheEntry = cache[snippetID];
-  return {
-    snippet: cacheEntry && cacheEntry.snippet || null,
-    revision: rev != null ? cacheEntry && cacheEntry[rev] || null : null,
-  };
-}
-
-function setInCache(snippet, revision) {
-  let cacheEntry = cache[snippet.id] || (cache[snippet.id] = {});
-  cacheEntry.snippet = snippet;
-  if (revision) {
-    cacheEntry[revision.getRevisionID()] = revision;
-  }
-}
-
 function getIDAndRevisionFromHash() {
   let match = global.location.hash.match(/^#\/gist\/([^\/]+)(?:\/([^\/]+))?/);
   if (match) {
@@ -31,7 +12,7 @@ function getIDAndRevisionFromHash() {
   return null;
 }
 
-function fetchSnippet(snippetID, revisionID) {
+function fetchSnippet(snippetID, revisionID='latest') {
   return api(
     `/gist/${snippetID}` + (revisionID ? `/${revisionID}` : ''),
     {
@@ -44,7 +25,7 @@ function fetchSnippet(snippetID, revisionID) {
     }
     switch (response.status) {
       case 404:
-        throw new Error(`Snippet with ID ${snippetID} doesn't exist.`);
+        throw new Error(`Snippet with ID ${snippetID}/${revisionID} doesn't exist.`);
       default:
         throw new Error('Unknown error.');
     }

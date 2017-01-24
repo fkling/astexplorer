@@ -75,7 +75,6 @@ export default class SnippetRevision extends Parse.Object {
   getShareInfo() {
     const snippetID = this.getSnippetID();
     const revisionID = this.getRevisionID();
-    const latestRevision = this._snippet.get('revisions').length - 1;
     return (
       <div className="shareInfo">
         <dl>
@@ -92,7 +91,7 @@ export default class SnippetRevision extends Parse.Object {
             <input
               readOnly={true}
               onFocus={e => e.target.select()}
-              value={`https://astexplorer.net/#/gist/${snippetID}/${latestRevision}`}
+              value={`https://astexplorer.net/#/gist/${snippetID}/latest`}
             />
           </dd>
         </dl>

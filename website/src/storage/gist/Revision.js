@@ -58,7 +58,7 @@ export default class Revision {
             <input
               readOnly={true}
               onFocus={e => e.target.select()}
-              value={`https://astexplorer.net/#/gist/${snippetID}`}
+              value={`https://astexplorer.net/#/gist/${snippetID}/latest`}
             />
           </dd>
           <dt>Gist</dt>

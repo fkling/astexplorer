@@ -27,7 +27,7 @@ const getQuery = (() => {
 })();
 
 function getIDAndRevisionFromHash() {
-  let match = global.location.hash.match(/^#\/(?!gist\/)([^\/]+)(?:\/(\d*))?/);
+  let match = global.location.hash.match(/^#\/(?!gist\/)([^\/]+)(?:\/(latest|\d*))?/);
   if (match) {
     return {
       id: match[1],
@@ -68,6 +68,9 @@ function fetchRevision(snippetID, revisionID) {
   }
   return Promise.resolve(snippet).then(snippet => {
     const revisions = snippet.get('revisions');
+    if (revisionID === 'latest') {
+      revisionID = revisions.length - 1;
+    }
     if (!revisions[revisionID]) {
       throw new Error(`Revision "${snippetID}/${revisionID}" does not exist.`);
     }
