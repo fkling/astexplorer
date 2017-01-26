@@ -96,7 +96,7 @@
   },
   "scripts": {
     "start": "http-server out",
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production API_HOST='https://api.astexplorer.net' webpack",
     "watch": "webpack -dw",
     "push": "./scripts/push-site.sh",
     "lint": "eslint src/",

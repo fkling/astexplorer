@@ -1,4 +1,4 @@
-import 'isomorphic-fetch';
+import api from './api';
 import Revision from './gist/Revision';
 
 const cache = {};
@@ -32,8 +32,8 @@ function getIDAndRevisionFromHash() {
 }
 
 function fetchSnippet(snippetID, revisionID) {
-  return fetch(
-    `/api/gist/${snippetID}` + (revisionID ? `/${revisionID}` : ''),
+  return api(
+    `/gist/${snippetID}` + (revisionID ? `/${revisionID}` : ''),
     {
       method: 'GET',
     }
@@ -49,10 +49,7 @@ function fetchSnippet(snippetID, revisionID) {
         throw new Error('Unknown error.');
     }
   })
-  .then(response => {
-    console.log(response);
-    return new Revision(response);
-  });
+  .then(response => new Revision(response));
 }
 
 export function matchesURL() {
@@ -76,8 +73,8 @@ export function fetchFromURL() {
  * Create a new snippet.
  */
 export function create(data) {
-  return fetch(
-    '/api/gist',
+  return api(
+    '/gist',
     {
       method: 'POST',
       headers: {
@@ -107,8 +104,8 @@ export function update(revision, data) {
         // to signal the server to delete the transform.js file
         data.transform = null;
       }
-      return fetch(
-        `/api/gist/${revision.getSnippetID()}`,
+      return api(
+        `/gist/${revision.getSnippetID()}`,
         {
           method: 'PATCH',
           headers: {
@@ -131,8 +128,8 @@ export function update(revision, data) {
  * Fork existing snippet.
  */
 export function fork(revision, data) {
-  return fetch(
-    `/api/gist/${revision.getSnippetID()}/${revision.getRevisionID()}`,
+  return api(
+    `/gist/${revision.getSnippetID()}/${revision.getRevisionID()}`,
     {
       method: 'POST',
       headers: {
