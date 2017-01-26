@@ -24,12 +24,12 @@ app.use(
 // `next` is needed here to mark this as an error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
+  console.error((new Date()).toLocaleString(), err);
   if (err.response) {
     res.status(err.response.status).send(err.response.statusText);
     return;
   }
   // eslint-disable-next-line no-console
-  console.error(err);
   res.status(500).send('Something went wrong');
 });
 
