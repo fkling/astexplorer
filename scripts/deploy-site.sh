@@ -1,6 +1,10 @@
 #!/bin/sh
 
-TARGETPATH="../$(basename $(pwd))_gh_pages"
+set -e
+
+REMOTE=server
+BRANCH=gh-pages
+TARGETPATH="../$(basename $(pwd))_gh-pages"
 
 if ! git diff --quiet && git diff --cached --quiet; then
   echo >&2 "Cannot build, your index contains uncommitted changes."
@@ -10,17 +14,20 @@ fi
 # Initialize worktree
 rm -rf $TARGETPATH
 git worktree prune
-git worktree add $TARGETPATH gh-pages
+git worktree add $TARGETPATH $BRANCH
 
 # Updating
 pushd $TARGETPATH
-echo "Update target..."
-git pull
+echo "Clear target..."
+git pull 
+# git rm -rf ./*
 popd
 
 echo "Building..."
 rm -rf out/*
+pushd website/
 npm run build
+popd
 echo "Copying artifacts..."
 cp -R out/ "$TARGETPATH/"
 cp README.md "$TARGETPATH/README.md"
@@ -29,15 +36,14 @@ cp CNAME "$TARGETPATH/CNAME"
 # Commit changes
 pushd $TARGETPATH
 echo "Committing..."
-touch .nojekyll
 git add -A
 if git diff --quiet && git diff --cached --quite; then
   echo "No changes, nothing to commit..."
   exit 0
 fi
-git commit -m"Update site"
+git commit -m"Update site" --allow-empty
 echo "Pushing..."
-git push origin
+git push $REMOTE $BRANCH
 popd
 rm -rf $TARGETPATH
 git worktree prune
