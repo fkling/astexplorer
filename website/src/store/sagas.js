@@ -49,6 +49,7 @@ function* save(fork, storageAdapter) {
     versions: {
       [parser.id]: parser.version,
     },
+    filename: `source.${parser.category.fileExtension}`,
     code,
   };
   if (showTransformPanel && transformer) {

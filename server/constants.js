@@ -8,5 +8,5 @@ if (!process.env.AUTH_TOKEN) {
 
 module.exports = {
   AUTH_TOKEN: process.env.AUTH_TOKEN,
-  SETTINGS_FORMAT: 1,
+  SETTINGS_FORMAT: 2,
 };

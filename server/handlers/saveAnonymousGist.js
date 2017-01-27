@@ -32,7 +32,7 @@ function getDataFromBody(body, additionalData={}) {
         2
       ),
     ],
-    ['code.js', body.code],
+    [body.filename, body.code],
   ];
 
   // null value indicates deletion

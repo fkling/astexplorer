@@ -1,4 +1,5 @@
 import React from 'react';
+import {getParserByID} from '../../parsers';
 
 export default class Revision {
   constructor(gist) {
@@ -31,8 +32,10 @@ export default class Revision {
   }
 
   getCode() {
-    const sourceFile = this._gist.files['code.js'];
-    return sourceFile ? sourceFile.content : '';
+    if (this._code == null) {
+      this._code = getSource(this._config, this._gist) || '';
+    }
+    return this._code;
   }
 
   getParserSettings() {
@@ -72,5 +75,16 @@ export default class Revision {
         </dl>
       </div>
     );
+  }
+}
+
+function getSource(config, gist) {
+  switch (config.v) {
+    case 1:
+      return gist.files['code.js'].content;
+    case 2: {
+      const ext = getParserByID(config.parserID).category.fileExtension;
+      return gist.files[`source.${ext}`].content;
+    }
   }
 }
