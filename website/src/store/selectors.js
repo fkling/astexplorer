@@ -95,7 +95,7 @@ export const canFork = createSelector(
 
 const canSaveCode = createSelector(
   [isCodeDirty],
-  dirty => dirty && !matchesURL() // cannot save Parse snippets
+  dirty => dirty
 );
 
 export const canSaveTransform = createSelector(
@@ -116,6 +116,7 @@ const didParserSettingsChange = createSelector(
 export const canSave = createSelector(
   [canSaveCode, canSaveTransform, didParserSettingsChange],
   (canSaveCode, canSaveTransform, didParserSettingsChange) => (
-    canSaveCode || canSaveTransform || didParserSettingsChange
+    (canSaveCode || canSaveTransform || didParserSettingsChange) &&
+    !matchesURL() // cannot save Parse snippets
   )
 );
