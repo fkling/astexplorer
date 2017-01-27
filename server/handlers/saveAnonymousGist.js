@@ -1,7 +1,7 @@
-const {ASTEXPLORER_TOKEN, SETTINGS_FORMAT} = require('../constants');
+const {AUTH_TOKEN, SETTINGS_FORMAT} = require('../constants');
 const GitHub = require('github-api');
 
-const gh = new GitHub({token: ASTEXPLORER_TOKEN});
+const gh = new GitHub({token: AUTH_TOKEN});
 
 /**
  * Expects an array of the form [[filename, content], [filename, content], ...]
