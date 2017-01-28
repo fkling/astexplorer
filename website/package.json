@@ -98,7 +98,7 @@
   },
   "scripts": {
     "start": "http-server out",
-    "build": "rimraf ../out/* && cross-env NODE_ENV=production API_HOST='https://api.astexplorer.net' webpack",
+    "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack",
     "watch": "webpack -dw",
     "push": "./scripts/push-site.sh",
     "lint": "eslint src/",
