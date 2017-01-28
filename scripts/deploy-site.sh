@@ -2,14 +2,20 @@
 
 set -e
 
-REMOTE=server
-BRANCH=gh-pages
+REMOTE=${1:-"server"}
+BRANCH=${2:-"gh-pages"}
 TARGETPATH="../$(basename $(pwd))_gh-pages"
 
 if ! git diff --quiet && git diff --cached --quiet; then
   echo >&2 "Cannot build, your index contains uncommitted changes."
   exit 1
 fi
+
+for i in {5..1}; do
+  printf "\rPushing '$BRANCH' to '$REMOTE' in $i ..." && sleep 1;
+done
+
+echo ''
 
 # Initialize worktree
 rm -rf $TARGETPATH
@@ -18,15 +24,14 @@ git worktree add $TARGETPATH $BRANCH
 
 # Updating
 pushd $TARGETPATH
-echo "Clear target..."
+echo "Fetch latest changes from origin..."
 git pull 
-# git rm -rf ./*
 popd
 
 echo "Building..."
 rm -rf out/*
 pushd website/
-npm run build
+yarn build
 popd
 echo "Copying artifacts..."
 cp -R out/ "$TARGETPATH/"
@@ -39,9 +44,10 @@ echo "Committing..."
 git add -A
 if git diff --quiet && git diff --cached --quite; then
   echo "No changes, nothing to commit..."
-  exit 0
+else
+  git commit -m"Update site"
 fi
-git commit -m"Update site" --allow-empty
+
 echo "Pushing..."
 git push $REMOTE $BRANCH
 popd
