@@ -1,6 +1,6 @@
 {
   "name": "astexplorer",
-  "version": "2",
+  "version": "2.0.0",
   "description": "Online demo of various parsers",
   "private": true,
   "repository": {
