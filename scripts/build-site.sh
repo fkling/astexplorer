@@ -2,20 +2,13 @@
 
 set -e
 
-REMOTE=${1:-"server"}
-BRANCH=${2:-"gh-pages"}
+BRANCH=${1:-"gh-pages"}
 TARGETPATH="../$(basename $(pwd))_gh-pages"
 
 if ! git diff --quiet && git diff --cached --quiet; then
   echo >&2 "Cannot build, your index contains uncommitted changes."
   exit 1
 fi
-
-for i in {5..1}; do
-  printf "\rPushing '$BRANCH' to '$REMOTE' in $i ..." && sleep 1;
-done
-
-echo ''
 
 # Initialize worktree
 rm -rf $TARGETPATH
@@ -42,14 +35,12 @@ cp CNAME "$TARGETPATH/CNAME"
 pushd $TARGETPATH
 echo "Committing..."
 git add -A
-if git diff --quiet && git diff --cached --quite; then
+if git diff --quiet && git diff --cached --quiet; then
   echo "No changes, nothing to commit..."
-else
-  git commit -m"Update site"
+  exit 0
 fi
-
-echo "Pushing..."
-git push $REMOTE $BRANCH
+git commit -m"Update site"
 popd
+
 rm -rf $TARGETPATH
 git worktree prune
