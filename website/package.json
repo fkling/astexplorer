@@ -97,7 +97,7 @@
     "yaml-ast-parser": "^0.0.31"
   },
   "scripts": {
-    "start": "http-server out",
+    "start": "http-server ../out",
     "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack",
     "watch": "webpack -dw",
     "push": "./scripts/push-site.sh",
