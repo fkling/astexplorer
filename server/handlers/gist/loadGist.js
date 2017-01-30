@@ -1,4 +1,4 @@
-const {AUTH_TOKEN} = require('../constants');
+const {AUTH_TOKEN} = require('../../constants');
 const GitHub = require('github-api');
 
 module.exports = function loadGist(req, res, next) {

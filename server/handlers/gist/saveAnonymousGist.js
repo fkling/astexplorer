@@ -1,4 +1,4 @@
-const {AUTH_TOKEN, SETTINGS_FORMAT} = require('../constants');
+const {AUTH_TOKEN, SETTINGS_FORMAT} = require('../../constants');
 const GitHub = require('github-api');
 
 const gh = new GitHub({token: AUTH_TOKEN});

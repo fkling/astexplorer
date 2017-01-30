@@ -1,25 +1,16 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
-const loadGist = require('./handlers/loadGist');
-const saveAnonymousGist = require('./handlers/saveAnonymousGist');
 
 const app = express();
 app.use(bodyParser.json());
 
-app.use(
-  '/api/v1/gist',
-  express.Router()
-    // Load snippet
-    .get('/:snippetid/:revisionid', loadGist)
-    // Create new "anonymous" snippet
-    .post('/', saveAnonymousGist.create)
-    // Update "anonymous" snippet
-    .patch('/:snippetid', saveAnonymousGist.update)
-    // Fork "anonymous" snippet
-    .post('/:snippetid/:revisionid', saveAnonymousGist.fork)
-);
+app.use('/api/v1/gist', require('./handlers/gist'));
 
+if (process.env.SNIPPET_FILE && process.env.REVISION_FILE) {
+  console.log('Serving Parse snippets enabled.');
+  app.use('/api/v1/parse', require('./handlers/parse'));
+}
 
 // `next` is needed here to mark this as an error handler
 // eslint-disable-next-line no-unused-vars
