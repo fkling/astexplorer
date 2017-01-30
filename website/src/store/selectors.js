@@ -93,8 +93,11 @@ export const canFork = createSelector(
 );
 
 const canSaveCode = createSelector(
-  [isCodeDirty],
-  dirty => dirty
+  [getRevision, isCodeDirty],
+  (revision, dirty) => (
+    !revision || // can always save if there is no revision
+    dirty
+  )
 );
 
 export const canSaveTransform = createSelector(
@@ -103,12 +106,17 @@ export const canSaveTransform = createSelector(
 );
 
 const didParserSettingsChange = createSelector(
-  [getParserSettings, getRevision],
-  (parserSettings, revision) => {
+  [getParserSettings, getRevision, getParser],
+  (parserSettings, revision, parser) => {
     const savedParserSettings = revision && revision.getParserSettings();
-    return !!revision &&
-      !!savedParserSettings &&
-      !isEqual(parserSettings, savedParserSettings);
+    return (
+      !!revision &&
+      (
+        parser.id !== revision.getParserID() ||
+        !!savedParserSettings && !isEqual(parserSettings, savedParserSettings)
+      )
+    )
+
   }
 );
 
