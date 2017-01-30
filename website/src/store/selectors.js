@@ -1,7 +1,6 @@
 import {createSelector} from 'reselect';
 import isEqual from 'lodash.isequal';
 import {getParserByID, getTransformerByID} from '../parsers';
-import {matchesURL} from '../storage/parse';
 
 // UI related
 
@@ -114,9 +113,9 @@ const didParserSettingsChange = createSelector(
 );
 
 export const canSave = createSelector(
-  [canSaveCode, canSaveTransform, didParserSettingsChange],
-  (canSaveCode, canSaveTransform, didParserSettingsChange) => (
+  [getRevision, canSaveCode, canSaveTransform, didParserSettingsChange],
+  (revision, canSaveCode, canSaveTransform, didParserSettingsChange) => (
     (canSaveCode || canSaveTransform || didParserSettingsChange) &&
-    !matchesURL() // cannot save Parse snippets
+    (!revision || revision.canSave())
   )
 );

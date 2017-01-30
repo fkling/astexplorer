@@ -1,30 +1,6 @@
-import Parse from './parse/Parse';
-import isEqual from 'lodash.isequal';
-import Snippet from './parse/Snippet';
-import SnippetRevision from './parse/SnippetRevision';
-
-const cache = {};
-
-function getFromCache(snippetID, rev) {
-  let cacheEntry = cache[snippetID];
-  return {
-    snippet: cacheEntry && cacheEntry.snippet || null,
-    revision: rev != null ? cacheEntry && cacheEntry[rev] || null : null,
-  };
-}
-
-function setInCache(snippet, revision) {
-  let cacheEntry = cache[snippet.id] || (cache[snippet.id] = {});
-  cacheEntry.snippet = snippet;
-  if (revision) {
-    cacheEntry[revision.getRevisionID()] = revision;
-  }
-}
-
-const getQuery = (() => {
-  let query;
-  return () => query || (query = new Parse.Query(Snippet));
-})();
+import React from 'react';
+import api from './api';
+import {getTransformerByID, getParserByID} from '../parsers';
 
 function getIDAndRevisionFromHash() {
   let match = global.location.hash.match(/^#\/(?!gist\/)([^\/]+)(?:\/(latest|\d*))?/);
@@ -37,70 +13,24 @@ function getIDAndRevisionFromHash() {
   return null;
 }
 
-function makeSettingsSafe(settings) {
-  // Parse doesn't allow us to store objects containing `.` or `$` in their
-  // property names. That's why we serialize all settings to JSON.
-  return Object.keys(settings).reduce(
-    (obj, name) => ((obj[name] = JSON.stringify(settings[name])), obj),
-    {}
-  );
-}
-
-function fetchSnippet(snippetID) {
-  let cacheEntry = getFromCache(snippetID);
-  if (cacheEntry.snippet) {
-    return Promise.resolve(cacheEntry.snippet);
-  }
-  return getQuery().get(snippetID).then(snippet => {
-    setInCache(snippet);
-    return snippet;
-  });
-}
-
-function fetchRevision(snippetID, revisionID) {
-  let cacheEntry = getFromCache(snippetID, revisionID);
-  if (cacheEntry.revision) {
-    return Promise.resolve(cacheEntry.revision);
-  }
-  let { snippet } = cacheEntry;
-  if (!snippet) {
-    snippet = getQuery().get(snippetID);
-  }
-  return Promise.resolve(snippet).then(snippet => {
-    const revisions = snippet.get('revisions');
-    if (revisionID === 'latest') {
-      revisionID = revisions.length - 1;
-    }
-    if (!revisions[revisionID]) {
-      throw new Error(`Revision "${snippetID}/${revisionID}" does not exist.`);
-    }
-    return revisions[revisionID].fetch().then(revision => {
-      revision.setSnippet(snippet);
-      setInCache(snippet, revision);
-      return revision;
-    });
-  });
-}
-
-function newRevisionFromData(data) {
-  const revision = new SnippetRevision();
-  revision.set('code', data.code);
-  revision.set('transform', data.transform);
-  revision.set('toolID', data.toolID);
-  revision.set('parserID', data.parserID);
-  revision.set('settings', makeSettingsSafe(data.settings));
-  revision.set('versions', data.versions);
-  return revision;
-}
-
-function fetchLatestRevision(snippetID) {
-  return fetchSnippet(snippetID).then(
-    snippet => fetchRevision(snippetID, snippet.get('revisions').length - 1)
-  );
+function fetchSnippet(snippetID, revisionID='latest') {
+  return api(`/parse/${snippetID}/${revisionID}`)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      switch (response.status) {
+        case 404:
+          throw new Error(`Snippet with ID ${snippetID}/${revisionID} doesn't exist.`);
+        default:
+          throw new Error('Unknown error.');
+      }
+    })
+    .then(response => new Revision(response));
 }
 
 export function owns(snippet) {
-  return snippet instanceof SnippetRevision;
+  return snippet instanceof Revision;
 }
 
 export function matchesURL() {
@@ -116,7 +46,7 @@ export function updateHash(revision) {
 export function fetchFromURL() {
   const urlParameters = getIDAndRevisionFromHash();
   if (urlParameters) {
-    return fetchRevision(urlParameters.id, urlParameters.rev);
+    return fetchSnippet(urlParameters.id, urlParameters.rev);
   }
   return Promise.resolve(null);
 }
@@ -124,57 +54,121 @@ export function fetchFromURL() {
 /**
  * Create a new snippet.
  */
-export function create(data) {
-  const snippet = new Snippet();
-
-  newRevisionFromData(data)
-    .save()
-    .then(revision => {
-      snippet.add('revisions', revision);
-      return snippet.save().then(snippet => {
-        revision.setSnippet(snippet);
-        setInCache(snippet, revision);
-        return revision;
-      });
-    });
+export function create() {
+  return Promise.reject(
+    new Error('Saving Parse snippets is not supported anymore.')
+  );
 }
 
 /**
  * Update an existing snippet.
  */
-export function update(revision, data) {
-  const snippetID = revision.getSnippetID();
-  const latestRevision = fetchLatestRevision(snippetID);
-  const snippet = fetchSnippet(snippetID);
-
-  return Promise.all([snippet, latestRevision])
-    .then(([snippet, revision]) => {
-      const isNew = !revision ||
-        revision.get('code') !== data.code ||
-        revision.get('transform') !== data.transform ||
-        revision.get('toolID') !== data.toolID ||
-        revision.get('parserID') !== data.parserID ||
-        !isEqual(revision.get('settings'), data.settings);
-
-      if (isNew) {
-        const newRevision = newRevisionFromData(data);
-
-        return newRevision.save().then(revision => {
-          snippet.add('revisions', revision);
-          return snippet.save().then(snippet => {
-            revision.setSnippet(snippet);
-            setInCache(snippet, revision);
-            return revision;
-          });
-        });
-      }
-      return revision;
-    });
+export function update() {
+  return Promise.reject(
+    new Error('Saving Parse snippets is not supported anymore.')
+  );
 }
 
 /**
  * Fork existing snippet.
  */
-export function fork(revision, data) {
-  return create(data);
+export function fork() {
+  return Promise.reject(
+    new Error('Saving Parse snippets is not supported anymore.')
+  );
+}
+
+class Revision {
+	constructor(data) {
+    this._data = data;
+	}
+
+  canSave() {
+    return false;
+  }
+
+  getPath() {
+    const rev = this.getRevisionID();
+    return '/' + this.getSnippetID() + (rev && rev !== 0 ? '/' + rev : '');
+  }
+
+  getSnippetID() {
+    return this._data.snippetID;
+  }
+
+  getRevisionID() {
+    return this._data.revisionID;
+  }
+
+  getTransformerID() {
+    const transformerID = this._data.toolID;
+    if (!transformerID && this.getTransformCode()) {
+      // jscodeshift was the first transformer tool. Instead of updating
+      // existing rows in the DB, we hardcode the value here
+      return 'jscodeshift';
+    }
+    return transformerID;
+  }
+
+  getTransformCode() {
+    const transform = this._data.transform;
+    if (transform) {
+      return transform;
+    }
+    if (this._data.toolID) {
+      // Default transforms where never stored
+      return getTransformerByID(this._data.toolID).defaultTransform;
+    }
+    return '';
+  }
+
+  getParserID() {
+    const transformerID = this.getTransformerID();
+    if (transformerID) {
+      return getTransformerByID(transformerID).defaultParserID;
+    }
+    return this._data.parserID;
+  }
+
+  getCode() {
+    const parserID = this.getParserID();
+    // Code examples where never stored
+    return this._data.code || getParserByID(parserID).category.codeExample;
+  }
+
+  getParserSettings() {
+    const settings = this._data.settings;
+    if (!settings) {
+      return null;
+    }
+    const parserSettings = settings[this.getParserID()];
+    return !!parserSettings && JSON.parse(parserSettings);
+  }
+
+  getShareInfo() {
+    const snippetID = this.getSnippetID();
+    const revisionID = this.getRevisionID();
+    return (
+      <div className="shareInfo">
+        <dl>
+          <dt>Current Revision</dt>
+          <dd>
+            <input
+              readOnly={true}
+              onFocus={e => e.target.select()}
+              value={`https://astexplorer.net/#/gist/${snippetID}/${revisionID}`}
+            />
+          </dd>
+          <dt>Latest Revision</dt>
+          <dd>
+            <input
+              readOnly={true}
+              onFocus={e => e.target.select()}
+              value={`https://astexplorer.net/#/gist/${snippetID}/latest`}
+            />
+          </dd>
+        </dl>
+      </div>
+    );
+  }
 }

@@ -4,7 +4,6 @@
  */
 
 import React from 'react';
-import {matchesURL} from '../storage/parse';
 import {connect} from 'react-redux';
 import {getRevision} from '../store/selectors';
 
@@ -46,7 +45,7 @@ class GistBanner extends React.Component {
       return null;
     }
 
-    if (!(this.props.revision && matchesURL())) {
+    if (!this.props.revision || this.props.revision.canSave()) {
       return null;
     }
 
