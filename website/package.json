@@ -35,7 +35,8 @@
     "webpack": "^1.12.8"
   },
   "dependencies": {
-    "@glimmer/syntax": "^0.21.0",
+    "@glimmer/compiler": "^0.21.2",
+    "@glimmer/syntax": "^0.21.2",
     "acorn": "^4.0.4",
     "acorn-jsx": "^3.0.1",
     "acorn-to-esprima": "^1.0.2",

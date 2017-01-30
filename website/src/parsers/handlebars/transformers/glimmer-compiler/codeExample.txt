@@ -1,0 +1,11 @@
+module.exports = class {
+  transform(ast) {
+    this.syntax.traverse(ast, {
+      ElementNode(node) {
+        node.tag = node.tag.split('').reverse().join('');
+      }
+    });
+
+    return ast;
+  }
+};

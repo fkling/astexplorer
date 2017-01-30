@@ -2,12 +2,31 @@
 # yarn lockfile v1
 
 
-"@glimmer/syntax@^0.21.0":
+"@glimmer/compiler@^0.21.2":
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.21.2.tgz#c8e4d2be85c3655de2f4bb6c4a014627dc09b36f"
+  dependencies:
+    "@glimmer/syntax" "^0.21.2"
+    "@glimmer/util" "^0.21.0"
+    "@glimmer/wire-format" "^0.21.0"
+    simple-html-tokenizer "^0.3.0"
+
+"@glimmer/syntax@^0.21.2":
   version "0.21.2"
   resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.21.2.tgz#6a1469cf1eeefbf2d28fe5113b2795c9090cc16d"
   dependencies:
     handlebars "^3.0.3"
     simple-html-tokenizer "^0.3.0"
+
+"@glimmer/util@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.21.0.tgz#86c1e972e2f777f5af664b59c5bc037b71e9ef00"
+
+"@glimmer/wire-format@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.21.0.tgz#ec97adafaf6d1bbd4d1fcf0cbd0a9df2784a22d5"
+  dependencies:
+    "@glimmer/util" "^0.21.0"
 
 "@types/node@^6.0.46":
   version "6.0.62"
