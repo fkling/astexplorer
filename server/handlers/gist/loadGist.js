@@ -9,9 +9,6 @@ module.exports = function loadGist(req, res, next) {
     gist.read() :
     gist.getRevision(req.params.revisionid)
   )
-    .then(response => {
-      res.append('Cache-Control', latest ? 'no-cache' : 'max-age=1800, public');
-      res.json(response.data);
-    })
+    .then(response => res.json(response.data))
     .catch(next);
 };
