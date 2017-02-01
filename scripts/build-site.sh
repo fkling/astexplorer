@@ -15,12 +15,6 @@ rm -rf $TARGETPATH
 git worktree prune
 git worktree add $TARGETPATH $BRANCH
 
-# Updating
-pushd $TARGETPATH
-echo "Fetch latest changes from origin..."
-git pull 
-popd
-
 echo "Building..."
 rm -rf out/*
 pushd website/
