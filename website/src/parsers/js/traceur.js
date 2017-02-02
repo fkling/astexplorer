@@ -62,7 +62,7 @@ export default {
   locationProps: new Set(['location']),
 
   loadParser(callback) {
-    require(['exports?traceur!traceur/bin/traceur'], callback);
+    require(['exports-loader?traceur!traceur/bin/traceur'], callback);
   },
 
   parse(traceur, code, options) {

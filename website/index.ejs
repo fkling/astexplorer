@@ -4,9 +4,7 @@
     <title>AST explorer</title>
     <meta charset="UTF-8">
     <meta name="description" content="An online AST explorer.">
-    <script>
-      window.webpackManifest = {%# o.manifest %}
-    </script>
+    <%= htmlWebpackPlugin.files.webpackManifest %>
   </head>
   <body>
     <div id="page">

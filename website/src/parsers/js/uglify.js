@@ -15,9 +15,9 @@ export default {
 
   loadParser(callback) {
     require([
-      'raw!../../../packages/uglify2-harmony/lib/utils.js',
-      'raw!../../../packages/uglify2-harmony/lib/ast.js',
-      'raw!../../../packages/uglify2-harmony/lib/parse.js',
+      'raw-loader!../../../packages/uglify2-harmony/lib/utils.js',
+      'raw-loader!../../../packages/uglify2-harmony/lib/ast.js',
+      'raw-loader!../../../packages/uglify2-harmony/lib/parse.js',
     ], (...contents) => {
       contents.push('exports.parse = parse;');
       callback(compileModule(contents.join('\n\n')));

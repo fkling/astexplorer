@@ -1,6 +1,5 @@
 import compileModule from '../../../utils/compileModule';
 import pkg from 'babel6/babel6-package';
-import recast from 'recast';
 
 const ID = 'babelv6';
 
@@ -15,10 +14,11 @@ export default {
   loadTransformer(callback) {
     require([
       'babel6',
-    ], (babel) => callback({ babel }));
+      'recast',
+    ], (babel, recast) => callback({ babel, recast }));
   },
 
-  transform({ babel, presets }, transformCode, code) {
+  transform({ babel, recast }, transformCode, code) {
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode
     );

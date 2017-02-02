@@ -1,30 +1,32 @@
-var fs = require('fs');
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const WebpackChunkHash = require('webpack-chunk-hash');
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
 
 const DEV = process.env.NODE_ENV !== 'production';
 
-var plugins = [
+const packages = fs.readdirSync(path.join(__dirname, 'packages'));
+const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
+
+const plugins = [
+  new WebpackChunkHash(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV':
       JSON.stringify(process.env.NODE_ENV || 'development'),
     'process.env.API_HOST': JSON.stringify(process.env.API_HOST || ''),
   }),
   new webpack.IgnorePlugin(
-    /\.md$/
-  ),
-  new webpack.IgnorePlugin(
+    /\.md$/,
     /node\/nodeLoader.js/,
-    /traceur/
-  ),
+    /traceur/,
   // Usually babel-eslint tries to patch eslint, but we are using "parseNoPatch",
   // so that code patch will never be executed. However, webpack will still bundle
   // eslint. Since eslint@3 is a dev dependency it will pick up that one which
   // is incorrect.
-  new webpack.IgnorePlugin(
     /eslint/,
     /babel-eslint/
   ),
@@ -37,53 +39,86 @@ var plugins = [
     /load-rules/,
     __dirname + '/src/parsers/js/transformers/eslint1/loadRulesShim.js'
   ),
+
+  // There seems to be a problem with webpack loading an index.js file that
+  // is executable. If we change that to explicitly reference index.js, it seems
+  // to work. The problem is in the csstree module and this is a really hacky
+  // solution.
+  new webpack.NormalModuleReplacementPlugin(
+    /\.\.\/data/,
+    module => {
+      if (/css-tree/.test(module.context)) {
+        module.request += '/index.js';
+      }
+    }
+  ),
+
   // Hack to disable Webpack dynamic requires in ESLint, so we don't end up
   // bundling the entire ESLint directory including files we don't even need.
   // https://github.com/webpack/webpack/issues/198
   new webpack.ContextReplacementPlugin(/eslint/, /NEVER_MATCH^/),
-  new ExtractTextPlugin(DEV ? '[name].css' : '[name]-[chunkhash].css'),
+
+  new ExtractTextPlugin({
+    filename: DEV ? '[name].css' : '[name]-[chunkhash].css',
+    allChunks: true,
+  }),
+
+  // Put parser meta data into its own chunk
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'parsermeta',
+    minChunks: module => module.resource && /\/package\.json$/.test(module.resource),
+    chunks: ['app'],
+  }),
+
+  // Put all vendor code into its own chunk
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    filename: DEV ? 'vendor.js' : 'vendor-[chunkhash].js',
+    minChunks: module => module.resource && vendorRegex.test(module.resource),
+    chunks: ['app'],
+  }),
+
+  // Webpack runtime + manifest
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'manifest',
     minChunks: Infinity,
   }),
-  new ChunkManifestPlugin({
-    filename: 'manifest.json',
-  }),
-  new HtmlWebpackPlugin({
-    templateContent: function(templateParams, compilation) {
-      const manifest = compilation.assets['manifest.json'];
-      templateParams.manifest = manifest ?
-        manifest._value :
-        fs.readFileSync(
-          compilation.outputOptions.path + '/manifest.json',
-          'utf-8'
-        );
 
-      return fs.readFileSync('./index.html', 'utf-8');
-    },
-    filename: 'index.html',
+  new HtmlWebpackPlugin({
     favicon: './favicon.png',
     inject: 'body',
+    filename: 'index.html',
+    template: './index.ejs',
+    chunksSortMode: 'id',
   }),
-  new webpack.NamedModulesPlugin(),
-  new webpack.ProgressPlugin(function handler(percentage, msg) {
-    process.stdout.write(/build modules/.test(msg) ? '\r' : '\n');
-    process.stdout.write(msg);
+
+  // Inline runtime and manifest into the HTML. It's small and changes after every build.
+  new InlineManifestWebpackPlugin({
+    name: 'webpackManifest',
   }),
+  DEV ?
+    new webpack.NamedModulesPlugin() :
+    new webpack.HashedModuleIdsPlugin(),
+  new ProgressBarPlugin(),
 ];
+
+if (!DEV) {
+  const BabiliPlugin = require('babili-webpack-plugin');
+  plugins.push(new BabiliPlugin({
+    mangle: {
+      keepFnName: true,
+      keepClassName: true,
+    },
+    simplify: false,
+  }));
+}
 
 module.exports = Object.assign({
   module: {
-    loaders: [
-      {
-        test: /\.json$/,
-        loader: 'json',
-      },
+    rules: [
       {
         test: /\.txt$/,
         exclude: /node_modules/,
-        loader: 'raw',
+        loader: 'raw-loader',
       },
       {
         test: /\.jsx?$/,
@@ -95,11 +130,11 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
         ],
-        loader: 'babel',
-        query: {
+        loader: 'babel-loader',
+        options: {
           babelrc: false,
           presets: [
-            require.resolve('babel-preset-es2015'),
+            [require.resolve('babel-preset-es2015'), {modules: false}],
             require.resolve('babel-preset-stage-0'),
             require.resolve('babel-preset-react'),
           ],
@@ -110,7 +145,10 @@ module.exports = Object.assign({
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?importLoaders=1!autoprefixer-loader'),
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?importLoaders=1!autoprefixer-loader',
+        }),
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -126,17 +164,9 @@ module.exports = Object.assign({
       /traceur\/bin/,
       /typescript\/lib/,
       /acorn\/dist\/acorn\.js/,
+      /esprima\/dist\/esprima\.js/,
+      /esprima-fb\/esprima\.js/,
     ],
-    postLoaders: DEV ?
-      [] :
-       [
-        {
-          test: /\.jsx?$/,
-          // Applying uglify to the flow parser generates invalid strict mode code
-          exclude: /flow_parser\.js/,
-          loader: 'uglify',
-        },
-      ],
   },
 
   node: {
@@ -146,22 +176,10 @@ module.exports = Object.assign({
     net: 'empty',
     readline: 'empty',
   },
-  resolve: {
-    fs: 'fs',
-  },
 
   plugins: plugins,
 
   entry: {
-    vendor: [
-      'classnames',
-      'codemirror',
-      'halting-problem',
-      'json-stringify-safe',
-      'parse',
-      'pubsub-js',
-      'react',
-    ],
     app: './src/app.js',
     style: './css/style.css',
   },
@@ -175,17 +193,7 @@ module.exports = Object.assign({
 
 DEV ?
   {
-    devtool: 'sourcemap',
+    devtool: 'eval',
   } :
-  {
-    recordsPath: path.join(__dirname, 'records.json'),
-    'uglify-loader': {
-      mangle: {
-        except: ['Plugin', 'Tree', 'JSON'],
-      },
-      compress: {
-        warnings: false,
-      },
-    },
-  }
+  {}
 );
