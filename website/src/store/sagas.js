@@ -1,8 +1,7 @@
 /*eslint no-constant-condition:0*/
 
 import * as actions from './actions';
-import {takeEvery} from 'redux-saga'
-import {take, fork, cancel, cancelled} from 'redux-saga/effects'
+import {takeEvery, take, fork, cancel, cancelled} from 'redux-saga/effects'
 import { put, select, call } from 'redux-saga/effects'
 import {batchActions} from 'redux-batched-actions';
 import {logEvent, logError} from '../utils/logger';
