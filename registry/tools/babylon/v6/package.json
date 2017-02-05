@@ -1,0 +1,8 @@
+{
+  "name": "babylon",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "babylon": "^6.0.0"
+  }
+}
