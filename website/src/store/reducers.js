@@ -48,7 +48,8 @@ export function persist(state) {
   return {
     ...pick(state, 'showTransformPanel', 'parserSettings', 'parserPerCategory'),
     workbench: {
-      ...pick(state.workbench, 'parser', 'code'),
+      parser: state.workbench.parser.id,
+      code: state.workbench.code,
       transform: pick(state.workbench.transform, 'code', 'transformer'),
     },
   };
@@ -63,6 +64,7 @@ export function revive(state=initialState) {
     ...state,
     workbench: {
       ...state.workbench,
+      parser: getParserByID(state.workbench.parser),
       initialCode: state.workbench.code,
       parserSettings: state.parserSettings[state.workbench.parser] || {},
       transform: {
@@ -98,11 +100,12 @@ export function astexplorer(state=initialState, action) {
 function workbench(state=initialState.workbench, action, fullState) {
 
   function parserFromCategory(category) {
-    const parser = fullState.parserPerCategory[category.id] ||
-      getDefaultParser(category).id;
+    const parser = getParserByID(
+      fullState.parserPerCategory[category.id] || getDefaultParser(category).id
+    );
     return {
       parser,
-      parserSettings: fullState.parserSettings[parser] || {},
+      parserSettings: fullState.parserSettings[parser.id] || {},
       code: category.codeExample,
       initialCode: category.codeExample,
     };
@@ -127,7 +130,7 @@ function workbench(state=initialState.workbench, action, fullState) {
       return {...state, parserSettings: action.settings};
     case actions.SET_PARSER:
       {
-        const newState = {...state, parser: action.parser.id};
+        const newState = {...state, parser: action.parser};
         if (action.parser !== state.parser) {
           // Update parser settings
           newState.parserSettings =
@@ -140,7 +143,7 @@ function workbench(state=initialState.workbench, action, fullState) {
     case actions.SELECT_TRANSFORMER:
       {
         const differentParser =
-          action.transformer.defaultParserID !== state.parser;
+          action.transformer.defaultParserID !== state.parser.id;
         const differentTransformer =
           action.transformer.id !== state.transform.transformer ;
 
@@ -151,7 +154,7 @@ function workbench(state=initialState.workbench, action, fullState) {
         const newState = {...state};
 
         if (differentParser) {
-          newState.parser = action.transformer.defaultParserID;
+          newState.parser = getParserByID(action.transformer.defaultParserID);
           newState.parserSettings =
             fullState.parserSettings[action.transformer.defaultParserID] || {};
         }
@@ -190,7 +193,7 @@ function workbench(state=initialState.workbench, action, fullState) {
 
         return {
           ...state,
-          parser: parserID,
+          parser: getParserByID(parserID),
           parserSettings: revision.getParserSettings() || fullState.parserSettings[parserID] || {},
           code: revision.getCode(),
           initialCode: revision.getCode(),
@@ -208,9 +211,9 @@ function workbench(state=initialState.workbench, action, fullState) {
         const reset = Boolean(actions.RESET);
         const newState = {
           ...state,
-          parserSettings: fullState.parserSettings[state.parser] || {},
-          code: getParserByID(state.parser).category.codeExample,
-          initialCode: getParserByID(state.parser).category.codeExample,
+          parserSettings: fullState.parserSettings[state.parser.id] || {},
+          code: state.parser.category.codeExample,
+          initialCode: state.parser.category.codeExample,
         };
         if (fullState.activeRevision && fullState.activeRevision.getTransformerID() || reset && state.transform.transformer) {
           // Clear transform as well
@@ -238,7 +241,7 @@ function parserSettings(state=initialState.parserSettings, action, fullState) {
       }
       return {
         ...state,
-        [fullState.workbench.parser]: action.settings,
+        [fullState.workbench.parser.id]: action.settings,
       };
     default:
       return state;

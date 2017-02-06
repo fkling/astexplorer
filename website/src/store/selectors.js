@@ -35,7 +35,7 @@ export function isSaving(state) {
 // Parser related
 
 export function getParser(state) {
-  return getParserByID(state.workbench.parser);
+  return state.workbench.parser;
 }
 
 export function getParserSettings(state) {
