@@ -99,18 +99,20 @@ const plugins = [
     new webpack.NamedModulesPlugin() :
     new webpack.HashedModuleIdsPlugin(),
   new ProgressBarPlugin(),
-];
-
-if (!DEV) {
-  const BabiliPlugin = require('babili-webpack-plugin');
-  plugins.push(new BabiliPlugin({
-    mangle: {
-      keepFnName: true,
-      keepClassName: true,
+  new webpack.LoaderOptionsPlugin({
+    test: /\.jsx?$/,
+    options: {
+      'uglify-loader': {
+        mangle: {
+          except: ['Plugin', 'Tree', 'JSON'],
+        },
+        compress: {
+          warnings: false,
+        },
+      },
     },
-    simplify: false,
-  }));
-}
+  }),
+];
 
 module.exports = Object.assign({
   module: {
@@ -124,7 +126,11 @@ module.exports = Object.assign({
         test: /\.jsx?$/,
         include: [
           path.join(__dirname, 'src'),
+          path.join(__dirname, 'node_modules', 'redux', 'es'),
+          path.join(__dirname, 'node_modules', 'react-redux', 'es'),
+          path.join(__dirname, 'node_modules', 'eslint', 'lib'),
           path.join(__dirname, 'node_modules', 'jscodeshift', 'dist'),
+          path.join(__dirname, 'node_modules', 'lodash-es'),
           path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
@@ -167,6 +173,22 @@ module.exports = Object.assign({
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
       },
+      ...(DEV ? [] : [
+        {
+          test: /\.jsx?$/,
+          exclude: /flow_parser\.js/,
+          loader: 'uglify-loader',
+          enforce: 'post',
+          options: {
+            mangle: {
+              except: ['Plugin', 'Tree', 'JSON'],
+            },
+            compress: {
+              warnings: false,
+            },
+          },
+        },
+      ]),
     ],
 
     noParse: [

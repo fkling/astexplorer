@@ -5569,7 +5569,7 @@ ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
-uglify-js@2.7.x, uglify-js@^2.6, uglify-js@^2.7.5:
+uglify-js@2.7.x, uglify-js@^2.4.16, uglify-js@^2.6, uglify-js@^2.7.5:
   version "2.7.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
   dependencies:
@@ -5585,6 +5585,14 @@ uglify-js@~2.3:
     async "~0.2.6"
     optimist "~0.3.5"
     source-map "~0.1.7"
+
+uglify-loader@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/uglify-loader/-/uglify-loader-1.4.0.tgz#c2695b934c4eda7a4acdcd4ba42585b639930360"
+  dependencies:
+    loader-utils "^0.2.7"
+    source-map "^0.5.6"
+    uglify-js "^2.4.16"
 
 uglify-to-browserify@~1.0.0:
   version "1.0.2"
