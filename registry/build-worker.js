@@ -4,7 +4,6 @@ const logger = require('./logger');
 const path = require('path');
 
 const BUNDLE_DIR = path.resolve(process.env.BUNDLE_DIR);
-const REGISTRY_DIR = path.resolve(process.env.REGISTRY);
 
 const buildQueue = new Queue('build');
 
@@ -18,7 +17,6 @@ buildQueue.process(2, (job, done) => {
     [tool, version],
     {
       env: {
-        REGISTRY_DIR,
         BUNDLE_DIR,
         PATH: process.env.PATH,
       },

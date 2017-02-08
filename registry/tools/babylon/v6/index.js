@@ -44,7 +44,7 @@ export const parserSettingsConfiguration = {
 };
 
 export default {
-  ...defaultParserInterface,
+  //...defaultParserInterface,
 
   id: ID,
   displayName: ID,

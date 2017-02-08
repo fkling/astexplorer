@@ -8,7 +8,6 @@ const path = require('path');
 const redis = require('redis');
 
 const BUNDLE_DIR = path.resolve(constants.BUNDLE_DIR);
-const REGISTRY_DIR = path.resolve(constants.REGISTRY);
 
 const client = redis.createClient();
 const buildQueue = new Queue('build');
@@ -17,7 +16,8 @@ module.exports = express.Router()
   .get('/:tool/:version', buildTool);
 
 function buildTool(req, res, next) {
-  const {tool, version} = req.params;
+  let {tool, version} = req.params;
+  version = version.replace(/\.js$/, '');
   const bundlePath = path.join(BUNDLE_DIR, `${tool}@${version}.js`);
   const buildKey = `ae:build:${tool}`;
 

@@ -7,7 +7,7 @@ const semver = require('semver');
 const child_process = require('child_process');
 const rollup = require('rollup');
 
-const REGISTRY_DIR = process.env.REGISTRY_DIR;
+const REGISTRY_DIR = path.join(__dirname, 'tools');
 const BUNDLE_DIR = process.env.BUNDLE_DIR;
 
 const toolID = process.argv[2];
@@ -30,33 +30,23 @@ function buildVersion(toolID, version) {
   }
 
   return fetchInfo(toolID, version).then(npmPkg => {
-    return (
-      exists(getPackagePath(toolDir)) ?
-        // Find package information
-        // ... in the folder itself
-        matchesVersion(toolID, toolDir, version) :
-        // ... or in subfolders
-        fs.readdir(toolDir)
-          .then(names => Promise.all(
-            names
-              .filter(withoutHidden)
-              .map(name => {
-                const versionPath = path.join(toolDir, name);
-                return exists(getPackagePath(versionPath)) ?
-                  matchesVersion(toolID, versionPath, version) :
-                  Promise.resolve(null);
-              })
-          ))
-          .then(pkgs => pkgs.find(x => x != null))
-    )
-    .then(versionPath => {
-      if (!versionPath) {
+    const toolConfig = require(path.resolve(path.join(toolDir, 'package.js')));
+    const versionConfig = toolConfig.versions.find(
+      config => semver.satisfies(version, config.dependencies[toolID])
+    );
+    if (!versionConfig) {
         throw new Error(`No suitable package found for ${toolID}@${version}.`);
-      }
-      return install(npmPkg, versionPath);
+    }
+
+    return install(npmPkg, toolDir, versionConfig)
+      .then(cacheDir =>
+        bundleVersion(
+          cacheDir,
+          versionConfig,
+          npmPkg
+        ).then(() => fs.remove(cacheDir))
+      );
     })
-    .then(p => bundleVersion(p, npmPkg));
-  });
 }
 
 function fetchInfo(name, version) {
@@ -71,7 +61,7 @@ function fetchInfo(name, version) {
 }
 
 function matchesVersion(toolID, versionPath, version) {
-  return fs.readJSON(getPackagePath(versionPath))
+  return fs.readJSON(versionPath)
     .then(
       pkg => semver.satisfies(version, pkg.dependencies[toolID]) ?
         versionPath :
@@ -80,7 +70,7 @@ function matchesVersion(toolID, versionPath, version) {
 }
 
 function preparePackage(npmPkg, packagePath) {
-  return fs.readJSON(getPackagePath(packagePath))
+  return fs.readJSON(packagePath)
     .then(localPkg => {
       // Get all versions that need to be built
       const acceptedVersion = localPkg.dependencies[npmPkg.name];
@@ -102,15 +92,17 @@ function preparePackage(npmPkg, packagePath) {
     });
 }
 
-function bundleVersion(p, npmPkg) {
+function bundleVersion(packagePath, versionConfig, npmPkg) {
+  const localRollupConfig = versionConfig.getRollupConfig(packagePath);
+
   return rollup.rollup({
-    entry: path.join(p, 'index.js'),
+    entry: path.join(packagePath, versionConfig.main),
+    interop: false,
     plugins: [
       require('rollup-plugin-json')(),
       require('rollup-plugin-babel')({
-        externalHelpers: true,
+        exclude: path.join(packagePath, 'node_modules/**'),
         presets: [
-          require('babel-preset-es2015-rollup'),
           require('babel-preset-react'),
         ],
         plugins: [
@@ -121,12 +113,28 @@ function bundleVersion(p, npmPkg) {
         ],
       }),
       require('rollup-plugin-node-resolve')(),
-      require('rollup-plugin-commonjs')(),
-      require('rollup-plugin-uglify')(),
+      require('rollup-plugin-commonjs')(Object.assign(
+        {},
+        localRollupConfig['rollup-plugin-commonjs'] || {}
+      )),
+      require('rollup-plugin-babel')({
+        exclude: path.join(packagePath, 'node_modules/**'),
+        presets: [
+          require('babel-preset-es2015-rollup'),
+        ],
+        plugins: [
+          require('babel-plugin-external-helpers'),
+        ],
+      }),
+      require('rollup-plugin-string')({
+        include: path.join(REGISTRY_DIR, '..', '**', '*.txt'),
+        exclude: path.join(REGISTRY_DIR, '**', 'node_modules', '**'),
+      }),
+      //require('rollup-plugin-uglify')(),
+      require('rollup-plugin-filesize')(),
     ],
     external: [
       'react',
-      'SettingsRenderer',
     ],
   })
   .then(bundle => (
@@ -135,20 +143,25 @@ function bundleVersion(p, npmPkg) {
         format: 'amd',
         dest: path.join(BUNDLE_DIR, `${npmPkg.name}@${npmPkg.version}.js`),
         exports: 'named',
-        moduleName: 'parser',
+        moduleName: `${npmPkg.name}/${npmPkg.version}`,
+        banner: '(function(define) {',
+        footer: '}(astexplorerDefine));',
       }))
-      .then(() => fs.remove(p))
   ));
 }
 
-function install(npmVersion, p) {
+function install(npmVersion, toolDir, versionConfig) {
   console.log(`Installing ${npmVersion.name}@${npmVersion.version}...`);
   // Create version folder
-  const cacheDir = path.join(p, '..', `.${npmVersion.name}@${npmVersion.version}`);
+  const cacheDir = path.join(toolDir, '..', `.${npmVersion.name}@${npmVersion.version}`);
+  const packagePath = path.join(cacheDir, 'package.json');
   return fs.ensureDir(cacheDir)
-      .then(() => fs.copy(p, cacheDir))
+      .then(() => Promise.all([
+        fs.copy(toolDir, cacheDir),
+        fs.writeJSON(packagePath, versionConfig),
+      ]))
       .then(() => run(
-        `yarn add --prefer-offline --exact --no-lockfile --prod --no-progress ${npmVersion.dist.tarball}`,
+        `yarn add --prefer-offline --exact --no-lockfile --prod --no-progress ${npmVersion.name}@${npmVersion.version}`,
         {cwd: cacheDir}
       ))
       .then(() => run(
