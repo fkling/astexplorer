@@ -1,8 +1,9 @@
 import React from 'react';
-// import defaultParserInterface from './utils/defaultESTreeParserInterface';
+import base from './base';
+import defaultParserInterface from '../../utils/defaultESTreeParserInterface';
 import pkg from 'babylon/package.json';
-import babylon from 'babylon';
-import SettingsRenderer from 'SettingsRenderer';
+import {parse} from 'babylon';
+import SettingsRenderer from '../../utils/SettingsRenderer';
 
 const ID = 'babylon';
 const defaultOptions = {
@@ -59,7 +60,8 @@ const parserSettingsConfiguration = {
 };
 
 export default {
-  //...defaultParserInterface,
+  ...defaultParserInterface,
+  ...base,
 
   id: ID,
   displayName: ID,
@@ -68,7 +70,7 @@ export default {
   locationProps: new Set(['loc', 'start', 'end']),
 
   loadParser(callback) {
-    callback(babylon);
+    callback({parse});
   },
 
   parse(babylon, code, parserSettings) {

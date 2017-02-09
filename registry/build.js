@@ -1,23 +1,26 @@
 #!/usr/bin/env node
+/* eslint no-console: 0 */
 
 require('isomorphic-fetch');
 const fs = require('fs-promise');
 const path = require('path');
 const semver = require('semver');
 const child_process = require('child_process');
-const rollup = require('rollup');
+const webpack = require('webpack');
 
 const REGISTRY_DIR = path.join(__dirname, 'tools');
 const BUNDLE_DIR = process.env.BUNDLE_DIR;
 
 const toolID = process.argv[2];
-const version = process.argv[3];
+const version = process.argv[3] || 'latest';
 
 if (!(toolID && version)) {
   console.error('You need to provide a tool ID and a version to build');
 }
 
+const diff = measure();
 buildVersion(toolID, version)
+  .then(() => console.log(`Built in ${diff().toFixed(2)} sec.`))
   .catch(error => {
     console.log(error);
     process.exit(1);
@@ -28,9 +31,12 @@ function buildVersion(toolID, version) {
   if (!exists(toolDir)) {
     return Promise.reject(new Error(`${toolID} doesn't exist.`));
   }
+  const toolConfig = require(path.resolve(path.join(toolDir, 'package.js')));
+  const latest = version === 'latest';
 
   return fetchInfo(toolID, version).then(npmPkg => {
-    const toolConfig = require(path.resolve(path.join(toolDir, 'package.js')));
+    const version = npmPkg.version;
+
     const versionConfig = toolConfig.versions.find(
       config => semver.satisfies(version, config.dependencies[toolID])
     );
@@ -43,7 +49,8 @@ function buildVersion(toolID, version) {
         bundleVersion(
           cacheDir,
           versionConfig,
-          npmPkg
+          npmPkg,
+          latest
         ).then(() => fs.remove(cacheDir))
       );
     })
@@ -92,62 +99,35 @@ function preparePackage(npmPkg, packagePath) {
     });
 }
 
-function bundleVersion(packagePath, versionConfig, npmPkg) {
-  const localRollupConfig = versionConfig.getRollupConfig(packagePath);
+function bundleVersion(packagePath, versionConfig, npmPkg, latest) {
+  return new Promise((resolve, reject) => {
+    const name = `${npmPkg.name}@${latest ? 'latest' : npmPkg.version}`;
+    webpack(
+      Object.assign(
+        versionConfig.webpackConfig,
+        {
+          entry: path.join(packagePath, versionConfig.main),
+          context: __dirname,
+          output: {
+            filename: `${name}.js`,
+            path: BUNDLE_DIR,
+            libraryTarget: 'amd',
+          },
+        }
+      ),
+      (err, stats) => {
+        if (err) {
+          return reject(err);
+        }
+        if (stats.hasErrors()) {
+          console.error(stats.toJson().errors);
+          return reject('Bundle compilation error');
+        }
+        resolve();
+      }
+    );
+  });
 
-  return rollup.rollup({
-    entry: path.join(packagePath, versionConfig.main),
-    interop: false,
-    plugins: [
-      require('rollup-plugin-json')(),
-      require('rollup-plugin-babel')({
-        exclude: path.join(packagePath, 'node_modules/**'),
-        presets: [
-          require('babel-preset-react'),
-        ],
-        plugins: [
-          [
-            require('babel-plugin-transform-object-rest-spread'),
-            {"useBuiltIns": true},
-          ],
-        ],
-      }),
-      require('rollup-plugin-node-resolve')(),
-      require('rollup-plugin-commonjs')(Object.assign(
-        {},
-        localRollupConfig['rollup-plugin-commonjs'] || {}
-      )),
-      require('rollup-plugin-babel')({
-        exclude: path.join(packagePath, 'node_modules/**'),
-        presets: [
-          require('babel-preset-es2015-rollup'),
-        ],
-        plugins: [
-          require('babel-plugin-external-helpers'),
-        ],
-      }),
-      require('rollup-plugin-string')({
-        include: path.join(REGISTRY_DIR, '..', '**', '*.txt'),
-        exclude: path.join(REGISTRY_DIR, '**', 'node_modules', '**'),
-      }),
-      //require('rollup-plugin-uglify')(),
-      require('rollup-plugin-filesize')(),
-    ],
-    external: [
-      'react',
-    ],
-  })
-  .then(bundle => (
-    fs.ensureDir(BUNDLE_DIR)
-      .then(() => bundle.write({
-        format: 'amd',
-        dest: path.join(BUNDLE_DIR, `${npmPkg.name}@${npmPkg.version}.js`),
-        exports: 'named',
-        moduleName: `${npmPkg.name}/${npmPkg.version}`,
-        banner: '(function(define) {',
-        footer: '}(astexplorerDefine));',
-      }))
-  ));
 }
 
 function install(npmVersion, toolDir, versionConfig) {
@@ -158,10 +138,10 @@ function install(npmVersion, toolDir, versionConfig) {
   return fs.ensureDir(cacheDir)
       .then(() => Promise.all([
         fs.copy(toolDir, cacheDir),
-        fs.writeJSON(packagePath, versionConfig),
+        fs.writeJSON(packagePath, pick(versionConfig, 'main', 'dependencies')),
       ]))
       .then(() => run(
-        `yarn add --prefer-offline --exact --no-lockfile --prod --no-progress ${npmVersion.name}@${npmVersion.version}`,
+        `yarn add --prefer-offline --exact --no-lockfile --no-bin-links --prod --no-progress ${npmVersion.name}@${npmVersion.version}`,
         {cwd: cacheDir}
       ))
       .then(() => run(
@@ -169,6 +149,14 @@ function install(npmVersion, toolDir, versionConfig) {
         {cwd: cacheDir}
       ))
       .then(() => cacheDir);
+}
+
+function pick(obj, ...props) {
+  const result = {};
+  for (var prop in obj) {
+    result[prop] = obj[prop];
+  }
+  return result;
 }
 
 function getPackagePath(p) {
@@ -216,4 +204,11 @@ function run(command, options) {
 
 function withoutHidden(p) {
   return p[0] !== '.';
+}
+
+function measure() {
+  const start = Date.now();
+  return function() {
+    return (Date.now() - start) / 1000;
+  }
 }

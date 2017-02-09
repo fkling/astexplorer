@@ -1,22 +1,8 @@
-const path = require('path');
-
-function getRollupConfig(packageDir) {
-  return  {
-    'rollup-plugin-commonjs': {
-      namedExports: {
-        [path.join(packageDir, 'node_modules/acorn/dist/acorn_loose.js')]: [
-          'parse_dammit',
-        ],
-        [path.join(packageDir, 'node_modules/acorn/dist/acorn.js')]: [
-          'parse',
-        ],
-      },
-    },
-  };
-}
+const webpackConfig = require('../../webpack.default.conf');
 
 module.exports = {
   displayName: 'acorn',
+  homepage: 'https://github.com/ternjs/acorn',
   versions: [
     {
       main: './v2.js',
@@ -24,7 +10,7 @@ module.exports = {
         acorn: '^2.0.0',
         'acorn-jsx': '^2.0.0'
       },
-      getRollupConfig,
+      webpackConfig,
     },
     {
       main: './v3.js',
@@ -32,7 +18,7 @@ module.exports = {
         acorn: '^3.0.0',
         'acorn-jsx': '^3.0.0'
       },
-      getRollupConfig,
+      webpackConfig,
     },
     {
       main: './v4.js',
@@ -40,7 +26,7 @@ module.exports = {
         acorn: '^4.0.0',
         'acorn-jsx': '^3.0.0'
       },
-      getRollupConfig,
+      webpackConfig,
     },
   ],
 };

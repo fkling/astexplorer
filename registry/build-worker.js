@@ -23,7 +23,6 @@ buildQueue.process(2, (job, done) => {
     }
   )
   .on('close', code => {
-    console.log(`Done building.`);
     if (code) {
       const error = new Error(
         `Unable to build package ${tool}@${version}`

@@ -1,5 +1,9 @@
-import getBase from './base.js';
+import base from './base.js';
 import pkg from 'acorn/package.json';
+
+import * as acorn from 'acorn';
+import {parse_dammit} from 'acorn/dist/acorn_loose.js';
+import jsxInject from 'acorn-jsx/inject';
 
 const defaultOptions = {
   ecmaVersion: 8,
@@ -32,8 +36,17 @@ const settingsConfiguration = {
 };
 
 export default {
-  ...getBase(defaultOptions, settingsConfiguration),
+  ...base,
 
   id: `acorn@${pkg.version}`,
   version: `${pkg.version}`,
+  defaultOptions,
+  settingsConfiguration,
+
+  loadParser(callback) {
+    callback({
+      loose: parse_dammit,
+      parse: jsxInject(acorn).parse,
+    });
+  },
 };
