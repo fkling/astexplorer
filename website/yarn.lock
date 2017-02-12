@@ -1270,7 +1270,7 @@ babili-webpack-plugin@^0.0.9:
 "babylon6@file:packages/babylon6":
   version "1.0.0"
   dependencies:
-    babylon "^6.1.21"
+    babylon "^6.15"
 
 babylon@^5.8.38:
   version "5.8.38"
@@ -1824,9 +1824,9 @@ css-selector-tokenizer@^0.7.0:
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
 
-css-tree@1.0.0-alpha12:
-  version "1.0.0-alpha12"
-  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha12.tgz#0f0eddd8c5dd21cc751ef813eebe9b5df752bad1"
+css-tree@1.0.0-alpha15:
+  version "1.0.0-alpha15"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha15.tgz#60fb5d06bb5bc003bd92a6fe7f313cb87aef8cd2"
   dependencies:
     source-map "^0.5.3"
 
