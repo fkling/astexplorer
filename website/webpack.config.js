@@ -217,8 +217,8 @@ module.exports = Object.assign({
 
   output: {
     path: '../out',
-    filename: DEV ? '[name].js' : '[name]-[chunkhash].js',
-    chunkFilename: DEV ? '[name].js' : '[name]-[chunkhash].js',
+    filename: DEV ? '[name].js' : '[name]-[chunkhash]-1.js',
+    chunkFilename: DEV ? '[name].js' : '[name]-[chunkhash]-1.js',
   },
 },
 
