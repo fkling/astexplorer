@@ -59,7 +59,6 @@
     "css": "^2.2.1",
     "css-tree": "1.0.0-alpha15",
     "cssom": "^0.3.0",
-    "curl-amd": "^0.8.12",
     "domhandler": "^2.3.0",
     "escodegen": "^1.4.1",
     "esformatter-parser": "^1.0.0",

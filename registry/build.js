@@ -112,6 +112,7 @@ function bundleVersion(packagePath, versionConfig, npmPkg, latest) {
             filename: `${name}.js`,
             path: BUNDLE_DIR,
             libraryTarget: 'amd',
+            library: `${toolID}/${version}`,
           },
         }
       ),

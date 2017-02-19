@@ -1895,10 +1895,6 @@ cssom@^0.3.0:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/cssom/-/cssom-0.3.2.tgz#b8036170c79f07a90ff2f16e22284027a243848b"
 
-curl-amd@^0.8.12:
-  version "0.8.12"
-  resolved "https://registry.yarnpkg.com/curl-amd/-/curl-amd-0.8.12.tgz#e3912ecf6bd83e782aef91610da05c89425ae7ed"
-
 d@^0.1.1, d@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/d/-/d-0.1.1.tgz#da184c535d18d8ee7ba2aa229b914009fae11309"
