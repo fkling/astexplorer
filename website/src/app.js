@@ -20,7 +20,7 @@ import saga from './store/sagas';
 import {Provider, connect} from 'react-redux';
 import {astexplorer, persist, revive} from './store/reducers';
 import {createStore, applyMiddleware, compose} from 'redux';
-import {canSaveTransform, getRevision} from './store/selectors';
+import {canSaveTransform, getRevision, showTransformer} from './store/selectors';
 import {enableBatching} from 'redux-batched-actions';
 import {loadSnippet} from './store/actions';
 import {render} from 'react-dom';
@@ -80,7 +80,7 @@ App.propTypes = {
 
 const AppContainer = connect(
   state => ({
-    showTransformer: state.showTransformPanel,
+    showTransformer: showTransformer(state),
     hasError: !!state.error,
     showToolSelector: state.showToolSelector,
   })

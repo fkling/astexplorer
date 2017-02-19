@@ -1,7 +1,5 @@
 import * as actions from './actions';
-import {getCategoryByID, getDefaultParser, getParserByID, getTransformerByID} from '../parsers';
-
-const defaultParser = getDefaultParser(getCategoryByID('javascript'));
+import {getParserByID, getTransformerByID} from '../parsers';
 
 const initialState = {
 
@@ -13,7 +11,6 @@ const initialState = {
   saving: false,
   cursor: null,
   error: null,
-  showTransformPanel: false,
   showToolSelector: true,
 
   // Snippet related state
@@ -33,7 +30,6 @@ const initialState = {
     transform: {
       code: '',
       initialCode: '',
-      transformer: null,
     },
   },
 
@@ -44,11 +40,11 @@ const initialState = {
  */
 export function persist(state) {
   return {
-    ...pick(state, 'showTransformPanel', 'parserSettings', 'parserPerCategory'),
+    ...pick(state, 'parserSettings', 'parserPerCategory'),
     workbench: {
       parser: state.workbench.parser && state.workbench.parser.id,
       code: state.workbench.code,
-      transform: pick(state.workbench.transform, 'code', 'transformer'),
+      transform: pick(state.workbench.transform, 'code'),
     },
   };
 }
@@ -100,7 +96,6 @@ export function astexplorer(state=initialState, action) {
     forking: forking(state.forking, action),
     cursor: cursor(state.cursor, action),
     error: error(state.error, action),
-    showTransformPanel: showTransformPanel(state.showTransformPanel, action),
 
     // Snippet related state
     activeRevision: activeRevision(state.activeRevision, action),
@@ -136,44 +131,14 @@ function workbench(state=initialState.workbench, action, fullState) {
             fullState.parserSettings[action.parser.id] || {};
           // TODO: Reset code on category change
         }
-        return newState;
-      }
-    case actions.SET_CODE:
-      return {...state, code: action.code};
-    case actions.SELECT_TRANSFORMER:
-      {
-        const differentParser =
-          action.transformer.defaultParserID !== state.parser.id;
-        const differentTransformer =
-          action.transformer.id !== state.transform.transformer ;
-
-        if (!(differentParser || differentTransformer)) {
-          return state;
+        if (!state.code) {
+          newState.code = newState.initialCode = action.parser.codeExample;
         }
-
-        const newState = {...state};
-
-        if (differentParser) {
-          newState.parser = getParserByID(action.transformer.defaultParserID);
-          newState.parserSettings =
-            fullState.parserSettings[action.transformer.defaultParserID] || {};
+        if (action.parser.transform && !state.transform.code) {
+          // TODO: Reset transform code on transformer change
+            newState.transform.code = newState.transform.initialCode =
+              action.parser.transformExample;
         }
-
-        if (differentTransformer) {
-          const snippetHasDifferentTransform = fullState.activeRevision &&
-            fullState.activeRevision.getTransformerID() === action.transformer.id;
-          newState.transform = {
-            ...state.transform,
-            transformer: action.transformer.id,
-            code: snippetHasDifferentTransform ?
-              state.transform.code :
-              action.transformer.defaultTransform,
-            initialCode: snippetHasDifferentTransform ?
-              fullState.activeRevision.getTransformCode() :
-              action.transformer.defaultTransform,
-          };
-        }
-
         return newState;
       }
     case actions.SET_CODE:
@@ -202,7 +167,6 @@ function workbench(state=initialState.workbench, action, fullState) {
           initialCode: revision.getCode(),
           transform: {
             ...state.transform,
-            transformer: transformerID,
             code: revision.getTransformCode(),
             initialCode: revision.getTransformCode(),
           },
@@ -353,21 +317,6 @@ function error(state=initialState.error, action) {
       return action.error;
     case actions.CLEAR_ERROR:
       return null;
-    default:
-      return state;
-  }
-}
-
-function showTransformPanel(state=initialState.showTransformPanel, action) {
-  switch (action.type) {
-    case actions.SELECT_TRANSFORMER:
-      return true;
-    case actions.HIDE_TRANSFORMER:
-    case actions.SELECT_CATEGORY:
-    case actions.CLEAR_SNIPPET:
-      return false;
-    case actions.SET_SNIPPET:
-      return Boolean(action.revision.getTransformerID());
     default:
       return state;
   }

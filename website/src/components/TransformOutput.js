@@ -7,19 +7,28 @@ import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
 
 import stringify from 'json-stringify-safe';
 
-function loadJSTransformer(callback) {
-  require(['../parsers/utils/transformJSCode'], toES5 => callback(toES5.default));
-}
+const loadJSTransformer = (function() {
+  let promise;
+  return function() {
+    if (promise) {
+      return promise;
+    }
+
+    return promise = new Promise((resolve) => {
+      require(['../parsers/utils/transformJSCode'], toES5 => resolve(toES5.default));
+    });
+  };
+}());
+
+
 
 function transform(transformer, transformCode, code) {
-  if (!transformer._promise) {
-    transformer._promise = Promise.all([
-      new Promise(transformer.loadTransformer),
-      new Promise(loadJSTransformer),
-    ]);
-  }
+  const promise = Promise.all([
+    transformer.load(),
+    loadJSTransformer(),
+  ]);
   // Use Promise.resolve(null) to return all errors as rejected promises
-  return transformer._promise.then(([realTransformer, toES5]) => {
+  return promise.then(([realTransformer, toES5]) => {
     let es5Code = toES5(transformCode);
     // assert that there are no obvious infinite loops
     halts(es5Code);
@@ -37,21 +46,21 @@ function transform(transformer, transformCode, code) {
         '})',
       ].join('')
     );
-    let result = transformer.transform(
+    return transformer.transform(
       realTransformer,
       es5Code,
       code
     );
-    return Promise.resolve(result).then(result => {
-      let map = null;
-      if (typeof result !== 'string') {
-        if (result.map) {
-          map = new SourceMapConsumer(result.map);
-        }
-        result = result.code;
+  })
+  .then(result => {
+    let map = null;
+    if (typeof result !== 'string') {
+      if (result.map) {
+        map = new SourceMapConsumer(result.map);
       }
-      return { result, map };
-    });
+      result = result.code;
+    }
+    return { result, map };
   });
 }
 

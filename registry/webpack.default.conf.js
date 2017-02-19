@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const DependencyResolvePlugin = require('./DependencyResolverPlugin');
 
 module.exports = {
   module: {
@@ -39,6 +40,11 @@ module.exports = {
     }),
     //new webpack.optimize.UglifyJsPlugin(),
   ],
+  resolve: {
+    plugins: [
+      DependencyResolvePlugin,
+    ],
+  },
   node: {
     child_process: 'empty',
     fs: 'empty',

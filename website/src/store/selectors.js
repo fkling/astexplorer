@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
 import isEqual from 'lodash.isequal';
-import {getParserByID, getTransformerByID} from '../parsers';
+import {getTransformerByID} from '../parsers';
 
 // UI related
 
@@ -75,12 +75,13 @@ export function getInitialTransformCode(state) {
 }
 
 export function getTransformer(state) {
-  return getTransformerByID(state.workbench.transform.transformer);
+  return state.workbench.parser;
 }
 
-export function showTransformer(state) {
-  return state.showTransformPanel;
-}
+export const showTransformer = createSelector(
+  [getParser],
+  (parser) => !!parser.transform
+);
 
 const isTransformDirty = createSelector(
   [getTransformCode, getInitialTransformCode],

@@ -141,7 +141,7 @@ function install(npmVersion, toolDir, versionConfig) {
         fs.writeJSON(packagePath, pick(versionConfig, 'main', 'dependencies')),
       ]))
       .then(() => run(
-        `yarn add --prefer-offline --exact --no-lockfile --no-bin-links --prod --no-progress ${npmVersion.name}@${npmVersion.version}`,
+        `yarn add --exact --no-lockfile --no-bin-links --prod --no-progress ${npmVersion.name}@${npmVersion.version}`,
         {cwd: cacheDir}
       ))
       .then(() => run(
