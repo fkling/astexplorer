@@ -10,8 +10,13 @@ html {
   font-family: Verdana, non-serif;
 }
 
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .cover {
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;

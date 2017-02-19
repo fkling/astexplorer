@@ -1,8 +1,10 @@
 const webpackConfig = require('../../webpack.default.conf');
 
 module.exports = {
+  name: 'acorn',
   displayName: 'acorn',
   homepage: 'https://github.com/ternjs/acorn',
+  category: 'JavaScript',
   versions: [
     {
       main: './v2.js',

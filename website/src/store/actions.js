@@ -9,11 +9,14 @@ export const SELECT_TRANSFORMER = 'SELECT_TRANSFORMER';
 export const HIDE_TRANSFORMER = 'HIDE_TRANSFORMER';
 export const SET_TRANSFORM = 'SET_TRANSFORM';
 export const SET_PARSER = 'SET_PARSER';
+export const LOAD_PARSER = 'LOAD_PARSER';
 export const SET_PARSER_SETTINGS = 'SET_PARSER_SETTINGS';
 export const SET_PARSE_ERROR = 'SET_PARSE_ERROR';
 export const SET_SNIPPET = 'SET_SNIPPET';
 export const OPEN_SETTINGS_DIALOG = 'OPEN_SETTINGS_DIALOG';
 export const CLOSE_SETTINGS_DIALOG = 'CLOSE_SETTINGS_DIALOG';
+export const OPEN_TOOL_SELECTOR = 'OPEN_TOOL_SELECTOR';
+export const CLOSE_TOOL_SELECTOR = 'CLOSE_TOOL_SELECTOR';
 export const OPEN_SHARE_DIALOG = 'OPEN_SHARE_DIALOG';
 export const CLOSE_SHARE_DIALOG = 'CLOSE_SHARE_DIALOG';
 export const SET_CODE = 'SET_CODE';
@@ -23,6 +26,10 @@ export const SAVE = 'SAVE';
 export const START_SAVE = 'START_SAVE';
 export const END_SAVE = 'END_SAVE';
 export const RESET = 'RESET';
+
+export function loadParser(id) {
+  return {type: LOAD_PARSER, id};
+}
 
 export function setParser(parser) {
   return {type: SET_PARSER, parser};
@@ -70,6 +77,14 @@ export function doneLoadingSnippet() {
 
 export function loadSnippet() {
   return {type: LOAD_SNIPPET};
+}
+
+export function openToolSelector() {
+  return {type: OPEN_TOOL_SELECTOR};
+}
+
+export function closeToolSelector() {
+  return {type: CLOSE_TOOL_SELECTOR};
 }
 
 export function openSettingsDialog() {

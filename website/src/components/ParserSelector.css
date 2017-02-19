@@ -1,0 +1,62 @@
+#ParserSelector {
+  color: #555;
+  margin-top: 20px;
+}
+
+#ParserSelector h2 {
+  text-align: center;
+}
+
+#ParserSelector .categoryFilter {
+  flex-grow: 0;
+}
+
+#ParserSelector .nameFilter {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#ParserSelector .nameFilter input {
+  font-size: 1.3em;
+  padding: 10px;
+  width: 50%;
+}
+
+#ParserSelector .categoryFilter button {
+  font-size: 1.3em;
+  width: 6em;
+  padding: 5px;
+  height: 2em;
+  border: 2px solid #ddd;
+  background-color: #efefef;
+  margin: 10px;
+}
+
+#ParserSelector .categoryFilter button.selected,
+#ParserSelector .categoryFilter button:hover {
+  background-color: #ddd;
+}
+
+#ParserSelector .parserList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#ParserSelector .parserList .parser {
+  padding: 10px;
+  border: 2px solid #ddd;
+  background-color: #efefef;
+  margin: 10px;
+}
+
+#ParserSelector .categoryFilter button,
+#ParserSelector .parserList .parser h3 {
+  color: #444;
+}
+
+#ParserSelector .parserList .parser h3 > small {
+  color: #AAA;
+  float: right;
+  font-weight: normal;
+}

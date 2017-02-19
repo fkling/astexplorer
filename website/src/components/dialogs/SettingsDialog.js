@@ -36,6 +36,9 @@ export default class SettingsDialog extends React.Component {
   }
 
   render() {
+    if (!this.props.parser) {
+      return null;
+    }
     if (this.props.visible && this.props.parser.renderSettings) {
       return (
         <div id="SettingsDialog" className="dialog" onClick={this._outerClick}>
@@ -67,6 +70,6 @@ SettingsDialog.propTypes = {
   onSave: React.PropTypes.func,
   onWantToClose: React.PropTypes.func,
   visible: React.PropTypes.bool,
-  parser: React.PropTypes.object.isRequired,
+  parser: React.PropTypes.object,
   parserSettings: React.PropTypes.object,
 };

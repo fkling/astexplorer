@@ -43,8 +43,8 @@ export default {
   defaultOptions,
   settingsConfiguration,
 
-  loadParser(callback) {
-    callback({
+  load() {
+    return Promise.resolve({
       loose: parse_dammit,
       parse: jsxInject(acorn).parse,
     });

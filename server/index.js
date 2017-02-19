@@ -18,7 +18,7 @@ if (constants.SNIPPET_FILE && constants.REVISION_FILE) {
 
 if (constants.REGISTRY && constants.BUNDLE_DIR) {
   console.log('Serving tools..');
-  app.use('/api/v1/tool', require('./handlers/tools'));
+  app.use('/api/v1/tools', require('./handlers/tools'));
 }
 
 // `next` is needed here to mark this as an error handler

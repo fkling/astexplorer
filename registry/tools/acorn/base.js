@@ -18,11 +18,11 @@ export default {
 
   locationProps: new Set(['range', 'loc', 'start', 'end']),
 
-  // loadParser needs to be implement in the "child" objects
+  // load needs to be implement in the "child" objects
   // and pass `parse` and `loose` to the callback
   //
-  // loadParser(callback) {
-  //  callback({
+  // load() {
+  //  return Promise.resolve({
   //    parse: jsxInject(acorn).parse,
   //    loose: parse_dammit,
   //  });

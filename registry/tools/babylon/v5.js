@@ -69,8 +69,8 @@ export default {
   homepage: pkg.homepage,
   locationProps: new Set(['loc', 'start', 'end']),
 
-  loadParser(callback) {
-    callback({parse});
+  load() {
+    return Promise.resolve({parse});
   },
 
   parse(babylon, code, parserSettings) {

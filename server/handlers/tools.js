@@ -13,6 +13,10 @@ const client = redis.createClient();
 const buildQueue = new Queue('build');
 
 module.exports = express.Router()
+  .get('/inventory.json', (req, res, next) => {
+    console.log('asd');
+    res.sendFile(path.join(BUNDLE_DIR, 'inventory.json'));
+  })
   .get('/:tool/:version', buildTool);
 
 function buildTool(req, res, next) {
