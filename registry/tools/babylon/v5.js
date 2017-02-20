@@ -1,9 +1,6 @@
-import React from 'react';
 import base from './base';
-import defaultParserInterface from '../../utils/defaultESTreeParserInterface';
 import pkg from 'babylon/package.json';
 import {parse} from 'babylon';
-import SettingsRenderer from '../../utils/SettingsRenderer';
 
 const ID = 'babylon';
 const defaultOptions = {
@@ -26,7 +23,7 @@ const defaultOptions = {
   plugins: { jsx: true, flow: true },
 };
 
-const parserSettingsConfiguration = {
+const settingsConfiguration = {
   fields: [
     ['sourceType', ['module', 'script']],
     'allowReserved',
@@ -60,54 +57,21 @@ const parserSettingsConfiguration = {
 };
 
 export default {
-  ...defaultParserInterface,
   ...base,
 
   id: ID,
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: new Set(['loc', 'start', 'end']),
-
-  load() {
-    return Promise.resolve({parse});
-  },
-
-  parse(babylon, code, parserSettings) {
-    return babylon.parse(
-      code,
-      {...defaultOptions, ...parserSettings}
-    );
-  },
-
-  getNodeName(node) {
-    switch (typeof node.type) {
-      case 'string':
-        return node.type;
-      case 'object':
-        return `Token (${node.type.label})`;
-    }
-  },
-
-  nodeToRange(node) {
-    if (typeof node.start !== 'undefined') {
-      return [node.start, node.end];
-    }
-  },
+  defaultOptions,
+  settingsConfiguration,
 
   _ignoredProperties: new Set([
     '__clone',
   ]),
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <div>
-        <SettingsRenderer
-          settingsConfiguration={parserSettingsConfiguration}
-          parserSettings={parserSettings}
-          onChange={onChange}
-        />
-      </div>
-    );
+  load() {
+    return Promise.resolve({parse});
   },
+
 };
