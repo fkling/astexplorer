@@ -8,6 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const DEV = process.env.NODE_ENV !== 'production';
+const CACHE_BREAKER = 2;
 
 const packages = fs.readdirSync(path.join(__dirname, 'packages'));
 const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
@@ -218,8 +219,8 @@ module.exports = Object.assign({
 
   output: {
     path: '../out',
-    filename: DEV ? '[name].js' : '[name]-[chunkhash]-1.js',
-    chunkFilename: DEV ? '[name].js' : '[name]-[chunkhash]-1.js',
+    filename: DEV ? '[name].js' : `[name]-[chunkhash]-${CACHE_BREAKER}.js`,
+    chunkFilename: DEV ? '[name].js' : `[name]-[chunkhash]-${CACHE_BREAKER}.js`,
   },
 },
 
