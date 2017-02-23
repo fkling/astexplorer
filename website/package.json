@@ -64,6 +64,7 @@
     "esformatter-parser": "^1.0.0",
     "eslint1": "file:packages/eslint1",
     "eslint2": "file:packages/eslint2",
+    "eslint3": "file:packages/eslint3",
     "espree": "^3.1.0",
     "esprima": "^3.1.3",
     "flow-parser": "^0.38.0",
