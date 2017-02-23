@@ -129,6 +129,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'redux', 'es'),
           path.join(__dirname, 'node_modules', 'react-redux', 'es'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
+          path.join(__dirname, 'node_modules', 'eslint3'),
           path.join(__dirname, 'node_modules', 'jscodeshift', 'dist'),
           path.join(__dirname, 'node_modules', 'lodash-es'),
           path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
