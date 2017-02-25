@@ -8,6 +8,7 @@ const categoryIcon = {
   graphql: 'icon-GraphQL_Logo',
   handlebars: 'icon-handlebars',
   htmlmixed: 'fa-html5',
+  icu: 'icon-icu',
   sql: 'fa-database',
   webidl: 'fa-th-list',
   yaml: 'fa-yc',
