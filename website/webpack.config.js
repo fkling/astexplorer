@@ -163,8 +163,14 @@ module.exports = Object.assign({
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader?importLoaders=1!autoprefixer-loader',
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: { importLoaders: 1 },
+            },
+            'postcss-loader'
+          ],
         }),
       },
       {
