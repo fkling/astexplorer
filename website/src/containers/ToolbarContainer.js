@@ -6,7 +6,7 @@ import {
   openShareDialog,
   selectTransformer,
   hideTransformer,
-  setParser,
+  loadParser,
   reset,
 } from '../store/actions';
 import Toolbar from '../components/Toolbar';
@@ -21,7 +21,6 @@ function mapStateToProps(state) {
     saving: selectors.isSaving(state),
     canSave: selectors.canSave(state),
     canFork: selectors.canFork(state),
-    category: parser.category,
     parser,
     transformer: selectors.getTransformer(state),
     showTransformer: selectors.showTransformer(state),
@@ -31,9 +30,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onParserChange: parser => {
-      dispatch(setParser(parser));
-      logEvent('parser', 'select', parser.id);
+    onParserChange: id => {
+      dispatch(loadParser(id));
+      logEvent('parser', 'select', id);
     },
     onCategoryChange: category => {
       dispatch(selectCategory(category));

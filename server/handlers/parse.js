@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
-const snippets = prepareData(require(process.env.SNIPPET_FILE));
-const snippetRevisions = prepareData(require(process.env.REVISION_FILE));
+const constants = require('../constants');
+const snippets = prepareData(require(constants.SNIPPET_FILE));
+const snippetRevisions = prepareData(require(constants.REVISION_FILE));
 
 function notFound(req, res) {
   console.error(`Not found: ${req.path}`);

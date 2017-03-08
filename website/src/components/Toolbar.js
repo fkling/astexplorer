@@ -1,14 +1,15 @@
 import React from 'react';
 import CategoryButton from './buttons/CategoryButton';
-import ParserButton from './buttons/ParserButton';
+import NewParserButton from './buttons/NewParserButton';
 import SnippetButton from './buttons/SnippetButton';
 import TransformButton from './buttons/TransformButton';
 
 export default function Toolbar(props) {
   let {parser, transformer, showTransformer} = props;
-  let parserInfo = parser.id;
   let transformerInfo = '';
+  let parserInfo = '';
   if (parser) {
+    parserInfo = parser.displayName;
     if (parser.version) {
       parserInfo += '-' + parser.version;
     }
@@ -33,9 +34,7 @@ export default function Toolbar(props) {
     <div id="Toolbar">
       <h1>AST Explorer</h1>
       <SnippetButton {...props} />
-      <CategoryButton {...props} />
-      <ParserButton {...props} />
-      <TransformButton {...props} />
+      <NewParserButton {...props} />
       <a
         style={{minWidth: 0}}
         target="_blank"

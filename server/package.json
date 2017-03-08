@@ -5,11 +5,16 @@
   "private": true,
   "author": "Felix Kling",
   "dependencies": {
+    "bee-queue": "^0.3.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "github-api": "https://github.com/fkling/github.git"
+    "github-api": "https://github.com/fkling/github.git",
+    "isomorphic-fetch": "^2.2.1",
+    "redis": "^2.6.5",
+    "winston": "^2.3.1"
   },
   "scripts": {
-    "start": "STATIC=../out node index.js"
+    "start": "STATIC=../out REGISTRY=../registry/tools BUNDLE_DIR=../bundles node index.js",
+    "start-worker": "REGISTRY=../registry/tools BUNDLE_DIR=../bundles node build-worker.js"
   }
 }

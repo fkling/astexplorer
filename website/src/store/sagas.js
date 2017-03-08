@@ -143,7 +143,31 @@ function* watchSnippetURI(storageAdapter) {
   ]));
 }
 
-export default function*(storageAdapter) {
+function* watchParserChange(parserRegistry, {id}) {
+  try {
+    yield put(batchActions([
+      actions.setError(null),
+      actions.startLoadingSnippet(),
+    ]));
+
+    const parser = yield call(
+      parserRegistry.loadParser.bind(parserRegistry),
+      id
+    );
+    yield put(batchActions([
+      actions.setParser(parser),
+      actions.doneLoadingSnippet(),
+    ]));
+  } catch(error) {
+    yield put(batchActions([
+      actions.setError(error),
+      actions.doneLoadingSnippet(),
+    ]));
+  }
+}
+
+export default function*(storageAdapter, parserRegistry) {
   yield takeEvery(actions.LOAD_SNIPPET, watchSnippetURI, storageAdapter);
   yield takeEvery(actions.SAVE, watchSave, storageAdapter);
+  yield takeEvery(actions.LOAD_PARSER, watchParserChange, parserRegistry);
 }

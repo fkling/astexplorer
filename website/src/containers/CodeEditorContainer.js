@@ -6,7 +6,7 @@ import {getCode, getParser, getParseError} from '../store/selectors';
 function mapStateToProps(state) {
   return {
     value: getCode(state),
-    mode: getParser(state).category.id,
+    mode: getParser(state) && getParser(state).category.id,
     error: getParseError(state),
   };
 }
