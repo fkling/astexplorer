@@ -10,6 +10,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage || 'https://github.com/yahoo/intl-messageformat-parser',
+  locationProps: new Set(['location']),
 
   loadParser(callback) {
     require(['intl-messageformat-parser'], callback);
@@ -21,6 +22,12 @@ export default {
 
   getNodeName(node) {
     return node.type;
+  },
+
+  nodeToRange({ location }) {
+    if (location && location.start && location.end) {
+      return [location.start.offset, location.end.offset];
+    }
   },
 
   opensByDefault(node, key) {
