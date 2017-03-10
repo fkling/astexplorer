@@ -3,6 +3,22 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon6/babylon-package';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
+const availablePlugins = [
+  'asyncGenerators',
+  'classConstructorCall',
+  'classProperties',
+  'decorators',
+  'doExpressions',
+  'estree',
+  'exportExtensions',
+  'flow',
+  'functionSent',
+  'functionBind',
+  'jsx',
+  'objectRestSpread',
+  'dynamicImport',
+];
+
 const ID = 'babylon6';
 export const defaultOptions = {
   sourceType: 'module',
@@ -32,9 +48,9 @@ export const parserSettingsConfiguration = {
     {
       key: 'plugins',
       title: 'Plugins',
-      fields: defaultOptions.plugins,
+      fields: availablePlugins,
       settings: settings => settings.plugins || defaultOptions.plugins,
-      values: plugins => defaultOptions.plugins.reduce(
+      values: plugins => availablePlugins.reduce(
         (obj, name) => ((obj[name] = plugins.indexOf(name) > -1), obj),
         {}
       ),
