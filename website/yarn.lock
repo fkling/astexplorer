@@ -2731,9 +2731,17 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-parser@^0.*, flow-parser@^0.40.0:
+flow-parser@^0.*:
   version "0.40.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.40.0.tgz#b3444742189093323c4319c4fe9d35391f46bcbc"
+  dependencies:
+    ast-types "0.8.18"
+    colors ">=0.6.2"
+    minimist ">=0.2.0"
+
+flow-parser@^0.42.0:
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.42.0.tgz#77a531c31c28bd7c9c000eab79ebd8853ad0e4cb"
   dependencies:
     ast-types "0.8.18"
     colors ">=0.6.2"
