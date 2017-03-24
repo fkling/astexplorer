@@ -128,6 +128,7 @@ module.exports = Object.assign({
         include: [
           path.join(__dirname, 'src'),
           path.join(__dirname, 'node_modules', 'redux', 'es'),
+          path.join(__dirname, 'node_modules', 'regexp-tree'),
           path.join(__dirname, 'node_modules', 'react-redux', 'es'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
           path.join(__dirname, 'node_modules', 'eslint3'),
@@ -224,7 +225,7 @@ module.exports = Object.assign({
   },
 
   output: {
-    path: '../out',
+    path: path.resolve('../out'),
     filename: DEV ? '[name].js' : `[name]-[chunkhash]-${CACHE_BREAKER}.js`,
     chunkFilename: DEV ? '[name].js' : `[name]-[chunkhash]-${CACHE_BREAKER}.js`,
   },
