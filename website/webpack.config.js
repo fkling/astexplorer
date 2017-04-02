@@ -224,7 +224,7 @@ module.exports = Object.assign({
   },
 
   output: {
-    path: '../out',
+    path: path.resolve(__dirname, '../out'),
     filename: DEV ? '[name].js' : `[name]-[chunkhash]-${CACHE_BREAKER}.js`,
     chunkFilename: DEV ? '[name].js' : `[name]-[chunkhash]-${CACHE_BREAKER}.js`,
   },
