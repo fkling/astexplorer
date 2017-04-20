@@ -172,9 +172,9 @@
         '!type': 'fn() -> NodePath'
       insertAt:
         '!type': 'fn(index: number, node: ASTNode)'
-      inserBefore:
+      insertBefore:
         '!type': 'fn(node: ASTNode)'
-      inserAfter:
+      insertAfter:
         '!type': 'fn(node: ASTNode)'
   ASTNode:
     type:
