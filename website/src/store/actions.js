@@ -23,6 +23,7 @@ export const SAVE = 'SAVE';
 export const START_SAVE = 'START_SAVE';
 export const END_SAVE = 'END_SAVE';
 export const RESET = 'RESET';
+export const TOGGLE_FORMATTING = 'TOGGLE_FORMATTING';
 
 export function setParser(parser) {
   return {type: SET_PARSER, parser};
@@ -122,4 +123,8 @@ export function dropText(text, categoryId) {
 
 export function reset() {
   return {type: RESET};
+}
+
+export function toggleFormatting() {
+  return {type: TOGGLE_FORMATTING};
 }

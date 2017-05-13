@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Transformer from '../components/Transformer';
-import {setTransformState} from '../store/actions';
+import {setTransformState, toggleFormatting} from '../store/actions';
 import * as selectors from '../store/selectors';
 
 function mapStateToProps(state) {
@@ -13,6 +13,7 @@ function mapStateToProps(state) {
     transformCode: selectors.getTransformCode(state),
     mode: selectors.getParser(state).category.id,
     code: selectors.getCode(state),
+    enableFormatting: selectors.getFormattingState(state),
   };
 }
 
@@ -20,6 +21,9 @@ function mapDispatchToProps(dispatch) {
   return {
     onContentChange: ({value, cursor}) => {
       dispatch(setTransformState({code: value, cursor}));
+    },
+    toggleFormatting: () => {
+      dispatch(toggleFormatting());
     },
   };
 }

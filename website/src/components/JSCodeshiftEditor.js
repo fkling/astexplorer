@@ -1,20 +1,9 @@
-import prettier from 'prettier';
 import CodeMirror from 'codemirror';
 import React from 'react';
 import Editor from './Editor';
 
 import 'codemirror/addon/hint/show-hint.css';
 import 'codemirror/addon/tern/tern.css';
-
-const defaultPrettierOptions = {
-  printWidth: 80,
-  tabWidth: 2,
-  singleQuote: false,
-  trailingComma: "none",
-  bracketSpacing: true,
-  jsxBracketSameLine: false,
-  parser: 'babylon'
-};
 
 let server;
 
@@ -31,12 +20,6 @@ export default class JSCodeshiftEditor extends Editor {
       'Ctrl-Space': cm => server && server.complete(cm),
       'Ctrl-I': cm => server && server.showType(cm),
       'Ctrl-O': cm => server && server.showDocs(cm),
-    });
-
-    this.codeMirror.on('blur', (instance, event) => {
-      const currValue = instance.doc.getValue();
-      const options = Object.assign({}, defaultPrettierOptions, {printWidth: instance.display.maxLineLength});
-      instance.doc.setValue(prettier.format(currValue, options));
     });
 
     this._bindCMHandler('cursorActivity', cm => {

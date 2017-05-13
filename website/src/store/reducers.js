@@ -39,6 +39,8 @@ const initialState = {
     },
   },
 
+  enableFormatting: false,
+
 };
 
 /**
@@ -92,7 +94,13 @@ export function astexplorer(state=initialState, action) {
     parserPerCategory: parserPerCategory(state.parserPerCategory, action),
     parserSettings: parserSettings(state.parserSettings, action, state),
     workbench: workbench(state.workbench, action, state),
+    enableFormatting: format(state.enableFormatting, action, state),
   };
+}
+
+function format(state=initialState.enableFormatting, action) {
+  if (action.type === actions.TOGGLE_FORMATTING) return !state;
+  return state;
 }
 
 function workbench(state=initialState.workbench, action, fullState) {

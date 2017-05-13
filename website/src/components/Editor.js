@@ -1,6 +1,17 @@
 import CodeMirror from 'codemirror';
 import PubSub from 'pubsub-js';
 import React from 'react';
+import prettier from 'prettier';
+
+const defaultPrettierOptions = {
+  printWidth: 80,
+  tabWidth: 2,
+  singleQuote: false,
+  trailingComma: 'none',
+  bracketSpacing: true,
+  jsxBracketSameLine: false,
+  parser: 'babylon',
+};
 
 export default class Editor extends React.Component {
 
@@ -72,6 +83,17 @@ export default class Editor extends React.Component {
         readOnly: this.props.readOnly,
       }
     );
+
+    this._bindCMHandler('blur', instance => {
+      if (!this.props.enableFormatting) return;
+      const currValue = instance.doc.getValue();
+      const options = Object.assign({},
+        defaultPrettierOptions,
+        {
+          printWidth: instance.display.maxLineLength,
+        });
+      instance.doc.setValue(prettier.format(currValue, options));
+    });
 
     this._bindCMHandler('changes', () => {
       clearTimeout(this._updateTimer);
@@ -195,6 +217,7 @@ Editor.propTypes = {
   posFromIndex: React.PropTypes.func,
   error: React.PropTypes.object,
   mode: React.PropTypes.string,
+  enableFormatting: React.PropTypes.bool,
 };
 
 Editor.defaultProps = {

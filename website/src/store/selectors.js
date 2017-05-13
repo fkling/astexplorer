@@ -4,6 +4,10 @@ import {getParserByID, getTransformerByID} from '../parsers';
 
 // UI related
 
+export function getFormattingState(state) {
+  return state.enableFormatting;
+}
+
 export function getCursor(state) {
   return state.cursor;
 }
