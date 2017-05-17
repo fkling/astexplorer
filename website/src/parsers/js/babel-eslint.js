@@ -1,7 +1,7 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'acorn-to-esprima/package.json';
+import pkg from 'babel-eslint/package.json';
 
-const ID = 'acorn-to-esprima';
+const ID = 'babel-eslint';
 const name = 'babel-eslint';
 
 export default {
@@ -14,33 +14,16 @@ export default {
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['acorn-to-esprima', 'babel5'], (acornToEsprima, {acorn: {tokTypes}, traverse, parse}) => {
-      callback({
-        ...acornToEsprima,
-        tokTypes,
-        traverse,
-        parse,
-      });
-    });
+    require(['babel-eslint'], babelEslint => callback(babelEslint));
   },
 
   parse(parser, code) {
     const opts = {
-      locations: true,
-      ranges: true,
+      sourceType: 'module',
     };
 
-    const comments = opts.onComment = [];
-    const tokens = opts.onToken = [];
-
-    let ast = parser.parse(code, opts);
-
-    ast.tokens = parser.toTokens(tokens, parser.tokTypes);
-    parser.convertComments(comments);
-    ast.comments = comments;
-    parser.attachComments(ast, comments, ast.tokens);
-    parser.toAST(ast, parser.traverse);
-
+    const ast = parser.parseNoPatch(code, opts);
+    delete ast.tokens;
     return ast;
   },
 

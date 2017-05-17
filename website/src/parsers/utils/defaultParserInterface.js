@@ -1,4 +1,5 @@
 export default {
+  showInMenu: true,
   _ignoredProperties: new Set(),
   locationProps: new Set(),
 
