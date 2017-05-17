@@ -28,6 +28,12 @@ export function runRule(code, eslint, sourceCode) {
   // Reference: http://eslint.org/docs/developer-guide/nodejs-api
   const ast = parseNoPatch(code, {});
   const results = eslint.verify(new sourceCode(code, ast), {
+    env: {es6: true},
+    parserOptions: {
+      ecmaVersion: 8,
+      sourceType: 'module',
+      ecmaFeatures: {experimentalObjectRestSpread: true},
+    },
     rules: {
       astExplorerRule: 2,
     },
