@@ -30,6 +30,7 @@ The AST explorer provides following code parsers:
   - [luaparse][]
 - [GraphQL][]
 - [WebIDL][]
+- [Markdown][]
 
 Depending on the parser settings, it not only supports ES5/CSS3
 but also
@@ -98,6 +99,7 @@ node.
 [typescript]: https://github.com/Microsoft/TypeScript/
 [uglify-js]: https://github.com/mishoo/UglifyJS2
 [webidl]: https://github.com/darobin/webidl2.js
+[markdown]: https://github.com/wooorm/remark
 
 ### Contributions
 
