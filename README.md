@@ -6,34 +6,47 @@ Paste or drop code into the editor and inspect the generated AST.
 
 The AST explorer provides following code parsers:
 
-- JavaScript:
-  - [esprima][]
-  - [espree][]
-  - [acorn][] + [acorn-jsx][]
-  - [babylon][]
-  - [recast][]
-  - [shift][]
-  - [babel-eslint][]
-  - [traceur][]
-  - [typescript][]
-  - [uglify-js][]
-  - [flow-parser][]
 - CSS:
   - [cssom][]
   - [csstree][]
   - [postcss][] + [postcss-safe-parser][] & [postcss-scss][]
   - [rework][]
+- [GraphQL][]
+- Handlebars:
+  - [glimmer][]
+  - [handlebars][]
 - HTML:
   - [htmlparser2][]
   - [parse5][]
+- [ICU][]
+- JavaScript:
+  - [acorn][] + [acorn-jsx][]
+  - [babel-eslint][]
+  - [babylon][]
+  - [espree][]
+  - [esformatter][]
+  - [esprima][]
+  - [flow-parser][]
+  - [recast][]
+  - [shift][]
+  - [traceur][]
+  - [typescript][]
+  - [uglify-js][]
+- [JSON][]
 - Lua:
   - [luaparse][]
-- [GraphQL][]
+- Markdown:
+  - [remark][]
+- Regular Expressions:
+  - [regexp-tree][]
+- SQL:
+  - [sqlite-parser][]
 - [WebIDL][]
-- [Markdown][]
+- [YAML][]
 
-Depending on the parser settings, it not only supports ES5/CSS3
-but also
+### Experimental / custom syntax
+
+Depending on the parser settings, it not only supports ES5/CSS3 but also
 
 - ES6: [arrow functions](https://github.com/lukehoban/es6features#arrows), [destructuring](https://github.com/lukehoban/es6features#destructuring),
   [classes](https://github.com/lukehoban/es6features#classes), ...
@@ -42,19 +55,24 @@ but also
 - Typed JavaScript ([Flow](http://flowtype.org/) and [TypeScript](http://typescriptlang.org/))
 - [SASS](http://sass-lang.com/)
 
-Since future syntax is supported, the JavaScript AST explorer is a useful tool
-for developers who want to create AST transforms.
+### Transforms
 
-In fact, following transformers are included so you can prototype your own plugins:
+Since future syntax is supported, the AST explorer is a useful tool for
+developers who want to create AST transforms. In fact, following transformers 
+are included so you can prototype your own plugins:
 
 - JavaScript
-  - [babel][]
-  - [ESLint][] (v1)
+  - [babel][] (v5, v6)
+  - [ESLint][] (v1, v2, v3)
   - [jscodeshift][]
 - CSS
   - [postcss][]
+- Regular Expressions
+  - [regexp-tree][]
+- Handlebars
+  - [glimmer][]
 
-### Features
+### More Features
 
 - Save and fork code snippets. Copy the URL to share them.
 - Copying an AST or dropping a file containing an AST into the window will
@@ -62,13 +80,10 @@ parse the AST and update the code using [escodegen][].
 - Otherwise, the content of texteditor will be replaced with the content of the file (i.e.
 you can drag and drop JS files).
 - Choose between multiple parsers and configure them.
-- Toggle Transform mode with [jscodeshift][] and [babel][].
 - shift+click on a node expands the full subtree.
-- Hovering over a node highlights the corresponding text in the source code:
-![source highlight](assets/source.png)
-- Editing the source or moving the cursor around will automatically highlight the
-corresponding AST node (or its ancestors of it isn't expanded):
-![source highlight](assets/ast.png)
+- Hovering over a node highlights the corresponding text in the source code
+- Editing the source or moving the cursor around will automatically highlight 
+  the corresponding AST node (or its ancestors of it isn't expanded)
 - You can use `$node` in the console to refer to the last opened/toggled AST
 node.
 
@@ -99,15 +114,26 @@ node.
 [typescript]: https://github.com/Microsoft/TypeScript/
 [uglify-js]: https://github.com/mishoo/UglifyJS2
 [webidl]: https://github.com/darobin/webidl2.js
-[markdown]: https://github.com/wooorm/remark
+[remark]: https://github.com/wooorm/remark
+[regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
+[glimmer]: https://github.com/glimmerjs/glimmer-vm
+[handlebars]: http://handlebarsjs.com/
+[icu]: https://github.com/yahoo/intl-messageformat-parser
+[json]: https://github.com/vtrushin/json-to-ast
+[sqlite-parser]: https://github.com/codeschool/sqlite-parser
+[yaml]: https://github.com/mulesoft-labs/yaml-ast-parser
+[esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
 
 ### Contributions
 
 I'm happy about any feedback, feature request or PR to make this tool as useful
 as possible!
 
+---
+
 #### How to add a new parser
 
+0. Go to `website/`.
 1. Install the new parser as dependency: `yarn add theParser` (or `npm install -S theParser`)
 2. Copy one of the existing examples in `src/parsers/{language}`.
 3. Adjust the code as necessary:
@@ -122,6 +148,7 @@ as possible!
 
 #### How to add a new transformer
 
+0. Go to `website/`.
 1. Install the new transformer as dependency.
 2. Copy one of the existing examples in `src/parsers/{language}/transformers`.
 3. Adjust the code as necessary:
@@ -134,7 +161,8 @@ as possible!
 
 1. Clone the repository.
 2. Run `git submodule update --init` to initialize / update all submodules.
-3. Install all dependencies with `yarn install` (you can run `npm install` as
+3. Go to `website/`.
+4. Install all dependencies with `yarn install` (you can run `npm install` as
    well).
 
 Run `yarn run build` for the final minimized version.
