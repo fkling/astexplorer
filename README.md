@@ -26,6 +26,8 @@ The AST explorer provides following code parsers:
 - HTML:
   - [htmlparser2][]
   - [parse5][]
+- Lua:
+  - [luaparse][]
 - [GraphQL][]
 - [WebIDL][]
 
@@ -84,6 +86,7 @@ node.
 [graphql]: https://facebook.github.io/graphql/
 [htmlparser2]: https://github.com/fb55/htmlparser2
 [jscodeshift]: https://github.com/facebook/jscodeshift
+[luaparse]: https://oxyc.github.io/luaparse/
 [parse5]: https://github.com/inikulin/parse5
 [postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
 [postcss-scss]: https://github.com/postcss/postcss-scss
@@ -132,7 +135,7 @@ as possible!
 3. Install all dependencies with `yarn install` (you can run `npm install` as
    well).
 
-Run `yarn run build` for the final minimized version.  
+Run `yarn run build` for the final minimized version.
 Run `yarn run watch` for incremental builds.
 
 Run `yarn start` to start a simple static webserver.
