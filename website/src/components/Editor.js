@@ -1,7 +1,6 @@
 import CodeMirror from 'codemirror';
 import PubSub from 'pubsub-js';
 import React from 'react';
-import prettier from 'prettier';
 
 const defaultPrettierOptions = {
   printWidth: 80,
@@ -86,13 +85,15 @@ export default class Editor extends React.Component {
 
     this._bindCMHandler('blur', instance => {
       if (!this.props.enableFormatting) return;
-      const currValue = instance.doc.getValue();
-      const options = Object.assign({},
-        defaultPrettierOptions,
-        {
-          printWidth: instance.display.maxLineLength,
-        });
-      instance.doc.setValue(prettier.format(currValue, options));
+      require(['prettier'], prettier => {
+        const currValue = instance.doc.getValue();
+        const options = Object.assign({},
+          defaultPrettierOptions,
+          {
+            printWidth: instance.display.maxLineLength,
+          });
+        instance.doc.setValue(prettier.format(currValue, options));
+      });
     });
 
     this._bindCMHandler('changes', () => {
