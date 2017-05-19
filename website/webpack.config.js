@@ -74,7 +74,7 @@ const plugins = [
   new webpack.ContextReplacementPlugin(/eslint/, /NEVER_MATCH^/),
 
   new ExtractTextPlugin({
-    filename: DEV ? '[name].css' : '[name]-[chunkhash].css',
+    filename: DEV ? '[name].css' : `[name]-[chunkhash]-${CACHE_BREAKER}.css`,
     allChunks: true,
   }),
 
