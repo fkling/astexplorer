@@ -20,17 +20,17 @@ const plugins = [
       JSON.stringify(process.env.NODE_ENV || 'development'),
     'process.env.API_HOST': JSON.stringify(process.env.API_HOST || ''),
   }),
-  new webpack.IgnorePlugin(
-    /\.md$/,
-    /node\/nodeLoader.js/,
-    /traceur/,
+  new webpack.IgnorePlugin(/\.md$/),
+  new webpack.IgnorePlugin(/node\/nodeLoader.js/),
   // Usually babel-eslint tries to patch eslint, but we are using "parseNoPatch",
-  // so that code patch will never be executed. However, webpack will still bundle
-  // eslint. Since eslint@3 is a dev dependency it will pick up that one which
-  // is incorrect.
-    /eslint/,
-    /babel-eslint/
-  ),
+  // so that code patch will never be executed.
+  new webpack.IgnorePlugin(/^eslint$/, /babel-eslint/),
+
+  // typescript-eslint-parser is a dev dependency of prettier, so it's not
+  // installed by default but prettier does still require it. See
+  // https://github.com/prettier/prettier/issues/986
+  new webpack.IgnorePlugin(/typescript-eslint-parser/, /\/prettier/),
+
   // Shim ESLint stuff that's only relevant for Node.js
   new webpack.NormalModuleReplacementPlugin(
     /(cli-engine|testers\/rule-tester)/,
@@ -52,6 +52,14 @@ const plugins = [
         module.request += '/index.js';
       }
     }
+  ),
+
+  // More shims
+
+  // Doesn't look like jest-validate is useful in our case (prettier uses it)
+  new webpack.NormalModuleReplacementPlugin(
+    /jest-validate/,
+    __dirname + '/src/shims/jest-validate.js'
   ),
 
   // Hack to disable Webpack dynamic requires in ESLint, so we don't end up
@@ -138,6 +146,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
+          path.join(__dirname, 'node_modules', 'prettier'),
         ],
         loader: 'babel-loader',
         options: {
@@ -170,7 +179,7 @@ module.exports = Object.assign({
               loader: 'css-loader',
               options: { importLoaders: 1 },
             },
-            'postcss-loader'
+            'postcss-loader',
           ],
         }),
       },
