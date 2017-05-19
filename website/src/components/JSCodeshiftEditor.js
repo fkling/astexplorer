@@ -20,7 +20,7 @@ export default class JSCodeshiftEditor extends Editor {
       'Ctrl-Space': cm => server && server.complete(cm),
       'Ctrl-I': cm => server && server.showType(cm),
       'Ctrl-O': cm => server && server.showDocs(cm),
-    })
+    });
 
     this._bindCMHandler('cursorActivity', cm => {
       server && server.updateArgHints(cm);

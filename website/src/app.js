@@ -3,7 +3,7 @@ import ASTOutputContainer from './containers/ASTOutputContainer';
 import CodeEditorContainer from './containers/CodeEditorContainer';
 import ErrorMessageContainer from './containers/ErrorMessageContainer';
 import GistBanner from './components/GistBanner';
-import LoadingIndictorContainer from './containers/LoadingIndicatorContainer';
+import LoadingIndicatorContainer from './containers/LoadingIndicatorContainer';
 import PasteDropTargetContainer from './containers/PasteDropTargetContainer';
 import PubSub from 'pubsub-js';
 import React from 'react';
@@ -36,7 +36,7 @@ function App(props) {
       <ErrorMessageContainer />
       <div className={'dropTarget' + (props.hasError ? ' hasError' : '')}>
         <PasteDropTargetContainer>
-        <LoadingIndictorContainer />
+        <LoadingIndicatorContainer />
         <SettingsDialogContainer />
         <ShareDialogContainer />
         <div id="root">

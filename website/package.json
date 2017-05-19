@@ -85,6 +85,7 @@
     "postcss-less": "^0.15.0",
     "postcss-safe-parser": "^2.0.0",
     "postcss-scss": "^0.4.1",
+    "prettier": "^0.22.0",
     "pubsub-js": "^1.4.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",

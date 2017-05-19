@@ -487,3 +487,17 @@ body .CodeMirror-Tern-tooltip {
   padding: 5px;
   width: calc(100% - 10px);
 }
+
+.toggleBtn {
+  position: absolute;
+  right: 0;
+  height: 20px;
+  z-index: 10;
+  cursor: pointer;
+  outline: none;
+}
+
+.toggleBtn > .btnText {
+  padding-left: 5px;
+  font-size: 12px;
+}
