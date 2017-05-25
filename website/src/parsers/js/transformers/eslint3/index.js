@@ -9,7 +9,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParserID: 'espree',
+  defaultParserID: 'babel-eslint',
 
   loadTransformer(callback) {
     require(

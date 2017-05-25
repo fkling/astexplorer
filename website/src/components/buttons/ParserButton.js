@@ -13,6 +13,7 @@ export default class ParserButton extends React.Component {
   }
 
   render() {
+    const parsers = this.props.category.parsers.filter(p => p.showInMenu);
     return (
       <div className="button menuButton">
         <span>
@@ -20,7 +21,7 @@ export default class ParserButton extends React.Component {
           &nbsp;{this.props.parser.displayName}
         </span>
         <ul>
-          {this.props.category.parsers.map(parser => (
+          {parsers.map(parser => (
             <li key={parser.id} onClick={this._onClick} data-id={parser.id}>
               <button type="button" >
                 {parser.displayName}
