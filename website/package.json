@@ -34,7 +34,7 @@
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1",
+    "webpack": "^2.6.1",
     "webpack-chunk-hash": "^0.4.0"
   },
   "dependencies": {
