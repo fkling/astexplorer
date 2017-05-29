@@ -2901,9 +2901,13 @@ flow-parser@0.40.0:
     colors ">=0.6.2"
     minimist ">=0.2.0"
 
-flow-parser@^0.*, flow-parser@^0.46.0:
+flow-parser@^0.*:
   version "0.46.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.46.0.tgz#32da21be02344c5752be17547e3b30a54273873c"
+
+flow-parser@^0.47.0:
+  version "0.47.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.47.0.tgz#c57d35ff19bb40fb0f07222298e58cd4afa8a59a"
 
 font-awesome@^4.5.0:
   version "4.7.0"
