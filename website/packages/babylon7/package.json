@@ -1,0 +1,9 @@
+{
+  "name": "babylon7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "babylon": "^7.0.0-beta.10"
+  }
+}
