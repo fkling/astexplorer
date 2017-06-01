@@ -1,4 +1,4 @@
-import * as babel from 'babel6';
+import * as babel from 'babel-core';
 import es2015 from 'babel-preset-es2015';
 import stage0 from 'babel-preset-stage-0';
 import flowStripTypes from 'babel-plugin-transform-flow-strip-types';
