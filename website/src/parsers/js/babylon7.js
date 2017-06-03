@@ -24,6 +24,7 @@ export const defaultOptions = {
   sourceType: 'module',
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
+  ranges: false,
   plugins: [
     'asyncGenerators',
     'classProperties',
@@ -44,6 +45,7 @@ export const parserSettingsConfiguration = {
     ['sourceType', ['module', 'script']],
     'allowReturnOutsideFunction',
     'allowImportExportEverywhere',
+    'ranges',
     {
       key: 'plugins',
       title: 'Plugins',
@@ -64,7 +66,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: new Set(['loc', 'start', 'end']),
+  locationProps: new Set(['range', 'loc', 'start', 'end']),
 
   loadParser(callback) {
     require(['babylon7'], callback);
