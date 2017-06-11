@@ -39,7 +39,7 @@
   "dependencies": {
     "@glimmer/compiler": "^0.22.0",
     "@glimmer/syntax": "^0.22.0",
-    "acorn": "^4.0.4",
+    "acorn": "^5.0.3",
     "acorn-jsx": "^4.0.1",
     "acorn-to-esprima": "^1.0.2",
     "babel-core": "^6.24.0",
