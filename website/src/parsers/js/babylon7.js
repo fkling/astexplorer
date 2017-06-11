@@ -17,6 +17,8 @@ const availablePlugins = [
   'jsx',
   'objectRestSpread',
   'dynamicImport',
+  'numericSeparator',
+  'importMeta',
 ];
 
 const ID = 'babylon7';

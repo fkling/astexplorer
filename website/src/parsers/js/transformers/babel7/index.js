@@ -39,6 +39,8 @@ export default {
           'jsx',
           'objectRestSpread',
           'dynamicImport',
+          'numericSeparator',
+          'importMeta',
         ],
       },
       generatorOpts: {
