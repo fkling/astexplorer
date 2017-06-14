@@ -1933,9 +1933,9 @@ css-selector-tokenizer@^0.7.0:
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
 
-css-tree@^1.0.0-alpha17:
-  version "1.0.0-alpha9"
-  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha9.tgz#6ee3e397b569eef32419286c86e3e8b65fcaf3e3"
+css-tree@1.0.0-alpha19:
+  version "1.0.0-alpha19"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha19.tgz#949aa846c2c15b3979792e8fce05f6b6e3ebcad4"
   dependencies:
     source-map "^0.5.3"
 
