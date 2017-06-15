@@ -39,6 +39,8 @@ The AST explorer provides following code parsers:
   - [remark][]
 - Regular Expressions:
   - [regexp-tree][]
+- Scala
+  - [Scalameta][]
 - SQL:
   - [sqlite-parser][]
 - [WebIDL][]
@@ -123,6 +125,7 @@ node.
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/mulesoft-labs/yaml-ast-parser
 [esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
+[Scalameta]: http://scalameta.org/
 
 ### Contributions
 

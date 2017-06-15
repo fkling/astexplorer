@@ -10,6 +10,7 @@ const categoryIcon = {
   htmlmixed: 'fa-html5',
   icu: 'icon-icu',
   sql: 'fa-database',
+  'text/x-scala': 'icon-scala',
   webidl: 'fa-th-list',
   yaml: 'fa-yc',
 };
