@@ -11,7 +11,11 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['loc']),
-  _ignoredProperties: new Set(['loc']), // we ignore the loc itself because it's actually a locally enhanced (not in the actual parser data)
+  _ignoredProperties: new Set([
+    'loc', // we ignore the loc itself because it's actually a locally enhanced (not in the actual parser data)
+    'parent', // it's pointless to display the parent node in the tree browser
+    'stage', // same
+  ]),
 
   loadParser(callback) {
     require(['glsl-tokenizer/string', 'glsl-parser/direct'], (
