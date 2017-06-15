@@ -1,7 +1,5 @@
-import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'glsl-parser/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'glsl-parser';
 
@@ -61,11 +59,5 @@ export default {
 
   opensByDefault(node, key) {
     return key === 'children' && node.type === '(program)';
-  },
-
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer parserSettings={parserSettings} onChange={onChange} />
-    );
   },
 };
