@@ -3,7 +3,6 @@ import React from 'react';
 import cx from 'classnames';
 import visualizations from './visualization';
 import getFocusPath from './getFocusPath';
-import PubSub from 'pubsub-js';
 
 function parse(parser, code, parserSettings) {
   if (!parser._promise) {
@@ -39,13 +38,6 @@ export default class ASTOutput extends React.Component {
 
   componentDidMount() {
     this._parse(this.props.parser, this.props.code, this.props.parserSettings);
-    this._subscription = PubSub.subscribe('FORCE_PARSE', () => {
-      this._parse(this.props.parser, this.props.code);
-    });
-  }
-
-  componentWillUnmount() {
-    PubSub.unsubscribe('FORCE_PARSE');
   }
 
   componentWillReceiveProps(nextProps) {
