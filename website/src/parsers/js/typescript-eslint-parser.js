@@ -1,0 +1,41 @@
+import defaultParserInterface from './utils/defaultESTreeParserInterface';
+import pkg from 'typescript-eslint-parser/package.json';
+
+const ID = 'typescript-eslint-parser';
+const name = 'typescript-eslint-parser';
+
+export default {
+  ...defaultParserInterface,
+
+  id: ID,
+  displayName: name,
+  version: pkg.version,
+  homepage: pkg.homepage,
+  locationProps: new Set(['loc', 'start', 'end', 'range']),
+
+  loadParser(callback) {
+    require(['typescript-eslint-parser'], typescriptEslint => callback(typescriptEslint));
+  },
+
+  parse(parser, code) {
+    const opts = {
+      sourceType: 'module',
+    };
+
+    const ast = parser.parse(code, opts);
+    delete ast.tokens;
+    return ast;
+  },
+
+  nodeToRange(node) {
+    if (typeof node.range !== 'undefined') {
+      return [node.range[0], node.range[1]];
+    }
+  },
+
+  _ignoredProperties: new Set([
+    '_paths',
+    '_babelType',
+    '__clone',
+  ]),
+};
