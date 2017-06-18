@@ -25,7 +25,7 @@ export default class Editor extends React.Component {
   componentDidMount() {
     this._subscriptions = [];
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
-      this.refs.container,
+      this.container,
       {
         value: this.props.value,
         mode: {name: 'javascript', json: true},
@@ -47,7 +47,7 @@ export default class Editor extends React.Component {
 
   componentWillUnmount() {
     this._unbindHandlers();
-    let container = this.refs.container;
+    let container = this.container;
     container.removeChild(container.children[0]);
     this.codeMirror = null;
   }
@@ -58,7 +58,7 @@ export default class Editor extends React.Component {
 
   render() {
     return (
-      <div id="JSONEditor" className={this.props.className} ref="container" />
+      <div id="JSONEditor" className={this.props.className} ref={c => this.container = c}/>
     );
   }
 }

@@ -84,7 +84,7 @@ let Element = class extends React.Component {
   _scrollIntoView() {
     const {focusPath, value} = this.props;
     if (focusPath.length > 0 && focusPath[focusPath.length -1] === value) {
-      setTimeout(() => this.refs.container.scrollIntoView(), 0);
+      setTimeout(() => this.container.scrollIntoView(), 0);
     }
   }
 
@@ -306,7 +306,7 @@ let Element = class extends React.Component {
     });
     return (
       <li
-        ref="container"
+        ref={c => this.container = c}
         className={classNames}
         onMouseOver={enableHighlight ? this._onMouseOver : null}
         onMouseLeave={enableHighlight ? this._onMouseLeave : null}>

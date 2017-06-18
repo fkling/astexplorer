@@ -36,7 +36,7 @@ export default class PasteDropTarget extends React.Component {
 
   componentDidMount() {
     this._listeners = [];
-    let target = this.refs.container;
+    let target = this.container;
 
     // Handle pastes
     this._bindListener(document, 'paste', event => {
@@ -155,7 +155,7 @@ export default class PasteDropTarget extends React.Component {
 
     return (
       <div
-        ref="container"
+        ref={c => this.container = c}
         {...props}>
         {dropindicator}
         {children}

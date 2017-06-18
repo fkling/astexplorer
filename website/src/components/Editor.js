@@ -75,7 +75,7 @@ export default class Editor extends React.Component {
     this._CMHandlers = [];
     this._subscriptions = [];
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
-      this.refs.container,
+      this.container,
       {
         value: this.state.value,
         mode: this.props.mode,
@@ -166,7 +166,7 @@ export default class Editor extends React.Component {
     this._unbindHandlers();
     this._markerRange = null;
     this._mark = null;
-    let container = this.refs.container;
+    let container = this.container;
     container.removeChild(container.children[0]);
     this.codeMirror = null;
   }
@@ -204,7 +204,7 @@ export default class Editor extends React.Component {
 
   render() {
     return (
-      <div className="editor" ref="container" />
+      <div className="editor" ref={c => this.container = c}/>
     );
   }
 }
