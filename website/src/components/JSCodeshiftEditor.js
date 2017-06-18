@@ -1,6 +1,5 @@
 import CodeMirror from 'codemirror';
 import PropTypes from 'prop-types';
-import React from 'react';
 import Editor from './Editor';
 
 import 'codemirror/addon/hint/show-hint.css';
