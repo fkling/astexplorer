@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - node
+cache:
+  yarn: true
+  directories:
+    - website/node_modules
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+install:
+  - cd website
+  - yarn
+script:
+  - yarn lint
+  - yarn watch -- --no-watch
