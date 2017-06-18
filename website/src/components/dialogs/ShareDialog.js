@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class ShareDialog extends React.Component {
@@ -32,7 +33,7 @@ export default class ShareDialog extends React.Component {
 }
 
 ShareDialog.propTypes = {
-  onWantToClose: React.PropTypes.func.isRequired,
-  visible: React.PropTypes.bool.isRequired,
-  snippet: React.PropTypes.object,
+  onWantToClose: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired,
+  snippet: PropTypes.object,
 };

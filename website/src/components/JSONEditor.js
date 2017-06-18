@@ -3,6 +3,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/fold/foldcode';
 import 'codemirror/addon/fold/brace-fold';
+import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 
@@ -24,7 +25,7 @@ export default class Editor extends React.Component {
   componentDidMount() {
     this._subscriptions = [];
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
-      this.refs.container,
+      this.container,
       {
         value: this.props.value,
         mode: {name: 'javascript', json: true},
@@ -46,7 +47,7 @@ export default class Editor extends React.Component {
 
   componentWillUnmount() {
     this._unbindHandlers();
-    let container = this.refs.container;
+    let container = this.container;
     container.removeChild(container.children[0]);
     this.codeMirror = null;
   }
@@ -57,12 +58,12 @@ export default class Editor extends React.Component {
 
   render() {
     return (
-      <div id="JSONEditor" className={this.props.className} ref="container" />
+      <div id="JSONEditor" className={this.props.className} ref={c => this.container = c}/>
     );
   }
 }
 
 Editor.propTypes = {
-  value: React.PropTypes.string,
-  className: React.PropTypes.string,
+  value: PropTypes.string,
+  className: PropTypes.string,
 };

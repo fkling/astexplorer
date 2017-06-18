@@ -1,4 +1,5 @@
 import CodeMirror from 'codemirror';
+import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 
@@ -74,7 +75,7 @@ export default class Editor extends React.Component {
     this._CMHandlers = [];
     this._subscriptions = [];
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
-      this.refs.container,
+      this.container,
       {
         value: this.state.value,
         mode: this.props.mode,
@@ -165,7 +166,7 @@ export default class Editor extends React.Component {
     this._unbindHandlers();
     this._markerRange = null;
     this._mark = null;
-    let container = this.refs.container;
+    let container = this.container;
     container.removeChild(container.children[0]);
     this.codeMirror = null;
   }
@@ -203,22 +204,22 @@ export default class Editor extends React.Component {
 
   render() {
     return (
-      <div className="editor" ref="container" />
+      <div className="editor" ref={c => this.container = c}/>
     );
   }
 }
 
 Editor.propTypes = {
-  value: React.PropTypes.string,
-  highlight: React.PropTypes.bool,
-  lineNumbers: React.PropTypes.bool,
-  readOnly: React.PropTypes.bool,
-  onContentChange: React.PropTypes.func,
-  onActivity: React.PropTypes.func,
-  posFromIndex: React.PropTypes.func,
-  error: React.PropTypes.object,
-  mode: React.PropTypes.string,
-  enableFormatting: React.PropTypes.bool,
+  value: PropTypes.string,
+  highlight: PropTypes.bool,
+  lineNumbers: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  onContentChange: PropTypes.func,
+  onActivity: PropTypes.func,
+  posFromIndex: PropTypes.func,
+  error: PropTypes.object,
+  mode: PropTypes.string,
+  enableFormatting: PropTypes.bool,
 };
 
 Editor.defaultProps = {

@@ -1,4 +1,5 @@
 import Element from './tree/Element';
+import PropTypes from 'prop-types';
 import React from 'react';
 import PubSub from 'pubsub-js';
 import {logEvent} from '../../utils/logger';
@@ -73,10 +74,10 @@ export default class Tree extends React.Component {
 }
 
 Tree.propTypes = {
-  focusPath: React.PropTypes.array,
-  ast: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.object,
+  focusPath: PropTypes.array,
+  ast: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
   ]),
-  parser: React.PropTypes.object,
+  parser: PropTypes.object,
 };

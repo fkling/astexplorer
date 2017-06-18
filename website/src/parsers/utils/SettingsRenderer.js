@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const identity = v => v;
@@ -116,10 +117,10 @@ export default function SettingsRenderer(props) {
 }
 
 SettingsRenderer.propTypes = {
-  settingsConfiguration: React.PropTypes.object.isRequired,
-  parserSettings: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.array,
+  settingsConfiguration: PropTypes.object.isRequired,
+  parserSettings: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
   ]).isRequired,
-  onChange: React.PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

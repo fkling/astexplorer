@@ -47,7 +47,7 @@ export default {
         <p>
           <a
             href="https://oxyc.github.io/luaparse/#parser-interface"
-            target="_blank">
+            target="_blank" rel="noopener noreferrer">
             Option descriptions
           </a>
         </p>

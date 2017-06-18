@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class SettingsDialog extends React.Component {
@@ -64,9 +65,9 @@ export default class SettingsDialog extends React.Component {
 }
 
 SettingsDialog.propTypes = {
-  onSave: React.PropTypes.func,
-  onWantToClose: React.PropTypes.func,
-  visible: React.PropTypes.bool,
-  parser: React.PropTypes.object.isRequired,
-  parserSettings: React.PropTypes.object,
+  onSave: PropTypes.func,
+  onWantToClose: PropTypes.func,
+  visible: PropTypes.bool,
+  parser: PropTypes.object.isRequired,
+  parserSettings: PropTypes.object,
 };

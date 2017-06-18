@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import cx from 'classnames';
 import {getTransformerByID} from '../../parsers';
@@ -68,8 +69,8 @@ export default class TransformButton extends React.Component {
 }
 
 TransformButton.propTypes = {
-  category: React.PropTypes.object,
-  transformer: React.PropTypes.object,
-  showTransformer: React.PropTypes.bool,
-  onTransformChange: React.PropTypes.func,
+  category: PropTypes.object,
+  transformer: PropTypes.object,
+  showTransformer: PropTypes.bool,
+  onTransformChange: PropTypes.func,
 };

@@ -69,7 +69,7 @@ export default {
         <p>
           <a
             href="https://github.com/eslint/espree#usage"
-            target="_blank">
+            target="_blank" rel="noopener noreferrer">
             Option descriptions
           </a>
         </p>
