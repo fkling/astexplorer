@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function ShareButton({onShareButtonClick, snippet}) {
@@ -12,6 +13,6 @@ export default function ShareButton({onShareButtonClick, snippet}) {
 }
 
 ShareButton.propTypes = {
-  onShareButtonClick: React.PropTypes.func.isRequired,
-  snippet: React.PropTypes.object,
+  onShareButtonClick: PropTypes.func.isRequired,
+  snippet: PropTypes.object,
 };

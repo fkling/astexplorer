@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { categories } from '../parsers';
 
@@ -164,7 +165,7 @@ export default class PasteDropTarget extends React.Component {
 }
 
 PasteDropTarget.propTypes = {
-  onText: React.PropTypes.func,
-  onError: React.PropTypes.func,
-  children: React.PropTypes.node,
+  onText: PropTypes.func,
+  onError: PropTypes.func,
+  children: PropTypes.node,
 };

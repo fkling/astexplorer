@@ -1,5 +1,6 @@
 import CompactArrayView from './CompactArrayView';
 import CompactObjectView from './CompactObjectView';
+import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import RecursiveTreeElement from './RecursiveTreeElement';
@@ -7,8 +8,6 @@ import {nodeToRange} from '../../getFocusPath';
 
 import cx from 'classnames';
 import stringify from '../../../utils/stringify';
-
-const {PropTypes} = React;
 
 /*
 // For debugging

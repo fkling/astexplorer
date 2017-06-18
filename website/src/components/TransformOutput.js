@@ -1,6 +1,7 @@
 /*eslint no-new-func: 0*/
 import Editor from './Editor';
 import JSONEditor from './JSONEditor';
+import PropTypes from 'prop-types';
 import React from 'react';
 import halts, {loopProtect} from 'halting-problem';
 import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
@@ -164,8 +165,8 @@ export default class TransformOutput extends React.Component {
 }
 
 TransformOutput.propTypes = {
-  transformer: React.PropTypes.object,
-  transformCode: React.PropTypes.string,
-  mode: React.PropTypes.string,
-  code: React.PropTypes.string,
+  transformer: PropTypes.object,
+  transformCode: PropTypes.string,
+  mode: PropTypes.string,
+  code: PropTypes.string,
 };

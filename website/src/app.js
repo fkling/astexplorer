@@ -5,6 +5,7 @@ import ErrorMessageContainer from './containers/ErrorMessageContainer';
 import GistBanner from './components/GistBanner';
 import LoadingIndicatorContainer from './containers/LoadingIndicatorContainer';
 import PasteDropTargetContainer from './containers/PasteDropTargetContainer';
+import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import SettingsDialogContainer from './containers/SettingsDialogContainer';
@@ -62,8 +63,8 @@ function App(props) {
 }
 
 App.propTypes = {
-  hasError: React.PropTypes.bool,
-  showTransformer: React.PropTypes.bool,
+  hasError: PropTypes.bool,
+  showTransformer: PropTypes.bool,
 };
 
 const AppContainer = connect(

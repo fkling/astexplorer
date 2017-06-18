@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import CategoryButton from './buttons/CategoryButton';
 import ParserButton from './buttons/ParserButton';
@@ -52,17 +53,17 @@ export default function Toolbar(props) {
 }
 
 Toolbar.propTypes = {
-  saving: React.PropTypes.bool,
-  forking: React.PropTypes.bool,
-  onSave: React.PropTypes.func,
-  onFork: React.PropTypes.func,
-  onParserChange: React.PropTypes.func,
-  onParserSettingsButtonClick: React.PropTypes.func,
-  onShareButtonClick: React.PropTypes.func,
-  onTransformChange: React.PropTypes.func,
-  parser: React.PropTypes.object,
-  transformer: React.PropTypes.object,
-  showTransformer: React.PropTypes.bool,
-  canSave: React.PropTypes.bool,
-  canFork: React.PropTypes.bool,
+  saving: PropTypes.bool,
+  forking: PropTypes.bool,
+  onSave: PropTypes.func,
+  onFork: PropTypes.func,
+  onParserChange: PropTypes.func,
+  onParserSettingsButtonClick: PropTypes.func,
+  onShareButtonClick: PropTypes.func,
+  onTransformChange: PropTypes.func,
+  parser: PropTypes.object,
+  transformer: PropTypes.object,
+  showTransformer: PropTypes.bool,
+  canSave: PropTypes.bool,
+  canFork: PropTypes.bool,
 };

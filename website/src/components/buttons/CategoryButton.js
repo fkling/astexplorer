@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import cx from 'classnames';
 import {getCategoryByID, categories} from '../../parsers';
@@ -59,6 +60,6 @@ export default class CategoryButton extends React.Component {
 }
 
 CategoryButton.propTypes = {
-  onCategoryChange: React.PropTypes.func.isRequired,
-  category: React.PropTypes.object.isRequired,
+  onCategoryChange: PropTypes.func.isRequired,
+  category: PropTypes.object.isRequired,
 };

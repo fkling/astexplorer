@@ -3,6 +3,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/fold/foldcode';
 import 'codemirror/addon/fold/brace-fold';
+import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 
@@ -63,6 +64,6 @@ export default class Editor extends React.Component {
 }
 
 Editor.propTypes = {
-  value: React.PropTypes.string,
-  className: React.PropTypes.string,
+  value: PropTypes.string,
+  className: PropTypes.string,
 };

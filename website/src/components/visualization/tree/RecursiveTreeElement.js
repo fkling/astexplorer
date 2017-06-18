@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 function shouldAutoFocus({value, settings, focusPath}) {
@@ -82,8 +83,8 @@ export default function RecursiveTreeElement(Element) {
   }
 
   RecursiveElement.propTypes = {
-    deepOpen: React.PropTypes.bool,
-    value: React.PropTypes.any,
+    deepOpen: PropTypes.bool,
+    value: PropTypes.any,
   };
 
   return RecursiveElement;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class ErrorMessage extends React.Component {
@@ -25,6 +26,6 @@ export default class ErrorMessage extends React.Component {
 }
 
 ErrorMessage.propTypes = {
-  error: React.PropTypes.object,
-  onWantToClose: React.PropTypes.func,
+  error: PropTypes.object,
+  onWantToClose: PropTypes.func,
 };
