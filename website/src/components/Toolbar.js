@@ -15,7 +15,7 @@ export default function Toolbar(props) {
     }
     if (parser.homepage) {
       parserInfo =
-        <a href={parser.homepage} target="_blank">{parserInfo}</a>;
+        <a href={parser.homepage} target="_blank" rel="noopener noreferrer">{parserInfo}</a>;
     }
   }
   if (showTransformer) {
@@ -25,7 +25,7 @@ export default function Toolbar(props) {
     }
     if (transformer.homepage) {
       transformerInfo =
-        <a href={transformer.homepage} target="_blank">{transformerInfo}</a>;
+        <a href={transformer.homepage} target="_blank" rel="noopener noreferrer">{transformerInfo}</a>;
     }
     transformerInfo = <span>Transformer: {transformerInfo}</span>;
   }
@@ -39,7 +39,7 @@ export default function Toolbar(props) {
       <TransformButton {...props} />
       <a
         style={{minWidth: 0}}
-        target="_blank"
+        target="_blank" rel="noopener noreferrer"
         title="Help"
         href="https://github.com/fkling/esprima_ast_explorer#features">
         <i className="fa fa-lg fa-question fa-fw" />
