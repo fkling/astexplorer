@@ -28,8 +28,8 @@ export default {
     if (loc) {
       return [
         loc.start.offset,
-        loc.end.offset
+        loc.end.offset,
       ];
     }
-  }
+  },
 }
