@@ -1,7 +1,40 @@
+import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'typescript-eslint-parser/package.json';
+import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'typescript-eslint-parser';
+
+const defaultOptions = {
+  range: true,
+  loc: false,
+  tokens: false,
+  comment: false,
+  tolerant: true,
+  useJSXTextNode: false,
+
+  ecmaFeatures: {
+    jsx: true,
+  },
+};
+
+const parserSettingsConfiguration = {
+  fields: [
+    'range',
+    'loc',
+    'tokens',
+    'comment',
+    'tolerant',
+    'useJSXTextNode',
+    {
+      key: 'ecmaFeatures',
+      title: 'ecmaFeatures',
+      fields: Object.keys(defaultOptions.ecmaFeatures),
+      settings:
+        settings => settings.ecmaFeatures || {...defaultOptions.ecmaFeatures},
+    },
+  ],
+};
 
 export default {
   ...defaultParserInterface,
@@ -16,18 +49,23 @@ export default {
     require(['typescript-eslint-parser'], callback);
   },
 
-  parse(parser, code) {
-    const opts = {
-      sourceType: 'module',
-    };
-
-    const ast = parser.parse(code, opts);
-    return ast;
+  parse(parser, code, options) {
+    return parser.parse(code, {...defaultOptions, ...options} );
   },
 
   nodeToRange(node) {
     if (node.range) {
       return [node.range[0], node.range[1]];
     }
+  },
+
+  renderSettings(parserSettings, onChange) {
+    return (
+      <SettingsRenderer
+        settingsConfiguration={parserSettingsConfiguration}
+        parserSettings={{...defaultOptions, ...parserSettings}}
+        onChange={onChange}
+      />
+    );
   },
 };
