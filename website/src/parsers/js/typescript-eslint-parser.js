@@ -14,7 +14,7 @@ export default {
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['typescript-eslint-parser'], typescriptEslint => callback(typescriptEslint));
+    require(['typescript-eslint-parser'], callback);
   },
 
   parse(parser, code) {

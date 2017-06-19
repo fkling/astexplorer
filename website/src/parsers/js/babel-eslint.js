@@ -14,7 +14,7 @@ export default {
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['babel-eslint'], babelEslint => callback(babelEslint));
+    require(['babel-eslint'], callback);
   },
 
   parse(parser, code) {
