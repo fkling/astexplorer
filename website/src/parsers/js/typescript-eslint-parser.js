@@ -22,7 +22,6 @@ export default {
     };
 
     const ast = parser.parse(code, opts);
-    delete ast.tokens;
     return ast;
   },
 
@@ -31,10 +30,4 @@ export default {
       return [node.range[0], node.range[1]];
     }
   },
-
-  _ignoredProperties: new Set([
-    '_paths',
-    '_babelType',
-    '__clone',
-  ]),
 };
