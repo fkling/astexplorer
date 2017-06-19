@@ -27,7 +27,7 @@ export default {
   },
 
   nodeToRange(node) {
-    if (typeof node.range !== 'undefined') {
+    if (node.range) {
       return [node.range[0], node.range[1]];
     }
   },
