@@ -2,13 +2,12 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'typescript-eslint-parser/package.json';
 
 const ID = 'typescript-eslint-parser';
-const name = 'typescript-eslint-parser';
 
 export default {
   ...defaultParserInterface,
 
   id: ID,
-  displayName: name,
+  displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['loc', 'start', 'end', 'range']),
