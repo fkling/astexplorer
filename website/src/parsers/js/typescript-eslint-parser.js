@@ -34,6 +34,7 @@ const parserSettingsConfiguration = {
         settings => settings.ecmaFeatures || {...defaultOptions.ecmaFeatures},
     },
   ],
+  required: new Set(['range']),
 };
 
 export default {
