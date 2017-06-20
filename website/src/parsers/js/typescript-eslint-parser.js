@@ -55,9 +55,7 @@ export default {
   },
 
   nodeToRange(node) {
-    if (node.range) {
-      return [node.range[0], node.range[1]];
-    }
+    return node.range;
   },
 
   renderSettings(parserSettings, onChange) {
