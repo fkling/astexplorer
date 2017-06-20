@@ -1,5 +1,3 @@
-// global.__cache = cache;
-
 export default class StorageHandler {
   constructor(backends) {
     this._backends = backends;
