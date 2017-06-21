@@ -1,11 +1,11 @@
-module.exports = class {
-  transform(ast) {
-    this.syntax.traverse(ast, {
+module.exports = function() {
+  return {
+    name: 'ast-transform',
+
+    visitors: {
       ElementNode(node) {
         node.tag = node.tag.split('').reverse().join('');
       }
-    });
-
-    return ast;
-  }
+    }
+  };
 };

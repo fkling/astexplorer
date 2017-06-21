@@ -2,31 +2,40 @@
 # yarn lockfile v1
 
 
-"@glimmer/compiler@^0.22.0":
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.22.1.tgz#70a8a3064ca4d62b15fc3c870ead11e6c7fb00bf"
+"@glimmer/compiler@^0.25.1":
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.25.1.tgz#81fb9f51349f819525da737ae953a5f8461fdef1"
   dependencies:
-    "@glimmer/syntax" "^0.22.1"
-    "@glimmer/util" "^0.22.1"
-    "@glimmer/wire-format" "^0.22.1"
+    "@glimmer/interfaces" "^0.25.1"
+    "@glimmer/syntax" "^0.25.1"
+    "@glimmer/util" "^0.25.1"
+    "@glimmer/wire-format" "^0.25.1"
     simple-html-tokenizer "^0.3.0"
 
-"@glimmer/syntax@^0.22.0", "@glimmer/syntax@^0.22.1":
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.22.1.tgz#b4048738fa55c46e337278b2aeb37731509ae284"
+"@glimmer/interfaces@^0.25.1":
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.25.1.tgz#234abbbf7021a73ec576943443768d0e2801ad13"
   dependencies:
+    "@glimmer/wire-format" "^0.25.1"
+
+"@glimmer/syntax@^0.25.1":
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.25.1.tgz#05bbc219af98adc447195d4d74bba6fb9f5fd3d5"
+  dependencies:
+    "@glimmer/interfaces" "^0.25.1"
+    "@glimmer/util" "^0.25.1"
     handlebars "^4.0.6"
     simple-html-tokenizer "^0.3.0"
 
-"@glimmer/util@^0.22.1":
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.22.1.tgz#7be751f77325ac857327f9c786ee2d02fba4d4e1"
+"@glimmer/util@^0.25.1":
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.25.1.tgz#bdc669de4cae562eb797fb29714da4d290ec58c1"
 
-"@glimmer/wire-format@^0.22.1":
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.22.1.tgz#2673bbb1e89805194e9870064c6905af21406ffb"
+"@glimmer/wire-format@^0.25.1":
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.25.1.tgz#cd69f3595a08954fa68a3f1df4feafffa1c3f3de"
   dependencies:
-    "@glimmer/util" "^0.22.1"
+    "@glimmer/util" "^0.25.1"
 
 "@types/node@^6.0.46":
   version "6.0.73"
