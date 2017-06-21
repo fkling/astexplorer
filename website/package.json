@@ -38,8 +38,8 @@
     "webpack-chunk-hash": "^0.5.0"
   },
   "dependencies": {
-    "@glimmer/compiler": "^0.22.0",
-    "@glimmer/syntax": "^0.22.0",
+    "@glimmer/compiler": "^0.25.1",
+    "@glimmer/syntax": "^0.25.1",
     "acorn": "^5.0.3",
     "acorn-jsx": "^4.0.1",
     "acorn-to-esprima": "^1.0.2",
