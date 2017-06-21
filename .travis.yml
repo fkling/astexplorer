@@ -13,7 +13,7 @@ install:
   - cd website
   - yarn
 script:
-  - yarn lint
+  - if [ ${NODE_ENV} = "development" ]; then yarn lint; fi
   - yarn watch -- --no-watch
 env:
   - NODE_ENV=development
