@@ -147,6 +147,8 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
           path.join(__dirname, 'node_modules', 'eslint3'),
+          path.join(__dirname, 'node_modules', 'eslint4'),
+          path.join(__dirname, 'node_modules', 'eslint-scope'),
           path.join(__dirname, 'node_modules', 'jscodeshift', 'dist'),
           path.join(__dirname, 'node_modules', 'lodash-es'),
           path.join(__dirname, 'node_modules', 'prettier'),
