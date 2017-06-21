@@ -15,3 +15,6 @@ install:
 script:
   - yarn lint
   - yarn watch -- --no-watch
+env:
+  - NODE_ENV=development
+  - NODE_ENV=production
