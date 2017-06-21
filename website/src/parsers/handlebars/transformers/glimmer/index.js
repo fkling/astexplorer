@@ -7,7 +7,7 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage || 'https://github.com/tildeio/glimmer',
+  homepage: pkg.homepage || 'https://github.com/glimmerjs/glimmer-vm',
 
   defaultParserID: 'glimmer',
 
