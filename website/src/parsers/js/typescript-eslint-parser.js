@@ -10,7 +10,7 @@ const defaultOptions = {
   loc: false,
   tokens: false,
   comment: false,
-  tolerant: true,
+  tolerant: false,
   useJSXTextNode: false,
 
   ecmaFeatures: {

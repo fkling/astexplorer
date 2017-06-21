@@ -10,7 +10,7 @@ const defaultOptions = {
   comment: false,
   attachComment: false,
   tokens: false,
-  tolerant: true,
+  tolerant: false,
   ecmaVersion: 6,
   sourceType: 'module',
 
