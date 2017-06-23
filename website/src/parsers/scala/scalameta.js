@@ -45,11 +45,19 @@ export default {
   },
 
   parse(scalametaParser, code, options) {
-    return scalametaParser.parseSource(code, {
+    const parsed = scalametaParser.parseSource(code, {
       ...defaultOptions,
       ...options,
       dialect: dialects[defaultOptions.dialect || options.dialect]
     });
+    const { error, lineNumber, columnNumber } = parsed;
+    if (error) {
+      const e = new SyntaxError(parsed.error);
+      e.lineNumber = lineNumber + 1;
+      e.columnNumber = columnNumber + 1;
+      throw e;
+    }
+    return parsed;
   },
 
   nodeToRange(node) {
