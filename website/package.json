@@ -106,6 +106,7 @@
     "regexp-tree": "^0.0.48",
     "remark": "^7.0.1",
     "reselect": "^3.0.1",
+    "scalameta-parsers": "^1.9.0-beta.3",
     "shift-parser": "^5.0.2",
     "source-map": "^0.5.3",
     "sqlite-parser": "^1.0.0-rc3",

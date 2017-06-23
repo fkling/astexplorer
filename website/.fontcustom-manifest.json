@@ -1,0 +1,65 @@
+{
+  "checksum": {
+    "previous": "ded1f9e27e44b12eb0dbab11fa9eb21be9c2fc4cd000b173521a3da8e5da3360",
+    "current": "ded1f9e27e44b12eb0dbab11fa9eb21be9c2fc4cd000b173521a3da8e5da3360"
+  },
+  "fonts": [
+    "fontcustom/fontcustom_ded1f9e27e44b12eb0dbab11fa9eb21b.ttf",
+    "fontcustom/fontcustom_ded1f9e27e44b12eb0dbab11fa9eb21b.svg",
+    "fontcustom/fontcustom_ded1f9e27e44b12eb0dbab11fa9eb21b.woff",
+    "fontcustom/fontcustom_ded1f9e27e44b12eb0dbab11fa9eb21b.eot",
+    "fontcustom/fontcustom_ded1f9e27e44b12eb0dbab11fa9eb21b.woff2"
+  ],
+  "glyphs": {
+    "GraphQL_Logo": {
+      "codepoint": 61696,
+      "source": "./fontcustom/input-svg/GraphQL_Logo.svg"
+    },
+    "handlebars": {
+      "codepoint": 61697,
+      "source": "./fontcustom/input-svg/handlebars.svg"
+    },
+    "icu": {
+      "codepoint": 61698,
+      "source": "./fontcustom/input-svg/icu.svg"
+    },
+    "scala": {
+      "codepoint": 61699,
+      "source": "./fontcustom/input-svg/scala.svg"
+    }
+  },
+  "options": {
+    "autowidth": false,
+    "config": "./fontcustom/config.yml",
+    "copyright": "",
+    "css3": false,
+    "css_selector": ".icon-{{glyph}}",
+    "debug": false,
+    "font_ascent": 448,
+    "font_descent": 64,
+    "font_design_size": 16,
+    "font_em": 512,
+    "font_name": "fontcustom",
+    "force": false,
+    "input": {
+      "templates": "./fontcustom/input-svg/",
+      "vectors": "./fontcustom/input-svg/"
+    },
+    "no_hash": false,
+    "output": {
+      "css": "fontcustom",
+      "fonts": "fontcustom",
+      "preview": "fontcustom"
+    },
+    "preprocessor_path": null,
+    "quiet": false,
+    "templates": [
+      "css",
+      "preview"
+    ]
+  },
+  "templates": [
+    "fontcustom/fontcustom.css",
+    "fontcustom/fontcustom-preview.html"
+  ]
+}
