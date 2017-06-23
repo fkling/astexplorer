@@ -29,7 +29,6 @@
     "js-yaml": "^3.5.2",
     "json-loader": "^0.5.3",
     "postcss-loader": "^2.0.5",
-    "progress-bar-webpack-plugin": "^1.9.3",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.4",
     "style-loader": "^0.18.1",
@@ -119,8 +118,8 @@
   },
   "scripts": {
     "start": "http-server ../out",
-    "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack",
-    "watch": "webpack -dw",
+    "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack --progress",
+    "watch": "webpack -dw --progress",
     "lint": "eslint src/",
     "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml"
   }

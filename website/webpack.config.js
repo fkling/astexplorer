@@ -1,7 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const WebpackChunkHash = require('webpack-chunk-hash');
 const fs = require('fs');
 const path = require('path');
@@ -113,7 +112,7 @@ const plugins = [
   DEV ?
     new webpack.NamedModulesPlugin() :
     new webpack.HashedModuleIdsPlugin(),
-  new ProgressBarPlugin(),
+
   new webpack.LoaderOptionsPlugin({
     test: /\.jsx?$/,
     options: {
