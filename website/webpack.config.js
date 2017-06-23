@@ -158,26 +158,6 @@ module.exports = Object.assign({
           path.join(__dirname, 'src'),
         ],
         loader: 'babel-loader',
-        options: {
-          babelrc: false,
-          presets: [
-            require.resolve('babel-preset-es2015'),
-            require.resolve('babel-preset-stage-0'),
-            require.resolve('babel-preset-react'),
-          ],
-          plugins: [
-            [
-              require.resolve('babel-plugin-transform-runtime'),
-              // https://github.com/babel/babel/issues/2877 describes an issue
-              // where babel inserts untranspiled import statements into a
-              // module. That module then contains ES6 and CommonJS module code,
-              // leading to issues with webpack. Disabling the polyfill seems
-              // to fix it, and we probably don't need it anyway.
-              // (should also result in smaller bundles)
-              {polyfill: false},
-            ],
-          ],
-        },
       },
       {
         test: /\.css$/,
