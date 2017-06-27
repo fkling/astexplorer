@@ -32,6 +32,7 @@ The AST explorer provides following code parsers:
   - [shift][]
   - [traceur][]
   - [typescript][]
+  - [typescript-eslint-parser][]
   - [uglify-js][]
 - [JSON][]
 - Lua:
@@ -115,6 +116,7 @@ node.
 [shift]: https://github.com/shapesecurity/shift-parser-js
 [traceur]: https://github.com/google/traceur-compiler
 [typescript]: https://github.com/Microsoft/TypeScript/
+[typescript-eslint-parser]: https://github.com/eslint/typescript-eslint-parser/
 [uglify-js]: https://github.com/mishoo/UglifyJS2
 [webidl]: https://github.com/darobin/webidl2.js
 [remark]: https://github.com/wooorm/remark
