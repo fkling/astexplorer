@@ -54,10 +54,6 @@ export default {
     return parser.parse(code, {...defaultOptions, ...options} );
   },
 
-  nodeToRange(node) {
-    return node.range;
-  },
-
   renderSettings(parserSettings, onChange) {
     return (
       <SettingsRenderer
