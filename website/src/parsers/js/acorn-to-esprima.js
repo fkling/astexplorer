@@ -2,13 +2,12 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'acorn-to-esprima/package.json';
 
 const ID = 'acorn-to-esprima';
-const name = 'acorn-to-esprima';
 
 export default {
   ...defaultParserInterface,
 
   id: ID,
-  displayName: name,
+  displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['loc', 'start', 'end', 'range']),
