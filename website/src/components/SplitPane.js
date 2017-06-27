@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 let baseStyleHorizontal = {
@@ -134,8 +135,8 @@ export default class SplitPane extends React.Component {
 }
 
 SplitPane.propTypes = {
-  vertical: React.PropTypes.bool,
-  className: React.PropTypes.string,
-  children: React.PropTypes.node,
-  onResize: React.PropTypes.func,
+  vertical: PropTypes.bool,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  onResize: PropTypes.func,
 };

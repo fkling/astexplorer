@@ -1,4 +1,5 @@
 import JSONEditor from '../JSONEditor';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import stringify from 'json-stringify-safe';
@@ -15,8 +16,8 @@ export default class JSON extends React.Component {
 }
 
 JSON.propTypes = {
-  ast: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.object,
+  ast: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
   ]),
 };

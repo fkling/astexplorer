@@ -1,4 +1,8 @@
-extends: ["eslint:recommended" , "plugin:react/recommended"]
+extends:
+  - eslint:recommended
+  - plugin:react/recommended
+  - plugin:import/errors
+  - plugin:import/warnings
 
 parserOptions:
   ecmaVersion: 6
@@ -10,6 +14,7 @@ parserOptions:
 plugins:
   - react
   - import
+  - require-in-package
 
 rules:
   comma-dangle: [1, "always-multiline"]
@@ -17,7 +22,7 @@ rules:
   no-path-concat: 0
   no-undef: 2
   no-underscore-dangle: 0
-  no-unused-vars: 
+  no-unused-vars:
     - 1
     - varsIgnorePattern: '^_'
   no-use-before-define: 0
@@ -28,6 +33,7 @@ rules:
   import/default: 2
   import/namespace: 2
   import/export: 2
+  require-in-package/require-in-package: 2
 
 settings:
   import/resolver: "webpack"

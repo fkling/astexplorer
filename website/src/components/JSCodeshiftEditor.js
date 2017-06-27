@@ -1,5 +1,5 @@
 import CodeMirror from 'codemirror';
-import React from 'react';
+import PropTypes from 'prop-types';
 import Editor from './Editor';
 
 import 'codemirror/addon/hint/show-hint.css';
@@ -79,15 +79,15 @@ function loadTern() {
 }
 
 JSCodeshiftEditor.propTypes = {
-  value: React.PropTypes.string,
-  highlight: React.PropTypes.bool,
-  lineNumbers: React.PropTypes.bool,
-  readOnly: React.PropTypes.bool,
-  onContentChange: React.PropTypes.func,
-  onActivity: React.PropTypes.func,
-  posFromIndex: React.PropTypes.func,
-  error: React.PropTypes.object,
-  mode: React.PropTypes.string,
+  value: PropTypes.string,
+  highlight: PropTypes.bool,
+  lineNumbers: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  onContentChange: PropTypes.func,
+  onActivity: PropTypes.func,
+  posFromIndex: PropTypes.func,
+  error: PropTypes.object,
+  mode: PropTypes.string,
 };
 
 JSCodeshiftEditor.defaultProps = Object.assign(

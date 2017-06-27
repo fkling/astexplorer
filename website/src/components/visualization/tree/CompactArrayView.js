@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class CompactArrayView extends React.Component {
@@ -30,9 +31,9 @@ CompactArrayView.propTypes = {
   /**
    * The array of elements to represent.
    */
-  array: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.shape({ length: React.PropTypes.number }),
+  array: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.shape({ length: PropTypes.number }),
   ]).isRequired,
-  onClick: React.PropTypes.func,
+  onClick: PropTypes.func,
 };

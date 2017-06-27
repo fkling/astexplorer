@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function LoadingIndicator(props) {
@@ -12,5 +13,5 @@ export default function LoadingIndicator(props) {
 }
 
 LoadingIndicator.propTypes = {
-  visible: React.PropTypes.bool,
+  visible: PropTypes.bool,
 };

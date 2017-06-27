@@ -1,0 +1,20 @@
+// Game Of Life ( https://gl-react-cookbook.surge.sh/gol )
+precision highp float;
+varying vec2 uv;
+uniform float size;
+uniform sampler2D t; // the previous world state
+void main() {
+  float prev = step(0.5, texture2D(t, uv).r);
+  float c = 1.0 / size;
+  float sum =
+  step(0.5, texture2D(t, uv + vec2(-1.0, -1.0)*c).r) +
+  step(0.5, texture2D(t, uv + vec2(-1.0,  0.0)*c).r) +
+  step(0.5, texture2D(t, uv + vec2(-1.0,  1.0)*c).r) +
+  step(0.5, texture2D(t, uv + vec2( 0.0,  1.0)*c).r) +
+  step(0.5, texture2D(t, uv + vec2( 1.0,  1.0)*c).r) +
+  step(0.5, texture2D(t, uv + vec2( 1.0,  0.0)*c).r) +
+  step(0.5, texture2D(t, uv + vec2( 1.0, -1.0)*c).r) +
+  step(0.5, texture2D(t, uv + vec2( 0.0, -1.0)*c).r);
+  float next = prev==1.0 && sum >= 2.0 && sum <= 3.0 || sum == 3.0 ? 1.0 : 0.0;
+  gl_FragColor = vec4(vec3(next), 1.0);
+}

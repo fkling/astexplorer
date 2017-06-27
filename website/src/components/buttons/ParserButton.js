@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import {getParserByID} from '../../parsers';
 
@@ -43,8 +44,8 @@ export default class ParserButton extends React.Component {
 }
 
 ParserButton.propTypes = {
-  onParserChange: React.PropTypes.func,
-  onParserSettingsButtonClick: React.PropTypes.func,
-  parser: React.PropTypes.object,
-  category: React.PropTypes.object,
+  onParserChange: PropTypes.func,
+  onParserSettingsButtonClick: PropTypes.func,
+  parser: PropTypes.object,
+  category: PropTypes.object,
 };

@@ -78,7 +78,7 @@ export default {
         <p>
           <a
             href="https://github.com/marijnh/acorn/blob/master/src/options.js"
-            target="_blank">
+            target="_blank" rel="noopener noreferrer">
             Option descriptions
           </a>
         </p>

@@ -8,7 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const DEV = process.env.NODE_ENV !== 'production';
-const CACHE_BREAKER = 9;
+const CACHE_BREAKER = 11;
 
 const packages = fs.readdirSync(path.join(__dirname, 'packages'));
 const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
@@ -147,6 +147,8 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
           path.join(__dirname, 'node_modules', 'eslint3'),
+          path.join(__dirname, 'node_modules', 'eslint4'),
+          path.join(__dirname, 'node_modules', 'eslint-scope'),
           path.join(__dirname, 'node_modules', 'jscodeshift', 'dist'),
           path.join(__dirname, 'node_modules', 'lodash-es'),
           path.join(__dirname, 'node_modules', 'prettier'),

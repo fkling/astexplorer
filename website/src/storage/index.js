@@ -1,14 +1,3 @@
-const cache = {};
-// global.__cache = cache;
-
-function getFromCache(cacheKey) {
-  return cache[cacheKey];
-}
-
-function setInCache(cacheKey, revision) {
-  cache[cacheKey] = revision;
-}
-
 export default class StorageHandler {
   constructor(backends) {
     this._backends = backends;

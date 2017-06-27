@@ -1,6 +1,7 @@
 ## AST explorer
 
 [![Join the chat at https://gitter.im/astexplorer/Lobby](https://badges.gitter.im/astexplorer/Lobby.svg)](https://gitter.im/astexplorer/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/fkling/astexplorer.svg?branch=master)](https://travis-ci.org/fkling/astexplorer)
 
 Paste or drop code into the editor and inspect the generated AST.
 
@@ -39,6 +40,8 @@ The AST explorer provides following code parsers:
   - [remark][]
 - Regular Expressions:
   - [regexp-tree][]
+- Scala
+  - [Scalameta][]
 - SQL:
   - [sqlite-parser][]
 - [WebIDL][]
@@ -50,7 +53,7 @@ Depending on the parser settings, it not only supports ES5/CSS3 but also
 
 - ES6: [arrow functions](https://github.com/lukehoban/es6features#arrows), [destructuring](https://github.com/lukehoban/es6features#destructuring),
   [classes](https://github.com/lukehoban/es6features#classes), ...
-- ES7 propsals: [async/await](https://github.com/lukehoban/ecmascript-asyncawait), [object rest / spread](https://github.com/sebmarkbage/ecmascript-rest-spread),  ...
+- ES7 proposals: [async/await](https://github.com/lukehoban/ecmascript-asyncawait), [object rest / spread](https://github.com/sebmarkbage/ecmascript-rest-spread),  ...
 - [JSX](https://facebook.github.io/jsx/), known through [React](https://facebook.github.io/react/).
 - Typed JavaScript ([Flow](http://flowtype.org/) and [TypeScript](http://typescriptlang.org/))
 - [SASS](http://sass-lang.com/)
@@ -58,7 +61,7 @@ Depending on the parser settings, it not only supports ES5/CSS3 but also
 ### Transforms
 
 Since future syntax is supported, the AST explorer is a useful tool for
-developers who want to create AST transforms. In fact, following transformers 
+developers who want to create AST transforms. In fact, following transformers
 are included so you can prototype your own plugins:
 
 - JavaScript
@@ -77,12 +80,12 @@ are included so you can prototype your own plugins:
 - Save and fork code snippets. Copy the URL to share them.
 - Copying an AST or dropping a file containing an AST into the window will
 parse the AST and update the code using [escodegen][].
-- Otherwise, the content of texteditor will be replaced with the content of the file (i.e.
-you can drag and drop JS files).
+- Otherwise, the content of text editor will be replaced with the content of the
+file (i.e. you can drag and drop JS files).
 - Choose between multiple parsers and configure them.
 - shift+click on a node expands the full subtree.
 - Hovering over a node highlights the corresponding text in the source code
-- Editing the source or moving the cursor around will automatically highlight 
+- Editing the source or moving the cursor around will automatically highlight
   the corresponding AST node (or its ancestors of it isn't expanded)
 - You can use `$node` in the console to refer to the last opened/toggled AST
 node.
@@ -123,6 +126,7 @@ node.
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/mulesoft-labs/yaml-ast-parser
 [esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
+[Scalameta]: http://scalameta.org/
 
 ### Contributions
 

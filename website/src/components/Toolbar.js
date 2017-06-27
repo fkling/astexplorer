@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import CategoryButton from './buttons/CategoryButton';
 import ParserButton from './buttons/ParserButton';
@@ -14,7 +15,7 @@ export default function Toolbar(props) {
     }
     if (parser.homepage) {
       parserInfo =
-        <a href={parser.homepage} target="_blank">{parserInfo}</a>;
+        <a href={parser.homepage} target="_blank" rel="noopener noreferrer">{parserInfo}</a>;
     }
   }
   if (showTransformer) {
@@ -24,7 +25,7 @@ export default function Toolbar(props) {
     }
     if (transformer.homepage) {
       transformerInfo =
-        <a href={transformer.homepage} target="_blank">{transformerInfo}</a>;
+        <a href={transformer.homepage} target="_blank" rel="noopener noreferrer">{transformerInfo}</a>;
     }
     transformerInfo = <span>Transformer: {transformerInfo}</span>;
   }
@@ -38,7 +39,7 @@ export default function Toolbar(props) {
       <TransformButton {...props} />
       <a
         style={{minWidth: 0}}
-        target="_blank"
+        target="_blank" rel="noopener noreferrer"
         title="Help"
         href="https://github.com/fkling/esprima_ast_explorer#features">
         <i className="fa fa-lg fa-question fa-fw" />
@@ -52,17 +53,17 @@ export default function Toolbar(props) {
 }
 
 Toolbar.propTypes = {
-  saving: React.PropTypes.bool,
-  forking: React.PropTypes.bool,
-  onSave: React.PropTypes.func,
-  onFork: React.PropTypes.func,
-  onParserChange: React.PropTypes.func,
-  onParserSettingsButtonClick: React.PropTypes.func,
-  onShareButtonClick: React.PropTypes.func,
-  onTransformChange: React.PropTypes.func,
-  parser: React.PropTypes.object,
-  transformer: React.PropTypes.object,
-  showTransformer: React.PropTypes.bool,
-  canSave: React.PropTypes.bool,
-  canFork: React.PropTypes.bool,
+  saving: PropTypes.bool,
+  forking: PropTypes.bool,
+  onSave: PropTypes.func,
+  onFork: PropTypes.func,
+  onParserChange: PropTypes.func,
+  onParserSettingsButtonClick: PropTypes.func,
+  onShareButtonClick: PropTypes.func,
+  onTransformChange: PropTypes.func,
+  parser: PropTypes.object,
+  transformer: PropTypes.object,
+  showTransformer: PropTypes.bool,
+  canSave: PropTypes.bool,
+  canFork: PropTypes.bool,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { categories } from '../parsers';
 
@@ -35,7 +36,7 @@ export default class PasteDropTarget extends React.Component {
 
   componentDidMount() {
     this._listeners = [];
-    let target = this.refs.container;
+    let target = this.container;
 
     // Handle pastes
     this._bindListener(document, 'paste', event => {
@@ -154,7 +155,7 @@ export default class PasteDropTarget extends React.Component {
 
     return (
       <div
-        ref="container"
+        ref={c => this.container = c}
         {...props}>
         {dropindicator}
         {children}
@@ -164,7 +165,7 @@ export default class PasteDropTarget extends React.Component {
 }
 
 PasteDropTarget.propTypes = {
-  onText: React.PropTypes.func,
-  onError: React.PropTypes.func,
-  children: React.PropTypes.node,
+  onText: PropTypes.func,
+  onError: PropTypes.func,
+  children: PropTypes.node,
 };
