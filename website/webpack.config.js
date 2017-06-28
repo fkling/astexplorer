@@ -26,6 +26,14 @@ const plugins = [
   // so that code patch will never be executed.
   new webpack.IgnorePlugin(/^eslint$/, /babel-eslint/),
 
+  // Prettier //
+
+  // We don't use these parsers with prettier, so we don't need to include them
+  new webpack.IgnorePlugin(/parser-graphql/, /\/prettier/),
+  new webpack.IgnorePlugin(/parser-json/, /\/prettier/),
+  new webpack.IgnorePlugin(/parser-parse5/, /\/prettier/),
+  new webpack.IgnorePlugin(/parser-postcss/, /\/prettier/),
+
   // eslint //
 
   // Shim ESLint stuff that's only relevant for Node.js
