@@ -2,19 +2,18 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babel-eslint/package.json';
 
 const ID = 'babel-eslint';
-const name = 'babel-eslint';
 
 export default {
   ...defaultParserInterface,
 
   id: ID,
-  displayName: name,
+  displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['babel-eslint'], babelEslint => callback(babelEslint));
+    require(['babel-eslint'], callback);
   },
 
   parse(parser, code) {

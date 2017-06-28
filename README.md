@@ -32,6 +32,7 @@ The AST explorer provides following code parsers:
   - [shift][]
   - [traceur][]
   - [typescript][]
+  - [typescript-eslint-parser][]
   - [uglify-js][]
 - [JSON][]
 - Lua:
@@ -40,6 +41,8 @@ The AST explorer provides following code parsers:
   - [remark][]
 - Regular Expressions:
   - [regexp-tree][]
+- Scala
+  - [Scalameta][]
 - SQL:
   - [sqlite-parser][]
 - [WebIDL][]
@@ -113,6 +116,7 @@ node.
 [shift]: https://github.com/shapesecurity/shift-parser-js
 [traceur]: https://github.com/google/traceur-compiler
 [typescript]: https://github.com/Microsoft/TypeScript/
+[typescript-eslint-parser]: https://github.com/eslint/typescript-eslint-parser/
 [uglify-js]: https://github.com/mishoo/UglifyJS2
 [webidl]: https://github.com/darobin/webidl2.js
 [remark]: https://github.com/wooorm/remark
@@ -124,6 +128,7 @@ node.
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/mulesoft-labs/yaml-ast-parser
 [esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
+[Scalameta]: http://scalameta.org/
 
 ### Contributions
 

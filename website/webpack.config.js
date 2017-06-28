@@ -8,7 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const DEV = process.env.NODE_ENV !== 'production';
-const CACHE_BREAKER = 10;
+const CACHE_BREAKER = 11;
 
 const packages = fs.readdirSync(path.join(__dirname, 'packages'));
 const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
@@ -143,6 +143,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'jscodeshift', 'dist'),
           path.join(__dirname, 'node_modules', 'lodash-es'),
           path.join(__dirname, 'node_modules', 'prettier'),
+          path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'react-redux', 'es'),
           path.join(__dirname, 'node_modules', 'redux', 'es'),
           path.join(__dirname, 'node_modules', 'redux-saga', 'es'),
