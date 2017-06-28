@@ -92,7 +92,7 @@
     "postcss-less": "^1.0.1",
     "postcss-safe-parser": "^3.0.0",
     "postcss-scss": "^1.0.0",
-    "prettier": "^1.4.4",
+    "prettier": "^1.5.2",
     "prop-types": "^15.5.10",
     "pubsub-js": "^1.4.2",
     "query-string": "^4.3.4",
