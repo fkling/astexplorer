@@ -34,6 +34,12 @@ export default {
     return node.kind;
   },
 
+  nodeToRange(node) {
+    if (node.loc && node.loc.start && node.loc.end) {
+      return [node.loc.start.offset, node.loc.end.offset];
+    }
+  },
+
   opensByDefault(node, key) {
     return key === 'body' || key === 'what' || key === 'items';
   },
