@@ -39,6 +39,8 @@ The AST explorer provides following code parsers:
   - [luaparse][]
 - Markdown:
   - [remark][]
+- PHP
+  - [php-parser][]
 - Regular Expressions:
   - [regexp-tree][]
 - Scala
@@ -121,6 +123,7 @@ node.
 [webidl]: https://github.com/darobin/webidl2.js
 [remark]: https://github.com/wooorm/remark
 [regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
+[php-parser]: https://github.com/glayzzle/php-parser
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
 [handlebars]: http://handlebarsjs.com/
 [icu]: https://github.com/yahoo/intl-messageformat-parser
