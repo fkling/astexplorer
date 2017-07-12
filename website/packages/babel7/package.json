@@ -4,6 +4,6 @@
   "description": "Wrapper for Babel v7",
   "main": "index.js",
   "dependencies": {
-    "babel-core": "7.0.0-alpha.12"
+    "babel-core": "7.0.0-alpha.15"
   }
 }

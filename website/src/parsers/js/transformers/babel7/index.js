@@ -40,7 +40,9 @@ export default {
           'objectRestSpread',
           'dynamicImport',
           'numericSeparator',
+          'optionalChaining',
           'importMeta',
+          'bigInt',
         ],
       },
       generatorOpts: {
