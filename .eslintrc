@@ -17,7 +17,7 @@ plugins:
   - require-in-package
 
 rules:
-  comma-dangle: [1, "always-multiline"]
+  comma-dangle: [2, "always-multiline"]
   new-cap: 0
   no-path-concat: 0
   no-undef: 2
