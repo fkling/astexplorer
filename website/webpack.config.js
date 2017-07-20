@@ -28,12 +28,11 @@ const plugins = [
 
   // Prettier //
 
-  // typescript-eslint-parser is a dev dependency of prettier, so it's not
-  // installed by default but prettier does still require it. See
-  // https://github.com/prettier/prettier/issues/986
-  new webpack.IgnorePlugin(/typescript-eslint-parser/, /\/prettier/),
-  // We don't use the flow parser with prettier, so we don't need to include it
-  new webpack.IgnorePlugin(/^flow-parser/, /\/prettier/),
+  // We don't use these parsers with prettier, so we don't need to include them
+  new webpack.IgnorePlugin(/parser-graphql/, /\/prettier/),
+  new webpack.IgnorePlugin(/parser-json/, /\/prettier/),
+  new webpack.IgnorePlugin(/parser-parse5/, /\/prettier/),
+  new webpack.IgnorePlugin(/parser-postcss/, /\/prettier/),
 
   // eslint //
 
