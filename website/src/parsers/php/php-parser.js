@@ -9,7 +9,7 @@ const defaultOptions = {
   },
   ast: {
     withPositions: true,
-  }
+  },
 };
 
 export default {
