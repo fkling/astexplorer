@@ -2867,10 +2867,6 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-parser@0.45.0:
-  version "0.45.0"
-  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.45.0.tgz#aa29d4ae27f06aa02817772bba0fcbefef7e62f0"
-
 flow-parser@^0.*:
   version "0.47.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.47.0.tgz#c57d35ff19bb40fb0f07222298e58cd4afa8a59a"
@@ -4712,6 +4708,10 @@ pbkdf2@^3.0.3:
 performance-now@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
+
+php-parser@^2.0.4:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-2.0.6.tgz#10e738e76beb318bc7241db6d10344d63e9564d1"
 
 pify@^2.0.0:
   version "2.3.0"
