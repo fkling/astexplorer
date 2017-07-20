@@ -17,18 +17,18 @@ const dialects = {
   'Paradise 2.11': 'Paradise211',
   'Paradise 2.12': 'Paradise212',
   'Paradise Typelevel 2.11': 'ParadiseTypelevel211',
-  'Paradise Typelevel 2.12': 'ParadiseTypelevel212'
+  'Paradise Typelevel 2.12': 'ParadiseTypelevel212',
 }
 
 const defaultOptions = {
-  dialect: 'Scala 2.11'
+  dialect: 'Scala 2.11',
 }
 
 const settingsConfiguration = {
   fields: [
-    ['dialect', Object.keys(dialects)]
+    ['dialect', Object.keys(dialects)],
   ],
-  required: new Set('dialect')
+  required: new Set('dialect'),
 }
 
 export default {
@@ -48,7 +48,7 @@ export default {
     const parsed = scalametaParser.parseSource(code, {
       ...defaultOptions,
       ...options,
-      dialect: dialects[defaultOptions.dialect || options.dialect]
+      dialect: dialects[defaultOptions.dialect || options.dialect],
     });
     const { error, lineNumber, columnNumber } = parsed;
     if (error) {
@@ -85,7 +85,7 @@ export default {
         onChange={onChange}
       />
     )
-  }
+  },
 
 };
 
