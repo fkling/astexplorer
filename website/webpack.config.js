@@ -204,7 +204,9 @@ module.exports = Object.assign({
       ...(DEV ? [] : [
         {
           test: /\.jsx?$/,
-          exclude: /flow_parser\.js/,
+          // TODO: Figure out how to enable minification for php-parser.
+          // See https://github.com/fkling/astexplorer/pull/253 for more info.
+          exclude: /flow_parser\.js|\/php-parser\//,
           loader: 'uglify-loader',
           enforce: 'post',
           options: {
