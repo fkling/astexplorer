@@ -22,6 +22,7 @@ const availablePlugins = [
   'importMeta',
   'typescript',
   'bigInt',
+  'optionalCatchBinding',
 ];
 
 const ID = 'babylon7';
@@ -44,6 +45,7 @@ export const defaultOptions = {
     'dynamicImport',
     'numericSeparator',
     'optionalChaining',
+    'optionalCatchBinding',
   ],
 };
 

@@ -43,6 +43,7 @@ export default {
           'optionalChaining',
           'importMeta',
           'bigInt',
+          'optionalCatchBinding',
         ],
       },
       generatorOpts: {
