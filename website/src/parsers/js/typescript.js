@@ -22,32 +22,7 @@ const parserSettingsConfiguration = {
 
 let ts;
 let getComments;
-
-// workarounds issue described at https://github.com/Microsoft/TypeScript/issues/18062
-const syntaxKindFix = {
-    0: 'Unknown',
-    2: 'SingleLineCommentTrivia',
-    7: 'ConflictMarkerTrivia',
-    8: 'NumericLiteral',
-    13: 'NoSubstitutionTemplateLiteral',
-    16: 'TemplateTail',
-    17: 'OpenBraceToken',
-    27: 'LessThanToken',
-    58: 'EqualsToken',
-    59: 'PlusEqualsToken',
-    70: 'CaretEqualsToken',
-    72: 'BreakKeyword',
-    107: 'WithKeyword',
-    108: 'ImplementsKeyword',
-    116: 'YieldKeyword',
-    142: 'OfKeyword',
-    143: 'QualifiedName',
-    158: 'TypePredicate',
-    173: 'LiteralType',
-    267: 'JSDocTypeExpression',
-    276: 'JSDocTag',
-    285: 'JSDocTypeLiteral',
-};
+const syntaxKind = {};
 
 export default {
   ...defaultParserInterface,
@@ -90,6 +65,14 @@ export default {
     }, compilerHost);
 
     const sourceFile = program.getSourceFile(filename);
+    
+    // workarounds issue described at https://github.com/Microsoft/TypeScript/issues/18062
+    for (const name of Object.keys(ts.SyntaxKind).filter(x => isNaN(parseInt(x)))) {
+        const value = ts.SyntaxKind[name];
+        if (!syntaxKind[value]) {
+            syntaxKind[value] = name;
+        }
+    }
 
     getComments = (node, isTrailing) => {
       if (node.parent) {
@@ -103,7 +86,7 @@ export default {
 
           if (Array.isArray(comments)) {
             comments.forEach((comment) => {
-              comment.type = this.getSyntaxKindName(comment.kind);
+              comment.type = syntaxKind[comment.kind];
               comment.text = sourceFile.text.substring(comment.pos, comment.end);
             });
 
@@ -116,13 +99,9 @@ export default {
     return sourceFile;
   },
   
-  getSyntaxKindName(kind) {
-      return syntaxKindFix[kind] || ts.SyntaxKind[kind];
-  },
-
   getNodeName(node) {
     if (node.kind) {
-      return this.getSyntaxKindName(node.kind);
+      return syntaxKind[node.kind];
     }
   },
 
