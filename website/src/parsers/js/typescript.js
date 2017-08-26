@@ -34,7 +34,17 @@ export default {
   locationProps: new Set(['pos', 'end']),
 
   loadParser(callback) {
-    require(['typescript'], _ts => callback(ts = _ts));
+    require(['typescript'], _ts => {
+        // workarounds issue described at https://github.com/Microsoft/TypeScript/issues/18062
+        for (const name of Object.keys(_ts.SyntaxKind).filter(x => isNaN(parseInt(x)))) {
+            const value = _ts.SyntaxKind[name];
+            if (!syntaxKind[value]) {
+                syntaxKind[value] = name;
+            }
+        }
+
+        callback(ts = _ts);
+    });
   },
 
   parse(ts, code, options) {
@@ -66,14 +76,6 @@ export default {
 
     const sourceFile = program.getSourceFile(filename);
     
-    // workarounds issue described at https://github.com/Microsoft/TypeScript/issues/18062
-    for (const name of Object.keys(ts.SyntaxKind).filter(x => isNaN(parseInt(x)))) {
-        const value = ts.SyntaxKind[name];
-        if (!syntaxKind[value]) {
-            syntaxKind[value] = name;
-        }
-    }
-
     getComments = (node, isTrailing) => {
       if (node.parent) {
         const nodePos = isTrailing ? node.end : node.pos;
