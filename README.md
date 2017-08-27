@@ -169,7 +169,6 @@ as possible!
 #### Build your own version for development
 
 1. Clone the repository.
-2. Run `git submodule update --init` to initialize / update all submodules.
 3. Go to `website/`.
 4. Install all dependencies with `yarn install` (you can run `npm install` as
    well).

@@ -115,6 +115,7 @@
     "traceur": "0.0.111",
     "typescript": "2.4",
     "typescript-eslint-parser": "^3.0.0",
+    "uglify-es": "^3.0.28",
     "uglify-loader": "^2.0.0",
     "webidl2": "^3.0.2",
     "yaml-ast-parser": "^0.0.32"
