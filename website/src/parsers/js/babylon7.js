@@ -19,6 +19,7 @@ const availablePlugins = [
   'dynamicImport',
   'numericSeparator',
   'importMeta',
+  'typescript',
 ];
 
 const ID = 'babylon7';
