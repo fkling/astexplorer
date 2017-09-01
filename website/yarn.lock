@@ -2871,9 +2871,9 @@ flow-parser@^0.*:
   version "0.47.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.47.0.tgz#c57d35ff19bb40fb0f07222298e58cd4afa8a59a"
 
-flow-parser@^0.52.0:
-  version "0.52.0"
-  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.52.0.tgz#6ddd081ac486b7eb30a5129db24b9a274ccf8e3d"
+flow-parser@^0.54.0:
+  version "0.54.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.54.0.tgz#82b3eea7a95561cb2f8d24d2068789e3491447a8"
 
 font-awesome@^4.5.0:
   version "4.7.0"
