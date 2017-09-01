@@ -1,5 +1,5 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
-import pkg from '../../../packages/uglify2-harmony/package.json';
+import pkg from '../../../node_modules/uglify-es/package.json';
 import compileModule from '../utils/compileModule';
 
 const ID = 'uglify-js';
@@ -15,9 +15,9 @@ export default {
 
   loadParser(callback) {
     require([
-      'raw-loader!../../../packages/uglify2-harmony/lib/utils.js',
-      'raw-loader!../../../packages/uglify2-harmony/lib/ast.js',
-      'raw-loader!../../../packages/uglify2-harmony/lib/parse.js',
+      'raw-loader!../../../node_modules/uglify-es/lib/utils.js',
+      'raw-loader!../../../node_modules/uglify-es/lib/ast.js',
+      'raw-loader!../../../node_modules/uglify-es/lib/parse.js',
     ], (...contents) => {
       contents.push('exports.parse = parse;');
       callback(compileModule(contents.join('\n\n')));

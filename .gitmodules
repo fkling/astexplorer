@@ -1,4 +1,0 @@
-[submodule "packages/uglify2-harmony"]
-	path = website/packages/uglify2-harmony
-	url = https://github.com/mishoo/UglifyJS2.git
-	branch = harmony
