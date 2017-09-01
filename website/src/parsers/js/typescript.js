@@ -22,6 +22,7 @@ const parserSettingsConfiguration = {
 
 let ts;
 let getComments;
+const syntaxKind = {};
 
 export default {
   ...defaultParserInterface,
@@ -33,7 +34,17 @@ export default {
   locationProps: new Set(['pos', 'end']),
 
   loadParser(callback) {
-    require(['typescript'], _ts => callback(ts = _ts));
+    require(['typescript'], _ts => {
+        // workarounds issue described at https://github.com/Microsoft/TypeScript/issues/18062
+        for (const name of Object.keys(_ts.SyntaxKind).filter(x => isNaN(parseInt(x)))) {
+            const value = _ts.SyntaxKind[name];
+            if (!syntaxKind[value]) {
+                syntaxKind[value] = name;
+            }
+        }
+
+        callback(ts = _ts);
+    });
   },
 
   parse(ts, code, options) {
@@ -64,7 +75,7 @@ export default {
     }, compilerHost);
 
     const sourceFile = program.getSourceFile(filename);
-
+    
     getComments = (node, isTrailing) => {
       if (node.parent) {
         const nodePos = isTrailing ? node.end : node.pos;
@@ -77,7 +88,7 @@ export default {
 
           if (Array.isArray(comments)) {
             comments.forEach((comment) => {
-              comment.type = ts.SyntaxKind[comment.kind];
+              comment.type = syntaxKind[comment.kind];
               comment.text = sourceFile.text.substring(comment.pos, comment.end);
             });
 
@@ -89,10 +100,10 @@ export default {
 
     return sourceFile;
   },
-
+  
   getNodeName(node) {
     if (node.kind) {
-      return ts.SyntaxKind[node.kind]
+      return syntaxKind[node.kind];
     }
   },
 
