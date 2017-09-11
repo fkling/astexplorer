@@ -5676,9 +5676,9 @@ sax@~1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.2.tgz#fd8631a23bc7826bef5d871bdb87378c95647828"
 
-scalameta-parsers@^1.9.0-beta.3:
-  version "1.9.0-beta.3"
-  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-1.9.0-beta.3.tgz#616849dff159b2af3c921bdc2e0fb8558447831d"
+scalameta-parsers@^2.0.0-RC3:
+  version "2.0.0-RC3"
+  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-2.0.0-RC3.tgz#5a8fb76a1653a87d040e74874df5b409a7e54eb4"
 
 schema-utils@^0.3.0, schema-utils@^0.x:
   version "0.3.0"
