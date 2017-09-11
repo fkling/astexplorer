@@ -21,7 +21,7 @@ const dialects = {
 }
 
 const defaultOptions = {
-  dialect: 'Scala 2.11',
+  dialect: 'Scala 2.12',
 }
 
 const settingsConfiguration = {
