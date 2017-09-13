@@ -20,6 +20,7 @@ const availablePlugins = [
   'numericSeparator',
   'importMeta',
   'typescript',
+  'optionalChaining',
 ];
 
 const ID = 'babylon7';
@@ -40,6 +41,7 @@ export const defaultOptions = {
     'jsx',
     'objectRestSpread',
     'dynamicImport',
+    'optionalChaining',
   ],
 };
 
