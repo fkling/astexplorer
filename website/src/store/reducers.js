@@ -31,6 +31,7 @@ const initialState = {
     parserSettings: {},
     parseError: null,
     code: defaultParser.category.codeExample,
+    keyMap: 'default',
     initialCode: defaultParser.category.codeExample,
     transform: {
       code: '',
@@ -50,7 +51,7 @@ export function persist(state) {
   return {
     ...pick(state, 'showTransformPanel', 'parserSettings', 'parserPerCategory'),
     workbench: {
-      ...pick(state.workbench, 'parser', 'code'),
+      ...pick(state.workbench, 'parser', 'code', 'keyMap'),
       transform: pick(state.workbench.transform, 'code', 'transformer'),
     },
   };
@@ -231,6 +232,8 @@ function workbench(state=initialState.workbench, action, fullState) {
         }
         return newState;
       }
+    case actions.SET_KEY_MAP:
+      return {...state, keyMap: action.keyMap};
     default:
       return state;
   }

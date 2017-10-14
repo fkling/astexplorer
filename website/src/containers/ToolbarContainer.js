@@ -8,6 +8,7 @@ import {
   hideTransformer,
   setParser,
   reset,
+  setKeyMap,
 } from '../store/actions';
 import Toolbar from '../components/Toolbar';
 import * as selectors from '../store/selectors';
@@ -24,6 +25,7 @@ function mapStateToProps(state) {
     category: parser.category,
     parser,
     transformer: selectors.getTransformer(state),
+    keyMap: selectors.getKeyMap(state),
     showTransformer: selectors.showTransformer(state),
     snippet: selectors.getRevision(state),
   };
@@ -51,6 +53,12 @@ function mapDispatchToProps(dispatch) {
       dispatch(transformer ? selectTransformer(transformer) : hideTransformer());
       if (transformer) {
         logEvent('tool', 'select', transformer.id);
+      }
+    },
+    onKeyMapChange: keyMap => {
+      dispatch(setKeyMap(keyMap))
+      if (keyMap) {
+        logEvent('keyMap', keyMap);
       }
     },
     onSave: () => dispatch(save(false)),
