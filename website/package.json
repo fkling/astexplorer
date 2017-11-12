@@ -61,7 +61,7 @@
     "codemirror": "^5.22.0",
     "codemirror-graphql": "^0.6.2",
     "css": "^2.2.1",
-    "css-tree": "1.0.0-alpha19",
+    "css-tree": "1.0.0-alpha.26",
     "cssom": "^0.3.0",
     "domhandler": "^2.3.0",
     "escodegen": "^1.4.1",
