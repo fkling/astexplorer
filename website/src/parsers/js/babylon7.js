@@ -18,9 +18,11 @@ const availablePlugins = [
   'objectRestSpread',
   'dynamicImport',
   'numericSeparator',
+  'optionalChaining',
   'importMeta',
   'typescript',
-  'optionalChaining',
+  'bigInt',
+  'optionalCatchBinding',
 ];
 
 const ID = 'babylon7';
@@ -41,7 +43,9 @@ export const defaultOptions = {
     'jsx',
     'objectRestSpread',
     'dynamicImport',
+    'numericSeparator',
     'optionalChaining',
+    'optionalCatchBinding',
   ],
 };
 
