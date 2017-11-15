@@ -24,6 +24,7 @@ export const START_SAVE = 'START_SAVE';
 export const END_SAVE = 'END_SAVE';
 export const RESET = 'RESET';
 export const TOGGLE_FORMATTING = 'TOGGLE_FORMATTING';
+export const SET_KEY_MAP = 'SET_KEY_MAP';
 
 export function setParser(parser) {
   return {type: SET_PARSER, parser};
@@ -127,4 +128,8 @@ export function reset() {
 
 export function toggleFormatting() {
   return {type: TOGGLE_FORMATTING};
+}
+
+export function setKeyMap(keyMap) {
+  return {type: SET_KEY_MAP, keyMap}
 }
