@@ -143,19 +143,23 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
+          path.join(__dirname, 'node_modules', 'acorn', 'dist', 'acorn.es.js'),
           path.join(__dirname, 'node_modules', 'babel-eslint'),
+          path.join(__dirname, 'node_modules', 'babel7'),
+          path.join(__dirname, 'node_modules', 'babylon7'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
+          path.join(__dirname, 'node_modules', 'eslint-scope'),
           path.join(__dirname, 'node_modules', 'eslint3'),
           path.join(__dirname, 'node_modules', 'eslint4'),
-          path.join(__dirname, 'node_modules', 'eslint-scope'),
-          path.join(__dirname, 'node_modules', 'jscodeshift', 'dist'),
+          path.join(__dirname, 'node_modules', 'jscodeshift', 'src'),
           path.join(__dirname, 'node_modules', 'lodash-es'),
           path.join(__dirname, 'node_modules', 'prettier'),
-          path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'react-redux', 'es'),
           path.join(__dirname, 'node_modules', 'redux', 'es'),
           path.join(__dirname, 'node_modules', 'redux-saga', 'es'),
           path.join(__dirname, 'node_modules', 'regexp-tree'),
+          path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
+          path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'src'),
         ],
         loader: 'babel-loader',
@@ -227,6 +231,11 @@ module.exports = Object.assign({
       /acorn\/dist\/acorn\.js/,
       /esprima\/dist\/esprima\.js/,
       /esprima-fb\/esprima\.js/,
+      // This is necessary because flow is trying to load the 'fs' module, but
+      // dynamically. Without this webpack will throw an error at runtime.
+      // I assume the `require(...)` call "succeeds" because 'fs' is shimmed to
+      // be empty below.
+      /flow-parser\/flow_parser\.js/,
     ],
   },
 
