@@ -6456,9 +6456,9 @@ watchpack@^1.3.1:
     chokidar "^1.4.3"
     graceful-fs "^4.1.2"
 
-webidl2@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/webidl2/-/webidl2-3.0.2.tgz#dfa9f80c7db6d77b398c9b5e21081dd28a7bf1ad"
+webidl2@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/webidl2/-/webidl2-4.2.0.tgz#a6e2a7c621ee4a4f7e1a59358a4a602a97a69aa9"
 
 webpack-chunk-hash@^0.4.0:
   version "0.4.0"
