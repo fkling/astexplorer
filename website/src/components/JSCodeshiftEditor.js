@@ -88,6 +88,7 @@ JSCodeshiftEditor.propTypes = {
   posFromIndex: PropTypes.func,
   error: PropTypes.object,
   mode: PropTypes.string,
+  keyMap: PropTypes.string,
 };
 
 JSCodeshiftEditor.defaultProps = Object.assign(

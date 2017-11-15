@@ -140,12 +140,13 @@ let Element = class extends React.Component {
   }
 
   _getProperties(parser, value) {
-    const {hideFunctions, hideEmptyKeys, hideLocationData} = this.props.settings;
+    const {hideFunctions, hideEmptyKeys, hideLocationData, hideTypeKeys} = this.props.settings;
     let properties = [...parser.forEachProperty(value)];
     return properties
       .filter(({value}) => !hideFunctions || typeof value !== 'function')
       .filter(({value}) => !hideEmptyKeys || value != null)
-      .filter(({key}) => !hideLocationData || !parser.locationProps.has(key));
+      .filter(({key}) => !hideLocationData || !parser.locationProps.has(key))
+      .filter(({key}) => !hideTypeKeys || key !== 'type');
   }
 
   _execFunction() {

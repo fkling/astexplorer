@@ -14,6 +14,7 @@ function mapStateToProps(state) {
     mode: selectors.getParser(state).category.id,
     code: selectors.getCode(state),
     enableFormatting: selectors.getFormattingState(state),
+    keyMap: selectors.getKeyMap(state),
   };
 }
 

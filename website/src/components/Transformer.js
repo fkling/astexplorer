@@ -19,6 +19,7 @@ export default function Transformer(props) {
       value: props.transformCode,
       onContentChange: props.onContentChange,
       enableFormatting: props.enableFormatting,
+      keyMap: props.keyMap,
     }
   );
 
@@ -37,6 +38,7 @@ export default function Transformer(props) {
         transformCode={props.transformCode}
         code={props.code}
         mode={props.mode}
+        keyMap={props.keyMap}
       />
     </SplitPane>
   );
@@ -48,6 +50,7 @@ Transformer.propTypes = {
   transformer: PropTypes.object,
   code: PropTypes.string,
   mode: PropTypes.string,
+  keyMap: PropTypes.string,
   onContentChange: PropTypes.func,
   toggleFormatting: PropTypes.func,
   enableFormatting: PropTypes.bool,

@@ -58,6 +58,14 @@ export default class Tree extends React.Component {
             />
           Hide location data
           </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={this.state.hideTypeKeys}
+              onChange={this._setOption.bind(this, 'hideTypeKeys')}
+            />
+          Hide type keys
+          </label>
         </div>
         <ul onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
           <Element

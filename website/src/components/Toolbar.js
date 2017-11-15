@@ -4,6 +4,7 @@ import CategoryButton from './buttons/CategoryButton';
 import ParserButton from './buttons/ParserButton';
 import SnippetButton from './buttons/SnippetButton';
 import TransformButton from './buttons/TransformButton';
+import KeyMapButton from './buttons/KeyMapButton';
 
 export default function Toolbar(props) {
   let {parser, transformer, showTransformer} = props;
@@ -37,6 +38,7 @@ export default function Toolbar(props) {
       <CategoryButton {...props} />
       <ParserButton {...props} />
       <TransformButton {...props} />
+      <KeyMapButton {...props} />
       <a
         style={{minWidth: 0}}
         target="_blank" rel="noopener noreferrer"
@@ -61,6 +63,7 @@ Toolbar.propTypes = {
   onParserSettingsButtonClick: PropTypes.func,
   onShareButtonClick: PropTypes.func,
   onTransformChange: PropTypes.func,
+  onKeyMapChange: PropTypes.func,
   parser: PropTypes.object,
   transformer: PropTypes.object,
   showTransformer: PropTypes.bool,

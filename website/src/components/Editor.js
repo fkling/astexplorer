@@ -1,4 +1,7 @@
 import CodeMirror from 'codemirror';
+import 'codemirror/keymap/vim';
+import 'codemirror/keymap/emacs';
+import 'codemirror/keymap/sublime';
 import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
@@ -32,6 +35,11 @@ export default class Editor extends React.Component {
     if (nextProps.mode !== this.props.mode) {
       this.codeMirror.setOption('mode', nextProps.mode);
     }
+
+    if (nextProps.keyMap !== this.props.keyMap) {
+      this.codeMirror.setOption('keyMap', nextProps.keyMap);
+    }
+
     this._setError(nextProps.error);
   }
 
@@ -77,6 +85,7 @@ export default class Editor extends React.Component {
     this.codeMirror = CodeMirror( // eslint-disable-line new-cap
       this.container,
       {
+        keyMap: this.props.keyMap,
         value: this.state.value,
         mode: this.props.mode,
         lineNumbers: this.props.lineNumbers,
@@ -220,6 +229,7 @@ Editor.propTypes = {
   error: PropTypes.object,
   mode: PropTypes.string,
   enableFormatting: PropTypes.bool,
+  keyMap: PropTypes.string,
 };
 
 Editor.defaultProps = {
@@ -228,6 +238,7 @@ Editor.defaultProps = {
   lineNumbers: true,
   readOnly: false,
   mode: 'javascript',
+  keyMap: 'default',
   onContentChange: () => {},
   onActivity: () => {},
 };

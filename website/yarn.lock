@@ -1937,10 +1937,11 @@ css-selector-tokenizer@^0.7.0:
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
 
-css-tree@1.0.0-alpha19:
-  version "1.0.0-alpha19"
-  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha19.tgz#949aa846c2c15b3979792e8fce05f6b6e3ebcad4"
+css-tree@1.0.0-alpha.26:
+  version "1.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha.26.tgz#690bee3458fb5b6b7000553983c8c30876da0b3e"
   dependencies:
+    mdn-data "^1.0.0"
     source-map "^0.5.3"
 
 css-what@2.1:
@@ -2875,9 +2876,9 @@ flow-parser@^0.*:
   version "0.47.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.47.0.tgz#c57d35ff19bb40fb0f07222298e58cd4afa8a59a"
 
-flow-parser@^0.54.0:
-  version "0.54.0"
-  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.54.0.tgz#82b3eea7a95561cb2f8d24d2068789e3491447a8"
+flow-parser@^0.57.0:
+  version "0.57.2"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.57.2.tgz#5e6ccf80a6802c1a56b4c18c5544a64fbf621d13"
 
 font-awesome@^4.5.0:
   version "4.7.0"
@@ -4183,6 +4184,10 @@ mdast-util-compact@^1.0.0:
   dependencies:
     unist-util-modify-children "^1.0.0"
     unist-util-visit "^1.1.0"
+
+mdn-data@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-1.0.0.tgz#a69d9da76847b4d5834c1465ea25c0653a1fbf66"
 
 memory-fs@^0.2.0:
   version "0.2.0"
@@ -5676,9 +5681,9 @@ sax@~1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.2.tgz#fd8631a23bc7826bef5d871bdb87378c95647828"
 
-scalameta-parsers@^1.9.0-beta.3:
-  version "1.9.0-beta.3"
-  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-1.9.0-beta.3.tgz#616849dff159b2af3c921bdc2e0fb8558447831d"
+scalameta-parsers@^2.0.0-RC3:
+  version "2.0.0-RC3"
+  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-2.0.0-RC3.tgz#5a8fb76a1653a87d040e74874df5b409a7e54eb4"
 
 schema-utils@^0.3.0, schema-utils@^0.x:
   version "0.3.0"
@@ -6451,9 +6456,9 @@ watchpack@^1.3.1:
     chokidar "^1.4.3"
     graceful-fs "^4.1.2"
 
-webidl2@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/webidl2/-/webidl2-3.0.2.tgz#dfa9f80c7db6d77b398c9b5e21081dd28a7bf1ad"
+webidl2@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/webidl2/-/webidl2-4.2.0.tgz#a6e2a7c621ee4a4f7e1a59358a4a602a97a69aa9"
 
 webpack-chunk-hash@^0.4.0:
   version "0.4.0"

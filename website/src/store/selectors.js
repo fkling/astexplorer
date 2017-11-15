@@ -63,6 +63,11 @@ export function getInitialCode(state) {
   return state.workbench.initialCode;
 }
 
+export function getKeyMap (state) {
+  return state.workbench.keyMap;
+}
+
+
 const isCodeDirty = createSelector(
   [getCode, getInitialCode],
   (code, initialCode) => code !== initialCode
