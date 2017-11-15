@@ -84,7 +84,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jscodeshift": "^0.3.28",
     "json-stringify-safe": "^5.0.1",
-    "json-to-ast": "^2.0.0-alpha1.2",
+    "json-to-ast": "^2.0.2",
     "lodash.isequal": "^4.5.0",
     "luaparse": "^0.2.1",
     "parse5": "^3.0.1",
