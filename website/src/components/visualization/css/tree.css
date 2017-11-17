@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
 }
+.tree-visualization li.entry.toggable:not(.open) > .value > span {
+  white-space: nowrap;
+}
 
 .tree-visualization > .toolbar {
   padding: 5px;
@@ -18,7 +21,6 @@
 .tree-visualization ul {
   margin: 0;
   padding-left: 20px;
-  overflow-y: auto;
 }
 
 .tree-visualization > ul {
@@ -27,4 +29,5 @@
   font-family: monospace;
   -webkit-touch-callout: none;
   user-select: none;
+  overflow: auto;
 }
