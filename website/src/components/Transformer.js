@@ -12,9 +12,14 @@ function resize() {
 }
 
 export default function Transformer(props) {
+  const {transformCodeMode} = props.transformer;
+
   const plainEditor = React.createElement(
     props.transformer.id === 'jscodeshift' ? JSCodeshiftEditor : Editor,
     {
+      ...(transformCodeMode ? {
+        mode: transformCodeMode,
+      } : {}),
       highlight: false,
       value: props.transformCode,
       onContentChange: props.onContentChange,
@@ -28,6 +33,8 @@ export default function Transformer(props) {
     {plainEditor}
   </div>)
 
+  const {outputCodeMode = props.mode} = props.transformer;
+
   return (
     <SplitPane
       className="splitpane"
@@ -37,7 +44,7 @@ export default function Transformer(props) {
         transformer={props.transformer}
         transformCode={props.transformCode}
         code={props.code}
-        mode={props.mode}
+        mode={outputCodeMode}
         keyMap={props.keyMap}
       />
     </SplitPane>

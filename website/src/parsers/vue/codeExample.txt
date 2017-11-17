@@ -1,0 +1,9 @@
+<div>
+  <select v-model="a1">
+    <option></option>
+    <option v-for="o in opts" :value="o.id">{{ o.name }}</option>
+  </select>
+
+  <input v-model="a2" type="text" />
+  <input v-for="i in items" v-model="i.value" :type="a4" v-if="a = 1" />
+</div>

@@ -47,6 +47,8 @@ The AST explorer provides following code parsers:
   - [Scalameta][]
 - SQL:
   - [sqlite-parser][]
+- [Vue][]
+  - [vue-template-compiler][]
 - [WebIDL][]
 - [YAML][]
 
@@ -77,6 +79,8 @@ are included so you can prototype your own plugins:
   - [regexp-tree][]
 - Handlebars
   - [glimmer][]
+- Vue
+  - [vue-template-compiler][] transform to JS render function
 
 ### More Features
 
@@ -132,6 +136,8 @@ node.
 [yaml]: https://github.com/mulesoft-labs/yaml-ast-parser
 [esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
 [Scalameta]: http://scalameta.org/
+[Vue]: https://github.com/vuejs/vue
+[vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
 
 ### Contributions
 

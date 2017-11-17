@@ -4,10 +4,11 @@ import Editor from '../components/Editor';
 import {getCode, getParser, getParseError, getKeyMap} from '../store/selectors';
 
 function mapStateToProps(state) {
+  const {category} = getParser(state);
   return {
     keyMap: getKeyMap(state),
     value: getCode(state),
-    mode: getParser(state).category.id,
+    mode: category.codeMode || category.id,
     error: getParseError(state),
   };
 }

@@ -1,0 +1,8 @@
+export default {
+  ssr: false,
+  modules: [
+  ],
+  directives: {
+  },
+  preserveWhitespace: true,
+};
