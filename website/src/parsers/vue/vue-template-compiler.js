@@ -13,6 +13,10 @@ const parserSettingsConfiguration = {
   ],
 };
 
+const setName = (node, value) => {
+  Object.defineProperty(node, '_$$name', {value, enumerable: false});
+};
+
 export default {
   ...defaultParserInterface,
 
@@ -39,10 +43,21 @@ export default {
     return obj.ast;
   },
 
-  getNodeName({type, tag}) {
+  getNodeName(node) {
+    const {type, tag, _$$name} = node;
+
+    if (_$$name) {
+      return _$$name;
+    }
+
     switch(type) {
-      case 1:
+      case 1: {
+        const {attrsList = [], attrsMap = {}, directives = []} = node;
+        attrsList.forEach(n => setName(n, '#Attr'));
+        directives.forEach(n => setName(n, `#v-${n.name}`));
+        setName(attrsMap, '#Attrs');
         return tag;
+      }
       case 2:
         return '#expression';
       case 3:

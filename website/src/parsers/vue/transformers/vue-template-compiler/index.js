@@ -3,6 +3,19 @@ import pkg from 'vue-template-compiler/package.json';
 
 const ID = 'vue-template-compiler';
 
+function methodNameFix(babel, {nameMap = {}} = {}) {
+  return {
+    visitor: {
+      Identifier(path) {
+        // path.node.name = path.node.name.split('').reverse().join('');
+        if (path.parent.type === 'CallExpression' && path.node === path.parent.callee && path.node.name in nameMap) {
+          path.node.name = nameMap[path.node.name];
+        }
+      },
+    },
+  };
+}
+
 export default {
   id: ID,
   displayName: ID,
@@ -23,25 +36,10 @@ export default {
   },
 
   transform({compiler, prettier, babel, recast}, transformCode, code) {
-    let {ssr, ...options} = compileModule( // eslint-disable-line no-shadow
+    const config = compileModule( // eslint-disable-line no-shadow
       transformCode
     );
-
-    function methodNameFix(babel) {
-      const { types: t } = babel;
-      const nameMap = { _c: 'createElement', _o: 'markOnce', _n: 'toNumber', _s: 'toString', _l: 'renderList', _t: 'renderSlot', _q: 'looseEqual', _i: 'looseIndexOf', _m: 'renderStatic', _f: 'resolveFilter', _k: 'checkKeyCodes', _b: 'bindObjectProps', _v: 'createTextVNode', _e: 'createEmptyVNode', _u: 'resolveScopedSlots', _g: 'bindObjectListeners' };
-
-      return {
-        visitor: {
-          Identifier(path) {
-            // path.node.name = path.node.name.split('').reverse().join('');
-            if (path.parent.type === 'CallExpression' && path.node === path.parent.callee && path.node.name in nameMap) {
-              path.node.name = nameMap[path.node.name];
-            }
-          },
-        },
-      };
-    }
+    let {ssr, nameMap, ...options} = config.default || config;
 
     // console.log('vue-compiler transform', options.default || options);
     const {render, staticRenderFns} = ssr ? compiler.ssrCompile(code, options) : compiler.compile(code, options);
@@ -64,7 +62,7 @@ export default {
       generatorOpts: {
         generator: recast.print,
       },
-      plugins: [methodNameFix(babel)],
+      plugins: [methodNameFix(babel, {nameMap})],
       sourceMaps: true,
     }));
   },

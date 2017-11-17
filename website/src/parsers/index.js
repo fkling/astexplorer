@@ -1,6 +1,5 @@
 const localRequire = require.context('./', true, /^\.\/(?!utils)[^/]+\/(transformers\/([^/]+)\/)?(codeExample\.txt|[^/]+?\.js)$/);
 
-const a = 1;
 const files =
   localRequire.keys()
   .map(name => name.split('/').slice(1));
