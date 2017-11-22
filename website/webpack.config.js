@@ -158,6 +158,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'redux', 'es'),
           path.join(__dirname, 'node_modules', 'redux-saga', 'es'),
           path.join(__dirname, 'node_modules', 'regexp-tree'),
+          path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'src'),
