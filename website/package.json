@@ -8,7 +8,6 @@
     "url": "https://github.com/fkling/esprima_ast_explorer.git"
   },
   "author": "Felix Kling",
-  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^7.1.1",
     "babel-loader": "^7.0.0",
