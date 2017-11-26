@@ -112,6 +112,7 @@
     "sqlite-parser": "^1.0.0-rc3",
     "tern": "^0.20.0",
     "traceur": "0.0.111",
+    "tslint": "5.8.0",
     "typescript": "~2.6.1",
     "typescript-eslint-parser": "^9.0.0",
     "uglify-es": "^3.0.28",
@@ -120,7 +121,7 @@
     "yaml-ast-parser": "^0.0.39"
   },
   "scripts": {
-    "start": "http-server ../out",
+    "start": "http-server $NODE_DEBUG_OPTION ../out",
     "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack",
     "watch": "webpack -dw",
     "lint": "eslint src/",
