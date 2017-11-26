@@ -12,7 +12,7 @@ export default {
   defaultParserID: 'typescript',
 
   loadTransformer(callback) {
-    require(['tslint'], tslint => callback({tslint}));
+    require(['tslint/lib/index'], tslint => callback({tslint}));
   },
 
   transform({ tslint }, transformCode, code) {
