@@ -121,7 +121,7 @@
     "yaml-ast-parser": "^0.0.39"
   },
   "scripts": {
-    "start": "http-server $NODE_DEBUG_OPTION ../out",
+    "start": "http-server ../out",
     "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack",
     "watch": "webpack -dw",
     "lint": "eslint src/",
