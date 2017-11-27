@@ -71,6 +71,7 @@ are included so you can prototype your own plugins:
   - [babel][] (v5, v6)
   - [ESLint][] (v1, v2, v3)
   - [jscodeshift][]
+  - [tslint][]
 - CSS
   - [postcss][]
 - Regular Expressions
@@ -119,6 +120,7 @@ node.
 [traceur]: https://github.com/google/traceur-compiler
 [typescript]: https://github.com/Microsoft/TypeScript/
 [typescript-eslint-parser]: https://github.com/eslint/typescript-eslint-parser/
+[tslint]: https://palantir.github.io/tslint/
 [uglify-js]: https://github.com/mishoo/UglifyJS2
 [webidl]: https://github.com/darobin/webidl2.js
 [remark]: https://github.com/wooorm/remark
