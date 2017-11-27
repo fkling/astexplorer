@@ -1,0 +1,16 @@
+exports.Rule = class Rule extends Lint.Rules.AbstractRule {
+  apply(sourceFile) {
+    return this.applyWithWalker(new NoTemplateExpressionWalker(sourceFile, this.getOptions()));
+  }
+};
+
+// The walker takes care of all the work.
+class NoTemplateExpressionWalker extends Lint.RuleWalker {
+  visitTemplateExpression(node) {
+    // create a failure at the current position
+    this.addFailure(this.createFailure(node.getStart(), node.getWidth(), "Do not use template literals"));
+
+    // call the base version of this visitor to actually parse this node
+    super.visitTemplateExpression(node);
+  }
+}
