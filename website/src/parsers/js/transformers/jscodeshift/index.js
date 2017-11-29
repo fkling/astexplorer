@@ -1,4 +1,5 @@
 import compileModule from '../../../utils/compileModule';
+import transpile from '../../../transpilers/babelTranspile';
 import pkg from 'jscodeshift/package.json';
 
 const ID = 'jscodeshift';
@@ -48,6 +49,7 @@ export default {
     code
   ) {
     sessionMethods.clear();
+    transformCode = transpile(transformCode);
     const transformModule = compileModule( // eslint-disable-line no-shadow
       transformCode
     );

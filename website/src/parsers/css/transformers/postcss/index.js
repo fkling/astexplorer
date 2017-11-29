@@ -1,4 +1,5 @@
 import compileModule from '../../../utils/compileModule';
+import transpile from '../../../transpilers/babelTranspile';
 import pkg from 'postcss/package.json';
 
 const ID = 'postcss';
@@ -18,6 +19,7 @@ export default {
   },
 
   transform({ postcss }, transformCode, code) {
+    transformCode = transpile( transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode,
       {

@@ -1,4 +1,5 @@
 import compileModule from '../../../utils/compileModule';
+import transpile from '../../../transpilers/babelTranspile';
 import pkg from '@glimmer/syntax/package.json';
 
 const ID = 'glimmer';
@@ -16,6 +17,7 @@ export default {
   },
 
   transform(glimmer, transformCode, code) {
+    transformCode = transpile(transformCode);
     const transformModule = compileModule(transformCode);
 
     // allow "export default" instead of "module.exports = "

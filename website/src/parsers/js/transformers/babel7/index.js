@@ -1,4 +1,5 @@
 import compileModule from '../../../utils/compileModule';
+import transpile from '../../../transpilers/babelTranspile';
 import pkg from 'babel7/babel7-package';
 
 const ID = 'babelv7';
@@ -19,6 +20,7 @@ export default {
   },
 
   transform({ babel, recast }, transformCode, code) {
+    transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode
     );

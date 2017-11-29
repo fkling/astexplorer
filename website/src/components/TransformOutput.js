@@ -3,44 +3,19 @@ import Editor from './Editor';
 import JSONEditor from './JSONEditor';
 import PropTypes from 'prop-types';
 import React from 'react';
-import halts, {loopProtect} from 'halting-problem';
 import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
 
 import stringify from 'json-stringify-safe';
 
-function loadJSTransformer(callback) {
-  require(['../parsers/utils/transformJSCode'], toES5 => callback(toES5.default));
-}
-
 function transform(transformer, transformCode, code) {
   if (!transformer._promise) {
-    transformer._promise = Promise.all([
-      new Promise(transformer.loadTransformer),
-      new Promise(loadJSTransformer),
-    ]);
+    transformer._promise = new Promise(transformer.loadTransformer);
   }
   // Use Promise.resolve(null) to return all errors as rejected promises
-  return transformer._promise.then(([realTransformer, toES5]) => {
-    let es5Code = toES5(transformCode);
-    // assert that there are no obvious infinite loops
-    halts(es5Code);
-    // guard against non-obvious loops with a timeout of 5 seconds
-    let start = Date.now();
-    es5Code = loopProtect(
-      es5Code,
-      [
-        // this function gets called in all possible loops
-        // it gets passed the line number as its only argument
-        '(function (line) {',
-        'if (Date.now() > ' + (start + 5000) + ') {',
-        '  throw new Error("Infinite loop detected on line " + line);',
-        '}',
-        '})',
-      ].join('')
-    );
+  return transformer._promise.then((realTransformer) => {
     let result = transformer.transform(
       realTransformer,
-      es5Code,
+      transformCode,
       code
     );
     return Promise.resolve(result).then(result => {
