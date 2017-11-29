@@ -1,4 +1,4 @@
-import halts, {loopProtect} from "halting-problem";
+import halts, {loopProtect} from 'halting-problem';
 
 export default function protect(jsCode) {
   // assert that there are no obvious infinite loops
