@@ -1,5 +1,5 @@
 import compileModule from '../../../utils/compileModule';
-import transpile from '../../../transpilers/babelTranspile';
+import transpile from '../../../transpilers/typescriptTranspile';
 import pkg from 'tslint/package.json';
 
 const ID = 'tslint';
