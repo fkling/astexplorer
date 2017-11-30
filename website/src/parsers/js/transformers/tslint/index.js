@@ -22,7 +22,7 @@ export default {
       transformCode,
       {
         Lint: tslint,
-        ts: typescript
+        ts: typescript,
       }
     );
 
