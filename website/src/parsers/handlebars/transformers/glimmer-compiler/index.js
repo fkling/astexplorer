@@ -1,5 +1,4 @@
 import compileModule from '../../../utils/compileModule';
-import transpile from '../../../transpilers/babelTranspile';
 import pkg from '@glimmer/compiler/package.json';
 
 const ID = 'glimmer-compiler';
@@ -13,10 +12,13 @@ export default {
   defaultParserID: 'glimmer',
 
   loadTransformer(callback) {
-    require(['@glimmer/compiler'], callback);
+    require(
+      ['../../../transpilers/babel', '@glimmer/compiler'],
+      (transpile, glimmer) => callback({ transpile: transpile.default, glimmer })
+    );
   },
 
-  transform(glimmer, transformCode, code) {
+  transform({ transpile, glimmer }, transformCode, code) {
     transformCode = transpile(transformCode);
     const transformModule = compileModule(transformCode);
 

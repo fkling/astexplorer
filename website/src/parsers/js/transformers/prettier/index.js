@@ -1,5 +1,4 @@
 import compileModule from '../../../utils/compileModule';
-import transpile from '../../../transpilers/babelTranspile';
 import pkg from 'prettier/package.json';
 
 const ID = 'prettier';
@@ -14,10 +13,13 @@ export default {
   defaultParserID: 'babylon7',
 
   loadTransformer(callback) {
-    require(['prettier'], callback);
+    require(
+      ['../../../transpilers/babel', 'prettier'],
+      (transpile, prettier) => callback({ transpile: transpile.default, prettier })
+    );
   },
 
-  transform(prettier, transformCode, code) {
+  transform({ transpile, prettier }, transformCode, code) {
     transformCode = transpile(transformCode);
     const options = compileModule(transformCode);
     return prettier.format(code, options.default || options);

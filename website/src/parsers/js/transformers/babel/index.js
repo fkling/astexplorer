@@ -1,5 +1,4 @@
 import compileModule from '../../../utils/compileModule';
-import transpile from '../../../transpilers/babelTranspile';
 import pkg from 'babel5/babel5-package';
 
 const ID = 'babel';
@@ -13,10 +12,13 @@ export default {
   defaultParserID: 'babylon',
 
   loadTransformer(callback) {
-    require(['babel5'], callback);
+    require(
+      ['../../../transpilers/babel', 'babel5'],
+      (transpile, babel) => callback({ transpile: transpile.default, babel: babel })
+    );
   },
 
-  transform(babel, transformCode, code) {
+  transform({ transpile, babel }, transformCode, code) {
     transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode

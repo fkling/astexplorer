@@ -1,5 +1,4 @@
 import compileModule from '../../../utils/compileModule';
-import transpile from '../../../transpilers/typescriptTranspile';
 import pkg from 'tslint/package.json';
 
 const ID = 'tslint';
@@ -13,10 +12,19 @@ export default {
   defaultParserID: 'typescript',
 
   loadTransformer(callback) {
-    require(['tslint/lib/index', 'typescript'], (tslint, typescript) => callback({tslint, typescript}));
+    require([
+      '../../../transpilers/typescript',
+      'tslint/lib/index',
+      'typescript',
+    ],
+    (
+      transpile,
+      tslint,
+      typescript
+    ) => callback({transpile: transpile.default, tslint, typescript}));
   },
 
-  transform({ tslint, typescript }, transformCode, code) {
+  transform({ transpile, tslint, typescript }, transformCode, code) {
     transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode,

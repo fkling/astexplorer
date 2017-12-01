@@ -1,5 +1,4 @@
 import compileModule from '../../../utils/compileModule';
-import transpile from '../../../transpilers/babelTranspile';
 import pkg from 'postcss/package.json';
 
 const ID = 'postcss';
@@ -13,12 +12,12 @@ export default {
   defaultParserID: 'postcss',
 
   loadTransformer(callback) {
-    require(['postcss'], postcss => {
-      callback({ postcss });
+    require(['../../../transpilers/babel', 'postcss'], (transpile, postcss) => {
+      callback({ transpile: transpile.default, postcss });
     });
   },
 
-  transform({ postcss }, transformCode, code) {
+  transform({ transpile, postcss }, transformCode, code) {
     transformCode = transpile( transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode,

@@ -1,5 +1,4 @@
 import compileModule from '../../../utils/compileModule';
-import transpile from '../../../transpilers/babelTranspile';
 import pkg from 'regexp-tree/package.json';
 
 const ID = 'regexp-tree';
@@ -14,11 +13,12 @@ export default {
 
   loadTransformer(callback) {
     require([
+      '../../../transpilers/babel',
       'regexp-tree',
-    ], callback);
+    ], (transpile, regexpTree) => callback({ transpile: transpile.default, regexpTree }));
   },
 
-  transform(regexpTree, transformCode, code) {
+  transform({ transpile, regexpTree }, transformCode, code) {
     transformCode = transpile(transformCode);
     let handler = compileModule( // eslint-disable-line no-shadow
       transformCode

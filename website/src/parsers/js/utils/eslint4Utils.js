@@ -1,5 +1,5 @@
 import compileModule from '../../utils/compileModule';
-import transpile from '../../transpilers/babelTranspile';
+import transpile from '../../transpilers/babel';
 import {parseNoPatch} from 'babel-eslint';
 
 export function formatResults(results) {
