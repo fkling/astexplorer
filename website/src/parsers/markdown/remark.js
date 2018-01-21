@@ -52,7 +52,7 @@ export default {
       <div>
         <p>
           <a
-            href="https://github.com/wooorm/remark/tree/master/packages/remark-parse#options"
+            href="https://github.com/remarkjs/remark/tree/master/packages/remark-parse#options"
             target="_blank" rel="noopener noreferrer">
             Option descriptions
           </a>
