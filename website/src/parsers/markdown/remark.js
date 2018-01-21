@@ -6,7 +6,6 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 const ID = 'remark';
 const defaultOptions = {
   gfm: true,
-  yaml: true,
   commonmark: false,
   footnotes: false,
 };
