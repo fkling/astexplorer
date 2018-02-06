@@ -113,7 +113,7 @@
     "tern": "^0.20.0",
     "traceur": "0.0.111",
     "tslint": "5.8.0",
-    "typescript": "~2.6.1",
+    "typescript": "2.7.1",
     "typescript-eslint-parser": "^9.0.0",
     "uglify-es": "^3.0.28",
     "uglify-js": "^2.8.29",
