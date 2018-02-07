@@ -116,6 +116,7 @@
     "typescript": "~2.6.1",
     "typescript-eslint-parser": "^9.0.0",
     "uglify-es": "^3.0.28",
+    "uglify-js": "^2.8.29",
     "uglify-loader": "^2.0.0",
     "webidl2": "^8.1.0",
     "yaml-ast-parser": "^0.0.39"
