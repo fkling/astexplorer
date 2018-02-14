@@ -23,6 +23,7 @@ const availablePlugins = [
   'typescript',
   'bigInt',
   'optionalCatchBinding',
+  'pipelineOperator',
 ];
 
 const ID = 'babylon7';

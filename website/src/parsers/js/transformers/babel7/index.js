@@ -44,6 +44,7 @@ export default {
           'importMeta',
           'bigInt',
           'optionalCatchBinding',
+          'pipelineOperator',
         ],
       },
       generatorOpts: {

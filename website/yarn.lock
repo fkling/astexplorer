@@ -2964,9 +2964,13 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-parser@^0.*, flow-parser@^0.59.0:
+flow-parser@^0.*:
   version "0.59.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.59.0.tgz#f6ebcae61ffa187e420999d40ce0a801f39b2635"
+
+flow-parser@^0.63.0:
+  version "0.63.1"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.63.1.tgz#84fd647b58a370c2fc0462800e22ed77c3cdf249"
 
 font-awesome@^4.5.0:
   version "4.7.0"
