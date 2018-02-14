@@ -22,7 +22,7 @@ const defaultOptions = {
 };
 const parserSettingsConfiguration = {
   fields: [
-    ['ecmaVersion', [3, 5, 6, 7], value => Number(value)],
+    ['ecmaVersion', [3, 5, 6, 7, 8, 9], value => Number(value)],
     ['sourceType', ['script', 'module']],
     'range',
     'loc',
