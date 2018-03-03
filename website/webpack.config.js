@@ -8,7 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const DEV = process.env.NODE_ENV !== 'production';
-const CACHE_BREAKER = 14;
+const CACHE_BREAKER = 15;
 
 const packages = fs.readdirSync(path.join(__dirname, 'packages'));
 const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
@@ -146,6 +146,8 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'acorn', 'dist', 'acorn.es.js'),
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'babel7'),
+          path.join(__dirname, 'node_modules', 'babel-plugin-macros'),
+          path.join(__dirname, 'node_modules', 'json-parse-better-errors'), 
           path.join(__dirname, 'node_modules', 'babylon7'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
           path.join(__dirname, 'node_modules', 'eslint-scope'),
