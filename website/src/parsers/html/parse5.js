@@ -1,18 +1,8 @@
-import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'parse5/package.json';
 import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'parse5';
-const defaultOptions = {
-  treeAdapter: 'default',
-};
-
-const parserSettingsConfiguration = {
-  fields : [
-    ['treeAdapter', ['default', 'htmlparser2']],
-  ],
-};
 
 export default {
   ...defaultParserInterface,
@@ -40,7 +30,7 @@ export default {
   },
 
   parse({ Parser, TreeAdapters }, code, options) {
-    this.options = {...defaultOptions, ...options};
+    this.options = options;
     return new Parser({
       treeAdapter: TreeAdapters[this.options.treeAdapter],
       locationInfo: true,
@@ -65,14 +55,18 @@ export default {
     return key === 'children' || key === 'childNodes';
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return {
+      treeAdapter: 'default',
+    };
+  },
+
+  getParserSettingsConfiguration() {
+    return {
+      fields : [
+        ['treeAdapter', ['default', 'htmlparser2']],
+      ],
+    };
   },
 
   _ignoredProperties: new Set(['parentNode', 'prev', 'next', 'parent', 'firstChild', 'lastChild']),

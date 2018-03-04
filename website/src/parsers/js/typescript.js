@@ -1,24 +1,8 @@
-import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'typescript/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'typescript';
 const FILENAME = 'astExplorer.ts';
-
-const defaultOptions = {
-  experimentalDecorators: true,
-  experimentalAsyncFunctions: true,
-  jsx: true,
-};
-
-const parserSettingsConfiguration = {
-  fields: [
-    'experimentalDecorators',
-    'experimentalAsyncFunctions',
-    'jsx',
-  ],
-};
 
 let getComments;
 const syntaxKind = {};
@@ -47,8 +31,6 @@ export default {
   },
 
   parse(ts, code, options) {
-    options = {...defaultOptions, ...options};
-
     const compilerHost/*: ts.CompilerHost*/ = {
       fileExists: () => true,
       getCanonicalFileName: filename => filename,
@@ -153,13 +135,12 @@ export default {
     );
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return {
+      experimentalDecorators: true,
+      experimentalAsyncFunctions: true,
+      jsx: true,
+    };
   },
+
 };

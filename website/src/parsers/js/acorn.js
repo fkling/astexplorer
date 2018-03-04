@@ -1,38 +1,8 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'acorn/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'acorn';
-const defaultOptions = {
-  ecmaVersion: 7,
-  sourceType: 'module',
-  allowReserved: false,
-  allowReturnOutsideFunction: false,
-  allowImportExportEverywhere: false,
-  allowHashBang: false,
-  locations: false,
-  loose: false,
-  ranges: false,
-  preserveParens: false,
-  'plugins.jsx': true,
-};
-
-const settingsConfiguration = {
-  fields: [
-    ['ecmaVersion', [3, 5, 6, 7, 8], x => Number(x)],
-    ['sourceType', ['script', 'module']],
-    'allowReserved',
-    'allowReturnOutsideFunction',
-    'allowImportExportEverywhere',
-    'allowHashBang',
-    'locations',
-    'loose',
-    'ranges',
-    'preserveParens',
-    'plugins.jsx',
-  ],
-};
 
 export default {
   ...defaultParserInterface,
@@ -54,7 +24,6 @@ export default {
   },
 
   parse(parsers, code, options={}) {
-    options = Object.assign({}, defaultOptions, options);
     const parser = options.loose ?
       parsers.acornLoose.parse_dammit :
       parsers.acorn.parse;
@@ -72,6 +41,40 @@ export default {
     }
   },
 
+  getDefaultOptions() {
+    return {
+      ecmaVersion: 7,
+      sourceType: 'module',
+      allowReserved: false,
+      allowReturnOutsideFunction: false,
+      allowImportExportEverywhere: false,
+      allowHashBang: false,
+      locations: false,
+      loose: false,
+      ranges: false,
+      preserveParens: false,
+      'plugins.jsx': true,
+    };
+  },
+
+  _getSettingsConfiguration() {
+    return {
+      fields: [
+        ['ecmaVersion', [3, 5, 6, 7, 8], x => Number(x)],
+        ['sourceType', ['script', 'module']],
+        'allowReserved',
+        'allowReturnOutsideFunction',
+        'allowImportExportEverywhere',
+        'allowHashBang',
+        'locations',
+        'loose',
+        'ranges',
+        'preserveParens',
+        'plugins.jsx',
+      ],
+    };
+  },
+
   renderSettings(parserSettings, onChange) {
     return (
       <div>
@@ -82,11 +85,11 @@ export default {
             Option descriptions
           </a>
         </p>
-        <SettingsRenderer
-          settingsConfiguration={settingsConfiguration}
-          parserSettings={{...defaultOptions, ...parserSettings}}
-          onChange={onChange}
-        />
+        {defaultParserInterface.renderSettings.call(
+          this,
+          parserSettings,
+          onChange
+        )}
       </div>
     );
   },

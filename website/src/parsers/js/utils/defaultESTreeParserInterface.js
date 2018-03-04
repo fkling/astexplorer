@@ -1,4 +1,5 @@
 import defaultParserInterface from '../../utils/defaultParserInterface';
+
 export default {
   ...defaultParserInterface,
 
@@ -8,7 +9,7 @@ export default {
       key === 'body' ||
       key === 'elements' || // array literals
       key === 'declarations' || // variable declaration
-      key === 'expression'
+      key === 'expression' // expression statements
     );
   },
 

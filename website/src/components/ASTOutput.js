@@ -9,7 +9,11 @@ function parse(parser, code, parserSettings) {
     parser._promise = new Promise(parser.loadParser);
   }
   return parser._promise.then(
-    realParser => parser.parse(realParser, code, parserSettings)
+    realParser => parser.parse(
+      realParser,
+      code,
+      parserSettings || parser.getDefaultOptions(),
+    )
   );
 }
 

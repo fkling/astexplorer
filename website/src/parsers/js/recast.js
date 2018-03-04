@@ -1,48 +1,12 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'recast/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 import flowParser, * as flowSettings from './flow';
 import babylon6Parser, * as babylon6Settings from './babylon6';
 import babylon7Parser, * as babylon7Settings from './babylon7';
 
 const ID = 'recast';
-const defaultOptions = {
-  tolerant: false,
-  range: true,
-  parser: 'esprima',
-  flow: flowSettings.defaultOptions,
-  babylon6: babylon6Settings.defaultOptions,
-  babylon7: babylon7Settings.defaultOptions,
-};
-
-const parserSettingsConfiguration = {
-  fields: [
-    ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow']],
-    'range',
-    'tolerant',
-    {
-      key: 'flow',
-      title: 'Flow Settings',
-      fields: flowSettings.parserSettingsConfiguration.fields,
-      settings: settings => settings.flow || defaultOptions.flow,
-    },
-    {
-      key: 'babylon6',
-      title: 'Babylon 6 Settings',
-      fields: babylon6Settings.parserSettingsConfiguration.fields,
-      settings: settings => settings.babylon6 || defaultOptions.babylon6,
-    },
-    {
-      key: 'babylon7',
-      title: 'Babylon 7 Settings',
-      fields: babylon7Settings.parserSettingsConfiguration.fields,
-      settings: settings => settings.babylon7 || defaultOptions.babylon7,
-    },
-  ],
-  required: new Set(['range']),
-};
 
 export default {
   ...defaultParserInterface,
@@ -71,7 +35,6 @@ export default {
   },
 
   parse({ recast, parsers }, code, options) {
-    options = {...defaultOptions, ...options};
     const flowOptions = options.flow;
     const babylon6Options = options.babylon6;
     const babylon7Options = options.babylon7;
@@ -134,13 +97,44 @@ export default {
     return node.range;
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return {
+      tolerant: false,
+      range: true,
+      parser: 'esprima',
+      flow: flowSettings.defaultOptions,
+      babylon6: babylon6Settings.defaultOptions,
+      babylon7: babylon7Settings.defaultOptions,
+    };
   },
+
+  _getSettingsConfiguration(defaultOptions) {
+    return {
+      fields: [
+        ['parser', ['esprima', 'babel5', 'babylon6', 'flow']],
+        'range',
+        'tolerant',
+        {
+          key: 'flow',
+          title: 'Flow Settings',
+          fields: flowSettings.parserSettingsConfiguration.fields,
+          settings: settings => settings.flow || defaultOptions.flow,
+        },
+        {
+          key: 'babylon6',
+          title: 'Babylon 6 Settings',
+          fields: babylon6Settings.parserSettingsConfiguration.fields,
+          settings: settings => settings.babylon6 || defaultOptions.babylon6,
+        },
+        {
+          key: 'babylon7',
+          title: 'Babylon 7 Settings',
+          fields: babylon7Settings.parserSettingsConfiguration.fields,
+          settings: settings => settings.babylon7 || defaultOptions.babylon7,
+        },
+      ],
+      required: new Set(['range']),
+    };
+  },
+
 };
