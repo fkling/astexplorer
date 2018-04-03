@@ -152,6 +152,8 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'eslint3'),
           path.join(__dirname, 'node_modules', 'eslint4'),
           path.join(__dirname, 'node_modules', 'jscodeshift', 'src'),
+          path.join(__dirname, 'node_modules', 'jscodeshift', 'node_modules', 'recast'),
+          path.join(__dirname, 'node_modules', 'jscodeshift', 'node_modules', 'ast-types'),
           path.join(__dirname, 'node_modules', 'lodash-es'),
           path.join(__dirname, 'node_modules', 'prettier'),
           path.join(__dirname, 'node_modules', 'react-redux', 'es'),
