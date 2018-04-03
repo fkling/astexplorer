@@ -8,7 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const DEV = process.env.NODE_ENV !== 'production';
-const CACHE_BREAKER = 14;
+const CACHE_BREAKER = 15;
 
 const packages = fs.readdirSync(path.join(__dirname, 'packages'));
 const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
