@@ -1322,15 +1322,15 @@ babel-types@^6.19.0, babel-types@^6.23.0, babel-types@^6.24.1, babel-types@^6.26
 "babylon7@file:packages/babylon7":
   version "1.0.0"
   dependencies:
-    babylon "7.0.0-beta.31"
+    babylon "7.0.0-beta.44"
 
 babylon@7.0.0-beta.27:
   version "7.0.0-beta.27"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.27.tgz#b6edd30ef30619e2f630eb52585fdda84e6542cd"
 
-babylon@7.0.0-beta.31:
-  version "7.0.0-beta.31"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.31.tgz#7ec10f81e0e456fd0f855ad60fa30c2ac454283f"
+babylon@7.0.0-beta.44, babylon@^7.0.0-beta.30:
+  version "7.0.0-beta.44"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.44.tgz#89159e15e6e30c5096e22d738d8c0af8a0e8ca1d"
 
 babylon@^5.8.38:
   version "5.8.38"
@@ -1339,10 +1339,6 @@ babylon@^5.8.38:
 babylon@^6.1.21, babylon@^6.17.0, babylon@^6.18.0, babylon@^6.8.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
-
-babylon@^7.0.0-beta.30:
-  version "7.0.0-beta.44"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-7.0.0-beta.44.tgz#89159e15e6e30c5096e22d738d8c0af8a0e8ca1d"
 
 bail@^1.0.0:
   version "1.0.2"
@@ -1793,8 +1789,8 @@ commander@2.9.x:
     graceful-readlink ">= 1.0.0"
 
 commander@^2.9.0:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.1.tgz#2235123e37af8ca3c65df45b026dbd357b01b9aa"
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -6432,8 +6428,8 @@ tslint@5.8.0:
     tsutils "^2.12.1"
 
 tsutils@^2.12.1:
-  version "2.19.1"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.19.1.tgz#76d7ebdea9d7a7bf4a05f50ead3701b0168708d7"
+  version "2.21.1"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.21.1.tgz#5b23c263233300ed7442b4217855cbc7547c296a"
   dependencies:
     tslib "^1.8.1"
 
