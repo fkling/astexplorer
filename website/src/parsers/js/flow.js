@@ -9,6 +9,7 @@ export const defaultOptions = {
   esproposal_class_static_fields: true,
   esproposal_decorators: true,
   esproposal_export_star_as: true,
+  esproposal_optional_chaining: true,
   types: true,
 };
 export const parserSettingsConfiguration = {
@@ -17,6 +18,7 @@ export const parserSettingsConfiguration = {
     'esproposal_class_static_fields',
     'esproposal_decorators',
     'esproposal_export_star_as',
+    'esproposal_optional_chaining',
     'types',
   ],
 };
