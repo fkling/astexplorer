@@ -52,7 +52,7 @@ export default {
   locationProps: new Set(['start', 'end', 'loc']),
 
   loadParser(callback) {
-    require(['cherow'], callback);
+    require(['cherow/dist/cherow'], callback);
   },
 
   parse(cherow, code, options) {

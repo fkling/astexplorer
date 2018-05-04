@@ -1616,9 +1616,9 @@ character-reference-invalid@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/character-reference-invalid/-/character-reference-invalid-1.1.1.tgz#942835f750e4ec61a308e60c2ef8cc1011202efc"
 
-cherow@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/cherow/-/cherow-1.5.1.tgz#44a017d5a6746b9d088bbf600be2f478be0f9053"
+cherow@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/cherow/-/cherow-1.5.2.tgz#b1df90c3fbccebb22a0b14a0636e3d4eef646ebc"
 
 chokidar@^1.7.0:
   version "1.7.0"
