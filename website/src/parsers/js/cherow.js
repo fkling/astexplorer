@@ -5,24 +5,26 @@ import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'cherow';
 const defaultOptions = {
-    comments: false,
-    next: true,
-    ranges: true,
-    loc: false,
-    jsx: false,
-    raw: false,
-    rawIdentifier: false,
-    source: false,
-    impliedStrict: false,
-    globalReturn: false,
-    experimental: true,
-    skipShebang: false,
-    tolerant: false,
-    node: false,
+  sourceType: 'module',
+  comments: false,
+  next: true,
+  ranges: true,
+  loc: false,
+  jsx: false,
+  raw: false,
+  rawIdentifier: false,
+  source: false,
+  impliedStrict: false,
+  globalReturn: false,
+  experimental: true,
+  skipShebang: false,
+  tolerant: false,
+  node: false,
 };
 
 const parserSettingsConfiguration = {
   fields: [
+    ['sourceType', ['script', 'module']],
     'comments',
     'next',
     'ranges',
@@ -54,7 +56,11 @@ export default {
   },
 
   parse(cherow, code, options) {
-    return cherow.parseScript(code, {...defaultOptions, ...options});
+    if (options.sourceType === 'script') {
+      return cherow.parseScript(code, {...defaultOptions, ...options});
+    } else {
+      return cherow.parseModule(code, {...defaultOptions, ...options});
+    }
   },
 
   nodeToRange(node) {
