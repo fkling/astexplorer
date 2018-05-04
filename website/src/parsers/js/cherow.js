@@ -18,7 +18,7 @@ const defaultOptions = {
     experimental: true,
     skipShebang: false,
     tolerant: false,
-    node: false
+    node: false,
 };
 
 const parserSettingsConfiguration = {
@@ -36,7 +36,7 @@ const parserSettingsConfiguration = {
     'experimental',
     'skipShebang',
     'tolerant',
-    'node'
+    'node',
   ],
 };
 
@@ -71,5 +71,5 @@ export default {
         onChange={onChange}
       />
     );
-  }
+  },
 };
