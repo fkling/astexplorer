@@ -11,10 +11,10 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage || 'https://github.com/facebook/jscodeshift',
 
-  defaultParserID: 'recast',
+  defaultParserID: 'flow',
 
   loadTransformer(callback) {
-    require(['jscodeshift'], jscodeshift => {
+    require(['jscodeshift', 'flow-parser'], (jscodeshift, flowParser) => {
         const { registerMethods } = jscodeshift;
 
         let origMethods;
@@ -37,13 +37,13 @@ export default {
           }
         };
 
-        callback({jscodeshift});
+        callback({jscodeshift, flowParser});
       }
     );
   },
 
   transform(
-    {jscodeshift},
+    {jscodeshift, flowParser},
     transformCode,
     code
   ) {
@@ -66,7 +66,7 @@ export default {
       {
         jscodeshift: transformModule.parser ?
           jscodeshift.withParser(transformModule.parser) :
-          jscodeshift,
+          jscodeshift.withParser(flowParser),
         stats: (value, quantity=1) => {
           statsWasCalled = true;
           counter[value] = (counter[value] ? counter[value] : 0) + quantity;
