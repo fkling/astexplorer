@@ -2,7 +2,7 @@ import compileModule from '../../../utils/compileModule';
 import pkg from 'babel-plugin-macros/package';
 import macro, {createMacro, MacroError} from 'babel-plugin-macros';
 
-const ID = 'babel-macros';
+const ID = 'babel-plugin-macros';
 export default {
   id: ID,
   displayName: ID,
