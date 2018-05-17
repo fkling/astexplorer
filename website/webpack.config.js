@@ -148,6 +148,8 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'ast-types'),
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'babel7'),
+          path.join(__dirname, 'node_modules', 'babel-plugin-macros'),
+          path.join(__dirname, 'node_modules', 'json-parse-better-errors'), 
           path.join(__dirname, 'node_modules', 'babylon7'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
           path.join(__dirname, 'node_modules', 'eslint-scope'),
