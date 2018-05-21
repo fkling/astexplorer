@@ -130,7 +130,7 @@ export default {
       };
       yield {
         value: getComments(node, true),
-        key: 'trailingCommments',
+        key: 'trailingComments',
         computed: true,
       };
     }
