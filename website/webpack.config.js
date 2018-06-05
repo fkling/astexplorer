@@ -8,7 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const DEV = process.env.NODE_ENV !== 'production';
-const CACHE_BREAKER = 15;
+const CACHE_BREAKER = 16;
 
 const packages = fs.readdirSync(path.join(__dirname, 'packages'));
 const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
@@ -149,10 +149,11 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'babel7'),
           path.join(__dirname, 'node_modules', 'babel-plugin-macros'),
-          path.join(__dirname, 'node_modules', 'json-parse-better-errors'), 
+          path.join(__dirname, 'node_modules', 'json-parse-better-errors'),
           path.join(__dirname, 'node_modules', 'babylon7'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
           path.join(__dirname, 'node_modules', 'eslint-scope'),
+          path.join(__dirname, 'node_modules', 'eslint-visitor-keys'),
           path.join(__dirname, 'node_modules', 'eslint3'),
           path.join(__dirname, 'node_modules', 'eslint4'),
           path.join(__dirname, 'node_modules', 'jscodeshift', 'src'),
@@ -164,6 +165,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'redux-saga', 'es'),
           path.join(__dirname, 'node_modules', 'regexp-tree'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
+          path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'node_modules', 'tslint'),
