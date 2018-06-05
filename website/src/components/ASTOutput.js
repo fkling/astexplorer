@@ -40,7 +40,7 @@ export default class ASTOutput extends React.Component {
     this._parse(this.props.parser, this.props.code, this.props.parserSettings);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.parser !== this.props.parser ||
         nextProps.code !== this.props.code ||
         nextProps.parserSettings !== this.props.parserSettings) {

@@ -20,7 +20,6 @@ const parserSettingsConfiguration = {
   ],
 };
 
-let ts;
 let getComments;
 const syntaxKind = {};
 
@@ -43,7 +42,7 @@ export default {
             }
         }
 
-        callback(ts = _ts);
+        callback(_ts);
     });
   },
 
@@ -75,7 +74,7 @@ export default {
     }, compilerHost);
 
     const sourceFile = program.getSourceFile(filename);
-    
+
     getComments = (node, isTrailing) => {
       if (node.parent) {
         const nodePos = isTrailing ? node.end : node.pos;
@@ -100,7 +99,7 @@ export default {
 
     return sourceFile;
   },
-  
+
   getNodeName(node) {
     if (node.kind) {
       return syntaxKind[node.kind];

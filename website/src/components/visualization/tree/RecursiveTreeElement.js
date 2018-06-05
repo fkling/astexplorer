@@ -52,7 +52,7 @@ export default function RecursiveTreeElement(Element) {
       }
     }
 
-    componentWillReceiveProps(props) {
+    UNSAFE_componentWillReceiveProps(props) {
       let {deepOpen} = props;
       let open = shouldAutoFocus(props);
       if (!this.props.value !== props.value) {
