@@ -140,11 +140,13 @@ module.exports = Object.assign({
       {
         test: /\.jsx?$/,
         include: [
+          // To transpile our version of acorn as well as the one that
+          // espree uses (somewhere in its dependency tree)
+          /\/acorn.es.js$/,
           path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
-          path.join(__dirname, 'node_modules', 'acorn', 'dist', 'acorn.es.js'),
           path.join(__dirname, 'node_modules', 'ast-types'),
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'babel7'),
@@ -176,7 +178,14 @@ module.exports = Object.assign({
         options: {
           babelrc: false,
           presets: [
-            require.resolve('babel-preset-es2015'),
+            [
+              require.resolve('babel-preset-env'),
+              {
+                targets: {
+                  browsers: ['defaults'],
+                },
+              },
+            ],
             require.resolve('babel-preset-stage-0'),
             require.resolve('babel-preset-react'),
           ],
