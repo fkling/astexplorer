@@ -3,7 +3,7 @@ import api from './api';
 import {getTransformerByID, getParserByID} from '../parsers';
 
 function getIDAndRevisionFromHash() {
-  let match = global.location.hash.match(/^#\/(?!gist\/)([^\/]+)(?:\/(latest|\d*))?/);
+  let match = global.location.hash.match(/^#\/(?!gist\/)([^/]+)(?:\/(latest|\d*))?/);
   if (match) {
     return {
       id: match[1],

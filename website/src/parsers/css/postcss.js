@@ -57,5 +57,5 @@ export default {
         ['parser', ['built-in', 'scss', 'less', 'safe-parser']],
       ],
     };
-  }
+  },
 };

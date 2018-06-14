@@ -1,3 +1,4 @@
+/* eslint no-useless-escape: off */
 // source: https://github.com/tangrams/GLSL-live-editor/blob/master/src/codemirror/mode/webGL-clike.js
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others

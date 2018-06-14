@@ -1,6 +1,6 @@
 import queryString from 'query-string';
 
-const DATA_PATTERN = /^#(?:\/([^\/?]+)(?:\/(\d*))?\/?)?(?:\?(.+))?/;
+const DATA_PATTERN = /^#(?:\/([^/?]+)(?:\/(\d*))?\/?)?(?:\?(.+))?/;
 
 
 export function getDataFromURI() {

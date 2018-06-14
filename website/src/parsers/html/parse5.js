@@ -1,6 +1,5 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'parse5/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'parse5';
 
