@@ -35,6 +35,7 @@ export default {
   },
 
   parse({ recast, parsers }, code, options) {
+    options = {...options}; // a copy is needed since we are mutating options
     const flowOptions = options.flow;
     const babylon6Options = options.babylon6;
     const babylon7Options = options.babylon7;
@@ -43,9 +44,6 @@ export default {
     delete options.babylon7;
 
     switch (options.parser) {
-      case 'esprima':
-        delete options.parser; // default parser
-        break;
       case 'flow':
         options.parser = {
           parse(code) {
@@ -67,8 +65,13 @@ export default {
           },
         };
         break;
-      default:
+      case 'babel5':
         options.parser = parsers[options.parser];
+        break;
+      case 'esprima':
+      default:
+        delete options.parser; // default parser
+        break;
     }
     return recast.parse(code, options);
   },
@@ -111,7 +114,7 @@ export default {
   _getSettingsConfiguration(defaultOptions) {
     return {
       fields: [
-        ['parser', ['esprima', 'babel5', 'babylon6', 'flow']],
+        ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow']],
         'range',
         'tolerant',
         {
