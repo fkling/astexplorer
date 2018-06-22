@@ -143,12 +143,16 @@ module.exports = Object.assign({
           // To transpile our version of acorn as well as the one that
           // espree uses (somewhere in its dependency tree)
           /\/acorn.es.js$/,
+          path.join(__dirname, 'node_modules', '@babel'),
           path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
           path.join(__dirname, 'node_modules', 'ast-types'),
           path.join(__dirname, 'node_modules', 'babel-eslint'),
+          path.join(__dirname, 'node_modules', 'babel-eslint8'),
+          path.join(__dirname, 'node_modules', 'jsesc'),
+          path.join(__dirname, 'node_modules', 'eslint-visitor-keys'),
           path.join(__dirname, 'node_modules', 'babel7'),
           path.join(__dirname, 'node_modules', 'babel-plugin-macros'),
           path.join(__dirname, 'node_modules', 'json-parse-better-errors'),
