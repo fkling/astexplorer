@@ -121,7 +121,9 @@
     "uglify-es": "^3.0.28",
     "uglify-loader": "^2.0.0",
     "webidl2": "^8.1.0",
-    "yaml-ast-parser": "^0.0.39"
+    "yaml": "^1.0.0-rc.2",
+    "yaml-ast-parser": "^0.0.39",
+    "yaml-unist-parser": "^1.0.0-beta.4"
   },
   "scripts": {
     "start": "http-server ../out",
