@@ -11,11 +11,11 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage || 'https://www.npmjs.com/package/yaml-unist-parser',
 
-  _ignoredProperties: new Set(['parent', 'errors', 'type']),
+  _ignoredProperties: new Set(['type']),
   locationProps: new Set(['position']),
 
   nodeToRange(node) {
-    if (node.position)
+    if (node.position && node.type !== 'null')
       return [node.position.start.offset, node.position.end.offset]
   },
 
