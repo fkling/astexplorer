@@ -172,6 +172,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'node_modules', 'tslint'),
           path.join(__dirname, 'node_modules', 'tslib'),
+          path.join(__dirname, 'node_modules', 'yaml-unist-parser'),
           path.join(__dirname, 'src'),
         ],
         loader: 'babel-loader',
@@ -198,7 +199,7 @@ module.exports = Object.assign({
               // leading to issues with webpack. Disabling the polyfill seems
               // to fix it, and we probably don't need it anyway.
               // (should also result in smaller bundles)
-              {polyfill: false},
+              { polyfill: false },
             ],
           ],
         },
@@ -280,9 +281,9 @@ module.exports = Object.assign({
   },
 },
 
-DEV ?
-  {
-    devtool: 'eval',
-  } :
-  {}
+  DEV ?
+    {
+      devtool: 'eval',
+    } :
+    {}
 );
