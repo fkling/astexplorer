@@ -4,6 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "babel-eslint": "8.2.3"
+    "babel-eslint": "8.2.5"
   }
 }
