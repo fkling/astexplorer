@@ -256,6 +256,7 @@ module.exports = Object.assign({
       // I assume the `require(...)` call "succeeds" because 'fs' is shimmed to
       // be empty below.
       /flow-parser\/flow_parser\.js/,
+      /prettier/,
     ],
   },
 
