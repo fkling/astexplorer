@@ -1,7 +1,7 @@
-@import "~codemirror/lib/codemirror.css";
-@import "~codemirror/addon/fold/foldgutter.css";
+@import "codemirror/lib/codemirror.css";
+@import "codemirror/addon/fold/foldgutter.css";
 @import "./highlight.css";
-@import "~font-awesome/css/font-awesome.css";
+@import "font-awesome/css/font-awesome.css";
 @import "../fontcustom/fontcustom.css";
 
 html {
