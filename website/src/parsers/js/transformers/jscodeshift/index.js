@@ -14,7 +14,7 @@ export default {
   defaultParserID: 'recast',
 
   loadTransformer(callback) {
-    require(['jscodeshift'], jscodeshift => {
+    require(['jscodeshift', 'typescript', 'babylon7', 'recast'], (jscodeshift, typescript, babylon, recast) => {
         const { registerMethods } = jscodeshift;
 
         let origMethods;
@@ -37,13 +37,13 @@ export default {
           }
         };
 
-        callback({jscodeshift});
+        callback({jscodeshift, typescript, babylon, recast});
       }
     );
   },
 
   transform(
-    {jscodeshift},
+    {jscodeshift, typescript, babylon, recast},
     transformCode,
     code
   ) {
@@ -64,6 +64,9 @@ export default {
         source: code,
       },
       {
+          typescript,
+          babylon,
+          recast,
         jscodeshift: transformModule.parser ?
           jscodeshift.withParser(transformModule.parser) :
           jscodeshift,
