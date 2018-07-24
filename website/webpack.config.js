@@ -6,6 +6,7 @@ const WebpackChunkHash = require('webpack-chunk-hash');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const DEV = process.env.NODE_ENV !== 'production';
 const CACHE_BREAKER = 16;
@@ -105,7 +106,9 @@ const plugins = [
     template: './index.ejs',
     chunksSortMode: 'id',
   }),
-
+    new MonacoWebpackPlugin({
+        languages: ['typescript', 'javascript'],
+    }),
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
   new InlineManifestWebpackPlugin({
     name: 'webpackManifest',
@@ -172,6 +175,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'node_modules', 'tslint'),
           path.join(__dirname, 'node_modules', 'tslib'),
+          path.join(__dirname, 'node_modules', 'monaco-editor', 'esm', 'vs'),
           path.join(__dirname, 'src'),
         ],
         loader: 'babel-loader',
@@ -246,7 +250,7 @@ module.exports = Object.assign({
 
     noParse: [
       /traceur\/bin/,
-      /typescript\/lib/,
+      // /typescript\/lib/,
       /acorn\/dist\/acorn\.js/,
       /esprima\/dist\/esprima\.js/,
       /esprima-fb\/esprima\.js/,
