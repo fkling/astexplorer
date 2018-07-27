@@ -5,6 +5,10 @@ const ID = 'jscodeshift';
 
 const sessionMethods = new Set();
 
+async function fetchTypings(path) {
+  return await fetch(path).then(r => r.text());
+}
+
 export default {
   id: ID,
   displayName: ID,
@@ -12,6 +16,30 @@ export default {
   homepage: pkg.homepage || 'https://github.com/facebook/jscodeshift',
 
   defaultParserID: 'recast',
+
+  loadTypings: async (callback) => {
+    const ts = await fetchTypings(require('typescript/lib/typescript.d.ts'));
+    const jscodeshift = await fetchTypings(require('../../../../defs/jscodeshift.d.ts'));
+
+    callback([
+      {
+        text: ts,
+        name: './typescript.d.ts',
+      },
+      {
+        text: jscodeshift,
+        name: './jscodeshift.d.ts',
+      },
+      {
+        text: `
+        import * as ts from './typescript';
+        export = ts;
+        export as namespace typescript;
+      `,
+        name: 'global.d.ts',
+      },
+    ]);
+  },
 
   loadTransformer(callback) {
     require(['jscodeshift', 'typescript', 'babylon7', 'recast'], (jscodeshift, typescript, babylon, recast) => {

@@ -15,11 +15,29 @@ export default class JSCodeshiftEditor extends React.Component {
   componentDidMount() {
     this._subscriptions = [];
 
+    // validation settings
+    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+      noSemanticValidation: true,
+      noSyntaxValidation: false
+    });
+
+    // compiler options
+    monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
+      target: monaco.languages.typescript.ScriptTarget.ES6,
+      allowNonTsExtensions: true
+    });
+
     var editor = monaco.editor.create(this.container, {
       minimap: {enabled: false},
       value: this.props.value,
       language: 'javascript',
 
+    });
+
+    this.props.loadTypings((typings) => {
+      typings.forEach(({text, name}) => {
+        monaco.languages.typescript.javascriptDefaults.addExtraLib(text, name);
+      });
     });
 
     editor.onDidChangeModelContent(() => {
@@ -54,6 +72,7 @@ JSCodeshiftEditor.propTypes = {
   error: PropTypes.object,
   mode: PropTypes.string,
   keyMap: PropTypes.string,
+  loadTypings: PropTypes.func,
 };
 
 JSCodeshiftEditor.defaultProps = Object.assign(
