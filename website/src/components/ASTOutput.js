@@ -51,9 +51,9 @@ export default class ASTOutput extends React.Component {
       this._parse(nextProps.parser, nextProps.code, nextProps.parserSettings);
     } else if (nextProps.cursor !== this.props.cursor) {
       this.setState({
-        focusPath: nextProps.cursor != null ?
-          getFocusPath(this.state.ast, nextProps.cursor, nextProps.parser) :
-          [],
+        focusPath: (this.state.parseError || nextProps.cursor == null) ?
+          [] :
+          getFocusPath(this.state.ast, nextProps.cursor, nextProps.parser),
       });
     }
   }
