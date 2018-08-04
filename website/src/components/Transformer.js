@@ -20,6 +20,7 @@ export default function Transformer(props) {
       onContentChange: props.onContentChange,
       enableFormatting: props.enableFormatting,
       keyMap: props.keyMap,
+      loadTypings: props.transformer.loadTypings,
     }
   );
 

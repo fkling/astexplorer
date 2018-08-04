@@ -6,6 +6,7 @@ const WebpackChunkHash = require('webpack-chunk-hash');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const DEV = process.env.NODE_ENV !== 'production';
 const CACHE_BREAKER = 16;
@@ -105,7 +106,9 @@ const plugins = [
     template: './index.ejs',
     chunksSortMode: 'id',
   }),
-
+    new MonacoWebpackPlugin({
+        languages: ['typescript', 'javascript'],
+    }),
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
   new InlineManifestWebpackPlugin({
     name: 'webpackManifest',
@@ -143,36 +146,7 @@ module.exports = Object.assign({
           // To transpile our version of acorn as well as the one that
           // espree uses (somewhere in its dependency tree)
           /\/acorn.es.js$/,
-          path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
-          path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
-          path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
-          path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
-          path.join(__dirname, 'node_modules', 'ast-types'),
-          path.join(__dirname, 'node_modules', 'babel-eslint'),
-          path.join(__dirname, 'node_modules', 'babel7'),
-          path.join(__dirname, 'node_modules', 'babel-plugin-macros'),
-          path.join(__dirname, 'node_modules', 'json-parse-better-errors'),
-          path.join(__dirname, 'node_modules', 'babylon7'),
-          path.join(__dirname, 'node_modules', 'eslint', 'lib'),
-          path.join(__dirname, 'node_modules', 'eslint-scope'),
-          path.join(__dirname, 'node_modules', 'eslint-visitor-keys'),
-          path.join(__dirname, 'node_modules', 'eslint3'),
-          path.join(__dirname, 'node_modules', 'eslint4'),
-          path.join(__dirname, 'node_modules', 'jscodeshift', 'src'),
-          path.join(__dirname, 'node_modules', 'lodash-es'),
-          path.join(__dirname, 'node_modules', 'prettier'),
-          path.join(__dirname, 'node_modules', 'react-redux', 'es'),
-          path.join(__dirname, 'node_modules', 'recast'),
-          path.join(__dirname, 'node_modules', 'redux', 'es'),
-          path.join(__dirname, 'node_modules', 'redux-saga', 'es'),
-          path.join(__dirname, 'node_modules', 'regexp-tree'),
-          path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
-          path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
-          path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
-          path.join(__dirname, 'node_modules', 'webidl2'),
-          path.join(__dirname, 'node_modules', 'tslint'),
-          path.join(__dirname, 'node_modules', 'tslib'),
-          path.join(__dirname, 'src'),
+         path.join(__dirname, 'src'),
         ],
         loader: 'babel-loader',
         options: {
@@ -224,6 +198,13 @@ module.exports = Object.assign({
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
       },
+      {
+        test: /\.d\.ts$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        }
+      },
       ...(DEV ? [] : [
         {
           test: /\.jsx?$/,
@@ -246,7 +227,7 @@ module.exports = Object.assign({
 
     noParse: [
       /traceur\/bin/,
-      /typescript\/lib/,
+      /node_modules\/typescript\/lib/,
       /acorn\/dist\/acorn\.js/,
       /esprima\/dist\/esprima\.js/,
       /esprima-fb\/esprima\.js/,

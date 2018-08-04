@@ -1,81 +1,64 @@
-import CodeMirror from 'codemirror';
 import PropTypes from 'prop-types';
-import Editor from './Editor';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import React from "react";
+import Editor from "./Editor";
+import PubSub from "pubsub-js";
 
-import 'codemirror/addon/hint/show-hint.css';
-import 'codemirror/addon/tern/tern.css';
-
-let server;
-
-export default class JSCodeshiftEditor extends Editor {
-  constructor(props) {
-    super(props);
-    loadTern();
+export default class JSCodeshiftEditor extends React.Component {
+  render() {
+    return (
+      <div className="editor"
+           ref={c => this.container = c}/>
+    );
   }
 
   componentDidMount() {
-    super.componentDidMount();
+    this._subscriptions = [];
 
-    this.codeMirror.setOption('extraKeys', {
-      'Ctrl-Space': cm => server && server.complete(cm),
-      'Ctrl-I': cm => server && server.showType(cm),
-      'Ctrl-O': cm => server && server.showDocs(cm),
+    // validation settings
+    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+      noSemanticValidation: true,
+      noSyntaxValidation: false
     });
 
-    this._bindCMHandler('cursorActivity', cm => {
-      server && server.updateArgHints(cm);
+    // compiler options
+    monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
+      target: monaco.languages.typescript.ScriptTarget.ES6,
+      allowNonTsExtensions: true
     });
+
+    var editor = monaco.editor.create(this.container, {
+      minimap: {enabled: false},
+      value: this.props.value,
+      language: 'javascript',
+
+    });
+
+    this.props.loadTypings((typings) => {
+      typings.forEach(({text, name}) => {
+        monaco.languages.typescript.javascriptDefaults.addExtraLib(text, name);
+      });
+    });
+
+    editor.onDidChangeModelContent(() => {
+      clearTimeout(this._updateTimer);
+      console.log(editor.value);
+      this._updateTimer = setTimeout(() => this.props.onContentChange({value: editor.getValue(), cursor: null}), 200);
+    });
+
+    this._subscriptions.push(
+      PubSub.subscribe('PANEL_RESIZE', () => editor.layout())
+    );
   }
-}
 
-function loadTern() {
-  require(
-    [
-      'codemirror/addon/hint/show-hint',
-      'codemirror/addon/tern/tern',
-      'acorn',
-    ],
-    (_1, _2, acorn) => {
-      global.acorn = acorn;
-      require(
-        [
-          'tern',
-          'tern/plugin/doc_comment',
-          'tern/lib/infer',
-          '../defs/jscodeshift.json',
-          'tern/defs/ecmascript.json',
-        ],
-        (tern, _, infer, jscs_def, ecmascript) => {
-          global.tern = tern;
-          tern.registerPlugin('transformer', server => {
-            server.on('afterLoad', file => {
-              const fnVal = file.scope.props.transformer;
-              if (fnVal) {
-                const fnType = fnVal.getFunctionType();
-                const cx = infer.cx();
-                fnType.propagate(new infer.IsCallee(
-                  infer.cx().topScope,
-                  [
-                    cx.definitions.jscodeshift.file,
-                    cx.definitions.jscodeshift.apiObject,
-                  ],
-                  null,
-                  infer.ANull
-                ));
-              }
-            });
-          });
+  componentWillUnmount() {
+    clearTimeout(this._updateTimer);
+    this._unbindHandlers();
+  }
 
-          server = new CodeMirror.TernServer({
-            defs: [jscs_def, ecmascript],
-            plugins: {
-              transformer: {strong: true},
-            },
-          });
-        }
-      );
-    }
-  );
+  _unbindHandlers() {
+    this._subscriptions.forEach(PubSub.unsubscribe);
+  }
 }
 
 JSCodeshiftEditor.propTypes = {
@@ -89,6 +72,7 @@ JSCodeshiftEditor.propTypes = {
   error: PropTypes.object,
   mode: PropTypes.string,
   keyMap: PropTypes.string,
+  loadTypings: PropTypes.func,
 };
 
 JSCodeshiftEditor.defaultProps = Object.assign(
