@@ -50,7 +50,9 @@ The AST explorer provides following code parsers:
 - SQL:
   - [sqlite-parser][]
 - [WebIDL][]
-- [YAML][]
+- YAML
+  - [YAML][]
+  - [YAML Unist Parser][]
 
 ### Experimental / custom syntax
 
@@ -137,6 +139,7 @@ node.
 [yaml]: https://github.com/mulesoft-labs/yaml-ast-parser
 [esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
 [Scalameta]: http://scalameta.org/
+[YAML Unist Parser]: https://github.com/ikatyang/yaml-unist-parser
 
 ### Contributions
 
