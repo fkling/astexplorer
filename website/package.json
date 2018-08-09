@@ -77,7 +77,7 @@
     "font-awesome": "^4.5.0",
     "glsl-parser": "^2.0.0",
     "glsl-tokenizer": "^2.1.2",
-    "graphql": "^0.11.7",
+    "graphql": "^0.13.2",
     "halting-problem": "^1.0.2",
     "handlebars": "^4.0.6",
     "htmlparser2": "^3.9.0",
