@@ -25,8 +25,8 @@ export default {
     require(['php-parser'], callback);
   },
 
-  parse(Engine, code, options) {
-    const parser = new Engine({...defaultOptions, ...options});
+  parse(Engine, code) {
+    const parser = new Engine(defaultOptions);
     return parser.parseCode(code, '');
   },
 

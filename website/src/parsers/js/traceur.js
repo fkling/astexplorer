@@ -1,48 +1,8 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'traceur/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'traceur';
 const FILENAME = 'astExplorer.js';
-
-const defaultOptions = {
-  SourceType: 'Module',
-  TolerateErrors: false,
-  commentCallback: true,
-  annotations: false,
-  arrayComprehension: false,
-  arrowFunctions: true,
-  asyncFunctions: false,
-  asyncGenerators: false,
-  blockBinding: true,
-  classes: true,
-  computedPropertyNames: true,
-  destructuring: true,
-  exponentiation: false,
-  exportFromExtended: false,
-  forOf: true,
-  forOn: false,
-  generatorComprehension: false,
-  generators: true,
-  jsx: true,
-  memberVariables: false,
-  numericLiterals: true,
-  propertyMethods: true,
-  propertyNameShorthand: true,
-  restParameters: true,
-  spread: true,
-  templateLiterals: true,
-  types: false,
-  unicodeEscapeSequences: true,
-};
-
-const parserSettingsConfiguration = {
-  fields :[
-    ['SourceType', ['Script', 'Module']],
-    ...Object.keys(defaultOptions).filter(x => x !== 'SourceType'),
-  ],
-};
 
 class Comment {
   constructor(sourceRange) {
@@ -66,7 +26,6 @@ export default {
   },
 
   parse(traceur, code, options) {
-    options = {...defaultOptions, ...options};
     let sourceFile = new traceur.syntax.SourceFile(FILENAME, code);
     let errorReporter = new traceur.util.ErrorReporter();
     errorReporter.reportMessageInternal = (sourceRange, message) => {
@@ -144,13 +103,45 @@ export default {
     );
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return {
+      SourceType: 'Module',
+      TolerateErrors: false,
+      commentCallback: true,
+      annotations: false,
+      arrayComprehension: false,
+      arrowFunctions: true,
+      asyncFunctions: false,
+      asyncGenerators: false,
+      blockBinding: true,
+      classes: true,
+      computedPropertyNames: true,
+      destructuring: true,
+      exponentiation: false,
+      exportFromExtended: false,
+      forOf: true,
+      forOn: false,
+      generatorComprehension: false,
+      generators: true,
+      jsx: true,
+      memberVariables: false,
+      numericLiterals: true,
+      propertyMethods: true,
+      propertyNameShorthand: true,
+      restParameters: true,
+      spread: true,
+      templateLiterals: true,
+      types: false,
+      unicodeEscapeSequences: true,
+    };
+  },
+
+  _getSettingsConfiguration(defaultOptions) {
+    return {
+      fields :[
+        ['SourceType', ['Script', 'Module']],
+        ...Object.keys(defaultOptions).filter(x => x !== 'SourceType'),
+      ],
+    };
   },
 };

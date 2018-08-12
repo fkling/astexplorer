@@ -13,7 +13,7 @@ export default class SettingsDialog extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({parserSettings: nextProps.parserSettings});
   }
 

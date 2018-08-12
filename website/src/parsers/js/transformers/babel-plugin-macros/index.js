@@ -1,8 +1,8 @@
 import compileModule from '../../../utils/compileModule';
-import pkg from 'babel7/babel7-package';
+import pkg from 'babel-plugin-macros/package';
+import macro, {createMacro, MacroError} from 'babel-plugin-macros';
 
-const ID = 'babelv7';
-
+const ID = 'babel-plugin-macros';
 export default {
   id: ID,
   displayName: ID,
@@ -13,16 +13,15 @@ export default {
 
   loadTransformer(callback) {
     require([
-      '../../../transpilers/babel',
       'babel7',
       'recast',
-    ], (transpile, babel, recast) => callback({ transpile: transpile.default, babel, recast }));
+    ], (babel, recast) => callback({ babel, recast }));
   },
 
-  transform({ transpile, babel, recast }, transformCode, code) {
-    transformCode = transpile(transformCode);
+  transform({ babel, recast }, transformCode, code) {
     let transform = compileModule( // eslint-disable-line no-shadow
-      transformCode
+      transformCode,
+      {createMacro, MacroError}
     );
 
     return babel.transform(code, {
@@ -52,7 +51,7 @@ export default {
       generatorOpts: {
         generator: recast.print,
       },
-      plugins: [(transform.default || transform)(babel)],
+      plugins: [macro(babel, {require: () => transform})],
       sourceMaps: true,
     });
   },

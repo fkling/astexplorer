@@ -61,7 +61,7 @@ export function getDefaultCategory() {
 }
 
 export function getDefaultParser(category = getDefaultCategory()) {
-  return category.parsers[0];
+  return category.parsers.filter(p => p.showInMenu)[0];
 }
 
 export function getCategoryByID(id) {

@@ -9,7 +9,7 @@ import React from 'react';
 
 export default class Editor extends React.Component {
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.codeMirror.getValue()) {
       // preserve scroll position
       let info = this.codeMirror.getScrollInfo();

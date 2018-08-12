@@ -44,7 +44,7 @@ let Element = class extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       open: nextProps.open || nextProps.deepOpen || this.state.open,
       deepOpen: nextProps.deepOpen,

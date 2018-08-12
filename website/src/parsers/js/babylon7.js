@@ -1,7 +1,5 @@
-import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon7/babylon-package';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const availablePlugins = [
   'asyncGenerators',
@@ -23,6 +21,7 @@ const availablePlugins = [
   'typescript',
   'bigInt',
   'optionalCatchBinding',
+  'pipelineOperator',
 ];
 
 const ID = 'babylon7';
@@ -82,15 +81,14 @@ export default {
   },
 
   parse(babylon, code, options) {
-    return babylon.parse(code, {...defaultOptions, ...options});
+    return babylon.parse(code, options);
   },
 
   getNodeName(node) {
     switch (typeof node.type) {
       case 'string':
         return node.type;
-      case 'object':
-        return `Token (${node.type.label})`;
+      case 'object': return `Token (${node.type.label})`;
     }
   },
 
@@ -100,13 +98,11 @@ export default {
     }
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return defaultOptions;
+  },
+
+  _getSettingsConfiguration() {
+    return parserSettingsConfiguration;
   },
 };

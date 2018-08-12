@@ -1,23 +1,7 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'shift-parser/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'shift';
-const defaultOptions = {
-  loc: true,
-  earlyErrors: false,
-  sourceType: 'module',
-};
-
-const parserSettingsConfiguration = {
-  fields: [
-    ['sourceType', ['script', 'module']],
-    'loc',
-    'earlyErrors',
-  ],
-  required: new Set(['loc']),
-};
 
 export default {
   ...defaultParserInterface,
@@ -33,7 +17,6 @@ export default {
   },
 
   parse(shift, code, options) {
-    options = {...defaultOptions, ...options};
     const parseMethod = options.sourceType === 'module' ?
       'parseModule' :
       'parseScript';
@@ -46,16 +29,6 @@ export default {
     }
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
-  },
-
   opensByDefault(node, key) {
     return (
       key === 'items' ||
@@ -66,4 +39,24 @@ export default {
       key === 'body'
     );
   },
+
+  getDefaultOptions() {
+    return {
+      loc: true,
+      earlyErrors: false,
+      sourceType: 'module',
+    };
+  },
+
+  _getSettingsConfiguration() {
+    return {
+      fields: [
+        ['sourceType', ['script', 'module']],
+        'loc',
+        'earlyErrors',
+      ],
+      required: new Set(['loc']),
+    };
+  },
+
 };

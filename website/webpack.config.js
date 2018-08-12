@@ -8,7 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const DEV = process.env.NODE_ENV !== 'production';
-const CACHE_BREAKER = 13;
+const CACHE_BREAKER = 16;
 
 const packages = fs.readdirSync(path.join(__dirname, 'packages'));
 const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
@@ -30,6 +30,7 @@ const plugins = [
 
   // We don't use these parsers with prettier, so we don't need to include them
   new webpack.IgnorePlugin(/parser-graphql/, /\/prettier/),
+  new webpack.IgnorePlugin(/parser-wat/, /\/prettier/),
   new webpack.IgnorePlugin(/parser-json/, /\/prettier/),
   new webpack.IgnorePlugin(/parser-parse5/, /\/prettier/),
   new webpack.IgnorePlugin(/parser-postcss/, /\/prettier/),
@@ -139,26 +140,34 @@ module.exports = Object.assign({
       {
         test: /\.jsx?$/,
         include: [
+          // To transpile our version of acorn as well as the one that
+          // espree uses (somewhere in its dependency tree)
+          /\/acorn.es.js$/,
           path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
-          path.join(__dirname, 'node_modules', 'acorn', 'dist', 'acorn.es.js'),
+          path.join(__dirname, 'node_modules', 'ast-types'),
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'babel7'),
+          path.join(__dirname, 'node_modules', 'babel-plugin-macros'),
+          path.join(__dirname, 'node_modules', 'json-parse-better-errors'),
           path.join(__dirname, 'node_modules', 'babylon7'),
           path.join(__dirname, 'node_modules', 'eslint', 'lib'),
           path.join(__dirname, 'node_modules', 'eslint-scope'),
+          path.join(__dirname, 'node_modules', 'eslint-visitor-keys'),
           path.join(__dirname, 'node_modules', 'eslint3'),
           path.join(__dirname, 'node_modules', 'eslint4'),
           path.join(__dirname, 'node_modules', 'jscodeshift', 'src'),
           path.join(__dirname, 'node_modules', 'lodash-es'),
           path.join(__dirname, 'node_modules', 'prettier'),
           path.join(__dirname, 'node_modules', 'react-redux', 'es'),
+          path.join(__dirname, 'node_modules', 'recast'),
           path.join(__dirname, 'node_modules', 'redux', 'es'),
           path.join(__dirname, 'node_modules', 'redux-saga', 'es'),
           path.join(__dirname, 'node_modules', 'regexp-tree'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
+          path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'node_modules', 'tslint'),
@@ -169,7 +178,14 @@ module.exports = Object.assign({
         options: {
           babelrc: false,
           presets: [
-            require.resolve('babel-preset-es2015'),
+            [
+              require.resolve('babel-preset-env'),
+              {
+                targets: {
+                  browsers: ['defaults'],
+                },
+              },
+            ],
             require.resolve('babel-preset-stage-0'),
             require.resolve('babel-preset-react'),
           ],

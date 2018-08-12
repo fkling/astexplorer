@@ -34,7 +34,7 @@ export default class ParserButton extends React.Component {
           type="button"
           title="Parser Settings"
           style={{minWidth: 0}}
-          disabled={!this.props.parser.renderSettings}
+          disabled={!this.props.parser.hasSettings()}
           onClick={this.props.onParserSettingsButtonClick}>
           <i className="fa fa-cog fa-fw" />
         </button>

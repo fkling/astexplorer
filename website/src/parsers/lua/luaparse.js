@@ -1,28 +1,8 @@
 import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'luaparse/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'luaparse';
-
-const defaultOptions = {
-  ranges: true,
-  locations: false,
-  comments: true,
-  scope: false,
-  luaVersion: '5.1',
-};
-
-const settingsConfiguration = {
-  fields: [
-    'ranges',
-    'locations',
-    'comments',
-    'scope',
-    ['luaVersion', ['5.1', '5.2', '5.3']],
-  ],
-  required: new Set(['ranges']),
-};
 
 export default {
   ...defaultParserInterface,
@@ -38,7 +18,31 @@ export default {
   },
 
   parse(luaparse, code, options={}) {
-    return luaparse.parse(code, {...defaultOptions, ...options});
+    return luaparse.parse(code, options);
+  },
+
+  getDefaultOptions() {
+    return {
+      ranges: true,
+      locations: false,
+      comments: true,
+      scope: false,
+      luaVersion: '5.1',
+    };
+  },
+
+  _getSettingsConfiguration() {
+    return {
+      fields: [
+        'ranges',
+        'locations',
+        'comments',
+        'scope',
+        ['luaVersion', ['5.1', '5.2', '5.3']],
+      ],
+      required: new Set(['ranges']),
+    };
+
   },
 
   renderSettings(parserSettings, onChange) {
@@ -51,11 +55,11 @@ export default {
             Option descriptions
           </a>
         </p>
-        <SettingsRenderer
-          settingsConfiguration={settingsConfiguration}
-          parserSettings={{...defaultOptions, ...parserSettings}}
-          onChange={onChange}
-        />
+        {defaultParserInterface.renderSettings.call(
+          this,
+          parserSettings,
+          onChange
+        )}
       </div>
     );
   },

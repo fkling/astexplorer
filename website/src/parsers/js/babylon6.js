@@ -1,7 +1,5 @@
-import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon6/babylon-package';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const availablePlugins = [
   'asyncGenerators',
@@ -72,7 +70,7 @@ export default {
   },
 
   parse(babylon, code, options) {
-    return babylon.parse(code, {...defaultOptions, ...options});
+    return babylon.parse(code, options);
   },
 
   getNodeName(node) {
@@ -90,13 +88,12 @@ export default {
     }
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return defaultOptions;
   },
+
+  _getSettingsConfiguration() {
+    return parserSettingsConfiguration;
+  },
+
 };
