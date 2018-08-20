@@ -9,7 +9,11 @@ function parse(parser, code, parserSettings) {
     parser._promise = new Promise(parser.loadParser);
   }
   return parser._promise.then(
-    realParser => parser.parse(realParser, code, parserSettings)
+    realParser => parser.parse(
+      realParser,
+      code,
+      parserSettings || parser.getDefaultOptions(),
+    )
   );
 }
 
@@ -40,16 +44,16 @@ export default class ASTOutput extends React.Component {
     this._parse(this.props.parser, this.props.code, this.props.parserSettings);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.parser !== this.props.parser ||
         nextProps.code !== this.props.code ||
         nextProps.parserSettings !== this.props.parserSettings) {
       this._parse(nextProps.parser, nextProps.code, nextProps.parserSettings);
     } else if (nextProps.cursor !== this.props.cursor) {
       this.setState({
-        focusPath: nextProps.cursor != null ?
-          getFocusPath(this.state.ast, nextProps.cursor, nextProps.parser) :
-          [],
+        focusPath: (this.state.parseError || nextProps.cursor == null) ?
+          [] :
+          getFocusPath(this.state.ast, nextProps.cursor, nextProps.parser),
       });
     }
   }

@@ -1,18 +1,7 @@
-import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'htmlparser2/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'htmlparser2';
-const defaultOptions = {
-  xmlMode: false,
-  lowerCaseAttributeNames: true,
-  lowerCaseTags: true,
-};
-
-const parserSettingsConfiguration = {
-  fields: Object.keys(defaultOptions),
-};
 
 export default {
   ...defaultParserInterface,
@@ -58,7 +47,7 @@ export default {
 
   parse({ Parser, Handler }, code, options) {
     let handler = new Handler();
-    new Parser(handler, {...defaultOptions, ...options}).end(code);
+    new Parser(handler, options).end(code);
     return handler.dom;
   },
 
@@ -80,14 +69,12 @@ export default {
     return nodeName;
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return {
+      xmlMode: false,
+      lowerCaseAttributeNames: true,
+      lowerCaseTags: true,
+    };
   },
 
   _ignoredProperties: new Set(['prev', 'next', 'parent', 'endIndex']),

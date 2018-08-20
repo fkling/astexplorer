@@ -91,7 +91,12 @@ export default function SettingsRenderer(props) {
                       ))
                     }
                     value={values[fieldName]}>
-                    {options.map(o => <option key={o} value={o}>{o}</option>)}
+                    {Array.isArray(options) ?
+                      options.map(o => <option key={o} value={o}>{o}</option>) :
+                      Object.keys(options).map(
+                        key => <option key={key} value={options[key]}>{key}</option>
+                      )
+                    }
                   </select>
                 </label>
               </li>

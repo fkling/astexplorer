@@ -1,16 +1,7 @@
-import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'webidl2/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'webidl2';
-const defaultOptions = {
-  allowNestedTypedefs: false,
-};
-
-const parserSettingsConfiguration = {
-  fields: Object.keys(defaultOptions),
-};
 
 export default {
   ...defaultParserInterface,
@@ -35,20 +26,16 @@ export default {
   },
 
   parse({ parse }, code, options) {
-    return parse(code, {...defaultOptions, ...options});
+    return parse(code, options);
   },
 
   opensByDefault(node, key) {
     return key === 'members';
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return {
+      allowNestedTypedefs: false,
+    };
   },
 };

@@ -1,7 +1,5 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'flow-parser/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'flow';
 export const defaultOptions = {
@@ -39,16 +37,14 @@ export default {
   },
 
   parse(flowParser, code, options) {
-    return flowParser.parse(code, {...defaultOptions, ...options});
+    return flowParser.parse(code, options);
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return defaultOptions;
+  },
+
+  _getSettingsConfiguration() {
+    return parserSettingsConfiguration;
   },
 };

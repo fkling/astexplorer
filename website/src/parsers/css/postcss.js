@@ -1,18 +1,7 @@
-import React from 'react';
 import defaultParserInterface from './utils/defaultCSSParserInterface';
 import pkg from 'postcss/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'postcss';
-const defaultOptions = {
-  parser: 'built-in',
-};
-
-const parserSettingsConfiguration = {
-  fields: [
-    ['parser', ['built-in', 'scss', 'less', 'safe-parser']],
-  ],
-};
 
 export default {
   ...defaultParserInterface,
@@ -37,7 +26,7 @@ export default {
   parse(parsers, code, options) {
     return defaultParserInterface.parse.call(
       this,
-      parsers[options.parser || defaultOptions.parser],
+      parsers[options.parser],
       code
     );
   },
@@ -56,13 +45,17 @@ export default {
 
   _ignoredProperties: new Set(['parent', 'input']),
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return {
+      parser: 'built-in',
+    };
+  },
+
+  _getSettingsConfiguration() {
+    return {
+      fields: [
+        ['parser', ['built-in', 'scss', 'less', 'safe-parser']],
+      ],
+    };
   },
 };

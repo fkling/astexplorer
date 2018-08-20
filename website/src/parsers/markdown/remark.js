@@ -1,18 +1,8 @@
 import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'remark/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'remark';
-const defaultOptions = {
-  gfm: true,
-  commonmark: false,
-  footnotes: false,
-};
-
-const parserSettingsConfiguration = {
-  fields: Object.keys(defaultOptions),
-};
 
 export default {
   ...defaultParserInterface,
@@ -29,7 +19,7 @@ export default {
 
   parse(remark, code, options) {
     return remark()
-      .data('settings', {...defaultOptions, ...options})
+      .data('settings', options)
       .parse(code);
   },
 
@@ -47,6 +37,14 @@ export default {
     return key === 'children';
   },
 
+  getDefaultOptions() {
+    return {
+      gfm: true,
+      commonmark: false,
+      footnotes: false,
+    };
+  },
+
   renderSettings(parserSettings, onChange) {
     return (
       <div>
@@ -57,11 +55,11 @@ export default {
             Option descriptions
           </a>
         </p>
-        <SettingsRenderer
-          settingsConfiguration={parserSettingsConfiguration}
-          parserSettings={{...defaultOptions, ...parserSettings}}
-          onChange={onChange}
-        />
+        {defaultParserInterface.renderSettings.call(
+          this,
+          parserSettings,
+          onChange
+        )}
       </div>
     );
   },

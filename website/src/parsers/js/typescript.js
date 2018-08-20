@@ -1,26 +1,9 @@
-import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'typescript/package.json';
-import SettingsRenderer from '../utils/SettingsRenderer';
 
 const ID = 'typescript';
 const FILENAME = 'astExplorer.ts';
 
-const defaultOptions = {
-  experimentalDecorators: true,
-  experimentalAsyncFunctions: true,
-  jsx: true,
-};
-
-const parserSettingsConfiguration = {
-  fields: [
-    'experimentalDecorators',
-    'experimentalAsyncFunctions',
-    'jsx',
-  ],
-};
-
-let ts;
 let getComments;
 const syntaxKind = {};
 
@@ -43,13 +26,11 @@ export default {
             }
         }
 
-        callback(ts = _ts);
+        callback(_ts);
     });
   },
 
   parse(ts, code, options) {
-    options = {...defaultOptions, ...options};
-
     const compilerHost/*: ts.CompilerHost*/ = {
       fileExists: () => true,
       getCanonicalFileName: filename => filename,
@@ -75,7 +56,7 @@ export default {
     }, compilerHost);
 
     const sourceFile = program.getSourceFile(filename);
-    
+
     getComments = (node, isTrailing) => {
       if (node.parent) {
         const nodePos = isTrailing ? node.end : node.pos;
@@ -100,7 +81,7 @@ export default {
 
     return sourceFile;
   },
-  
+
   getNodeName(node) {
     if (node.kind) {
       return syntaxKind[node.kind];
@@ -130,7 +111,7 @@ export default {
       };
       yield {
         value: getComments(node, true),
-        key: 'trailingCommments',
+        key: 'trailingComments',
         computed: true,
       };
     }
@@ -154,13 +135,12 @@ export default {
     );
   },
 
-  renderSettings(parserSettings, onChange) {
-    return (
-      <SettingsRenderer
-        settingsConfiguration={parserSettingsConfiguration}
-        parserSettings={{...defaultOptions, ...parserSettings}}
-        onChange={onChange}
-      />
-    );
+  getDefaultOptions() {
+    return {
+      experimentalDecorators: true,
+      experimentalAsyncFunctions: true,
+      jsx: true,
+    };
   },
+
 };

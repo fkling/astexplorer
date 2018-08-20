@@ -28,7 +28,7 @@ const initialState = {
 
   workbench: {
     parser: defaultParser.id,
-    parserSettings: {},
+    parserSettings: null,
     parseError: null,
     code: defaultParser.category.codeExample,
     keyMap: 'default',
@@ -67,7 +67,7 @@ export function revive(state=initialState) {
     workbench: {
       ...state.workbench,
       initialCode: state.workbench.code,
-      parserSettings: state.parserSettings[state.workbench.parser] || {},
+      parserSettings: state.parserSettings[state.workbench.parser] || null,
       transform: {
         ...state.workbench.transform,
         initialCode: state.workbench.transform.code,
@@ -111,7 +111,7 @@ function workbench(state=initialState.workbench, action, fullState) {
       getDefaultParser(category).id;
     return {
       parser,
-      parserSettings: fullState.parserSettings[parser] || {},
+      parserSettings: fullState.parserSettings[parser] || null,
       code: category.codeExample,
       initialCode: category.codeExample,
     };
@@ -140,7 +140,7 @@ function workbench(state=initialState.workbench, action, fullState) {
         if (action.parser !== state.parser) {
           // Update parser settings
           newState.parserSettings =
-            fullState.parserSettings[action.parser.id] || {};
+            fullState.parserSettings[action.parser.id] || null;
         }
         return newState;
       }
@@ -162,7 +162,7 @@ function workbench(state=initialState.workbench, action, fullState) {
         if (differentParser) {
           newState.parser = action.transformer.defaultParserID;
           newState.parserSettings =
-            fullState.parserSettings[action.transformer.defaultParserID] || {};
+            fullState.parserSettings[action.transformer.defaultParserID] || null;
         }
 
         if (differentTransformer) {
@@ -200,7 +200,7 @@ function workbench(state=initialState.workbench, action, fullState) {
         return {
           ...state,
           parser: parserID,
-          parserSettings: revision.getParserSettings() || fullState.parserSettings[parserID] || {},
+          parserSettings: revision.getParserSettings() || fullState.parserSettings[parserID] || null,
           code: revision.getCode(),
           initialCode: revision.getCode(),
           transform: {
@@ -217,7 +217,7 @@ function workbench(state=initialState.workbench, action, fullState) {
         const reset = Boolean(actions.RESET);
         const newState = {
           ...state,
-          parserSettings: fullState.parserSettings[state.parser] || {},
+          parserSettings: fullState.parserSettings[state.parser] || null,
           code: getParserByID(state.parser).category.codeExample,
           initialCode: getParserByID(state.parser).category.codeExample,
         };

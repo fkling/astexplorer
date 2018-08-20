@@ -5,7 +5,7 @@ extends:
   - plugin:import/warnings
 
 parserOptions:
-  ecmaVersion: 6
+  ecmaVersion: 2018
   sourceType: module
   ecmaFeatures:
     jsx: true
@@ -17,23 +17,24 @@ plugins:
   - require-in-package
 
 rules:
-  comma-dangle: [2, "always-multiline"]
-  new-cap: 0
-  no-path-concat: 0
-  no-undef: 2
-  no-underscore-dangle: 0
+  comma-dangle: ["error", "always-multiline"]
+  new-cap: "off"
+  no-path-concat: "off"
+  no-undef: "error"
+  no-underscore-dangle: "off"
   no-unused-vars:
-    - 1
-    - varsIgnorePattern: '^_'
-  no-use-before-define: 0
-  quotes: [2, "single", "avoid-escape"]
-  strict: 0
-  import/no-unresolved: [2, {commonjs: true, amd: true}]
-  import/named: 2
-  import/default: 2
-  import/namespace: 2
-  import/export: 2
-  require-in-package/require-in-package: 2
+    - "warn"
+    - varsIgnorePattern: "^_"
+      argsIgnorePattern: "^_"
+  no-use-before-define: "off"
+  quotes: ["error", "single", "avoid-escape"]
+  strict: "off"
+  import/no-unresolved: ["error", {commonjs: true, amd: true}]
+  import/named: "error"
+  import/default: "error"
+  import/namespace: "error"
+  import/export: "error"
+  require-in-package/require-in-package: "error"
 
 settings:
   import/resolver: "webpack"

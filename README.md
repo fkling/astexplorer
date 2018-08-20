@@ -13,6 +13,8 @@ The AST explorer provides following code parsers:
   - [postcss][] + [postcss-safe-parser][] & [postcss-scss][]
   - [rework][]
 - [GraphQL][]
+- Graphviz:
+  - [redot][]
 - Handlebars:
   - [glimmer][]
   - [handlebars][]
@@ -123,6 +125,7 @@ node.
 [tslint]: https://palantir.github.io/tslint/
 [uglify-js]: https://github.com/mishoo/UglifyJS2
 [webidl]: https://github.com/darobin/webidl2.js
+[redot]: https://github.com/redotjs/redot
 [remark]: https://github.com/remarkjs/remark
 [regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
 [php-parser]: https://github.com/glayzzle/php-parser
