@@ -1,7 +1,8 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const WebpackChunkHash = require('webpack-chunk-hash');
 const fs = require('fs');
 const path = require('path');
@@ -16,8 +17,6 @@ const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
 const plugins = [
   new WebpackChunkHash(),
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV':
-      JSON.stringify(process.env.NODE_ENV || 'development'),
     'process.env.API_HOST': JSON.stringify(process.env.API_HOST || ''),
   }),
   new webpack.IgnorePlugin(/\.md$/),
@@ -73,29 +72,9 @@ const plugins = [
   // https://github.com/webpack/webpack/issues/198
   new webpack.ContextReplacementPlugin(/eslint/, /NEVER_MATCH^/),
 
-  new ExtractTextPlugin({
-    filename: DEV ? '[name].css' : `[name]-[chunkhash]-${CACHE_BREAKER}.css`,
+  new MiniCssExtractPlugin({
+    filename: DEV ? '[name].css' : `[name]-[contenthash]-${CACHE_BREAKER}.css`,
     allChunks: true,
-  }),
-
-  // Put parser meta data into its own chunk
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'parsermeta',
-    minChunks: module => module.resource && /\/package\.json$/.test(module.resource),
-    chunks: ['app'],
-  }),
-
-  // Put all vendor code into its own chunk
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    minChunks: module => module.resource && vendorRegex.test(module.resource),
-    chunks: ['app'],
-  }),
-
-  // Webpack runtime + manifest
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'manifest',
-    minChunks: Infinity,
   }),
 
   new HtmlWebpackPlugin({
@@ -107,29 +86,46 @@ const plugins = [
   }),
 
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
-  new InlineManifestWebpackPlugin({
-    name: 'webpackManifest',
-  }),
+  new InlineManifestWebpackPlugin(),
   DEV ?
     new webpack.NamedModulesPlugin() :
     new webpack.HashedModuleIdsPlugin(),
   new ProgressBarPlugin(),
-  new webpack.LoaderOptionsPlugin({
-    test: /\.jsx?$/,
-    options: {
-      'uglify-loader': {
-        mangle: {
-          except: ['Plugin', 'Tree', 'JSON'],
-        },
-        compress: {
-          warnings: false,
-        },
-      },
-    },
-  }),
 ];
 
 module.exports = Object.assign({
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        parsermeta: {
+          priority: 10,
+          test: /\/package\.json$/,
+          chunks(chunk) {
+            return chunk.name === 'app';
+          },
+          minChunks: 1,
+          minSize: 1,
+        },
+        vendors: {
+          test: vendorRegex,
+          chunks(chunk) {
+            return chunk.name === 'app';
+          },
+        },
+      },
+    },
+    minimizer: [
+      new UglifyJsPlugin({
+        exclude: /flow_parser\.js|\/php-parser\//,
+        uglifyOptions: {
+          ecma: 8,
+          mangle: false,
+        },
+      }),
+    ],
+  },
+
   module: {
     rules: [
       {
@@ -179,42 +175,31 @@ module.exports = Object.assign({
           babelrc: false,
           presets: [
             [
-              require.resolve('babel-preset-env'),
+              require.resolve('@babel/preset-env'),
               {
                 targets: {
                   browsers: ['defaults'],
                 },
+                modules: 'commonjs',
               },
             ],
-            require.resolve('babel-preset-stage-0'),
-            require.resolve('babel-preset-react'),
+            require.resolve('@babel/preset-react'),
           ],
           plugins: [
-            [
-              require.resolve('babel-plugin-transform-runtime'),
-              // https://github.com/babel/babel/issues/2877 describes an issue
-              // where babel inserts untranspiled import statements into a
-              // module. That module then contains ES6 and CommonJS module code,
-              // leading to issues with webpack. Disabling the polyfill seems
-              // to fix it, and we probably don't need it anyway.
-              // (should also result in smaller bundles)
-              {polyfill: false},
-            ],
+            require.resolve('@babel/plugin-transform-runtime'),
           ],
         },
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: { importLoaders: 1 },
-            },
-            'postcss-loader',
-          ],
-        }),
+        use: [
+          DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
+          },
+          'postcss-loader',
+        ],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -224,24 +209,6 @@ module.exports = Object.assign({
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
       },
-      ...(DEV ? [] : [
-        {
-          test: /\.jsx?$/,
-          // TODO: Figure out how to enable minification for php-parser.
-          // See https://github.com/fkling/astexplorer/pull/253 for more info.
-          exclude: /flow_parser\.js|\/php-parser\//,
-          loader: 'uglify-loader',
-          enforce: 'post',
-          options: {
-            mangle: {
-              except: ['Plugin', 'Tree', 'JSON'],
-            },
-            compress: {
-              warnings: false,
-            },
-          },
-        },
-      ]),
     ],
 
     noParse: [
