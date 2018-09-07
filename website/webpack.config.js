@@ -117,10 +117,9 @@ module.exports = Object.assign({
     },
     minimizer: [
       new UglifyJsPlugin({
-        exclude: /flow_parser\.js|\/php-parser\//,
         uglifyOptions: {
           ecma: 8,
-          mangle: false,
+          keep_fnames: true,
         },
       }),
     ],
