@@ -33,8 +33,23 @@ if git diff --quiet && git diff --cached --quiet; then
   echo "No changes, nothing to commit..."
   exit 0
 fi
-git commit -m"Update site"
+
+exit_code=0
+modified_files=$(git status --short | grep 'M ' | wc -l | tr -d '[:space:]')
+
+if [ "$modified_files" != "1" ]; then
+  echo "More than one file was modified. This probably implies that an existing JS file was updated, which breaks clients because of long term caching. Update the cache breaker instead."
+  echo "Changes in this build:"
+  git status
+  echo "Not committing changes"
+  exit_code=1
+else
+  echo "Commiting changes"
+  git commit -m"Update site"
+fi
+
 popd
 
 rm -rf $TARGETPATH
 git worktree prune
+exit $exit_code
