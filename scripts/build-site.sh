@@ -2,32 +2,42 @@
 
 set -e
 
-BRANCH=${1:-"gh-pages"}
-TARGETPATH="../$(basename $(pwd))_gh-pages"
+BRANCH=${1:-"website-latest"}
+TARGETPATH="../$(basename $(pwd))_$BRANCH"
+WORKING_DIR=$(pwd)
 
 if ! git diff --quiet && git diff --cached --quiet; then
   echo >&2 "Cannot build, your index contains uncommitted changes."
   exit 1
 fi
 
+trap cleanup EXIT
+
+function cleanup {
+  if [ -d $TARGETPATH ]; then
+    echo "Cleaning up worktree"
+    git worktree remove -f $TARGETPATH
+  fi
+  cd $WORKING_DIR
+}
+
 # Initialize worktree
-rm -rf $TARGETPATH
-git worktree prune
 git worktree add $TARGETPATH $BRANCH
 
 echo "Building..."
 rm -rf out/*
-pushd website/
+cd website/
 yarn build
-popd
+cd $WORKING_DIR
+
 echo "Copying artifacts..."
 cp -R out/ "$TARGETPATH/"
 cp README.md "$TARGETPATH/README.md"
 cp CNAME "$TARGETPATH/CNAME"
 
 # Commit changes
-pushd $TARGETPATH
 echo "Committing..."
+cd $TARGETPATH
 git add -A
 if git diff --quiet && git diff --cached --quiet; then
   echo "No changes, nothing to commit..."
@@ -48,8 +58,4 @@ else
   git commit -m"Update site"
 fi
 
-popd
-
-rm -rf $TARGETPATH
-git worktree prune
 exit $exit_code
