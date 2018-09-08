@@ -15,4 +15,4 @@ for i in {5..1}; do
 done
 
 echo "\nPushing..."
-git push -f $REMOTE $BRANCH
+git push $REMOTE $BRANCH
