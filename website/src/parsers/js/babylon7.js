@@ -2,26 +2,39 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon7/babylon-package';
 
 const availablePlugins = [
+  // From https://babeljs.io/docs/en/next/babel-parser.html
+
+  // Miscellaneous
+  'estree',
+
+  // Language extensions
+  'flow',
+  'flowComments',
+  'jsx',
+  'typescript',
+
+  // ECMAScript Proposals
   'asyncGenerators',
+  'bigInt',
   'classProperties',
   'classPrivateProperties',
+  'classPrivateMethods',
   'decorators',
   'doExpressions',
-  'estree',
-  'exportExtensions',
-  'flow',
-  'functionSent',
-  'functionBind',
-  'jsx',
-  'objectRestSpread',
   'dynamicImport',
-  'numericSeparator',
-  'optionalChaining',
+  'exportDefaultFrom',
+  'exportNamespaceFrom',
+  'functionBind',
+  'functionSent',
   'importMeta',
-  'typescript',
-  'bigInt',
+  'logicalAssignment',
+  'nullishCoalescingOperator',
+  'numericSeparator',
+  'objectRestSpread',
   'optionalCatchBinding',
+  'optionalChaining',
   'pipelineOperator',
+  'throwExpressions',
 ];
 
 const ID = 'babylon7';
@@ -81,6 +94,19 @@ export default {
   },
 
   parse(babylon, code, options) {
+    options = {...options};
+    // TODO: Make decoratorsBeforeExport settable through settings somhow
+    // TODO: Make pipelineOperator.proposal settable through settings somhow
+    options.plugins = options.plugins.map(plugin => {
+      switch (plugin) {
+        case 'decorators':
+          return ['decorators', {decoratorsBeforeExport: false}];
+        case 'pipelineOperator':
+          return ['pipelineOperator', {proposal: 'minimal'}];
+        default:
+          return plugin;
+      }
+    });
     return babylon.parse(code, options);
   },
 

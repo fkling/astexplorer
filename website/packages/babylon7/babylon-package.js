@@ -1,1 +1,1 @@
-module.exports = require('babylon/package.json');
+module.exports = require('@babel/parser/package.json');
