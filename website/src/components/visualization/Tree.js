@@ -34,6 +34,7 @@ export default class Tree extends React.Component {
             />
             Autofocus
           </label>
+          &#8203;
           <label>
             <input
               type="checkbox"
@@ -42,6 +43,7 @@ export default class Tree extends React.Component {
             />
             Hide methods
           </label>
+          &#8203;
           <label>
             <input
               type="checkbox"
@@ -50,21 +52,23 @@ export default class Tree extends React.Component {
             />
             Hide empty keys
           </label>
+          &#8203;
           <label>
             <input
               type="checkbox"
               checked={this.state.hideLocationData}
               onChange={this._setOption.bind(this, 'hideLocationData')}
             />
-          Hide location data
+            Hide location data
           </label>
+          &#8203;
           <label>
             <input
               type="checkbox"
               checked={this.state.hideTypeKeys}
               onChange={this._setOption.bind(this, 'hideTypeKeys')}
             />
-          Hide type keys
+            Hide type keys
           </label>
         </div>
         <ul onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>

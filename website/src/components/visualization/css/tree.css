@@ -13,6 +13,7 @@
   margin-right: 5px;
   -webkit-touch-callout: none;
   user-select: none;
+  white-space: nowrap;
 }
 
 .tree-visualization ul {
