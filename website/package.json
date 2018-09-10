@@ -52,6 +52,7 @@
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.3",
     "babel-eslint8": "file:packages/babel-eslint8",
+    "babel-eslint9": "file:packages/babel-eslint9",
     "babel-plugin-macros": "^2.2.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",

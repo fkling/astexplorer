@@ -1314,6 +1314,11 @@ babel-core@^6.2.0, babel-core@^6.24.0, babel-core@^6.26.0:
   dependencies:
     babel-eslint "8.2.5"
 
+"babel-eslint9@file:packages/babel-eslint9":
+  version "1.0.0"
+  dependencies:
+    babel-eslint "^9.0.0"
+
 babel-eslint@8.2.5:
   version "8.2.5"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-8.2.5.tgz#dc2331c259d36782aa189da510c43dedd5adc7a3"
@@ -1333,6 +1338,17 @@ babel-eslint@^7.2.3:
     babel-traverse "^6.23.1"
     babel-types "^6.23.0"
     babylon "^6.17.0"
+
+babel-eslint@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-9.0.0.tgz#7d9445f81ed9f60aff38115f838970df9f2b6220"
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/parser" "^7.0.0"
+    "@babel/traverse" "^7.0.0"
+    "@babel/types" "^7.0.0"
+    eslint-scope "3.7.1"
+    eslint-visitor-keys "^1.0.0"
 
 babel-generator@7.0.0-beta.3:
   version "7.0.0-beta.3"
@@ -3316,7 +3332,7 @@ eslint-plugin-require-in-package@^1.0.3:
     findup-sync "^0.3.0"
     is-builtin-module "^1.0.0"
 
-eslint-scope@^3.7.1:
+eslint-scope@3.7.1, eslint-scope@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
   dependencies:
