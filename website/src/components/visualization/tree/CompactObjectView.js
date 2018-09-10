@@ -10,7 +10,7 @@ export default function CompactObjectView({keys, onClick}) {
     }
     return (
       <span>
-        <span className="p">{' {'}</span>
+        <span className="p">{'{'}</span>
         <span className="compact placeholder ge" onClick={onClick}>
           {keys.join(', ')}
         </span>

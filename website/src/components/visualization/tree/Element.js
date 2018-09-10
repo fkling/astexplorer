@@ -202,7 +202,7 @@ let Element = class extends React.Component {
         if (nodeName) {
           valueOutput =
             <span className="tokenName nc" onClick={this._toggleClick}>
-              {nodeName}
+              {nodeName}{' '}
               {lastClickedElement === this ?
                 <span className="ge" style={{fontSize: '0.8em'}}>
                   {' = $node'}
@@ -295,7 +295,7 @@ let Element = class extends React.Component {
             this.props.name
           }
         </span>
-        <span className="p">: </span>
+        <span className="p">:&nbsp;</span>
       </span> :
       null;
 
@@ -315,7 +315,7 @@ let Element = class extends React.Component {
         <span className="value">
           {valueOutput}
         </span>
-        {prefix ? <span className="prefix p"> {prefix}</span> : null}
+        {prefix ? <span className="prefix p">&nbsp;{prefix}</span> : null}
         {content}
         {suffix ? <div className="suffix p">{suffix}</div> : null}
         {this.state.error  ?
