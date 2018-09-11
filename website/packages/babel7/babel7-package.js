@@ -1,1 +1,1 @@
-module.exports = require('babel-core/package.json');
+module.exports = require('@babel/core/package.json');

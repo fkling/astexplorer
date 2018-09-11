@@ -1,1 +1,1 @@
-module.exports = require('babel-core');
+module.exports = require('@babel/core');
