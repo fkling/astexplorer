@@ -26,7 +26,7 @@ git worktree add $TARGETPATH $STABLE_BRANCH
 cd $TARGETPATH
 
 echo "Merging $LATEST_BRANCH into $STABLE_BRANCH..."
-git merge --squash $LATEST_BRANCH
+git merge --squash --strategy-option=theirs $LATEST_BRANCH
 
 if ! git diff --cached --quiet; then
   git commit -m"Publish"
