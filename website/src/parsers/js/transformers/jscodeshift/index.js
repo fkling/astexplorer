@@ -14,7 +14,7 @@ export default {
   defaultParserID: 'recast',
 
   loadTransformer(callback) {
-    require(['jscodeshift'], jscodeshift => {
+    require(['../../../transpilers/babel', 'jscodeshift'], (transpile, jscodeshift) => {
         const { registerMethods } = jscodeshift;
 
         let origMethods;
@@ -37,17 +37,18 @@ export default {
           }
         };
 
-        callback({jscodeshift});
+        callback({ transpile: transpile.default, jscodeshift });
       }
     );
   },
 
   transform(
-    {jscodeshift},
+    { transpile, jscodeshift },
     transformCode,
     code
   ) {
     sessionMethods.clear();
+    transformCode = transpile(transformCode);
     const transformModule = compileModule( // eslint-disable-line no-shadow
       transformCode
     );

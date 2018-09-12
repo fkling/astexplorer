@@ -12,13 +12,26 @@ export default {
   defaultParserID: 'typescript',
 
   loadTransformer(callback) {
-    require(['tslint/lib/index'], tslint => callback({tslint}));
+    require([
+      '../../../transpilers/typescript',
+      'tslint/lib/index',
+      'typescript',
+    ],
+    (
+      transpile,
+      tslint,
+      typescript
+    ) => callback({transpile: transpile.default, tslint, typescript}));
   },
 
-  transform({ tslint }, transformCode, code) {
+  transform({ transpile, tslint, typescript }, transformCode, code) {
+    transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode,
-      { Lint: tslint }
+      {
+        Lint: tslint,
+        ts: typescript,
+      }
     );
 
     let linter = new tslint.Linter({});
