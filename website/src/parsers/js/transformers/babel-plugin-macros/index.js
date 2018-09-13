@@ -33,7 +33,7 @@ export default {
           'asyncGenerators',
           'classPrivateProperties',
           'classProperties',
-          'decorators',
+          ['decorators', { decoratorsBeforeExport: false }],
           'doExpressions',
           'exportExtensions',
           'flow',
