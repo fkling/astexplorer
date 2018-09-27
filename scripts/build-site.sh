@@ -29,7 +29,7 @@ function build {
   echo "Building..."
   rm -rf out/*
   cd website/
-  yarn build
+  yarn && yarn build
   cd $WORKING_DIR
 
   echo "Copying artifacts..."
