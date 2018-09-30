@@ -95,12 +95,14 @@ export default class Editor extends React.Component {
 
     this._bindCMHandler('blur', instance => {
       if (!this.props.enableFormatting) return;
-      require(['prettier'], prettier => {
+
+      require(['prettier/standalone', 'prettier/parser-babylon'], (prettier, babylon) => {
         const currValue = instance.doc.getValue();
         const options = Object.assign({},
           defaultPrettierOptions,
           {
             printWidth: instance.display.maxLineLength,
+            plugins: [babylon],
           });
         instance.doc.setValue(prettier.format(currValue, options));
       });
