@@ -137,11 +137,14 @@ module.exports = Object.assign({
         loader: 'raw-loader',
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(jsx?|mjs)$/,
+        type: 'javascript/auto',
         include: [
           // To transpile our version of acorn as well as the one that
           // espree uses (somewhere in its dependency tree)
           /\/acorn.es.js$/,
+          /\/acorn.mjs$/,
+          /\/acorn-loose.mjs$/,
           path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
@@ -221,6 +224,7 @@ module.exports = Object.assign({
       /traceur\/bin/,
       /typescript\/lib/,
       /acorn\/dist\/acorn\.js/,
+      /acorn\/dist\/acorn\.mjs/,
       /esprima\/dist\/esprima\.js/,
       /esprima-fb\/esprima\.js/,
       // This is necessary because flow is trying to load the 'fs' module, but
