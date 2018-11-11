@@ -112,7 +112,7 @@
     "redux-batched-actions": "^0.2.0",
     "redux-saga": "^0.15.3",
     "regexp-tree": "^0.0.65",
-    "remark": "^9.0.0",
+    "remark": "^10.0.0",
     "reselect": "^3.0.1",
     "scalameta-parsers": "^2.0.0-RC3",
     "shift-parser": "^5.0.2",
