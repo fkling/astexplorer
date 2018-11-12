@@ -4,7 +4,7 @@ import {parseNoPatch} from 'babel-eslint';
 
 export function formatResults(results) {
   return results.length === 0
-    ? 'Lint rule not fired.'
+    ? '// Lint rule not fired.'
     : results.map(formatResult).join('').trim();
 }
 
@@ -25,14 +25,17 @@ export function defineRule(eslint, code) {
     eslint.defineRule('astExplorerRule', rule.default || rule);
 }
 
-export function runRule(code, eslint, sourceCode) {
+export function runRule(code, eslint) {
   // Run the ESLint rule on the AST of the provided code.
   // Reference: http://eslint.org/docs/developer-guide/nodejs-api
-  const ast = parseNoPatch(code, {
-    sourceType: 'module',
+  eslint.defineParser('babel-eslint', {
+    parse(code) {
+      return parseNoPatch(code, { sourceType: 'module' });
+    },
   });
-  const results = eslint.verify(new sourceCode(code, ast), {
+  const results = eslint.verifyAndFix(code, {
     env: {es6: true},
+    parser: 'babel-eslint',
     parserOptions: {
       ecmaVersion: 8,
       sourceType: 'module',
@@ -42,5 +45,11 @@ export function runRule(code, eslint, sourceCode) {
       astExplorerRule: 2,
     },
   });
-  return formatResults(results);
+  let output = formatResults(results.messages);
+  output += `
+
+// Fixed output follows:
+// ${ '-'.repeat(80) }
+`;
+  return output + results.output;
 }
