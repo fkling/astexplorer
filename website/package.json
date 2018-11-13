@@ -79,7 +79,7 @@
     "eslint4": "file:packages/eslint4",
     "espree": "^3.1.0",
     "esprima": "^4.0.0",
-    "flow-parser": "^0.79.1",
+    "flow-parser": "^0.86.0",
     "font-awesome": "^4.5.0",
     "glsl-parser": "^2.0.0",
     "glsl-tokenizer": "^2.1.2",
