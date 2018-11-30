@@ -77,7 +77,7 @@
     "eslint2": "file:packages/eslint2",
     "eslint3": "file:packages/eslint3",
     "eslint4": "file:packages/eslint4",
-    "espree": "^3.1.0",
+    "espree": "^4.1.0",
     "esprima": "^4.0.0",
     "flow-parser": "^0.86.0",
     "font-awesome": "^4.5.0",
