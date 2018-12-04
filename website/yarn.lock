@@ -6030,7 +6030,7 @@ lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, l
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   integrity sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
 
-lodash@^4.17.10:
+lodash@^4.17.10, lodash@^4.17.11:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -8732,10 +8732,20 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-eslint-parser@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/typescript-eslint-parser/-/typescript-eslint-parser-15.0.0.tgz#882fd3d7aabffbab0a7f98d2a59fb9a989c2b37f"
-  integrity sha512-MMmSBcCaV5je+6DNinfnI2S6uwXSR6/TWR2phyzevqWDQKykobHc+f5eLDqK2sUpdg3T1Msd880o/xnRpAbG9Q==
+typescript-eslint-parser@^21.0.1:
+  version "21.0.1"
+  resolved "https://registry.yarnpkg.com/typescript-eslint-parser/-/typescript-eslint-parser-21.0.1.tgz#710ea628a72144e1ec3a1d6b9f5b2b0a5a520e04"
+  integrity sha512-rdtAzg0eTTv/+YRLBJZBAAuOHHyYiElE2HdkaOGf9kKGce811zP3JRPzDybCJQamdsxyEsMe6CyIk2JCEnw/4g==
+  dependencies:
+    eslint-scope "^4.0.0"
+    eslint-visitor-keys "^1.0.0"
+    lodash "^4.17.11"
+    typescript-estree "5.0.0"
+
+typescript-estree@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/typescript-estree/-/typescript-estree-5.0.0.tgz#6aaa33b96abf5edce165099630e2ccd997a95609"
+  integrity sha512-/FHoH7ECP+Y6CLS7MdRD0Hu7b3HgsD7k6ArNWgoXK3fW0eSZGj+t04Mf4aQ6EBj04WoHALkReYMfGbTzaDPKEg==
   dependencies:
     lodash.unescape "4.0.1"
     semver "5.5.0"

@@ -123,7 +123,7 @@
     "traceur": "0.0.111",
     "tslint": "5.8.0",
     "typescript": "~2.8.3",
-    "typescript-eslint-parser": "^15.0.0",
+    "typescript-eslint-parser": "^21.0.1",
     "uglify-es": "^3.0.28",
     "webidl2": "^8.1.0",
     "yaml-ast-parser": "^0.0.39"
