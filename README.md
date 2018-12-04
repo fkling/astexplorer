@@ -41,6 +41,8 @@ The AST explorer provides following code parsers:
   - [luaparse][]
 - Markdown:
   - [remark][]
+- [MDX][]:
+  - [mdxhast][]
 - PHP
   - [php-parser][]
 - Regular Expressions:
@@ -76,6 +78,8 @@ are included so you can prototype your own plugins:
   - [tslint][]
 - CSS
   - [postcss][]
+- MDX
+  - [mdx][]
 - Regular Expressions
   - [regexp-tree][]
 - Handlebars
@@ -136,6 +140,9 @@ node.
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/mulesoft-labs/yaml-ast-parser
 [esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
+[MDX]: https://mdxjs.com/
+[mdxhast]: https://mdxjs.com/advanced/ast#mdxhast
+[mdx]: https://mdxjs.com/advanced/sync-api
 [Scalameta]: http://scalameta.org/
 
 ### Contributions
