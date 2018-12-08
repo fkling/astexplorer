@@ -21,6 +21,7 @@ The AST explorer provides following code parsers:
 - HTML:
   - [htmlparser2][]
   - [parse5][]
+  - [angular][]
 - [ICU][]
 - JavaScript:
   - [acorn][] + [acorn-jsx][]
@@ -98,6 +99,7 @@ node.
 
 [acorn-jsx]: https://github.com/RReverser/acorn-jsx
 [acorn]: https://github.com/ternjs/acorn
+[angular]: https://angular.io/
 [babel-eslint]: https://github.com/babel/babel-eslint
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [babylon]: https://babeljs.io/
