@@ -26,6 +26,7 @@ The AST explorer provides following code parsers:
   - [acorn][] + [acorn-jsx][]
   - [babel-eslint][]
   - [babylon][]
+  - [cherow][]
   - [espree][]
   - [esformatter][]
   - [esprima][]
@@ -107,6 +108,7 @@ node.
 [babel-eslint]: https://github.com/babel/babel-eslint
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [babylon]: https://babeljs.io/
+[cherow]: https://github.com/cherow/cherow/tree/master/packages/cherow
 [cssom]: https://github.com/NV/CSSOM
 [csstree]: https://github.com/csstree/csstree
 [escodegen]: https://github.com/estools/escodegen
