@@ -28,9 +28,10 @@ function build {
 
   echo "Building..."
   rm -rf out/*
-  cd website/
-  yarn && yarn build
-  cd $WORKING_DIR
+  (
+    cd website/
+    yarn && yarn build
+  )
 
   echo "Copying artifacts..."
   cp -R out/ "$TARGETPATH/"
@@ -45,7 +46,7 @@ function build {
     exit 0
   fi
 
-  modified_files=$(git status --short | grep 'M ' | wc -l | tr -d '[:space:]')
+  modified_files=$(git status --short | grep 'M ' | grep -v README |  wc -l | tr -d '[:space:]')
 
   if [ "$modified_files" != "1" ]; then
     echo "More than one file was modified. This probably implies that an existing JS file was updated, which breaks clients because of long term caching. Update the cache breaker instead."
