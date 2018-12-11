@@ -61,6 +61,20 @@ function getNodeName(node) {
   return node.constructor && node.constructor.name;
 }
 
+/**
+ * Locations from sub AST are counted from that part of string,
+ * we need to fix them to make autofocus work.
+ *
+ * Before:
+ *
+ *     <tag [attr]="expression">
+ *                  ^^^^^^^^^^ sub AST { start: 0, end: 10 }
+ *
+ * After:
+ *
+ *     <tag [attr]="expression">
+ *                  ^^^^^^^^^^ sub AST { start: 13, end: 23 }
+ */
 function fixSpan(ast, code) {
   const KEEP_VISIT = 1;
   function visitTarget(value, isTarget, fn, parent) {
