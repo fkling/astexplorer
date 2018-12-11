@@ -9536,6 +9536,11 @@ yaml-ast-parser@^0.0.39:
   resolved "https://registry.yarnpkg.com/yaml-ast-parser/-/yaml-ast-parser-0.0.39.tgz#7a05f28c38310c001d725306d47f074afe166e01"
   integrity sha1-egXyjDgxDAAdclMG1H8HSv4WbgE=
 
+yaml@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.0.3.tgz#6eed55f60edb3ac1402283fba94c91b6a0a026f7"
+  integrity sha512-GDYiMkQRa1894pgIQTIK5CGEpcjbozJb0IcSJ3WYoGyA9kZupfpRQxpSYFYfFHFKxlkaN4GgnhEF88J/VelC5A==
+
 yargs-parser@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-10.1.0.tgz#7202265b89f7e9e9f2e5765e0fe735a905edbaa8"

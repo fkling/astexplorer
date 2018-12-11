@@ -52,7 +52,9 @@ The AST explorer provides following code parsers:
 - SQL:
   - [sqlite-parser][]
 - [WebIDL][]
-- [YAML][]
+- YAML:
+  - [yaml][]
+  - [yaml-ast-parser][]
 
 ### Experimental / custom syntax
 
@@ -138,7 +140,8 @@ node.
 [icu]: https://github.com/yahoo/intl-messageformat-parser
 [json]: https://github.com/vtrushin/json-to-ast
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
-[yaml]: https://github.com/mulesoft-labs/yaml-ast-parser
+[yaml]: https://github.com/eemeli/yaml
+[yaml-ast-parser]: https://github.com/mulesoft-labs/yaml-ast-parser
 [esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
 [MDX]: https://mdxjs.com/
 [mdxhast]: https://mdxjs.com/advanced/ast#mdxhast
