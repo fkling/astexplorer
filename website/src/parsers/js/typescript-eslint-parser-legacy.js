@@ -1,7 +1,7 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from '@typescript-eslint/parser/package.json';
+import pkg from 'typescript-eslint-parser/package.json';
 
-const ID = '@typescript-eslint/parser';
+const ID = 'typescript-eslint-parser';
 
 export default {
   ...defaultParserInterface,
@@ -9,11 +9,11 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage || 'https://typescript-eslint.io/',
+  homepage: pkg.homepage,
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['@typescript-eslint/parser'], callback);
+    require(['typescript-eslint-parser'], callback);
   },
 
   parse(parser, code, options) {
@@ -26,6 +26,7 @@ export default {
       loc: false,
       tokens: false,
       comment: false,
+      tolerant: false,
       useJSXTextNode: false,
 
       ecmaFeatures: {
@@ -41,6 +42,7 @@ export default {
         'loc',
         'tokens',
         'comment',
+        'tolerant',
         'useJSXTextNode',
         {
           key: 'ecmaFeatures',
