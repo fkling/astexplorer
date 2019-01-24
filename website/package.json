@@ -109,7 +109,7 @@
     "pubsub-js": "^1.4.2",
     "query-string": "^4.3.4",
     "react": "16",
-    "react-dom": "16",
+    "react-dom": "^16.0.1",
     "react-redux": "^5.0.1",
     "recast": "^0.14.7",
     "redot": "^0.4.0",
