@@ -28,9 +28,21 @@ export default {
     const jsxCode = mdx.sync(code, {
       ...(transform.default || transform),
     });
-    return prettier.format(jsxCode, {
-      parser: 'babylon',
-      plugins: [babylon],
-    });
+    try {
+      return prettier.format(jsxCode, {
+        parser: 'babylon',
+        plugins: [babylon],
+      });
+    } catch (err) {
+      return `
+${err.message}
+
+------------
+Full output:
+------------
+
+${jsxCode.trim()}
+`.trim();
+    }
   },
 };
