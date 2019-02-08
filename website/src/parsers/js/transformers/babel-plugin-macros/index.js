@@ -59,7 +59,7 @@ export default {
       generatorOpts: {
         generator: recast.print,
       },
-      plugins: [macro(babel, {require: () => transform})],
+      plugins: [macro(babel, {require: () => transform, resolvePath: src => src})],
       sourceMaps: true,
     });
   },
