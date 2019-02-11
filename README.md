@@ -51,6 +51,8 @@ The AST explorer provides following code parsers:
   - [regexp-tree][]
 - Scala
   - [Scalameta][]
+- Solidity:
+  - [solidity-parser-antlr][]
 - SQL:
   - [sqlite-parser][]
 - [WebIDL][]
@@ -151,6 +153,7 @@ node.
 [mdxhast]: https://mdxjs.com/advanced/ast#mdxhast
 [mdx]: https://mdxjs.com/advanced/sync-api
 [Scalameta]: http://scalameta.org/
+[solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
 
 ### Contributions
 
