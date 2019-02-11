@@ -31,7 +31,7 @@ export default {
     return {
       range: true,
       loc: false,
-      tolerant: false
+      tolerant: false,
     };
   },
 
@@ -40,10 +40,10 @@ export default {
       fields: [
         'range',
         'loc',
-        'tolerant'
-      ]
+        'tolerant',
+      ],
     };
-  }
+  },
 
 };
 
