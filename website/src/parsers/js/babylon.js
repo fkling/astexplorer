@@ -41,6 +41,7 @@ export default {
       allowReserved: false,
       allowReturnOutsideFunction: false,
       strictMode: false,
+      tokens: false,
 
       features: {
         'es7.asyncFunctions': true,
@@ -64,6 +65,7 @@ export default {
         'allowReserved',
         'allowReturnOutsideFunction',
         'strictMode',
+        'tokens',
         {
           key: 'features',
           title: 'Features',

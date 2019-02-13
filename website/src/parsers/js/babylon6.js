@@ -22,6 +22,7 @@ export const defaultOptions = {
   sourceType: 'module',
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
+  tokens: false,
   plugins: [
     'asyncGenerators',
     'classConstructorCall',
@@ -43,6 +44,7 @@ export const parserSettingsConfiguration = {
     ['sourceType', ['module', 'script']],
     'allowReturnOutsideFunction',
     'allowImportExportEverywhere',
+    'tokens',
     {
       key: 'plugins',
       title: 'Plugins',
