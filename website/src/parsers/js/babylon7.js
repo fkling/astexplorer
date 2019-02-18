@@ -43,6 +43,7 @@ export const defaultOptions = {
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
   ranges: false,
+  tokens: false,
   plugins: [
     'asyncGenerators',
     'classProperties',
@@ -67,6 +68,7 @@ export const parserSettingsConfiguration = {
     'allowReturnOutsideFunction',
     'allowImportExportEverywhere',
     'ranges',
+    'tokens',
     {
       key: 'plugins',
       title: 'Plugins',

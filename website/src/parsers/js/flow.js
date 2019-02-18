@@ -9,6 +9,7 @@ export const defaultOptions = {
   esproposal_export_star_as: true,
   esproposal_optional_chaining: true,
   esproposal_nullish_coalescing: true,
+  tokens: false,
   types: true,
 };
 export const parserSettingsConfiguration = {
@@ -19,6 +20,7 @@ export const parserSettingsConfiguration = {
     'esproposal_export_star_as',
     'esproposal_optional_chaining',
     'esproposal_nullish_coalescing',
+    'tokens',
     'types',
   ],
 };
