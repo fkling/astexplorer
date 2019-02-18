@@ -121,6 +121,7 @@
     "reselect": "^3.0.1",
     "scalameta-parsers": "^2.0.0-RC3",
     "shift-parser": "^5.0.2",
+    "solidity-parser-antlr": "^0.4.0",
     "source-map": "^0.6.1",
     "sqlite-parser": "^1.0.0-rc3",
     "tern": "^0.20.0",
