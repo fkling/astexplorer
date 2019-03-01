@@ -27,6 +27,8 @@ export default {
       tokens: false,
       comment: false,
       useJSXTextNode: false,
+      ecmaVersion: 6,
+      sourceType: 'module',
 
       ecmaFeatures: {
         jsx: true,
@@ -37,6 +39,8 @@ export default {
   _getSettingsConfiguration(defaultOptions) {
     return {
       fields: [
+        ['ecmaVersion', [3, 5, 6, 7, 8, 9], value => Number(value)],
+        ['sourceType', ['script', 'module']],
         'range',
         'loc',
         'tokens',
