@@ -97,7 +97,8 @@ function fixSpan(ast, code) {
   function getBaseStart(parent) {
     const nodeName = getNodeName(parent);
     switch (nodeName) {
-      case 'BoundAttribute': {
+      case 'BoundAttribute':
+      case 'BoundEvent': {
         let offset = parent.sourceSpan.start.offset;
         while (code[offset++] !== '=');
         if (code[offset] === "'" || code[offset] === '"') offset++;
