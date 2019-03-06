@@ -13,11 +13,11 @@ export default {
   locationProps: new Set(['source']),
 
   loadParser(callback) {
-    require(['postcss/lib/parse', 'postcss-scss/lib/scss-parse', 'postcss-less/dist/less-parse', 'postcss-safe-parser'], (builtIn, scss, less, safe) => {
+    require(['postcss/lib/parse', 'postcss-scss/lib/scss-parse', 'postcss-less/lib/', 'postcss-safe-parser'], (builtIn, scss, less, safe) => {
       callback({
         'built-in': builtIn,
         scss,
-        less,
+        less: less.parse,
         'safe-parser': safe,
       });
     });

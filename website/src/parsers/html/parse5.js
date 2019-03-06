@@ -10,13 +10,13 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
-  locationProps: new Set(['__location']),
+  locationProps: new Set(['sourceCodeLocation']),
 
   loadParser(callback) {
     require([
       'parse5/lib/parser',
-      'parse5/lib/tree_adapters/default',
-      'parse5/lib/tree_adapters/htmlparser2',
+      'parse5/lib/tree-adapters/default',
+      'parse5-htmlparser2-tree-adapter',
     ], (Parser, defaultAdapter, htmlparser2Adapter) => {
       callback({
         Parser,
@@ -32,19 +32,21 @@ export default {
     this.options = options;
     return new Parser({
       treeAdapter: TreeAdapters[this.options.treeAdapter],
-      locationInfo: true,
+      sourceCodeLocationInfo: true,
     }).parse(code);
   },
 
   getNodeName(node) {
     if (this.options.treeAdapter === 'htmlparser2') {
-      return node.type + (node.name && node.type !== 'root' ? `(${node.name})` : '');
+      if (node.type) {
+        return node.type + (node.name && node.type !== 'root' ? `(${node.name})` : '');
+      }
     } else {
       return node.nodeName;
     }
   },
 
-  nodeToRange({ __location: loc }) {
+  nodeToRange({ sourceCodeLocation: loc }) {
     if (loc) {
       return [loc.startOffset, loc.endOffset];
     }
@@ -60,7 +62,7 @@ export default {
     };
   },
 
-  getParserSettingsConfiguration() {
+  _getSettingsConfiguration() {
     return {
       fields : [
         ['treeAdapter', ['default', 'htmlparser2']],

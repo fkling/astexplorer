@@ -63,4 +63,3 @@ interface DataView {
                     double value,
                     optional boolean littleEndian);
 };
-DataView implements ArrayBufferView;
