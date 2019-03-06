@@ -247,7 +247,6 @@ module.exports = Object.assign({
 
   entry: {
     app: './src/app.js',
-    style: './css/style.css',
   },
 
   output: {

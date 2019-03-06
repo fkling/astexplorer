@@ -26,6 +26,7 @@ import {render} from 'react-dom';
 import * as gist from './storage/gist';
 import * as parse from './storage/parse';
 import StorageHandler from './storage';
+import '../css/style.css';
 
 function resize() {
   PubSub.publish('PANEL_RESIZE');
