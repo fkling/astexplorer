@@ -14,7 +14,6 @@ export default {
 
   loadParser(callback) {
     require(['vue-template-compiler/browser'], callback);
-
   },
 
   parse(parser, code, options) {
