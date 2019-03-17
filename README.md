@@ -22,6 +22,7 @@ The AST explorer provides following code parsers:
   - [htmlparser2][]
   - [parse5][]
   - [@angular/compiler][]
+  - [vue-template-compiler][]
 - [ICU][]
 - JavaScript:
   - [acorn][] + [acorn-jsx][]
@@ -154,6 +155,7 @@ node.
 [mdx]: https://mdxjs.com/advanced/sync-api
 [Scalameta]: http://scalameta.org/
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
+[vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
 
 ### Contributions
 
