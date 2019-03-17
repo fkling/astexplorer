@@ -41,7 +41,7 @@ export default {
   getDefaultOptions() {
     return {
       outputSourceRange: true,
-      whitespace: 'preserve'
+      whitespace: 'preserve',
     };
   },
   _ignoredProperties: new Set(['parent']),
