@@ -53,6 +53,7 @@
     "acorn-jsx": "^5.0.1",
     "acorn-loose": "^6.0.0",
     "acorn-to-esprima": "^1.0.2",
+    "astexplorer-syn": "^0.15.30",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.3",
     "babel-eslint8": "file:packages/babel-eslint8",
