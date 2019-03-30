@@ -19,10 +19,6 @@ export default {
     return sqliteParser(code);
   },
 
-  getNodeName(node) {
-    return node.type;
-  },
-
   opensByDefault(node, key) {
     return key === 'statement';
   },

@@ -22,10 +22,6 @@ export default {
     }));
   },
 
-  getNodeName(node) {
-    return node.type;
-  },
-
   nodeToRange({ loc }) {
     if (loc && loc.start && loc.end) {
       return [loc.start.offset, loc.end.offset];
