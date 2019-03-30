@@ -12,8 +12,9 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage || 'https://www.npmjs.com/package/yaml-ast-parser',
 
-  _ignoredProperties: new Set(['parent', 'errors', 'kind']),
+  _ignoredProperties: new Set(['parent', 'errors']),
   locationProps: new Set(['startPosition', 'endPosition']),
+  typeProps: new Set(['kind']),
 
   nodeToRange(node) {
     if (typeof node.startPosition === 'number') {

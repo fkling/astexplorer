@@ -20,6 +20,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['loc']),
+  typeProps: new Set(['kind']),
 
   loadParser(callback) {
     require(['php-parser'], callback);

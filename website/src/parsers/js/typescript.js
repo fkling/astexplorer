@@ -15,6 +15,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['pos', 'end']),
+  typeProps: new Set(['kind']),
 
   loadParser(callback) {
     require(['typescript'], _ts => {
@@ -89,7 +90,6 @@ export default {
   },
 
   _ignoredProperties: new Set([
-    'constructor',
     'parent',
   ]),
 

@@ -16,6 +16,7 @@ export default {
     'startSourceSpan',
     'endSourceSpan',
   ]),
+  typeProps: new Set(['name']),
 
   loadParser(callback) {
     require(['@angular/compiler'], callback);

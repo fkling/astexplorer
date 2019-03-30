@@ -12,6 +12,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['start', 'end']),
+  typeProps: new Set(['TYPE']),
 
   loadParser(callback) {
     require([

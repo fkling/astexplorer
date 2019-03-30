@@ -11,6 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['start', 'end']),
+  typeProps: new Set(['tag']),
 
   loadParser(callback) {
     require(['vue-template-compiler/browser'], callback);
