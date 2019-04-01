@@ -48,7 +48,13 @@ export default {
     }
   },
 
-  getNodeName,
+  getNodeName(node) {
+    let name = getNodeCtor(node);
+    if (node.name) {
+      name += `(${node.name})`;
+    }
+    return name;
+  },
 
   getDefaultOptions() {
     return {
@@ -57,7 +63,7 @@ export default {
   },
 };
 
-function getNodeName(node) {
+function getNodeCtor(node) {
   return node.constructor && node.constructor.name;
 }
 
@@ -95,7 +101,7 @@ function fixSpan(ast, code) {
   }
 
   function getBaseStart(parent) {
-    const nodeName = getNodeName(parent);
+    const nodeName = getNodeCtor(parent);
     switch (nodeName) {
       case 'BoundAttribute':
       case 'BoundEvent': {
@@ -113,7 +119,7 @@ function fixSpan(ast, code) {
 
   visitTarget(
     ast,
-    value => getNodeName(value) === 'ASTWithSource',
+    value => getNodeCtor(value) === 'ASTWithSource',
     (node, parent) => {
       const baseStart = getBaseStart(parent);
       visitTarget(
