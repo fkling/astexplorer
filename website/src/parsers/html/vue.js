@@ -31,11 +31,7 @@ export default {
   },
 
   getNodeName(node) {
-    let nodeName = node.tag;
-    if (nodeName && node.name) {
-      nodeName += `(${node.name})`;
-    }
-    return nodeName;
+    return node.tag;
   },
 
   getDefaultOptions() {
