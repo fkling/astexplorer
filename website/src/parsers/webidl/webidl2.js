@@ -10,6 +10,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage || 'https://github.com/w3c/webidl2.js',
+  typeProps: new Set(['name', 'type', 'idlType', 'escapedName']),
 
   getNodeName(node) {
     if (node.name) {

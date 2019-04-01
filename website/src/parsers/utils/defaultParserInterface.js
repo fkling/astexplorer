@@ -51,6 +51,12 @@ export default {
   locationProps: new Set(),
 
   /**
+   * Those properties of an AST node (object) that provide node name
+   * so that they can be hidden in the UI if the option is selected.
+   */
+  typeProps: new Set(['type']),
+
+  /**
    * Whether or not the provided node should be automatically expanded.
    */
   opensByDefault(_node, _key) {

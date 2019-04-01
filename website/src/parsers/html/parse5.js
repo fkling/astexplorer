@@ -11,6 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['sourceCodeLocation']),
+  typeProps: new Set(['type', 'name', 'nodeName', 'tagName']),
 
   loadParser(callback) {
     require([

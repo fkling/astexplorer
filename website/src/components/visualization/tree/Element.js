@@ -146,7 +146,7 @@ let Element = class extends React.Component {
       .filter(({value}) => !hideFunctions || typeof value !== 'function')
       .filter(({value}) => !hideEmptyKeys || value != null)
       .filter(({key}) => !hideLocationData || !parser.locationProps.has(key))
-      .filter(({key}) => !hideTypeKeys || key !== 'type');
+      .filter(({key}) => !hideTypeKeys || !parser.typeProps.has(key));
   }
 
   _execFunction() {

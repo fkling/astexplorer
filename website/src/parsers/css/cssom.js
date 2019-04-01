@@ -11,6 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage || 'https://github.com/NV/CSSOM',
   locationProps: new Set(['__starts', '__ends']),
+  typeProps: new Set(),
 
   loadParser(callback) {
     require(['cssom/lib/parse'], callback);

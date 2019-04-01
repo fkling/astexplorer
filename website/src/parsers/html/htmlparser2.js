@@ -11,6 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage || 'https://github.com/fb55/htmlparser2',
   locationProps: new Set(['startIndex']),
+  typeProps: new Set(['type', 'name']),
 
   loadParser(callback) {
     require(['htmlparser2/lib/Parser', 'domhandler'], (Parser, DomHandler) => {
