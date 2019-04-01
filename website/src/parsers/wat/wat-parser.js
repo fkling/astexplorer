@@ -22,10 +22,6 @@ export default {
     return [loc.start, loc.end].map(pos => this.getOffset(pos));
   },
 
-  getNodeName(node) {
-    return node.type;
-  },
-
   loadParser(callback) {
     require(['@webassemblyjs/wast-parser'], function(parser) {
       callback(parser);

@@ -31,10 +31,6 @@ export default {
     }
   },
 
-  getNodeName(node) {
-    return node.type;
-  },
-
   parse({ parseAllDocuments }, code, options) {
     return parseAllDocuments(code, options);
   },

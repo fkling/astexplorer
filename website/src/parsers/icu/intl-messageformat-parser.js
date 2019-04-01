@@ -20,10 +20,6 @@ export default {
     return parser.parse(code);
   },
 
-  getNodeName(node) {
-    return node.type;
-  },
-
   nodeToRange({ location }) {
     if (location && location.start && location.end) {
       return [location.start.offset, location.end.offset];

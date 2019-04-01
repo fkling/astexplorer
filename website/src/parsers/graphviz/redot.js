@@ -26,10 +26,6 @@ export default {
     }
   },
 
-  getNodeName(node) {
-    return node.type;
-  },
-
   opensByDefault(node, key) {
     return key === 'children';
   },
