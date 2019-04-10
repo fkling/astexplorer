@@ -18,6 +18,7 @@ The AST explorer provides following code parsers:
 - Handlebars:
   - [glimmer][]
   - [handlebars][]
+  - [ember-template-recast][]
 - HTML:
   - [htmlparser2][]
   - [parse5][]
@@ -116,6 +117,7 @@ node.
 [cherow]: https://github.com/cherow/cherow/tree/master/packages/cherow
 [cssom]: https://github.com/NV/CSSOM
 [csstree]: https://github.com/csstree/csstree
+[ember-template-recast]: https://github.com/ember-template-lint/ember-template-recast
 [escodegen]: https://github.com/estools/escodegen
 [eslint]: http://eslint.org/
 [espree]: https://github.com/eslint/espree
