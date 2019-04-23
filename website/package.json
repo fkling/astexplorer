@@ -75,6 +75,7 @@
     "css-tree": "1.0.0-alpha.29",
     "cssom": "^0.3.0",
     "domhandler": "^2.3.0",
+    "ember-template-recast": "^1.2.3",
     "escodegen": "^1.4.1",
     "esformatter-parser": "^1.0.0",
     "eslint1": "file:packages/eslint1",
