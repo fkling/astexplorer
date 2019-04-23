@@ -10,6 +10,7 @@ const categoryIcon = {
   handlebars: 'icon-handlebars',
   htmlmixed: 'fa-html5',
   icu: 'icon-icu',
+  rust: 'icon-rust',
   sql: 'fa-database',
   'text/x-scala': 'icon-scala',
   webidl: 'fa-th-list',

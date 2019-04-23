@@ -1459,6 +1459,11 @@ ast-types@0.9.6:
   resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.9.6.tgz#102c9e9e9005d3e7e3829bf0c4fa24ee862ee9b9"
   integrity sha1-ECyenpAF0+fjgpvwxPok7oYu6bk=
 
+astexplorer-syn@^0.15.30:
+  version "0.15.30"
+  resolved "https://registry.yarnpkg.com/astexplorer-syn/-/astexplorer-syn-0.15.30.tgz#692370cf6991b2f56c09946042676082dd1b47cd"
+  integrity sha512-9HOKSIUPJlfwX8Kj7SQApbbl02IDqe+guNw+eGAZJnFadYopaGLavlcnAdPODsExjlnUmGL1rV1iJvAGDXnTPg==
+
 async-each@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
