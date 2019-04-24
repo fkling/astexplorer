@@ -105,7 +105,6 @@ function format(state=initialState.enableFormatting, action) {
 }
 
 function workbench(state=initialState.workbench, action, fullState) {
-
   function parserFromCategory(category) {
     const parser = fullState.parserPerCategory[category.id] ||
       getDefaultParser(category).id;
@@ -130,8 +129,8 @@ function workbench(state=initialState.workbench, action, fullState) {
         code: action.text,
         initialCode: action.text,
       };
-    case actions.SET_PARSE_ERROR:
-      return {...state, parseError: action.error};
+    case actions.SET_PARSE_RESULT:
+      return {...state, parseResult: action.result};
     case actions.SET_PARSER_SETTINGS:
       return {...state, parserSettings: action.settings};
     case actions.SET_PARSER:

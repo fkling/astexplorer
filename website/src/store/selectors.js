@@ -46,8 +46,8 @@ export function getParserSettings(state) {
   return state.workbench.parserSettings;
 }
 
-export function getParseError(state) {
-  return state.workbench.parseError;
+export function getParseResult(state) {
+  return state.workbench.parseResult;
 }
 
 // Code related

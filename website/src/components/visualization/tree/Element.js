@@ -84,7 +84,7 @@ let Element = class extends React.Component {
   _scrollIntoView() {
     const {focusPath, value} = this.props;
     if (focusPath.length > 0 && focusPath[focusPath.length -1] === value) {
-      setTimeout(() => this.container.scrollIntoView(), 0);
+      setTimeout(() => this.container && this.container.scrollIntoView(), 0);
     }
   }
 

@@ -10,7 +10,7 @@ export const HIDE_TRANSFORMER = 'HIDE_TRANSFORMER';
 export const SET_TRANSFORM = 'SET_TRANSFORM';
 export const SET_PARSER = 'SET_PARSER';
 export const SET_PARSER_SETTINGS = 'SET_PARSER_SETTINGS';
-export const SET_PARSE_ERROR = 'SET_PARSE_ERROR';
+export const SET_PARSE_RESULT = 'SET_PARSE_RESULT';
 export const SET_SNIPPET = 'SET_SNIPPET';
 export const OPEN_SETTINGS_DIALOG = 'OPEN_SETTINGS_DIALOG';
 export const CLOSE_SETTINGS_DIALOG = 'CLOSE_SETTINGS_DIALOG';
@@ -48,10 +48,6 @@ export function endSave(fork) {
 
 export function setSnippet(revision) {
   return {type: SET_SNIPPET, revision};
-}
-
-export function setParseError(error) {
-  return {type: SET_PARSE_ERROR, error};
 }
 
 export function selectCategory(category) {

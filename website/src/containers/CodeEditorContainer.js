@@ -1,14 +1,14 @@
 import {connect} from 'react-redux';
 import {setCode, setCursor} from '../store/actions';
 import Editor from '../components/Editor';
-import {getCode, getParser, getParseError, getKeyMap} from '../store/selectors';
+import {getCode, getParser, getParseResult, getKeyMap} from '../store/selectors';
 
 function mapStateToProps(state) {
   return {
     keyMap: getKeyMap(state),
     value: getCode(state),
     mode: getParser(state).category.id,
-    error: getParseError(state),
+    error: (getParseResult(state) || {}).error,
   };
 }
 

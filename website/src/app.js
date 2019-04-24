@@ -27,6 +27,7 @@ import * as gist from './storage/gist';
 import * as parse from './storage/parse';
 import StorageHandler from './storage';
 import '../css/style.css';
+import parserMiddleware from './store/parserMiddleware';
 
 function resize() {
   PubSub.publish('PANEL_RESIZE');
@@ -81,7 +82,7 @@ const store = createStore(
   enableBatching(astexplorer),
   revive(LocalStorage.readState()),
   composeEnhancers(
-    applyMiddleware(sagaMiddleware)
+    applyMiddleware(sagaMiddleware, parserMiddleware)
   )
 );
 store.subscribe(debounce(() => {
@@ -92,6 +93,7 @@ store.subscribe(debounce(() => {
   }
 }));
 sagaMiddleware.run(saga, new StorageHandler([gist, parse]));
+store.dispatch({type: 'INIT'});
 
 render(
   <Provider store={store}>
