@@ -8,7 +8,7 @@
   flex-shrink: 0;
 }
 
-.tree-visualization > .toolbar > label {
+.tree-visualization > .toolbar label {
   cursor: pointer;
   margin-right: 5px;
   -webkit-touch-callout: none;
