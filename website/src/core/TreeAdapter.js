@@ -3,14 +3,18 @@
  */
 class TreeAdapter {
 
-  constructor(adapterOptions, walkOptions) {
+  constructor(adapterOptions, filterValues) {
     this._ranges = new WeakMap();
-    this._walkOptions = walkOptions;
+    this._filterValues = filterValues;
     this._adapterOptions = adapterOptions;
   }
 
   /**
-   * Used by the UI
+   * Used by UI components to render an appropriate input for each filter.
+   */
+  getConfigurableFilters() {
+    return (this._adapterOptions.filters || []).filter(filter => Boolean(filter.key));
+  }
 
   /**
    * A more or less human readable name of the node.
@@ -97,14 +101,14 @@ class TreeAdapter {
    * the node is not implemented as plain JavaScript object.
    */
   *walkNode(node) {
-    const walkOptions = this._walkOptions;
     for (const result of this._walkNode(node)) {
       if (
-        this._adapterOptions.ignoredKeys.has(result.key) ||
-        walkOptions.hideFunctions && typeof result.value === 'function' ||
-        walkOptions.hideEmptyKeys && result.value == null ||
-        walkOptions.hideLocationData && this._adapterOptions.locationKeys.has(result.key) ||
-        walkOptions.hideTypeKeys && result.key === 'type'
+        (this._adapterOptions.filters || []).some(filter => {
+          if (filter.key && !this._filterValues[filter.key]) {
+            return false;
+          }
+          return filter.test(result.value, result.key);
+        })
       ) {
         continue;
       }
@@ -120,8 +124,6 @@ class TreeAdapter {
 
 const TreeAdapterConfigs = {
   default: {
-    ignoredKeys: new Set(),
-    locationKeys: new Set(),
     openByDefault: () => false,
     nodeToRange: () => null,
     nodeToName: () => { throw new Error('nodeToName must be passed');},
@@ -129,8 +131,12 @@ const TreeAdapterConfigs = {
   },
 
   estree: {
-    ignoredKeys: new Set(),
-    locationKeys: new Set(['range', 'loc', 'start', 'end']),
+    filters: [
+      functionFilter(),
+      emptyKeysFilter(),
+      locationInformationFilter(new Set(['range', 'loc', 'start', 'end'])),
+      typeKeysFilter(),
+    ],
     openByDefaultNodes: new Set(['Program']),
     openByDefaultKeys: new Set([
       'body',
@@ -166,20 +172,60 @@ const TreeAdapterConfigs = {
   },
 };
 
-function createTreeAdapter(type, adapterOptions, walkOptions) {
+export function ignoreKeysFilter(keys=new Set(), key, label) {
+  return {
+    key,
+    label,
+    test(_, key) { return  keys.has(key); },
+  };
+}
+
+export function locationInformationFilter(keys) {
+  return ignoreKeysFilter(
+    keys,
+    'hideLocationData',
+    'Hide location data',
+  );
+}
+
+export function functionFilter() {
+  return {
+    key: 'hideFunctions',
+    label: 'Hide methods',
+    test(value) { return typeof value === 'function'; },
+  };
+}
+
+export function emptyKeysFilter() {
+  return {
+    key: 'hideEmptyKeys',
+    label: 'Hide empty keys',
+    test(value) { return value == null; },
+  };
+}
+
+export function typeKeysFilter(keys) {
+  return ignoreKeysFilter(
+    keys,
+    'hideTypeKeys',
+    'Hide type keys',
+  );
+}
+
+function createTreeAdapter(type, adapterOptions, filterValues) {
   if (TreeAdapterConfigs[type] == null) {
     throw new Error(`Unknown tree adapter type "${type}"`);
   }
   return new TreeAdapter(
     Object.assign({}, TreeAdapterConfigs[type], adapterOptions),
-    walkOptions,
+    filterValues,
   );
 }
 
-export function treeAdapterFromParseResult({treeAdapter}, walkOptions) {
+export function treeAdapterFromParseResult({treeAdapter}, filterValues) {
   return createTreeAdapter(
     treeAdapter.type,
     treeAdapter.options,
-    walkOptions
+    filterValues
   );
 }

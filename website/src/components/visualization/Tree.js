@@ -7,7 +7,7 @@ import {treeAdapterFromParseResult} from '../../core/TreeAdapter.js';
 
 import './css/tree.css'
 
-const {useReducer} = React;
+const {useReducer, useMemo} = React;
 
 const STORAGE_KEY = 'tree_settings';
 
@@ -48,8 +48,12 @@ function makeCheckbox(name, settings, updateSettings) {
   );
 }
 
-export default function Tree({focusPath, parseResult, cursor}) {
+export default function Tree({focusPath, parseResult}) {
   const [settings, updateSettings] = useReducer(reducer, null, initSettings);
+  const treeAdapter = useMemo(
+    () => treeAdapterFromParseResult(parseResult, settings),
+    [parseResult.treeAdapter, settings],
+  );
 
   return (
     <div className="tree-visualization container">
@@ -59,32 +63,22 @@ export default function Tree({focusPath, parseResult, cursor}) {
           Autofocus
         </label>
         &#8203;
-        <label>
-          {makeCheckbox('hideFunctions', settings, updateSettings)}
-          Hide methods
-        </label>
-        &#8203;
-        <label>
-          {makeCheckbox('hideEmptyKeys', settings, updateSettings)}
-          Hide empty keys
-        </label>
-        &#8203;
-        <label>
-          {makeCheckbox('hideLocationData', settings, updateSettings)}
-          Hide location data
-        </label>
-        &#8203;
-        <label>
-          {makeCheckbox('hideTypeKeys', settings, updateSettings)}
-          Hide type keys
-        </label>
+        {treeAdapter.getConfigurableFilters().map(filter => (
+          <span key={filter.key}>
+            <label>
+              {makeCheckbox(filter.key, settings, updateSettings)}
+              {filter.label}
+            </label>
+            &#8203;
+          </span>
+        ))}
       </div>
       <ul onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
         <Element
           focusPath={focusPath}
           value={parseResult.ast}
           level={0}
-          treeAdapter={treeAdapterFromParseResult(parseResult, settings)}
+          treeAdapter={treeAdapter}
           settings={settings}
         />
       </ul>
@@ -96,5 +90,4 @@ Tree.propTypes = {
   focusPath: PropTypes.array,
   parseResult: PropTypes.object,
   parser: PropTypes.object,
-  cursor: PropTypes.number,
 };
