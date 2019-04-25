@@ -42,12 +42,25 @@ export default store => next => action => {
         ) {
           return;
         }
+        // Temporary adapter for parsers that haven't been migrated yet.
+        const treeAdapter = {
+          type: 'default',
+          options: {
+            ignoredKeys: newParser._ignoredProperties,
+            locationKeys: newParser.locationProps,
+            openByDefault: (newParser.opensByDefault || (() => false)).bind(newParser),
+            nodeToRange: newParser.nodeToRange.bind(newParser),
+            nodeToName: newParser.getNodeName.bind(newParser),
+            walkNode: newParser.forEachProperty.bind(newParser),
+          },
+        };
         next({
           type: 'SET_PARSE_RESULT',
           result: {
             time: Date.now() - start,
             ast: ast,
             error: null,
+            treeAdapter,
           },
         });
       },
@@ -58,6 +71,7 @@ export default store => next => action => {
           result: {
             time: null,
             ast: null,
+            treeAdapter: null,
             error,
           },
         });

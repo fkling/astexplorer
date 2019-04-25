@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import RecursiveTreeElement from './RecursiveTreeElement';
-import {nodeToRange} from '../../getFocusPath';
 
 import cx from 'classnames';
 import stringify from '../../../utils/stringify';
@@ -23,19 +22,19 @@ function log(f) {
 let lastClickedElement;
 
 let Element = class extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this._execFunction = this._execFunction.bind(this);
     this._onMouseLeave = this._onMouseLeave.bind(this);
     this._onMouseOver = this._onMouseOver.bind(this);
     this._toggleClick = this._toggleClick.bind(this);
-    const {value, name, deepOpen, parser} = props;
+    const {value, name, deepOpen, treeAdapter} = props;
     // Some elements should be open by default
     let open =
       props.open ||
       props.level === 0 ||
       deepOpen ||
-      (!!value && parser.opensByDefault(value, name));
+      (!!value && treeAdapter.opensByDefault(value, name));
 
     this.state = {
       open,
@@ -121,7 +120,7 @@ let Element = class extends React.Component {
     const {value} = this.state;
     PubSub.publish(
       'HIGHLIGHT',
-      {node: value, range: nodeToRange(this.props.parser, value)}
+      {node: value, range: this.props.treeAdapter.getRange(value)}
     );
   }
 
@@ -129,7 +128,7 @@ let Element = class extends React.Component {
     const {value} = this.state;
     PubSub.publish(
       'CLEAR_HIGHLIGHT',
-      {node: value, range: nodeToRange(this.props.parser, value)}
+      {node: value, range: this.props.treeAdapter.getRange(value)}
     );
   }
 
@@ -137,16 +136,6 @@ let Element = class extends React.Component {
     return level !== 0 &&
       path.indexOf(value) > -1 &&
       (!open || path[path.length - 1] === value);
-  }
-
-  _getProperties(parser, value) {
-    const {hideFunctions, hideEmptyKeys, hideLocationData, hideTypeKeys} = this.props.settings;
-    let properties = [...parser.forEachProperty(value)];
-    return properties
-      .filter(({value}) => !hideFunctions || typeof value !== 'function')
-      .filter(({value}) => !hideEmptyKeys || value != null)
-      .filter(({key}) => !hideLocationData || !parser.locationProps.has(key))
-      .filter(({key}) => !hideTypeKeys || !parser.typeProps.has(key));
   }
 
   _execFunction() {
@@ -171,7 +160,7 @@ let Element = class extends React.Component {
         value={value}
         computed={computed}
         level={this.props.level + 1}
-        parser={this.props.parser}
+        treeAdapter={this.props.treeAdapter}
         settings={this.props.settings}
         parent={this.props.value}
       />
@@ -181,7 +170,7 @@ let Element = class extends React.Component {
   render() {
     const {
       focusPath,
-      parser,
+      treeAdapter,
       level,
     } = this.props;
     const {
@@ -198,7 +187,7 @@ let Element = class extends React.Component {
 
     if (value && typeof value === 'object') {
       if (!Array.isArray(value)) {
-        const nodeName = parser.getNodeName(value);
+        const nodeName = treeAdapter.getNodeName(value);
         if (nodeName) {
           valueOutput =
             <span className="tokenName nc" onClick={this._toggleClick}>
@@ -211,7 +200,7 @@ let Element = class extends React.Component {
               }
             </span>
         }
-        enableHighlight = parser.nodeToRange(value) && level !== 0;
+        enableHighlight = treeAdapter.getRange(value) && level !== 0;
       } else {
         enableHighlight = true;
       }
@@ -220,7 +209,7 @@ let Element = class extends React.Component {
         if (value.length > 0 && open) {
           prefix = '[';
           suffix = ']';
-          let elements = this._getProperties(parser, value)
+          let elements = [...treeAdapter.walkNode(value)]
             .filter(({key}) => key !== 'length')
             .map(({key, value, computed}) => this._createSubElement(
               key,
@@ -244,7 +233,7 @@ let Element = class extends React.Component {
         if (open) {
           prefix = '{';
           suffix = '}';
-          let elements = this._getProperties(parser, value)
+          let elements = [...treeAdapter.walkNode(value)]
             .map(({key, value, computed}) => this._createSubElement(
               key,
               value,
@@ -254,7 +243,7 @@ let Element = class extends React.Component {
           content = <ul className="value-body">{elements}</ul>;
           showToggler = elements.length > 0;
         } else {
-          let keys = this._getProperties(parser, value)
+          let keys = [...treeAdapter.walkNode(value)]
             .map(({key}) => key);
           valueOutput =
             <span>
@@ -341,7 +330,7 @@ Element.propTypes = {
   deepOpen: PropTypes.bool,
   focusPath: PropTypes.array.isRequired,
   level: PropTypes.number,
-  parser: PropTypes.object.isRequired,
+  treeAdapter: PropTypes.object.isRequired,
   settings: PropTypes.object.isRequired,
   parent: PropTypes.oneOfType([
     PropTypes.object,
