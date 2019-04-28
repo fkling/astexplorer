@@ -7,7 +7,7 @@ function mapStateToProps(state) {
   return {
     keyMap: getKeyMap(state),
     value: getCode(state),
-    mode: getParser(state).category.id,
+    mode: getParser(state).category.editorMode || getParser(state).category.id,
     error: (getParseResult(state) || {}).error,
   };
 }

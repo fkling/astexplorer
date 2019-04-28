@@ -1,0 +1,8 @@
+//
+// Paste or drop some Reason code here and explore
+// the OCaml syntax tree created by refmt.
+//
+
+let f = a => "1";
+
+let a = 2;
