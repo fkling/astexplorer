@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import cx from 'classnames';
 import visualizations from './visualization';
-import getFocusPath from './getFocusPath';
 
-const {useState, useMemo} = React;
+const {useState} = React;
 
 function formatTime(time) {
   if (!time) {
@@ -16,17 +15,9 @@ function formatTime(time) {
   return `${(time / 1000).toFixed(2)}s`;
 }
 
-export default function ASTOutput({parser, parseResult={}, cursor=null}) {
+export default function ASTOutput({parseResult={}, position=null}) {
   const [selectedOutput, setSelectedOutput] = useState(0);
   const {ast=null} = parseResult;
-
-  const focusPath = useMemo(
-    () => ast && cursor != null ?
-      getFocusPath(parseResult.ast, cursor, parser) :
-      [],
-    [ast, cursor, parser],
-  );
-
   let output;
 
   if (parseResult.error) {
@@ -40,7 +31,7 @@ export default function ASTOutput({parser, parseResult={}, cursor=null}) {
         {
           React.createElement(
             visualizations[selectedOutput],
-            {parseResult, focusPath}
+            {parseResult, position}
           )
         }
       </ErrorBoundary>
@@ -68,15 +59,14 @@ export default function ASTOutput({parser, parseResult={}, cursor=null}) {
           {formatTime(parseResult.time)}
         </span>
       </div>
-      {output}
+    {output}
     </div>
   );
 }
 
 ASTOutput.propTypes = {
-  parser: PropTypes.object.isRequired,
   parseResult: PropTypes.object,
-  cursor: PropTypes.any,
+  position: PropTypes.number,
 };
 
 class ErrorBoundary extends React.Component {

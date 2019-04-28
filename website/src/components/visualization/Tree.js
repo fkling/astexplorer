@@ -4,6 +4,7 @@ import React from 'react';
 import PubSub from 'pubsub-js';
 import {logEvent} from '../../utils/logger';
 import {treeAdapterFromParseResult} from '../../core/TreeAdapter.js';
+import {SelectedNodeProvider} from './SelectedNodeContext.js';
 
 import './css/tree.css'
 
@@ -48,7 +49,7 @@ function makeCheckbox(name, settings, updateSettings) {
   );
 }
 
-export default function Tree({focusPath, parseResult}) {
+export default function Tree({parseResult, position}) {
   const [settings, updateSettings] = useReducer(reducer, null, initSettings);
   const treeAdapter = useMemo(
     () => treeAdapterFromParseResult(parseResult, settings),
@@ -74,20 +75,21 @@ export default function Tree({focusPath, parseResult}) {
         ))}
       </div>
       <ul onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
-        <Element
-          focusPath={focusPath}
-          value={parseResult.ast}
-          level={0}
-          treeAdapter={treeAdapter}
-          settings={settings}
-        />
+        <SelectedNodeProvider>
+          <Element
+            value={parseResult.ast}
+            level={0}
+            treeAdapter={treeAdapter}
+            autofocus={settings.autofocus}
+            position={position}
+          />
+        </SelectedNodeProvider>
       </ul>
     </div>
   );
 }
 
 Tree.propTypes = {
-  focusPath: PropTypes.array,
   parseResult: PropTypes.object,
-  parser: PropTypes.object,
+  position: PropTypes.number,
 };

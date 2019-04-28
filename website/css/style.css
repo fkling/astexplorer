@@ -347,7 +347,7 @@ li.entry {
 }
 
 .CodeMirror .marked,
-.entry.focused {
+.entry.highlighted {
   border-radius: 2px;
   background-color: rgba(255,240,6,0.4);
 }
