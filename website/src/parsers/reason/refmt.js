@@ -19,7 +19,7 @@ export default {
   },
 
   parse(parser, code) {
-    return parser.parse(code);
+    return parser.parseReason(code);
   },
 
   getNodeName(node) {

@@ -3,6 +3,13 @@
 // the OCaml syntax tree created by refmt.
 //
 
-let f = a => "1";
+let tips = [
+  "Click on any AST node with a '+' to expand it",
 
-let a = 2;
+  "Hovering over a node highlights the
+   corresponding part in the source code",
+
+  "Shift click on an AST node expands the whole substree",
+];
+let printTips = () =>
+  tips |> List.iteri((i, tip) => Printf.printf("Tip %d: %s\n", i, tip));
