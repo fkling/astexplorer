@@ -1,40 +1,48 @@
 {
   "checksum": {
-    "previous": "ded1f9e27e44b12eb0dbab11fa9eb21be9c2fc4cd000b173521a3da8e5da3360",
-    "current": "d8a848ddbb111e3e8ff68b12aab7f55918ec33287bf72e553d2711091b362d29"
+    "previous": "16162f150d3b19ba44cc2e51f284fbcdff1d8722369f798daec6b2817f6f7b69",
+    "current": "16162f150d3b19ba44cc2e51f284fbcdff1d8722369f798daec6b2817f6f7b69"
   },
   "fonts": [
-    "fontcustom/fontcustom_d8a848ddbb111e3e8ff68b12aab7f559.ttf",
-    "fontcustom/fontcustom_d8a848ddbb111e3e8ff68b12aab7f559.svg",
-    "fontcustom/fontcustom_d8a848ddbb111e3e8ff68b12aab7f559.woff",
-    "fontcustom/fontcustom_d8a848ddbb111e3e8ff68b12aab7f559.eot",
-    "fontcustom/fontcustom_d8a848ddbb111e3e8ff68b12aab7f559.woff2"
+    "fontcustom/fontcustom_16162f150d3b19ba44cc2e51f284fbcd.ttf",
+    "fontcustom/fontcustom_16162f150d3b19ba44cc2e51f284fbcd.svg",
+    "fontcustom/fontcustom_16162f150d3b19ba44cc2e51f284fbcd.woff",
+    "fontcustom/fontcustom_16162f150d3b19ba44cc2e51f284fbcd.eot",
+    "fontcustom/fontcustom_16162f150d3b19ba44cc2e51f284fbcd.woff2"
   ],
   "glyphs": {
     "GraphQL_Logo": {
       "codepoint": 61696,
-      "source": "fontcustom/input-svg/GraphQL_Logo.svg"
+      "source": "./fontcustom/input-svg/GraphQL_Logo.svg"
     },
     "handlebars": {
       "codepoint": 61697,
-      "source": "fontcustom/input-svg/handlebars.svg"
+      "source": "./fontcustom/input-svg/handlebars.svg"
     },
     "icu": {
       "codepoint": 61698,
-      "source": "fontcustom/input-svg/icu.svg"
+      "source": "./fontcustom/input-svg/icu.svg"
+    },
+    "ocaml": {
+      "codepoint": 61702,
+      "source": "./fontcustom/input-svg/ocaml.svg"
+    },
+    "reason": {
+      "codepoint": 61701,
+      "source": "./fontcustom/input-svg/reason.svg"
     },
     "rust": {
       "codepoint": 61700,
-      "source": "fontcustom/input-svg/rust.svg"
+      "source": "./fontcustom/input-svg/rust.svg"
     },
     "scala": {
       "codepoint": 61699,
-      "source": "fontcustom/input-svg/scala.svg"
+      "source": "./fontcustom/input-svg/scala.svg"
     }
   },
   "options": {
     "autowidth": false,
-    "config": "fontcustom/config.yml",
+    "config": "./fontcustom/config.yml",
     "copyright": "",
     "css3": false,
     "css_selector": ".icon-{{glyph}}",
@@ -46,8 +54,8 @@
     "font_name": "fontcustom",
     "force": false,
     "input": {
-      "templates": "fontcustom/input-svg",
-      "vectors": "fontcustom/input-svg"
+      "templates": "./fontcustom/input-svg/",
+      "vectors": "./fontcustom/input-svg/"
     },
     "no_hash": false,
     "output": {

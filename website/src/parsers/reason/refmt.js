@@ -2,7 +2,31 @@ import defaultParserInterface from '../utils/defaultParserInterface';
 import esyPkg from 'astexplorer-refmt/esy.json';
 
 const ID = 'refmt';
-const locKeys = ['pstr_loc', 'pexp_loc', 'pvb_loc', 'ppat_loc'];
+const locKeys = [
+  'pcd_loc',
+  'pcf_loc',
+  'pci_loc',
+  'pcl_loc',
+  'pctf_loc',
+  'pcty_loc',
+  'pexp_loc',
+  'pext_loc',
+  'pincl_loc',
+  'pld_loc',
+  'pmb_loc',
+  'pmd_loc',
+  'pmod_loc',
+  'pmtd_loc',
+  'pmty_loc',
+  'popen_loc',
+  'ppat_loc',
+  'psig_loc',
+  'pstr_loc',
+  'ptyp_loc',
+  'ptype_loc',
+  'pval_loc',
+  'pvb_loc',
+];
 const parserVersion = esyPkg.dependencies['@esy-ocaml/reason'];
 
 export default {
