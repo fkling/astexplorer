@@ -8,7 +8,7 @@ import KeyMapButton from './buttons/KeyMapButton';
 
 export default function Toolbar(props) {
   let {parser, transformer, showTransformer} = props;
-  let parserInfo = parser.id;
+  let parserInfo = parser.displayName;
   let transformerInfo = '';
   if (parser) {
     if (parser.version) {

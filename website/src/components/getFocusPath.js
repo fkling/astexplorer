@@ -34,6 +34,8 @@ export default function getFocusPath(node, pos, parser, seen = new Set()) {
     if (value && typeof value === 'object' && !seen.has(value)) {
       let childPath = getFocusPath(value, pos, parser, seen);
       if (childPath.length > 0) {
+        // if current wasn't added, add it now
+        childPath = range ? childPath : [node].concat(childPath);
         path = path.concat(childPath);
         break;
       }
