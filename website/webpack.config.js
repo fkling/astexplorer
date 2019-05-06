@@ -2,8 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const WebpackChunkHash = require('webpack-chunk-hash');
+const TerserPlugin = require('terser-webpack-plugin');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -15,7 +14,6 @@ const packages = fs.readdirSync(path.join(__dirname, 'packages'));
 const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
 
 const plugins = [
-  new WebpackChunkHash(),
   new webpack.DefinePlugin({
     'process.env.API_HOST': JSON.stringify(process.env.API_HOST || ''),
   }),
@@ -120,9 +118,8 @@ module.exports = Object.assign({
       },
     },
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          ecma: 8,
+      new TerserPlugin({
+        terserOptions: {
           keep_fnames: true,
         },
       }),
@@ -251,8 +248,8 @@ module.exports = Object.assign({
 
   output: {
     path: path.resolve(__dirname, '../out'),
-    filename: DEV ? '[name].js' : `[name]-[chunkhash]-${CACHE_BREAKER}.js`,
-    chunkFilename: DEV ? '[name].js' : `[name]-[chunkhash]-${CACHE_BREAKER}.js`,
+    filename: DEV ? '[name].js' : `[name]-[contenthash]-${CACHE_BREAKER}.js`,
+    chunkFilename: DEV ? '[name].js' : `[name]-[contenthash]-${CACHE_BREAKER}.js`,
   },
 },
 
