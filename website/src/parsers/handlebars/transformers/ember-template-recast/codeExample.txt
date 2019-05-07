@@ -1,0 +1,9 @@
+module.exports = function(env) {
+  let b = env.syntax.builders;
+
+  return {
+    ElementNode(node) {
+      node.tag = node.tag.split('').reverse().join('');
+    }
+  };
+};
