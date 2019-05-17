@@ -177,6 +177,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'node_modules', 'tslint'),
           path.join(__dirname, 'node_modules', 'tslib'),
+          path.join(__dirname, 'node_modules', 'svelte'),
           path.join(__dirname, 'src'),
         ],
         loader: 'babel-loader',
