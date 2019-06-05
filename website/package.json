@@ -54,6 +54,7 @@
     "acorn-to-esprima": "^1.0.2",
     "astexplorer-refmt": "^1.0.1",
     "astexplorer-syn": "^0.15.30",
+    "astq": "^2.6.2",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.3",
     "babel-eslint8": "file:packages/babel-eslint8",
