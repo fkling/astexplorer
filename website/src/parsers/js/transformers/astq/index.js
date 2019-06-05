@@ -11,28 +11,28 @@ export default {
 
   defaultParserID: 'esprima',
 
-  loadTransformer(callback) {
-    require(
-      ['esprima', 'astq'],
-      (esprima, astq) => callback({ esprima, astq })
-    );
+  loadTransformer (callback) {
+    require(['esprima', 'astq'], (esprima, astq) =>
+      callback({ esprima, astq }));
   },
 
-  transform({ esprima, astq }, xPathQuery , code) {
+  transform ({ esprima, astq }, xPathQuery, code) {
     const ASTQ = new astq();
-    ASTQ.adapter("mozast");
+    ASTQ.adapter('mozast');
 
     let results = {
-      matches: 0, nodes: []
+      matches: 0,
+      nodes: [],
     };
-    if(!xPathQuery || xPathQuery === '') return JSON.stringify(results, null, 2);
+    if (!xPathQuery || xPathQuery === '') { return JSON.stringify(results, null, 2); }
 
     const ast = esprima.parseScript(code);
     const nodes = ASTQ.query(ast, xPathQuery);
     results = {
-      matches: nodes.length, nodes
+      matches: nodes.length,
+      nodes,
     };
-    
+
     return JSON.stringify(results, null, 2);
   },
 };
