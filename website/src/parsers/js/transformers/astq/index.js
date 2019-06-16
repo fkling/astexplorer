@@ -22,7 +22,7 @@ export default {
 
     let results = {
       matches: 0,
-      nodes: []
+      nodes: [],
     };
     if (!xPathQuery || xPathQuery === '') {
       return JSON.stringify(results, null, 2);
