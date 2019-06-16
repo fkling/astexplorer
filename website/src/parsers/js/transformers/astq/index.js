@@ -22,17 +22,22 @@ export default {
 
     let results = {
       matches: 0,
-      nodes: [],
+      nodes: []
     };
-    if (!xPathQuery || xPathQuery === '') { return JSON.stringify(results, null, 2); }
+    if (!xPathQuery || xPathQuery === '') {
+      return JSON.stringify(results, null, 2);
+    }
 
-    const ast = esprima.parseScript(code);
-    const nodes = ASTQ.query(ast, xPathQuery);
-    results = {
-      matches: nodes.length,
-      nodes,
-    };
-
-    return JSON.stringify(results, null, 2);
+    try {
+      const ast = esprima.parseScript(code);
+      const nodes = ASTQ.query(ast, xPathQuery);
+      results = {
+        matches: nodes.length,
+        nodes,
+      };
+      return JSON.stringify(results, null, 2);
+    } catch ({ message }) {
+      return message;
+    }
   },
 };
