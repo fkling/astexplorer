@@ -3683,10 +3683,10 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-ember-template-recast@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-2.0.1.tgz#0b87707a2b71636f409ce2f945dec6f894e1e424"
-  integrity sha512-G+1z9qrszzqLs2A3GmonDlJQifeMe4XwE8y1e1xqAe3oGOdJ2bkD3oxPb2vqRqkC/2XSiA3mWEF96xMrTRTQNg==
+ember-template-recast@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-2.0.2.tgz#c6d76f38e76760a65a1f414e416bb084022b7acf"
+  integrity sha512-Fc20YQgfZbqk1JIyZcTqktzpsk6KCsNv7AJ7UVpq5YD2wWtqFqkpzyntWV8fyi2ot/GG0uFl9IgJFlZB07agMA==
   dependencies:
     "@glimmer/syntax" "^0.41.3"
     async-promise-queue "^1.0.5"
