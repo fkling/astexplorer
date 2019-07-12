@@ -923,43 +923,43 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@glimmer/compiler@^0.41.3":
-  version "0.41.3"
-  resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.41.3.tgz#1448e31c6327ea4b8695f481144a14f894e0522c"
-  integrity sha512-o+rWScmi8aujOp+nIiQd0CB6Nnhf+23fQjWKc6hB/g4+lcZIxlij2WOI/zt9/nBntX4IHuW4ybGY3Mead/wMnA==
+"@glimmer/compiler@^0.41.4":
+  version "0.41.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.41.4.tgz#c3b6f241bebe99373f64882902512b67aaee49f8"
+  integrity sha512-JTdFJDp0irQptXCqDQUPWaB7p6/Bg2SKe7NIMoeKeRGAw0Nhgi0xkqTN7OF2sugfjMdmzRn1oHRL5Mk26VZtfw==
   dependencies:
-    "@glimmer/interfaces" "^0.41.3"
-    "@glimmer/syntax" "^0.41.3"
-    "@glimmer/util" "^0.41.3"
-    "@glimmer/wire-format" "^0.41.3"
+    "@glimmer/interfaces" "^0.41.4"
+    "@glimmer/syntax" "^0.41.4"
+    "@glimmer/util" "^0.41.4"
+    "@glimmer/wire-format" "^0.41.4"
 
-"@glimmer/interfaces@^0.41.3":
-  version "0.41.3"
-  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.41.3.tgz#33cc6e0e1d7c2696ad59c1b68d723e9c1ea944ec"
-  integrity sha512-EgJYw+2YyMztC2O2yuhRfb2SlAxXGBx6ug4b6qnjLrpypsKFZEE17/2gDi+f8lPFQct96uQW8ja4w9RQI85vMw==
+"@glimmer/interfaces@^0.41.4":
+  version "0.41.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.41.4.tgz#3f3e26abea8a4e1463130e9a75e94372781d154b"
+  integrity sha512-MzXwMyod3MlwSZezHSaVBsCEIW/giYYfTDYARR46QnYsaFVatMVbydjsI7jkAuBCbnLCyNOIc1TrYIj71i/rpg==
 
-"@glimmer/syntax@^0.41.3":
-  version "0.41.3"
-  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.41.3.tgz#f8feab2a6f24c922a8950992ca56bb9980d2b571"
-  integrity sha512-sHNqAGNMX4vs7gqRCye3F2COxu5sZKB/45Uclyn58GMVkIcRXYGyggKxMEH+m5fOvoAjhQPawjRBnsi/ccfR1A==
+"@glimmer/syntax@^0.41.4":
+  version "0.41.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.41.4.tgz#9c0c763aab44069c828ce782947c84d31ff75879"
+  integrity sha512-NLPNirZDbNmpZ8T/ccle22zt2rhUq5il7ST6IJk62T58QZeJsdr3m3RS4kaGSBsQhXoKELrgX048yYEX5sC+fw==
   dependencies:
-    "@glimmer/interfaces" "^0.41.3"
-    "@glimmer/util" "^0.41.3"
+    "@glimmer/interfaces" "^0.41.4"
+    "@glimmer/util" "^0.41.4"
     handlebars "^4.0.13"
     simple-html-tokenizer "^0.5.7"
 
-"@glimmer/util@^0.41.3":
-  version "0.41.3"
-  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.41.3.tgz#52e34c0c4dc0fdf56f8e4bda3f119269067b0887"
-  integrity sha512-CdrBBJVfQNhy6YX7itj65lI4q29SW5BGaPFR9WgOMd5snFQ4CbSymdFAdiV8QNRBs2Ax27FKrC3ciGZ9qtZ6Ew==
+"@glimmer/util@^0.41.4":
+  version "0.41.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.41.4.tgz#508fd82ca40305416e130f0da7b537295ded7989"
+  integrity sha512-DwS94K+M0vtG+cymxH0rslJr09qpdjyOLdCjmpKcG/nNiZQfMA1ybAaFEmwk9UaVlUG9STENFeQwyrLevJB+7g==
 
-"@glimmer/wire-format@^0.41.3":
-  version "0.41.3"
-  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.41.3.tgz#d25dab539d4a0bc3fa0ac7bb5f868e286a454adb"
-  integrity sha512-MGsMojsdm8Q9VGHpWcRAT2p4RSs0/sizXIApy+pA/FQW1dUdyhWb7SNivN8nP/FY9r4y6d3VXifgaGXRwD+zog==
+"@glimmer/wire-format@^0.41.4":
+  version "0.41.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.41.4.tgz#edc3279b8216363c925e771b2e2cbe408f2a0812"
+  integrity sha512-vp3Z+PjYkgCCyj5HX3cFB6Mag76GwVkI0cx9vMHKDoqJFJBicxc9JPymNuPuEithsJpUXJj2g7TKwJaliH2+cw==
   dependencies:
-    "@glimmer/interfaces" "^0.41.3"
-    "@glimmer/util" "^0.41.3"
+    "@glimmer/interfaces" "^0.41.4"
+    "@glimmer/util" "^0.41.4"
 
 "@mdx-js/mdx@^0.20.2":
   version "0.20.2"
@@ -3683,12 +3683,12 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-ember-template-recast@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-2.0.2.tgz#c6d76f38e76760a65a1f414e416bb084022b7acf"
-  integrity sha512-Fc20YQgfZbqk1JIyZcTqktzpsk6KCsNv7AJ7UVpq5YD2wWtqFqkpzyntWV8fyi2ot/GG0uFl9IgJFlZB07agMA==
+ember-template-recast@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-3.1.1.tgz#526965752ae4cf3fa6de4c040b5e7a3ab181e822"
+  integrity sha512-72LvKn6ExOeTPmBZ6zDao+LaZLKm4E2oQCmN/oKlQgc+DT9BnvACX4FrlGiEMKODnbgD6JCu7C3/9TbbbxLM2A==
   dependencies:
-    "@glimmer/syntax" "^0.41.3"
+    "@glimmer/syntax" "^0.41.4"
     async-promise-queue "^1.0.5"
     colors "^1.3.3"
     commander "^2.20.0"
