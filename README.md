@@ -85,6 +85,7 @@ are included so you can prototype your own plugins:
   - [ESLint][] (v1, v2, v3)
   - [jscodeshift][]
   - [tslint][]
+  - [putout][]
 - CSS
   - [postcss][]
 - MDX
@@ -139,6 +140,7 @@ node.
 [typescript]: https://github.com/Microsoft/TypeScript/
 [typescript-eslint-parser]: https://github.com/eslint/typescript-eslint-parser/
 [tslint]: https://palantir.github.io/tslint/
+[putout]: https://github.com/coderaiser/putout
 [uglify-js]: https://github.com/mishoo/UglifyJS2
 [webidl]: https://github.com/darobin/webidl2.js
 [redot]: https://github.com/redotjs/redot
