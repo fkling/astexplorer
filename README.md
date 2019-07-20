@@ -24,6 +24,7 @@ The AST explorer provides following code parsers:
   - [parse5][]
   - [@angular/compiler][]
   - [vue-template-compiler][]
+  - [svelte][]
 - [ICU][]
 - JavaScript:
   - [acorn][] + [acorn-jsx][]
@@ -158,6 +159,7 @@ node.
 [Scalameta]: http://scalameta.org/
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
+[svelte]: https://github.com/sveltejs/svelte 
 
 ### Contributions
 

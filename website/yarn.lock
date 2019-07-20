@@ -8670,6 +8670,11 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
+svelte@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.4.1.tgz#871ca99d11fc91e5cc8bb45ab789839e5df97867"
+  integrity sha512-Ak8/k8fOhz6BBzGVgxfb4YHCWRDzOw7VYuWcDBtBpH7RaCodFXIEpdnRQXc4j9j5bHAlnRn4KXURXVvdZplkBg==
+
 swap-case@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/swap-case/-/swap-case-1.1.2.tgz#c39203a4587385fad3c850a0bd1bcafa081974e3"
