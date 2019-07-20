@@ -3,6 +3,7 @@ import pkg from 'flow-parser/package.json';
 
 const ID = 'flow';
 export const defaultOptions = {
+  enums: false,
   esproposal_class_instance_fields: true,
   esproposal_class_static_fields: true,
   esproposal_decorators: true,
@@ -14,6 +15,7 @@ export const defaultOptions = {
 };
 export const parserSettingsConfiguration = {
   fields: [
+    'enums',
     'esproposal_class_instance_fields',
     'esproposal_class_static_fields',
     'esproposal_decorators',
