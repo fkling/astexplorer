@@ -8284,10 +8284,10 @@ sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scalameta-parsers@^2.0.0-RC3:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-2.0.1.tgz#59be1c98369dc53330be513724719bc1a8db0d0c"
-  integrity sha512-PCqaYCTKb91Z0wIKWP1zaR9sjPA8aMPD7U5Sk1aBdo7FQtwWxn4qW0NMj33xaNWmCsGuysMrdFulWpZRdFCEvA==
+scalameta-parsers@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-4.2.1.tgz#639810efdcf925e9b78f3f47022afaf64d09f125"
+  integrity sha512-8kqVgaP3aHjz+XrlHDO5AzdOzFaCWxwmVPHr+b0DAOJCnPuBNysX9/kEx7pUdO/hmVAX0JwYtBuiw2VjLpRhOw==
 
 scheduler@^0.13.4:
   version "0.13.4"
