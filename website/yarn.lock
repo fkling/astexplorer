@@ -9744,3 +9744,8 @@ zwitch@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/zwitch/-/zwitch-1.0.3.tgz#159fae4b3f737db1e42bf321d3423e4c96688a18"
   integrity sha512-aynRpmJDw7JIq6X4NDWJoiK1yVSiG57ArWSg4HLC1SFupX5/bo0Cf4jpX0ifwuzBfxpYBuNSyvMlWNNRuy3cVA==
+
+lucene@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/lucene/-/lucene-2.1.0.tgz#0883920a7c58523300e157c05123b6e6a7535235"
+  integrity sha512-uvBFSw4BOPWun5WCqpRmKhwLq8DOsts2UWgpOnKlwONlprmv/Lh116RCfoWFMLa4HekOkoCiyEQGMrXgQqyj5g==
