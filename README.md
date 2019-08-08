@@ -30,11 +30,11 @@ The AST explorer provides following code parsers:
   - [acorn][] + [acorn-jsx][]
   - [babel-eslint][]
   - [babylon][]
-  - [cherow][]
   - [espree][]
   - [esformatter][]
   - [esprima][]
   - [flow-parser][]
+  - [meriyah][]
   - [recast][]
   - [shift][]
   - [traceur][]
@@ -115,7 +115,6 @@ node.
 [babel-eslint]: https://github.com/babel/babel-eslint
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [babylon]: https://babeljs.io/
-[cherow]: https://github.com/cherow/cherow/tree/master/packages/cherow
 [cssom]: https://github.com/NV/CSSOM
 [csstree]: https://github.com/csstree/csstree
 [ember-template-recast]: https://github.com/ember-template-lint/ember-template-recast
@@ -128,6 +127,7 @@ node.
 [htmlparser2]: https://github.com/fb55/htmlparser2
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [luaparse]: https://oxyc.github.io/luaparse/
+[meriyah]: https://github.com/meriyah/meriyah/
 [parse5]: https://github.com/inikulin/parse5
 [postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
 [postcss-scss]: https://github.com/postcss/postcss-scss
@@ -170,10 +170,10 @@ as possible!
 
 #### How to add a new parser
 
-0. Go to `website/`.
-1. Install the new parser as dependency: `yarn add theParser` (or `npm install -S theParser`)
-2. Copy one of the existing examples in `src/parsers/{language}`.
-3. Adjust the code as necessary:
+1. Go to `website/`.
+2. Install the new parser as dependency: `yarn add theParser` (or `npm install -S theParser`)
+3. Copy one of the existing examples in `src/parsers/{language}`.
+4. Adjust the code as necessary:
   - Update metadata.
   - Load the right parser (`loadParser`).
   - Call the right parsing method with the right/necessary options in `parse`.
