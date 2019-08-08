@@ -100,6 +100,7 @@
     "json-to-ast": "^2.1.0",
     "lodash.isequal": "^4.5.0",
     "luaparse": "^0.2.1",
+    "meriyah": "latest",
     "parse5": "^5.1.0",
     "parse5-htmlparser2-tree-adapter": "^5.1.0",
     "php-parser": "^3.0.0-prerelease.8",
