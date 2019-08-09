@@ -38,7 +38,7 @@ export default {
       ranges: false,
 
       // Enable web compability
-      webcompat: false,
+      webcompat: true,
 
       // The flag to enable line/column location information to each node
       loc: false,
@@ -56,13 +56,13 @@ export default {
       impliedStrict: false,
 
       // Allowes comment extraction. Accepts either a function or array
-      onComment: [],
+      // onComment: [],
 
       // Enable non-standard parenthesized expression node
       preserveParens: false,
 
       // Enable lexical binding and scope tracking
-      lexical: false,
+      lexical: true,
 
       // Adds a source attribute in every node’s loc object when the locations option is `true`
       source: false,
@@ -90,7 +90,7 @@ export default {
         'directives',
         'globalReturn',
         'impliedStrict',
-        'onComment',
+        // 'onComment',
         'preserveParens',
         'lexical',
         'source',
