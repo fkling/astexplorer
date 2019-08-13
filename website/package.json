@@ -107,6 +107,8 @@
     "postcss-less": "^3.1.2",
     "postcss-safe-parser": "^4.0.1",
     "postcss-scss": "^2.0.0",
+    "posthtml": "^0.11.4",
+    "posthtml-parser": "^0.4.1",
     "prettier": "^1.14.3",
     "prop-type": "^0.0.1",
     "prop-types": "^15.5.10",

@@ -25,6 +25,7 @@ The AST explorer provides following code parsers:
   - [@angular/compiler][]
   - [vue-template-compiler][]
   - [svelte][]
+  - [posthtml][]
 - [ICU][]
 - JavaScript:
   - [acorn][] + [acorn-jsx][]
@@ -85,6 +86,8 @@ are included so you can prototype your own plugins:
   - [ESLint][] (v1, v2, v3)
   - [jscodeshift][]
   - [tslint][]
+- HTML
+  - [posthtml][]
 - CSS
   - [postcss][]
 - MDX
@@ -132,6 +135,7 @@ node.
 [postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
 [postcss-scss]: https://github.com/postcss/postcss-scss
 [postcss]: https://github.com/postcss/postcss
+[posthtml]: https://github.com/posthtml/posthtml
 [recast]: https://github.com/benjamn/recast
 [rework]: https://github.com/reworkcss/rework
 [shift]: https://github.com/shapesecurity/shift-parser-js
