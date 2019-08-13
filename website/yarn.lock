@@ -1000,6 +1000,11 @@
     "@nodelib/fs.scandir" "2.1.1"
     fastq "^1.6.0"
 
+"@types/eslint-visitor-keys@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
+  integrity sha512-OCutwjDZ4aFS6PB1UZ988C4YgwlBHJd6wCeQqaLdmadZ/7e+w79+hbMUFC1QXDNCmdyoRfAFdm0RypzwR+Qpag==
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -1018,11 +1023,6 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
-
-"@types/eslint-visitor-keys@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
-  integrity sha512-OCutwjDZ4aFS6PB1UZ988C4YgwlBHJd6wCeQqaLdmadZ/7e+w79+hbMUFC1QXDNCmdyoRfAFdm0RypzwR+Qpag==
 
 "@types/node@*":
   version "11.10.4"
@@ -4541,10 +4541,15 @@ flat-cache@^1.2.1:
     rimraf "~2.6.2"
     write "^0.2.1"
 
-flow-parser@0.*, flow-parser@^0.103.0:
+flow-parser@0.*:
   version "0.103.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.103.0.tgz#7afc50498e543856e090c5b5d924ae60e7c1add6"
   integrity sha512-H5UaM7mCzrssGa/HiPcr+oWBKosZTI7AlRk3jCEznBC786mdWIrTRjjGIAlRwuTVwT6SlPzV0M7kM6e3GGIQYA==
+
+flow-parser@^0.94.0:
+  version "0.94.0"
+  resolved "https://registry.npmjs.org/flow-parser/-/flow-parser-0.94.0.tgz#bae54cd3365c800dbe8062f82611a85c5ce872f4"
+  integrity sha512-zKVDm2rq9Z4GZDNT2GjEtoSat4NW/aZBkHsXs/XNnf39VOAzB0ufkxpuS6XgwuEaMUnhZEAA0gk7ASGxP/TQCQ==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -6458,6 +6463,11 @@ merge2@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.2.3.tgz#7ee99dbd69bb6481689253f018488a1b902b0ed5"
   integrity sha512-gdUU1Fwj5ep4kplwcmftruWofEFt6lfpkkr3h860CXbAB9c3hGb55EOL2ali0Td5oebvW0E1+3Sr+Ur7XfKpRA==
+
+meriyah@^1.6.5:
+  version "1.6.8"
+  resolved "https://registry.npmjs.org/meriyah/-/meriyah-1.6.8.tgz#59f3ddfd86447a0c069004d2b18037febe73afb2"
+  integrity sha512-+AmribQrnyegi0SLc6BpQOMiMhMNGvwlSiQ3ypVgSEg40OQb1GbErtEsGPEI9TLFFLw6/ZthUx/4L61SmOzdtA==
 
 micromatch@^3.0.4, micromatch@^3.1.10, micromatch@^3.1.4, micromatch@^3.1.8:
   version "3.1.10"
