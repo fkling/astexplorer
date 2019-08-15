@@ -938,6 +938,11 @@
   resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.41.4.tgz#3f3e26abea8a4e1463130e9a75e94372781d154b"
   integrity sha512-MzXwMyod3MlwSZezHSaVBsCEIW/giYYfTDYARR46QnYsaFVatMVbydjsI7jkAuBCbnLCyNOIc1TrYIj71i/rpg==
 
+"@glimmer/interfaces@^0.42.0":
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.42.0.tgz#525f5352dd78011eef7b3eb0e3fb61b981c94319"
+  integrity sha512-lZlydeRRK3yL6pco0gCstPVuC5XYjBUtql1vSvWTRd+MUO0Chg8kxIvduFVg6f+Xfr1kqWd2YQq1MCMdmfzfvg==
+
 "@glimmer/syntax@^0.41.4":
   version "0.41.4"
   resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.41.4.tgz#9c0c763aab44069c828ce782947c84d31ff75879"
@@ -948,10 +953,25 @@
     handlebars "^4.0.13"
     simple-html-tokenizer "^0.5.7"
 
+"@glimmer/syntax@^0.42.0":
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.42.0.tgz#65d38f6f6339e0e00cfbb34bc08ed3ff94f080c6"
+  integrity sha512-H0vydEQjlSqlVyjUmQxOy9BMBdL8OAII4GQjTXHWOQKmQBreZ05Dpr2EbXusiby6E2lMgbcPOqxGXdB/VVUBew==
+  dependencies:
+    "@glimmer/interfaces" "^0.42.0"
+    "@glimmer/util" "^0.42.0"
+    handlebars "^4.0.13"
+    simple-html-tokenizer "^0.5.8"
+
 "@glimmer/util@^0.41.4":
   version "0.41.4"
   resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.41.4.tgz#508fd82ca40305416e130f0da7b537295ded7989"
   integrity sha512-DwS94K+M0vtG+cymxH0rslJr09qpdjyOLdCjmpKcG/nNiZQfMA1ybAaFEmwk9UaVlUG9STENFeQwyrLevJB+7g==
+
+"@glimmer/util@^0.42.0":
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.42.0.tgz#3f3a647ecaa16bbe4fc0545923d3b0a527319d78"
+  integrity sha512-rvXxKVb7BoQUvdrEQgxyvIeqGRUFM4LZAc7X1OmIpMnoaEh3fyx/e8Bz0blF0Yk6QvHpfV/GKirhlGmfum/ISA==
 
 "@glimmer/wire-format@^0.41.4":
   version "0.41.4"
@@ -1000,6 +1020,11 @@
     "@nodelib/fs.scandir" "2.1.1"
     fastq "^1.6.0"
 
+"@types/eslint-visitor-keys@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
+  integrity sha512-OCutwjDZ4aFS6PB1UZ988C4YgwlBHJd6wCeQqaLdmadZ/7e+w79+hbMUFC1QXDNCmdyoRfAFdm0RypzwR+Qpag==
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -1018,11 +1043,6 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
-
-"@types/eslint-visitor-keys@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
-  integrity sha512-OCutwjDZ4aFS6PB1UZ988C4YgwlBHJd6wCeQqaLdmadZ/7e+w79+hbMUFC1QXDNCmdyoRfAFdm0RypzwR+Qpag==
 
 "@types/node@*":
   version "11.10.4"
@@ -3087,10 +3107,10 @@ commander@^2.12.1, commander@^2.5.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
   integrity sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg==
 
-commander@^2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
-  integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
+commander@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-3.0.0.tgz#0641ea00838c7a964627f04cddc336a2deddd60a"
+  integrity sha512-pl3QrGOBa9RZaslQiqnnKX2J068wcQw7j9AIaBQ9/JEp5RY6je4jKTImg0Bd+rpoONSe7GUFSgkxLeo17m3Pow==
 
 commander@~2.13.0:
   version "2.13.0"
@@ -3697,15 +3717,15 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-ember-template-recast@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-3.1.1.tgz#526965752ae4cf3fa6de4c040b5e7a3ab181e822"
-  integrity sha512-72LvKn6ExOeTPmBZ6zDao+LaZLKm4E2oQCmN/oKlQgc+DT9BnvACX4FrlGiEMKODnbgD6JCu7C3/9TbbbxLM2A==
+ember-template-recast@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-3.1.2.tgz#7437f93b1aeaf87345ac13282899802dcae23141"
+  integrity sha512-2WS4xkquxHXsqa6h2KKSCQy6RlVmOP93vEg4GkZiVZBLVi/weXXNpkL6rm/5oqjqGVjHfSBCiOOOES5AYNoQeQ==
   dependencies:
-    "@glimmer/syntax" "^0.41.4"
+    "@glimmer/syntax" "^0.42.0"
     async-promise-queue "^1.0.5"
     colors "^1.3.3"
-    commander "^2.20.0"
+    commander "^3.0.0"
     globby "^10.0.1"
     ora "^3.4.0"
     tmp "^0.1.0"
@@ -4541,10 +4561,15 @@ flat-cache@^1.2.1:
     rimraf "~2.6.2"
     write "^0.2.1"
 
-flow-parser@0.*, flow-parser@^0.103.0:
+flow-parser@0.*:
   version "0.103.0"
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.103.0.tgz#7afc50498e543856e090c5b5d924ae60e7c1add6"
   integrity sha512-H5UaM7mCzrssGa/HiPcr+oWBKosZTI7AlRk3jCEznBC786mdWIrTRjjGIAlRwuTVwT6SlPzV0M7kM6e3GGIQYA==
+
+flow-parser@^0.94.0:
+  version "0.94.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.94.0.tgz#bae54cd3365c800dbe8062f82611a85c5ce872f4"
+  integrity sha512-zKVDm2rq9Z4GZDNT2GjEtoSat4NW/aZBkHsXs/XNnf39VOAzB0ufkxpuS6XgwuEaMUnhZEAA0gk7ASGxP/TQCQ==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -8449,6 +8474,11 @@ simple-html-tokenizer@^0.5.7:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.7.tgz#8eca336ecfbe2b3c6166cbb31b2682088de79f40"
   integrity sha512-APW9iYbkJ5cijjX4Ljhf3VG8SwYPUJT5gZrwci/wieMabQxWFiV5VwsrP5c6GMRvXKEQMGkAB1d9dvW66dTqpg==
+
+simple-html-tokenizer@^0.5.8:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.8.tgz#3417382f75954ee34515cc4fd32d9918e693f173"
+  integrity sha512-0Sq4FvLlQEQODVA6PH2MIrc7tzYO0KT2HzzwvaVLYClWgIsuvaNUOrhrAvTi1pZHrcq7GDB4WiI3ukjqBMxcGQ==
 
 simple-is@~0.2.0:
   version "0.2.0"
