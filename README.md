@@ -58,6 +58,7 @@ The AST explorer provides following code parsers:
   - [solidity-parser-antlr][]
 - SQL:
   - [sqlite-parser][]
+- [Tree][]
 - [WebIDL][]
 - YAML:
   - [yaml][]
@@ -158,6 +159,7 @@ node.
 [mdx]: https://mdxjs.com/advanced/sync-api
 [Scalameta]: http://scalameta.org/
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
+[Tree]: https://github.com/nin-jin/tree.d
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
 [svelte]: https://github.com/sveltejs/svelte 
 
