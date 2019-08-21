@@ -4,10 +4,10 @@ import pkg from 'mol_tree/package.json';
 export default {
   ...defaultParserInterface,
 
-  id: ID,
+  id: 'UA-81889051-2',
   displayName: 'mol_tree',
   version: pkg.version,
-  homepage: 'https://github.com/nin-jin/tree.d',
+  homepage: pkg.homepage || 'https://github.com/nin-jin/tree.d',
 
   locationProps: new Set(['baseUri','uri','col','row']),
   typeProps: new Set(['type']),
