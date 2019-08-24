@@ -123,7 +123,7 @@
     "regexp-tree": "^0.1.5",
     "remark": "^10.0.0",
     "reselect": "^4.0.0",
-    "scalameta-parsers": "^2.0.0-RC3",
+    "scalameta-parsers": "^4.2.1",
     "shift-parser": "^6.0.1",
     "solidity-parser-antlr": "^0.4.0",
     "source-map": "^0.6.1",
