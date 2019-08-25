@@ -3381,10 +3381,10 @@ cssesc@^0.1.0:
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-0.1.0.tgz#c814903e45623371a0477b40109aaafbeeaddbb4"
   integrity sha1-yBSQPkViM3GgR3tAEJqq++6t27Q=
 
-cssom@^0.3.0:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/cssom/-/cssom-0.3.6.tgz#f85206cee04efa841f3c5982a74ba96ab20d65ad"
-  integrity sha512-DtUeseGk9/GBW0hl0vVPpU22iHL6YB5BUX7ml1hB+GMpo0NX5G4voX3kdWiMSEguFtcW3Vh3djqNF4aIe6ne0A==
+cssom@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/cssom/-/cssom-0.4.1.tgz#b24111d236b6dbd00cdfacb5ab67a20473381fe3"
+  integrity sha512-6Aajq0XmukE7HdXUU6IoSWuH1H6gH9z6qmagsstTiN7cW2FNTsb+J2Chs+ufPgZCsV/yo8oaEudQLrb9dGxSVQ==
 
 cyclist@~0.2.2:
   version "0.2.2"
@@ -4548,7 +4548,7 @@ flow-parser@0.*:
 
 flow-parser@^0.94.0:
   version "0.94.0"
-  resolved "https://registry.npmjs.org/flow-parser/-/flow-parser-0.94.0.tgz#bae54cd3365c800dbe8062f82611a85c5ce872f4"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.94.0.tgz#bae54cd3365c800dbe8062f82611a85c5ce872f4"
   integrity sha512-zKVDm2rq9Z4GZDNT2GjEtoSat4NW/aZBkHsXs/XNnf39VOAzB0ufkxpuS6XgwuEaMUnhZEAA0gk7ASGxP/TQCQ==
 
 flush-write-stream@^1.0.0:
@@ -5362,10 +5362,10 @@ interpret@^1.0.0, interpret@^1.1.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-intl-messageformat-parser@^1.3.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.4.0.tgz#b43d45a97468cadbe44331d74bb1e8dea44fc075"
-  integrity sha1-tD1FqXRoytvkQzHXS7Ho3qRPwHU=
+intl-messageformat-parser@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-2.1.2.tgz#c26d275083900b4cffb01cd22306c2682e9b9744"
+  integrity sha512-mlUvCT1wGRG+vSxyo/bA6NMVCJ8E5e4PqF0lfy5Lw4nBVylrtrsKqY5BjGKE96DAClM9QOIepJMZtFHiGe5ueQ==
 
 invariant@^2.2.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
@@ -8294,10 +8294,10 @@ sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scalameta-parsers@^2.0.0-RC3:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-2.0.1.tgz#59be1c98369dc53330be513724719bc1a8db0d0c"
-  integrity sha512-PCqaYCTKb91Z0wIKWP1zaR9sjPA8aMPD7U5Sk1aBdo7FQtwWxn4qW0NMj33xaNWmCsGuysMrdFulWpZRdFCEvA==
+scalameta-parsers@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-4.2.1.tgz#639810efdcf925e9b78f3f47022afaf64d09f125"
+  integrity sha512-8kqVgaP3aHjz+XrlHDO5AzdOzFaCWxwmVPHr+b0DAOJCnPuBNysX9/kEx7pUdO/hmVAX0JwYtBuiw2VjLpRhOw==
 
 scheduler@^0.13.4:
   version "0.13.4"
@@ -9754,3 +9754,8 @@ zwitch@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/zwitch/-/zwitch-1.0.3.tgz#159fae4b3f737db1e42bf321d3423e4c96688a18"
   integrity sha512-aynRpmJDw7JIq6X4NDWJoiK1yVSiG57ArWSg4HLC1SFupX5/bo0Cf4jpX0ifwuzBfxpYBuNSyvMlWNNRuy3cVA==
+
+lucene@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/lucene/-/lucene-2.1.0.tgz#0883920a7c58523300e157c05123b6e6a7535235"
+  integrity sha512-uvBFSw4BOPWun5WCqpRmKhwLq8DOsts2UWgpOnKlwONlprmv/Lh116RCfoWFMLa4HekOkoCiyEQGMrXgQqyj5g==

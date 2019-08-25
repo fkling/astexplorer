@@ -147,7 +147,7 @@ node.
 [php-parser]: https://github.com/glayzzle/php-parser
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
 [handlebars]: http://handlebarsjs.com/
-[icu]: https://github.com/yahoo/intl-messageformat-parser
+[icu]: https://github.com/formatjs/formatjs/tree/master/packages/intl-messageformat-parser
 [json]: https://github.com/vtrushin/json-to-ast
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/eemeli/yaml
