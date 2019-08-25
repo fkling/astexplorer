@@ -6464,6 +6464,11 @@ merge2@^1.2.3:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.2.3.tgz#7ee99dbd69bb6481689253f018488a1b902b0ed5"
   integrity sha512-gdUU1Fwj5ep4kplwcmftruWofEFt6lfpkkr3h860CXbAB9c3hGb55EOL2ali0Td5oebvW0E1+3Sr+Ur7XfKpRA==
 
+meriyah@^1.6.5:
+  version "1.6.8"
+  resolved "https://registry.npmjs.org/meriyah/-/meriyah-1.6.8.tgz#59f3ddfd86447a0c069004d2b18037febe73afb2"
+  integrity sha512-+AmribQrnyegi0SLc6BpQOMiMhMNGvwlSiQ3ypVgSEg40OQb1GbErtEsGPEI9TLFFLw6/ZthUx/4L61SmOzdtA==
+
 micromatch@^3.0.4, micromatch@^3.1.10, micromatch@^3.1.4, micromatch@^3.1.8:
   version "3.1.10"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
