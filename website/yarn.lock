@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@angular/compiler@^7.1.2":
-  version "7.2.7"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-7.2.7.tgz#3f3deb851634db871e92acde2f1ee56362d8c47f"
-  integrity sha512-e61YVxW5x4w+X4yjGaptYoJIja7HwH0+8FFEaH6VuPl/DrK8wP4HDMhLo4NzdgeZKLR2jBIQSqLmoM8W7UXcqw==
+"@angular/compiler@^8.1.2":
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-8.2.3.tgz#9242a28280c92770fec617e97fa31c6a1e8618f2"
+  integrity sha512-CDUiYXdy7jIwhK3aeBwz4Bik3eQUORVWDVuO8fsVot7CODE4jIkETUdeWuYuEpwPX7dkjsFvuT4btiwzZfrCUg==
   dependencies:
     tslib "^1.9.0"
 
@@ -6351,6 +6351,11 @@ luaparse@^0.2.1:
   resolved "https://registry.yarnpkg.com/luaparse/-/luaparse-0.2.1.tgz#aa8f56132b0de97d37f3c991a9df42e0e17f656c"
   integrity sha1-qo9WEysN6X0388mRqd9C4OF/ZWw=
 
+lucene@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/lucene/-/lucene-2.1.0.tgz#0883920a7c58523300e157c05123b6e6a7535235"
+  integrity sha512-uvBFSw4BOPWun5WCqpRmKhwLq8DOsts2UWgpOnKlwONlprmv/Lh116RCfoWFMLa4HekOkoCiyEQGMrXgQqyj5g==
+
 make-dir@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
@@ -9800,8 +9805,3 @@ zwitch@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/zwitch/-/zwitch-1.0.3.tgz#159fae4b3f737db1e42bf321d3423e4c96688a18"
   integrity sha512-aynRpmJDw7JIq6X4NDWJoiK1yVSiG57ArWSg4HLC1SFupX5/bo0Cf4jpX0ifwuzBfxpYBuNSyvMlWNNRuy3cVA==
-
-lucene@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/lucene/-/lucene-2.1.0.tgz#0883920a7c58523300e157c05123b6e6a7535235"
-  integrity sha512-uvBFSw4BOPWun5WCqpRmKhwLq8DOsts2UWgpOnKlwONlprmv/Lh116RCfoWFMLa4HekOkoCiyEQGMrXgQqyj5g==
