@@ -43,8 +43,8 @@
   "dependencies": {
     "@angular/compiler": "^8.1.2",
     "@babel/runtime": "^7.1.5",
-    "@glimmer/compiler": "^0.41.4",
-    "@glimmer/syntax": "^0.41.4",
+    "@glimmer/compiler": "^0.42.0",
+    "@glimmer/syntax": "^0.42.0",
     "@mdx-js/mdx": "^0.20.2",
     "@typescript-eslint/parser": "^1.11.0",
     "@webassemblyjs/wast-parser": "^1.5.6",

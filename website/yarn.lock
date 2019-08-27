@@ -930,35 +930,20 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@glimmer/compiler@^0.41.4":
-  version "0.41.4"
-  resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.41.4.tgz#c3b6f241bebe99373f64882902512b67aaee49f8"
-  integrity sha512-JTdFJDp0irQptXCqDQUPWaB7p6/Bg2SKe7NIMoeKeRGAw0Nhgi0xkqTN7OF2sugfjMdmzRn1oHRL5Mk26VZtfw==
+"@glimmer/compiler@^0.42.0":
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.42.0.tgz#8c3852e27177bbecd3eed5bdbd15ec729e09ef8a"
+  integrity sha512-3YkZkVuSv3e78WLYOz9YA1wKa/azFnBKADwcCNRhYpVOp9CHBJq4CzZ2pFcceYrCvL1CGgJ1crZJeuXfpkJyOw==
   dependencies:
-    "@glimmer/interfaces" "^0.41.4"
-    "@glimmer/syntax" "^0.41.4"
-    "@glimmer/util" "^0.41.4"
-    "@glimmer/wire-format" "^0.41.4"
-
-"@glimmer/interfaces@^0.41.4":
-  version "0.41.4"
-  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.41.4.tgz#3f3e26abea8a4e1463130e9a75e94372781d154b"
-  integrity sha512-MzXwMyod3MlwSZezHSaVBsCEIW/giYYfTDYARR46QnYsaFVatMVbydjsI7jkAuBCbnLCyNOIc1TrYIj71i/rpg==
+    "@glimmer/interfaces" "^0.42.0"
+    "@glimmer/syntax" "^0.42.0"
+    "@glimmer/util" "^0.42.0"
+    "@glimmer/wire-format" "^0.42.0"
 
 "@glimmer/interfaces@^0.42.0":
   version "0.42.0"
   resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.42.0.tgz#525f5352dd78011eef7b3eb0e3fb61b981c94319"
   integrity sha512-lZlydeRRK3yL6pco0gCstPVuC5XYjBUtql1vSvWTRd+MUO0Chg8kxIvduFVg6f+Xfr1kqWd2YQq1MCMdmfzfvg==
-
-"@glimmer/syntax@^0.41.4":
-  version "0.41.4"
-  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.41.4.tgz#9c0c763aab44069c828ce782947c84d31ff75879"
-  integrity sha512-NLPNirZDbNmpZ8T/ccle22zt2rhUq5il7ST6IJk62T58QZeJsdr3m3RS4kaGSBsQhXoKELrgX048yYEX5sC+fw==
-  dependencies:
-    "@glimmer/interfaces" "^0.41.4"
-    "@glimmer/util" "^0.41.4"
-    handlebars "^4.0.13"
-    simple-html-tokenizer "^0.5.7"
 
 "@glimmer/syntax@^0.42.0":
   version "0.42.0"
@@ -970,23 +955,18 @@
     handlebars "^4.0.13"
     simple-html-tokenizer "^0.5.8"
 
-"@glimmer/util@^0.41.4":
-  version "0.41.4"
-  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.41.4.tgz#508fd82ca40305416e130f0da7b537295ded7989"
-  integrity sha512-DwS94K+M0vtG+cymxH0rslJr09qpdjyOLdCjmpKcG/nNiZQfMA1ybAaFEmwk9UaVlUG9STENFeQwyrLevJB+7g==
-
 "@glimmer/util@^0.42.0":
   version "0.42.0"
   resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.42.0.tgz#3f3a647ecaa16bbe4fc0545923d3b0a527319d78"
   integrity sha512-rvXxKVb7BoQUvdrEQgxyvIeqGRUFM4LZAc7X1OmIpMnoaEh3fyx/e8Bz0blF0Yk6QvHpfV/GKirhlGmfum/ISA==
 
-"@glimmer/wire-format@^0.41.4":
-  version "0.41.4"
-  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.41.4.tgz#edc3279b8216363c925e771b2e2cbe408f2a0812"
-  integrity sha512-vp3Z+PjYkgCCyj5HX3cFB6Mag76GwVkI0cx9vMHKDoqJFJBicxc9JPymNuPuEithsJpUXJj2g7TKwJaliH2+cw==
+"@glimmer/wire-format@^0.42.0":
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.42.0.tgz#53f9a6cbcb9882af3a55aed83929f71799f73fab"
+  integrity sha512-/SmRH98Jm4NyvyWoBj05fqyz52pGDGHq91uX5Fn7sT4xgHDe8smlT+5Ht3Ewl4t2Pmtwqx/4YzitOy/1EKv0aA==
   dependencies:
-    "@glimmer/interfaces" "^0.41.4"
-    "@glimmer/util" "^0.41.4"
+    "@glimmer/interfaces" "^0.42.0"
+    "@glimmer/util" "^0.42.0"
 
 "@mdx-js/mdx@^0.20.2":
   version "0.20.3"
@@ -9425,11 +9405,6 @@ simple-fmt@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/simple-fmt/-/simple-fmt-0.1.0.tgz#191bf566a59e6530482cb25ab53b4a8dc85c3a6b"
   integrity sha1-GRv1ZqWeZTBILLJatTtKjchcOms=
-
-simple-html-tokenizer@^0.5.7:
-  version "0.5.7"
-  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.7.tgz#8eca336ecfbe2b3c6166cbb31b2682088de79f40"
-  integrity sha512-APW9iYbkJ5cijjX4Ljhf3VG8SwYPUJT5gZrwci/wieMabQxWFiV5VwsrP5c6GMRvXKEQMGkAB1d9dvW66dTqpg==
 
 simple-html-tokenizer@^0.5.8:
   version "0.5.8"
