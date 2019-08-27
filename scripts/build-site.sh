@@ -34,7 +34,7 @@ function build {
   )
 
   echo "Copying artifacts..."
-  cp -R out/ "$TARGETPATH/"
+  cp -R out/* "$TARGETPATH/"
   cp README.md "$TARGETPATH/README.md"
   cp CNAME "$TARGETPATH/CNAME"
 
