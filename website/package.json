@@ -92,7 +92,7 @@
     "graphql": "^14.0.2",
     "halting-problem": "^1.0.2",
     "handlebars": "^4.1.2",
-    "htmlparser2": "^3.9.0",
+    "htmlparser2": "^4.0.0",
     "intl-messageformat-parser": "^3.0.7",
     "isomorphic-fetch": "^2.2.1",
     "jscodeshift": "^0.6.3",

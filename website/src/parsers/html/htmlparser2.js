@@ -46,7 +46,7 @@ export default {
     });
   },
 
-  parse({ Parser, Handler }, code, options) {
+  parse({ Parser: {Parser}, Handler }, code, options) {
     let handler = new Handler();
     new Parser(handler, options).end(code);
     return handler.dom;
