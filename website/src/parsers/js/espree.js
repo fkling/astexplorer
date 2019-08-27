@@ -35,13 +35,13 @@ export default {
       attachComment: false,
       tokens: false,
       tolerant: false,
-      ecmaVersion: 6,
+      ecmaVersion: 10,
       sourceType: 'module',
 
       ecmaFeatures: {
         jsx: true,
         globalReturn: true,
-        experimentalObjectRestSpread: true,
+        impliedStrict: false,
       },
     };
   },
@@ -51,7 +51,7 @@ export default {
 
     return {
       fields: [
-        ['ecmaVersion', [3, 5, 6, 7, 8, 9], value => Number(value)],
+        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10, 11], value => Number(value)],
         ['sourceType', ['script', 'module']],
         'range',
         'loc',
