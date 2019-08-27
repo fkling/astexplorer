@@ -128,7 +128,7 @@
     "remark": "^10.0.0",
     "reselect": "^4.0.0",
     "scalameta-parsers": "^4.2.1",
-    "shift-parser": "^6.0.1",
+    "shift-parser": "^7.0.0",
     "solidity-parser-antlr": "^0.4.0",
     "source-map": "^0.6.1",
     "sqlite-parser": "^1.0.0-rc3",

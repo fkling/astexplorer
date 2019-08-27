@@ -9315,32 +9315,36 @@ shelljs@^0.7.5:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shift-ast@5.0.0, shift-ast@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/shift-ast/-/shift-ast-5.0.0.tgz#0ebf08ccfde5316c6614763c4e277720cbc200c3"
-  integrity sha512-kMhr/GwgrQ1U2kaa50sD5YxNDQEZHAZigVwrf/NNeezb6oiYnpPMV8v1WVRhCW8sjI7xUdzuPujSQ3gA2IuUAQ==
+shift-ast@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/shift-ast/-/shift-ast-6.0.0.tgz#7af2b102f8f9e856d84b4f299dde1cb5424540cc"
+  integrity sha512-XXxDcEBWVBzqWXfNYJlLyJ1/9kMvOXVRXiqPjkOrTCC5qRsBvEMJMRLLFhU3tn8ue56Y7IZyBE6bexFum5QLUw==
 
-shift-parser@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/shift-parser/-/shift-parser-6.0.1.tgz#09b2a5d4229bbffcccb1bf2bf08b375d4debdfc1"
-  integrity sha512-djliLGkzKyK+CS0NYoML0Db1/1+66d4hVFPHZb9e3jXWM0dHp+Ffb3QHD7PKsNuQFIcSU97BCoAPQ+AQlf0SKQ==
+shift-parser@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/shift-parser/-/shift-parser-7.0.0.tgz#ea3ca9ea427584cff794ee5a5de4f06dfd24dca7"
+  integrity sha512-YYnQdwBEPNiRkDYIPzYIl125ysIYeeDwlUk3lgXxFpJLJhtqrIpZgShacAdoDufSmVOSTDDdxPqfcSfDwVr6dw==
   dependencies:
     multimap "^1.0.2"
-    shift-ast "^5.0.0"
-    shift-reducer "^5.0.0"
-    shift-regexp-acceptor "^1.0.1"
+    shift-ast "6.0.0"
+    shift-reducer "6.0.0"
+    shift-regexp-acceptor "2.0.2"
 
-shift-reducer@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/shift-reducer/-/shift-reducer-5.0.0.tgz#13069af02633266c4538019b6d0f9b041bb4ddbb"
-  integrity sha512-Jgr6kPMZuzsQ63NdeLJT6BZvtJ6IDbYFBVqiid1bZlwxeJYq81Cj2Wc4UUERjO4Q9tz5U4KpWaZhitjcBvfiYA==
+shift-reducer@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/shift-reducer/-/shift-reducer-6.0.0.tgz#f0d4b3d4a2f5cdb606ff2e7b116759f790671d20"
+  integrity sha512-2rJraRP8drIOjvaE/sALa+0tGJmMVUzlmS3wIJerJbaYuCjpFAiF0WjkTOFVtz1144Nm/ECmqeG+7yRhuMVsMg==
   dependencies:
-    shift-ast "5.0.0"
+    shift-ast "6.0.0"
 
-shift-regexp-acceptor@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/shift-regexp-acceptor/-/shift-regexp-acceptor-1.0.1.tgz#07f901c2e3776ef6dbaae2fea4d534e40a54a52a"
-  integrity sha512-GresOV14wluN2snjx4GGaRgdS0H7JJ5Ikw+4vLd+QC68pOOXeY/8TbxzEflf8maz/10FmjH/Lq0T9o3EofO4wA==
+shift-regexp-acceptor@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/shift-regexp-acceptor/-/shift-regexp-acceptor-2.0.2.tgz#b5710132a61c332f2febd348220e0b462ff953f3"
+  integrity sha512-gW7HMRFZe2mGrVmpv7ENPVIwe4bhJzvHpkT71ZZGQ3d9YaWAZrY3r5sCJ8Hwl/L0/t5n6eWJD+8gJB/r9AvBJQ==
+  dependencies:
+    unicode-match-property-ecmascript "1.0.4"
+    unicode-match-property-value-ecmascript "1.0.2"
+    unicode-property-aliases-ecmascript "1.0.4"
 
 sigmund@~1.0.0:
   version "1.0.1"
@@ -10214,7 +10218,7 @@ unicode-canonical-property-names-ecmascript@^1.0.4:
   resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
   integrity sha512-jDrNnXWHd4oHiTZnx/ZG7gtUTVp+gCcTTKr8L0HjlwphROEW3+Him+IpvC+xcJEFegapiMZyZe02CyuOnRmbnQ==
 
-unicode-match-property-ecmascript@^1.0.4:
+unicode-match-property-ecmascript@1.0.4, unicode-match-property-ecmascript@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/unicode-match-property-ecmascript/-/unicode-match-property-ecmascript-1.0.4.tgz#8ed2a32569961bce9227d09cd3ffbb8fed5f020c"
   integrity sha512-L4Qoh15vTfntsn4P1zqnHulG0LdXgjSO035fEpdtp6YxXhMT51Q6vgM5lYdG/5X3MjS+k/Y9Xw4SFCY9IkR0rg==
@@ -10222,10 +10226,20 @@ unicode-match-property-ecmascript@^1.0.4:
     unicode-canonical-property-names-ecmascript "^1.0.4"
     unicode-property-aliases-ecmascript "^1.0.4"
 
+unicode-match-property-value-ecmascript@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/unicode-match-property-value-ecmascript/-/unicode-match-property-value-ecmascript-1.0.2.tgz#9f1dc76926d6ccf452310564fd834ace059663d4"
+  integrity sha512-Rx7yODZC1L/T8XKo/2kNzVAQaRE88AaMvI1EF/Xnj3GW2wzN6fop9DDWuFAKUVFH7vozkz26DzP0qyWLKLIVPQ==
+
 unicode-match-property-value-ecmascript@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/unicode-match-property-value-ecmascript/-/unicode-match-property-value-ecmascript-1.1.0.tgz#5b4b426e08d13a80365e0d657ac7a6c1ec46a277"
   integrity sha512-hDTHvaBk3RmFzvSl0UVrUmC3PuW9wKVnpoUDYH0JDkSIovzw+J5viQmeYHxVSBptubnr7PbH2e0fnpDRQnQl5g==
+
+unicode-property-aliases-ecmascript@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-1.0.4.tgz#5a533f31b4317ea76f17d807fa0d116546111dd0"
+  integrity sha512-2WSLa6OdYd2ng8oqiGIWnJqyFArvhn+5vgx5GTxMbUYjCYKUcuKS62YLFF0R/BDGlB1yzXjQOLtPAfHsgirEpg==
 
 unicode-property-aliases-ecmascript@^1.0.4:
   version "1.0.5"
