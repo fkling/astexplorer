@@ -45,7 +45,7 @@
     "@babel/runtime": "^7.1.5",
     "@glimmer/compiler": "^0.42.0",
     "@glimmer/syntax": "^0.42.0",
-    "@mdx-js/mdx": "^0.20.2",
+    "@mdx-js/mdx": "^1.4.0",
     "@typescript-eslint/parser": "^1.11.0",
     "@webassemblyjs/wast-parser": "^1.5.6",
     "acorn": "^7.0.0",
