@@ -38,6 +38,7 @@ export default {
       gfm: true,
       commonmark: false,
       footnotes: false,
+      pedantic: false,
     };
   },
 
