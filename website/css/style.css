@@ -158,6 +158,8 @@ html {
   border: 1px solid #ddd;
   border-top: none;
   min-width: 100%;
+  max-height: calc(80vh - 32px);
+  overflow: auto;
 }
 
 #Toolbar .menuButton ul li {
