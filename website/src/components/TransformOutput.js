@@ -8,6 +8,11 @@ import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
 import stringify from 'json-stringify-safe';
 
 function transform(transformer, transformCode, code) {
+  // Transforms may make use of Node's __filename global. See GitHub issue #420.
+  // So we define a dummy one.
+  if (!global.__filename) {
+    global.__filename = 'transform.js';
+  }
   if (!transformer._promise) {
     transformer._promise = new Promise(transformer.loadTransformer);
   }
