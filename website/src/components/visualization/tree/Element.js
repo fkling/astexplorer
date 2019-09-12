@@ -134,8 +134,11 @@ const Element = React.memo(function Element({
   const opensByDefault = useMemo(
     () => treeAdapter.opensByDefault(value, name),
     [treeAdapter, value, name],
+  ) || level === 0;
+  const [openState, setOpenState] = useOpenState(
+    open,
+    autofocus && (isInRange || hasChildrenInRange)
   );
-  const [openState, setOpenState] = useOpenState(open, autofocus && isInRange);
   const element = useRef();
 
   useEffect(() => {
@@ -294,7 +297,7 @@ const Element = React.memo(function Element({
 
   let classNames = cx({
     entry: true,
-    highlighted: isInRange && (!hasChildrenInRange || !isOpen),
+    highlighted: isInRange && (!hasChildrenInRange || !isOpen) || !isInRange && hasChildrenInRange && !isOpen,
     toggable: showToggler,
     open: isOpen,
   });
@@ -326,7 +329,8 @@ const Element = React.memo(function Element({
     prevProps.onClick === nextProps.onClick &&
     prevProps.isInRange === nextProps.isInRange &&
     prevProps.hasChildrenInRange === nextProps.hasChildrenInRange &&
-    (!nextProps.isInRange || prevProps.position === nextProps.position);
+    //
+    ((nextProps.isInRange || nextProps.hashChildrenInRange) && prevProps.position === nextProps.position);
 });
 
 Element.propTypes = {
@@ -414,7 +418,7 @@ const PrimitiveElement = React.memo(function PrimitiveElement({
     <li className="entry">
       {name ? <PropertyName name={name} computed={computed} /> : null}
       <span className="value">
-        <span className="s">{stringify(value)}</span>;
+        <span className="s">{stringify(value)}</span>
       </span>
     </li>
   );

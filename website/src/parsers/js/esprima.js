@@ -21,15 +21,17 @@ export default {
   },
 
   *forEachProperty(node) {
-    for (let prop in node) {
-      if (typeof node[prop] === 'function') {
-        continue;
+    if (node && typeof node === 'object') {
+      for (let prop in node) {
+        if (typeof node[prop] === 'function') {
+          continue;
+        }
+        yield {
+          value: node[prop],
+          key: prop,
+          computed: false,
+        };
       }
-      yield {
-        value: node[prop],
-        key: prop,
-        computed: false,
-      };
     }
   },
 

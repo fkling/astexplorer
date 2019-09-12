@@ -29,38 +29,24 @@ class TreeAdapter {
    * text and focusing nodes in the tree.
    */
   getRange(node) {
-    if (!(node && typeof node === 'object')) {
+    if (node == null) {
       return null;
     }
-
     if (this._ranges.has(node)) {
       return this._ranges.get(node);
     }
     const {nodeToRange} = this._adapterOptions;
     let range = nodeToRange(node);
-    if (!range) {
-      // If the node doesn't have location data itself, try to derive it from
-      // its first and last child.
-      let first, last;
-      const iterator = this.walkNode(node);
-      let next = iterator.next();
-      if (!next.done) {
-        first = last = next.value && next.value.value;
-      }
-      while (!(next = iterator.next()).done) {
-        last = next.value && next.value.value;
-      }
-      const rangeFirst = first && nodeToRange(first);
-      const rangeLast = last && nodeToRange(last);
-      if (rangeFirst && rangeLast) {
-        range = [rangeFirst[0], rangeLast[1]];
-      }
+    if (node && typeof node === 'object') {
+      this._ranges.set(node, range);
     }
-    this._ranges.set(node, range);
     return range;
   }
 
   isInRange(node, position) {
+    if (!isValidPosition(position)) {
+      return false;
+    }
     const range = this.getRange(node);
     if (!range) {
       return false;
@@ -68,12 +54,28 @@ class TreeAdapter {
     return range[0] <= position && position <= range[1];
   }
 
-  hasChildrenInRange(node, position) {
-    if (!this.isInRange(node, position)) {
+  hasChildrenInRange(node, position, seen=new Set()) {
+    if (!isValidPosition(position)) {
       return false;
     }
+    seen.add(node);
+    const range = this.getRange(node);
+    if (range && !this.isInRange(node, position)) {
+      return false;
+    }
+    // Not everything that is rendered has location associated with it (most
+    // commonly arrays). In such a case we are a looking whether the node
+    // contains any other nodes with location data (recursively).
     for (const {value: child} of this.walkNode(node)) {
       if (this.isInRange(child, position)) {
+        return true;
+      }
+    }
+    for (const {value: child} of this.walkNode(node)) {
+      if (seen.has(child)) {
+        continue;
+      }
+      if (this.hasChildrenInRange(child, position, seen)) {
         return true;
       }
     }
@@ -97,33 +99,30 @@ class TreeAdapter {
 
   /**
    * A generator to iterate over each "property" of the node.
-   * Overwriting _walkNode allows a parser to expose information from a node if
-   * the node is not implemented as plain JavaScript object.
    */
   *walkNode(node) {
-    for (const result of this._walkNode(node)) {
-      if (
-        (this._adapterOptions.filters || []).some(filter => {
-          if (filter.key && !this._filterValues[filter.key]) {
-            return false;
-          }
-          return filter.test(result.value, result.key);
-        })
-      ) {
-        continue;
+    if (node != null) {
+      for (const result of this._adapterOptions.walkNode(node)) {
+        if (
+          (this._adapterOptions.filters || []).some(filter => {
+            if (filter.key && !this._filterValues[filter.key]) {
+              return false;
+            }
+            return filter.test(result.value, result.key);
+          })
+        ) {
+          continue;
+        }
+        yield result;
       }
-      yield result;
     }
-  }
-
-  *_walkNode(node) {
-    yield* this._adapterOptions.walkNode(node);
   }
 
 }
 
 const TreeAdapterConfigs = {
   default: {
+    filters: [],
     openByDefault: () => false,
     nodeToRange: () => null,
     nodeToName: () => { throw new Error('nodeToName must be passed');},
@@ -149,6 +148,9 @@ const TreeAdapterConfigs = {
         this.openByDefaultKeys.has(key);
     },
     nodeToRange(node) {
+      if (!(node && typeof node === 'object')) {
+        return null;
+      }
       if (node.range) {
         return node.range;
       }
@@ -161,16 +163,22 @@ const TreeAdapterConfigs = {
       return node.type;
     },
     *walkNode(node) {
-      for (let prop in node) {
-        yield {
-          value: node[prop],
-          key: prop,
-          computed: false,
+      if (node && typeof node === 'object') {
+        for (let prop in node) {
+          yield {
+            value: node[prop],
+            key: prop,
+            computed: false,
+          }
         }
       }
     },
   },
 };
+
+function isValidPosition(position) {
+  return Number.isInteger(position);
+}
 
 export function ignoreKeysFilter(keys=new Set(), key, label) {
   return {
