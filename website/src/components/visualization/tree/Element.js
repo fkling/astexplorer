@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import {useSelectedNode} from '../SelectedNodeContext.js';
+import focusNodes from '../focusNodes.js'
 
 import cx from 'classnames';
 import stringify from '../../../utils/stringify';
@@ -140,12 +141,9 @@ const Element = React.memo(function Element({
     autofocus && (isInRange || hasChildrenInRange)
   );
   const element = useRef();
-
-  useEffect(() => {
-    if (autofocus && isInRange && !hasChildrenInRange) {
-      element.current.scrollIntoView();
-    }
-  });
+  if (autofocus && isInRange && !hasChildrenInRange) {
+    focusNodes('add', element);
+  }
 
   const isOpen = openState === OPEN_STATES.DEFAULT ?
     opensByDefault :

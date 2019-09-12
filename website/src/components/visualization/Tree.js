@@ -5,10 +5,11 @@ import PubSub from 'pubsub-js';
 import {logEvent} from '../../utils/logger';
 import {treeAdapterFromParseResult} from '../../core/TreeAdapter.js';
 import {SelectedNodeProvider} from './SelectedNodeContext.js';
+import focusNodes from './focusNodes.js'
 
 import './css/tree.css'
 
-const {useReducer, useMemo} = React;
+const {useReducer, useMemo, useRef, useLayoutEffect} = React;
 
 const STORAGE_KEY = 'tree_settings';
 
@@ -55,6 +56,12 @@ export default function Tree({parseResult, position}) {
     () => treeAdapterFromParseResult(parseResult, settings),
     [parseResult.treeAdapter, settings],
   );
+  const rootElement = useRef();
+
+  focusNodes('init');
+  useLayoutEffect(() => {
+    focusNodes('focus', rootElement);
+  });
 
   return (
     <div className="tree-visualization container">
@@ -74,7 +81,7 @@ export default function Tree({parseResult, position}) {
           </span>
         ))}
       </div>
-      <ul onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
+      <ul ref={rootElement} onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
         <SelectedNodeProvider>
           <Element
             value={parseResult.ast}
