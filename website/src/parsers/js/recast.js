@@ -82,17 +82,19 @@ export default {
   _ignoredProperties: new Set(['__clone']),
 
   *forEachProperty(node) {
-    for (let prop in node) {
-      if (
-        this._ignoredProperties.has(prop) || typeof node[prop] === 'function'
-      ) {
-        continue;
+    if (node && typeof node === 'object') {
+      for (let prop in node) {
+        if (
+          this._ignoredProperties.has(prop) || typeof node[prop] === 'function'
+        ) {
+          continue;
+        }
+        yield {
+          value: node[prop],
+          key: prop,
+          computed: false,
+        };
       }
-      yield {
-        value: node[prop],
-        key: prop,
-        computed: false,
-      };
     }
   },
 

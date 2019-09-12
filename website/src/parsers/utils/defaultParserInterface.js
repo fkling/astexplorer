@@ -87,14 +87,16 @@ export default {
    * is not implemnted as plain JavaScript object.
    */
   *forEachProperty(node) {
-    for (let prop in node) {
-      if (this._ignoredProperties.has(prop)) {
-        continue;
-      }
-      yield {
-        value: node[prop],
-        key: prop,
-        computed: false,
+    if (node && typeof node === 'object') {
+      for (let prop in node) {
+        if (this._ignoredProperties.has(prop)) {
+          continue;
+        }
+        yield {
+          value: node[prop],
+          key: prop,
+          computed: false,
+        }
       }
     }
   },

@@ -24,21 +24,23 @@ export default {
   },
 
   *forEachProperty(node) {
-    for (let prop in node) {
-      if (this._ignoredProperties.has(prop)) {
-        continue;
-      }
+    if (node && typeof node === 'object') {
+      for (let prop in node) {
+        if (this._ignoredProperties.has(prop)) {
+          continue;
+        }
 
-      let value = node[prop];
+        let value = node[prop];
 
-      if (node.type !== 'Program' && prop === 'parent') {
-        value = '[Circular]';
-      }
+        if (node.type !== 'Program' && prop === 'parent') {
+          value = '[Circular]';
+        }
 
-      yield {
-        value,
-        key: prop,
-        computed: false,
+        yield {
+          value,
+          key: prop,
+          computed: false,
+        }
       }
     }
   },
