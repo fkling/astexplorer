@@ -33,13 +33,7 @@ export default {
     }
     var flags = code.slice(lastSlash + 1);
     var pattern = code.slice(firstSlash + 1, lastSlash);
-    try {
-      return regjsparser.parse(pattern, flags, options);
-    } catch (err) {
-      err.message.replace("\n", "<br>");
-      throw err;
-    }
-
+    return regjsparser.parse(pattern, flags, options);
   },
 
   nodeToRange(node) {
