@@ -68,7 +68,9 @@ export default {
       case 'babel5':
         options.parser = parsers[options.parser];
         break;
-      case 'esprima':
+      case 'typescript':
+        options.parser = require('recast/parsers/typescript')
+        break
       default:
         delete options.parser; // default parser
         break;
@@ -114,7 +116,7 @@ export default {
   _getSettingsConfiguration(defaultOptions) {
     return {
       fields: [
-        ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow']],
+        ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow', 'typescript']],
         'range',
         'tolerant',
         {
