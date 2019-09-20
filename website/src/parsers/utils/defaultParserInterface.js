@@ -76,7 +76,9 @@ export default {
    * A more or less human readable name of the node.
    */
   getNodeName(node) {
-    return node.type;
+    if (node && typeof node.type !== 'object') {
+      return node.type;
+    }
   },
 
   /**

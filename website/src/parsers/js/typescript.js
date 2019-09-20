@@ -7,6 +7,11 @@ const FILENAME = 'astExplorer.ts';
 let getComments;
 const syntaxKind = {};
 
+// Typescript uses `process` somehow
+if (!global.process) {
+  global.process = {}
+}
+
 export default {
   ...defaultParserInterface,
 
