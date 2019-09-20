@@ -26,6 +26,7 @@ The AST explorer provides following code parsers:
   - [vue-template-compiler][]
   - [svelte][]
   - [posthtml][]
+  - [hyntax][]
 - [ICU][]
 - JavaScript:
   - [acorn][] + [acorn-jsx][]
@@ -164,6 +165,7 @@ node.
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
 [svelte]: https://github.com/sveltejs/svelte 
+[hyntax]: https://github.com/nik-garmash/hyntax
 
 ### Contributions
 
