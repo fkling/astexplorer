@@ -4571,15 +4571,10 @@ flat-cache@^1.2.1:
     rimraf "~2.6.2"
     write "^0.2.1"
 
-flow-parser@0.*:
-  version "0.107.0"
-  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.107.0.tgz#b9b01443314253b1a58eeee5f8e5c269d49585c7"
-  integrity sha512-GtMCS8qzP0VskiE5qfN4zYiwjnClV/BxPZ4zUqMRUfyaF+gBuLHDTPqVLJ4ndGedrdv54510rsXDSbkCqUig+g==
-
-flow-parser@^0.106.2:
-  version "0.106.3"
-  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.106.3.tgz#37dfb70254e8bde053808d00711e4a93f722b2af"
-  integrity sha512-V4K3tNmawjup+HySlIW5g3M0pywnTXvb32LeVxRHpQi4e3z2zCZIi+4JqnZWq/19JfYexEAquAbD95sORdOILQ==
+flow-parser@0.*, flow-parser@^0.108.0:
+  version "0.108.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.108.0.tgz#36a8d35e6346b5d18adbafbdc91ad0770d8917d7"
+  integrity sha512-Ug8VuwlyDIZq5Xgrf+T7XLpKydhqYyNd8lmFtf7PZbu90T5LL+FeHjWzxyrBn35RCCZMw7pXrjCrHOSs+2zXyg==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
