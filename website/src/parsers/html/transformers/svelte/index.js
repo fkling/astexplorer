@@ -22,28 +22,28 @@ export default {
     const transform = compileModule(transformCode);
 
     // Identity functions in case of missing transforms
-    const _markupIdentity = (content, filename) => content;
-    const _scriptIdentity = (content, attributes, filename) => content;
-    const _styleIdentity = (content, attributes, filename) => content;
+    const _markupIdentity = (content, _filename) => content;
+    const _scriptIdentity = (content, _attributes, _filename) => content;
+    const _styleIdentity = (content, _attributes, _filename) => content;
 
-    // Check if there is a transform 
-    // If Yes, set the appropriate transform or else use identity functions 
-    const markupTransform = transform().markup || _markupIdentity; 
+    // Check if there is a transform
+    // If Yes, set the appropriate transform or else use identity functions
+    const markupTransform = transform().markup || _markupIdentity;
     const scriptTransform = transform().script || _scriptIdentity;
     const styleTransform = transform().style || _styleIdentity;
 
     const result = preprocess(code, {
-      markup:({ content, filename}) => {
+      markup:({ content, _filename}) => {
         return {
           code: markupTransform(content),
         };
       },
-      script: ({content, attributes, filename}) => {
+      script: ({content, attributes, _filename}) => {
         return {
           code: scriptTransform(content, attributes),
         };
       },
-      style: ({content, attributes, filename}) => {
+      style: ({content, attributes, _filename}) => {
         return {
           code: styleTransform(content, attributes),
         };
