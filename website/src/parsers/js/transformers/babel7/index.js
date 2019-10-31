@@ -55,7 +55,7 @@ export default {
           'throwExpressions',
         ],
       },
-      retainLines: true,
+      retainLines: false,
       generatorOpts: {
         generator: recast.print,
       },
