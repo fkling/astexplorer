@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babylon5/babylon-package';
+import pkg from 'babylon5/package.json';
 
 const ID = 'babylon';
 

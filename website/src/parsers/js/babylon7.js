@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babylon7/babylon-package';
+import pkg from 'babylon7/package.json';
 
 const availablePlugins = [
   // From https://babeljs.io/docs/en/next/babel-parser.html

@@ -1,5 +1,5 @@
 import compileModule from '../../../utils/compileModule';
-import pkg from 'babel5/babel5-package';
+import pkg from 'babel5/package.json';
 
 const ID = 'babel';
 

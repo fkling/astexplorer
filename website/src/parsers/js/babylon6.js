@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babylon6/babylon-package';
+import pkg from 'babylon6/package.json';
 
 const availablePlugins = [
   'asyncGenerators',

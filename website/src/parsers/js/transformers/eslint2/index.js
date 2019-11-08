@@ -1,4 +1,4 @@
-import pkg from 'eslint2/node_modules/eslint/package.json';
+import pkg from 'eslint2/package.json';
 
 const ID = 'eslint-v2';
 const name = 'ESLint v2'
@@ -13,8 +13,16 @@ export default {
 
   loadTransformer(callback) {
     require(
-      ['eslint2', '../../utils/eslintUtils'],
-      (eslint, utils) => callback({...eslint, utils})
+      [
+        // Explicitly require just the stuff we care about to avoid loading
+        // RuleTester and CLIEngine, which are unnecessary and bloat out the
+        // package size.
+        'eslint2/lib/eslint',
+        'eslint2/lib/util/source-code',
+        'eslint2/lib/rules',
+        '../../utils/eslintUtils',
+      ],
+      (eslint, sourceCode, rules, utils) => callback({eslint, sourceCode, rules, utils})
     );
   },
 

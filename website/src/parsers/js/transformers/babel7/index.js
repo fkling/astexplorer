@@ -1,5 +1,5 @@
 import compileModule from '../../../utils/compileModule';
-import pkg from 'babel7/babel7-package';
+import pkg from 'babel7/package.json';
 
 const ID = 'babelv7';
 
