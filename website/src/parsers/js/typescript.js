@@ -95,6 +95,7 @@ export default {
   },
 
   _ignoredProperties: new Set([
+    'file',
     'parent',
   ]),
 
