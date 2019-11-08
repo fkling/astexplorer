@@ -17,7 +17,7 @@
     "babel-loader": "^8.0.4",
     "cross-env": "^5.0.0",
     "css-loader": "^1.0.0",
-    "eslint": "^4.19.1",
+    "eslint": "^6.6.0",
     "eslint-import-resolver-webpack": "^0.8.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^7.0.1",
