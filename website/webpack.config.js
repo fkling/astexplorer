@@ -10,9 +10,6 @@ const webpack = require('webpack');
 const DEV = process.env.NODE_ENV !== 'production';
 const CACHE_BREAKER = Number(fs.readFileSync(path.join(__dirname, 'CACHE_BREAKER')));
 
-const packages = fs.readdirSync(path.join(__dirname, 'packages'));
-const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
-
 const plugins = [
   new webpack.DefinePlugin({
     'process.env.API_HOST': JSON.stringify(process.env.API_HOST || ''),
@@ -89,16 +86,15 @@ const plugins = [
 
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
   new InlineManifestWebpackPlugin(),
-  DEV ?
-    new webpack.NamedModulesPlugin() :
-    new webpack.HashedModuleIdsPlugin(),
   new ProgressBarPlugin(),
 ];
 
 module.exports = Object.assign({
   optimization: {
+    moduleIds: DEV ? 'named' : 'hashed',
     runtimeChunk: 'single',
     splitChunks: {
+      name: DEV,
       cacheGroups: {
         parsermeta: {
           priority: 10,
@@ -106,11 +102,9 @@ module.exports = Object.assign({
           chunks(chunk) {
             return chunk.name === 'app';
           },
-          minChunks: 1,
-          minSize: 1,
         },
         vendors: {
-          test: vendorRegex,
+          test: /\/node_modules\//,
           chunks(chunk) {
             return chunk.name === 'app';
           },
