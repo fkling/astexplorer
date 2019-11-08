@@ -29,7 +29,7 @@ export default class PasteDropTarget extends React.Component {
     this.props.onError(
       type,
       event,
-      `Cannot process pasted AST: ${ex.message}`
+      `Cannot process pasted AST: ${ex.message}`,
     );
     throw ex;
   }
@@ -57,7 +57,7 @@ export default class PasteDropTarget extends React.Component {
           if (event.target.nodeName !== 'TEXTAREA') {
             this._onASTError('paste', event, ex);
           }
-        }
+        },
       );
     }, true);
 
@@ -101,7 +101,7 @@ export default class PasteDropTarget extends React.Component {
                 categoryId = undefined;
                 return text;
               }
-            }
+            },
           );
         }
         Promise.resolve(text).then(text => {

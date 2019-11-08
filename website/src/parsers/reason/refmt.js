@@ -55,7 +55,7 @@ export default {
   },
 
   nodeToRange(node) {
-    const locKey = locKeys.find(key => node.hasOwnProperty(key));
+    const locKey = locKeys.find(key => Object.prototype.hasOwnProperty.call(node, key));
     if (locKey) {
       const range = [
         node[locKey].loc_start.pos_cnum,

@@ -43,7 +43,7 @@ export default function(message, arg) {
             const distance = elementRect.y - center;
             const minDistance = Math.min(
               Math.abs(distance),
-              Math.abs(distance + elementRect.height)
+              Math.abs(distance + elementRect.height),
             );
 
             if (!closest || closest[1] > minDistance) {

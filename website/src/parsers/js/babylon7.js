@@ -76,7 +76,7 @@ export const parserSettingsConfiguration = {
       settings: settings => settings.plugins || defaultOptions.plugins,
       values: plugins => availablePlugins.reduce(
         (obj, name) => ((obj[name] = plugins.indexOf(name) > -1), obj),
-        {}
+        {},
       ),
     },
   ],

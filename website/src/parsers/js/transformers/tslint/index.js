@@ -20,7 +20,7 @@ export default {
     (
       transpile,
       tslint,
-      typescript
+      typescript,
     ) => callback({transpile: transpile.default, tslint, typescript}));
   },
 
@@ -31,7 +31,7 @@ export default {
       {
         Lint: tslint,
         ts: typescript,
-      }
+      },
     );
 
     let linter = new tslint.Linter({});

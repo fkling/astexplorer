@@ -9,7 +9,7 @@ function valuesFromArray(settings) {
       (obj[name] = settings.indexOf(name) > -1),
       obj
     ),
-    {}
+    {},
   );
 }
 
@@ -68,7 +68,7 @@ export default function SettingsRenderer(props) {
                     checked={values[setting]}
                     onChange={
                       ({target}) => onChange(
-                        update(parserSettings, setting, target.checked)
+                        update(parserSettings, setting, target.checked),
                       )
                     }
                   />
@@ -87,14 +87,14 @@ export default function SettingsRenderer(props) {
                       ({target}) => onChange(update(
                         parserSettings,
                         fieldName,
-                        converter(target.value)
+                        converter(target.value),
                       ))
                     }
                     value={values[fieldName]}>
                     {Array.isArray(options) ?
                       options.map(o => <option key={o} value={o}>{o}</option>) :
                       Object.keys(options).map(
-                        key => <option key={key} value={options[key]}>{key}</option>
+                        key => <option key={key} value={options[key]}>{key}</option>,
                       )
                     }
                   </select>
@@ -109,7 +109,7 @@ export default function SettingsRenderer(props) {
                 parserSettings={setting.settings(parserSettings)}
                 onChange={
                   settings => onChange(
-                    {...parserSettings, [setting.key]: settings}
+                    {...parserSettings, [setting.key]: settings},
                   )
                 }
               />

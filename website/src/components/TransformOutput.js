@@ -21,7 +21,7 @@ function transform(transformer, transformCode, code) {
     let result = transformer.transform(
       realTransformer,
       transformCode,
-      code
+      code,
     );
     return Promise.resolve(result).then(result => {
       let map = null;
@@ -51,10 +51,10 @@ export default class TransformOutput extends React.Component {
     transform(
       this.props.transformer,
       this.props.transformCode,
-      this.props.code
+      this.props.code,
     ).then(
       ({ result, map }) => this.setState({ result, map }),
-      error => this.setState({ error })
+      error => this.setState({ error }),
     );
   }
 
@@ -68,13 +68,13 @@ export default class TransformOutput extends React.Component {
       transform(
         nextProps.transformer,
         nextProps.transformCode,
-        nextProps.code
+        nextProps.code,
       ).then(
         ({ result, map }) => ({ result, map, error: null }),
         error => {
           console.error(error); // eslint-disable-line no-console
           return { error };
-        }
+        },
       ).then(state => this.setState(state));
     }
   }

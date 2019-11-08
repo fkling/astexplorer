@@ -18,7 +18,7 @@ export default {
         'eslint4/lib/util/source-code',
         '../../utils/eslint4Utils',
       ],
-      (Linter, sourceCode, utils) => callback({eslint: new Linter(), sourceCode, utils})
+      (Linter, sourceCode, utils) => callback({eslint: new Linter(), sourceCode, utils}),
     );
   },
 

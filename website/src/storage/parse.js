@@ -56,7 +56,7 @@ export function fetchFromURL() {
  */
 export function create() {
   return Promise.reject(
-    new Error('Saving Parse snippets is not supported anymore.')
+    new Error('Saving Parse snippets is not supported anymore.'),
   );
 }
 
@@ -65,7 +65,7 @@ export function create() {
  */
 export function update() {
   return Promise.reject(
-    new Error('Saving Parse snippets is not supported anymore.')
+    new Error('Saving Parse snippets is not supported anymore.'),
   );
 }
 
@@ -74,7 +74,7 @@ export function update() {
  */
 export function fork() {
   return Promise.reject(
-    new Error('Saving Parse snippets is not supported anymore.')
+    new Error('Saving Parse snippets is not supported anymore.'),
   );
 }
 

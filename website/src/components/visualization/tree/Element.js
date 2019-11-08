@@ -138,7 +138,7 @@ const Element = React.memo(function Element({
   ) || level === 0;
   const [openState, setOpenState] = useOpenState(
     open,
-    autofocus && (isInRange || hasChildrenInRange)
+    autofocus && (isInRange || hasChildrenInRange),
   );
   const element = useRef();
   if (autofocus && isInRange && !hasChildrenInRange) {
@@ -158,7 +158,7 @@ const Element = React.memo(function Element({
       }
       setOpenState(newOpenState);
     },
-    [onClick, isOpen]
+    [onClick, isOpen],
   );
 
   const range = treeAdapter.getRange(value);
@@ -251,7 +251,7 @@ const Element = React.memo(function Element({
             key,
             value,
             Number.isInteger(+key) ? undefined : key,
-            computed
+            computed,
           ));
         content = <ul className="value-body">{elements}</ul>;
       } else {
@@ -274,7 +274,7 @@ const Element = React.memo(function Element({
             key,
             value,
             key,
-            computed
+            computed,
           ));
         content = <ul className="value-body">{elements}</ul>;
         showToggler = elements.length > 0;

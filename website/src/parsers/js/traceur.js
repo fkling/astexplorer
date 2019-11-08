@@ -44,7 +44,7 @@ export default {
     let parser = new traceur.syntax.Parser(
       sourceFile,
       errorReporter,
-      new traceur.util.Options(options)
+      new traceur.util.Options(options),
     );
     let comments = [];
     parser.handleComment = sourceRange => {

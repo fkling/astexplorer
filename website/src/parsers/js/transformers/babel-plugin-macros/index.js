@@ -23,7 +23,7 @@ export default {
     transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode,
-      {createMacro, MacroError}
+      {createMacro, MacroError},
     );
 
     return babel.transform(code, {

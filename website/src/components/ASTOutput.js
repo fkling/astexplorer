@@ -31,7 +31,7 @@ export default function ASTOutput({parseResult={}, position=null}) {
         {
           React.createElement(
             visualizations[selectedOutput],
-            {parseResult, position}
+            {parseResult, position},
           )
         }
       </ErrorBoundary>
@@ -48,7 +48,7 @@ export default function ASTOutput({parseResult={}, position=null}) {
           active: selectedOutput == index,
         })}>
         {cls.name}
-      </button>
+      </button>,
   );
 
   return (

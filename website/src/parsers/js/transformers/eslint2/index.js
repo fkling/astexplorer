@@ -22,7 +22,7 @@ export default {
         'eslint2/lib/rules',
         '../../utils/eslintUtils',
       ],
-      (eslint, sourceCode, rules, utils) => callback({eslint, sourceCode, rules, utils})
+      (eslint, sourceCode, rules, utils) => callback({eslint, sourceCode, rules, utils}),
     );
   },
 

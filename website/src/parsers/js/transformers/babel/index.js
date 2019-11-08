@@ -14,14 +14,14 @@ export default {
   loadTransformer(callback) {
     require(
       ['../../../transpilers/babel', 'babel5'],
-      (transpile, babel) => callback({ transpile: transpile.default, babel: babel })
+      (transpile, babel) => callback({ transpile: transpile.default, babel: babel }),
     );
   },
 
   transform({ transpile, babel }, transformCode, code) {
     transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
-      transformCode
+      transformCode,
     );
 
     return babel.transform(code, {

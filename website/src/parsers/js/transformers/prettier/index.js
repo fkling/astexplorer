@@ -15,7 +15,7 @@ export default {
   loadTransformer(callback) {
     require(
       ['../../../transpilers/babel', 'prettier/standalone', 'prettier/parser-babylon'],
-      (transpile, prettier, babylon) => callback({ transpile: transpile.default, prettier, babylon })
+      (transpile, prettier, babylon) => callback({ transpile: transpile.default, prettier, babylon }),
     );
   },
 

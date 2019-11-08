@@ -130,8 +130,8 @@ function fixSpan(ast, code) {
           node.span.start += baseStart;
           node.span.end += baseStart;
           return KEEP_VISIT;
-        }
+        },
       );
-    }
+    },
   );
 }

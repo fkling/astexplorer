@@ -28,7 +28,7 @@ export default {
             default: throw new Error(`Cannot find module '${name}'`);
           }
         },
-      }
+      },
     );
     return postcss([ (transform.default || transform)() ]).process(code).css;
   },

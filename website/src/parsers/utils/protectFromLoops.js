@@ -15,7 +15,7 @@ export default function protect(jsCode) {
       '  throw new Error("Infinite loop detected on line " + line);',
       '}',
       '})',
-    ].join('')
+    ].join(''),
   );
 
   return jsCode;

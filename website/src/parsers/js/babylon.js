@@ -79,7 +79,7 @@ export default {
           settings: settings => settings.plugins || {...defaultOptions.plugins},
           values: plugins => Object.keys(defaultOptions.plugins).reduce(
             (obj, name) => ((obj[name] = name in plugins), obj),
-            {}
+            {},
           ),
           update: (plugins, name, value) => {
             if (value) {

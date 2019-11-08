@@ -29,7 +29,7 @@ export default class Editor extends React.Component {
     if (nextProps.value !== this.state.value) {
       this.setState(
         {value: nextProps.value},
-        () => this.codeMirror.setValue(nextProps.value)
+        () => this.codeMirror.setValue(nextProps.value),
       );
     }
     if (nextProps.mode !== this.props.mode) {
@@ -90,7 +90,7 @@ export default class Editor extends React.Component {
         mode: this.props.mode,
         lineNumbers: this.props.lineNumbers,
         readOnly: this.props.readOnly,
-      }
+      },
     );
 
     this._bindCMHandler('blur', instance => {
@@ -122,7 +122,7 @@ export default class Editor extends React.Component {
         if (this.codeMirror) {
           this.codeMirror.refresh();
         }
-      })
+      }),
     );
 
     if (this.props.highlight) {
@@ -147,7 +147,7 @@ export default class Editor extends React.Component {
           this._mark = this.codeMirror.markText(
             start,
             end,
-            {className: 'marked'}
+            {className: 'marked'},
           );
         }),
 
@@ -163,7 +163,7 @@ export default class Editor extends React.Component {
               this._mark = null;
             }
           }
-        })
+        }),
       );
     }
 
@@ -203,13 +203,13 @@ export default class Editor extends React.Component {
     };
     this.setState(
       {value: args.value},
-      () => this.props.onContentChange(args)
+      () => this.props.onContentChange(args),
     );
   }
 
   _onActivity() {
     this.props.onActivity(
-      this.codeMirror.getDoc().indexFromPos(this.codeMirror.getCursor())
+      this.codeMirror.getDoc().indexFromPos(this.codeMirror.getCursor()),
     );
   }
 

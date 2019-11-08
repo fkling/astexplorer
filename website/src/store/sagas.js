@@ -134,6 +134,7 @@ function* watchSnippetURI(storageAdapter) {
     ]));
 
     if (global.history) {
+      /* eslint-disable-next-line require-atomic-updates */
       goBackTask = yield fork(goBack);
     }
     return;

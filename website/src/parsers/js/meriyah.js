@@ -116,7 +116,7 @@ export default {
         {defaultParserInterface.renderSettings.call(
           this,
           parserSettings,
-          onChange
+          onChange,
         )}
       </div>
     );

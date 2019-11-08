@@ -22,7 +22,7 @@ export default {
     // compile to turn from string into a module
     let transform = compileModule(
       // eslint-disable-line no-shadow
-      transformCode
+      transformCode,
     );
     return posthtml()
       .use(transform.default || transform)
