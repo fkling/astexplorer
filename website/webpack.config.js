@@ -40,7 +40,7 @@ const plugins = [
 
   // Shim ESLint stuff that's only relevant for Node.js
   new webpack.NormalModuleReplacementPlugin(
-    /(cli-engine|testers\/rule-tester)/,
+    /cli-engine/,
     'node-libs-browser/mock/empty'
   ),
   new webpack.NormalModuleReplacementPlugin(
