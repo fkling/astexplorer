@@ -16,9 +16,9 @@ export default {
 
   loadParser(callback) {
     require([
-      'raw-loader!../../../node_modules/uglify-es/lib/utils.js',
-      'raw-loader!../../../node_modules/uglify-es/lib/ast.js',
-      'raw-loader!../../../node_modules/uglify-es/lib/parse.js',
+      'raw-loader!uglify-es/lib/utils.js',
+      'raw-loader!uglify-es/lib/ast.js',
+      'raw-loader!uglify-es/lib/parse.js',
     ], (...contents) => {
       contents.push('exports.parse = parse;');
       callback(compileModule(contents.join('\n\n')));
