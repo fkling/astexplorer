@@ -134,6 +134,7 @@
     "source-map": "^0.6.1",
     "sqlite-parser": "^1.0.0-rc3",
     "svelte": "^3.4.1",
+    "tenko": "^1.0.6",
     "tern": "^0.20.0",
     "traceur": "0.0.111",
     "tslint": "^5.13.1",
