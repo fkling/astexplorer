@@ -1,7 +1,7 @@
-import {getParser, getParserSettings, getCode} from './selectors';
+import {getParser, getParserSettings, getCode, getParseResult} from './selectors';
 import {ignoreKeysFilter, locationInformationFilter, functionFilter, emptyKeysFilter, typeKeysFilter} from '../core/TreeAdapter.js';
 
-function parse(parser, code, parserSettings) {
+function parse(parser, code, parserSettings, prevResult) {
   if (!parser._promise) {
     parser._promise = new Promise(parser.loadParser);
   }
@@ -10,12 +10,14 @@ function parse(parser, code, parserSettings) {
       realParser,
       code,
       parserSettings || parser.getDefaultOptions(),
+      prevResult,
     )
   );
 }
 
 export default store => next => action => {
   const oldState = store.getState();
+  const oldParser = getParser(oldState);
   next(action);
   const newState = store.getState();
 
@@ -25,7 +27,7 @@ export default store => next => action => {
 
   if (
     action.type === 'INIT' ||
-    getParser(oldState) !== newParser ||
+    oldParser !== newParser ||
     getParserSettings(oldState) !== newParserSettings ||
     getCode(oldState) !== newCode
   ) {
@@ -33,7 +35,10 @@ export default store => next => action => {
       return;
     }
     const start = Date.now();
-    return parse(newParser, newCode, newParserSettings).then(
+    const prevParserResult = (
+      action.type !== 'INIT' && oldParser === newParser
+    ) ? getParseResult(oldState) : undefined;
+    return parse(newParser, newCode, newParserSettings, prevParserResult).then(
       ast => {
         // Did anything change in the meantime?
         if (

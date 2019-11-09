@@ -23,6 +23,7 @@ export default class Editor extends React.Component {
     this.state = {
       value: props.value,
     };
+    this._changes = [];
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -108,8 +109,9 @@ export default class Editor extends React.Component {
       });
     });
 
-    this._bindCMHandler('changes', () => {
+    this._bindCMHandler('changes', (editor, changes) => {
       clearTimeout(this._updateTimer);
+      this._changes.push(...changes);
       this._updateTimer = setTimeout(this._onContentChange.bind(this), 200);
     });
     this._bindCMHandler('cursorActivity', () => {
@@ -196,6 +198,9 @@ export default class Editor extends React.Component {
   }
 
   _onContentChange() {
+    // TODO: pass these changes to the parser somehow
+    // const changes = this._changes;
+    this._changes = [];
     const doc = this.codeMirror.getDoc();
     const args = {
       value: doc.getValue(),

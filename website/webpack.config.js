@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -86,6 +87,11 @@ const plugins = [
     template: './index.ejs',
     chunksSortMode: 'id',
   }),
+
+  new CopyWebpackPlugin([
+    'node_modules/web-tree-sitter/tree-sitter.wasm',
+    'tree-sitter-*.wasm',
+  ]),
 
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
   new InlineManifestWebpackPlugin(),
