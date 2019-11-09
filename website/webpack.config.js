@@ -94,20 +94,15 @@ module.exports = Object.assign({
     moduleIds: DEV ? 'named' : 'hashed',
     runtimeChunk: 'single',
     splitChunks: {
-      name: DEV,
+      chunks: 'initial',
+      maxAsyncRequests: 5,
       cacheGroups: {
         parsermeta: {
           priority: 10,
           test: /\/package\.json$/,
-          chunks(chunk) {
-            return chunk.name === 'app';
-          },
         },
         vendors: {
           test: /\/node_modules\//,
-          chunks(chunk) {
-            return chunk.name === 'app';
-          },
         },
       },
     },
