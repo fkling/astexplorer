@@ -9406,6 +9406,11 @@ temp@^0.8.1:
     os-tmpdir "^1.0.0"
     rimraf "~2.2.6"
 
+tenko@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/tenko/-/tenko-1.0.6.tgz#23115eead8310661979ec2cff28dccc20e4fca0b"
+  integrity sha512-ZKyz1u4wlMqXDVTo+pEYYnsSyQ38EDhNH6UKMAoARB88iwr4CyGLLQQAuhLy2JUtPobuONxa5Sa96GZZqG52Pg==
+
 tern@^0.20.0:
   version "0.20.0"
   resolved "https://registry.yarnpkg.com/tern/-/tern-0.20.0.tgz#5058e1ae15a121a1f421500ced0c852c11e6fb34"
