@@ -33,6 +33,12 @@ const plugins = [
   new webpack.IgnorePlugin(/parser-vue/, /\/prettier/),
   new webpack.IgnorePlugin(/parser-yaml/, /\/prettier/),
 
+  // go //
+  new webpack.NormalModuleReplacementPlugin(
+    /^go$/,
+    require.resolve('astexplorer-go/go'),
+  ),
+
   // eslint //
 
   // Shim ESLint stuff that's only relevant for Node.js

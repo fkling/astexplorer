@@ -1646,6 +1646,11 @@ ast-types@0.9.6:
   resolved "https://registry.yarnpkg.com/ast-types/-/ast-types-0.9.6.tgz#102c9e9e9005d3e7e3829bf0c4fa24ee862ee9b9"
   integrity sha1-ECyenpAF0+fjgpvwxPok7oYu6bk=
 
+astexplorer-go@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/astexplorer-go/-/astexplorer-go-1.0.0.tgz#b871657b1e84eecc8d8d4ea27a8da310fa8624dc"
+  integrity sha512-1pK63GodoGdzow6JNNvOnMNsqR1Vpq59vFk5Y/ZeyXlU6U8PtBC0Lm0i4QI6wIN9xUaY2AnB/MXVuXBsi6LWpQ==
+
 astexplorer-refmt@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/astexplorer-refmt/-/astexplorer-refmt-1.0.1.tgz#490875d350a1cf0136404d8d71f940012aa9dc78"
