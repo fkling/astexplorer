@@ -103,9 +103,9 @@ module.exports = Object.assign({
       chunks: 'initial',
       maxAsyncRequests: 5,
       cacheGroups: {
-        parsermeta: {
+        parsers: {
           priority: 10,
-          test: /\/package\.json$/,
+          test: /\/src\/parsers\/|\/package\.json$/,
         },
         vendors: {
           test: /\/node_modules\//,
