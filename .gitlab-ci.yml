@@ -1,8 +1,9 @@
 stages:
   - build-dev
   - review
-  - staging
+  - latest
   - build-prod
+  - staging
   - production
 
 build-dev:
@@ -55,15 +56,15 @@ stop_review:
   tags:
     - astexplorer
 
-staging:
-  stage: staging
+latest:
+  stage: latest
   script:
-    - rsync -rv --delete out/ /data/astexplorer/website-new/staging/
+    - rsync -rv --delete out/ /data/astexplorer/website-new/master/
   variables:
     GIT_STRATEGY: none
   environment:
-    name: staging
-    url: http://staging.astexplorer.net
+    name: master
+    url: http://master.astexplorer.net
   only:
     - master
   tags:
@@ -88,6 +89,25 @@ build-prod:
     paths:
       - out
 
+staging:
+  stage: staging
+  dependencies:
+    - build-prod
+  variables:
+    staging_path: /data/astexplorer/website-new/staging/
+  script:
+    - ./scripts/check-conflicts.sh out/ $staging_path
+    - rsync -rv out/ $staging_path
+  variables:
+    GIT_STRATEGY: none
+  environment:
+    name: staging
+    url: http://staging.astexplorer.net
+  only:
+    - master
+  tags:
+    - astexplorer
+
 production:
   stage: production
   dependencies:
@@ -100,6 +120,7 @@ production:
   environment:
     name: production
     url: https://astexplorer.net/
+  when: manual
   only:
     - master
   tags:
