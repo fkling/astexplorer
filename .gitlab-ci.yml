@@ -17,6 +17,8 @@ build-dev:
     - cd website/
     - yarn install --frozen-lockfile
     - yarn build-dev
+    - cd ..
+    - ./scripts/inject-rev.sh out/index.html
   artifacts:
     expire_in: 1 days
     paths:
@@ -78,6 +80,8 @@ build-prod:
     - cd website/
     - yarn install --frozen-lockfile
     - yarn build
+    - cd ..
+    - ./scripts/inject-rev.sh out/index.html
   cache:
     key: build
     paths:
@@ -94,10 +98,10 @@ staging:
   dependencies:
     - build-prod
   variables:
-    staging_path: /data/astexplorer/website-new/staging/
+    deploy_path: /data/astexplorer/website-new/staging/
   script:
-    - ./scripts/check-conflicts.sh out/ $staging_path
-    - rsync -rv out/ $staging_path
+    - ./scripts/check-conflicts.sh out/ $deploy_path
+    - rsync -rv out/ $deploy_path
   variables:
     GIT_STRATEGY: none
   environment:
@@ -113,10 +117,10 @@ production:
   dependencies:
     - build-prod
   variables:
-    production_path: /data/astexplorer/website-production/
+    deploy_path: /data/astexplorer/website-production/
   script:
-    - ./scripts/check-conflicts.sh out/ $production_path
-    - rsync -rv out/ $production_path
+    - ./scripts/check-conflicts.sh out/ $deploy_path
+    - rsync -rv out/ $deploy_path
   environment:
     name: production
     url: https://astexplorer.net/
