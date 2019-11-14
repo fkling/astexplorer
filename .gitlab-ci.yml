@@ -28,6 +28,7 @@ review:
   stage: review
   script:
     - rsync -av out/ /data/astexplorer/website-new/$CI_BUILD_REF_SLUG
+    - rm -rf out/
   variables:
     GIT_STRATEGY: none
   environment:
@@ -62,6 +63,7 @@ latest:
   stage: latest
   script:
     - rsync -rv --delete out/ /data/astexplorer/website-new/master/
+    - rm -rf out/
   variables:
     GIT_STRATEGY: none
   environment:
@@ -98,12 +100,12 @@ staging:
   dependencies:
     - build-prod
   variables:
+    GIT_STRATEGY: none
     deploy_path: /data/astexplorer/website-new/staging/
   script:
     - ./scripts/check-conflicts.sh out/ $deploy_path
     - rsync -rv out/ $deploy_path
-  variables:
-    GIT_STRATEGY: none
+    - rm -rf out/
   environment:
     name: staging
     url: http://staging.astexplorer.net
@@ -121,6 +123,7 @@ production:
   script:
     - ./scripts/check-conflicts.sh out/ $deploy_path
     - rsync -rv out/ $deploy_path
+    - rm -rf out/
   environment:
     name: production
     url: https://astexplorer.net/
