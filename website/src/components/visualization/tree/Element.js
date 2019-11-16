@@ -188,7 +188,7 @@ const Element = React.memo(function Element({
     [onClick],
   );
 
-  function renderChild(key, value, name, computed) {
+  function renderChild(key, value, parent, name, computed) {
     if (treeAdapter.isArray(value) || treeAdapter.isObject(value) || typeof value === 'function') {
       const ElementType = typeof value === 'function' ? FunctionElement : ElementContainer;
       return (
@@ -201,7 +201,7 @@ const Element = React.memo(function Element({
           level={level + 1}
           treeAdapter={treeAdapter}
           autofocus={autofocus}
-          parent={value}
+          parent={parent}
           onClick={clickHandler}
           position={position}
         />
@@ -245,11 +245,13 @@ const Element = React.memo(function Element({
       if (value.length > 0 && isOpen) {
         prefix = '[';
         suffix = ']';
+        const node = value;
         let elements = Array.from(treeAdapter.walkNode(value))
           .filter(({key}) => key !== 'length')
           .map(({key, value, computed}) => renderChild(
             key,
             value,
+            node,
             Number.isInteger(+key) ? undefined : key,
             computed,
           ));
@@ -269,10 +271,12 @@ const Element = React.memo(function Element({
       if (isOpen) {
         prefix = '{';
         suffix = '}';
+        const node = value;
         let elements = Array.from(treeAdapter.walkNode(value))
           .map(({key, value, computed}) => renderChild(
             key,
             value,
+            node,
             key,
             computed,
           ));
@@ -350,7 +354,7 @@ const NOT_COMPUTED = {};
 const FunctionElement = React.memo(function FunctionElement(props) {
   const [computedValue, setComputedValue] = useState(NOT_COMPUTED);
   const [error, setError] = useState(null);
-  const {name, value, computed, treeAdapter} = props;
+  const {name, value, parent, computed, treeAdapter} = props;
 
   if (computedValue !== NOT_COMPUTED) {
     if (treeAdapter.isArray(computedValue) || treeAdapter.isObject(computedValue)) {
