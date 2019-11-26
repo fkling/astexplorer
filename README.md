@@ -52,6 +52,7 @@ The AST explorer provides following code parsers:
   - [mdxhast][]
 - PHP
   - [php-parser][]
+- [Pug][]
 - Regular Expressions:
   - [regexp-tree][]
   - [regjsparser][]
@@ -152,6 +153,7 @@ node.
 [regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
 [regjsparser]: https://github.com/jviereck/regjsparser
 [php-parser]: https://github.com/glayzzle/php-parser
+[pug]: https://github.com/pugjs/pug
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
 [handlebars]: http://handlebarsjs.com/
 [icu]: https://github.com/formatjs/formatjs/tree/master/packages/intl-messageformat-parser
