@@ -54,6 +54,7 @@ The AST explorer provides following code parsers:
   - [php-parser][]
 - Regular Expressions:
   - [regexp-tree][]
+  - [regjsparser][]
 - Scala
   - [Scalameta][]
 - Solidity:
@@ -149,6 +150,7 @@ node.
 [redot]: https://github.com/redotjs/redot
 [remark]: https://github.com/remarkjs/remark
 [regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
+[regjsparser]: https://github.com/jviereck/regjsparser
 [php-parser]: https://github.com/glayzzle/php-parser
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
 [handlebars]: http://handlebarsjs.com/
