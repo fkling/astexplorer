@@ -49,8 +49,8 @@ export default {
       case 'Case':
       case 'AttributeBlock':
       case 'Text': return type;
-      case 'Filter':
       default: type = 'Attribute';
+      case 'Filter':
       case 'Mixin': if (node.call) type = 'Mixin:call';
       case 'Tag': return `${type}(${node.name})`;
     }
