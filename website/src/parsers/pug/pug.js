@@ -33,6 +33,7 @@ export default {
 
   getNodeName(node) {
     let { type } = node;
+    /* eslint-disable no-fallthrough */
     switch (type) {
       case 'Block': return '';
       case 'Doctype': return `Doctype(${node.val})`;
@@ -54,5 +55,6 @@ export default {
       case 'Mixin': if (node.call) type = 'Mixin:call';
       case 'Tag': return `${type}(${node.name})`;
     }
-  }
+    /* eslint-enable no-fallthrough */
+  },
 };
