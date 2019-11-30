@@ -18,6 +18,13 @@ export default class SettingsDrawer extends React.Component {
     this.props.onWantToClose();
   }
 
+  /* Ideas
+    Themes
+    window layout
+    Parser, transformer etc with explanations and links to repo, info etc
+    Keybindings
+  */
+
   render() {
     if (this.props.visible) {
       return (
