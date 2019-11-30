@@ -6,6 +6,7 @@ const defaultParser = getDefaultParser(getCategoryByID('javascript'));
 const initialState = {
 
   // UI related state
+  showSettingsDrawer: false,
   showSettingsDialog: false,
   showShareDialog: false,
   loadingSnippet: false,
@@ -79,6 +80,7 @@ export function revive(state=initialState) {
 export function astexplorer(state=initialState, action) {
   return {
     // UI related state
+    showSettingsDrawer: showSettingsDrawer(state.showSettingsDrawer, action),
     showSettingsDialog: showSettingsDialog(state.showSettingsDialog, action),
     showShareDialog: showShareDialog(state.showShareDialog, action),
     loadingSnippet: loadSnippet(state.loadingSnippet, action),
@@ -264,8 +266,19 @@ function parserPerCategory(state=initialState.parserPerCategory, action) {
   }
 }
 
-function showSettingsDialog(state=initialState.showSettingsDialog, action) {
-  switch(action.type) {
+function showSettingsDrawer(state = initialState.showSettingsDrawer, action) {
+  switch (action.type) {
+    case actions.OPEN_SETTINGS_DRAWER:
+      return true;
+    case actions.CLOSE_SETTINGS_DRAWER:
+      return false;
+    default:
+      return state;
+  }
+}
+
+function showSettingsDialog(state = initialState.showSettingsDialog, action) {
+  switch (action.type) {
     case actions.OPEN_SETTINGS_DIALOG:
       return true;
     case actions.CLOSE_SETTINGS_DIALOG:

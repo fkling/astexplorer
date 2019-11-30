@@ -12,6 +12,8 @@ export const SET_PARSER = 'SET_PARSER';
 export const SET_PARSER_SETTINGS = 'SET_PARSER_SETTINGS';
 export const SET_PARSE_RESULT = 'SET_PARSE_RESULT';
 export const SET_SNIPPET = 'SET_SNIPPET';
+export const OPEN_SETTINGS_DRAWER = 'OPEN_SETTINGS_DRAWER';
+export const CLOSE_SETTINGS_DRAWER = 'CLOSE_SETTINGS_DRAWER';
 export const OPEN_SETTINGS_DIALOG = 'OPEN_SETTINGS_DIALOG';
 export const CLOSE_SETTINGS_DIALOG = 'CLOSE_SETTINGS_DIALOG';
 export const OPEN_SHARE_DIALOG = 'OPEN_SHARE_DIALOG';
@@ -68,6 +70,14 @@ export function doneLoadingSnippet() {
 
 export function loadSnippet() {
   return {type: LOAD_SNIPPET};
+}
+
+export function openSettingsDrawer() {
+  return { type: OPEN_SETTINGS_DRAWER };
+}
+
+export function closeSettingsDrawer() {
+  return { type: CLOSE_SETTINGS_DRAWER };
 }
 
 export function openSettingsDialog() {

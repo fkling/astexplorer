@@ -83,15 +83,15 @@ html {
   height: 32px;
   line-height: 32px;
   border-bottom: 1px solid #ddd;
-  color: #454545;
+  color: #fff;
   padding-left: 10px;
-  background-color: #efefef;
+  background-color: #000;
   z-index: 200;
 }
 
 #Toolbar,
 #Toolbar .menuButton ul {
-  background-color: #efefef;
+  background-color: #000;
 }
 
 #Toolbar > *,
@@ -116,7 +116,6 @@ html {
 
 #Toolbar > * {
   height: 32px;
-  border-right: 1px solid #ddd;
   vertical-align: top;
 }
 

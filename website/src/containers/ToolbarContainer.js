@@ -2,6 +2,7 @@ import {connect} from 'react-redux';
 import {
   save,
   selectCategory,
+  openSettingsDrawer,
   openSettingsDialog,
   openShareDialog,
   selectTransformer,
@@ -61,6 +62,7 @@ function mapDispatchToProps(dispatch) {
         logEvent('keyMap', keyMap);
       }
     },
+    onSettingsButtonClick: () => dispatch(openSettingsDrawer()),
     onSave: () => dispatch(save(false)),
     onFork: () => dispatch(save(true)),
     onNew: () => {
