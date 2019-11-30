@@ -9,20 +9,21 @@ import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import SettingsDialogContainer from './containers/SettingsDialogContainer';
+import SettingsDrawerContainer from './containers/SettingsDrawerContainer';
 import ShareDialogContainer from './containers/ShareDialogContainer';
 import SplitPane from './components/SplitPane';
 import ToolbarContainer from './containers/ToolbarContainer';
 import TransformerContainer from './containers/TransformerContainer';
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
 import debounce from './utils/debounce';
 import saga from './store/sagas';
-import {Provider, connect} from 'react-redux';
-import {astexplorer, persist, revive} from './store/reducers';
-import {createStore, applyMiddleware, compose} from 'redux';
-import {canSaveTransform, getRevision} from './store/selectors';
-import {enableBatching} from 'redux-batched-actions';
-import {loadSnippet} from './store/actions';
-import {render} from 'react-dom';
+import { Provider, connect } from 'react-redux';
+import { astexplorer, persist, revive } from './store/reducers';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { canSaveTransform, getRevision } from './store/selectors';
+import { enableBatching } from 'redux-batched-actions';
+import { loadSnippet } from './store/actions';
+import { render } from 'react-dom';
 import * as gist from './storage/gist';
 import * as parse from './storage/parse';
 import StorageHandler from './storage';
@@ -39,25 +40,25 @@ function App(props) {
       <ErrorMessageContainer />
       <div className={'dropTarget' + (props.hasError ? ' hasError' : '')}>
         <PasteDropTargetContainer>
-        <LoadingIndicatorContainer />
-        <SettingsDialogContainer />
-        <ShareDialogContainer />
-        <div id="root">
-          <ToolbarContainer />
-          <GistBanner />
-          <SplitPane
-            className="splitpane-content"
-            vertical={true}
-            onResize={resize}>
+          <LoadingIndicatorContainer />
+          <SettingsDialogContainer />
+          <SettingsDrawerContainer />
+          <ShareDialogContainer />
+          <div id="root">
+            <ToolbarContainer />
+            <GistBanner />
             <SplitPane
-              className="splitpane"
-              onResize={resize}>
-              <CodeEditorContainer />
-              <ASTOutputContainer />
+              className="splitpane-content"
+              vertical={true}
+              onResize={resize}
+            >
+              <SplitPane className="splitpane" onResize={resize}>
+                <CodeEditorContainer />
+                <ASTOutputContainer />
+              </SplitPane>
+              {props.showTransformer ? <TransformerContainer /> : null}
             </SplitPane>
-            {props.showTransformer ? <TransformerContainer /> : null}
-          </SplitPane>
-        </div>
+          </div>
         </PasteDropTargetContainer>
       </div>
     </div>
@@ -69,31 +70,29 @@ App.propTypes = {
   showTransformer: PropTypes.bool,
 };
 
-const AppContainer = connect(
-  state => ({
-    showTransformer: state.showTransformPanel,
-    hasError: !!state.error,
-  }),
-)(App);
+const AppContainer = connect(state => ({
+  showTransformer: state.showTransformPanel,
+  hasError: !!state.error,
+}))(App);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   enableBatching(astexplorer),
   revive(LocalStorage.readState()),
-  composeEnhancers(
-    applyMiddleware(sagaMiddleware, parserMiddleware),
-  ),
+  composeEnhancers(applyMiddleware(sagaMiddleware, parserMiddleware)),
 );
-store.subscribe(debounce(() => {
-  const state = store.getState();
-  // We are not persisting the state while looking at an existing revision
-  if (!getRevision(state)) {
-    LocalStorage.writeState(persist(state));
-  }
-}));
+store.subscribe(
+  debounce(() => {
+    const state = store.getState();
+    // We are not persisting the state while looking at an existing revision
+    if (!getRevision(state)) {
+      LocalStorage.writeState(persist(state));
+    }
+  }),
+);
 sagaMiddleware.run(saga, new StorageHandler([gist, parse]));
-store.dispatch({type: 'INIT'});
+store.dispatch({ type: 'INIT' });
 
 render(
   <Provider store={store}>
