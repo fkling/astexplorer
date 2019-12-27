@@ -28,6 +28,8 @@ The AST explorer provides following code parsers:
   - [posthtml][]
   - [hyntax][]
 - [ICU][]
+- Java
+  - [java-parser][]
 - JavaScript:
   - [acorn][] + [acorn-jsx][]
   - [babel-eslint][]
@@ -73,7 +75,7 @@ Depending on the parser settings, it not only supports ES5/CSS3 but also
 
 - ES6: [arrow functions](https://github.com/lukehoban/es6features#arrows), [destructuring](https://github.com/lukehoban/es6features#destructuring),
   [classes](https://github.com/lukehoban/es6features#classes), ...
-- ES7 proposals: [async/await](https://github.com/lukehoban/ecmascript-asyncawait), [object rest / spread](https://github.com/sebmarkbage/ecmascript-rest-spread),  ...
+- ES7 proposals: [async/await](https://github.com/lukehoban/ecmascript-asyncawait), [object rest / spread](https://github.com/sebmarkbage/ecmascript-rest-spread), ...
 - [JSX](https://facebook.github.io/jsx/), known through [React](https://facebook.github.io/react/).
 - Typed JavaScript ([Flow](http://flowtype.org/) and [TypeScript](http://typescriptlang.org/))
 - [SASS](http://sass-lang.com/)
@@ -104,16 +106,16 @@ are included so you can prototype your own plugins:
 
 - Save and fork code snippets. Copy the URL to share them.
 - Copying an AST or dropping a file containing an AST into the window will
-parse the AST and update the code using [escodegen][].
+  parse the AST and update the code using [escodegen][].
 - Otherwise, the content of text editor will be replaced with the content of the
-file (i.e. you can drag and drop JS files).
+  file (i.e. you can drag and drop JS files).
 - Choose between multiple parsers and configure them.
 - shift+click on a node expands the full subtree.
 - Hovering over a node highlights the corresponding text in the source code
 - Editing the source or moving the cursor around will automatically highlight
   the corresponding AST node (or its ancestors of it isn't expanded)
 - You can use `$node` in the console to refer to the last opened/toggled AST
-node.
+  node.
 
 [acorn-jsx]: https://github.com/RReverser/acorn-jsx
 [acorn]: https://github.com/ternjs/acorn
@@ -162,14 +164,15 @@ node.
 [yaml]: https://github.com/eemeli/yaml
 [yaml-ast-parser]: https://github.com/mulesoft-labs/yaml-ast-parser
 [esformatter]: https://github.com/millermedeiros/esformatter-parser#readme
-[MDX]: https://mdxjs.com/
+[mdx]: https://mdxjs.com/
 [mdxhast]: https://mdxjs.com/advanced/ast#mdxhast
 [mdx]: https://mdxjs.com/advanced/sync-api
-[Scalameta]: http://scalameta.org/
+[scalameta]: http://scalameta.org/
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
-[svelte]: https://github.com/sveltejs/svelte 
+[svelte]: https://github.com/sveltejs/svelte
 [hyntax]: https://github.com/nik-garmash/hyntax
+[java-parser]: https://github.com/jhipster/prettier-java/tree/master/packages/java-parser
 
 ### Contributions
 
@@ -184,31 +187,33 @@ as possible!
 2. Install the new parser as dependency: `yarn add theParser` (or `npm install -S theParser`)
 3. Copy one of the existing examples in `src/parsers/{language}`.
 4. Adjust the code as necessary:
-  - Update metadata.
-  - Load the right parser (`loadParser`).
-  - Call the right parsing method with the right/necessary options in `parse`.
-  - Implement the `nodeToRange` method (this is for highlighting).
-  - Implement the `getNodeName` method (this is for quick look through the tree).
-  - Implement `opensByDefault` method for auto-expansion of specific properties.
-  - Define `_ignoredProperties` set or implement `forEachProperty` generator method for filtering.
-  - Provide a `renderSettings` method if applicable.
+
+- Update metadata.
+- Load the right parser (`loadParser`).
+- Call the right parsing method with the right/necessary options in `parse`.
+- Implement the `nodeToRange` method (this is for highlighting).
+- Implement the `getNodeName` method (this is for quick look through the tree).
+- Implement `opensByDefault` method for auto-expansion of specific properties.
+- Define `_ignoredProperties` set or implement `forEachProperty` generator method for filtering.
+- Provide a `renderSettings` method if applicable.
 
 #### How to add a new transformer
 
 0. Go to `website/`.
 1. Install the new transformer as dependency.
-2. Copy one of the existing examples in `src/parsers/{language}/transformers`.
-3. Adjust the code as necessary:
-  - Update metadata and `defaultParserID`.
-  - Load the right transformer (`loadTransformer`).
-  - Call the transformation method in `transform`.
-  - Change sample transformation code in `codeExample.txt`.
+1. Copy one of the existing examples in `src/parsers/{language}/transformers`.
+1. Adjust the code as necessary:
+
+- Update metadata and `defaultParserID`.
+- Load the right transformer (`loadTransformer`).
+- Call the transformation method in `transform`.
+- Change sample transformation code in `codeExample.txt`.
 
 #### Build your own version for development
 
 1. Clone the repository.
-3. Go to `website/`.
-4. Install all dependencies with `yarn install` (you can run `npm install` as
+2. Go to `website/`.
+3. Install all dependencies with `yarn install` (you can run `npm install` as
    well).
 
 Run `yarn run build` for the final minimized version.
