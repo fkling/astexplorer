@@ -352,6 +352,10 @@ li.entry {
   background-color: rgba(255,240,6,0.4);
 }
 
+.entry > .value {
+  white-space: pre-wrap;
+}
+
 .entry > .value .s {
   cursor: text;
   -webkit-user-select: text;
