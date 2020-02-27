@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import PubSub from 'pubsub-js';
 import React from 'react';
 import SettingsDialogContainer from './containers/SettingsDialogContainer';
+import SettingsDrawerContainer from './containers/SettingsDrawerContainer';
 import ShareDialogContainer from './containers/ShareDialogContainer';
 import SplitPane from './components/SplitPane';
 import ToolbarContainer from './containers/ToolbarContainer';
@@ -45,18 +46,21 @@ function App(props) {
         <div id="root">
           <ToolbarContainer />
           <GistBanner />
-          <SplitPane
-            className="splitpane-content"
-            vertical={true}
-            onResize={resize}>
+          <div style={{display: 'flex', height: '100%'}}>
+            <SettingsDrawerContainer />
             <SplitPane
-              className="splitpane"
+              className="splitpane-content"
+              vertical={true}
               onResize={resize}>
-              <CodeEditorContainer />
-              <ASTOutputContainer />
+              <SplitPane
+                className="splitpane"
+                onResize={resize}>
+                <CodeEditorContainer />
+                <ASTOutputContainer />
+              </SplitPane>
+              {props.showTransformer ? <TransformerContainer /> : null}
             </SplitPane>
-            {props.showTransformer ? <TransformerContainer /> : null}
-          </SplitPane>
+          </div>
         </div>
         </PasteDropTargetContainer>
       </div>
