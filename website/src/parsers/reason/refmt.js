@@ -7,6 +7,7 @@ addCodeMirrorMode(CodeMirror);
 
 const ID = 'refmt';
 const locKeys = [
+  'loc',
   'pcd_loc',
   'pcf_loc',
   'pci_loc',
