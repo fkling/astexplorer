@@ -56,6 +56,7 @@ export const defaultOptions = {
     'jsx',
     'objectRestSpread',
     'dynamicImport',
+    'nullishCoalescingOperator',
     'numericSeparator',
     'optionalChaining',
     'optionalCatchBinding',
