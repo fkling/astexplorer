@@ -44,12 +44,15 @@ export default {
         start = end = node;
         break;
       case undefined:
-        return;
+        return null;
       default:
         ({ start, end } = node);
         break;
     }
-    return [start.pos, end.endpos];
+    if (start && end) {
+      return [start.pos, end.endpos];
+    }
+    return null;
   },
 
   opensByDefault(node, key) {
