@@ -1,5 +1,6 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
 import { parse } from '@creditkarma/thrift-parser';
+import pkg from '@creditkarma/thrift-parser/package.json';
 
 const ID = 'ck-thrift-parser';
 
@@ -8,8 +9,8 @@ export default {
 
   id: ID,
   displayName: ID,
-  version: '0.0.0',
-  homepage: 'home',
+  version: pkg.version,
+  homepage: 'https://github.com/creditkarma/thrift-parser',
   locationProps: new Set(['location']),
 
   loadParser(callback) {
