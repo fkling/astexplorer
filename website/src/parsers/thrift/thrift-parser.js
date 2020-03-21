@@ -35,5 +35,5 @@ export default {
 
   opensByDefault(node, key) {
     return node === 'ThriftDocument' || key === 'body';
-  }
+  },
 };
