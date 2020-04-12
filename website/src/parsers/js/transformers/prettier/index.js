@@ -14,17 +14,17 @@ export default {
 
   loadTransformer(callback) {
     require(
-      ['../../../transpilers/babel', 'prettier/standalone', 'prettier/parser-babylon'],
-      (transpile, prettier, babylon) => callback({ transpile: transpile.default, prettier, babylon }),
+      ['../../../transpilers/babel', 'prettier/standalone', 'prettier/parser-babel'],
+      (transpile, prettier, babel) => callback({ transpile: transpile.default, prettier, babel }),
     );
   },
 
-  transform({ transpile, prettier, babylon }, transformCode, code) {
+  transform({ transpile, prettier, babel }, transformCode, code) {
     transformCode = transpile(transformCode);
     const options = compileModule(transformCode);
     return prettier.format(
       code,
-      Object.assign({plugins: [babylon]}, options.default || options),
+      Object.assign({plugins: [babel]}, options.default || options),
     );
   },
 };
