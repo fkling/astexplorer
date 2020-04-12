@@ -993,6 +993,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@creditkarma/thrift-parser@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@creditkarma/thrift-parser/-/thrift-parser-1.2.0.tgz#69b47dff3d2a5211e9417ff543ea65f681821906"
+  integrity sha512-mSRxjSXvU6sBfWhMBWXl7H/XEKWHQ7x+MUDLwyeFIwwX9UaZKPOc7TgGd0N78kcZtIMk82ArdxO6aFhqnBuNtg==
+
 "@glimmer/compiler@^0.42.0":
   version "0.42.0"
   resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.42.0.tgz#8c3852e27177bbecd3eed5bdbd15ec729e09ef8a"
