@@ -1,5 +1,4 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
-import { parse } from '@creditkarma/thrift-parser';
 import pkg from '@creditkarma/thrift-parser/package.json';
 
 const ID = 'ck-thrift-parser';
@@ -14,13 +13,11 @@ export default {
   locationProps: new Set(['location']),
 
   loadParser(callback) {
-    callback(content => {
-      return parse(content);
-    });
+    require(['@creditkarma/thrift-parser'], callback);
   },
 
-  parse(parser, code) {
-    return parser(code);
+  parse({parse}, code) {
+    return parse(code);
   },
 
   getNodeName(node) {
