@@ -499,7 +499,6 @@ body .CodeMirror-Tern-tooltip {
 .toggleBtn {
   position: absolute;
   right: 0;
-  height: 20px;
   z-index: 10;
   cursor: pointer;
   outline: none;
