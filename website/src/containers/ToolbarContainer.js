@@ -28,6 +28,8 @@ function mapStateToProps(state) {
     keyMap: selectors.getKeyMap(state),
     showTransformer: selectors.showTransformer(state),
     snippet: selectors.getRevision(state),
+    parseResult: selectors.getParseResult(state),
+    transformResult: selectors.getTransformResult(state),
   };
 }
 

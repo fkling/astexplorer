@@ -7,12 +7,12 @@ import TransformButton from './buttons/TransformButton';
 import KeyMapButton from './buttons/KeyMapButton';
 
 export default function Toolbar(props) {
-  let {parser, transformer, showTransformer} = props;
+  let {parser, transformer, showTransformer, parseResult, transformResult} = props;
   let parserInfo = parser.displayName;
   let transformerInfo = '';
   if (parser) {
-    if (parser.version) {
-      parserInfo += '-' + parser.version;
+    if (parseResult && parseResult.version) {
+      parserInfo += '-' + parseResult.version;
     }
     if (parser.homepage) {
       parserInfo =
@@ -21,8 +21,8 @@ export default function Toolbar(props) {
   }
   if (showTransformer) {
     transformerInfo = transformer.displayName;
-    if (transformer.version) {
-      transformerInfo += '-' + transformer.version;
+    if (transformResult && transformResult.version) {
+      transformerInfo += '-' + transformResult.version;
     }
     if (transformer.homepage) {
       transformerInfo =
@@ -69,4 +69,6 @@ Toolbar.propTypes = {
   showTransformer: PropTypes.bool,
   canSave: PropTypes.bool,
   canFork: PropTypes.bool,
+  parseResult: PropTypes.object,
+  transformResult: PropTypes.object,
 };
