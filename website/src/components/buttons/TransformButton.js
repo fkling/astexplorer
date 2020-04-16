@@ -28,7 +28,7 @@ export default class TransformButton extends React.Component {
 
   render() {
     const transformers = this.props.category.transformers.filter(
-      t => t.showInMenu !== false || t == this.props.transformer
+      t => t.showInMenu !== false || t == this.props.transformer,
     );
     return (
       <div className={cx({
