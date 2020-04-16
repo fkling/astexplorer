@@ -37,6 +37,7 @@ const initialState = {
       code: '',
       initialCode: '',
       transformer: null,
+      transformResult: null,
     },
   },
 
@@ -187,6 +188,14 @@ function workbench(state=initialState.workbench, action, fullState) {
         transform: {
           ...state.transform,
           code: action.code,
+        },
+      };
+    case actions.SET_TRANSFORM_RESULT:
+      return {
+        ...state,
+        transform: {
+          ...state.transform,
+          transformResult: action.result,
         },
       };
     case actions.SET_SNIPPET:

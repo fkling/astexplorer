@@ -34,11 +34,8 @@ export default function Transformer(props) {
       onResize={resize}>
       {formattingEditor}
       <TransformOutput
-        transformer={props.transformer}
-        transformCode={props.transformCode}
-        code={props.code}
+        transformResult={props.transformResult}
         mode={props.mode}
-        keyMap={props.keyMap}
       />
     </SplitPane>
   );
@@ -48,10 +45,10 @@ Transformer.propTypes = {
   defaultTransformCode: PropTypes.string,
   transformCode: PropTypes.string,
   transformer: PropTypes.object,
-  code: PropTypes.string,
   mode: PropTypes.string,
   keyMap: PropTypes.string,
   onContentChange: PropTypes.func,
   toggleFormatting: PropTypes.func,
   enableFormatting: PropTypes.bool,
+  transformResult: PropTypes.object,
 };

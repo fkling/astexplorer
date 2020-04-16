@@ -17,6 +17,7 @@ import {logEvent, logError} from '../utils/logger';
 import {
   getParser,
   getParserSettings,
+  getParseResult,
   getCode,
   isSaving,
   isForking,
@@ -32,6 +33,7 @@ function* save(fork, storageAdapter) {
     revision,
     parser,
     parserSettings,
+    parseResult,
     code,
     transformCode,
     transformer,

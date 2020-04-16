@@ -28,6 +28,7 @@ import * as parse from './storage/parse';
 import StorageHandler from './storage';
 import '../css/style.css';
 import parserMiddleware from './store/parserMiddleware';
+import transformerMiddleware from './store/transformerMiddleware';
 
 function resize() {
   PubSub.publish('PANEL_RESIZE');
@@ -82,7 +83,7 @@ const store = createStore(
   enableBatching(astexplorer),
   revive(LocalStorage.readState()),
   composeEnhancers(
-    applyMiddleware(sagaMiddleware, parserMiddleware),
+    applyMiddleware(sagaMiddleware, parserMiddleware, transformerMiddleware),
   ),
 );
 store.subscribe(debounce(() => {
