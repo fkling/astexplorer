@@ -13,7 +13,7 @@ const defaultPrettierOptions = {
   trailingComma: 'none',
   bracketSpacing: true,
   jsxBracketSameLine: false,
-  parser: 'babylon',
+  parser: 'babel',
 };
 
 export default class Editor extends React.Component {
@@ -96,13 +96,13 @@ export default class Editor extends React.Component {
     this._bindCMHandler('blur', instance => {
       if (!this.props.enableFormatting) return;
 
-      require(['prettier/standalone', 'prettier/parser-babylon'], (prettier, babylon) => {
+      require(['prettier/standalone', 'prettier/parser-babel'], (prettier, babel) => {
         const currValue = instance.doc.getValue();
         const options = Object.assign({},
           defaultPrettierOptions,
           {
             printWidth: instance.display.maxLineLength,
-            plugins: [babylon],
+            plugins: [babel],
           });
         instance.doc.setValue(prettier.format(currValue, options));
       });

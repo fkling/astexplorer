@@ -8,5 +8,5 @@ export default {
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
 
-  "parser": "babylon"
+  "parser": "babel"
 }

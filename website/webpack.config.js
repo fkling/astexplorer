@@ -161,7 +161,6 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'react-redux', 'es'),
           path.join(__dirname, 'node_modules', 'recast'),
           path.join(__dirname, 'node_modules', 'redux', 'es'),
-          path.join(__dirname, 'node_modules', 'redux-saga', 'es'),
           path.join(__dirname, 'node_modules', 'regexp-tree'),
           path.join(__dirname, 'node_modules', 'regjsparser'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),

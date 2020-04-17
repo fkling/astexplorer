@@ -8,6 +8,7 @@ export default {
   displayName: name,
   version: pkg.version,
   homepage: pkg.homepage,
+  showInMenu: false,
 
   defaultParserID: 'acorn-to-esprima',
 
