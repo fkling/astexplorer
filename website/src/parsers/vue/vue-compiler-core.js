@@ -1,7 +1,7 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from '@vue/compiler-core/package.json';
 
-const ID = '@vue/compiler-sfc';
+const ID = '@vue/compiler-core';
 
 export default {
   ...defaultParserInterface,
