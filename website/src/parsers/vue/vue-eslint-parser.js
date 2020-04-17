@@ -37,9 +37,9 @@ export default {
 
   getDefaultOptions() {
     return {
-      sourceType: 'module'
+      sourceType: 'module',
     };
   },
 
-  _ignoredProperties: new Set(['parent', 'tokens'])
+  _ignoredProperties: new Set(['parent', 'tokens']),
 };
