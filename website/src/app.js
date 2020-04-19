@@ -28,6 +28,7 @@ import * as parse from './storage/parse';
 import StorageHandler from './storage';
 import '../css/style.css';
 import parserMiddleware from './store/parserMiddleware';
+import snippetMiddleware from './store/snippetMiddleware.js';
 
 function resize() {
   PubSub.publish('PANEL_RESIZE');
@@ -78,11 +79,12 @@ const AppContainer = connect(
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
+const storageAdapter = new StorageHandler([gist, parse]);
 const store = createStore(
   enableBatching(astexplorer),
   revive(LocalStorage.readState()),
   composeEnhancers(
-    applyMiddleware(sagaMiddleware, parserMiddleware),
+    applyMiddleware(sagaMiddleware, snippetMiddleware(storageAdapter), parserMiddleware),
   ),
 );
 store.subscribe(debounce(() => {
@@ -92,7 +94,7 @@ store.subscribe(debounce(() => {
     LocalStorage.writeState(persist(state));
   }
 }));
-sagaMiddleware.run(saga, new StorageHandler([gist, parse]));
+sagaMiddleware.run(saga, storageAdapter);
 store.dispatch({type: 'INIT'});
 
 render(

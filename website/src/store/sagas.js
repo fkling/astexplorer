@@ -4,22 +4,14 @@ import * as actions from './actions';
 import {
   all,
   takeEvery,
-  take,
-  fork,
-  cancel,
-  cancelled,
   put,
   select,
-  call,
 } from 'redux-saga/effects';
-import {batchActions} from 'redux-batched-actions';
 import {logEvent, logError} from '../utils/logger';
 import {
   getParser,
   getParserSettings,
   getCode,
-  isSaving,
-  isForking,
   getRevision,
   getTransformer,
   getTransformCode,
@@ -92,68 +84,6 @@ function* watchSave(storageAdapter, {fork}) {
   yield put(actions.endSave(fork));
 }
 
-let goBackTask = null;
-
-function *goBack() {
-  try {
-    yield take(actions.CLEAR_ERROR);
-    global.location.hash = '';
-  } finally {
-    if (yield cancelled()) {
-      // URL must have been changed while error dialog is open, nothing to do
-    }
-  }
-}
-
-function* watchSnippetURI(storageAdapter) {
-  if (goBackTask) {
-    yield cancel(goBackTask);
-  }
-
-  const [saving, forking] = yield all([
-    select(isSaving),
-    select(isForking),
-  ]);
-  if (saving || forking) {
-    return;
-  }
-
-  yield put(batchActions([
-    actions.setError(null),
-    actions.startLoadingSnippet(),
-  ]));
-  let revision;
-  try {
-    revision = yield call(storageAdapter.fetchFromURL.bind(storageAdapter));
-  } catch(error) {
-    const errorMessage = 'Failed to fetch revision: ' + error.message;
-    logError(errorMessage);
-
-    yield put(batchActions([
-      actions.setError(new Error(errorMessage)),
-      actions.doneLoadingSnippet(),
-    ]));
-
-    if (global.history) {
-      /* eslint-disable-next-line require-atomic-updates */
-      goBackTask = yield fork(goBack);
-    }
-    return;
-  }
-
-  if (revision) {
-    logEvent('snippet', 'load');
-  }
-
-  yield put(batchActions([
-    revision ?
-      actions.setSnippet(revision) :
-      actions.clearSnippet(),
-    actions.doneLoadingSnippet(),
-  ]));
-}
-
 export default function*(storageAdapter) {
-  yield takeEvery(actions.LOAD_SNIPPET, watchSnippetURI, storageAdapter);
   yield takeEvery(actions.SAVE, watchSave, storageAdapter);
 }
