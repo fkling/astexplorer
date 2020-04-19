@@ -1,9 +1,0 @@
-{
-  "name": "babylon6",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "babylon": "^6.1.21"
-  }
-}

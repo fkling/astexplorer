@@ -2,6 +2,7 @@
 
 import * as actions from './actions';
 import {
+  all,
   takeEvery,
   take,
   fork,
@@ -35,7 +36,7 @@ function* save(fork, storageAdapter) {
     transformCode,
     transformer,
     showTransformPanel,
-  ] = yield [
+  ] = yield all([
     select(getRevision),
     select(getParser),
     select(getParserSettings),
@@ -43,7 +44,7 @@ function* save(fork, storageAdapter) {
     select(getTransformCode),
     select(getTransformer),
     select(showTransformer),
-  ];
+  ]);
   if (fork || !revision) {
     action = fork ? 'fork' : 'create';
   }
@@ -109,10 +110,10 @@ function* watchSnippetURI(storageAdapter) {
     yield cancel(goBackTask);
   }
 
-  const [saving, forking] = yield [
+  const [saving, forking] = yield all([
     select(isSaving),
     select(isForking),
-  ];
+  ]);
   if (saving || forking) {
     return;
   }
@@ -134,6 +135,7 @@ function* watchSnippetURI(storageAdapter) {
     ]));
 
     if (global.history) {
+      /* eslint-disable-next-line require-atomic-updates */
       goBackTask = yield fork(goBack);
     }
     return;

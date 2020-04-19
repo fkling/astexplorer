@@ -21,7 +21,7 @@ function cleanup {
 
 echo "Creating worktree for $STABLE_BRANCH..."
 # Initialize worktree
-git worktree add $TARGETPATH $STABLE_BRANCH
+git worktree add $TARGETPATH $STABLE_BRANCH || exit 1
 
 cd $TARGETPATH
 

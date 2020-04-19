@@ -1,0 +1,14 @@
+const reverse = str =>
+  str
+    .split("")
+    .reverse()
+    .join("");
+
+export default function(tree) {
+  tree.match({ tag: "h1" }, node => {
+
+    node.content[0] = reverse(node.content[0]);
+
+    return node;
+  });
+}

@@ -47,7 +47,7 @@ export default class SettingsDialog extends React.Component {
             <div className="body">
               {this.props.parser.renderSettings(
                 this.state.parserSettings,
-                this._onChange
+                this._onChange,
               )}
             </div>
             <div className="footer">

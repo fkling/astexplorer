@@ -33,7 +33,7 @@ export default class Editor extends React.Component {
         lineNumbers: true,
         foldGutter: true,
         gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-      }
+      },
     );
 
     this._subscriptions.push(
@@ -41,7 +41,7 @@ export default class Editor extends React.Component {
         if (this.codeMirror) {
           this.codeMirror.refresh();
         }
-      })
+      }),
     );
   }
 

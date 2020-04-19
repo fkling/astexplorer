@@ -73,7 +73,7 @@ const AppContainer = connect(
   state => ({
     showTransformer: state.showTransformPanel,
     hasError: !!state.error,
-  })
+  }),
 )(App);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -82,8 +82,8 @@ const store = createStore(
   enableBatching(astexplorer),
   revive(LocalStorage.readState()),
   composeEnhancers(
-    applyMiddleware(sagaMiddleware, parserMiddleware)
-  )
+    applyMiddleware(sagaMiddleware, parserMiddleware),
+  ),
 );
 store.subscribe(debounce(() => {
   const state = store.getState();
@@ -99,7 +99,7 @@ render(
   <Provider store={store}>
     <AppContainer />
   </Provider>,
-  document.getElementById('container')
+  document.getElementById('container'),
 );
 
 global.onhashchange = () => {

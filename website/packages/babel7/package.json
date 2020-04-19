@@ -1,9 +1,0 @@
-{
-  "name": "babel7",
-  "version": "1.0.0",
-  "description": "Wrapper for Babel v7",
-  "main": "index.js",
-  "dependencies": {
-    "@babel/core": "^7.1.6"
-  }
-}

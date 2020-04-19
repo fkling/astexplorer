@@ -38,6 +38,7 @@ export default {
       gfm: true,
       commonmark: false,
       footnotes: false,
+      pedantic: false,
     };
   },
 
@@ -54,7 +55,7 @@ export default {
         {defaultParserInterface.renderSettings.call(
           this,
           parserSettings,
-          onChange
+          onChange,
         )}
       </div>
     );

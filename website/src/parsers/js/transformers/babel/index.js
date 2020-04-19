@@ -1,5 +1,5 @@
 import compileModule from '../../../utils/compileModule';
-import pkg from 'babel5/babel5-package';
+import pkg from 'babel5/package.json';
 
 const ID = 'babel';
 
@@ -8,20 +8,21 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  showInMenu: false,
 
   defaultParserID: 'babylon',
 
   loadTransformer(callback) {
     require(
       ['../../../transpilers/babel', 'babel5'],
-      (transpile, babel) => callback({ transpile: transpile.default, babel: babel })
+      (transpile, babel) => callback({ transpile: transpile.default, babel: babel }),
     );
   },
 
   transform({ transpile, babel }, transformCode, code) {
     transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
-      transformCode
+      transformCode,
     );
 
     return babel.transform(code, {

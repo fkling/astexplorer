@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babel-eslint9/babel-eslint-package';
+import pkg from 'babel-eslint9/package.json';
 
 const ID = 'babel-eslint9';
 

@@ -33,7 +33,7 @@ export default {
   nodeToRange(node) {
     if (node.span) {
       return [node.span.start, node.span.end].map(
-        ({ line, column }) => this.lineOffsets[line - 1] + column
+        ({ line, column }) => this.lineOffsets[line - 1] + column,
       );
     }
   },

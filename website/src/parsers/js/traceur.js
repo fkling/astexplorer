@@ -44,7 +44,7 @@ export default {
     let parser = new traceur.syntax.Parser(
       sourceFile,
       errorReporter,
-      new traceur.util.Options(options)
+      new traceur.util.Options(options),
     );
     let comments = [];
     parser.handleComment = sourceRange => {
@@ -62,22 +62,24 @@ export default {
   },
 
   *forEachProperty(node) {
-    if ('type' in node) {
-      yield {
-        value: node.type,
-        key: 'type',
+    if (node && typeof node === 'object') {
+      if ('type' in node) {
+        yield {
+          value: node.type,
+          key: 'type',
+        }
       }
-    }
-    for (let prop in node) {
-      if (prop === 'line_' || prop === 'column_') {
-        prop = prop.slice(0, -1);
-      }
-      if (prop === 'type' || prop === 'lineNumberTable') {
-        continue;
-      }
-      yield {
-        value: node[prop],
-        key: prop,
+      for (let prop in node) {
+        if (prop === 'line_' || prop === 'column_') {
+          prop = prop.slice(0, -1);
+        }
+        if (prop === 'type' || prop === 'lineNumberTable') {
+          continue;
+        }
+        yield {
+          value: node[prop],
+          key: prop,
+        }
       }
     }
   },

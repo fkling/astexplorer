@@ -25,16 +25,18 @@ The AST explorer provides following code parsers:
   - [@angular/compiler][]
   - [vue-template-compiler][]
   - [svelte][]
+  - [posthtml][]
+  - [hyntax][]
 - [ICU][]
 - JavaScript:
   - [acorn][] + [acorn-jsx][]
   - [babel-eslint][]
   - [babylon][]
-  - [cherow][]
   - [espree][]
   - [esformatter][]
   - [esprima][]
   - [flow-parser][]
+  - [meriyah][]
   - [recast][]
   - [shift][]
   - [traceur][]
@@ -50,8 +52,10 @@ The AST explorer provides following code parsers:
   - [mdxhast][]
 - PHP
   - [php-parser][]
+- [Pug][]
 - Regular Expressions:
   - [regexp-tree][]
+  - [regjsparser][]
 - Scala
   - [Scalameta][]
 - Solidity:
@@ -86,6 +90,8 @@ are included so you can prototype your own plugins:
   - [ESLint][] (v1, v2, v3)
   - [jscodeshift][]
   - [tslint][]
+- HTML
+  - [posthtml][]
 - CSS
   - [postcss][]
 - MDX
@@ -116,7 +122,6 @@ node.
 [babel-eslint]: https://github.com/babel/babel-eslint
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [babylon]: https://babeljs.io/
-[cherow]: https://github.com/cherow/cherow/tree/master/packages/cherow
 [cssom]: https://github.com/NV/CSSOM
 [csstree]: https://github.com/csstree/csstree
 [ember-template-recast]: https://github.com/ember-template-lint/ember-template-recast
@@ -129,10 +134,12 @@ node.
 [htmlparser2]: https://github.com/fb55/htmlparser2
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [luaparse]: https://oxyc.github.io/luaparse/
+[meriyah]: https://github.com/meriyah/meriyah/
 [parse5]: https://github.com/inikulin/parse5
 [postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
 [postcss-scss]: https://github.com/postcss/postcss-scss
 [postcss]: https://github.com/postcss/postcss
+[posthtml]: https://github.com/posthtml/posthtml
 [recast]: https://github.com/benjamn/recast
 [rework]: https://github.com/reworkcss/rework
 [shift]: https://github.com/shapesecurity/shift-parser-js
@@ -145,10 +152,12 @@ node.
 [redot]: https://github.com/redotjs/redot
 [remark]: https://github.com/remarkjs/remark
 [regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
+[regjsparser]: https://github.com/jviereck/regjsparser
 [php-parser]: https://github.com/glayzzle/php-parser
+[pug]: https://github.com/pugjs/pug
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
 [handlebars]: http://handlebarsjs.com/
-[icu]: https://github.com/yahoo/intl-messageformat-parser
+[icu]: https://github.com/formatjs/formatjs/tree/master/packages/intl-messageformat-parser
 [json]: https://github.com/vtrushin/json-to-ast
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/eemeli/yaml
@@ -162,6 +171,7 @@ node.
 [Tree]: https://github.com/nin-jin/tree.d
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
 [svelte]: https://github.com/sveltejs/svelte 
+[hyntax]: https://github.com/nik-garmash/hyntax
 
 ### Contributions
 
@@ -172,10 +182,10 @@ as possible!
 
 #### How to add a new parser
 
-0. Go to `website/`.
-1. Install the new parser as dependency: `yarn add theParser` (or `npm install -S theParser`)
-2. Copy one of the existing examples in `src/parsers/{language}`.
-3. Adjust the code as necessary:
+1. Go to `website/`.
+2. Install the new parser as dependency: `yarn add theParser` (or `npm install -S theParser`)
+3. Copy one of the existing examples in `src/parsers/{language}`.
+4. Adjust the code as necessary:
   - Update metadata.
   - Load the right parser (`loadParser`).
   - Call the right parsing method with the right/necessary options in `parse`.

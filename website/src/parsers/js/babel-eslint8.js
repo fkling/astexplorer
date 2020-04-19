@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babel-eslint8/babel-eslint-package';
+import pkg from 'babel-eslint8/package.json';
 
 const ID = 'babel-eslint8';
 
@@ -11,6 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['loc', 'start', 'end', 'range']),
+  showInMenu: false,
 
   loadParser(callback) {
     require(['babel-eslint8'], callback);

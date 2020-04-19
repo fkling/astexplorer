@@ -14,7 +14,7 @@ export default {
   loadTransformer(callback) {
     require(
       ['../../../transpilers/babel', '@glimmer/syntax'],
-      (transpile, glimmer) => callback({ transpile: transpile.default, glimmer })
+      (transpile, glimmer) => callback({ transpile: transpile.default, glimmer }),
     );
   },
 

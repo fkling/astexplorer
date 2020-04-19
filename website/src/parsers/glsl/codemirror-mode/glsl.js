@@ -1,4 +1,4 @@
-/* eslint no-useless-escape: off */
+/* eslint-disable */
 // source: https://github.com/tangrams/GLSL-live-editor/blob/master/src/codemirror/mode/webGL-clike.js
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -109,7 +109,7 @@ CodeMirror.defineMode('clike', function(config, parserConfig) {
       col,
       type,
       null,
-      state.context
+      state.context,
     ));
   }
   function popContext(state) {
@@ -223,7 +223,7 @@ function def(mimes, mode) {
   function add(obj) {
     if (obj)
       for (var prop in obj)
-        if (obj.hasOwnProperty(prop)) words.push(prop);
+        if (Object.prototype.hasOwnProperty.call(obj, prop)) words.push(prop);
   }
   add(mode.keywords);
   add(mode.builtin);
@@ -247,7 +247,7 @@ def(['x-shader/x-vertex', 'x-shader/x-fragment'], {
       'const attribute uniform varying ' +
       'break continue discard return ' +
       'for while do if else struct ' +
-      'in out inout'
+      'in out inout',
   ),
   blockKeywords: words('for while do if else struct'),
   builtin: words(
@@ -259,7 +259,7 @@ def(['x-shader/x-vertex', 'x-shader/x-fragment'], {
       'lessThan lessThanEqual greaterThan greaterThanEqual ' +
       'equal notEqual any all not ' +
       'texture2D texture2DLod texture2DProjLod ' +
-      'textureCube textureCubeLod '
+      'textureCube textureCubeLod ',
   ),
   atoms: words(
     'true false ' +
@@ -272,7 +272,7 @@ def(['x-shader/x-vertex', 'x-shader/x-fragment'], {
       'gl_MaxVertexAttribs gl_MaxVaryingVectors gl_MaxVertexUniformVectors' +
       'gl_MaxVertexTextureImageUnits gl_MaxTextureImageUnits ' +
       'gl_MaxFragmentUniformVectors ' +
-      'gl_MaxDrawBuffers'
+      'gl_MaxDrawBuffers',
   ),
   hooks: { '#': cppHook },
   modeProps: { fold: ['brace', 'include'] },

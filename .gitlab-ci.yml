@@ -1,0 +1,134 @@
+stages:
+  - build-dev
+  - review
+  - latest
+  - build-prod
+  - staging
+  - production
+
+build-dev:
+  image: node:lts
+  stage: build-dev
+  cache:
+    key: build
+    paths:
+      - website/node_modules
+  script:
+    - cd website/
+    - yarn install --frozen-lockfile
+    - yarn build-dev
+    - cd ..
+    - ./scripts/inject-rev.sh out/index.html
+  artifacts:
+    expire_in: 1 days
+    paths:
+      - out
+
+review:
+  stage: review
+  script:
+    - rsync -av out/ /data/astexplorer/website-new/$CI_BUILD_REF_SLUG
+    - rm -rf out/
+  variables:
+    GIT_STRATEGY: none
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    url: https://$CI_BUILD_REF_SLUG.astexplorer.net
+    on_stop: stop_review
+  only:
+    - branches
+  except:
+    - master
+  tags:
+    - astexplorer
+
+stop_review:
+  stage: review
+  script:
+    - rm -rf public /data/astexplorer/website-new/$CI_BUILD_REF_SLUG
+  variables:
+    GIT_STRATEGY: none
+  when: manual
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    action: stop
+  only:
+    - branches
+  except:
+    - master
+  tags:
+    - astexplorer
+
+latest:
+  stage: latest
+  script:
+    - rsync -rv --delete out/ /data/astexplorer/website-new/master/
+    - rm -rf out/
+  variables:
+    GIT_STRATEGY: none
+  environment:
+    name: master
+    url: http://master.astexplorer.net
+  only:
+    - master
+  tags:
+    - astexplorer
+
+build-prod:
+  image: node:lts
+  stage: build-prod
+  dependencies: []
+  script:
+    - cd website/
+    - yarn install --frozen-lockfile
+    - yarn build
+    - cd ..
+    - ./scripts/inject-rev.sh out/index.html
+  cache:
+    key: build
+    paths:
+      - website/node_modules
+  when: manual
+  allow_failure: false
+  artifacts:
+    expire_in: 7 days
+    paths:
+      - out
+
+staging:
+  stage: staging
+  dependencies:
+    - build-prod
+  variables:
+    GIT_STRATEGY: none
+    deploy_path: /data/astexplorer/website-new/staging/
+  script:
+    - ./scripts/check-conflicts.sh out/ $deploy_path
+    - rsync -rv out/ $deploy_path
+    - rm -rf out/
+  environment:
+    name: staging
+    url: http://staging.astexplorer.net
+  only:
+    - master
+  tags:
+    - astexplorer
+
+production:
+  stage: production
+  dependencies:
+    - build-prod
+  variables:
+    deploy_path: /data/astexplorer/website-production/
+  script:
+    - ./scripts/check-conflicts.sh out/ $deploy_path
+    - rsync -rv out/ $deploy_path
+    - rm -rf out/
+  environment:
+    name: production
+    url: https://astexplorer.net/
+  when: manual
+  only:
+    - master
+  tags:
+    - astexplorer

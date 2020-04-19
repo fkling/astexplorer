@@ -10,9 +10,6 @@ const webpack = require('webpack');
 const DEV = process.env.NODE_ENV !== 'production';
 const CACHE_BREAKER = Number(fs.readFileSync(path.join(__dirname, 'CACHE_BREAKER')));
 
-const packages = fs.readdirSync(path.join(__dirname, 'packages'));
-const vendorRegex = new RegExp(`/node_modules/(?!${packages.join('|')}/)`);
-
 const plugins = [
   new webpack.DefinePlugin({
     'process.env.API_HOST': JSON.stringify(process.env.API_HOST || ''),
@@ -36,11 +33,17 @@ const plugins = [
   new webpack.IgnorePlugin(/parser-vue/, /\/prettier/),
   new webpack.IgnorePlugin(/parser-yaml/, /\/prettier/),
 
+  // go //
+  new webpack.NormalModuleReplacementPlugin(
+    /^go$/,
+    require.resolve('astexplorer-go/go'),
+  ),
+
   // eslint //
 
   // Shim ESLint stuff that's only relevant for Node.js
   new webpack.NormalModuleReplacementPlugin(
-    /(cli-engine|testers\/rule-tester)/,
+    /cli-engine/,
     'node-libs-browser/mock/empty'
   ),
   new webpack.NormalModuleReplacementPlugin(
@@ -89,31 +92,23 @@ const plugins = [
 
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
   new InlineManifestWebpackPlugin(),
-  DEV ?
-    new webpack.NamedModulesPlugin() :
-    new webpack.HashedModuleIdsPlugin(),
   new ProgressBarPlugin(),
 ];
 
 module.exports = Object.assign({
   optimization: {
+    moduleIds: DEV ? 'named' : 'hashed',
     runtimeChunk: 'single',
     splitChunks: {
+      chunks: 'initial',
+      maxAsyncRequests: 5,
       cacheGroups: {
-        parsermeta: {
+        parsers: {
           priority: 10,
-          test: /\/package\.json$/,
-          chunks(chunk) {
-            return chunk.name === 'app';
-          },
-          minChunks: 1,
-          minSize: 1,
+          test: /\/src\/parsers\/|\/package\.json$/,
         },
         vendors: {
-          test: vendorRegex,
-          chunks(chunk) {
-            return chunk.name === 'app';
-          },
+          test: /\/node_modules\//,
         },
       },
     },
@@ -166,8 +161,8 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'react-redux', 'es'),
           path.join(__dirname, 'node_modules', 'recast'),
           path.join(__dirname, 'node_modules', 'redux', 'es'),
-          path.join(__dirname, 'node_modules', 'redux-saga', 'es'),
           path.join(__dirname, 'node_modules', 'regexp-tree'),
+          path.join(__dirname, 'node_modules', 'regjsparser'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
           path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),

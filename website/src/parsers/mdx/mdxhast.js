@@ -1,6 +1,5 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from '@mdx-js/mdx/package.json';
-import mdxAstToMdxHast from '@mdx-js/mdx/mdx-ast-to-mdx-hast'
 
 const ID = 'mdxhast';
 
@@ -21,12 +20,11 @@ export default {
   locationProps: new Set(['position']),
 
   loadParser(callback) {
-    require(['@mdx-js/mdx'], callback);
+    require(['@mdx-js/mdx', '@mdx-js/mdx/mdx-ast-to-mdx-hast'], (mdx, mdxAstToMdxHast) => callback({mdx, mdxAstToMdxHast}));
   },
 
-  parse(mdx, code) {
+  parse({mdx, mdxAstToMdxHast}, code) {
     let result;
-
     mdx.sync(code, {
       hastPlugins: [
         mdxAstToMdxHast,

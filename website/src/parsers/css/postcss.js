@@ -27,7 +27,7 @@ export default {
     return defaultParserInterface.parse.call(
       this,
       parsers[options.parser],
-      code
+      code,
     );
   },
 

@@ -2,6 +2,20 @@ import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'intl-messageformat-parser/package.json';
 
 const ID = 'intl-messageformat-parser';
+const TYPES = {}
+
+
+export const parserSettingsConfiguration = {
+  fields: [
+    'captureLocation',
+    'normalizeHashtagInPlural',
+  ],
+};
+
+const defaultOptions = {
+  captureLocation: true,
+  normalizeHashtagInPlural: true,
+}
 
 export default {
   ...defaultParserInterface,
@@ -9,24 +23,37 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage || 'https://github.com/yahoo/intl-messageformat-parser',
+  homepage: pkg.homepage || 'https://github.com/formatjs/formatjs/tree/master/packages/intl-messageformat-parser',
   locationProps: new Set(['location']),
 
   loadParser(callback) {
-    require(['intl-messageformat-parser'], callback);
+    require(['intl-messageformat-parser'], all => {
+      Object.keys(all.TYPE).forEach(k => {
+        TYPES[k] = all.TYPE[k]
+      })
+      callback(all)
+    });
   },
 
-  parse(parser, code) {
-    return parser.parse(code);
+  parse(parser, code, opts) {
+    return parser.parse(code, opts);
+  },
+
+  _getSettingsConfiguration() {
+    return parserSettingsConfiguration;
+  },
+
+  getDefaultOptions() {
+    return defaultOptions;
+  },
+
+  getNodeName(node) {
+    return node.type != null && TYPES[node.type]
   },
 
   nodeToRange({ location }) {
     if (location && location.start && location.end) {
       return [location.start.offset, location.end.offset];
     }
-  },
-
-  opensByDefault(node, key) {
-    return key === 'elements' || key === 'options';
   },
 };

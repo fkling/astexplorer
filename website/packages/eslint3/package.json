@@ -1,9 +1,0 @@
-{
-  "name": "eslint3",
-  "version": "1.0.0",
-  "description": "Wrapper for ESLint 3",
-  "main": "index.js",
-  "dependencies": {
-    "eslint": "^3.16.1"
-  }
-}

@@ -8,10 +8,10 @@ export default function(CodeMirror) {
     'part of show hide is as'
   ).split(' ');
   const blockKeywords = 'try catch match with else for if switch while do begin end in module sig struct'.split(
-    ' '
+    ' ',
   );
   const atoms = 'unit int char exn string int32 int64 float bool option mod land lor lxor lsl lsr asr'.split(
-    ' '
+    ' ',
   );
   const builtins = 'true false Error Ok None Some'.split(' ');
 
@@ -144,7 +144,7 @@ export default function(CodeMirror) {
   CodeMirror.registerHelper(
     'hintWords',
     'application/reason',
-    keywords.concat(atoms).concat(builtins)
+    keywords.concat(atoms).concat(builtins),
   );
 
   CodeMirror.defineMode(
@@ -154,6 +154,6 @@ export default function(CodeMirror) {
         lineComment: undefined, // reason doesn't have line comments
       });
     },
-    'clike'
+    'clike',
   );
 }

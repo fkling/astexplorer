@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babylon5/babylon-package';
+import pkg from 'babylon5/package.json';
 
 const ID = 'babylon';
 
@@ -11,6 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['loc', 'start', 'end']),
+  showInMenu: false,
 
   loadParser(callback) {
     require(['babylon5'], callback);
@@ -79,7 +80,7 @@ export default {
           settings: settings => settings.plugins || {...defaultOptions.plugins},
           values: plugins => Object.keys(defaultOptions.plugins).reduce(
             (obj, name) => ((obj[name] = name in plugins), obj),
-            {}
+            {},
           ),
           update: (plugins, name, value) => {
             if (value) {

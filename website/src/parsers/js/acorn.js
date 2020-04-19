@@ -45,7 +45,7 @@ export default {
 
   getDefaultOptions() {
     return {
-      ecmaVersion: 7,
+      ecmaVersion: 10,
       sourceType: 'module',
       allowReserved: false,
       allowReturnOutsideFunction: false,
@@ -63,7 +63,7 @@ export default {
   _getSettingsConfiguration() {
     return {
       fields: [
-        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10], x => Number(x)],
+        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10, 11], x => Number(x)],
         ['sourceType', ['script', 'module']],
         'allowReserved',
         'allowReturnOutsideFunction',
@@ -83,7 +83,7 @@ export default {
       <div>
         <p>
           <a
-            href="https://github.com/marijnh/acorn/blob/master/src/options.js"
+            href="https://github.com/acornjs/acorn/blob/master/acorn/src/options.js"
             target="_blank" rel="noopener noreferrer">
             Option descriptions
           </a>
@@ -91,7 +91,7 @@ export default {
         {defaultParserInterface.renderSettings.call(
           this,
           parserSettings,
-          onChange
+          onChange,
         )}
       </div>
     );

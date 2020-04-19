@@ -1,4 +1,4 @@
-import pkg from 'eslint4/eslint4-package';
+import pkg from 'eslint4/package.json';
 
 const ID = 'eslint-v4';
 const name = 'ESLint v4';
@@ -13,8 +13,12 @@ export default {
 
   loadTransformer(callback) {
     require(
-      ['eslint4', '../../utils/eslint4Utils'],
-      (eslint, utils) => callback({...eslint, utils})
+      [
+        'eslint4/lib/linter',
+        'eslint4/lib/util/source-code',
+        '../../utils/eslint4Utils',
+      ],
+      (Linter, sourceCode, utils) => callback({eslint: new Linter(), sourceCode, utils}),
     );
   },
 

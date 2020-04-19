@@ -158,6 +158,8 @@ html {
   border: 1px solid #ddd;
   border-top: none;
   min-width: 100%;
+  max-height: calc(100vh - 65px);
+  overflow-y: auto;
 }
 
 #Toolbar .menuButton ul li {
@@ -166,8 +168,10 @@ html {
 
 #Toolbar .menuButton ul button {
   line-height: 28px;
-  padding-bottom: 2px;
   padding-top: 2px;
+  padding-bottom: 2px;
+  /* for scrollbar */
+  padding-right: 15px;
   text-align: left;
   width: 100%;
 }
@@ -343,9 +347,13 @@ li.entry {
 }
 
 .CodeMirror .marked,
-.entry.focused {
+.entry.highlighted {
   border-radius: 2px;
   background-color: rgba(255,240,6,0.4);
+}
+
+.entry > .value {
+  white-space: pre-wrap;
 }
 
 .entry > .value .s {
@@ -491,7 +499,6 @@ body .CodeMirror-Tern-tooltip {
 .toggleBtn {
   position: absolute;
   right: 0;
-  height: 20px;
   z-index: 10;
   cursor: pointer;
   outline: none;

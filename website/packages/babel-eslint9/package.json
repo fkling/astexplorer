@@ -1,9 +1,0 @@
-{
-  "name": "babel-eslint9",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "babel-eslint": "^9.0.0"
-  }
-}

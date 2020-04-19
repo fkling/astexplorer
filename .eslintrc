@@ -35,6 +35,7 @@ rules:
   import/namespace: "error"
   import/export: "error"
   require-in-package/require-in-package: "error"
+  react/display-name: off
 
 settings:
   import/resolver: "webpack"

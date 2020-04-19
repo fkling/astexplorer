@@ -1,9 +1,0 @@
-{
-  "name": "babylon7",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "@babel/parser": "^7.1.6"
-  }
-}

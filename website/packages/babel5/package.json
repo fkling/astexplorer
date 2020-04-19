@@ -1,9 +1,0 @@
-{
-  "name": "babel5",
-  "version": "1.0.0",
-  "description": "Wrapper for Babel v5",
-  "main": "index.js",
-  "dependencies": {
-    "babel-core": "^5.8.38"
-  }
-}

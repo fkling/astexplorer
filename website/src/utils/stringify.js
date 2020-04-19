@@ -10,7 +10,8 @@ export default function stringify(value) {
     case 'undefined':
       return 'undefined';
     case 'number':
-      return global.isNaN(value) ? 'NaN' : value;
+    case 'bigint':
+      return Number.isNaN(value) ? 'NaN' : String(value);
     default:
       return JSON.stringify(value);
   }

@@ -24,7 +24,7 @@ function cleanup {
 function build {
   set -e
   # Initialize worktree
-  git worktree add $TARGETPATH $BRANCH
+  git worktree add $TARGETPATH $BRANCH || exit 1
 
   echo "Building..."
   rm -rf out/*
@@ -34,7 +34,7 @@ function build {
   )
 
   echo "Copying artifacts..."
-  cp -R out/ "$TARGETPATH/"
+  cp -R out/* "$TARGETPATH/"
   cp README.md "$TARGETPATH/README.md"
   cp CNAME "$TARGETPATH/CNAME"
 

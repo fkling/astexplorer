@@ -1,0 +1,20 @@
+module.exports = function() {
+  return {
+    name: 'svelte-transform',
+
+    // transform function for entire markup
+    markup: function(content) {
+    return content;
+    },
+
+    // transform function for script tag
+    script:function(content, attributes) {
+      return content.replace(/foo/g, 'baz');
+    },
+
+    // transform function for style tag
+    style: function(content, attributes) {
+    return content;
+    }
+  };
+};

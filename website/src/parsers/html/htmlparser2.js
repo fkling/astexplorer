@@ -14,7 +14,7 @@ export default {
   typeProps: new Set(['type', 'name']),
 
   loadParser(callback) {
-    require(['htmlparser2/lib/Parser', 'domhandler'], (Parser, DomHandler) => {
+    require(['htmlparser2/lib/Parser', 'domhandler'], (Parser, {DomHandler}) => {
       class Handler extends DomHandler {
         constructor() {
           super({ withStartIndices: true });
@@ -46,7 +46,7 @@ export default {
     });
   },
 
-  parse({ Parser, Handler }, code, options) {
+  parse({ Parser: {Parser}, Handler }, code, options) {
     let handler = new Handler();
     new Parser(handler, options).end(code);
     return handler.dom;

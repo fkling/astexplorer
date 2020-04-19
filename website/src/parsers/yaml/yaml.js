@@ -41,6 +41,10 @@ export default {
       keepCstNodes: false,
       keepNodeTypes: true,
       merge: false,
+      mapAsMap: false,
+      simpleKeys: false,
+      maxAliasCount: 100,
+      prettyErrors: true,
     };
   },
 };

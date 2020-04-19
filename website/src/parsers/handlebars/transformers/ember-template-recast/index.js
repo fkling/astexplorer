@@ -14,7 +14,7 @@ export default {
   loadTransformer(callback) {
     require(
       ['../../../transpilers/babel', 'ember-template-recast'],
-      (transpile, recast) => callback({ transpile: transpile.default, recast })
+      (transpile, recast) => callback({ transpile: transpile.default, recast }),
     );
   },
 

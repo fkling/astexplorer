@@ -1,6 +1,5 @@
 import compileModule from '../../../utils/compileModule';
 import pkg from 'babel-plugin-macros/package';
-import macro, {createMacro, MacroError} from 'babel-plugin-macros';
 
 const ID = 'babel-plugin-macros';
 export default {
@@ -16,14 +15,15 @@ export default {
       '../../../transpilers/babel',
       'babel7',
       'recast',
-    ], (transpile, babel, recast) => callback({ transpile: transpile.default, babel, recast }));
+      'babel-plugin-macros',
+    ], (transpile, babel, recast, macro) => callback({ transpile: transpile.default, babel, recast, macro}));
   },
 
-  transform({ transpile, babel, recast }, transformCode, code) {
+  transform({ transpile, babel, recast, macro}, transformCode, code) {
     transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode,
-      {createMacro, MacroError}
+      {createMacro: macro.createMacro, MacroError: macro.MacroError},
     );
 
     return babel.transform(code, {

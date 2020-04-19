@@ -7,8 +7,10 @@ const dialects = {
   'Scala 2.10': 'Scala210',
   'Scala 2.11': 'Scala211',
   'Scala 2.12': 'Scala212',
+  'Scala 2.13': 'Scala213',
   'Sbt 0.13.6': 'Sbt0136',
   'Sbt 0.13.7': 'Sbt0137',
+  'Sbt 1': 'Sbt 1',
   'Dotty': 'Dotty',
   'Typelevel 2.11': 'Typelevel211',
   'Typelevel 2.12': 'Typelevel212',
@@ -58,7 +60,7 @@ export default {
 
   getDefaultOptions() {
     return {
-      dialect: 'Scala212',
+      dialect: 'Scala213',
     };
   },
 

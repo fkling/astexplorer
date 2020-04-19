@@ -21,7 +21,7 @@ export default {
   transform({ transpile, regexpTree }, transformCode, code) {
     transformCode = transpile(transformCode);
     let handler = compileModule( // eslint-disable-line no-shadow
-      transformCode
+      transformCode,
     );
 
     return regexpTree.transform(code, handler).toString();

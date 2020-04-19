@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'babylon7/babylon-package';
+import pkg from 'babylon7/package.json';
 
 const availablePlugins = [
   // From https://babeljs.io/docs/en/next/babel-parser.html
@@ -56,6 +56,7 @@ export const defaultOptions = {
     'jsx',
     'objectRestSpread',
     'dynamicImport',
+    'nullishCoalescingOperator',
     'numericSeparator',
     'optionalChaining',
     'optionalCatchBinding',
@@ -76,7 +77,7 @@ export const parserSettingsConfiguration = {
       settings: settings => settings.plugins || defaultOptions.plugins,
       values: plugins => availablePlugins.reduce(
         (obj, name) => ((obj[name] = plugins.indexOf(name) > -1), obj),
-        {}
+        {},
       ),
     },
   ],

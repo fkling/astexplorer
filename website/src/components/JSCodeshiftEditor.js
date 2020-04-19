@@ -60,7 +60,7 @@ function loadTern() {
                     cx.definitions.jscodeshift.apiObject,
                   ],
                   null,
-                  infer.ANull
+                  infer.ANull,
                 ));
               }
             });
@@ -72,9 +72,9 @@ function loadTern() {
               transformer: {strong: true},
             },
           });
-        }
+        },
       );
-    }
+    },
   );
 }
 
@@ -96,5 +96,5 @@ JSCodeshiftEditor.defaultProps = Object.assign(
   Editor.defaultProps,
   {
     highlight: false,
-  }
+  },
 );

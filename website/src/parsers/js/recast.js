@@ -19,8 +19,8 @@ export default {
 
   loadParser(callback) {
     require(
-      ['recast', 'babel5', 'babylon6', 'babylon7', 'flow-parser'],
-      (recast, babelCore, babylon6, babylon7, flow) => {
+      ['recast', 'babel5', 'babylon6', 'babylon7', 'flow-parser', 'recast/parsers/typescript'],
+      (recast, babelCore, babylon6, babylon7, flow, typescript) => {
         callback({
           recast,
           parsers: {
@@ -28,9 +28,10 @@ export default {
             babylon6,
             babylon7,
             flow,
+            typescript,
           },
         });
-      }
+      },
     );
   },
 
@@ -68,7 +69,9 @@ export default {
       case 'babel5':
         options.parser = parsers[options.parser];
         break;
-      case 'esprima':
+      case 'typescript':
+        options.parser = parsers.typescript;
+        break
       default:
         delete options.parser; // default parser
         break;
@@ -79,17 +82,19 @@ export default {
   _ignoredProperties: new Set(['__clone']),
 
   *forEachProperty(node) {
-    for (let prop in node) {
-      if (
-        this._ignoredProperties.has(prop) || typeof node[prop] === 'function'
-      ) {
-        continue;
+    if (node && typeof node === 'object') {
+      for (let prop in node) {
+        if (
+          this._ignoredProperties.has(prop) || typeof node[prop] === 'function'
+        ) {
+          continue;
+        }
+        yield {
+          value: node[prop],
+          key: prop,
+          computed: false,
+        };
       }
-      yield {
-        value: node[prop],
-        key: prop,
-        computed: false,
-      };
     }
   },
 
@@ -114,7 +119,7 @@ export default {
   _getSettingsConfiguration(defaultOptions) {
     return {
       fields: [
-        ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow']],
+        ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow', 'typescript']],
         'range',
         'tolerant',
         {

@@ -36,7 +36,7 @@ export default {
 
   getDefaultOptions() {
     return {
-      allowNestedTypedefs: false,
+      concrete: false,
     };
   },
 };

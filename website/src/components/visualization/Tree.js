@@ -4,10 +4,12 @@ import React from 'react';
 import PubSub from 'pubsub-js';
 import {logEvent} from '../../utils/logger';
 import {treeAdapterFromParseResult} from '../../core/TreeAdapter.js';
+import {SelectedNodeProvider} from './SelectedNodeContext.js';
+import focusNodes from './focusNodes.js'
 
 import './css/tree.css'
 
-const {useReducer, useMemo} = React;
+const {useReducer, useMemo, useRef, useLayoutEffect} = React;
 
 const STORAGE_KEY = 'tree_settings';
 
@@ -31,7 +33,7 @@ function reducer(state, element) {
   logEvent(
     'tree_view_settings',
     element.checked ? 'enabled' : 'disabled',
-    element.name
+    element.name,
   );
 
   return newState;
@@ -48,12 +50,18 @@ function makeCheckbox(name, settings, updateSettings) {
   );
 }
 
-export default function Tree({focusPath, parseResult}) {
+export default function Tree({parseResult, position}) {
   const [settings, updateSettings] = useReducer(reducer, null, initSettings);
   const treeAdapter = useMemo(
     () => treeAdapterFromParseResult(parseResult, settings),
     [parseResult.treeAdapter, settings],
   );
+  const rootElement = useRef();
+
+  focusNodes('init');
+  useLayoutEffect(() => {
+    focusNodes('focus', rootElement);
+  });
 
   return (
     <div className="tree-visualization container">
@@ -73,21 +81,22 @@ export default function Tree({focusPath, parseResult}) {
           </span>
         ))}
       </div>
-      <ul onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
-        <Element
-          focusPath={focusPath}
-          value={parseResult.ast}
-          level={0}
-          treeAdapter={treeAdapter}
-          settings={settings}
-        />
+      <ul ref={rootElement} onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
+        <SelectedNodeProvider>
+          <Element
+            value={parseResult.ast}
+            level={0}
+            treeAdapter={treeAdapter}
+            autofocus={settings.autofocus}
+            position={position}
+          />
+        </SelectedNodeProvider>
       </ul>
     </div>
   );
 }
 
 Tree.propTypes = {
-  focusPath: PropTypes.array,
   parseResult: PropTypes.object,
-  parser: PropTypes.object,
+  position: PropTypes.number,
 };
