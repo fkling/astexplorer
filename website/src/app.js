@@ -6,7 +6,7 @@ import GistBanner from './components/GistBanner';
 import LoadingIndicatorContainer from './containers/LoadingIndicatorContainer';
 import PasteDropTargetContainer from './containers/PasteDropTargetContainer';
 import PropTypes from 'prop-types';
-import PubSub from 'pubsub-js';
+import {publish} from './utils/pubsub.js';
 import React from 'react';
 import SettingsDialogContainer from './containers/SettingsDialogContainer';
 import ShareDialogContainer from './containers/ShareDialogContainer';
@@ -28,7 +28,7 @@ import parserMiddleware from './store/parserMiddleware';
 import snippetMiddleware from './store/snippetMiddleware.js';
 
 function resize() {
-  PubSub.publish('PANEL_RESIZE');
+  publish('PANEL_RESIZE');
 }
 
 function App(props) {

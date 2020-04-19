@@ -8296,11 +8296,6 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
-pubsub-js@^1.4.2:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/pubsub-js/-/pubsub-js-1.8.0.tgz#e2b523a030140a3d6e080735a48850a9622ed20a"
-  integrity sha512-z/61CZMA+jaQpBU0QSWkC4w6lX3tPbOdtl1h2UWac4sn6dkWfx7ND75SsN6U0amczdI66PqfuXXD0Ad7tnbaQg==
-
 pug-error@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/pug-error/-/pug-error-1.3.3.tgz#f342fb008752d58034c185de03602dd9ffe15fa6"

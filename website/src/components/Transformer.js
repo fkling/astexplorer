@@ -1,14 +1,14 @@
 import Editor from './Editor';
 import JSCodeshiftEditor from './JSCodeshiftEditor';
 import PropTypes from 'prop-types';
-import PubSub from 'pubsub-js';
+import {publish} from '../utils/pubsub.js';
 import React from 'react';
 import SplitPane from './SplitPane';
 import TransformOutput from './TransformOutput';
 import PrettierButton from './buttons/PrettierButton';
 
 function resize() {
-  PubSub.publish('PANEL_RESIZE');
+  publish('PANEL_RESIZE');
 }
 
 export default function Transformer(props) {
