@@ -119,7 +119,6 @@
     "pubsub-js": "^1.4.2",
     "pug-lexer": "^4.1.0",
     "pug-parser": "^5.0.1",
-    "query-string": "^6.12.1",
     "react": "16",
     "react-dom": "^16.0.1",
     "react-redux": "^7.2.0",
