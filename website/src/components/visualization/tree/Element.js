@@ -6,7 +6,7 @@ import React from 'react';
 import {useSelectedNode} from '../SelectedNodeContext.js';
 import focusNodes from '../focusNodes.js'
 
-import cx from 'classnames';
+import cx from '../../../utils/classnames.js';
 import stringify from '../../../utils/stringify';
 
 const {useState, useRef, useMemo, useCallback, useEffect} = React;
