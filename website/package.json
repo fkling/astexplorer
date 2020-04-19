@@ -126,7 +126,6 @@
     "regexp-tree": "^0.1.5",
     "regjsparser": "^0.6.0",
     "remark": "^12.0.0",
-    "reselect": "^4.0.0",
     "scalameta-parsers": "^4.2.1",
     "shift-parser": "^7.0.0",
     "solidity-parser-antlr": "^0.4.0",

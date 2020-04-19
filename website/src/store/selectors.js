@@ -1,6 +1,13 @@
-import {createSelector} from 'reselect';
 import isEqual from 'lodash.isequal';
 import {getParserByID, getTransformerByID} from '../parsers';
+
+// Our selectors are not computationally expensive so we can just use this
+// implementation.
+function createSelector(deps, f) {
+  return function(state) {
+    return f.apply(this, deps.map(d => d(state)));
+  }
+}
 
 // UI related
 
