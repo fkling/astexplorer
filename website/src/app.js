@@ -13,14 +13,11 @@ import ShareDialogContainer from './containers/ShareDialogContainer';
 import SplitPane from './components/SplitPane';
 import ToolbarContainer from './containers/ToolbarContainer';
 import TransformerContainer from './containers/TransformerContainer';
-import createSagaMiddleware from 'redux-saga'
 import debounce from './utils/debounce';
-import saga from './store/sagas';
 import {Provider, connect} from 'react-redux';
 import {astexplorer, persist, revive} from './store/reducers';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {canSaveTransform, getRevision} from './store/selectors';
-import {enableBatching} from 'redux-batched-actions';
 import {loadSnippet} from './store/actions';
 import {render} from 'react-dom';
 import * as gist from './storage/gist';
@@ -78,13 +75,12 @@ const AppContainer = connect(
 )(App);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const sagaMiddleware = createSagaMiddleware();
 const storageAdapter = new StorageHandler([gist, parse]);
 const store = createStore(
-  enableBatching(astexplorer),
+  astexplorer,
   revive(LocalStorage.readState()),
   composeEnhancers(
-    applyMiddleware(sagaMiddleware, snippetMiddleware(storageAdapter), parserMiddleware),
+    applyMiddleware(snippetMiddleware(storageAdapter), parserMiddleware),
   ),
 );
 store.subscribe(debounce(() => {
@@ -94,7 +90,6 @@ store.subscribe(debounce(() => {
     LocalStorage.writeState(persist(state));
   }
 }));
-sagaMiddleware.run(saga, storageAdapter);
 store.dispatch({type: 'INIT'});
 
 render(
