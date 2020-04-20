@@ -10,6 +10,36 @@ html {
   font-family: Verdana, non-serif;
 }
 
+body {
+  margin: 0;
+}
+
+#page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#container {
+  flex: 1 0 auto;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#contribution {
+  font-size: 0.9em;
+  color: #555;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  background-color: #efefef;
+  border-top: 1px solid #ddd;
+}
+
 .cover {
   position: fixed;
   top: 0;
@@ -30,14 +60,6 @@ html {
 .loadingIndicator {
   font-size: 200%;
   color: #555;
-}
-
-.dropTarget {
-  position: absolute;
-  top: 0;
-  bottom: 26px;
-  left: 0;
-  right: 0;
 }
 
 .dropIndicator {
@@ -69,24 +91,23 @@ html {
   text-align: center;
 }
 
-
-#root {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 26px);
-}
-
 #Toolbar {
-  flex-shrink: 0;
-  flex-grow: 0;
+  flex: 0 0 auto;
   font-family: monospace;
-  height: 32px;
   line-height: 32px;
   border-bottom: 1px solid #ddd;
   color: #454545;
   padding-left: 10px;
-  background-color: #efefef;
+  padding-right: 10px;
   z-index: 200;
+  display:flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+#Toolbar > * {
+  flex: 0 0 auto;
+  border-right: 1px solid #ddd;
 }
 
 #Toolbar,
@@ -100,24 +121,15 @@ html {
   background-color: transparent;
   box-sizing: border-box;
   color: inherit;
-  display: inline-block;
   font-family: inherit;
   font-size: 16px;
-  margin: 0;
   min-width: 90px;
   outline: none;
 }
 
 #Toolbar > .menuButton > span {
   cursor: default;
-  line-height: 29px;
-  padding: 2px 6px;
-}
-
-#Toolbar > * {
-  height: 32px;
-  border-right: 1px solid #ddd;
-  vertical-align: top;
+  padding: 0px 6px;
 }
 
 #Toolbar > * button {
@@ -131,8 +143,6 @@ html {
   padding-right: 10px;
   margin: 0;
   font-size: 18px;
-  display: inline-block;
-  vertical-align: top;
 }
 
 #Toolbar > a {
@@ -140,26 +150,20 @@ html {
   text-decoration: none;
 }
 
-#Toolbar .menuButton {
-  position: relative;
-}
-
 #Toolbar .menuButton:hover > ul {
   display: block;
 }
 
 #Toolbar .menuButton ul {
-  position: absolute;
-  left: -1px;
+  position: fixed;
   padding: 0;
   margin: 0;
   list-style: none;
   display: none;
   border: 1px solid #ddd;
-  border-top: none;
-  min-width: 100%;
   max-height: calc(100vh - 65px);
   overflow-y: auto;
+  z-index: 500;
 }
 
 #Toolbar .menuButton ul li {
@@ -203,9 +207,8 @@ html {
 #info {
   color: #898989;
   cursor: default;
-  float: right;
-  padding-right: 20px;
   border: none;
+  margin-left: auto;
 }
 
 #info.small {
@@ -222,20 +225,6 @@ html {
   padding-top: 0;
   margin-top: 0;
   color: #CC0000;
-}
-
-#contribution {
-  font-size: 0.9em;
-  color: #555;
-  position: absolute;
-  height: 25px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  line-height: 25px;
-  background-color: #efefef;
-  border-top: 1px solid #ddd;
 }
 
 .splitpane-content {

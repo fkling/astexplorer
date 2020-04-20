@@ -26,39 +26,36 @@ import StorageHandler from './storage';
 import '../css/style.css';
 import parserMiddleware from './store/parserMiddleware';
 import snippetMiddleware from './store/snippetMiddleware.js';
+import cx from './utils/classnames.js';
 
 function resize() {
   publish('PANEL_RESIZE');
 }
 
-function App(props) {
+function App({showTransformer, hasError}) {
   return (
-    <div>
+    <>
       <ErrorMessageContainer />
-      <div className={'dropTarget' + (props.hasError ? ' hasError' : '')}>
-        <PasteDropTargetContainer>
+      <PasteDropTargetContainer id="main" className={cx({hasError})}>
         <LoadingIndicatorContainer />
         <SettingsDialogContainer />
         <ShareDialogContainer />
-        <div id="root">
-          <ToolbarContainer />
-          <GistBanner />
+        <ToolbarContainer />
+        <GistBanner />
+        <SplitPane
+          className="splitpane-content"
+          vertical={true}
+          onResize={resize}>
           <SplitPane
-            className="splitpane-content"
-            vertical={true}
+            className="splitpane"
             onResize={resize}>
-            <SplitPane
-              className="splitpane"
-              onResize={resize}>
-              <CodeEditorContainer />
-              <ASTOutputContainer />
-            </SplitPane>
-            {props.showTransformer ? <TransformerContainer /> : null}
+            <CodeEditorContainer />
+            <ASTOutputContainer />
           </SplitPane>
-        </div>
-        </PasteDropTargetContainer>
-      </div>
-    </div>
+          {showTransformer ? <TransformerContainer /> : null}
+        </SplitPane>
+      </PasteDropTargetContainer>
+    </>
   );
 }
 
