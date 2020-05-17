@@ -30,7 +30,7 @@ export default {
   },
 
   nodeToRange(node) {
-    return [node.start + 1, node.end + 1];
+    return [node.start, node.end];
   },
 
   opensByDefault(node, key) {
