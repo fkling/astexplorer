@@ -35,10 +35,10 @@ export default {
 
   opensByDefault(node, key) {
     return (
-        key === 'pattern' ||
-        key === 'elements' ||
-        key === 'element' ||
-        key === 'alternatives'
+      key === 'pattern' ||
+      key === 'elements' ||
+      key === 'element' ||
+      key === 'alternatives'
     );
   },
 
