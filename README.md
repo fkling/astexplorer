@@ -55,6 +55,7 @@ The AST explorer provides following code parsers:
 - [Pug][]
 - Regular Expressions:
   - [regexp-tree][]
+  - [regexpp][]
   - [regjsparser][]
 - Scala
   - [Scalameta][]
@@ -151,6 +152,7 @@ node.
 [redot]: https://github.com/redotjs/redot
 [remark]: https://github.com/remarkjs/remark
 [regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
+[regexpp]: https://github.com/mysticatea/regexpp
 [regjsparser]: https://github.com/jviereck/regjsparser
 [php-parser]: https://github.com/glayzzle/php-parser
 [pug]: https://github.com/pugjs/pug
@@ -168,7 +170,7 @@ node.
 [Scalameta]: http://scalameta.org/
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
-[svelte]: https://github.com/sveltejs/svelte 
+[svelte]: https://github.com/sveltejs/svelte
 [hyntax]: https://github.com/nik-garmash/hyntax
 
 ### Contributions
