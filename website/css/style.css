@@ -497,3 +497,13 @@ body .CodeMirror-Tern-tooltip {
   padding-left: 5px;
   font-size: 12px;
 }
+
+.settings-drawer__expanded {
+  width: 200px;
+  border-right: 1px solid #ddd;
+}
+
+.settings-drawer__collapsed {
+  width: 20px;
+  background-color: #ddd;
+}

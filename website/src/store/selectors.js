@@ -31,6 +31,10 @@ export function showSettingsDialog(state) {
   return state.showSettingsDialog;
 }
 
+export function showSettingsDrawer(state) {
+  return state.showSettingsDrawer;
+}
+
 export function showShareDialog(state) {
   return state.showShareDialog;
 }
