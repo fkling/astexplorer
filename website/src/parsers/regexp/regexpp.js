@@ -30,7 +30,9 @@ export default {
   },
 
   nodeToRange(node) {
-    return [node.start, node.end];
+    if (typeof node.start === 'number' && typeof node.end === 'number') {
+      return [node.start, node.end];
+    }
   },
 
   opensByDefault(node, key) {
