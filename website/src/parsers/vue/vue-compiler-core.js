@@ -1,7 +1,7 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
-import pkg from 'vue-template-compiler/package.json';
+import pkg from '@vue/compiler-core/package.json';
 
-const ID = 'vue';
+const ID = '@vue/compiler-core';
 
 export default {
   ...defaultParserInterface,
@@ -14,16 +14,16 @@ export default {
   typeProps: new Set(['tag']),
 
   loadParser(callback) {
-    require(['vue-template-compiler/browser'], callback);
+    require(['@vue/compiler-core'], callback);
   },
 
   parse(parser, code, options) {
-    return parser.compile(code, options).ast;
+    return parser.baseParse(code, options);
   },
 
   nodeToRange(node) {
     if (node.type || node.name) {
-      return [node.start, node.end];
+      return [node.loc.start.offset, node.loc.end.offset];
     }
   },
 
@@ -36,10 +36,17 @@ export default {
   },
 
   getDefaultOptions() {
-    return {
-      outputSourceRange: true,
-      whitespace: 'preserve',
-    };
+    return {};
   },
-  _ignoredProperties: new Set(['parent']),
+
+  _ignoredProperties: new Set([
+    'components',
+    'directives',
+    'codegenNode',
+    'helpers',
+    'hoists',
+    'imports',
+    'cached',
+    'temps',
+  ]),
 };
