@@ -309,6 +309,8 @@ body {
 
 .output > .container {
   overflow: auto;
+  flex: 1;
+  display: flex;
 }
 
 .output > .no-toolbar {
