@@ -18,10 +18,14 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  /* prevents the page to growing larger than the viewport*/
+  max-height: 100vh;
 }
 
 #container {
-  flex: 1 0 auto;
+  flex: 1;
+  /* for Firefox, otherwise it overflows the parent*/
+  min-height: 0;
 }
 
 #main {
@@ -102,7 +106,6 @@ body {
   z-index: 200;
   display:flex;
   flex-wrap: wrap;
-  overflow: hidden;
 }
 
 #Toolbar > * {
@@ -228,20 +231,29 @@ body {
 }
 
 .splitpane-content {
-  flex-grow: 2;
-  position: relative;
+  flex: 1;
+  /* for Firefox, otherwise it overflows the parent*/
+  min-height: 0;
+  min-width: 0;
 }
 
 .splitpane {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  flex: 1;
+  /* for Firefox, otherwise it overflows the parent*/
+  min-height: 0;
+  min-width: 0;
 }
 
 .splitpane-divider {
   background-color: #ddd;
+}
+
+.splitpane-divider.horizontal {
+  width: 5px;
+}
+
+.splitpane-divider.vertical {
+  height: 5px;
 }
 
 .splitpane-divider:hover {
@@ -254,14 +266,11 @@ body {
 }
 
 .output {
-  box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   border: none;
+  padding: 0;
 }
 
 .output .toolbar {
@@ -300,11 +309,6 @@ body {
 
 .output > .container {
   overflow: auto;
-  position: absolute;
-  top: 25px;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 
 .output > .no-toolbar {
@@ -321,11 +325,11 @@ body {
 }
 
 .editor {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
+  display: flex;
+  flex: 1;
+  /* needed to make editor at most as wide as the parent splitpane*/
+  min-width: 0;
+  min-height: 0;
 }
 
 li.entry {
@@ -391,7 +395,8 @@ li.entry {
 }
 
 .CodeMirror {
-  height: 100%;
+  height: auto;
+  flex: 1;
 }
 
 .CodeMirror-scroll {

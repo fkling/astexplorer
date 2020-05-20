@@ -7,7 +7,7 @@ import LoadingIndicatorContainer from './containers/LoadingIndicatorContainer';
 import PasteDropTargetContainer from './containers/PasteDropTargetContainer';
 import PropTypes from 'prop-types';
 import {publish} from './utils/pubsub.js';
-import React from 'react';
+import * as React from 'react';
 import SettingsDialogContainer from './containers/SettingsDialogContainer';
 import ShareDialogContainer from './containers/ShareDialogContainer';
 import SplitPane from './components/SplitPane';

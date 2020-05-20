@@ -2,7 +2,7 @@ import Editor from './Editor';
 import JSCodeshiftEditor from './JSCodeshiftEditor';
 import PropTypes from 'prop-types';
 import {publish} from '../utils/pubsub.js';
-import React from 'react';
+import * as React from 'react';
 import SplitPane from './SplitPane';
 import TransformOutput from './TransformOutput';
 import PrettierButton from './buttons/PrettierButton';
@@ -23,7 +23,7 @@ export default function Transformer(props) {
     },
   );
 
-  const formattingEditor = (<div>
+  const formattingEditor = (<div style={{flex: 1, minHeight: 0, minWidth: 0, position: 'relative', display: 'flex'}}>
     <PrettierButton toggleFormatting={props.toggleFormatting} enableFormatting={props.enableFormatting}/>
     {plainEditor}
   </div>)
