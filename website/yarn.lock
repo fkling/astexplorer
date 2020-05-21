@@ -6552,6 +6552,11 @@ jsonify@~0.0.0:
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
 
+jsonnet-astexplorer@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/jsonnet-astexplorer/-/jsonnet-astexplorer-0.1.4.tgz#cf49813c3826d8c3a6f2abd05bb205ce3b1edc99"
+  integrity sha512-7OacJol5T6Iv8YXlnFAXMO14QuELeUognPHIdQBP38JZDB6PIdrSeLGvYWdpRzzWzOkLOr8PJD2Rjb1t8vaieA==
+
 jsonpointer@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/jsonpointer/-/jsonpointer-4.0.1.tgz#4fd92cb34e0e9db3c89c8622ecf51f9b978c6cb9"
