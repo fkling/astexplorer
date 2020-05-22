@@ -22,7 +22,11 @@ export default function ASTOutput({parseResult={}, position=null}) {
 
   if (parseResult.error) {
     output =
-      <div style={{padding: 20}}>
+      <div style={{
+        padding: 20,
+        whiteSpace: 'pre-wrap',
+        fontFamily: 'monospace',
+      }}>
         {parseResult.error.message}
       </div>;
   } else if (ast) {
@@ -98,4 +102,3 @@ class ErrorBoundary extends React.Component {
 ErrorBoundary.propTypes = {
   children: PropTypes.node,
 };
-
