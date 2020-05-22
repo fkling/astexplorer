@@ -99,6 +99,7 @@
     "graphql": "^15.0.0",
     "halting-problem": "^1.0.2",
     "handlebars": "^4.7.6",
+    "hermes-parser": "^0.4.7",
     "htmlparser2": "^5.0.1",
     "hyntax": "^1.1.5",
     "intl-messageformat-parser": "^6.1.0",
