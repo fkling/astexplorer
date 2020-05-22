@@ -44,7 +44,7 @@ export const defaultOptions = {
   plugins: [
     'classProperties',
     'classPrivateProperties',
-    'classPrivateMethods', 
+    'classPrivateMethods',
     'decorators',
     'doExpressions',
     'exportDefaultFrom',
@@ -75,6 +75,7 @@ export const parserSettingsConfiguration = {
         {},
       ),
     },
+    ['pipelineProposal', ['minimal', 'smart', 'fsharp']],
   ],
 };
 
@@ -101,7 +102,7 @@ export default {
         case 'decorators':
           return ['decorators', {decoratorsBeforeExport: false}];
         case 'pipelineOperator':
-          return ['pipelineOperator', {proposal: 'minimal'}];
+          return ['pipelineOperator', {proposal: options.pipelineProposal}];
         case 'recordAndTuple':
           return ['recordAndTuple', { syntaxType: 'hash' }];
         default:
