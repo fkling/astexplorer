@@ -160,6 +160,7 @@
     "vue-eslint-parser": "^7.0.0",
     "vue-template-compiler": "^2.6.9",
     "webidl2": "^23.5.1",
+    "worker-loader": "^2.0.0",
     "yaml": "^1.7.2",
     "yaml-ast-parser": "^0.0.43"
   },
