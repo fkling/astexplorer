@@ -70,7 +70,7 @@ local array = [0,1,2,3,4,5,6,7,8,9],
 local myfunc(x=10) = x * x;
 local tail(x, c) = if x == 0 then c else tail(x - 1, c + x) tailstrict;
 
-local obj = { g: 100 }
+local obj = { g: 100 };
 local obj_g = obj.g;
 
 local parens = (100 / (1 + 1));
