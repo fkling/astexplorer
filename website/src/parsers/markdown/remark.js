@@ -37,7 +37,6 @@ export default {
     return {
       gfm: true,
       commonmark: false,
-      footnotes: false,
       pedantic: false,
     };
   },
