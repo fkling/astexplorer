@@ -78,5 +78,5 @@ export default {
     };
   },
 
-  _ignoredProperties: new Set(['prev', 'next', 'parent', 'endIndex']),
+  _ignoredProperties: new Set(['prev', 'next', 'parent', 'parentNode', 'endIndex']),
 };
