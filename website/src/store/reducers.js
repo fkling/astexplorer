@@ -173,6 +173,7 @@ function workbench(state=initialState.workbench, action, fullState) {
           newState.transform = {
             ...state.transform,
             transformer: action.transformer.id,
+            transformResult: null,
             code: snippetHasDifferentTransform ?
               state.transform.code :
               action.transformer.defaultTransform,

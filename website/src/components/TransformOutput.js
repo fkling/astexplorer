@@ -35,8 +35,10 @@ function positionFromIndex(index, map) {
   return { line: line - 1, ch: column };
 }
 
-// The default value ensures that we are rendering an empty editor as "placeholder" if no transform result is available yet.
-export default function TransformOutput({transformResult={result: ''}, mode}) {
+export default function TransformOutput({transformResult, mode}) {
+  // This ensures that we are rendering an empty editor as "placeholder" if no transform result is available yet.
+  transformResult = transformResult == null ? {result: ''} : transformResult;
+
   const posFromIndex = React.useCallback(
     index => positionFromIndex(index, transformResult.map),
     [transformResult],
