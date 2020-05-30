@@ -98,6 +98,10 @@ export function getTransformer(state) {
   return getTransformerByID(state.workbench.transform.transformer);
 }
 
+export function getTransformResult(state) {
+  return state.workbench.transform.transformResult;
+}
+
 export function showTransformer(state) {
   return state.showTransformPanel;
 }

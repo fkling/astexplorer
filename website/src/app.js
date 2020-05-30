@@ -26,6 +26,7 @@ import StorageHandler from './storage';
 import '../css/style.css';
 import parserMiddleware from './store/parserMiddleware';
 import snippetMiddleware from './store/snippetMiddleware.js';
+import transformerMiddleware from './store/transformerMiddleware';
 import cx from './utils/classnames.js';
 
 function resize() {
@@ -77,7 +78,7 @@ const store = createStore(
   astexplorer,
   revive(LocalStorage.readState()),
   composeEnhancers(
-    applyMiddleware(snippetMiddleware(storageAdapter), parserMiddleware),
+    applyMiddleware(snippetMiddleware(storageAdapter), parserMiddleware, transformerMiddleware),
   ),
 );
 store.subscribe(debounce(() => {
