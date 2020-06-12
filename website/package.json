@@ -50,7 +50,7 @@
     "@typescript-eslint/parser": "^2.28.0",
     "@vue/compiler-core": "^3.0.0-beta.1",
     "@webassemblyjs/wast-parser": "^1.9.0",
-    "acorn": "^7.1.1",
+    "acorn": "^7.3.1",
     "acorn-jsx": "^5.2.0",
     "acorn-loose": "^7.0.0",
     "acorn-to-esprima": "^2.0.8",
