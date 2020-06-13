@@ -1,5 +1,6 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from '@vue/compiler-core/package.json';
+import { isVoidTag, isHTMLTag, isSVGTag } from '@vue/shared';
 
 const ID = '@vue/compiler-core';
 
@@ -36,7 +37,12 @@ export default {
   },
 
   getDefaultOptions() {
-    return {};
+    // https://github.com/vuejs/vue-next/blob/e58beec/packages/compiler-dom/src/parserOptions.ts
+    return {
+      isVoidTag,
+      isNativeTag: tag => isHTMLTag(tag) || isSVGTag(tag),
+      isPreTag: tag => tag === 'pre',
+    };
   },
 
   _ignoredProperties: new Set([
