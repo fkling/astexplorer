@@ -1,13 +1,12 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
-import pkg from '@vue/compiler-core/package.json';
-import { isVoidTag, isHTMLTag, isSVGTag } from '@vue/shared';
+import pkg from '@vue/compiler-dom/package.json';
 
-const ID = '@vue/compiler-core';
+const ID = '@vue/compiler-dom';
 
 export default {
   ...defaultParserInterface,
 
-  id: ID,
+  id: ID,  
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
@@ -15,11 +14,11 @@ export default {
   typeProps: new Set(['tag']),
 
   loadParser(callback) {
-    require(['@vue/compiler-core'], callback);
+    require(['@vue/compiler-dom'], callback);
   },
 
   parse(parser, code, options) {
-    return parser.baseParse(code, options);
+    return parser.parse(code, options);
   },
 
   nodeToRange(node) {
@@ -37,12 +36,7 @@ export default {
   },
 
   getDefaultOptions() {
-    // https://github.com/vuejs/vue-next/blob/e58beec/packages/compiler-dom/src/parserOptions.ts
-    return {
-      isVoidTag,
-      isNativeTag: tag => isHTMLTag(tag) || isSVGTag(tag),
-      isPreTag: tag => tag === 'pre',
-    };
+    return {};
   },
 
   _ignoredProperties: new Set([
