@@ -8,12 +8,15 @@ export const SELECT_CATEGORY = 'CHANGE_CATEGORY';
 export const SELECT_TRANSFORMER = 'SELECT_TRANSFORMER';
 export const HIDE_TRANSFORMER = 'HIDE_TRANSFORMER';
 export const SET_TRANSFORM = 'SET_TRANSFORM';
+export const SET_TRANSFORM_RESULT = 'SET_TRANSFORM_RESULT';
 export const SET_PARSER = 'SET_PARSER';
 export const SET_PARSER_SETTINGS = 'SET_PARSER_SETTINGS';
 export const SET_PARSE_RESULT = 'SET_PARSE_RESULT';
 export const SET_SNIPPET = 'SET_SNIPPET';
 export const OPEN_SETTINGS_DIALOG = 'OPEN_SETTINGS_DIALOG';
 export const CLOSE_SETTINGS_DIALOG = 'CLOSE_SETTINGS_DIALOG';
+export const EXPAND_SETTINGS_DRAWER = 'EXPAND_SETTINGS_DRAWER';
+export const COLLAPSE_SETTINGS_DRAWER = 'COLLAPSE_SETTINGS_DRAWER';
 export const OPEN_SHARE_DIALOG = 'OPEN_SHARE_DIALOG';
 export const CLOSE_SHARE_DIALOG = 'CLOSE_SHARE_DIALOG';
 export const SET_CODE = 'SET_CODE';
@@ -76,6 +79,14 @@ export function openSettingsDialog() {
 
 export function closeSettingsDialog() {
   return {type: CLOSE_SETTINGS_DIALOG};
+}
+
+export function expandSettingsDrawer() {
+  return {type: EXPAND_SETTINGS_DRAWER};
+}
+
+export function collapseSettingsDrawer() {
+  return {type: COLLAPSE_SETTINGS_DRAWER};
 }
 
 export function openShareDialog() {

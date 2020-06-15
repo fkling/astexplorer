@@ -11,6 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['loc', 'start', 'end', 'range']),
+  showInMenu: false,
 
   loadParser(callback) {
     require(['babel-eslint'], callback);

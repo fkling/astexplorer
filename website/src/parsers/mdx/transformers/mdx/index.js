@@ -16,9 +16,9 @@ export default {
       '../../../transpilers/babel',
       '@mdx-js/mdx',
       'prettier/standalone',
-      'prettier/parser-babylon',
-    ], (transpile, mdx, prettier, babylon) => {
-      callback({ transpile: transpile.default, mdx, prettier, babylon });
+      'prettier/parser-babel',
+    ], (transpile, mdx, prettier, babel) => {
+      callback({ transpile: transpile.default, mdx, prettier, babel });
     });
   },
 

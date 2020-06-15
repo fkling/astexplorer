@@ -57,6 +57,7 @@ The AST explorer provides following code parsers:
 - [Pug][]
 - Regular Expressions:
   - [regexp-tree][]
+  - [regexpp][]
   - [regjsparser][]
 - Scala
   - [Scalameta][]
@@ -153,6 +154,7 @@ are included so you can prototype your own plugins:
 [redot]: https://github.com/redotjs/redot
 [remark]: https://github.com/remarkjs/remark
 [regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
+[regexpp]: https://github.com/mysticatea/regexpp
 [regjsparser]: https://github.com/jviereck/regjsparser
 [php-parser]: https://github.com/glayzzle/php-parser
 [pug]: https://github.com/pugjs/pug

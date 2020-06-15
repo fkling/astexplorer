@@ -27,8 +27,7 @@
   font-family: monospace;
   -webkit-touch-callout: none;
   user-select: none;
-  overflow-y: auto;
-  height: 100%;
+  flex: 1;
 }
 
 .tree-visualization .value-body {

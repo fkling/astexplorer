@@ -8,6 +8,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage,
+  showInMenu: false,
 
   defaultParserID: 'babylon6',
 

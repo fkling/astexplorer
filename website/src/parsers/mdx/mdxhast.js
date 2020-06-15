@@ -20,10 +20,10 @@ export default {
   locationProps: new Set(['position']),
 
   loadParser(callback) {
-    require(['@mdx-js/mdx', '@mdx-js/mdx/mdx-ast-to-mdx-hast'], callback);
+    require(['@mdx-js/mdx', '@mdx-js/mdx/mdx-ast-to-mdx-hast'], (mdx, mdxAstToMdxHast) => callback({mdx, mdxAstToMdxHast}));
   },
 
-  parse([mdx, mdxAstToMdxHast], code) {
+  parse({mdx, mdxAstToMdxHast}, code) {
     let result;
     mdx.sync(code, {
       hastPlugins: [

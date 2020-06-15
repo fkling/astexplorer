@@ -83,7 +83,7 @@ export default {
       <div>
         <p>
           <a
-            href="https://github.com/marijnh/acorn/blob/master/src/options.js"
+            href="https://github.com/acornjs/acorn/blob/master/acorn/src/options.js"
             target="_blank" rel="noopener noreferrer">
             Option descriptions
           </a>

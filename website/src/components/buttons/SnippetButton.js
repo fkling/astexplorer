@@ -4,7 +4,7 @@ import ForkButton from './ForkButton';
 import NewButton from './NewButton';
 import SaveButton from './SaveButton';
 import ShareButton from './ShareButton';
-import cx from 'classnames';
+import cx from '../../utils/classnames.js';
 
 export default function SnippetButton(props) {
   const canForkAndNotSave = props.canFork && !props.canSave;

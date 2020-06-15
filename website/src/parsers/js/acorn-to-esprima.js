@@ -35,7 +35,7 @@ export default {
 
     let ast = parser.parse(code, opts);
 
-    ast.tokens = parser.toTokens(tokens, parser.tokTypes);
+    ast.tokens = parser.toTokens(tokens, parser.tokTypes, code);
     parser.convertComments(comments);
     ast.comments = comments;
     parser.attachComments(ast, comments, ast.tokens);

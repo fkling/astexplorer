@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import cx from 'classnames';
+import cx from '../../utils/classnames.js';
 import {getTransformerByID} from '../../parsers';
 
 export default class TransformButton extends React.Component {
@@ -27,6 +27,9 @@ export default class TransformButton extends React.Component {
   }
 
   render() {
+    const transformers = this.props.category.transformers.filter(
+      t => t.showInMenu !== false || t == this.props.transformer,
+    );
     return (
       <div className={cx({
         button: true,
@@ -48,8 +51,8 @@ export default class TransformButton extends React.Component {
           />
           &nbsp;Transform
         </button>
-        {!!this.props.category.transformers.length && <ul>
-          {this.props.category.transformers.map(transformer => (
+        {!!transformers.length && <ul>
+          {transformers.map(transformer => (
             <li
               key={transformer.id}
               className={cx({
