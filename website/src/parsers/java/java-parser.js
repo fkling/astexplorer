@@ -25,12 +25,10 @@ export default {
   },
 
   parse(parser, code) {
-    console.time('p');
     const cst = parser.parse(code);
 
     const clone = JSON.parse(JSON.stringify(cst));
 
-    console.timeEnd('p');
     return clone;
   },
 
