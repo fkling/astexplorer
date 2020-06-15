@@ -3,7 +3,7 @@ import 'codemirror/keymap/vim';
 import 'codemirror/keymap/emacs';
 import 'codemirror/keymap/sublime';
 import PropTypes from 'prop-types';
-import PubSub from 'pubsub-js';
+import {subscribe, clear} from '../utils/pubsub.js';
 import React from 'react';
 
 const defaultPrettierOptions = {
@@ -13,7 +13,7 @@ const defaultPrettierOptions = {
   trailingComma: 'none',
   bracketSpacing: true,
   jsxBracketSameLine: false,
-  parser: 'babylon',
+  parser: 'babel',
 };
 
 export default class Editor extends React.Component {
@@ -96,13 +96,13 @@ export default class Editor extends React.Component {
     this._bindCMHandler('blur', instance => {
       if (!this.props.enableFormatting) return;
 
-      require(['prettier/standalone', 'prettier/parser-babylon'], (prettier, babylon) => {
+      require(['prettier/standalone', 'prettier/parser-babel'], (prettier, babel) => {
         const currValue = instance.doc.getValue();
         const options = Object.assign({},
           defaultPrettierOptions,
           {
             printWidth: instance.display.maxLineLength,
-            plugins: [babylon],
+            plugins: [babel],
           });
         instance.doc.setValue(prettier.format(currValue, options));
       });
@@ -118,7 +118,7 @@ export default class Editor extends React.Component {
     });
 
     this._subscriptions.push(
-      PubSub.subscribe('PANEL_RESIZE', () => {
+      subscribe('PANEL_RESIZE', () => {
         if (this.codeMirror) {
           this.codeMirror.refresh();
         }
@@ -129,7 +129,7 @@ export default class Editor extends React.Component {
       this._markerRange = null;
       this._mark = null;
       this._subscriptions.push(
-        PubSub.subscribe('HIGHLIGHT', (_, {range}) => {
+        subscribe('HIGHLIGHT', ({range}) => {
           if (!range) {
             return;
           }
@@ -151,7 +151,7 @@ export default class Editor extends React.Component {
           );
         }),
 
-        PubSub.subscribe('CLEAR_HIGHLIGHT', (_, {range}={}) => {
+        subscribe('CLEAR_HIGHLIGHT', ({range}={}) => {
           if (!range ||
             this._markerRange &&
             range[0] === this._markerRange[0] &&
@@ -192,7 +192,7 @@ export default class Editor extends React.Component {
     for (let i = 0; i < cmHandlers.length; i += 2) {
       this.codeMirror.off(cmHandlers[i], cmHandlers[i+1]);
     }
-    this._subscriptions.forEach(PubSub.unsubscribe);
+    clear(this._subscriptions);
   }
 
   _onContentChange() {

@@ -12,29 +12,25 @@ const availablePlugins = [
   'flowComments',
   'jsx',
   'typescript',
+  'v8intrinsic',
 
   // ECMAScript Proposals
-  'asyncGenerators',
-  'bigInt',
   'classProperties',
   'classPrivateProperties',
   'classPrivateMethods',
   'decorators',
   'doExpressions',
-  'dynamicImport',
   'exportDefaultFrom',
-  'exportNamespaceFrom',
   'functionBind',
   'functionSent',
   'importMeta',
   'logicalAssignment',
-  'nullishCoalescingOperator',
   'numericSeparator',
-  'objectRestSpread',
-  'optionalCatchBinding',
-  'optionalChaining',
+  'partialApplication',
   'pipelineOperator',
+  'recordAndTuple',
   'throwExpressions',
+  'topLevelAwait',
 ];
 
 const ID = 'babylon7';
@@ -42,31 +38,31 @@ export const defaultOptions = {
   sourceType: 'module',
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
+  createParenthesizedExpressions: false,
   ranges: false,
   tokens: false,
   plugins: [
-    'asyncGenerators',
     'classProperties',
+    'classPrivateProperties',
+    'classPrivateMethods',
     'decorators',
     'doExpressions',
-    'exportExtensions',
+    'exportDefaultFrom',
     'flow',
     'functionSent',
     'functionBind',
     'jsx',
-    'objectRestSpread',
-    'dynamicImport',
+    'logicalAssignment',
     'numericSeparator',
-    'optionalChaining',
-    'optionalCatchBinding',
   ],
 };
 
 export const parserSettingsConfiguration = {
   fields: [
-    ['sourceType', ['module', 'script']],
+    ['sourceType', ['module', 'script', 'unambiguous']],
     'allowReturnOutsideFunction',
     'allowImportExportEverywhere',
+    'createParenthesizedExpressions',
     'ranges',
     'tokens',
     {
@@ -79,6 +75,7 @@ export const parserSettingsConfiguration = {
         {},
       ),
     },
+    ['pipelineProposal', ['minimal', 'smart', 'fsharp']],
   ],
 };
 
@@ -97,14 +94,17 @@ export default {
 
   parse(babylon, code, options) {
     options = {...options};
-    // TODO: Make decoratorsBeforeExport settable through settings somhow
-    // TODO: Make pipelineOperator.proposal settable through settings somhow
+    // TODO: Make decoratorsBeforeExport settable through settings somehow
+    // TODO: Make pipelineOperator.proposal settable through settings somehow
+    // TODO: Make recordAndTuple.syntaxType settable through settings somehow
     options.plugins = options.plugins.map(plugin => {
       switch (plugin) {
         case 'decorators':
           return ['decorators', {decoratorsBeforeExport: false}];
         case 'pipelineOperator':
-          return ['pipelineOperator', {proposal: 'minimal'}];
+          return ['pipelineOperator', {proposal: options.pipelineProposal}];
+        case 'recordAndTuple':
+          return ['recordAndTuple', { syntaxType: 'hash' }];
         default:
           return plugin;
       }

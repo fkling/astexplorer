@@ -10,6 +10,40 @@ html {
   font-family: Verdana, non-serif;
 }
 
+body {
+  margin: 0;
+}
+
+#page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* prevents the page to growing larger than the viewport*/
+  max-height: 100vh;
+}
+
+#container {
+  flex: 1;
+  /* for Firefox, otherwise it overflows the parent*/
+  min-height: 0;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#contribution {
+  font-size: 0.9em;
+  color: #555;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  background-color: #efefef;
+  border-top: 1px solid #ddd;
+}
+
 .cover {
   position: fixed;
   top: 0;
@@ -30,14 +64,6 @@ html {
 .loadingIndicator {
   font-size: 200%;
   color: #555;
-}
-
-.dropTarget {
-  position: absolute;
-  top: 0;
-  bottom: 26px;
-  left: 0;
-  right: 0;
 }
 
 .dropIndicator {
@@ -69,24 +95,22 @@ html {
   text-align: center;
 }
 
-
-#root {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 26px);
-}
-
 #Toolbar {
-  flex-shrink: 0;
-  flex-grow: 0;
+  flex: 0 0 auto;
   font-family: monospace;
-  height: 32px;
   line-height: 32px;
   border-bottom: 1px solid #ddd;
   color: #454545;
   padding-left: 10px;
-  background-color: #efefef;
+  padding-right: 10px;
   z-index: 200;
+  display:flex;
+  flex-wrap: wrap;
+}
+
+#Toolbar > * {
+  flex: 0 0 auto;
+  border-right: 1px solid #ddd;
 }
 
 #Toolbar,
@@ -100,24 +124,15 @@ html {
   background-color: transparent;
   box-sizing: border-box;
   color: inherit;
-  display: inline-block;
   font-family: inherit;
   font-size: 16px;
-  margin: 0;
   min-width: 90px;
   outline: none;
 }
 
 #Toolbar > .menuButton > span {
   cursor: default;
-  line-height: 29px;
-  padding: 2px 6px;
-}
-
-#Toolbar > * {
-  height: 32px;
-  border-right: 1px solid #ddd;
-  vertical-align: top;
+  padding: 0px 6px;
 }
 
 #Toolbar > * button {
@@ -131,8 +146,6 @@ html {
   padding-right: 10px;
   margin: 0;
   font-size: 18px;
-  display: inline-block;
-  vertical-align: top;
 }
 
 #Toolbar > a {
@@ -140,26 +153,20 @@ html {
   text-decoration: none;
 }
 
-#Toolbar .menuButton {
-  position: relative;
-}
-
 #Toolbar .menuButton:hover > ul {
   display: block;
 }
 
 #Toolbar .menuButton ul {
-  position: absolute;
-  left: -1px;
+  position: fixed;
   padding: 0;
   margin: 0;
   list-style: none;
   display: none;
   border: 1px solid #ddd;
-  border-top: none;
-  min-width: 100%;
   max-height: calc(100vh - 65px);
   overflow-y: auto;
+  z-index: 500;
 }
 
 #Toolbar .menuButton ul li {
@@ -203,9 +210,8 @@ html {
 #info {
   color: #898989;
   cursor: default;
-  float: right;
-  padding-right: 20px;
   border: none;
+  margin-left: auto;
 }
 
 #info.small {
@@ -224,35 +230,30 @@ html {
   color: #CC0000;
 }
 
-#contribution {
-  font-size: 0.9em;
-  color: #555;
-  position: absolute;
-  height: 25px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  line-height: 25px;
-  background-color: #efefef;
-  border-top: 1px solid #ddd;
-}
-
 .splitpane-content {
-  flex-grow: 2;
-  position: relative;
+  flex: 1;
+  /* for Firefox, otherwise it overflows the parent*/
+  min-height: 0;
+  min-width: 0;
 }
 
 .splitpane {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  flex: 1;
+  /* for Firefox, otherwise it overflows the parent*/
+  min-height: 0;
+  min-width: 0;
 }
 
 .splitpane-divider {
   background-color: #ddd;
+}
+
+.splitpane-divider.horizontal {
+  width: 5px;
+}
+
+.splitpane-divider.vertical {
+  height: 5px;
 }
 
 .splitpane-divider:hover {
@@ -265,14 +266,11 @@ html {
 }
 
 .output {
-  box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   border: none;
+  padding: 0;
 }
 
 .output .toolbar {
@@ -311,11 +309,8 @@ html {
 
 .output > .container {
   overflow: auto;
-  position: absolute;
-  top: 25px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  flex: 1;
+  display: flex;
 }
 
 .output > .no-toolbar {
@@ -332,11 +327,11 @@ html {
 }
 
 .editor {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
+  display: flex;
+  flex: 1;
+  /* needed to make editor at most as wide as the parent splitpane*/
+  min-width: 0;
+  min-height: 0;
 }
 
 li.entry {
@@ -350,6 +345,10 @@ li.entry {
 .entry.highlighted {
   border-radius: 2px;
   background-color: rgba(255,240,6,0.4);
+}
+
+.entry > .value {
+  white-space: pre-wrap;
 }
 
 .entry > .value .s {
@@ -398,7 +397,8 @@ li.entry {
 }
 
 .CodeMirror {
-  height: 100%;
+  height: auto;
+  flex: 1;
 }
 
 .CodeMirror-scroll {
@@ -495,7 +495,6 @@ body .CodeMirror-Tern-tooltip {
 .toggleBtn {
   position: absolute;
   right: 0;
-  height: 20px;
   z-index: 10;
   cursor: pointer;
   outline: none;
@@ -504,4 +503,14 @@ body .CodeMirror-Tern-tooltip {
 .toggleBtn > .btnText {
   padding-left: 5px;
   font-size: 12px;
+}
+
+.settings-drawer__expanded {
+  width: 200px;
+  border-right: 1px solid #ddd;
+}
+
+.settings-drawer__collapsed {
+  width: 20px;
+  background-color: #ddd;
 }

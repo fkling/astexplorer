@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import cx from 'classnames';
+import cx from '../../utils/classnames.js';
 import {getCategoryByID, categories} from '../../parsers';
 
 const categoryIcon = {

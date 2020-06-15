@@ -1,7 +1,7 @@
 import Element from './tree/Element';
 import PropTypes from 'prop-types';
 import React from 'react';
-import PubSub from 'pubsub-js';
+import {publish} from '../../utils/pubsub.js';
 import {logEvent} from '../../utils/logger';
 import {treeAdapterFromParseResult} from '../../core/TreeAdapter.js';
 import {SelectedNodeProvider} from './SelectedNodeContext.js';
@@ -81,7 +81,7 @@ export default function Tree({parseResult, position}) {
           </span>
         ))}
       </div>
-      <ul ref={rootElement} onMouseLeave={() => {PubSub.publish('CLEAR_HIGHLIGHT');}}>
+      <ul ref={rootElement} onMouseLeave={() => {publish('CLEAR_HIGHLIGHT');}}>
         <SelectedNodeProvider>
           <Element
             value={parseResult.ast}

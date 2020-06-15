@@ -1,6 +1,13 @@
-import {createSelector} from 'reselect';
 import isEqual from 'lodash.isequal';
 import {getParserByID, getTransformerByID} from '../parsers';
+
+// Our selectors are not computationally expensive so we can just use this
+// implementation.
+function createSelector(deps, f) {
+  return function(state) {
+    return f.apply(this, deps.map(d => d(state)));
+  }
+}
 
 // UI related
 
@@ -22,6 +29,10 @@ export function isLoadingSnippet(state) {
 
 export function showSettingsDialog(state) {
   return state.showSettingsDialog;
+}
+
+export function showSettingsDrawer(state) {
+  return state.showSettingsDrawer;
 }
 
 export function showShareDialog(state) {
@@ -85,6 +96,10 @@ export function getInitialTransformCode(state) {
 
 export function getTransformer(state) {
   return getTransformerByID(state.workbench.transform.transformer);
+}
+
+export function getTransformResult(state) {
+  return state.workbench.transform.transformResult;
 }
 
 export function showTransformer(state) {

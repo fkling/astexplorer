@@ -14,7 +14,7 @@ export default {
   typeProps: new Set(['type', 'name']),
 
   loadParser(callback) {
-    require(['htmlparser2/lib/Parser', 'domhandler'], (Parser, DomHandler) => {
+    require(['htmlparser2/lib/Parser', 'domhandler'], (Parser, {DomHandler}) => {
       class Handler extends DomHandler {
         constructor() {
           super({ withStartIndices: true });
@@ -78,5 +78,5 @@ export default {
     };
   },
 
-  _ignoredProperties: new Set(['prev', 'next', 'parent', 'endIndex']),
+  _ignoredProperties: new Set(['prev', 'next', 'parent', 'parentNode', 'endIndex']),
 };

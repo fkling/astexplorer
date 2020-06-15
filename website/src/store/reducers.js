@@ -7,6 +7,7 @@ const initialState = {
 
   // UI related state
   showSettingsDialog: false,
+  showSettingsDrawer: false,
   showShareDialog: false,
   loadingSnippet: false,
   forking: false,
@@ -37,6 +38,7 @@ const initialState = {
       code: '',
       initialCode: '',
       transformer: null,
+      transformResult: null,
     },
   },
 
@@ -80,6 +82,7 @@ export function astexplorer(state=initialState, action) {
   return {
     // UI related state
     showSettingsDialog: showSettingsDialog(state.showSettingsDialog, action),
+    showSettingsDrawer: showSettingsDrawer(state.showSettingsDrawer, action),
     showShareDialog: showShareDialog(state.showShareDialog, action),
     loadingSnippet: loadSnippet(state.loadingSnippet, action),
     saving: saving(state.saving, action),
@@ -170,6 +173,7 @@ function workbench(state=initialState.workbench, action, fullState) {
           newState.transform = {
             ...state.transform,
             transformer: action.transformer.id,
+            transformResult: null,
             code: snippetHasDifferentTransform ?
               state.transform.code :
               action.transformer.defaultTransform,
@@ -187,6 +191,14 @@ function workbench(state=initialState.workbench, action, fullState) {
         transform: {
           ...state.transform,
           code: action.code,
+        },
+      };
+    case actions.SET_TRANSFORM_RESULT:
+      return {
+        ...state,
+        transform: {
+          ...state.transform,
+          transformResult: action.result,
         },
       };
     case actions.SET_SNIPPET:
@@ -269,6 +281,17 @@ function showSettingsDialog(state=initialState.showSettingsDialog, action) {
     case actions.OPEN_SETTINGS_DIALOG:
       return true;
     case actions.CLOSE_SETTINGS_DIALOG:
+      return false;
+    default:
+      return state;
+  }
+}
+
+function showSettingsDrawer(state=initialState.showSettingsDrawer, action) {
+  switch(action.type) {
+    case actions.EXPAND_SETTINGS_DRAWER:
+      return true;
+    case actions.COLLAPSE_SETTINGS_DRAWER:
       return false;
     default:
       return state;
