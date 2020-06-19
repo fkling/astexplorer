@@ -33,7 +33,7 @@ export default {
     return {
       comments: true,
       tokens: true,
-      ranges: true
+      ranges: true,
     };
   },
 
