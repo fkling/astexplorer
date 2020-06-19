@@ -56,6 +56,10 @@ export default store => next => async (action) => {
       return;
     }
 
+    if (console.clear) {
+      console.clear();
+    }
+
     let result;
     try  {
       result = await transform(newTransformer, newTransformCode, newCode);
@@ -72,9 +76,6 @@ export default store => next => async (action) => {
       return;
     }
 
-    if (console.clear) {
-      console.clear();
-    }
     if (result.error) {
       console.error(result.error); // eslint-disable-line no-console
     }
