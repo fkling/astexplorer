@@ -43,7 +43,9 @@ The AST explorer provides following code parsers:
   - [typescript][]
   - [typescript-eslint-parser][]
   - [uglify-js][]
-- [JSON][]
+- JSON:
+  - [JSON][]
+  - [Momoa][]
 - Lua:
   - [luaparse][]
 - Markdown:
@@ -160,6 +162,7 @@ node.
 [handlebars]: http://handlebarsjs.com/
 [icu]: https://github.com/formatjs/formatjs/tree/master/packages/intl-messageformat-parser
 [json]: https://github.com/vtrushin/json-to-ast
+[Momoa]: https://github.com/humanwhocodes/momoa
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/eemeli/yaml
 [yaml-ast-parser]: https://github.com/mulesoft-labs/yaml-ast-parser

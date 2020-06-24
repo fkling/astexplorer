@@ -1218,6 +1218,11 @@
     "@glimmer/interfaces" "^0.50.3"
     "@glimmer/util" "^0.50.3"
 
+"@humanwhocodes/momoa@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@humanwhocodes/momoa/-/momoa-1.0.0.tgz#dda5d713eb2fc046162ed7ec6e3806031eed6415"
+  integrity sha512-aSqGcg9O0SCQPxBn0hFoNTIqFJ5Em12Y8+QjrfedKwZgwy+IocqXl6uIP5EREnHD3PR/0wlZelmTtWMvX+5/7Q==
+
 "@mdx-js/mdx@^1.5.8":
   version "1.5.8"
   resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-1.5.8.tgz#40740eaf0b0007b461cee8df13a7ae5a1af8064a"
