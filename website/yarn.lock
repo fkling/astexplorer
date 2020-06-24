@@ -1358,21 +1358,29 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
-"@vue/compiler-core@^3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.0.0-beta.1.tgz#77017e0a98b808da3834327bcf8857e4b89363ef"
-  integrity sha512-mlHfX/+3qH+GAuMbGFvye0Jn2/H9IwbmX6oqbpLErM241xAVbpqniFDiJCywrfjeUDKMfDuNs1i6lGnDBH715g==
+"@vue/compiler-core@3.0.0-beta.15":
+  version "3.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.0.0-beta.15.tgz#8710a8e3ba15ba1a8b62bd17609d26bd27fdcc45"
+  integrity sha512-NLNW7tAMHl8ybRgTPTIWLsi8aXHbFngY2x95eEHAdxhNasTY5NsgmQBBH9TBAUQEn6Wo8ybmuvQoNzgcw979Zg==
   dependencies:
     "@babel/parser" "^7.8.6"
     "@babel/types" "^7.8.6"
-    "@vue/shared" "3.0.0-beta.1"
+    "@vue/shared" "3.0.0-beta.15"
     estree-walker "^0.8.1"
     source-map "^0.6.1"
 
-"@vue/shared@3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.0.0-beta.1.tgz#234185d345cde7e05db569e653feae87912bf218"
-  integrity sha512-LehYUPtykdL3ZEUto2W1n26k+opBT1gtFdESPtp4lGo9oIreLl3pJVoUPIkY/Kk/mOZGmBOsYXiLZGJvfmGEQw==
+"@vue/compiler-dom@^3.0.0-beta.15":
+  version "3.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-dom/-/compiler-dom-3.0.0-beta.15.tgz#ee6dc9ae1dabb5c5c257d7cc20c5f3e95d5e5f4f"
+  integrity sha512-0qVaCosZ6XrkmlSOndGlNh33JQ2oao82uWxC/qw4QWBGm6a1DcKkZFIZFYLQWg5ZIcSrEQrR1VzUidBaZw9AIg==
+  dependencies:
+    "@vue/compiler-core" "3.0.0-beta.15"
+    "@vue/shared" "3.0.0-beta.15"
+
+"@vue/shared@3.0.0-beta.15":
+  version "3.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.0.0-beta.15.tgz#77444ab234e229c3fdcc9f394678e167a55757af"
+  integrity sha512-wViILT5GgxMtnXVQ1xupj43wvnZ41g3NLWaBObs7l+eTxz5vq5yx72qH6HRpsfhR2Mg39jE0cfNLFEpC4lJIUQ==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
