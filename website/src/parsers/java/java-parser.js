@@ -25,11 +25,7 @@ export default {
   },
 
   parse(parser, code) {
-    const cst = parser.parse(code);
-
-    const clone = JSON.parse(JSON.stringify(cst));
-
-    return clone;
+    return parser.parse(code);
   },
 
   _ignoredProperties: new Set(['tokenType']),
