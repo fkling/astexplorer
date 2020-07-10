@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+
+const semver = require('semver');
+const path = require('path');
+const fs = require('fs');
+
+function fatal(msg) {
+  process.stderr.write(msg + '\n')
+  process.exit(1)
+}
+
+function forceSymlink(target, path) {
+  if (fs.existsSync(path)) {
+    fs.unlinkSync(path)
+  }
+  fs.symlinkSync(target, path);
+  console.log(`Linked ${path} -> ${target}`)
+}
+
+const bundlePath = process.argv[2]
+if (!bundlePath) {
+  fatal('No bundle path passed.')
+}
+
+try {
+  const bundle = require(bundlePath);
+  const version = bundle.version;
+  if (!version) {
+    fatal("Unable to determine version.")
+  }
+
+  // Copy bundle to full version
+  const bundleDir = path.dirname(bundlePath)
+  const name = path.basename(bundlePath, '.js')
+  const fullPath = path.join(bundleDir, `${name}@${version}.js`)
+  try {
+    fs.copyFileSync(bundlePath, fullPath)
+    console.log(`Copied ${bundlePath} -> ${fullPath}.`)
+  } catch(e) {
+    fatal('Unable to copy bundle.')
+  }
+
+  if (semver.valid(version)) {
+    try {
+      // Link major version (name@x.js -> name@x.y.z.js)
+      forceSymlink(fullPath, path.join(bundleDir, `${name}@${semver.major(version)}.js`));
+      // Link major,minor version (name@x.y.js -> name@x.y.z.js)
+      forceSymlink(fullPath, path.join(bundleDir, `${name}@${semver.major(version)}.${semver.minor(version)}.js`));
+    } catch (e) {
+      fatal('Unable to link bunlde: ' + e.message)
+    }
+  } else {
+    process.stderr.write('Version is not valid semver, not linking bundle.')
+  }
+} catch(e) {
+  fatal('Unable to load bundle: ' + e.message)
+}

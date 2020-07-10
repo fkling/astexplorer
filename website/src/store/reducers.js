@@ -178,7 +178,6 @@ function workbench(state=initialState.workbench, action, fullState) {
           newState.transform = {
             ...state.transform,
             transformer: action.transformer.id,
-            transformResult: null,
             code: snippetHasDifferentTransform ?
               state.transform.code :
               action.transformer.defaultTransform,
@@ -187,7 +186,7 @@ function workbench(state=initialState.workbench, action, fullState) {
               action.transformer.defaultTransform,
             // This needs to be undefined so that default parameters in
             // components are applied.
-            transformResult: undefined
+            transformResult: undefined,
           };
         }
 

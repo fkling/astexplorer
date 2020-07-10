@@ -1,42 +1,30 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
-import pkg from 'typescript/package.json';
+import {loadParser} from '../../parser-loader.js';
 
 const ID = 'typescript';
 const FILENAME = 'astExplorer.ts';
 
 let getComments;
-const syntaxKind = {};
-
-// Typescript uses `process` somehow
-if (!global.process) {
-  global.process = {}
-}
+let syntaxKind = {};
 
 export default {
   ...defaultParserInterface,
 
   id: ID,
   displayName: ID,
-  version: pkg.version,
-  homepage: pkg.homepage,
+  homepage: 'https://www.typescriptlang.org/',
   locationProps: new Set(['pos', 'end']),
   typeProps: new Set(['kind']),
 
-  loadParser(callback) {
-    require(['typescript'], _ts => {
-        // workarounds issue described at https://github.com/Microsoft/TypeScript/issues/18062
-        for (const name of Object.keys(_ts.SyntaxKind).filter(x => isNaN(parseInt(x)))) {
-            const value = _ts.SyntaxKind[name];
-            if (!syntaxKind[value]) {
-                syntaxKind[value] = name;
-            }
-        }
-
-        callback(_ts);
-    });
+  loadParser() {
+    return loadParser('typescript@3')
+      .then(response => {
+        syntaxKind = response.syntaxKind;
+        return response;
+      });
   },
 
-  parse(ts, code, options) {
+  parse({typescript: ts}, code, options) {
     const compilerHost/*: ts.CompilerHost*/ = {
       fileExists: () => true,
       getCanonicalFileName: filename => filename,

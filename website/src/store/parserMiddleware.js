@@ -3,7 +3,9 @@ import {ignoreKeysFilter, locationInformationFilter, functionFilter, emptyKeysFi
 
 async function parse(parser, code, parserSettings) {
   if (!parser._promise) {
-    parser._promise = new Promise(parser.loadParser);
+    parser._promise = parser.loadParser.length === 0 ?
+      parser.loadParser() : // returns promise
+      new Promise(parser.loadParser); // accepts callback
   }
   let realParser;
   try {
