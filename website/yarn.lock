@@ -5017,6 +5017,11 @@ figures@^3.0.0:
   dependencies:
     escape-string-regexp "^1.0.5"
 
+filbert@^0.1.20:
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/filbert/-/filbert-0.1.20.tgz#6e38b6cf44ece31a7dcf02adc1fa26663dfe9648"
+  integrity sha1-bji2z0Ts4xp9zwKtwfomZj3+lkg=
+
 file-entry-cache@^1.1.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/file-entry-cache/-/file-entry-cache-1.3.1.tgz#44c61ea607ae4be9c1402f41f44270cbfe334ff8"
