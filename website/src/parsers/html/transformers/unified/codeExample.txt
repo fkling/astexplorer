@@ -1,0 +1,19 @@
+import h from 'hastscript';
+import visit from 'unist-util-visit';
+
+const reverse = str =>
+  str
+    .split("")
+    .reverse()
+    .join("");
+
+export default function() {
+  const transformer = (node) => {
+    const visitor = (node, index, parent)=> {
+      if(node.value.trim())
+      	parent.children.splice(index, 1, h('a', reverse(node.value)))
+    }
+    visit(node, 'text', visitor)
+  }
+  return transformer
+}
