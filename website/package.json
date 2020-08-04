@@ -99,6 +99,7 @@
     "hyntax": "^1.1.5",
     "intl-messageformat-parser": "^4.1.3",
     "isomorphic-fetch": "^2.2.1",
+    "java-parser": "^0.6.0",
     "jscodeshift": "^0.7.0",
     "json-stringify-safe": "^5.0.1",
     "json-to-ast": "^2.1.0",
