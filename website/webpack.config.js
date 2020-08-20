@@ -224,8 +224,6 @@ module.exports = Object.assign({
     noParse: [
       /traceur\/bin/,
       /typescript\/lib/,
-      /acorn\/dist\/acorn\.js/,
-      /acorn\/dist\/acorn\.mjs/,
       /esprima\/dist\/esprima\.js/,
       /esprima-fb\/esprima\.js/,
       // This is necessary because flow is trying to load the 'fs' module, but

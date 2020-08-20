@@ -45,7 +45,7 @@ export default {
 
   getDefaultOptions() {
     return {
-      ecmaVersion: 10,
+      ecmaVersion: 'latest',
       sourceType: 'module',
       allowReserved: false,
       allowReturnOutsideFunction: false,
@@ -63,11 +63,12 @@ export default {
   _getSettingsConfiguration() {
     return {
       fields: [
-        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10, 11], x => Number(x)],
+        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10, 11, 12, 'latest'], x => x === 'latest' ? x : Number(x)],
         ['sourceType', ['script', 'module']],
         'allowReserved',
         'allowReturnOutsideFunction',
         'allowImportExportEverywhere',
+        'allowAwaitOutsideFunction',
         'allowHashBang',
         'locations',
         'loose',
