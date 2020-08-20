@@ -124,6 +124,13 @@ module.exports = Object.assign({
   module: {
     rules: [
       {
+        test: [
+          /\/@typescript-eslint\/.*\/CLIEngine/,
+          /\.d\.ts$/,
+        ],
+        use: 'null-loader',
+      },
+      {
         test: /\.txt$/,
         exclude: /node_modules/,
         loader: 'raw-loader',
