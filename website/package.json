@@ -133,6 +133,7 @@
     "regjsparser": "^0.6.0",
     "remark": "^12.0.0",
     "scalameta-parsers": "^4.2.1",
+    "seafox": "^1.6.9",
     "shift-parser": "^7.0.0",
     "solidity-parser-antlr": "^0.4.0",
     "solidity-parser-diligence": "^0.4.18",
