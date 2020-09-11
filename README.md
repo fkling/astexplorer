@@ -43,6 +43,7 @@ The AST explorer provides following code parsers:
   - [flow-parser][]
   - [meriyah][]
   - [recast][]
+  - [seafox][]
   - [shift][]
   - [traceur][]
   - [typescript][]
@@ -148,6 +149,7 @@ are included so you can prototype your own plugins:
 [postcss]: https://github.com/postcss/postcss
 [posthtml]: https://github.com/posthtml/posthtml
 [recast]: https://github.com/benjamn/recast
+[seafox]: https://github.com/KFlash/seafox
 [rework]: https://github.com/reworkcss/rework
 [shift]: https://github.com/shapesecurity/shift-parser-js
 [traceur]: https://github.com/google/traceur-compiler
@@ -165,7 +167,7 @@ are included so you can prototype your own plugins:
 [pug]: https://github.com/pugjs/pug
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
 [handlebars]: http://handlebarsjs.com/
-[icu]: https://github.com/formatjs/formatjs/tree/master/packages/intl-messageformat-parser
+[icu]: https://github.com/formatjs/formatjs/tree/main/packages/intl-messageformat-parser
 [json]: https://github.com/vtrushin/json-to-ast
 [Momoa]: https://github.com/humanwhocodes/momoa
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser

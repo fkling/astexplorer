@@ -149,6 +149,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
           path.join(__dirname, 'node_modules', 'ast-types'),
+          path.join(__dirname, 'node_modules', '@babel/eslint-parser'),
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'babel-eslint8'),
           path.join(__dirname, 'node_modules', 'jsesc'),
