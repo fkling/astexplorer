@@ -43,6 +43,7 @@ The AST explorer provides following code parsers:
   - [flow-parser][]
   - [meriyah][]
   - [recast][]
+  - [seafox][]
   - [shift][]
   - [traceur][]
   - [typescript][]
@@ -148,6 +149,7 @@ are included so you can prototype your own plugins:
 [postcss]: https://github.com/postcss/postcss
 [posthtml]: https://github.com/posthtml/posthtml
 [recast]: https://github.com/benjamn/recast
+[seafox]: https://github.com/KFlash/seafox
 [rework]: https://github.com/reworkcss/rework
 [shift]: https://github.com/shapesecurity/shift-parser-js
 [traceur]: https://github.com/google/traceur-compiler
