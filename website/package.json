@@ -133,6 +133,7 @@
     "regexpp": "^3.1.0",
     "regjsparser": "^0.6.0",
     "remark": "^12.0.0",
+    "san": "^3.9.4",
     "scalameta-parsers": "^4.2.1",
     "seafox": "^1.6.9",
     "shift-parser": "^7.0.0",

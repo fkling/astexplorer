@@ -9255,6 +9255,11 @@ safe-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+san@^3.9.4:
+  version "3.9.4"
+  resolved "https://registry.yarnpkg.com/san/-/san-3.9.4.tgz#95120241bd019cf0358135ac6fd3c44af475d789"
+  integrity sha512-E9q/HOv5XWUz6TmoGZthbhbkXyHlzCBrUZFKMO42+JVRJsai0ie8n3jntgYUFRI5LdNHnlZWSg+XJfyJxpjIZg==
+
 scalameta-parsers@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-4.2.1.tgz#639810efdcf925e9b78f3f47022afaf64d09f125"
