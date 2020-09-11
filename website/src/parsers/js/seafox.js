@@ -32,7 +32,7 @@ export default {
       module: false,
 
       // The flag to enable start and end offsets and line/column to each node
-      loc: false,
+      loc: true,
 
       // Disable web compatibility
       disableWebCompat: false,
@@ -54,22 +54,6 @@ export default {
 
       // Allows token extraction, accepts only a function
       // onToken: function () {},
-    };
-  },
-
-  _getSettingsConfiguration() {
-    return {
-      fields: [
-        'module',
-        'loc',
-        'disableWebCompat',
-        'raw',
-        'directives',
-        'globalReturn',
-        'impliedStrict',
-        'preserveParens',
-        // 'onToken',
-      ],
     };
   },
 

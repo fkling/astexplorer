@@ -9285,6 +9285,11 @@ schema-utils@^2.6.4, schema-utils@^2.6.5:
     ajv "^6.12.0"
     ajv-keywords "^3.4.1"
 
+seafox@^1.6.9:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/seafox/-/seafox-1.7.1.tgz#c84d2a524af9b5b30addb047cf5228e317f5a743"
+  integrity sha512-WK3tcdmoCHPBhoe1oojEfzeNSTkp/wEgNdReqyBNubUM5yp+sw6uU2f/SpAc0PI1VyAxiC2G7tfMY2TXr/pfIg==
+
 secure-compare@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/secure-compare/-/secure-compare-3.0.1.tgz#f1a0329b308b221fae37b9974f3d578d0ca999e3"
