@@ -126,6 +126,7 @@ module.exports = Object.assign({
       {
         test: [
           /\/@typescript-eslint\/.*\/CLIEngine/,
+          /\/@typescript-eslint\/.*\/globby/,
           /\.d\.ts$/,
         ],
         use: 'null-loader',
