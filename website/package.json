@@ -42,7 +42,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "@angular/compiler": "^9.1.2",
+    "@angular/compiler": "^10.1.4",
     "@babel/eslint-parser": "^7.11.5",
     "@babel/runtime": "^7.1.5",
     "@creditkarma/thrift-parser": "^1.2.0",
