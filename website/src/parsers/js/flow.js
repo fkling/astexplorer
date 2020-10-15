@@ -1,5 +1,5 @@
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'flow-parser/package.json';
+import {loadParser} from '../../parser-loader.js';
 
 const ID = 'flow';
 export const defaultOptions = {
@@ -32,15 +32,15 @@ export default {
 
   id: ID,
   displayName: ID,
-  version: pkg.version,
-  homepage: pkg.homepage || 'https://flowtype.org/',
+  homepage: 'https://flowtype.org/',
   locationProps: new Set(['range', 'loc']),
 
-  loadParser(callback) {
-    require(['flow-parser'], callback);
+  loadParser() {
+    return loadParser('flow-parser@0')
   },
 
-  parse(flowParser, code, options) {
+  parse({flowParser}, code, options) {
+    console.log(flowParser);
     return flowParser.parse(code, options);
   },
 

@@ -1,0 +1,6 @@
+{
+  "name": "flow-parser",
+  "dependencies": {
+    "flow-parser": "^0.*"
+  }
+}

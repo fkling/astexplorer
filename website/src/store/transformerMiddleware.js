@@ -21,11 +21,11 @@ async function transform(transformer, transformCode, code) {
       }
       result = result.code;
     }
-    return { result, map, version: realTransformer.version, error: null };
+    return { result, map, version: realTransformer.version || transformer.version, error: null };
   } catch(error) {
     return {
       error,
-      version: realTransformer ? realTransformer.version : '',
+      version: realTransformer && realTransformer.version || transformer.version,
     };
   }
 }

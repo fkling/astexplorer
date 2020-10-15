@@ -1,0 +1,8 @@
+{
+  "name": "acorn",
+  "dependencies": {
+    "acorn": "^7.0.0",
+    "acorn-jsx": "^5.2.0",
+    "acorn-loose": "^7.0.0"
+  }
+}

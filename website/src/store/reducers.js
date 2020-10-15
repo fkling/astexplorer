@@ -30,8 +30,10 @@ const initialState = {
   workbench: {
     parser: defaultParser.id,
     parserSettings: null,
-    parseError: null,
     code: defaultParser.category.codeExample,
+    // This needs to be undefined so that default parameters in components are
+    // applied.
+    parseResult: undefined,
     keyMap: 'default',
     initialCode: defaultParser.category.codeExample,
     transform: {
@@ -143,6 +145,9 @@ function workbench(state=initialState.workbench, action, fullState) {
           // Update parser settings
           newState.parserSettings =
             fullState.parserSettings[action.parser.id] || null;
+          // This needs to be undefined so that default parameters in components
+          // are applied.
+          newState.parseResult = undefined;
         }
         return newState;
       }
@@ -173,13 +178,15 @@ function workbench(state=initialState.workbench, action, fullState) {
           newState.transform = {
             ...state.transform,
             transformer: action.transformer.id,
-            transformResult: null,
             code: snippetHasDifferentTransform ?
               state.transform.code :
               action.transformer.defaultTransform,
             initialCode: snippetHasDifferentTransform ?
               fullState.activeRevision.getTransformCode() :
               action.transformer.defaultTransform,
+            // This needs to be undefined so that default parameters in
+            // components are applied.
+            transformResult: undefined,
           };
         }
 

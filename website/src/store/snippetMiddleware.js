@@ -69,10 +69,12 @@ async function loadSnippet(state, next, storageAdapter) {
 async function saveSnippet({fork}, state, next, storageAdapter) {
   const revision = selectors.getRevision(state);
   const parser = selectors.getParser(state);
+  const parseResult = selectors.getParseResult(state);
   const parserSettings = selectors.getParserSettings(state);
   const code = selectors.getCode(state);
-  const transformCode = selectors.getTransformCode(state);
   const transformer = selectors.getTransformer(state);
+  const transformCode = selectors.getTransformCode(state);
+  const transformResult = selectors.getTransformResult(state);
   const showTransformPanel = selectors.showTransformer(state);
 
   const eventAction = fork ? 'fork' : (revision ? 'new_revision' : 'create');
@@ -83,14 +85,14 @@ async function saveSnippet({fork}, state, next, storageAdapter) {
       [parser.id]: parserSettings,
     },
     versions: {
-      [parser.id]: parser.version,
+      [parser.id]: parseResult && parseResult.version || parser.version || 'UNKNOWN',
     },
     filename: `source.${parser.category.fileExtension}`,
     code,
   };
   if (showTransformPanel && transformer) {
     data.toolID = transformer.id;
-    data.versions[transformer.id] = transformer.version;
+    data.versions[transformer.id] = transformResult && transformResult.version || transformer.version || 'UNKNOWN',
     data.transform = transformCode;
   }
 

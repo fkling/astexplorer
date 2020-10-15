@@ -1,6 +1,6 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
-import pkg from 'acorn/package.json';
+import {loadParser} from '../../parser-loader.js';
 
 const ID = 'acorn';
 
@@ -9,29 +9,22 @@ export default {
 
   id: ID,
   displayName: ID,
-  version: `${pkg.version}`,
-  homepage: pkg.homepage,
+  homepage: 'https://github.com/acornjs/acorn',
   locationProps: new Set(['range', 'loc', 'start', 'end']),
 
-  loadParser(callback) {
-    require(['acorn', 'acorn-loose', 'acorn-jsx'], (acorn, acornLoose, acornJsx) => {
-      callback({
-        acorn,
-        acornLoose,
-        acornJsx,
-      });
-    });
+  loadParser() {
+    return loadParser('acorn@7')
   },
 
   parse(parsers, code, options={}) {
     let parser;
     if (options['plugins.jsx'] && !options.loose) {
-      const cls = parsers.acorn.Parser.extend(parsers.acornJsx());
+      const cls = parsers.acorn.extend(parsers.acornjsx());
       parser = cls.parse.bind(cls);
     } else {
       parser = options.loose ?
-        parsers.acornLoose.parse:
-        parsers.acorn.parse;
+        parsers.loose :
+        parsers.acorn.parse.bind(parsers.acorn);
     }
 
     return parser(code, options);
