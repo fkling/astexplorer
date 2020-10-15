@@ -146,7 +146,7 @@
     "tern": "^0.24.3",
     "traceur": "0.0.111",
     "tslint": "^6.1.1",
-    "typescript": "^3.7.2",
+    "typescript": "^4.0.3",
     "typescript-eslint-parser": "^22.0.0",
     "uglify-es": "^3.0.28",
     "vue-eslint-parser": "^7.0.0",
