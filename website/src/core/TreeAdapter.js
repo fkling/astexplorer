@@ -200,9 +200,7 @@ export function functionFilter() {
   return {
     key: 'hideFunctions',
     label: 'Hide methods',
-    test(value) {
-      return typeof value === 'function';
-    },
+    test(value) { return typeof value === 'function'; },
   };
 }
 
@@ -210,9 +208,7 @@ export function emptyKeysFilter() {
   return {
     key: 'hideEmptyKeys',
     label: 'Hide empty keys',
-    test(value, key, fromArray) {
-      return value == null && !fromArray;
-    },
+    test(value, key, fromArray) { return value == null && !fromArray; },
   };
 }
 
