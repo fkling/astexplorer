@@ -2061,10 +2061,10 @@ astexplorer-refmt@^1.0.1:
   resolved "https://registry.yarnpkg.com/astexplorer-refmt/-/astexplorer-refmt-1.0.1.tgz#490875d350a1cf0136404d8d71f940012aa9dc78"
   integrity sha512-sFMDDWb7/rBuR1qCGuAXw1FdP1ArIjgVPDGtb3DuziXfM2qzLwLM+RUnSM6m9n8RYyzCUgPdvTkTesECZ4e2mQ==
 
-astexplorer-syn@^0.15.30:
-  version "0.15.30"
-  resolved "https://registry.yarnpkg.com/astexplorer-syn/-/astexplorer-syn-0.15.30.tgz#692370cf6991b2f56c09946042676082dd1b47cd"
-  integrity sha512-9HOKSIUPJlfwX8Kj7SQApbbl02IDqe+guNw+eGAZJnFadYopaGLavlcnAdPODsExjlnUmGL1rV1iJvAGDXnTPg==
+astexplorer-syn@^1.0.48:
+  version "1.0.48"
+  resolved "https://registry.yarnpkg.com/astexplorer-syn/-/astexplorer-syn-1.0.48.tgz#1eb4af025ed3c30b765ef899f4e565bbaa4de3d1"
+  integrity sha512-KnZVFhSZ1O0Xrg5lWjtxRkbYpGgPKYdTGwVXFl3sXT9L54YmjRB6Gyq9ar1bG13JRmNR8aTPZXqW5aQDW4HC3A==
 
 astral-regex@^1.0.0:
   version "1.0.0"
