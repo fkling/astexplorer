@@ -5,8 +5,8 @@
  * node.
  * Since a node can appear multiple times in the parser output, multiple elements
  * can be highlighted. The question is: which element should we scroll to?
- * My current answer: The one that is closest to the center vertical center of
- * the view.
+ * My current answer: The one that is closest to the vertical center of the
+ * view.
  * React components cannot solve this themselves since they don't have knowledge
  * over other elements.
  * So this function works as follows:

@@ -19,6 +19,7 @@
 .tree-visualization ul {
   margin: 0;
   padding-left: 20px;
+  overflow: auto;
 }
 
 .tree-visualization > ul {
