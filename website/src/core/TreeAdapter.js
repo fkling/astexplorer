@@ -108,7 +108,7 @@ class TreeAdapter {
             if (filter.key && !this._filterValues[filter.key]) {
               return false;
             }
-            return filter.test(result.value, result.key);
+            return filter.test(result.value, result.key, Array.isArray(node));
           })
         ) {
           continue;
@@ -208,7 +208,7 @@ export function emptyKeysFilter() {
   return {
     key: 'hideEmptyKeys',
     label: 'Hide empty keys',
-    test(value) { return value == null; },
+    test(value, key, fromArray) { return value == null && !fromArray; },
   };
 }
 
