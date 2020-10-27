@@ -25,7 +25,7 @@ export default {
         }
 
         onprocessinginstruction(name, data) {
-          this._parser.endIndex = this._parser._tokenizer._index;
+          this._parser.endIndex = this._parser.tokenizer._index;
           super.onprocessinginstruction(name, data);
         }
 
