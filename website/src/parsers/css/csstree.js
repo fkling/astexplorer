@@ -16,9 +16,10 @@ export default {
     require(['css-tree'], callback);
   },
 
-  parse(csstree, code) {
+  parse(csstree, code, options) {
     return csstree.toPlainObject(csstree.parse(code, {
       positions: true,
+      ...options
     }));
   },
 
@@ -30,5 +31,40 @@ export default {
 
   opensByDefault(node, key) {
     return key === 'children';
+  },
+
+  getDefaultOptions() {
+    return {
+      context: 'stylesheet',
+      parseValue: true,
+      parseRulePrelude: true,
+      parseAtrulePrelude: true,
+      parseCustomProperty: false,
+    };
+  },
+
+  _getSettingsConfiguration() {
+    return {
+      fields: [
+        ['context', [
+          'stylesheet',
+          'atrule',
+          'atrulePrelude',
+          'mediaQueryList',
+          'mediaQuery',
+          'rule',
+          'selectorList',
+          'selector',
+          'block',
+          'declarationList',
+          'declaration',
+          'value',
+        ]],
+        'parseValue',
+        'parseRulePrelude',
+        'parseAtrulePrelude',
+        'parseCustomProperty',
+      ],
+    };
   },
 };
