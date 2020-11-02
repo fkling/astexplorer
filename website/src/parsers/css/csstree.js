@@ -19,7 +19,7 @@ export default {
   parse(csstree, code, options) {
     return csstree.toPlainObject(csstree.parse(code, {
       positions: true,
-      ...options
+      ...options,
     }));
   },
 
