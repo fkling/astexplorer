@@ -1,5 +1,13 @@
+function visit(node, callback) {
+  callback(node);
+  node.children?.forEach((n) => visit(n, callback));
+}
+
 module.exports = function attacher(options) {
   return function transformer(tree, vfile) {
+    visit(tree, (node) => {
+      if (node.type === "heading") node.depth += 1;
+    });
     return tree;
-  }
-}
+  };
+};
