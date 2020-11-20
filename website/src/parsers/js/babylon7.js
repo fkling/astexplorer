@@ -2,12 +2,12 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon7/package.json';
 
 const availablePlugins = [
-  // From https://babeljs.io/docs/en/next/babel-parser.html
-
   // Miscellaneous
+  // https://babeljs.io/docs/en/babel-parser.html#miscellaneous
   'estree',
 
   // Language extensions
+  // https://babeljs.io/docs/en/babel-parser.html#language-extensions
   'flow',
   'flowComments',
   'jsx',
@@ -15,15 +15,18 @@ const availablePlugins = [
   'v8intrinsic',
 
   // ECMAScript Proposals
+  // https://babeljs.io/docs/en/babel-parser.html#ecmascript-proposalshttpsgithubcombabelproposals
   'classProperties',
   'classPrivateProperties',
   'classPrivateMethods',
+  'classStaticBlock',
   'decimal',
   'decorators',
   'doExpressions',
   'exportDefaultFrom',
   'functionBind',
-  'functionSent',
+  'importAssertions',
+  'moduleStringNames',
   'partialApplication',
   'pipelineOperator',
   'privateIn',
@@ -48,10 +51,11 @@ export const defaultOptions = {
     'doExpressions',
     'exportDefaultFrom',
     'flow',
-    'functionSent',
     'functionBind',
+    'importAssertions',
     'jsx',
     'privateIn',
+    'topLevelAwait',
   ],
 };
 
@@ -61,6 +65,7 @@ export const parserSettingsConfiguration = {
     'allowReturnOutsideFunction',
     'allowImportExportEverywhere',
     'createParenthesizedExpressions',
+    'errorRecovery',
     'ranges',
     'tokens',
     {
