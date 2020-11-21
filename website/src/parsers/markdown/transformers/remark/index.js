@@ -11,9 +11,9 @@ const availableModules = {
 };
 
 function sandboxRequire(name) {
-  const module = availableModules[name];
-  if (!module) throw new Error(`Cannot find module '${name}'`);
-  return module;
+  if (!Object.getOwnPropertyNames(availableModules).includes(name))
+    throw new Error(`Cannot find module '${name}'`);
+  return availableModules[name];
 }
 
 const ID = 'remark';
