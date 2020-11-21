@@ -1,13 +1,8 @@
-function visit(node, callback) {
-  callback(node);
-  node.children?.forEach((n) => visit(n, callback));
-}
+const visit = require("unist-util-visit");
 
 module.exports = function attacher(options) {
   return function transformer(tree, vfile) {
-    visit(tree, (node) => {
-      if (node.type === "heading") node.depth += 1;
-    });
+    visit(tree, "heading", (node) => node.depth += 1);
     return tree;
   };
 };
