@@ -3,7 +3,7 @@ const visit = require("unist-util-visit");
 
 module.exports = function attacher(options) {
   return function transformer(tree, vfile) {
-    // add a level to headings, E.G. `# heading` to `## heading`
+    // add a level to headings, for example `# heading` to `## heading`
     visit(tree, "heading", (node) => {
       node.depth += 1
     });

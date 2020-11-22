@@ -17,22 +17,17 @@ export default {
       'unist-util-is',
       'unist-util-visit',
       'unist-util-visit-parents',
-    ], (remark, unistUtilIs, unistUtilVisit, unistUtilVisitParents) => {
-      callback({ remark, unistUtilIs, unistUtilVisit, unistUtilVisitParents });
+    ], (remark, is, visit, parents) => {
+      callback({
+        remark,
+        'unist-util-is': is,
+        'unist-util-visit': visit,
+        'unist-util-visit-parents': parents,
+      });
     });
   },
 
-  transform(
-    { remark, unistUtilIs, unistUtilVisit, unistUtilVisitParents },
-    transformCode,
-    code,
-  ) {
-    const availableModules = {
-      'unist-util-is': unistUtilIs,
-      'unist-util-visit': unistUtilVisit,
-      'unist-util-visit-parents': unistUtilVisitParents,
-    };
-
+  transform({ remark, ...availableModules }, transformCode, code) {
     function sandboxRequire(name) {
       if (!Object.getOwnPropertyNames(availableModules).includes(name))
         throw new Error(`Cannot find module '${name}'`);
