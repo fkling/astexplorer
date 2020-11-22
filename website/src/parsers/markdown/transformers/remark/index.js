@@ -12,13 +12,29 @@ export default {
   defaultParserID: ID,
 
   loadTransformer(callback) {
-    require(['remark'], (remark) => {
-      callback({ remark });
+    require([
+      'remark',
+      'unist-util-is',
+      'unist-util-visit',
+      'unist-util-visit-parents',
+    ], (remark, is, visit, parents) => {
+      callback({
+        remark,
+        'unist-util-is': is,
+        'unist-util-visit': visit,
+        'unist-util-visit-parents': parents,
+      });
     });
   },
 
-  transform({ remark }, transformCode, code) {
-    const transform = compileModule(transformCode);
+  transform({ remark, ...availableModules }, transformCode, code) {
+    function sandboxRequire(name) {
+      if (!Object.getOwnPropertyNames(availableModules).includes(name))
+        throw new Error(`Cannot find module '${name}'`);
+      return availableModules[name];
+    }
+
+    const transform = compileModule(transformCode, { require: sandboxRequire });
     return remark().use(transform).processSync(code).contents;
   },
 };
