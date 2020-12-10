@@ -8,7 +8,7 @@ export const parserSettingsConfiguration = {
 
 export default {
   ...AntlrParser,
-  language: "java",
-  id: "antlr-parser-java",
-  displayName: "antlr-parser-java"
+  language: "ts",
+  id: "antlr-parser-ts",
+  displayName: "antlr-parser-ts"
 }

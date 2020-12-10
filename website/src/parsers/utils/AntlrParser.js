@@ -23,7 +23,10 @@ export default {
     async parse(axios, code) {
         const response = await axios.post("/parse", this.getRequestBody(code))
         try{
-            return response.data["responses"][0]["astRoot"];
+            let firstResponse = response.data["responses"][0];
+            if(firstResponse["statusCode"] !== 500)
+                return firstResponse["astRoot"];
+            else return firstResponse["message"]
         }catch (e) {
             console.error(e);
             return response;
