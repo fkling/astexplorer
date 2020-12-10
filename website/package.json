@@ -60,6 +60,7 @@
     "astexplorer-go": "^1.0.0",
     "astexplorer-refmt": "^1.0.1",
     "astexplorer-syn": "^1.0.48",
+    "axios": "^0.21.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.3",
     "babel-eslint8": "npm:babel-eslint@^8",
