@@ -45,6 +45,7 @@ The AST explorer provides following code parsers:
   - [recast][]
   - [seafox][]
   - [shift][]
+  - [swc][]
   - [traceur][]
   - [typescript][]
   - [typescript-eslint-parser][]
@@ -97,6 +98,7 @@ are included so you can prototype your own plugins:
   - [babel][] (v5, v6)
   - [ESLint][] (v1, v2, v3)
   - [jscodeshift][]
+  - [swc][]
   - [tslint][]
 - HTML
   - [posthtml][]
@@ -152,6 +154,7 @@ are included so you can prototype your own plugins:
 [seafox]: https://github.com/KFlash/seafox
 [rework]: https://github.com/reworkcss/rework
 [shift]: https://github.com/shapesecurity/shift-parser-js
+[swc]: https://github.com/swc-project/swc
 [traceur]: https://github.com/google/traceur-compiler
 [typescript]: https://github.com/Microsoft/TypeScript/
 [typescript-eslint-parser]: https://github.com/eslint/typescript-eslint-parser/

@@ -175,6 +175,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'regexpp'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
           path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
+          path.join(__dirname, 'node_modules', 'swc', '@wasm-web'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'node_modules', 'tslint'),

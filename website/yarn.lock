@@ -1610,6 +1610,11 @@
   resolved "https://registry.yarnpkg.com/@simple-dom/interface/-/interface-1.4.0.tgz#e8feea579232017f89b0138e2726facda6fbb71f"
   integrity sha512-l5qumKFWU0S+4ZzMaLXFU8tQZsicHEMEyAxI5kDFGhJsRqDwe0a7/iPA/GdxlGyDKseQQAgIz5kzU7eXTrlSpA==
 
+"@swc/wasm-web@^1.2.43":
+  version "1.2.43"
+  resolved "https://registry.yarnpkg.com/@swc/wasm-web/-/wasm-web-1.2.43.tgz#9b52f6a5e58b36e639ab344b94cf659d55c61d39"
+  integrity sha512-uSn/XvwT3gIaSFQUZH32fYiBvxo3GZropKFK7A/8DexO29zU7Yn4K0UxP6QRivyiYeHAq9hwrVayHcr77gsZDA==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
