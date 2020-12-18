@@ -232,3 +232,9 @@ Run `yarn run build` for the final minimized version.
 Run `yarn run watch` for incremental builds.
 
 Run `yarn start` to start a simple static webserver.
+
+
+### To build and copy into code-parser
+```shell script
+ yarn run build-dev && rm -rf /Users/thanhpt/git/back-office/code-parser/src/main/resources/public/ && mkdir /Users/thanhpt/git/back-office/code-parser/src/main/resources/public/  && cp -R ../out/. /Users/thanhpt/git/back-office/code-parser/src/main/resources/public/
+```
