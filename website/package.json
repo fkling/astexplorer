@@ -100,7 +100,7 @@
     "handlebars": "^4.7.6",
     "htmlparser2": "^5.0.1",
     "hyntax": "^1.1.5",
-    "intl-messageformat-parser": "^4.1.3",
+    "intl-messageformat-parser": "^6.1.0",
     "isomorphic-fetch": "^2.2.1",
     "java-parser": "^0.6.0",
     "jscodeshift": "^0.11.0",

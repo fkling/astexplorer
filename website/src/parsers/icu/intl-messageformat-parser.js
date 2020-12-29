@@ -2,20 +2,21 @@ import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'intl-messageformat-parser/package.json';
 
 const ID = 'intl-messageformat-parser';
-const TYPES = {}
-
+const TYPES = {};
 
 export const parserSettingsConfiguration = {
   fields: [
     'captureLocation',
+    'ignoreTag',
     'normalizeHashtagInPlural',
+    'shouldParseSkeletons',
   ],
 };
 
 const defaultOptions = {
   captureLocation: true,
   normalizeHashtagInPlural: true,
-}
+};
 
 export default {
   ...defaultParserInterface,
@@ -23,15 +24,16 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage || 'https://github.com/formatjs/formatjs/tree/master/packages/intl-messageformat-parser',
+  homepage:
+    pkg.homepage || 'https://formatjs.io/docs/intl-messageformat-parser/',
   locationProps: new Set(['location']),
 
   loadParser(callback) {
-    require(['intl-messageformat-parser'], all => {
-      Object.keys(all.TYPE).forEach(k => {
-        TYPES[k] = all.TYPE[k]
-      })
-      callback(all)
+    require(['intl-messageformat-parser'], (all) => {
+      Object.keys(all.TYPE).forEach((k) => {
+        TYPES[k] = all.TYPE[k];
+      });
+      callback(all);
     });
   },
 
@@ -48,7 +50,7 @@ export default {
   },
 
   getNodeName(node) {
-    return node.type != null && TYPES[node.type]
+    return node.type != null && TYPES[node.type];
   },
 
   nodeToRange({ location }) {
