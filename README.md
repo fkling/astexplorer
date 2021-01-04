@@ -167,7 +167,7 @@ are included so you can prototype your own plugins:
 [pug]: https://github.com/pugjs/pug
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
 [handlebars]: http://handlebarsjs.com/
-[icu]: https://github.com/formatjs/formatjs/tree/main/packages/intl-messageformat-parser
+[icu]: https://formatjs.io/docs/intl-messageformat-parser/
 [json]: https://github.com/vtrushin/json-to-ast
 [Momoa]: https://github.com/humanwhocodes/momoa
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
