@@ -25,7 +25,7 @@
     "exports-loader": "^0.7.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^3.2.0",
-    "http-server": "^0.12.1",
+    "serve": "^11",
     "inline-manifest-webpack-plugin": "^4.0.1",
     "js-yaml": "^3.13.1",
     "json-loader": "^0.5.3",
@@ -165,7 +165,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "scripts": {
-    "start": "http-server ../out",
+    "start": "serve -l 8080 ../out",
     "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack --mode=production",
     "build-dev": "rimraf ../out/* && cross-env NODE_ENV=development webpack -d --mode=development",
     "watch": "webpack -dw --mode=development",
