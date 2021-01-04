@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@angular-eslint/template-parser@^0.8.0-beta.3":
-  version "0.8.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@angular-eslint/template-parser/-/template-parser-0.8.0-beta.3.tgz#4bbdb686de8db8e88f729692213119d503ce83ae"
-  integrity sha512-nDLL4QrjymYMv7gvmIwhCnvOmjDBkGWkstmZ2MPbHybcT/iB6Hq1SvUoTtdwDsZrnhYvoJYxicWU/jjGjtjwgA==
+"@angular-eslint/template-parser@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/template-parser/-/template-parser-1.0.0.tgz#e4d431db36e64bf14cca90e19f40eb48c3c20402"
+  integrity sha512-M7rj907yOoEzq10FO5BDX7Ylw24V+YfdsYfyEi/TzzQtNGxCwQhbEwXc1PAZgsQ+P1wbGFbg9mb3yFkps7/LEA==
   dependencies:
     eslint-scope "^5.1.0"
 
