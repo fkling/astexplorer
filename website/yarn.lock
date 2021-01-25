@@ -1502,10 +1502,10 @@
   dependencies:
     tslib "^2.0.1"
 
-"@gengjiawen/monkey-wasm@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@gengjiawen/monkey-wasm/-/monkey-wasm-0.4.2.tgz#1d30dbdb64aab9997c3833d1fe032f9c258f03ee"
-  integrity sha512-2u02GtgxvWfQxFMmBo5EFlvtDdbDCRmpr/r74mZ4IH1TOlIRF01Y/9DoyPoyS67Y68UKyTqanmDW5UII3ysEnQ==
+"@gengjiawen/monkey-wasm@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@gengjiawen/monkey-wasm/-/monkey-wasm-0.5.0.tgz#ffca6e79be13232c890cc6cbba4cf1c168852961"
+  integrity sha512-8OzCoFn0I175CnCRtYqo6SrjzA/8PpZSWRKEQkAW5W9lVlnWyvXc7or9ZD9xkq/tDF3TgaGS9ARvmN36tubDYQ==
 
 "@glimmer/compiler@^0.50.3":
   version "0.50.3"
