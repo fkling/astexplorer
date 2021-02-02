@@ -19,8 +19,8 @@ export default {
 
   loadParser(callback) {
     require(
-      ['recast', 'babel5', 'babylon6', 'babylon7', 'flow-parser', 'recast/parsers/typescript'],
-      (recast, babelCore, babylon6, babylon7, flow, typescript) => {
+      ['recast', 'babel5', 'babylon6', 'babylon7', 'flow-parser', 'recast/parsers/typescript', './utils/recast-tsx-parser'],
+      (recast, babelCore, babylon6, babylon7, flow, typescript, tsx) => {
         callback({
           recast,
           parsers: {
@@ -29,6 +29,7 @@ export default {
             babylon7,
             flow,
             typescript,
+            tsx,
           },
         });
       },
@@ -72,6 +73,9 @@ export default {
       case 'typescript':
         options.parser = parsers.typescript;
         break
+      case 'tsx':
+          options.parser = parsers.tsx;
+          break
       default:
         delete options.parser; // default parser
         break;
@@ -119,7 +123,7 @@ export default {
   _getSettingsConfiguration(defaultOptions) {
     return {
       fields: [
-        ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow', 'typescript']],
+        ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow', 'typescript', 'tsx']],
         'range',
         'tolerant',
         {
