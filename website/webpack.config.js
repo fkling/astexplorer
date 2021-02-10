@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const fs = require('fs');
 const path = require('path');
@@ -92,7 +91,11 @@ const plugins = [
 
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
   new InlineManifestWebpackPlugin(),
-  new ProgressBarPlugin(),
+  new webpack.ProgressPlugin({
+    modules: false,
+    activeModules: false,
+    profile: false
+  }),
 ];
 
 module.exports = Object.assign({
@@ -257,9 +260,9 @@ module.exports = Object.assign({
   },
 },
 
-DEV ?
-  {
-    devtool: 'eval',
-  } :
-  {}
+  DEV ?
+    {
+      devtool: 'eval',
+    } :
+    {}
 );
