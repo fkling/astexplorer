@@ -58,6 +58,8 @@ The AST explorer provides following code parsers:
   - [remark][]
 - [MDX][]:
   - [mdxhast][]
+- Monkey
+  - [monkey][]
 - PHP
   - [php-parser][]
 - [Pug][]
@@ -177,6 +179,7 @@ are included so you can prototype your own plugins:
 [mdx]: https://mdxjs.com/
 [mdxhast]: https://mdxjs.com/advanced/ast#mdxhast
 [mdx]: https://mdxjs.com/advanced/sync-api
+[monkey]: https://github.com/gengjiawen/monkey-rust
 [scalameta]: http://scalameta.org/
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
