@@ -128,10 +128,16 @@ module.exports = Object.assign({
     rules: [
       {
         test: [
-          /\/@typescript-eslint\/.*\/CLIEngine/,
-          /\/@typescript-eslint\/.*\/globby/,
           /\.d\.ts$/,
         ],
+        use: 'null-loader',
+      },
+      {
+        test: [
+          /\/CLIEngine/,
+          /\/globby/,
+        ],
+        issuer: /\/@typescript-eslint\//,
         use: 'null-loader',
       },
       {
