@@ -19,7 +19,7 @@ export default {
     });
   },
 
-  parse({ lex, parse }, code, options) {
+  parse({ lex, parse }, code) {
     return parse(lex(code, {}), { src: code });
   },
 

@@ -20,6 +20,7 @@ export default {
 
   nodeToRange({ loc }) {
     if (!loc) return;
-    return [loc.start, loc.end].map(pos => this.getOffset(pos));
+    const serializedLoc = 'toJSON' in loc ? loc.toJSON() : loc;
+    return [serializedLoc.start, serializedLoc.end].map(pos => this.getOffset(pos));
   },
 };

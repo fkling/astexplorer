@@ -58,6 +58,7 @@ export default store => next => action => {
               locationInformationFilter(newParser.locationProps),
               typeKeysFilter(newParser.typeProps),
             ],
+            locationProps: newParser.locationProps,
           },
         };
         next({

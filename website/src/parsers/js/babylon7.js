@@ -2,39 +2,37 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon7/package.json';
 
 const availablePlugins = [
-  // From https://babeljs.io/docs/en/next/babel-parser.html
-
   // Miscellaneous
+  // https://babeljs.io/docs/en/babel-parser.html#miscellaneous
   'estree',
 
   // Language extensions
+  // https://babeljs.io/docs/en/babel-parser.html#language-extensions
   'flow',
   'flowComments',
   'jsx',
   'typescript',
+  'v8intrinsic',
 
   // ECMAScript Proposals
-  'asyncGenerators',
-  'bigInt',
+  // https://babeljs.io/docs/en/babel-parser.html#ecmascript-proposalshttpsgithubcombabelproposals
   'classProperties',
   'classPrivateProperties',
   'classPrivateMethods',
+  'classStaticBlock',
+  'decimal',
   'decorators',
   'doExpressions',
-  'dynamicImport',
   'exportDefaultFrom',
-  'exportNamespaceFrom',
   'functionBind',
-  'functionSent',
-  'importMeta',
-  'logicalAssignment',
-  'nullishCoalescingOperator',
-  'numericSeparator',
-  'objectRestSpread',
-  'optionalCatchBinding',
-  'optionalChaining',
+  'importAssertions',
+  'moduleStringNames',
+  'partialApplication',
   'pipelineOperator',
+  'privateIn',
+  'recordAndTuple',
   'throwExpressions',
+  'topLevelAwait',
 ];
 
 const ID = 'babylon7';
@@ -42,31 +40,32 @@ export const defaultOptions = {
   sourceType: 'module',
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
+  createParenthesizedExpressions: false,
   ranges: false,
   tokens: false,
   plugins: [
-    'asyncGenerators',
     'classProperties',
+    'classPrivateProperties',
+    'classPrivateMethods',
     'decorators',
     'doExpressions',
-    'exportExtensions',
+    'exportDefaultFrom',
     'flow',
-    'functionSent',
     'functionBind',
+    'importAssertions',
     'jsx',
-    'objectRestSpread',
-    'dynamicImport',
-    'numericSeparator',
-    'optionalChaining',
-    'optionalCatchBinding',
+    'privateIn',
+    'topLevelAwait',
   ],
 };
 
 export const parserSettingsConfiguration = {
   fields: [
-    ['sourceType', ['module', 'script']],
+    ['sourceType', ['module', 'script', 'unambiguous']],
     'allowReturnOutsideFunction',
     'allowImportExportEverywhere',
+    'createParenthesizedExpressions',
+    'errorRecovery',
     'ranges',
     'tokens',
     {
@@ -79,6 +78,7 @@ export const parserSettingsConfiguration = {
         {},
       ),
     },
+    ['pipelineProposal', ['minimal', 'smart', 'fsharp']],
   ],
 };
 
@@ -86,7 +86,7 @@ export default {
   ...defaultParserInterface,
 
   id: ID,
-  displayName: ID,
+  displayName: '@babel/parser',
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['range', 'loc', 'start', 'end']),
@@ -97,14 +97,17 @@ export default {
 
   parse(babylon, code, options) {
     options = {...options};
-    // TODO: Make decoratorsBeforeExport settable through settings somhow
-    // TODO: Make pipelineOperator.proposal settable through settings somhow
+    // TODO: Make decoratorsBeforeExport settable through settings somehow
+    // TODO: Make pipelineOperator.proposal settable through settings somehow
+    // TODO: Make recordAndTuple.syntaxType settable through settings somehow
     options.plugins = options.plugins.map(plugin => {
       switch (plugin) {
         case 'decorators':
           return ['decorators', {decoratorsBeforeExport: false}];
         case 'pipelineOperator':
-          return ['pipelineOperator', {proposal: 'minimal'}];
+          return ['pipelineOperator', {proposal: options.pipelineProposal}];
+        case 'recordAndTuple':
+          return ['recordAndTuple', { syntaxType: 'hash' }];
         default:
           return plugin;
       }

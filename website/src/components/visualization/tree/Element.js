@@ -1,12 +1,12 @@
 import CompactArrayView from './CompactArrayView';
 import CompactObjectView from './CompactObjectView';
 import PropTypes from 'prop-types';
-import PubSub from 'pubsub-js';
+import {publish} from '../../../utils/pubsub.js';
 import React from 'react';
 import {useSelectedNode} from '../SelectedNodeContext.js';
 import focusNodes from '../focusNodes.js'
 
-import cx from 'classnames';
+import cx from '../../../utils/classnames.js';
 import stringify from '../../../utils/stringify';
 
 const {useState, useRef, useMemo, useCallback, useEffect} = React;
@@ -169,12 +169,12 @@ const Element = React.memo(function Element({
   if (range && level !== 0) {
     onMouseOver = event => {
       event.stopPropagation();
-      PubSub.publish('HIGHLIGHT', {node: value, range});
+      publish('HIGHLIGHT', {node: value, range});
     };
 
     onMouseLeave = event => {
       event.stopPropagation();
-      PubSub.publish('CLEAR_HIGHLIGHT', {node: value, range});
+      publish('CLEAR_HIGHLIGHT', {node: value, range});
     };
   }
 
@@ -452,7 +452,7 @@ PropertyName.propTypes = {
 export default function ElementContainer(props) {
   const [selected, setSelected] = useState(false);
   const setSelectedNode = useSelectedNode();
-  const isInRange = props.treeAdapter.isInRange(props.value, props.position);
+  const isInRange = props.treeAdapter.isInRange(props.value, props.name, props.position);
   const onClick = useCallback(
     (state, own) => {
       if (own) {
@@ -476,7 +476,7 @@ export default function ElementContainer(props) {
       {...props}
       selected={selected}
       hasChildrenInRange={
-        props.treeAdapter.hasChildrenInRange(props.value, props.position)
+        props.treeAdapter.hasChildrenInRange(props.value, props.name, props.position)
       }
       isInRange={isInRange}
       onClick={onClick}

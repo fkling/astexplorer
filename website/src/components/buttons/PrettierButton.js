@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import cx from 'classnames';
+import cx from '../../utils/classnames.js';
 
 export default function PrettierButton(props) {
   return (<button type="button"

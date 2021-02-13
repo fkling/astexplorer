@@ -4,7 +4,7 @@ import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/fold/foldcode';
 import 'codemirror/addon/fold/brace-fold';
 import PropTypes from 'prop-types';
-import PubSub from 'pubsub-js';
+import {subscribe, clear} from '../utils/pubsub.js';
 import React from 'react';
 
 export default class Editor extends React.Component {
@@ -37,7 +37,7 @@ export default class Editor extends React.Component {
     );
 
     this._subscriptions.push(
-      PubSub.subscribe('PANEL_RESIZE', () => {
+      subscribe('PANEL_RESIZE', () => {
         if (this.codeMirror) {
           this.codeMirror.refresh();
         }
@@ -53,7 +53,7 @@ export default class Editor extends React.Component {
   }
 
   _unbindHandlers() {
-    this._subscriptions.forEach(PubSub.unsubscribe);
+    clear(this._subscriptions);
   }
 
   render() {

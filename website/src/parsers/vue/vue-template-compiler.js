@@ -1,7 +1,7 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'vue-template-compiler/package.json';
 
-const ID = 'vue';
+const ID = 'vue-template-compiler';
 
 export default {
   ...defaultParserInterface,

@@ -1,0 +1,12 @@
+// available utilities are: "unist-util-is", "unist-util-visit", and "unist-util-visit-parents"
+const visit = require("unist-util-visit");
+
+module.exports = function attacher(options) {
+  return function transformer(tree, vfile) {
+    // add a level to headings, for example `# heading` to `## heading`
+    visit(tree, "heading", (node) => {
+      node.depth += 1
+    });
+    return tree;
+  };
+};

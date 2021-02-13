@@ -16,9 +16,9 @@ export default {
 
   loadParser(callback) {
     require([
-      'raw-loader!uglify-es/lib/utils.js',
-      'raw-loader!uglify-es/lib/ast.js',
-      'raw-loader!uglify-es/lib/parse.js',
+      'raw-loader?esModule=false!uglify-es/lib/utils.js',
+      'raw-loader?esModule=false!uglify-es/lib/ast.js',
+      'raw-loader?esModule=false!uglify-es/lib/parse.js',
     ], (...contents) => {
       contents.push('exports.parse = parse;');
       callback(compileModule(contents.join('\n\n')));
@@ -44,12 +44,15 @@ export default {
         start = end = node;
         break;
       case undefined:
-        return;
+        return null;
       default:
         ({ start, end } = node);
         break;
     }
-    return [start.pos, end.endpos];
+    if (start && end) {
+      return [start.pos, end.endpos];
+    }
+    return null;
   },
 
   opensByDefault(node, key) {
