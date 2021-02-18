@@ -58,6 +58,8 @@ The AST explorer provides following code parsers:
   - [remark][]
 - [MDX][]:
   - [mdxhast][]
+- Monkey
+  - [monkey][]
 - PHP
   - [php-parser][]
 - [Pug][]
@@ -167,7 +169,7 @@ are included so you can prototype your own plugins:
 [pug]: https://github.com/pugjs/pug
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
 [handlebars]: http://handlebarsjs.com/
-[icu]: https://github.com/formatjs/formatjs/tree/main/packages/intl-messageformat-parser
+[icu]: https://formatjs.io/docs/intl-messageformat-parser/
 [json]: https://github.com/vtrushin/json-to-ast
 [Momoa]: https://github.com/humanwhocodes/momoa
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
@@ -177,6 +179,7 @@ are included so you can prototype your own plugins:
 [mdx]: https://mdxjs.com/
 [mdxhast]: https://mdxjs.com/advanced/ast#mdxhast
 [mdx]: https://mdxjs.com/advanced/sync-api
+[monkey]: https://github.com/gengjiawen/monkey-rust
 [scalameta]: http://scalameta.org/
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
