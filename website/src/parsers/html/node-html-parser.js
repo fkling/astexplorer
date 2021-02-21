@@ -34,7 +34,7 @@ export default {
   getDefaultOptions() {
     return {
       lowerCaseTagName: false,
-      comment: true
+      comment: true,
     };
   },
 
