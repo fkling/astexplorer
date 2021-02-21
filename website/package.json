@@ -111,6 +111,7 @@
     "luaparse": "^0.3.0",
     "lucene": "^2.1.1",
     "meriyah": "^1.9.12",
+    "node-html-parser": "^2.1.0",
     "parse5": "^6.0.0",
     "parse5-htmlparser2-tree-adapter": "^6.0.0",
     "php-parser": "^3.0.0",
