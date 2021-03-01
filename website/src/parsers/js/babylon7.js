@@ -26,6 +26,7 @@ const availablePlugins = [
   'exportDefaultFrom',
   'functionBind',
   'importAssertions',
+  'moduleBlocks',
   'moduleStringNames',
   'partialApplication',
   'pipelineOperator',
