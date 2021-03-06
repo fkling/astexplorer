@@ -1,4 +1,3 @@
-// Press ctrl+space for code completion
 export default function transformer(code, { recast, parsers }) {
   const ast = recast.parse(code, { parser: parsers.esprima });
 
