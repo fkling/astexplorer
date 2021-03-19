@@ -16,7 +16,7 @@ export default {
   loadTransformer(callback) {
     require(['../../../transpilers/typescript', 'typescript'], (
       transpile,
-      typescript
+      typescript,
     ) => callback({ transpile: transpile.default, ts: typescript }));
   },
 
@@ -41,7 +41,7 @@ export default {
           filename,
           code,
           ts.ScriptTarget.Latest,
-          true
+          true,
         );
       },
       readFile: () => null,
