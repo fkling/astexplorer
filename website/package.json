@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@angular-eslint/template-parser": "^1.0.0",
-    "@angular/compiler": "^10.1.4",
+    "@angular/compiler": "^11.2.0",
     "@babel/eslint-parser": "^7.12.0",
     "@babel/runtime": "^7.12.0",
     "@creditkarma/thrift-parser": "^1.2.0",
