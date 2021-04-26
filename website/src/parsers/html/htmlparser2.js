@@ -17,30 +17,17 @@ export default {
     require(['htmlparser2/lib/Parser', 'domhandler'], (Parser, {DomHandler}) => {
       class Handler extends DomHandler {
         constructor() {
-          super({ withStartIndices: true });
+          super({ withStartIndices: true, withEndIndices: true });
         }
 
-        _setEnd(elem) {
-          elem.endIndex = this._parser.endIndex + 1;
-        }
-
+        // It appears that htmlparser2 doesn't correctly process
+        // ProcessingInstructions. Their "endIndex" isn't set properly.
         onprocessinginstruction(name, data) {
-          this._parser.endIndex = this._parser.tokenizer._index;
+          this.parser.endIndex = this.parser.tokenizer._index;
           super.onprocessinginstruction(name, data);
         }
 
-        _addDomElement(elem) {
-          super._addDomElement(elem);
-          this._setEnd(elem);
-        }
       }
-
-      Handler.prototype.onclosetag =
-      Handler.prototype.oncommentend =
-      Handler.prototype.oncdataend =
-        function onElemEnd() {
-          this._setEnd(this._tagStack.pop());
-        };
 
       callback({ Parser, Handler });
     });
@@ -49,12 +36,12 @@ export default {
   parse({ Parser: {Parser}, Handler }, code, options) {
     let handler = new Handler();
     new Parser(handler, options).end(code);
-    return handler.dom;
+    return handler.root;
   },
 
   nodeToRange(node) {
     if (node.type) {
-      return [node.startIndex, node.endIndex];
+      return [node.startIndex, node.endIndex+1];
     }
   },
 
@@ -78,5 +65,5 @@ export default {
     };
   },
 
-  _ignoredProperties: new Set(['prev', 'next', 'parent', 'parentNode', 'endIndex']),
+  _ignoredProperties: new Set(['prev', 'next', 'parent', 'parentNode']),
 };
