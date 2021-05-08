@@ -1827,6 +1827,11 @@ ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
+antlr4@4.9.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/antlr4/-/antlr4-4.9.1.tgz#cd9cc8d96c9d8bc5b758fe9e02f4066f46fc287e"
+  integrity sha512-sBI/Pf2aF5leFoAqx3S0if6IGX4vKDsWPHkVt0PfvZb8BnxrrVkNP4Tczc5cp/ZduhfNXvdQTOKRy7ihbql76g==
+
 anymatch@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-2.0.0.tgz#bcb24b4f37934d9aa7ac17b4adaf89e7c76ef2eb"
@@ -6956,6 +6961,13 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
+
+kotlin-parser-antlr@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/kotlin-parser-antlr/-/kotlin-parser-antlr-1.0.0.tgz#fd4329d02a117fc96c345145f5f1faa939412873"
+  integrity sha512-zdRkRKGVOH7fu9DCqqrL/XW4W0JL/4yH2MMGtLDzMJLcouuOQxsOva5Qr9DPDuYYULXcYcEXfBDCJUhaKlwGEg==
+  dependencies:
+    antlr4 "4.9.1"
 
 lazy-cache@^1.0.3:
   version "1.0.4"

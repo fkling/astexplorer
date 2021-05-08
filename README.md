@@ -52,6 +52,7 @@ The AST explorer provides following code parsers:
 - JSON:
   - [JSON][]
   - [Momoa][]
+- [kotlin-parser-antlr][]
 - Lua:
   - [luaparse][]
 - Markdown:
@@ -172,6 +173,7 @@ are included so you can prototype your own plugins:
 [icu]: https://formatjs.io/docs/intl-messageformat-parser/
 [json]: https://github.com/vtrushin/json-to-ast
 [Momoa]: https://github.com/humanwhocodes/momoa
+[kotlin-parser-antlr]: https://github.com/zhirzh/kotlin-parser-antlr
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/eemeli/yaml
 [yaml-ast-parser]: https://github.com/mulesoft-labs/yaml-ast-parser
