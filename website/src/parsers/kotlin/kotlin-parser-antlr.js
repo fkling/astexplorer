@@ -1,7 +1,7 @@
 import defaultParserInterface from '../utils/defaultParserInterface'
 import pkg from 'kotlin-parser-antlr/package.json'
 
-const ID = 'kotlin-parser'
+const ID = 'kotlin-parser-antlr'
 
 export default {
   ...defaultParserInterface,
