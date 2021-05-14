@@ -8,16 +8,10 @@ const dialects = {
   'Scala 2.11': 'Scala211',
   'Scala 2.12': 'Scala212',
   'Scala 2.13': 'Scala213',
+  'Scala 3': 'Scala3',
   'Sbt 0.13.6': 'Sbt0136',
   'Sbt 0.13.7': 'Sbt0137',
   'Sbt 1': 'Sbt 1',
-  'Dotty': 'Dotty',
-  'Typelevel 2.11': 'Typelevel211',
-  'Typelevel 2.12': 'Typelevel212',
-  'Paradise 2.11': 'Paradise211',
-  'Paradise 2.12': 'Paradise212',
-  'Paradise Typelevel 2.11': 'ParadiseTypelevel211',
-  'Paradise Typelevel 2.12': 'ParadiseTypelevel212',
 };
 
 export default {
@@ -52,10 +46,12 @@ export default {
   },
 
   opensByDefault(node, key) {
-    return node.type === 'Program'
-      || key === 'body'
-      || key === 'self'
-      || key === 'stats';
+    return (
+      node.type === 'Program' ||
+      key === 'body' ||
+      key === 'self' ||
+      key === 'stats'
+    );
   },
 
   getDefaultOptions() {
@@ -66,12 +62,8 @@ export default {
 
   _getSettingsConfiguration() {
     return {
-      fields: [
-        ['dialect', dialects],
-      ],
+      fields: [['dialect', dialects]],
       required: new Set('dialect'),
     };
   },
-
 };
-
