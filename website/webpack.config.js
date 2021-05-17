@@ -43,11 +43,11 @@ const plugins = [
   // Shim ESLint stuff that's only relevant for Node.js
   new webpack.NormalModuleReplacementPlugin(
     /cli-engine/,
-    'node-libs-browser/mock/empty'
+    'node-libs-browser/mock/empty',
   ),
   new webpack.NormalModuleReplacementPlugin(
     /load-rules/,
-    __dirname + '/src/parsers/js/transformers/eslint1/loadRulesShim.js'
+    __dirname + '/src/parsers/js/transformers/eslint1/loadRulesShim.js',
   ),
 
   // There seems to be a problem with webpack loading an index.js file that
@@ -60,7 +60,7 @@ const plugins = [
       if (/css-tree/.test(module.context)) {
         module.request += '/index.js';
       }
-    }
+    },
   ),
 
   // More shims
@@ -68,7 +68,7 @@ const plugins = [
   // Doesn't look like jest-validate is useful in our case (prettier uses it)
   new webpack.NormalModuleReplacementPlugin(
     /jest-validate/,
-    __dirname + '/src/shims/jest-validate.js'
+    __dirname + '/src/shims/jest-validate.js',
   ),
 
   // Hack to disable Webpack dynamic requires in ESLint, so we don't end up
@@ -94,7 +94,7 @@ const plugins = [
   new webpack.ProgressPlugin({
     modules: false,
     activeModules: false,
-    profile: false
+    profile: false,
   }),
 ];
 
@@ -208,6 +208,7 @@ module.exports = Object.assign({
           ],
           plugins: [
             require.resolve('@babel/plugin-transform-runtime'),
+            require.resolve('@babel/plugin-proposal-class-properties'),
           ],
         },
       },
@@ -270,5 +271,5 @@ module.exports = Object.assign({
     {
       devtool: 'eval',
     } :
-    {}
+    {},
 );
