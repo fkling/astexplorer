@@ -3,6 +3,8 @@ import pkg from 'shift-parser/package.json';
 
 const ID = 'shift';
 
+let lastParsedLocations;
+
 export default {
   ...defaultParserInterface,
 
@@ -18,13 +20,16 @@ export default {
 
   parse(shift, code, options) {
     const parseMethod = options.sourceType === 'module' ?
-      'parseModule' :
-      'parseScript';
-    return shift[parseMethod](code, options);
+      'parseModuleWithLocation' :
+      'parseScriptWithLocation';
+    const { tree, locations } = shift[parseMethod](code, options);
+    lastParsedLocations = locations;
+    return tree;
   },
 
-  nodeToRange({ loc }) {
-    if (loc) {
+  nodeToRange(node) {
+    if (lastParsedLocations && lastParsedLocations.has(node)) {
+      let loc = lastParsedLocations.get(node);
       return [loc.start.offset, loc.end.offset];
     }
   },
@@ -42,7 +47,6 @@ export default {
 
   getDefaultOptions() {
     return {
-      loc: true,
       earlyErrors: false,
       sourceType: 'module',
     };
@@ -52,10 +56,8 @@ export default {
     return {
       fields: [
         ['sourceType', ['script', 'module']],
-        'loc',
         'earlyErrors',
       ],
-      required: new Set(['loc']),
     };
   },
 

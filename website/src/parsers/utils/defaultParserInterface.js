@@ -84,7 +84,7 @@ export default {
   /**
    * A generator to iterate over each "property" of the node. Overwriting this
    * function allows a parser to expose information from a node if the node
-   * is not implemnted as plain JavaScript object.
+   * is not implemented as plain JavaScript object.
    */
   *forEachProperty(node) {
     if (node && typeof node === 'object') {
