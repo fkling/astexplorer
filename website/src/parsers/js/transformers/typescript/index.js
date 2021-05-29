@@ -21,6 +21,7 @@ export default {
   },
 
   transform({ transpile, ts }, transformCode, code) {
+    // basic scaffolding to get a compiled javascript module from the user provided code
     transformCode = transpile(transformCode);
     const mod = compileModule(
       // eslint-disable-line no-shadow
@@ -28,8 +29,13 @@ export default {
       { ts },
     );
 
+    // check that the exported value is valid
     const createTransformer = mod.default || mod;
+    if (typeof createTransformer !== 'function') {
+      throw new TypeError('expected the default export to be a program transformer factory');
+    }
 
+    // Create a minimal typescript host object needed for the rest of the compiler api
     const host /*: ts.host*/ = {
       fileExists: () => true,
       getCanonicalFileName: (filename) => filename,
@@ -49,6 +55,7 @@ export default {
       writeFile: () => null,
     };
 
+    // create the program with the provided file as entry point
     const program = ts.createProgram([FILENAME], {
       noResolve: true,
       target: ts.ScriptTarget.Latest,
@@ -57,18 +64,21 @@ export default {
       jsx: true,
     }, host);
 
+    // create the user provided transformer by invoking the factory
     const transformerFactory = createTransformer(program);
 
+    // create a source file node from the file contents
     const sourceFile = program.getSourceFile(FILENAME)
+
+    // transform the source file node with the created transformer
     const transformResult = ts.transform(sourceFile, [transformerFactory], program.getCompilerOptions());
+
+    // retrieve the result source file node
     const resultFile = transformResult.transformed[0];
 
-    const writer = ts.createTextWriter(host.getNewLine());
+    // create a printer and print the file to a string
     const printer = ts.createPrinter();
-
-    printer.writeFile(resultFile, writer, void 0);
-    const result = writer.getText();
-    writer.clear();
+    const result = printer.printFile(resultFile);
 
     return result;
   },
