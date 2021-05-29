@@ -16,9 +16,7 @@ const availablePlugins = [
 
   // ECMAScript Proposals
   // https://babeljs.io/docs/en/babel-parser.html#ecmascript-proposalshttpsgithubcombabelproposals
-  'classProperties',
-  'classPrivateProperties',
-  'classPrivateMethods',
+  'asyncDoExpressions',
   'classStaticBlock',
   'decimal',
   'decorators',
@@ -27,7 +25,6 @@ const availablePlugins = [
   'functionBind',
   'importAssertions',
   'moduleBlocks',
-  'moduleStringNames',
   'partialApplication',
   'pipelineOperator',
   'privateIn',
@@ -45,9 +42,7 @@ export const defaultOptions = {
   ranges: false,
   tokens: false,
   plugins: [
-    'classProperties',
-    'classPrivateProperties',
-    'classPrivateMethods',
+    'classStaticBlock',
     'decorators',
     'doExpressions',
     'exportDefaultFrom',
@@ -99,7 +94,6 @@ export default {
   parse(babylon, code, options) {
     options = {...options};
     // TODO: Make decoratorsBeforeExport settable through settings somehow
-    // TODO: Make pipelineOperator.proposal settable through settings somehow
     // TODO: Make recordAndTuple.syntaxType settable through settings somehow
     options.plugins = options.plugins.map(plugin => {
       switch (plugin) {
