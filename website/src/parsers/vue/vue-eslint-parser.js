@@ -18,6 +18,9 @@ export default {
   },
 
   parse(parser, code, options) {
+    if (Object.keys(options).length === 0) {
+      options = this.getDefaultOptions();
+    }
     return parser.parse(code, options);
   },
 
@@ -37,7 +40,30 @@ export default {
 
   getDefaultOptions() {
     return {
+      ecmaVersion: 10,
       sourceType: 'module',
+      vueFeatures: {
+        filter: true,
+        interpolationAsNonHTML: false,
+      },
+    };
+  },
+
+  _getSettingsConfiguration() {
+    const defaultOptions = this.getDefaultOptions();
+
+    return {
+      fields: [
+        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10, 11], value => Number(value)],
+        ['sourceType', ['script', 'module']],
+        {
+          key: 'vueFeatures',
+          title: 'vueFeatures',
+          fields: Object.keys(defaultOptions.vueFeatures),
+          settings:
+          settings => settings.vueFeatures || {...defaultOptions.vueFeatures},
+        },
+      ],
     };
   },
 
