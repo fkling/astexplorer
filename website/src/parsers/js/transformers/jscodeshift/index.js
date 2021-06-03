@@ -5,6 +5,20 @@ const ID = 'jscodeshift';
 
 const sessionMethods = new Set();
 
+// https://github.com/facebook/jscodeshift#parser
+const getJscodeshiftParser = (parser, parserSettings) => {
+  if (parser === 'typescript') {
+    if (parserSettings.typescript && parserSettings.typescript.jsx === false) {
+      return 'ts'
+    }
+    return 'tsx'
+  }
+  if (parser === 'flow') {
+    return 'flow'
+  }
+  return 'babel'
+}
+
 export default {
   id: ID,
   displayName: ID,
@@ -12,6 +26,14 @@ export default {
   homepage: pkg.homepage || 'https://github.com/facebook/jscodeshift',
 
   defaultParserID: 'recast',
+  compatibleParserIDs: new Set([
+    'typescript',
+    'flow',
+  ]),
+
+  formatCodeExample(codeExample, { parser, parserSettings }) {
+    return codeExample.replace('{{parser}}', `${getJscodeshiftParser(parser, parserSettings)}`)
+  },
 
   loadTransformer(callback) {
     require(['../../../transpilers/babel', 'jscodeshift'], (transpile, jscodeshift) => {
