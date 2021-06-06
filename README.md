@@ -41,6 +41,7 @@ The AST explorer provides following code parsers:
   - [esformatter][]
   - [esprima][]
   - [flow-parser][]
+  - [hermes-parser][]
   - [meriyah][]
   - [recast][]
   - [seafox][]
@@ -141,6 +142,7 @@ are included so you can prototype your own plugins:
 [esprima]: https://github.com/jQuery/esprima
 [flow-parser]: https://github.com/facebook/flow/tree/master/src/parser
 [graphql]: https://facebook.github.io/graphql/
+[hermes-parser]: https://github.com/facebook/hermes/tree/master/tools/hermes-parser/js/hermes-parser
 [htmlparser2]: https://github.com/fb55/htmlparser2
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [luaparse]: https://oxyc.github.io/luaparse/
