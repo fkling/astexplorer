@@ -30,7 +30,7 @@ export default {
   displayName: pkg.name,
   version: pkg.version,
   homepage: pkg.homepage || 'https://hermesengine.dev/',
-  locationProps: new Set(['range', 'loc']),
+  locationProps: new Set(['range', 'loc', 'start', 'end']),
 
   loadParser(callback) {
     callback(new HermesWorkerClient());
@@ -39,6 +39,15 @@ export default {
   async parse(hermes, code, options) {
     return await hermes.parse(code, options);
   },
+
+  nodeToRange(node) {
+    // For `babel: true` mode
+    if (typeof node.start !== 'undefined') {
+      return [node.start, node.end];
+    }
+    // For `babel: false` mode
+    return node.range;
+  },  
 
   getDefaultOptions() {
     return defaultOptions;
