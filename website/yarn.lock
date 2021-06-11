@@ -4565,6 +4565,11 @@ entities@^2.0.0:
   resolved "https://registry.yarnpkg.com/entities/-/entities-2.0.0.tgz#68d6084cab1b079767540d80e56a39b423e4abf4"
   integrity sha512-D9f7V0JSRwIxlRI2mjMqufDrRDnx8p+eEOz7aUM9SuvF8gsBzra0/6tbjl1m8eQHrZlYj6PxqE00hZ1SAIKPLw==
 
+erml@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/erml/-/erml-1.2.3.tgz#edac1a2171ff70d98a0853d4fdcdfc02468d281f"
+  integrity sha512-QJmq7fkzOY+8Ormhv0eQSGnPh0xqWZZo3lb96OoZhdZcyhhFO1exmVdZHZ8McF00Nt4Kr21XpJOqJ0q65JfEBw==
+
 errno@^0.1.3, errno@~0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.7.tgz#4684d71779ad39af177e3f007996f7c67c852618"

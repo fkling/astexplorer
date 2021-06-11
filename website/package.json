@@ -83,6 +83,7 @@
     "cssom": "^0.4.4",
     "domhandler": "^4.0.0",
     "ember-template-recast": "^5.0.1",
+    "erml": "^1.2.3",
     "escodegen": "^1.14.1",
     "esformatter-parser": "^1.0.0",
     "eslint1": "npm:eslint@^1",
