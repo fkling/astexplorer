@@ -68,6 +68,8 @@ The AST explorer provides following code parsers:
   - [regexp-tree][]
   - [regexpp][]
   - [regjsparser][]
+- Protocol Buffers:
+  - [pbkit][]
 - Scala
   - [Scalameta][]
 - Solidity:
@@ -148,6 +150,7 @@ are included so you can prototype your own plugins:
 [luaparse]: https://oxyc.github.io/luaparse/
 [meriyah]: https://github.com/meriyah/meriyah/
 [parse5]: https://github.com/inikulin/parse5
+[pbkit]: https://github.com/riiid/pbkit
 [postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
 [postcss-scss]: https://github.com/postcss/postcss-scss
 [postcss]: https://github.com/postcss/postcss
