@@ -119,7 +119,7 @@ export default {
   _getSettingsConfiguration(defaultOptions) {
     return {
       fields: [
-        ['parser', ['esprima', 'babel5', 'babylon6', 'babylon7', 'flow', 'typescript']],
+        ['parser', ['esprima', 'esprima-next', 'babel5', 'babylon6', 'babylon7', 'flow', 'typescript']],
         'range',
         'tolerant',
         {

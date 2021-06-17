@@ -42,6 +42,7 @@ The AST explorer provides following code parsers:
   - [espree][]
   - [esformatter][]
   - [esprima][]
+  - [esprima-next][]
   - [flow-parser][]
   - [hermes-parser][]
   - [meriyah][]
@@ -146,6 +147,7 @@ are included so you can prototype your own plugins:
 [eslint]: http://eslint.org/
 [espree]: https://github.com/eslint/espree
 [esprima]: https://github.com/jQuery/esprima
+[esprima-next]: https://github.com/node-projects/esprima-next
 [flow-parser]: https://github.com/facebook/flow/tree/master/src/parser
 [graphql]: https://facebook.github.io/graphql/
 [hermes-parser]: https://github.com/facebook/hermes/tree/master/tools/hermes-parser/js/hermes-parser

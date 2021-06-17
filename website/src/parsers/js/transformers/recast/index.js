@@ -20,10 +20,11 @@ export default {
         'recast/parsers/babel',
         'recast/parsers/babylon',
         'recast/parsers/esprima',
+        'recast/parsers/esprima-next',
         'recast/parsers/flow',
         'recast/parsers/typescript',
       ],
-      (transpile, recast, acorn, babel, babylon, esprima, flow, typescript) => {
+      (transpile, recast, acorn, babel, babylon, esprima, esprimaNext, flow, typescript) => {
         callback({
           transpile: transpile.default,
           recast,
@@ -32,6 +33,7 @@ export default {
             babel,
             babylon,
             esprima,
+            esprimaNext,
             flow,
             typescript,
           },

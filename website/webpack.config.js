@@ -256,6 +256,7 @@ module.exports = Object.assign({
       /traceur\/bin/,
       /typescript\/lib/,
       /esprima\/dist\/esprima\.js/,
+      /esprima-next\/dist\/esprima-next\.js/,
       /esprima-fb\/esprima\.js/,
       // This is necessary because flow is trying to load the 'fs' module, but
       // dynamically. Without this webpack will throw an error at runtime.
