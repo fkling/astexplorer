@@ -5101,6 +5101,11 @@ esprima-fb@~15001.1001.0-dev-harmony-fb:
   resolved "https://registry.yarnpkg.com/esprima-fb/-/esprima-fb-15001.1001.0-dev-harmony-fb.tgz#43beb57ec26e8cf237d3dd8b33e42533577f2659"
   integrity sha1-Q761fsJujPI3092LM+QlM1d/Jlk=
 
+esprima-next@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/esprima-next/-/esprima-next-5.0.0.tgz#94a138dbc4a6b08d7b9b5847965a7569f93a0d3c"
+  integrity sha512-0QazyVKWpg6uECzonzMH29BDqV805KA0nPSq4eZPqDR/ovAG4J9p4oZ/BV+ocOh5oRYdrVzs0mp+IAQuUAC0+w==
+
 esprima@^2.1, esprima@^2.6.0:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
