@@ -91,7 +91,7 @@
     "eslint4": "npm:eslint@^4",
     "espree": "^6.2.1",
     "esprima": "^4.0.1",
-    "esprima-next": "^5.0.0",
+    "esprima-next": "^5.1.0",
     "filbert": "^0.1.20",
     "flow-parser": "^0.144.0",
     "font-awesome": "^4.5.0",
