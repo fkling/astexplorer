@@ -1664,12 +1664,12 @@ acorn-loose@^6.0.0:
   dependencies:
     acorn "^6.2.0"
 
-acorn-loose@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/acorn-loose/-/acorn-loose-8.0.1.tgz#aefca8d000488422a31550a1643a5afaec985520"
-  integrity sha512-8fMxm/1uteix7z+FXiINxciDL0mTPS8ewCvMtHgA01QRXoLEt9EQkHKupa55sjFcyEnN8K8209yhL7KCeZhIiQ==
+acorn-loose@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/acorn-loose/-/acorn-loose-8.1.0.tgz#60056c516883e7df2ed6c57ef91a670bb08b8d36"
+  integrity sha512-+X1zk54qiOWwIRywGBhfz8sLHFJ/adQRuVqn25m4HuD7/+GTXM1c0b3LH0bWerQ0H97lTk2GyuScGbSiQK9M1g==
   dependencies:
-    acorn "^8.0.0"
+    acorn "^8.2.0"
 
 acorn-to-esprima@^2.0.8:
   version "2.0.8"
@@ -1711,10 +1711,10 @@ acorn@^7.1.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.1.tgz#e35668de0b402f359de515c5482a1ab9f89a69bf"
   integrity sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg==
 
-acorn@^8.0.0, acorn@^8.0.4:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.0.4.tgz#7a3ae4191466a6984eee0fe3407a4f3aa9db8354"
-  integrity sha512-XNP0PqF1XD19ZlLKvB7cMmnZswW4C/03pRHgirB30uSJTaS3A3V1/P4sS3HPvFmjoriPCJQs+JDSbm4bL1TxGQ==
+acorn@^8.2.0, acorn@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.3.0.tgz#1193f9b96c4e8232f00b11a9edff81b2c8b98b88"
+  integrity sha512-tqPKHZ5CaBJw0Xmy0ZZvLs1qTV+BNFSyvn77ASXkpBNfIRk8ev26fKrD9iLGwGA9zedPao52GSHzq8lyZG0NUw==
 
 acorn@~4.0.2:
   version "4.0.13"
