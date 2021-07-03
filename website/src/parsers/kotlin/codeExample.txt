@@ -1,0 +1,11 @@
+package example
+
+data class Hello(val text: String) {
+  val message
+  	get () = "Hello ${text}!"
+}
+
+fun main() {
+  val message = Hello("World").message;
+  println(message)
+}
