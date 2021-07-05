@@ -74,6 +74,7 @@ The AST explorer provides following code parsers:
   - [solidity-parser-antlr][]
 - SQL:
   - [sqlite-parser][]
+- [Tree][]
 - [WebIDL][]
 - YAML:
   - [yaml][]
@@ -184,6 +185,7 @@ are included so you can prototype your own plugins:
 [monkey]: https://github.com/gengjiawen/monkey-rust
 [scalameta]: http://scalameta.org/
 [solidity-parser-antlr]: https://github.com/federicobond/solidity-parser-antlr
+[Tree]: https://github.com/nin-jin/tree.d
 [vue-template-compiler]: https://github.com/vuejs/vue/tree/dev/packages/vue-template-compiler
 [@vue/compiler-core]: https://github.com/vuejs/vue-next/blob/master/packages/compiler-core/README.md
 [vue-eslint-parser]: https://github.com/mysticatea/vue-eslint-parser

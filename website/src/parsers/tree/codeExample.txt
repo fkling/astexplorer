@@ -1,0 +1,28 @@
+TREE is optional list-of LINE
+
+LINE is sequence
+	optional INDENT
+	optional NODES
+	NEW-LINE
+
+NODES is sequence
+	optional list-of SYMBOL
+	optional DATA
+	with-delimiter SPACE
+
+SYMBOL is list-of byte except SPECIAL
+
+DATA is sequence
+	DATA-PREFIX
+	optional list-of byte except NEW-LINE
+
+SPECIAL is any-of
+	NEW-LINE
+	DATA-PREFIX
+	INDENT
+	SPACE
+
+NEW-LINE is octet \0A
+INDENT is list-of octet \09
+DATA-PREFIX is octet \5C
+SPACE is list-of octet \20
