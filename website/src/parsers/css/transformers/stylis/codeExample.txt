@@ -1,0 +1,10 @@
+import { prefixer } from "stylis";
+
+export default [
+  (element, index, children, callback) => {
+    if (element.type === "decl" && element.props === "border") {
+      element.return = element.value.replace(/^border/, "outline");
+    }
+  },
+  prefixer,
+];
