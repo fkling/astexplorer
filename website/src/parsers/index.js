@@ -59,7 +59,7 @@ export const categories =
   });
 
 export function getDefaultCategory() {
-  return categoryByID.oas;
+  return categoryByID.raml;
 }
 
 export function getDefaultParser(category = getDefaultCategory()) {

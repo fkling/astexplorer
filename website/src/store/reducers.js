@@ -1,7 +1,7 @@
 import * as actions from './actions';
 import {getCategoryByID, getDefaultParser, getParserByID, getTransformerByID} from '../parsers';
 
-const defaultParser = getDefaultParser(getCategoryByID('oas'));
+const defaultParser = getDefaultParser(getCategoryByID('raml'));
 
 const initialState = {
 
