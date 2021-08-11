@@ -1,8 +1,0 @@
-module.exports = {
-  Char({node}) {
-    // Replace 'a' chars with 'b'.
-    if (node.kind === 'simple' && node.value === 'a') {
-      node.value = 'b';
-    }
-  }
-};
