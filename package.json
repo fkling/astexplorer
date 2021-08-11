@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "start": "cd website && npm start",
+    "preinstall": "cd website && npm install"
+  }
+}

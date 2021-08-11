@@ -35,9 +35,9 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "amf-client-js": "^5.0.0-beta.2",
+    "amf-client-js": "^5.0.0-beta.3",
     "astexplorer-go": "^1.0.0",
-    "codemirror": "^5.62.2",
+    "codemirror": "^5.22.0",
     "escodegen": "^1.14.1",
     "font-awesome": "^4.5.0",
     "generic-js-model-adapter": "^1.0.5",
@@ -60,6 +60,7 @@
     "build": "rimraf ../out/* && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 webpack --mode=production ",
     "build-dev": "rimraf ../out/* && cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 webpack -d --mode=development",
     "watch": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 webpack -dw --mode=development ",
+    "postinstall": "npm run build",
     "lint": "node_modules/eslint/bin/eslint.js src/",
     "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml"
   }
