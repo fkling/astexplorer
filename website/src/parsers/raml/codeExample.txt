@@ -1,0 +1,39 @@
+#%RAML 1.0
+
+title: ACME Banking HTTP API
+version: 1.0
+mediaType: application/json
+
+baseUri: acme-banking.com/apis
+
+/customers:
+  /{customer_id}:
+    uriParameters:
+      customer_id: string
+    get:
+      description: Returns Customer data
+      responses:
+        200:
+          body:
+            application/json:
+    delete:
+      description: Removes a Customer from the system
+    /accounts:
+      get:
+        description: Returns a collection accounts
+        responses:
+          200:
+            body:
+              application/json:
+    /cards:
+      /debit:
+        get:
+          description: Returns a collection of cards
+          responses:
+            200:
+              body:
+                application/json:
+        post:
+          description: Requests the creation of a new DebitCard
+          body:
+            application/json:

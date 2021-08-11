@@ -1,0 +1,144 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ACME Banking HTTP API",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "acme-banking.com/apis"
+    }
+  ],
+  "paths": {
+    "/customers/{customer_id}": {
+      "delete": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": "customer_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "description": "Removes a Customer from the system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "requestBody": {
+          "content": {}
+        },
+        "servers": [
+          {
+            "url": "acme-banking.com/apis"
+          }
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": "customer_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "description": "Returns Customer data",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "requestBody": {
+          "content": {}
+        }
+      }
+    },
+    "/customers/{customer_id}/accounts": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": "customer_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "description": "Returns a collection accounts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "requestBody": {
+          "content": {}
+        }
+      }
+    },
+    "/customers/{customer_id}/cards/debit": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": "customer_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "description": "Returns a collection of cards",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        },
+        "requestBody": {
+          "content": {}
+        }
+      },
+      "post": {
+        "requestBody": {
+          "content": {}
+        },
+        "description": "Requests the creation of a new DebitCard",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "name": "customer_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "description": "account id"
+            },
+            "in": "query",
+            "name": "account",
+            "description": "account id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {}
+          }
+        }
+      }
+    }
+  }
+}

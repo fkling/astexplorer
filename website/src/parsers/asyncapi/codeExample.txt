@@ -1,0 +1,20 @@
+asyncapi: '2.0.0'
+info:
+  title: Correlation ID Example
+  version: '1.0.0'
+
+channels:
+  smartylighting/streetlights/1/0/event/{streetlightId}/lighting/measured:
+    description: some channel
+    publish:
+      operationId: some unique id
+      summary: some summary
+      description: some description
+      message:
+        payload:
+          type: string
+    subscribe:
+      operationId: subscribe operation
+      message:
+        payload:
+          type: string
