@@ -120,7 +120,6 @@ export default {
           return plugin;
       }
     });
-    console.log(options);
     return babylon.parse(code, options);
   },
 
