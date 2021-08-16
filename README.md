@@ -23,6 +23,7 @@ The AST explorer provides following code parsers:
   - [htmlparser2][]
   - [parse5][]
   - [@angular/compiler][]
+  - [@angular-eslint/template-parser][]
   - [svelte][]
   - [posthtml][]
   - [hyntax][]
@@ -130,6 +131,7 @@ are included so you can prototype your own plugins:
 [acorn-jsx]: https://github.com/RReverser/acorn-jsx
 [acorn]: https://github.com/ternjs/acorn
 [@angular/compiler]: https://angular.io/
+[@angular-eslint/template-parser]: https://github.com/angular-eslint/angular-eslint/tree/master/packages/template-parser
 [babel-eslint]: https://github.com/babel/babel-eslint
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [babylon]: https://babeljs.io/
