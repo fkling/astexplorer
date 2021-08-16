@@ -27,10 +27,8 @@ const availablePlugins = [
   'moduleBlocks',
   'partialApplication',
   'pipelineOperator',
-  'privateIn',
   'recordAndTuple',
   'throwExpressions',
-  'topLevelAwait',
 ];
 
 const ID = 'babylon7';
@@ -53,6 +51,7 @@ export const defaultOptions = {
     'privateIn',
     'topLevelAwait',
   ],
+  pipelineOptions: { proposal: 'hack', hackTopicToken: '%' }
 };
 
 export const parserSettingsConfiguration = {
@@ -74,7 +73,15 @@ export const parserSettingsConfiguration = {
         {},
       ),
     },
-    ['pipelineProposal', ['minimal', 'smart', 'fsharp']],
+    {
+      key: 'pipelineOptions',
+      title: 'Pipeline Operator Options',
+      fields: [
+        ['proposal', ['minimal', 'smart', 'hack', 'fsharp']],
+        ['hackTopicToken', ['%', '#']]
+      ],
+      settings: settings => settings.pipelineOptions || defaultOptions.pipelineOptions,
+    }
   ],
 };
 
@@ -93,6 +100,9 @@ export default {
 
   parse(babylon, code, options) {
     options = {...options};
+    // Older versions didn't have the pipelineOptions setting, but
+    // only a pipelineProposal string option.
+    const { pipelineOptions = {proposal: options.pipelineProposal} } = options;
     // TODO: Make decoratorsBeforeExport settable through settings somehow
     // TODO: Make recordAndTuple.syntaxType settable through settings somehow
     options.plugins = options.plugins.map(plugin => {
@@ -100,7 +110,10 @@ export default {
         case 'decorators':
           return ['decorators', {decoratorsBeforeExport: false}];
         case 'pipelineOperator':
-          return ['pipelineOperator', {proposal: options.pipelineProposal}];
+          return ['pipelineOperator', {
+            proposal: pipelineOptions.proposal,
+            topicToken: pipelineOptions.hackTopicToken,
+          }];
         case 'recordAndTuple':
           return ['recordAndTuple', { syntaxType: 'hash' }];
         default:
