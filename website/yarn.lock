@@ -8445,6 +8445,11 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+pbkit@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/pbkit/-/pbkit-0.0.12.tgz#f67a307867763da732f38198a53034342373d62d"
+  integrity sha512-NtHgxsdLpxwXyKWeeObkFbVLPQWoigyQfHJVZZJVI2h2pLC7wM39mbMzT0l89MPjB7Z7QTKzzVhtzMG9zWC2ug==
+
 php-parser@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-3.0.0.tgz#7e0abef4941cabbf10f25f1445bca0f758f5102f"
