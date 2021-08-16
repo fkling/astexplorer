@@ -107,6 +107,19 @@ function format(state=initialState.enableFormatting, action) {
   return state;
 }
 
+function getDefaultTransform(transformer, workbenchState) {
+  if (typeof transformer.formatCodeExample === 'function') {
+    return transformer.formatCodeExample(
+      transformer.defaultTransform,
+      {
+        parser: workbenchState.parser,
+        parserSettings: workbenchState.parserSettings || {},
+      },
+    )
+  }
+  return transformer.defaultTransform
+}
+
 function workbench(state=initialState.workbench, action, fullState) {
   function parserFromCategory(category) {
     const parser = fullState.parserPerCategory[category.id] ||
@@ -143,6 +156,15 @@ function workbench(state=initialState.workbench, action, fullState) {
           // Update parser settings
           newState.parserSettings =
             fullState.parserSettings[action.parser.id] || null;
+
+          // Check if we might want to reformat the code example
+          const transformer = getTransformerByID(state.transform.transformer)
+          if (transformer && state.transform.code === getDefaultTransform(transformer, state)) {
+            newState.transform = {
+              ...state.transform,
+              code: getDefaultTransform(transformer, newState),
+            }
+          }
         }
         return newState;
       }
@@ -150,8 +172,10 @@ function workbench(state=initialState.workbench, action, fullState) {
       return {...state, code: action.code};
     case actions.SELECT_TRANSFORMER:
       {
+        const parserIsCompatible =
+          action.transformer.compatibleParserIDs && action.transformer.compatibleParserIDs.has(state.parser)
         const differentParser =
-          action.transformer.defaultParserID !== state.parser;
+          action.transformer.defaultParserID !== state.parser && !parserIsCompatible;
         const differentTransformer =
           action.transformer.id !== state.transform.transformer ;
 
@@ -176,10 +200,10 @@ function workbench(state=initialState.workbench, action, fullState) {
             transformResult: null,
             code: snippetHasDifferentTransform ?
               state.transform.code :
-              action.transformer.defaultTransform,
+              getDefaultTransform(action.transformer, state),
             initialCode: snippetHasDifferentTransform ?
               fullState.activeRevision.getTransformCode() :
-              action.transformer.defaultTransform,
+              getDefaultTransform(action.transformer, state),
           };
         }
 
@@ -237,8 +261,8 @@ function workbench(state=initialState.workbench, action, fullState) {
           const transformer = getTransformerByID(state.transform.transformer);
           newState.transform = {
             ...state.transform,
-            code: transformer.defaultTransform,
-            initialCode: transformer.defaultTransform,
+            code: getDefaultTransform(transformer, state),
+            initialCode: getDefaultTransform(transformer, state),
           };
         }
         return newState;
