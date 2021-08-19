@@ -1,6 +1,5 @@
 import defaultParserInterface from '../utils/defaultParserInterface'
-const errorHandling = require("../utils/errorHandling")
-
+const adaptResult = require("../utils/adaptResult")
 const ID = 'amf-async-parser'
 
 export default {
@@ -20,18 +19,7 @@ export default {
     async parse({ parser, adapter }, code) {
         let client = parser.AsyncAPIConfiguration.Async20().baseUnitClient();
         let parsingResult = await client.parseContent(code,"application/asyncapi20+yaml")
-
-        if(parsingResult.conforms){
-            let model = parsingResult.baseUnit
-            let transformers = adapter.TransformerSet.createTransformerSet()
-            transformers.addPositionTransformer(code)
-            transformers.addNameTransformer()
-            let builder = adapter.AstBuilder.createBuilder(model,false,transformers)
-            return builder.buildObject()
-        }else{
-            let errors = parsingResult.results
-            throw new SyntaxError(errorHandling.firstViolationMessage(errors))
-        }
+        return adaptResult.getAdaptedParsingResult(parsingResult,code,adapter)
     },
 
     getNodeName(node) {
