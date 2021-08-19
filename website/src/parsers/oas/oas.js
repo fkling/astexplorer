@@ -1,4 +1,5 @@
 import defaultParserInterface from '../utils/defaultParserInterface'
+const errorHandling = require("../utils/errorHandling")
 const ID = 'amf-oas-parser'
 
 export default {
@@ -16,13 +17,20 @@ export default {
     },
 
     async parse({ parser, adapter }, code) {
-        let client = parser.OASConfiguration.OAS().baseUnitClient();
-        let model = (await client.parseContent(code)).baseUnit
-        let transformers = adapter.TransformerSet.createTransformerSet()
-        transformers.addPositionTransformer(code)
-        transformers.addNameTransformer()
-        let builder = adapter.AstBuilder.createBuilder(model,false,transformers)
-        return builder.buildObject()
+        let client = parser.OASConfiguration.OAS().baseUnitClient()
+        let parsingResult = await client.parseContent(code)
+
+        if(parsingResult.conforms){
+            let model = parsingResult.baseUnit
+            let transformers = adapter.TransformerSet.createTransformerSet()
+            transformers.addPositionTransformer(code)
+            transformers.addNameTransformer()
+            let builder = adapter.AstBuilder.createBuilder(model,false,transformers)
+            return builder.buildObject()
+        }else{
+            let errors = parsingResult.results
+            throw new SyntaxError(errorHandling.firstViolationMessage(errors))
+        }
     },
 
     getNodeName(node) {
