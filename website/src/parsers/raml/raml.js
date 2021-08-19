@@ -1,5 +1,6 @@
 import defaultParserInterface from '../utils/defaultParserInterface'
-const adaptResult = require("../utils/adaptResult")
+const errorHandler = require("../utils/errorHandler")
+const builder = require("../utils/buildAst")
 const ID = 'amf-raml-parser'
 
 export default {
@@ -17,9 +18,10 @@ export default {
     },
 
     async parse({ parser, adapter }, code) {
-        let client = parser.RAMLConfiguration.RAML().baseUnitClient()
+        let provider = errorHandler.getProvider(parser)
+        let client = parser.RAMLConfiguration.RAML().withErrorHandlerProvider(provider).baseUnitClient()
         let parsingResult = await client.parseContent(code)
-        return adaptResult.getAdaptedParsingResult(parsingResult,code,adapter)
+        return builder.buildAst(parsingResult,adapter,code)
     },
 
     getNodeName(node) {
