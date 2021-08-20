@@ -22,7 +22,7 @@ export default {
   locationProps: new Set(['location']),
 
   loadParser(callback) {
-    require(['exports-loader?traceur!traceur/bin/traceur'], callback);
+    require(['exports-loader?exports=traceur!traceur/bin/traceur'], callback);
   },
 
   parse(traceur, code, options) {
@@ -140,7 +140,7 @@ export default {
 
   _getSettingsConfiguration(defaultOptions) {
     return {
-      fields :[
+      fields: [
         ['SourceType', ['Script', 'Module']],
         ...Object.keys(defaultOptions).filter(x => x !== 'SourceType'),
       ],

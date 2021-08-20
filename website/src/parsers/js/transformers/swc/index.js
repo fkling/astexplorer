@@ -8,36 +8,27 @@ export default {
   defaultParserID: ID,
 
   loadTransformer(callback) {
-    import("@swc/wasm-web/wasm.js").then(console.log);
+    import("@swc/wasm-web/wasm.js").then(mod => mod.default().then(callback));
   },
 
   transform(swc, options, code) {
-    console.log(swc, options, code);
     try {
+      const Plugin = eval(`
+        import Visitor from "@swc/core/Visitor";
+
+        ${options}
+      `);
+
       return swc.transformSync(code, {
         "jsc": {
-          "target": "es5",
+          "target": "es2016",
           "parser": {
-            "syntax": "ecmascript"
-          },
-          "transform": {
-            "optimizer": {
-              "globals": {
-                "vars": {
-                  "__DEBUG__": "true"
-                }
-              }
-            }
+            "syntax": "ecmascript",
+            "jsx": true,
+            "dynamicImport": true,
           }
         },
-        "minify": false,
-        "module": {
-          "type": "commonjs",
-          "strict": false,
-          "strictMode": true,
-          "lazy": false,
-          "noInterop": false
-        }
+        plugin: m => new Plugin().visitProgram(m)
       });
     } catch (e) {
       throw new SyntaxError(e);

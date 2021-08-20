@@ -12,11 +12,10 @@ export default {
   locationProps: new Set(['span']),
 
   loadParser(callback) {
-    import("@swc/wasm-web/wasm.js").then(console.log);
+    import("@swc/wasm-web/wasm.js").then(mod => mod.default().then(callback));
   },
 
   parse(parser, code, options = {}) {
-    console.log(parser);
     try {
       return parser.parseSync(code, options);
     } catch (message) {

@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
+const InlineManifestWebpackPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin');
 const fs = require('fs');
@@ -78,7 +78,6 @@ const plugins = [
 
   new MiniCssExtractPlugin({
     filename: DEV ? '[name].css' : `[name]-[contenthash]-${CACHE_BREAKER}.css`,
-    allChunks: true,
   }),
 
   new HtmlWebpackPlugin({
@@ -86,11 +85,10 @@ const plugins = [
     inject: 'body',
     filename: 'index.html',
     template: './index.ejs',
-    chunksSortMode: 'id',
   }),
 
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
-  new InlineManifestWebpackPlugin(),
+  new InlineManifestWebpackPlugin(HtmlWebpackPlugin, [/runtime/]),
   new webpack.ProgressPlugin({
     modules: false,
     activeModules: false,
@@ -98,7 +96,13 @@ const plugins = [
   }),
 ];
 
-module.exports = Object.assign({
+module.exports = {
+  mode: DEV ? 'development' : 'production',
+  devtool: false,
+  experiments: {
+    asyncWebAssembly: true,
+    syncWebAssembly: true,
+  },
   optimization: {
     moduleIds: DEV ? 'named' : 'hashed',
     runtimeChunk: 'single',
@@ -123,14 +127,22 @@ module.exports = Object.assign({
       }),
     ],
   },
-
+  resolve: {
+    fallback: {
+      path: require.resolve("path-browserify"),
+      constants: require.resolve("constants-browserify"),
+      stream: require.resolve("stream-browserify"),
+      os: require.resolve("os-browserify/browser"),
+      tty: require.resolve("tty-browserify"),
+      child_process: false,
+      fs: false,
+      module: false,
+      net: false,
+      readline: false,
+    }
+  },
   module: {
     rules: [
-      {
-        test: /\.wasm$/,
-        type: 'javascript/auto',
-        loader: 'file-loader',
-      },
       {
         test: [
           /\.d\.ts$/,
@@ -159,6 +171,7 @@ module.exports = Object.assign({
           /\/acorn.es.js$/,
           /\/acorn.mjs$/,
           /\/acorn-loose.mjs$/,
+          path.join(__dirname, 'node_modules', 'yaml', 'browser', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
@@ -229,20 +242,19 @@ module.exports = Object.assign({
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          mimetype: 'application/font-woff'
+        }
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
       },
-      {
-        test: /@swc\/wasm-web\/wasm\.js/,
-        type: 'javascript/auto',
-      }
     ],
 
     noParse: [
-      /@swc\/wasm-web\/wasm_bg\.wasm/,
       /traceur\/bin/,
       /typescript\/lib/,
       /esprima\/dist\/esprima\.js/,
@@ -255,14 +267,6 @@ module.exports = Object.assign({
     ],
   },
 
-  node: {
-    child_process: 'empty',
-    fs: 'empty',
-    module: 'empty',
-    net: 'empty',
-    readline: 'empty',
-  },
-
   plugins: plugins,
 
   entry: {
@@ -270,15 +274,9 @@ module.exports = Object.assign({
   },
 
   output: {
+    publicPath: './',
     path: path.resolve(__dirname, '../out'),
     filename: DEV ? '[name].js' : `[name]-[contenthash]-${CACHE_BREAKER}.js`,
     chunkFilename: DEV ? '[name].js' : `[name]-[contenthash]-${CACHE_BREAKER}.js`,
   },
-},
-
-  DEV ?
-    {
-      devtool: 'eval',
-    } :
-    {},
-);
+};
