@@ -98,7 +98,7 @@ const plugins = [
 
 module.exports = {
   mode: DEV ? 'development' : 'production',
-  devtool: false,
+  devtool: DEV ? 'eval-cheap-source-map' : false,
   experiments: {
     asyncWebAssembly: true,
     syncWebAssembly: true,
