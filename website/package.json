@@ -56,7 +56,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "scripts": {
-    "start": "serve -l 8080  ../out",
+    "start": "node serve-index.js",
     "build": "rimraf ../out/* && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 webpack --mode=production ",
     "build-dev": "rimraf ../out/* && cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 webpack -d --mode=development",
     "watch": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=4096 webpack -dw --mode=development ",
