@@ -12,12 +12,12 @@ export default {
   locationProps: new Set(['span']),
 
   loadParser(callback) {
-    import("@swc/wasm-web/wasm.js").then(mod => mod.default().then(callback));
+    import("@swc/wasm-web/wasm.js").then(mod => mod.default().then(() => callback(mod.parseSync)));
   },
 
   parse(parser, code, options = {}) {
     try {
-      return parser.parseSync(code, options);
+      return parser(code, options);
     } catch (message) {
       // AST Explorer expects the thrown error to be an object, not a string.
       throw new SyntaxError(message);
