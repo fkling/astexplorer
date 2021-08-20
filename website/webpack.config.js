@@ -127,6 +127,11 @@ module.exports = Object.assign({
   module: {
     rules: [
       {
+        test: /\.wasm$/,
+        type: 'javascript/auto',
+        loader: 'file-loader',
+      },
+      {
         test: [
           /\.d\.ts$/,
         ],
@@ -230,9 +235,14 @@ module.exports = Object.assign({
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
       },
+      {
+        test: /@swc\/wasm-web\/wasm\.js/,
+        type: 'javascript/auto',
+      }
     ],
 
     noParse: [
+      /@swc\/wasm-web\/wasm_bg\.wasm/,
       /traceur\/bin/,
       /typescript\/lib/,
       /esprima\/dist\/esprima\.js/,
