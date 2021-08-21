@@ -132,6 +132,17 @@ module.exports = Object.assign({
         ],
         use: 'null-loader',
       },
+      // Without this rule weback is loading the ESM version of esquery, which
+      // causes an error since eslint uses `require('esquery')` (not
+      // `require('esquery').default`) to load the module.
+      {
+        issuer: /eslint4/,
+        resolve: {
+          alias: {
+            'esquery': 'esquery/dist/esquery.min.js',
+          },
+        },
+      },
       {
         test: [
           /\/CLIEngine/,
