@@ -14,7 +14,7 @@ export default function Builder({parseResult}) {
   }
   const builderCode = 'const t = require(\'@babel/types\');\n\n' + getFormattedBuilders(nodes).join('\n');
   return (
-    <Editor value={builderCode}/>
+    <Editor value={builderCode} readOnly={true} />
   );
 }
 
