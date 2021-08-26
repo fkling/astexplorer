@@ -38,4 +38,4 @@ Run `yarn start` to start a simple static webserver.
 #### Deploy to Heroku
 
 1. Add a remote to your local repository with: heroku `git:remote -a amf-model-playground`
-2. Use `git heroku push master` to push the code from local directory to heroku remote
+2. Use `git push heroku master` to push the code from local directory to heroku remote

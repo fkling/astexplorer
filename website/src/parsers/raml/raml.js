@@ -8,7 +8,7 @@ export default {
 
     id: ID,
     displayName: 'amf-parser',
-    version: '5.0.0-beta.2',
+    version: '5.0.0-beta.3',
     homepage: 'https://www.npmjs.com/package/amf-client-js',
 
     loadParser(callback) {
