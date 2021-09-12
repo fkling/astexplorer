@@ -20,8 +20,13 @@ export default {
       'remark-directive',
       'remark-frontmatter',
       'remark-math',
-    ], (remark, gfm, directive, frontmatter, math) =>
-      callback({ remark, gfm, directive, frontmatter, math }));
+    ], (
+      { remark },
+      { default: gfm },
+      { default: directive },
+      { default: frontmatter },
+      { default: math }
+    ) => callback({ remark, gfm, directive, frontmatter, math }));
   },
 
   parse({ remark, gfm, directive, frontmatter, math }, code, options) {
@@ -69,7 +74,7 @@ export default {
         {defaultParserInterface.renderSettings.call(
           this,
           parserSettings,
-          onChange,
+          onChange
         )}
       </div>
     );
