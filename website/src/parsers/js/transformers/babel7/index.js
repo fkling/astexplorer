@@ -1,7 +1,9 @@
 import compileModule from '../../../utils/compileModule';
+import {getPlugins} from '../../babylon7';
 import pkg from 'babel7/package.json';
 
 const ID = 'babelv7';
+const defaultParserID = 'babylon7';
 
 export default {
   id: ID,
@@ -9,7 +11,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParserID: 'babylon7',
+  defaultParserID,
 
   loadTransformer(callback) {
     require([
@@ -19,7 +21,7 @@ export default {
     ], (transpile, babel, recast) => callback({ transpile: transpile.default, babel, recast }));
   },
 
-  transform({ transpile, babel, recast }, transformCode, code) {
+  transform({ transpile, babel, recast }, transformCode, code, parserSettings) {
     transformCode = transpile(transformCode);
     let transform = compileModule( // eslint-disable-line no-shadow
       transformCode,
@@ -28,32 +30,7 @@ export default {
     return babel.transformAsync(code, {
       parserOpts: {
         parser: recast.parse,
-        plugins: [
-          'asyncGenerators',
-          'bigInt',
-          'classPrivateMethods',
-          'classPrivateProperties',
-          'classProperties',
-          ['decorators', {decoratorsBeforeExport: false}],
-          'doExpressions',
-          'dynamicImport',
-          'exportDefaultFrom',
-          'exportNamespaceFrom',
-          'flow',
-          'flowComments',
-          'functionBind',
-          'functionSent',
-          'importMeta',
-          'jsx',
-          'logicalAssignment',
-          'nullishCoalescingOperator',
-          'numericSeparator',
-          'objectRestSpread',
-          'optionalCatchBinding',
-          'optionalChaining',
-          ['pipelineOperator', {proposal: 'minimal'}],
-          'throwExpressions',
-        ],
+        plugins: getPlugins(parserSettings),
       },
       retainLines: false,
       generatorOpts: {

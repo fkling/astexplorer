@@ -1,7 +1,7 @@
-import {getTransformer, getTransformCode, getCode, showTransformer} from './selectors';
+import {getTransformer, getTransformCode, getCode, getParserSettings, showTransformer} from './selectors';
 import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
 
-async function transform(transformer, transformCode, code) {
+async function transform(transformer, transformCode, code, parserSettings) {
   // Transforms may make use of Node's __filename global. See GitHub issue #420.
   // So we define a dummy one.
   if (!global.__filename) {
@@ -13,7 +13,7 @@ async function transform(transformer, transformCode, code) {
   let realTransformer;
   try {
     realTransformer = await transformer._promise;
-    let result = await transformer.transform(realTransformer, transformCode, code);
+    let result = await transformer.transform(realTransformer, transformCode, code, parserSettings);
     let map = null;
     if (typeof result !== 'string') {
       if (result.map) {
@@ -44,6 +44,7 @@ export default store => next => async (action) => {
   const newTransformer = getTransformer(newState);
   const newTransformCode = getTransformCode(newState);
   const newCode = getCode(newState);
+  const newParserSettings = getParserSettings(newState);
 
   if (
     action.type === 'INIT' ||
@@ -62,7 +63,7 @@ export default store => next => async (action) => {
 
     let result;
     try  {
-      result = await transform(newTransformer, newTransformCode, newCode);
+      result = await transform(newTransformer, newTransformCode, newCode, newParserSettings);
     } catch (error) {
       result = {error}
     }

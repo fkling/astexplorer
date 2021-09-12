@@ -85,6 +85,29 @@ export const parserSettingsConfiguration = {
   ],
 };
 
+export function getPlugins({pipelineProposal, plugins}) {
+  // Older versions didn't have the pipelineOptions setting, but
+  // only a pipelineProposal string option.
+  const pipelineOptions = {proposal: pipelineProposal};
+  // TODO: Make decoratorsBeforeExport settable through settings somehow
+  // TODO: Make recordAndTuple.syntaxType settable through settings somehow
+  return plugins.map(plugin => {
+    switch (plugin) {
+      case 'decorators':
+        return ['decorators', {decoratorsBeforeExport: false}];
+      case 'pipelineOperator':
+        return ['pipelineOperator', {
+          proposal: pipelineOptions.proposal,
+          topicToken: pipelineOptions.hackTopicToken,
+        }];
+      case 'recordAndTuple':
+        return ['recordAndTuple', { syntaxType: 'hash' }];
+      default:
+      return plugin;
+    }
+  });
+}
+
 export default {
   ...defaultParserInterface,
 
@@ -99,28 +122,11 @@ export default {
   },
 
   parse(babylon, code, options) {
-    options = {...options};
-    // Older versions didn't have the pipelineOptions setting, but
-    // only a pipelineProposal string option.
-    const { pipelineOptions = {proposal: options.pipelineProposal} } = options;
-    // TODO: Make decoratorsBeforeExport settable through settings somehow
-    // TODO: Make recordAndTuple.syntaxType settable through settings somehow
-    options.plugins = options.plugins.map(plugin => {
-      switch (plugin) {
-        case 'decorators':
-          return ['decorators', {decoratorsBeforeExport: false}];
-        case 'pipelineOperator':
-          return ['pipelineOperator', {
-            proposal: pipelineOptions.proposal,
-            topicToken: pipelineOptions.hackTopicToken,
-          }];
-        case 'recordAndTuple':
-          return ['recordAndTuple', { syntaxType: 'hash' }];
-        default:
-          return plugin;
-      }
-    });
-    return babylon.parse(code, options);
+    const newOptions = {
+      ...options,
+      plugins: getPlugins(options),
+    };
+    return babylon.parse(code, newOptions);
   },
 
   getNodeName(node) {
