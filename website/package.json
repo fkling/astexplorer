@@ -138,6 +138,7 @@
     "regjsparser": "^0.6.0",
     "remark": "^14.0.0",
     "remark-directive": "^2.0.0",
+    "remark-footnotes": "^4.0.0",
     "remark-frontmatter": "^4.0.0",
     "remark-gfm": "^2.0.0",
     "remark-math": "^5.0.0",
