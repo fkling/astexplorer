@@ -1,0 +1,19 @@
+export default function transform(code, { estreeToolkit, parsers }) {
+  const {
+    builders: b,
+    is,
+    traverse,
+    utils
+  } = estreeToolkit;
+
+  // There are many parsers, use any of them to generate an AST
+  const ast = parsers.meriyah.parseModule(code);
+  
+  traverse(ast, {
+    Identifier(path) {
+      path.node.name = path.node.name.split('').reverse().join('');
+    }
+  });
+
+  return ast;
+}
