@@ -1,0 +1,11 @@
+
+tasks:
+  - init: cd website && yarn 
+    command: yarn dev
+  - init: fish
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+    visibility: public
+
