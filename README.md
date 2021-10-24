@@ -16,6 +16,7 @@ The AST explorer provides following code parsers:
 - Graphviz:
   - [redot][]
 - Handlebars:
+  - [bigodon][]
   - [glimmer][]
   - [handlebars][]
   - [ember-template-recast][]
@@ -137,6 +138,7 @@ are included so you can prototype your own plugins:
 [babel-eslint]: https://github.com/babel/babel-eslint
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [babylon]: https://babeljs.io/
+[bigodon]: https://github.com/gabriel-pinheiro/bigodon
 [cssom]: https://github.com/NV/CSSOM
 [csstree]: https://github.com/csstree/csstree
 [ember-template-recast]: https://github.com/ember-template-lint/ember-template-recast
