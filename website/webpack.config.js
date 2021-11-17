@@ -193,6 +193,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'regexp-tree'),
           path.join(__dirname, 'node_modules', 'regjsparser'),
           path.join(__dirname, 'node_modules', 'regexpp'),
+          path.join(__dirname, 'node_modules', 'ret'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
           path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),

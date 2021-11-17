@@ -141,6 +141,7 @@
     "remark-frontmatter": "^3.0.0",
     "remark-gfm": "^1.0.0",
     "remark-math": "^4.0.0",
+    "ret": "^0.4.0",
     "san": "^3.9.4",
     "scalameta-parsers": "^4.4.17",
     "seafox": "^1.6.9",
