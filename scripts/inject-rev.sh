@@ -5,4 +5,4 @@
 # likely just out/index.html
 
 rev=$(git rev-parse --short HEAD)
-sed -i "s%@@COMMIT@@%Build: <a href='https://github.com/fkling/astexplorer/commits/$rev'>$rev</a>%" "$1"
+sed -i "s%@@COMMIT@@%Build: <a href='https://github.com/postcss-rs/astexplorer/commits/$rev'>$rev</a>%" "$1"
