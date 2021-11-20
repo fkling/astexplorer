@@ -1,6 +1,5 @@
 import * as selectors from './selectors.js';
 import * as actions from './actions.js';
-import {logError, logEvent} from '../utils/logger.js';
 
 let clearURLOnClearError = false;
 let cancelLoad = () => {}
@@ -49,7 +48,6 @@ async function loadSnippet(state, next, storageAdapter) {
     // revision can be null if the URL is "empty"
     if (!cancelled) {
       if (revision) {
-        logEvent('snippet', 'load');
         next(actions.setSnippet(revision));
       } else {
         next(actions.clearSnippet());
@@ -57,8 +55,6 @@ async function loadSnippet(state, next, storageAdapter) {
     }
   } catch(error) {
     const errorMessage = 'Failed to fetch revision: ' + error.message;
-    logError(errorMessage);
-
     clearURLOnClearError = true;
     next(actions.setError(new Error(errorMessage)));
   } finally {
@@ -94,8 +90,6 @@ async function saveSnippet({fork}, state, next, storageAdapter) {
     data.transform = transformCode;
   }
 
-  logEvent('snippet', eventAction, data.toolID);
-
   try {
     let newRevision;
     if (fork) {
@@ -109,7 +103,6 @@ async function saveSnippet({fork}, state, next, storageAdapter) {
       storageAdapter.updateHash(newRevision);
     }
   } catch (error) {
-    logError(error.message);
     next(actions.setError(error));
   }
 }
