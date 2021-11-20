@@ -10,12 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          cd website/
-          yarn install --frozen-lockfile
-          yarn build
-          cd ..
-          ./scripts/inject-rev.sh out/index.html
+      - run: cd website/
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: cd ..
+      - run: ./scripts/inject-rev.sh out/index.html
 
       - name: Deploy
         if: |
