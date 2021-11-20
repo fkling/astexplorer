@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          cd website/
+          yarn install --frozen-lockfile
+          yarn build
+          cd ..
+          ./scripts/inject-rev.sh out/index.html
+
+      - name: Deploy
+        if: |
+          github.event_name == 'push' &&
+          startsWith(github.repository, 'postcss-rs')
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
