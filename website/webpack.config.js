@@ -153,7 +153,49 @@ module.exports = Object.assign({
       {
         test: /\.(jsx?|mjs)$/,
         type: 'javascript/auto',
-        exclude: /node_modules/,
+        include: [
+          // To transpile our version of acorn as well as the one that
+          // espree uses (somewhere in its dependency tree)
+          /\/acorn.es.js$/,
+          /\/acorn.mjs$/,
+          /\/acorn-loose.mjs$/,
+          path.join(__dirname, 'node_modules', '@glimmer', 'compiler', 'dist'),
+          path.join(__dirname, 'node_modules', '@glimmer', 'syntax', 'dist'),
+          path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
+          path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
+          path.join(__dirname, 'node_modules', 'ast-types'),
+          path.join(__dirname, 'node_modules', '@babel/eslint-parser'),
+          path.join(__dirname, 'node_modules', 'babel-eslint'),
+          path.join(__dirname, 'node_modules', 'babel-eslint8'),
+          path.join(__dirname, 'node_modules', 'jsesc'),
+          path.join(__dirname, 'node_modules', 'eslint-visitor-keys'),
+          path.join(__dirname, 'node_modules', 'babel7'),
+          path.join(__dirname, 'node_modules', 'babel-plugin-macros'),
+          path.join(__dirname, 'node_modules', 'json-parse-better-errors'),
+          path.join(__dirname, 'node_modules', 'babylon7'),
+          path.join(__dirname, 'node_modules', 'eslint', 'lib'),
+          path.join(__dirname, 'node_modules', 'eslint-scope'),
+          path.join(__dirname, 'node_modules', 'eslint-visitor-keys'),
+          path.join(__dirname, 'node_modules', 'eslint3'),
+          path.join(__dirname, 'node_modules', 'eslint4'),
+          path.join(__dirname, 'node_modules', 'jscodeshift', 'src'),
+          path.join(__dirname, 'node_modules', 'lodash-es'),
+          path.join(__dirname, 'node_modules', 'prettier'),
+          path.join(__dirname, 'node_modules', 'react-redux', 'es'),
+          path.join(__dirname, 'node_modules', 'recast'),
+          path.join(__dirname, 'node_modules', 'redux', 'es'),
+          path.join(__dirname, 'node_modules', 'regexp-tree'),
+          path.join(__dirname, 'node_modules', 'regjsparser'),
+          path.join(__dirname, 'node_modules', 'regexpp'),
+          path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
+          path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
+          path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
+          path.join(__dirname, 'node_modules', 'webidl2'),
+          path.join(__dirname, 'node_modules', 'tslint'),
+          path.join(__dirname, 'node_modules', 'tslib'),
+          path.join(__dirname, 'node_modules', 'svelte'),
+          path.join(__dirname, 'src'),
+        ],
         loader: 'babel-loader',
         options: {
           babelrc: false,
@@ -193,6 +235,18 @@ module.exports = Object.assign({
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
       },
+    ],
+
+    noParse: [
+      /traceur\/bin/,
+      /typescript\/lib/,
+      /esprima\/dist\/esprima\.js/,
+      /esprima-fb\/esprima\.js/,
+      // This is necessary because flow is trying to load the 'fs' module, but
+      // dynamically. Without this webpack will throw an error at runtime.
+      // I assume the `require(...)` call "succeeds" because 'fs' is shimmed to
+      // be empty below.
+      /flow-parser\/flow_parser\.js/,
     ],
   },
 
