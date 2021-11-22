@@ -33,19 +33,12 @@ export default function Toolbar(props) {
 
   return (
     <div id="Toolbar">
-      <h1>AST Explorer</h1>
-      <SnippetButton {...props} />
-      <CategoryButton {...props} />
+      <h1>CSS AST Explorer</h1>
+      {/* <SnippetButton {...props} /> */}
+      {/* <CategoryButton {...props} /> */}
       <ParserButton {...props} />
       <TransformButton {...props} />
       <KeyMapButton {...props} />
-      <a
-        style={{minWidth: 0}}
-        target="_blank" rel="noopener noreferrer"
-        title="Help"
-        href="https://github.com/fkling/astexplorer/blob/master/README.md">
-        <i className="fa fa-lg fa-question fa-fw" />
-      </a>
       <div id="info" className={transformerInfo ? 'small' : ''}>
         Parser: {parserInfo}<br />
         {transformerInfo}

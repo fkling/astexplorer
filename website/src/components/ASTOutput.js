@@ -91,7 +91,7 @@ class ErrorBoundary extends React.Component {
         <div style={{padding: 20}}>
 					An error was caught while rendering the AST. This usually is an issue with
           astexplorer itself. Have a look at the console for more information.
-          Consider <a href="https://github.com/fkling/astexplorer/issues/new?template=bug_report.md">filing a bug report</a>, but <a href="https://github.com/fkling/astexplorer/issues/">check first</a> if one doesn&quot;t already exist. Thank you!
+          Consider <a href="https://github.com/postcss-rs/astexplorer/issues/new?template=bug_report.md">filing a bug report</a>, but <a href="https://github.com/fkling/postcss-rs/issues/">check first</a> if one doesn&quot;t already exist. Thank you!
 				</div>
 			);
     }
