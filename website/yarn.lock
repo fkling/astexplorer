@@ -1161,6 +1161,11 @@
   resolved "https://registry.yarnpkg.com/@creditkarma/thrift-parser/-/thrift-parser-1.2.0.tgz#69b47dff3d2a5211e9417ff543ea65f681821906"
   integrity sha512-mSRxjSXvU6sBfWhMBWXl7H/XEKWHQ7x+MUDLwyeFIwwX9UaZKPOc7TgGd0N78kcZtIMk82ArdxO6aFhqnBuNtg==
 
+"@engine262/engine262@^0.0.1-87d618ac7a3df080f966a5862b80ea66a57c1ca4":
+  version "0.0.1-87d618ac7a3df080f966a5862b80ea66a57c1ca4"
+  resolved "https://registry.yarnpkg.com/@engine262/engine262/-/engine262-0.0.1-87d618ac7a3df080f966a5862b80ea66a57c1ca4.tgz#a9b6e18a46c264258ec7de6e0ac6cf13acd34c31"
+  integrity sha512-Rx88gj2s0WxDou2+qI6cBELHjpdsVo7heG8h7q9kZtfMYZU7it1dcEpONeptszM1KnrDQTrb4HjKi5nraXw/qQ==
+
 "@formatjs/ecma402-abstract@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.5.0.tgz#759c8f11ff45e96f8fb58741e7fbdb41096d5ddd"
