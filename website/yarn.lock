@@ -4041,12 +4041,12 @@ css-select@^1.1.0:
     domutils "1.5.1"
     nth-check "~1.0.1"
 
-css-tree@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/css-tree/-/css-tree-1.0.0.tgz#21993fa270d742642a90409a2c0cb3ac0298adf6"
-  integrity sha512-CdVYz/Yuqw0VdKhXPBIgi8DO3NicJVYZNWeX9XcIuSp9ZoFT5IcleVRW07O5rMjdcx1mb+MEJPknTTEW7DdsYw==
+css-tree@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-2.0.1.tgz#3760ecf06fa0b89474479bbeb49659b6b1672f6d"
+  integrity sha512-rY9547sbMV6T7uD7ZI+b0ncoH7uA4DVil6TLHewrAai28DMDVFxwu0yK/e4wMk4DlP/NFpkpWYWtkZwbpSdpaw==
   dependencies:
-    mdn-data "2.0.12"
+    mdn-data "2.0.23"
     source-map "^0.6.1"
 
 css-what@2.1:
@@ -7454,10 +7454,10 @@ mdast-util-to-string@^1.0.0:
   resolved "https://registry.yarnpkg.com/mdast-util-to-string/-/mdast-util-to-string-1.1.0.tgz#27055500103f51637bd07d01da01eb1967a43527"
   integrity sha512-jVU0Nr2B9X3MU4tSK7JP1CMkSvOj7X5l/GboG1tKRw52lLF1x2Ju92Ms9tNetCcbfX3hzlM73zYo2NKkWSfF/A==
 
-mdn-data@2.0.12:
-  version "2.0.12"
-  resolved "https://registry.npmjs.org/mdn-data/-/mdn-data-2.0.12.tgz#bbb658d08b38f574bbb88f7b83703defdcc46844"
-  integrity sha512-ULbAlgzVb8IqZ0Hsxm6hHSlQl3Jckst2YEQS7fODu9ilNWy2LvcoSY7TRFIktABP2mdppBioc66va90T+NUs8Q==
+mdn-data@2.0.23:
+  version "2.0.23"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.0.23.tgz#dfb6c41e50a0edb808cf340973ab29321b70808e"
+  integrity sha512-IonVb7pfla2U4zW8rc7XGrtgq11BvYeCxWN8HS+KFBnLDE7XDK9AAMVhRuG6fj9BBsjc69Fqsp6WEActEdNTDQ==
 
 mdurl@^1.0.1:
   version "1.0.1"
