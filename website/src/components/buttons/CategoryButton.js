@@ -18,6 +18,8 @@ const categoryIcon = {
   sql: 'fa-database',
   webidl: 'fa-th-list',
   yaml: 'fa-yc',
+  'jql-ast': 'fa-database',
+  'jql-parser': 'fa-database',
 };
 
 export default class CategoryButton extends React.Component {

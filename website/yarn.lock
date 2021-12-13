@@ -16,6 +16,24 @@
   dependencies:
     tslib "^2.2.0"
 
+"@atlassianlabs/jql-ast@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@atlassianlabs/jql-ast/-/jql-ast-0.0.1.tgz#22116f4b58a69117a74c5e382bb97305bd9b3afb"
+  integrity sha512-MTU/ibDIqdKNQKN1QeEXI26RIaPydlCeb4RBLRehaFiqny8ToPwIFIcmn60asUS/dRdPzum07oPIufjEFh/40g==
+  dependencies:
+    "@atlassianlabs/jql-parser" "^0.0.1"
+    "@babel/runtime" "^7.15.4"
+    antlr4ts "^0.5.0-alpha.3"
+    memoize-one "^5.1.1"
+
+"@atlassianlabs/jql-parser@0.0.1", "@atlassianlabs/jql-parser@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@atlassianlabs/jql-parser/-/jql-parser-0.0.1.tgz#529bb5b05062f8e1953885e97b5b2de7a0804098"
+  integrity sha512-ukuR58r6jNUSUiQ3F0rypVHPeYSwuLaLtjOcopWP8tRIPg65vLbTPbg3v1YSsKarx56m175UKJoN6y3QcZA+9A==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    antlr4ts "^0.5.0-alpha.3"
+
 "@babel/code-frame@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-beta.44.tgz#2a02643368de80916162be70865c97774f3adbd9"
@@ -1082,6 +1100,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.15.4":
+  version "7.16.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
+  integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.14.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
@@ -1859,6 +1884,11 @@ ansi-styles@^4.1.0:
   dependencies:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
+
+antlr4ts@^0.5.0-alpha.3:
+  version "0.5.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/antlr4ts/-/antlr4ts-0.5.0-alpha.4.tgz#71702865a87478ed0b40c0709f422cf14d51652a"
+  integrity sha512-WPQDt1B74OfPv/IMS2ekXAKkTZIHl88uMetg6q3OTqgFxZ/dxDXI0EWLyZid/1Pe6hTftyg5N7gel5wNAGxXyQ==
 
 anymatch@^2.0.0:
   version "2.0.0"
@@ -7472,6 +7502,11 @@ mem@^4.0.0:
     map-age-cleaner "^0.1.1"
     mimic-fn "^2.0.0"
     p-is-promise "^2.0.0"
+
+memoize-one@^5.1.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
+  integrity sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==
 
 memory-fs@^0.2.0:
   version "0.2.0"
