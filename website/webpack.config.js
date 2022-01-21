@@ -50,19 +50,6 @@ const plugins = [
     __dirname + '/src/parsers/js/transformers/eslint1/loadRulesShim.js',
   ),
 
-  // There seems to be a problem with webpack loading an index.js file that
-  // is executable. If we change that to explicitly reference index.js, it seems
-  // to work. The problem is in the csstree module and this is a really hacky
-  // solution.
-  new webpack.NormalModuleReplacementPlugin(
-    /\.\.\/data/,
-    module => {
-      if (/css-tree/.test(module.context)) {
-        module.request += '/index.js';
-      }
-    },
-  ),
-
   // More shims
 
   // Doesn't look like jest-validate is useful in our case (prettier uses it)
