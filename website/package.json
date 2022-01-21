@@ -80,7 +80,7 @@
     "codemirror": "^5.22.0",
     "codemirror-graphql": "^0.11.6",
     "css": "^2.2.1",
-    "css-tree": "^1.0.0",
+    "css-tree": "^2.0.0",
     "cssom": "^0.4.4",
     "domhandler": "^4.0.0",
     "ember-template-recast": "^5.0.1",
