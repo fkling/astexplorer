@@ -9461,6 +9461,11 @@ restore-cursor@^3.1.0:
     onetime "^5.1.0"
     signal-exit "^3.0.2"
 
+ret@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ret/-/ret-0.4.0.tgz#b040b0e9c2e1ba2df3e9af39fc8159857f50ea74"
+  integrity sha512-ZAUfxFXaRPGDk8P2qxoDT/xz4DF+Iaq+pIH07ZMGhIGWo/5zFZRg/mPvKkzxRWTqfqy9M2Hw7Uqv3z3XwE6cpw==
+
 ret@~0.1.10:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"

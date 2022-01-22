@@ -69,6 +69,7 @@ The AST explorer provides following code parsers:
   - [regexp-tree][]
   - [regexpp][]
   - [regjsparser][]
+  - [ret][]
 - Protocol Buffers:
   - [pbkit][]
 - Scala
@@ -172,6 +173,7 @@ are included so you can prototype your own plugins:
 [regexp-tree]: https://github.com/DmitrySoshnikov/regexp-tree
 [regexpp]: https://github.com/mysticatea/regexpp
 [regjsparser]: https://github.com/jviereck/regjsparser
+[ret]: https://github.com/fent/ret.js
 [php-parser]: https://github.com/glayzzle/php-parser
 [pug]: https://github.com/pugjs/pug
 [glimmer]: https://github.com/glimmerjs/glimmer-vm
