@@ -105,7 +105,7 @@
     "hyntax": "^1.1.5",
     "intl-messageformat-parser": "^6.1.0",
     "isomorphic-fetch": "^2.2.1",
-    "java-parser": "^0.6.0",
+    "java-parser": "^2.0.1",
     "jscodeshift": "^0.11.0",
     "json-stringify-safe": "^5.0.1",
     "json-to-ast": "^2.1.0",
