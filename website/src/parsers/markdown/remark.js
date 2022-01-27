@@ -18,16 +18,28 @@ export default {
       'remark',
       'remark-gfm',
       'remark-directive',
+      'remark-footnotes',
       'remark-frontmatter',
       'remark-math',
-    ], (remark, gfm, directive, frontmatter, math) =>
-      callback({ remark, gfm, directive, frontmatter, math }));
+    ], (
+      { remark },
+      { default: gfm },
+      { default: directive },
+      { default: footnotes },
+      { default: frontmatter },
+      { default: math }
+    ) => callback({ remark, gfm, directive, footnotes, frontmatter, math }));
   },
 
-  parse({ remark, gfm, directive, frontmatter, math }, code, options) {
+  parse(
+    { remark, gfm, directive, footnotes, frontmatter, math },
+    code,
+    options
+  ) {
     const plugins = [
       options['remark-gfm'] ? gfm : false,
       options['remark-directive'] ? directive : false,
+      options['remark-footnotes'] ? footnotes : false,
       options['remark-frontmatter'] ? [frontmatter, ['yaml', 'toml']] : false,
       options['remark-math'] ? math : false,
     ].filter((plugin) => plugin !== false);
@@ -47,6 +59,7 @@ export default {
   getDefaultOptions() {
     return {
       'remark-directive': false,
+      'remark-footnotes': false,
       'remark-frontmatter': false,
       'remark-gfm': false,
       'remark-math': false,
@@ -69,7 +82,7 @@ export default {
         {defaultParserInterface.renderSettings.call(
           this,
           parserSettings,
-          onChange,
+          onChange
         )}
       </div>
     );
