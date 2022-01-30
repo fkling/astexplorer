@@ -13,18 +13,10 @@ export default {
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['@babel/eslint-parser', '@babel/preset-react'], (
-      babelEslintParser,
-      babelPresetReact
-    ) => {
-      callback({
-        babelEslintParser,
-        babelPresetReact,
-      });
-    });
+    require(['@babel/eslint-parser', '@babel/preset-react'], callback);
   },
 
-  parse(parsers, code) {
+  parse(parser, code) {
     const opts = {
       sourceType: 'module',
       requireConfigFile: false,
@@ -33,7 +25,7 @@ export default {
       },
     };
 
-    const ast = parsers.babelEslintParser.parse(code, opts);
+    const ast = parser.parse(code, opts);
     delete ast.tokens;
     return ast;
   },
