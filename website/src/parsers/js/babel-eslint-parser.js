@@ -13,7 +13,7 @@ export default {
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['@babel/eslint-parser', '@babel/preset-react'], callback);
+    require(['@babel/eslint-parser', '@babel/plugin-syntax-jsx'], callback);
   },
 
   parse(parser, code) {
@@ -21,7 +21,7 @@ export default {
       sourceType: 'module',
       requireConfigFile: false,
       babelOptions: {
-        presets: ['@babel/preset-react'],
+        presets: ['@babel/plugin-syntax-jsx'],
       },
     };
 
