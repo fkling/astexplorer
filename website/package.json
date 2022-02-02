@@ -45,7 +45,6 @@
     "@angular-eslint/template-parser": "^12.3.0",
     "@angular/compiler": "^13.0.1",
     "@babel/eslint-parser": "~7.13.0",
-    "@babel/plugin-syntax-jsx": "^7.16.7",
     "@babel/runtime": "^7.16.3",
     "@creditkarma/thrift-parser": "^1.2.0",
     "@gengjiawen/monkey-wasm": "^0.7.0",
