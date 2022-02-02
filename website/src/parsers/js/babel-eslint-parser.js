@@ -13,7 +13,7 @@ export default {
   locationProps: new Set(['loc', 'start', 'end', 'range']),
 
   loadParser(callback) {
-    require(['@babel/eslint-parser', '@babel/plugin-syntax-jsx'], callback);
+    require(['@babel/eslint-parser'], callback);
   },
 
   parse(parser, code) {
@@ -21,7 +21,9 @@ export default {
       sourceType: 'module',
       requireConfigFile: false,
       babelOptions: {
-        presets: ['@babel/plugin-syntax-jsx'],
+        parserOpts: {
+          plugins: ['jsx'],
+        },
       },
     };
 
