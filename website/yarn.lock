@@ -1593,6 +1593,11 @@
   dependencies:
     "@types/ms" "*"
 
+"@types/emscripten@^1.38.0":
+  version "1.39.6"
+  resolved "https://registry.yarnpkg.com/@types/emscripten/-/emscripten-1.39.6.tgz#698b90fe60d44acf93c31064218fbea93fbfd85a"
+  integrity sha512-H90aoynNhhkQP6DRweEjJp5vfUVdIj7tdPLsu7pq89vODD/lcugKfZOsfgwpvM6XUewEp2N5dCg1Uf3Qe55Dcg==
+
 "@types/katex@^0.11.0":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@types/katex/-/katex-0.11.1.tgz#34de04477dcf79e2ef6c8d23b41a3d81f9ebeaf5"
@@ -1876,6 +1881,22 @@
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
+
+"@yarnpkg/fslib@^2.6.0-rc.8":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/fslib/-/fslib-2.6.0.tgz#d51b7c389c8f42a79babfc5d11ccbd65769a9620"
+  integrity sha512-NgK7aYYNrFOFJGcWWEDXHHYNt93L3A0Ojv90Xl9+f72T+CaFkOAXyK2XBwEYreot7lT1NeopcnkmFRjHgKRKgQ==
+  dependencies:
+    "@yarnpkg/libzip" "^2.2.2"
+    tslib "^1.13.0"
+
+"@yarnpkg/libzip@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/libzip/-/libzip-2.2.2.tgz#365416c1a973cb034b82e4bcb6e91e90879811c7"
+  integrity sha512-M7ziz16f+tFFnJSCreLtemaGPpjT+NC0E21JQaWXAAlRmFIXz6zl2EZ+tXLxV9yJaplpNDbTgX1j5GPiwg5H5w==
+  dependencies:
+    "@types/emscripten" "^1.38.0"
+    tslib "^1.13.0"
 
 "@zeit/schemas@2.6.0":
   version "2.6.0"
@@ -4169,6 +4190,11 @@ core-js-pure@^3.0.0:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.6.5.tgz#c79e75f5e38dbc85a662d91eea52b8256d53b813"
   integrity sha512-lacdXOimsiD0QyNf9BC/mxivNJ/ybBGJXQFKzRekp1WTHoVUWsUHEn+2T8GJAzzIhyOuXA+gOxCVN3l+5PLPUA==
+
+core-js@3.18.1:
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.1.tgz#289d4be2ce0085d40fc1244c0b1a54c00454622f"
+  integrity sha512-vJlUi/7YdlCZeL6fXvWNaLUPh/id12WXj3MbkMw5uOyF0PfWPBNOCNbs53YqgrvtujLNlt9JQpruyIKkUZ+PKA==
 
 core-js@^1.0.0:
   version "1.2.7"
@@ -8365,6 +8391,11 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
+mri@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/mri/-/mri-1.2.0.tgz#6721480fec2a11a4889861115a48b6cbe7cc8f0b"
+  integrity sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -9038,10 +9069,15 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pbkit@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/pbkit/-/pbkit-0.0.12.tgz#f67a307867763da732f38198a53034342373d62d"
-  integrity sha512-NtHgxsdLpxwXyKWeeObkFbVLPQWoigyQfHJVZZJVI2h2pLC7wM39mbMzT0l89MPjB7Z7QTKzzVhtzMG9zWC2ug==
+pbkit@^0.0.38:
+  version "0.0.38"
+  resolved "https://registry.yarnpkg.com/pbkit/-/pbkit-0.0.38.tgz#6affd5f9dc40ae42681ed0fedb294a1a5618ea31"
+  integrity sha512-im0l722fZkzvGpjAK6vDuYUG/5YnQqK74Rszx5E418HM+eo7MrZEjo3Yt1QE3kW1NXw2Gb8GXGntSTjqChyR7g==
+  dependencies:
+    "@yarnpkg/fslib" "^2.6.0-rc.8"
+    "@yarnpkg/libzip" "^2.2.2"
+    core-js "3.18.1"
+    mri "^1.2.0"
 
 php-parser@^3.0.0:
   version "3.0.0"
@@ -11244,6 +11280,11 @@ tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
+
+tslib@^1.13.0:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
+  integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
 tslib@^2.0.1:
   version "2.0.1"
