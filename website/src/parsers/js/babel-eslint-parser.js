@@ -20,6 +20,11 @@ export default {
     const opts = {
       sourceType: 'module',
       requireConfigFile: false,
+      babelOptions: {
+        parserOpts: {
+          plugins: ['jsx'],
+        },
+      },
     };
 
     const ast = parser.parse(code, opts);
