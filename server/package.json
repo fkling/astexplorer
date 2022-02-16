@@ -7,7 +7,8 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "github-api": "https://github.com/fkling/github.git"
+    "github-api": "https://github.com/fkling/github.git",
+    "winston": "^3.6.0"
   },
   "scripts": {
     "start": "STATIC=../out node index.js"

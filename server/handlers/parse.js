@@ -1,10 +1,10 @@
 const express = require('express');
-const path = require('path');
 const snippets = prepareData(require(process.env.SNIPPET_FILE));
 const snippetRevisions = prepareData(require(process.env.REVISION_FILE));
+const logger = require("logger")
 
 function notFound(req, res) {
-  console.error(`Not found: ${req.path}`);
+  logger.error(`Not found: ${req.path}`);
   res.sendStatus(404);
 }
 
