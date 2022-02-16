@@ -47,7 +47,7 @@ export const defaultOptions = {
     'importAssertions',
     'jsx',
   ],
-  pipelineOptions: { proposal: 'hack', hackTopicToken: '%' }
+  pipelineOptions: { proposal: 'hack', hackTopicToken: '%' },
 };
 
 export const parserSettingsConfiguration = {
@@ -74,10 +74,10 @@ export const parserSettingsConfiguration = {
       title: 'Pipeline Operator Options',
       fields: [
         ['proposal', ['minimal', 'smart', 'hack', 'fsharp']],
-        ['hackTopicToken', ['%', '#', '^']]
+        ['hackTopicToken', ['%', '#', '^']],
       ],
       settings: settings => settings.pipelineOptions || defaultOptions.pipelineOptions,
-    }
+    },
   ],
 };
 
