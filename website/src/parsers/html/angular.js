@@ -108,7 +108,7 @@ function fixSpan(ast, code) {
       case 'BoundAttribute':
       case 'BoundEvent': {
         let {offset} = parent.sourceSpan.start;
-        const isStructuralBinding = !/[\[(]/.test(code[offset]);
+        const isStructuralBinding = !/[[(]/.test(code[offset]);
         if (isStructuralBinding) {
           return offset;
         }
