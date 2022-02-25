@@ -27,14 +27,14 @@ export default {
       { default: directive },
       { default: footnotes },
       { default: frontmatter },
-      { default: math }
+      { default: math },
     ) => callback({ remark, gfm, directive, footnotes, frontmatter, math }));
   },
 
   parse(
     { remark, gfm, directive, footnotes, frontmatter, math },
     code,
-    options
+    options,
   ) {
     const plugins = [
       options['remark-gfm'] ? gfm : false,
@@ -82,7 +82,7 @@ export default {
         {defaultParserInterface.renderSettings.call(
           this,
           parserSettings,
-          onChange
+          onChange,
         )}
       </div>
     );

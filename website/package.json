@@ -90,6 +90,7 @@
     "eslint2": "npm:eslint@^2",
     "eslint3": "npm:eslint@^3",
     "eslint4": "npm:eslint@^4",
+    "eslint8": "npm:eslint@^8",
     "espree": "^6.2.1",
     "esprima": "^4.0.1",
     "filbert": "^0.1.20",
