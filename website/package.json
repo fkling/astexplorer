@@ -113,7 +113,7 @@
     "lodash.isequal": "^4.5.0",
     "luaparse": "^0.3.0",
     "lucene": "^2.1.1",
-    "meriyah": "^1.9.12",
+    "meriyah": "^4.2.0",
     "parse5": "^6.0.0",
     "parse5-htmlparser2-tree-adapter": "^6.0.0",
     "pbkit": "^0.0.38",

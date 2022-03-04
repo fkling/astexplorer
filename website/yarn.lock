@@ -8104,10 +8104,10 @@ merge2@^1.4.1:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-meriyah@^1.9.12:
-  version "1.9.12"
-  resolved "https://registry.yarnpkg.com/meriyah/-/meriyah-1.9.12.tgz#2fa54f8a047a41d14deee93d416fd56ca8fa28a1"
-  integrity sha512-EgnwghBfzhegstEg3GL17cyjXs/YZOzDGW4mDpiv+v4ZqZgfjNvjfjsAJ99IJMA3LyGvdC8nffZJRGX65FOqLQ==
+meriyah@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/meriyah/-/meriyah-4.2.0.tgz#29d28c37ac7b67f8b9aaa92df0b8ac12469fe98b"
+  integrity sha512-fCVh5GB9YT53Bq14l00HLYE3i9DywrY0JVZxbk0clXWDuMsUKKwluvC5sY0bMBqHbnIbpIjfSSIsnrzbauA8Yw==
 
 micromark-core-commonmark@^1.0.0, micromark-core-commonmark@^1.0.1:
   version "1.0.1"
