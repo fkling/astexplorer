@@ -1,19 +1,16 @@
-import bodyParser from "body-parser";
-import express from "express"
-import path from "path"
-import logger from "./logger.js"
-
-import gist from "./handlers/gist/index.js"
-import parse from "./handlers/parse.js"
+const bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const logger = require("./logger")
 
 const app = express();
 app.use(bodyParser.json());
 
-app.use('/api/v1/gist', gist);
+app.use('/api/v1/gist', require('./handlers/gist'));
 
 if (process.env.SNIPPET_FILE && process.env.REVISION_FILE) {
   logger.info('Serving Parse snippets enabled.');
-  app.use('/api/v1/parse', parse);
+  app.use('/api/v1/parse', require('./handlers/parse'));
 }
 
 // `next` is needed here to mark this as an error handler

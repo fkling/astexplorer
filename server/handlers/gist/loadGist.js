@@ -1,7 +1,7 @@
-import { AUTH_TOKEN } from "../../constants";
-import GitHub from "github-api";
+const {AUTH_TOKEN} = require('../../constants');
+const GitHub = require('github-api');
 
-export default function loadGist(req, res, next) {
+module.exports = function loadGist(req, res, next) {
   const gh = new GitHub({token: AUTH_TOKEN});
   const gist = gh.getGist(req.params.snippetid);
   const latest = req.params.revisionid === 'latest';

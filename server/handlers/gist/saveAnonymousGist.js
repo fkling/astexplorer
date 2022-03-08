@@ -1,5 +1,5 @@
-import { AUTH_TOKEN, SETTINGS_FORMAT } from '../../constants';
-import GitHub from "github-api";
+const {AUTH_TOKEN, SETTINGS_FORMAT} = require('../../constants');
+const GitHub = require('github-api');
 
 const gh = new GitHub({token: AUTH_TOKEN});
 
@@ -47,21 +47,21 @@ function getDataFromBody(body, additionalData={}) {
   };
 }
 
-const create = (req, res, next) => {
+exports.create = (req, res, next) => {
   gh.getGist()
     .create(getDataFromBody(req.body))
     .then(response => res.json(response.data))
     .catch(next);
 };
 
-const update = (req, res, next) => {
+exports.update = (req, res, next) => {
   gh.getGist(req.params.snippetid)
     .update(getDataFromBody(req.body))
     .then(response => res.json(response.data))
     .catch(next);
 };
 
-const fork = (req, res, next) => {
+exports.fork = (req, res, next) => {
   // We cannot really "fork" an "anonymous" snippet because a user (astexplorer)
   // cannot fork it's own gist.
   const data = getDataFromBody(req.body);
@@ -71,6 +71,3 @@ const fork = (req, res, next) => {
     .then(response => res.json(response.data))
     .catch(next);
 };
-
-
-export { create, update, fork }

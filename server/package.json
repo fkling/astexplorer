@@ -1,8 +1,7 @@
 {
   "name": "astexplorer-server",
   "version": "2.0.0",
-  "type": "module",
-  "main": "src/index.js",
+  "main": "index.js",
   "private": true,
   "author": "Felix Kling",
   "dependencies": {
@@ -12,6 +11,6 @@
     "winston": "^3.6.0"
   },
   "scripts": {
-    "start": "STATIC=../out node src/index.js"
+    "start": "STATIC=../out node index.js"
   }
 }

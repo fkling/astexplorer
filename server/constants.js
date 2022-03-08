@@ -1,4 +1,4 @@
-import logger from "./logger"
+const logger = require("./logger")
 
 if (!process.env.AUTH_TOKEN) {
   logger.error(
@@ -8,7 +8,7 @@ if (!process.env.AUTH_TOKEN) {
   process.exit(1);
 }
 
-export default {
+module.exports = {
   AUTH_TOKEN: process.env.AUTH_TOKEN,
   SETTINGS_FORMAT: 2,
 };
