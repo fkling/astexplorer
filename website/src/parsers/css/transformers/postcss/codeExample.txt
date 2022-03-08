@@ -1,8 +1,6 @@
-import * as postcss from 'postcss';
-
-export default postcss.plugin('postcss-reverse-props', (options = {}) => {
-    // Work with options here
-    return root => {
+const plugin = () => ({
+    postcssPlugin: 'postcss-reverse-props',
+    Once(root) {
         // Transform CSS AST here
         root.walkRules(rule => {
             // Transform each rule here
@@ -11,5 +9,9 @@ export default postcss.plugin('postcss-reverse-props', (options = {}) => {
                 decl.prop = decl.prop.split('').reverse().join('');
             });
         });
-    };
+    }
 });
+
+plugin.postcss = true;
+
+export default plugin;

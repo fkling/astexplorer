@@ -55,9 +55,6 @@ export default {
       // The flag to enable implied strict mode
       impliedStrict: false,
 
-      // Allowes comment extraction. Accepts either a function or array
-      // onComment: [],
-
       // Enable non-standard parenthesized expression node
       preserveParens: false,
 
@@ -75,29 +72,16 @@ export default {
 
       // Allow edge cases that deviate from the spec
       specDeviation: false,
-    };
-  },
 
-  _getSettingsConfiguration() {
-    return {
-      fields: [
-        'module',
-        'next',
-        'ranges',
-        'webcompat',
-        'loc',
-        'raw',
-        'directives',
-        'globalReturn',
-        'impliedStrict',
-        // 'onComment',
-        'preserveParens',
-        'lexical',
-        'source',
-        'identifierPattern',
-        'jsx',
-        'specDeviation',
-      ],
+      // Allowes comment extraction. Accepts either a function or array
+      // onComment:
+      
+      // Allows token extraction. Accepts either a a callback function or an array
+      // onToken:
+      
+      // Creates unique key for in ObjectPattern when key value are same
+      uniqueKeyInPattern: false,
+
     };
   },
 

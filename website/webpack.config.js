@@ -131,6 +131,12 @@ module.exports = Object.assign({
         },
       },
       {
+        issuer: /eslint8/,
+        resolve: {
+          mainFields: ["browser", "main", "module"]
+        },
+      },
+      {
         test: [
           /\/CLIEngine/,
           /\/globby/,
