@@ -1,14 +1,14 @@
-const express = require('express');
-const snippets = prepareData(require(process.env.SNIPPET_FILE));
-const snippetRevisions = prepareData(require(process.env.REVISION_FILE));
-const logger = require("logger")
+import express from "express";
+const snippets = prepareData(await import(process.env.SNIPPET_FILE));
+const snippetRevisions = prepareData(await import(process.env.REVISION_FILE));
+import logger from "logger"
 
 function notFound(req, res) {
   logger.error(`Not found: ${req.path}`);
   res.sendStatus(404);
 }
 
-module.exports = express.Router()
+export default express.Router()
   // Load snippet
   .get('/:snippetid/:revisionid', load);
 

@@ -1,8 +1,8 @@
-const express = require('express');
-const loadGist = require('./loadGist');
-const saveAnonymousGist = require('./saveAnonymousGist');
+import express from "express";
+import loadGist from "./loadGist.js";
+import saveAnonymousGist from "./saveAnonymousGist.js";
 
-module.exports = express.Router()
+export default express.Router()
   // Load snippet
   .get('/:snippetid/:revisionid', loadGist)
   // Create new "anonymous" snippet

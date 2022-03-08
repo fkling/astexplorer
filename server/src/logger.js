@@ -1,9 +1,9 @@
-const winston = require("winston")
+import winston from "winston"
 
 /**
  * Logger for server. Does not output to any file.
  */
-module.exports = winston.createLogger({
+export default winston.createLogger({
 	level: 'info',
 	format: winston.format.combine(
 		winston.format.colorize(),
