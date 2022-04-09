@@ -1,6 +1,8 @@
 import React from 'react';
 import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from '@swc/wasm-web/package.json';
+// Webpack is configured to resolve this to a file path which is loaded
+// dynamically below.
 import wasm_bg from '@swc/wasm-web/wasm_bg.wasm';
 
 const ID = 'swc';
