@@ -133,7 +133,7 @@
     "react": "16",
     "react-dom": "^16.0.1",
     "react-redux": "^7.2.0",
-    "recast": "^0.20.3",
+    "recast": "^0.21.1",
     "redot": "^0.6.0",
     "redux": "^4.0.5",
     "regexp-tree": "^0.1.5",
