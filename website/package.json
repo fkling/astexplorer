@@ -57,6 +57,7 @@
     "@typescript-eslint/parser": "^5.0.0",
     "@vue/compiler-dom": "^3.0.0-rc.10",
     "@webassemblyjs/wast-parser": "^1.9.0",
+    "@wxml/parser": "^0.4.0",
     "acorn": "^8.3.0",
     "acorn-jsx": "^5.3.1",
     "acorn-loose": "^8.1.0",

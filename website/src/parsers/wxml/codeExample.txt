@@ -1,0 +1,16 @@
+ <view class="search-contianer">
+  <view class="search" style="height:{{navHeight}}px;padding-top:{{navTop}}px">
+    <view class="search-title" src="../../images/actLogo/ytlogo.png">
+      {{mallName}}
+    </view>
+    <input
+      placeholder-class="search-placeholder"
+      type="text"
+      placeholder="please enter keyword for search"
+      disabled
+      value="{{name}}"
+      bindinput="bindinput"
+      bindtap="goSearch">
+    </input>
+  </view>
+</view>
