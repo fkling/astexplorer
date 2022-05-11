@@ -53,6 +53,7 @@ The AST explorer provides following code parsers:
   - [typescript][]
   - [typescript-eslint-parser][]
   - [uglify-js][]
+  - [@jeefo/ecma_parser][]
 - JSON:
   - [JSON][]
   - [Momoa][]
@@ -198,6 +199,7 @@ are included so you can prototype your own plugins:
 [svelte]: https://github.com/sveltejs/svelte
 [hyntax]: https://github.com/nik-garmash/hyntax
 [java-parser]: https://github.com/jhipster/prettier-java/tree/master/packages/java-parser
+[@jeefo/ecma_parser]: https://github.com/je3f0o/jeefo_ecma_parser
 
 ### Contributions
 

@@ -1524,6 +1524,36 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@jeefo/command@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@jeefo/command/-/command-0.0.3.tgz#1c83d25165dcc4755933dc3f90f997ba2b4b6818"
+  integrity sha512-tjdpTTHr1GQp4CWVtccV3eHE9TvbNEQfsMwslKjbaRnTl2jwtmNmGmSPttpnLpR17/ATEs89DQYiUpmGY9knDg==
+
+"@jeefo/ecma_parser@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@jeefo/ecma_parser/-/ecma_parser-0.0.11.tgz#3b0a271f59a837ab690efe86786526cc50d54efa"
+  integrity sha512-Bl7H+fS3MWruV0ar2UEe31QaKRZ/T83gEo+zKdEBZrz42GLfGAEHWqP7TkpKepHy/RvXhd+LCmEAi00vdU1RQA==
+  dependencies:
+    "@jeefo/command" "^0.0.3"
+    "@jeefo/parser" "^0.0.28"
+    "@jeefo/tokenizer" "^0.0.6"
+    "@jeefo/utils" "^0.0.16"
+
+"@jeefo/parser@^0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@jeefo/parser/-/parser-0.0.28.tgz#9effa4a6deffb86cfebc9a52b4c20cba2c6515d6"
+  integrity sha512-RhsqhDuyOMP2/zSlIH+BhV9yrvEWRkFksaxyhkD3awZSCXIhtRUEhcqzv5QfyngrVtXiBuyBS732ZBRo305E0g==
+
+"@jeefo/tokenizer@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@jeefo/tokenizer/-/tokenizer-0.0.6.tgz#792e5859c504c98bb7115e67035e076a81109ee3"
+  integrity sha512-erJKroeyhsZVFEwVvtd+TQvg3QOmjTK3gN2eZHgmP7klOHuG4qmY6TPCHaIwnrDpc1LvZxg3Vr8LCV63eX6aZw==
+
+"@jeefo/utils@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@jeefo/utils/-/utils-0.0.16.tgz#b653404f12e16b05dc0a19bb1ed16036b20f66a2"
+  integrity sha512-rTutNTuxuir9FIo9bgxq7wqvz8Qdyq7qCdMhYsl66SvNPf2d1r2DhgECq39KxvzIEh58BWE/mMd88PonSPpjQQ==
+
 "@mdx-js/mdx@^1.5.8":
   version "1.5.8"
   resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-1.5.8.tgz#40740eaf0b0007b461cee8df13a7ae5a1af8064a"
