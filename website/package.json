@@ -44,6 +44,8 @@
   },
   "dependencies": {
     "@angular-eslint/template-parser": "^12.3.0",
+    "@atlassianlabs/jql-ast": "0.0.1",
+    "@atlassianlabs/jql-parser": "0.0.1",
     "@angular/compiler": "^13.0.1",
     "@babel/eslint-parser": "~7.13.0",
     "@babel/runtime": "^7.16.3",

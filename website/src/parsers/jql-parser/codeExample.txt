@@ -1,0 +1,3 @@
+project = JQL and 
+developer in ("Soney Mathew", "Kyle Painter", "Cristian Casais")  
+ORDER BY created ASC, duedate DESC

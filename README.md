@@ -83,6 +83,9 @@ The AST explorer provides following code parsers:
 - YAML:
   - [yaml][]
   - [yaml-ast-parser][]
+- JQL:
+  - [jql-parser][]
+  - [jql-ast][]
 
 ### Experimental / custom syntax
 
@@ -198,6 +201,7 @@ are included so you can prototype your own plugins:
 [svelte]: https://github.com/sveltejs/svelte
 [hyntax]: https://github.com/nik-garmash/hyntax
 [java-parser]: https://github.com/jhipster/prettier-java/tree/master/packages/java-parser
+[jql-parser]: https://www.npmjs.com/package/@atlassianlabs/jql-parser
 
 ### Contributions
 
