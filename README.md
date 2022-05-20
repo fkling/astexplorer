@@ -1,5 +1,6 @@
 ## AST explorer
 
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/fkling/astexplorer)
 [![Join the chat at https://gitter.im/astexplorer/Lobby](https://badges.gitter.im/astexplorer/Lobby.svg)](https://gitter.im/astexplorer/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/fkling/astexplorer.svg?branch=master)](https://travis-ci.org/fkling/astexplorer)
 
@@ -47,6 +48,7 @@ The AST explorer provides following code parsers:
   - [recast][]
   - [seafox][]
   - [shift][]
+  - [swc][]
   - [traceur][]
   - [typescript][]
   - [typescript-eslint-parser][]
@@ -155,7 +157,7 @@ are included so you can prototype your own plugins:
 [luaparse]: https://oxyc.github.io/luaparse/
 [meriyah]: https://github.com/meriyah/meriyah/
 [parse5]: https://github.com/inikulin/parse5
-[pbkit]: https://github.com/riiid/pbkit
+[pbkit]: https://github.com/pbkit/pbkit
 [postcss-safe-parser]: https://github.com/postcss/postcss-safe-parser
 [postcss-scss]: https://github.com/postcss/postcss-scss
 [postcss]: https://github.com/postcss/postcss
@@ -164,6 +166,7 @@ are included so you can prototype your own plugins:
 [seafox]: https://github.com/KFlash/seafox
 [rework]: https://github.com/reworkcss/rework
 [shift]: https://github.com/shapesecurity/shift-parser-js
+[swc]: https://github.com/swc-project/swc
 [traceur]: https://github.com/google/traceur-compiler
 [typescript]: https://github.com/Microsoft/TypeScript/
 [typescript-eslint-parser]: https://github.com/eslint/typescript-eslint-parser/

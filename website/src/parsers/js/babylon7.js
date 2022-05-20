@@ -17,7 +17,6 @@ const availablePlugins = [
   // ECMAScript Proposals
   // https://babeljs.io/docs/en/babel-parser.html#ecmascript-proposalshttpsgithubcombabelproposals
   'asyncDoExpressions',
-  'classStaticBlock',
   'decimal',
   'decorators',
   'doExpressions',
@@ -40,7 +39,6 @@ export const defaultOptions = {
   ranges: false,
   tokens: false,
   plugins: [
-    'classStaticBlock',
     'decorators',
     'doExpressions',
     'exportDefaultFrom',
@@ -48,10 +46,8 @@ export const defaultOptions = {
     'functionBind',
     'importAssertions',
     'jsx',
-    'privateIn',
-    'topLevelAwait',
   ],
-  pipelineOptions: { proposal: 'hack', hackTopicToken: '%' }
+  pipelineOptions: { proposal: 'hack', hackTopicToken: '%' },
 };
 
 export const parserSettingsConfiguration = {
@@ -78,10 +74,10 @@ export const parserSettingsConfiguration = {
       title: 'Pipeline Operator Options',
       fields: [
         ['proposal', ['minimal', 'smart', 'hack', 'fsharp']],
-        ['hackTopicToken', ['%', '#']]
+        ['hackTopicToken', ['%', '#', '^']],
       ],
       settings: settings => settings.pipelineOptions || defaultOptions.pipelineOptions,
-    }
+    },
   ],
 };
 

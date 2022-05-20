@@ -83,6 +83,7 @@ function getNodeCtor(node) {
  *                  ^^^^^^^^^^ sub AST { start: 13, end: 23 }
  */
 function fixSpan(ast, code) {
+  const fixed = new Set();
   const KEEP_VISIT = 1;
   function visitTarget(value, isTarget, fn, parent) {
     if (value !== null && typeof value === 'object') {
@@ -106,9 +107,21 @@ function fixSpan(ast, code) {
     switch (nodeName) {
       case 'BoundAttribute':
       case 'BoundEvent': {
-        let offset = parent.sourceSpan.start.offset;
-        while (code[offset++] !== '=');
+        let {offset} = parent.sourceSpan.start;
+        const isStructuralBinding = !/[[(]/.test(code[offset]);
+        if (isStructuralBinding) {
+          return offset;
+        }
+
+        const assignment = /[=:]/;
+        while (code[offset] && !assignment.test(code[offset++]));
+
+        if (!code[offset]) {
+          console.warn('Unable to fix span values', parent);
+        }
+
         if (code[offset] === "'" || code[offset] === '"') offset++;
+
         return offset;
       }
       case 'BoundText':
@@ -127,8 +140,12 @@ function fixSpan(ast, code) {
         node,
         value => value.span,
         node => {
-          node.span.start += baseStart;
-          node.span.end += baseStart;
+          if (!fixed.has(node)) {
+            node.span.start += baseStart;
+            node.span.end += baseStart;
+            fixed.add(node);
+          }
+
           return KEEP_VISIT;
         },
       );

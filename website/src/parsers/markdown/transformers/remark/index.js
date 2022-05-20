@@ -17,12 +17,12 @@ export default {
       'unist-util-is',
       'unist-util-visit',
       'unist-util-visit-parents',
-    ], (remark, is, visit, parents) => {
+    ], ({ remark }, { is }, { visit }, { visitParents }) => {
       callback({
         remark,
         'unist-util-is': is,
         'unist-util-visit': visit,
-        'unist-util-visit-parents': parents,
+        'unist-util-visit-parents': visitParents,
       });
     });
   },
@@ -35,6 +35,6 @@ export default {
     }
 
     const transform = compileModule(transformCode, { require: sandboxRequire });
-    return remark().use(transform).processSync(code).contents;
+    return remark().use(transform).processSync(code).value;
   },
 };

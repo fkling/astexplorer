@@ -50,19 +50,6 @@ const plugins = [
     __dirname + '/src/parsers/js/transformers/eslint1/loadRulesShim.js',
   ),
 
-  // There seems to be a problem with webpack loading an index.js file that
-  // is executable. If we change that to explicitly reference index.js, it seems
-  // to work. The problem is in the csstree module and this is a really hacky
-  // solution.
-  new webpack.NormalModuleReplacementPlugin(
-    /\.\.\/data/,
-    module => {
-      if (/css-tree/.test(module.context)) {
-        module.request += '/index.js';
-      }
-    },
-  ),
-
   // More shims
 
   // Doesn't look like jest-validate is useful in our case (prettier uses it)
@@ -144,6 +131,12 @@ module.exports = Object.assign({
         },
       },
       {
+        issuer: /eslint8/,
+        resolve: {
+          mainFields: ["browser", "main", "module"]
+        },
+      },
+      {
         test: [
           /\/CLIEngine/,
           /\/globby/,
@@ -155,6 +148,21 @@ module.exports = Object.assign({
         test: /\.txt$/,
         exclude: /node_modules/,
         loader: 'raw-loader',
+      },
+      // @swc/wasm-web uses a build target assumes to run _without_ bundler, in result
+      // contains incompatible syntax to webpack@4 (import.meta.url).
+      // in here, augment import.meta with custom loader, also provides path to wasm binary
+      // for its initializer to correctly import wasm binary.
+      {
+        test: /\wasm.js$/,
+        include: [path.join(__dirname, 'node_modules', '@swc', 'wasm-web')],
+        loader: require.resolve('@open-wc/webpack-import-meta-loader'),
+      },
+      {
+        test: /.wasm$/,
+        type: "javascript/auto",
+        include: [path.join(__dirname, 'node_modules', '@swc', 'wasm-web')],
+        loader: "file-loader"
       },
       {
         test: /\.(jsx?|mjs)$/,
@@ -195,6 +203,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'regexpp'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
           path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
+          path.join(__dirname, 'node_modules', '@swc', 'wasm-web'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'node_modules', 'tslint'),
