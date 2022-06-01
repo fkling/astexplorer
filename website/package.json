@@ -54,7 +54,7 @@
     "@humanwhocodes/momoa": "^1.0.0",
     "@mdx-js/mdx": "^1.5.8",
     "@swc/wasm-web": "^1.2.146",
-    "@typescript-eslint/parser": "^5.0.0",
+    "@typescript-eslint/parser": "^5.27.0",
     "@vue/compiler-dom": "^3.0.0-rc.10",
     "@webassemblyjs/wast-parser": "^1.9.0",
     "acorn": "^8.3.0",
