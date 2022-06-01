@@ -158,7 +158,7 @@
     "tern": "^0.24.3",
     "traceur": "0.0.111",
     "tslint": "^6.1.1",
-    "typescript": "^4.0.3",
+    "typescript": "^4.7.0",
     "typescript-eslint-parser": "^22.0.0",
     "uglify-es": "^3.0.28",
     "unist-util-is": "^5.0.0",
