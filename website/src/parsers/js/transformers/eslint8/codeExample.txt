@@ -1,4 +1,10 @@
-export default function(context) {
+export const meta = {
+  type: 'problem',
+  hasSuggestions: true,
+  fixable: true,
+};
+
+export function create(context) {
   return {
     TemplateLiteral(node) {
       context.report({
