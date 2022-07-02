@@ -164,6 +164,13 @@ module.exports = Object.assign({
         include: [path.join(__dirname, 'node_modules', '@swc', 'wasm-web')],
         loader: "file-loader"
       },
+      // This rule is needed to make sure *.mjs files in node_modules are
+      // interpreted as modules.
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+      },
       {
         test: /\.(jsx?|mjs)$/,
         type: 'javascript/auto',
