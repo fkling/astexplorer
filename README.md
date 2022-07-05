@@ -44,6 +44,7 @@ The AST explorer provides following code parsers:
   - [esprima][]
   - [flow-parser][]
   - [hermes-parser][]
+  - [ibyar-expressions][]
   - [meriyah][]
   - [recast][]
   - [seafox][]
@@ -152,6 +153,7 @@ are included so you can prototype your own plugins:
 [htmlparser2]: https://github.com/fb55/htmlparser2
 [jscodeshift]: https://github.com/facebook/jscodeshift
 [luaparse]: https://oxyc.github.io/luaparse/
+[ibyar-expressions]: https://github.com/ibyar/aurora/tree/dev/packages/expressions
 [meriyah]: https://github.com/meriyah/meriyah/
 [parse5]: https://github.com/inikulin/parse5
 [pbkit]: https://github.com/pbkit/pbkit
