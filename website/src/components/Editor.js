@@ -176,17 +176,14 @@ export default class Editor extends React.Component {
           return;
         }
 
-        console.log("doc", range);
         let doc = this.codeMirror.getDoc();
         let pos = typeof range[0] == 'number' ? this._posFromIndex(doc, range[0]) : range[0];
-        console.log("pos", pos);
 
         if (!pos) {
           return;
         }
 
         this._scrollIntoView(doc, pos, 200);
-        // doc.getEditor().scrollIntoView(pos);
       }),
     );
 

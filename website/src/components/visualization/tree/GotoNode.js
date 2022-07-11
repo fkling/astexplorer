@@ -2,8 +2,6 @@ import React from 'react'
 import {publish} from '../../../utils/pubsub.js';
 
 export default function GotoNode(props) {
-    const range = props.treeAdapter.getRange(props.value);
-
     if((!props.treeAdapter.isArray(props.value) && !props.treeAdapter.isObject(props.value)) || props.treeAdapter.getRange(props.value) == undefined) {
         return (
             <></>
