@@ -1309,10 +1309,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@ibyar/expressions@^0.5.62":
-  version "0.5.62"
-  resolved "https://registry.yarnpkg.com/@ibyar/expressions/-/expressions-0.5.62.tgz#9ffec1d0a34801cfa0b130fcd1c95c019da285aa"
-  integrity sha512-sqrHxDdlUiI6Ahw4wVATyQ+F6fU7H/bT55IJn+d04iKQVRO75VsSqlj3Hu4uDE11DoVfKBr7he8qTTn+ON++RA==
+"@ibyar/expressions@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@ibyar/expressions/-/expressions-0.6.0.tgz#48ec4307136fb61d2b2e64de99d8f3d537850499"
+  integrity sha512-5Hy0uDFRxCydMig5q2PFrtFGbLbTrCnnktBW9JkTCKlq/0ELAOCY1qM/fVOSiCosXEAtTvsvBJ6Msh0Qc1DLtA==
   dependencies:
     reflect-metadata "^0.1.13"
     tslib "^2.4.0"

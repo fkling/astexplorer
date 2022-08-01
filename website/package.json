@@ -52,7 +52,7 @@
     "@glimmer/compiler": "^0.83.1",
     "@glimmer/syntax": "^0.83.1",
     "@humanwhocodes/momoa": "^1.0.0",
-    "@ibyar/expressions": "^0.5.62",
+    "@ibyar/expressions": "^0.6.0",
     "@mdx-js/mdx": "^1.5.8",
     "@swc/wasm-web": "^1.2.146",
     "@typescript-eslint/parser": "^5.27.0",
