@@ -36,7 +36,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "amf-client-js": "^5.0.1-0",
+    "amf-client-js": "^5.1.0",
     "astexplorer-go": "^1.0.0",
     "codemirror": "^5.22.0",
     "escodegen": "^1.14.1",
