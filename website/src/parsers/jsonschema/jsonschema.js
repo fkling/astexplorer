@@ -1,7 +1,7 @@
 import defaultParserInterface from '../utils/defaultParserInterface'
 const errorHandler = require("../utils/errorHandler")
 const builder = require("../utils/buildAst")
-const ID = 'amf-async-parser'
+const ID = 'amf-jsonschema-parser'
 
 export default {
     ...defaultParserInterface,
@@ -19,8 +19,8 @@ export default {
 
     async parse({ parser, adapter }, code) {
         let provider = errorHandler.getProvider(parser)
-        let client = parser.AsyncAPIConfiguration.Async20().withErrorHandlerProvider(provider).baseUnitClient();
-        let parsingResult = await client.parseContent(code,"application/asyncapi20+yaml")
+        let client = parser.JsonSchemaConfiguration.JsonSchema().withErrorHandlerProvider(provider).baseUnitClient()
+        let parsingResult = await client.parseContent(code)
         return builder.buildAst(parsingResult,adapter,code)
     },
 
@@ -32,5 +32,5 @@ export default {
         if (node.hasOwnProperty('position')) {
             return [node.position.start.offset,node.position.end.offset]
         }
-    }
+    },
 }
