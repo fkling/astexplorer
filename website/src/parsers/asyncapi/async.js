@@ -12,7 +12,7 @@ export default {
     homepage: 'https://www.npmjs.com/package/amf-client-js',
 
     loadParser(callback) {
-        require(['amf-client-js', 'generic-js-model-adapter'], (parser, adapter) => {
+        require(['amf-client-js', '@aml-org/generic-js-model-adapter'], (parser, adapter) => {
             callback({ parser, adapter });
         });
     },
