@@ -1,7 +1,7 @@
 import defaultParserInterface from '../utils/defaultParserInterface'
 const errorHandler = require("../utils/errorHandler")
 const builder = require("../utils/buildAst")
-const ID = 'amf-oas-parser'
+const ID = 'amf-graphql-federation-parser'
 
 export default {
     ...defaultParserInterface,
@@ -19,7 +19,7 @@ export default {
 
     async parse({ parser, adapter }, code) {
         let provider = errorHandler.getProvider(parser)
-        let client = parser.OASConfiguration.OAS().withErrorHandlerProvider(provider).baseUnitClient()
+        let client = parser.GraphQLFederationConfiguration.GraphQLFederation().withErrorHandlerProvider(provider).baseUnitClient()
         let parsingResult = await client.parseContent(code)
         return builder.buildAst(parsingResult,adapter,code)
     },
