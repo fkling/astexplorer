@@ -1,0 +1,28 @@
+name: Deploy to heroku
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+      - name: Check if HEROKU_API_KEY secret exists
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        if: "${{ env.HEROKU_API_KEY == '' }}"
+        run: | 
+          echo "This command is executed if HEROKU_API_KEY secret IS NOT empty"
+          exit 1
+      - name: Login to heroku
+        run: heroku login
+      - name: Add remote to heroku
+        run: heroku git:remote -a amf-model-playground
+      - name: Push to heroku
+        run: git push heroku main
