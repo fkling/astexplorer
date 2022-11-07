@@ -153,6 +153,7 @@
     "solidity-parser-antlr": "^0.4.0",
     "solidity-parser-diligence": "^0.4.18",
     "source-map": "^0.6.1",
+    "sql-parser-cst": "^0.5.1",
     "sqlite-parser": "^1.0.0-rc3",
     "svelte": "^3.46.2",
     "tenko": "^1.0.6",
