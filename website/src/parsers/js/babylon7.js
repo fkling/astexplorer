@@ -50,8 +50,11 @@ export const defaultOptions = {
     'functionBind',
     'importAssertions',
     'jsx',
+    'regexpUnicodeSets',
   ],
+  decoratorOptions: { version: "2022-03", decoratorsBeforeExport: false, allowCallParenthesized: true },
   pipelineOptions: { proposal: 'hack', hackTopicToken: '%' },
+  typescriptOptions: { dts: false, disallowAmbiguousJSXLike: false },
 };
 
 export const parserSettingsConfiguration = {
@@ -82,6 +85,25 @@ export const parserSettingsConfiguration = {
       ],
       settings: settings => settings.pipelineOptions || defaultOptions.pipelineOptions,
     },
+    {
+      key: 'decoratorOptions',
+      title: 'Decorator Options',
+      fields: [
+        "allowCallParenthesized",
+        "decoratorsBeforeExport",
+        ['version', ["2018-09", "2021-12", "2022-03"]],
+      ],
+      settings: settings => settings.decoratorOptions || defaultOptions.decoratorOptions,
+    },
+    {
+      key: 'typescriptOptions',
+      title: 'TypeScript Options',
+      fields: [
+        'dts',
+        'disallowAmbiguousJSXLike'
+      ],
+      settings: settings => settings.typescriptOptions || defaultOptions.typescriptOptions,
+    }
   ],
 };
 
@@ -102,20 +124,18 @@ export default {
     options = {...options};
     // Older versions didn't have the pipelineOptions setting, but
     // only a pipelineProposal string option.
-    const { pipelineOptions = {proposal: options.pipelineProposal} } = options;
-    // TODO: Make decoratorsBeforeExport settable through settings somehow
-    // TODO: Make recordAndTuple.syntaxType settable through settings somehow
-    options.plugins = options.plugins.map(plugin => {
+    const { pipelineOptions = {proposal: options.pipelineProposal}, decoratorOptions, typescriptOptions } = options;
+    options.plugins = (options.plugins || []).map(plugin => {
       switch (plugin) {
         case 'decorators':
-          return ['decorators', {decoratorsBeforeExport: false, version:"2021-12"}];
+          return ['decorators', decoratorOptions];
         case 'pipelineOperator':
           return ['pipelineOperator', {
             proposal: pipelineOptions.proposal,
             topicToken: pipelineOptions.hackTopicToken,
           }];
-        case 'recordAndTuple':
-          return ['recordAndTuple', { syntaxType: 'hash' }];
+        case 'typescript':
+          return ['typescript', typescriptOptions];
         default:
           return plugin;
       }
