@@ -154,7 +154,7 @@
     "solidity-parser-diligence": "^0.4.18",
     "source-map": "^0.6.1",
     "sqlite-parser": "^1.0.0-rc3",
-    "svelte": "^3.46.2",
+    "svelte": "^3.52.0",
     "tenko": "^1.0.6",
     "tern": "^0.24.3",
     "traceur": "0.0.111",
