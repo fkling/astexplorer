@@ -16,12 +16,8 @@ export default {
     require(['sql-parser-cst'], callback);
   },
 
-  parse(parser, code) {
-    return parser.parse(code, {
-      dialect: 'sqlite',
-      preserveComments: true,
-      includeRange: true,
-    });
+  parse(parser, code, options) {
+    return parser.parse(code, options);
   },
 
   getNodeName(node) {
@@ -30,5 +26,25 @@ export default {
 
   nodeToRange(node) {
     return node.range;
+  },
+
+  getDefaultOptions() {
+    return {
+      dialect: 'sqlite',
+      preserveComments: true,
+      includeRange: true,
+    };
+  },
+
+  _getSettingsConfiguration() {
+    return {
+      fields: [
+        ['dialect', ['sqlite', 'mysql']],
+        'preserveComments',
+        'preserveNewlines',
+        'preserveSpaces',
+        'includeRange',
+      ],
+    };
   },
 };
