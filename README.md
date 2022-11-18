@@ -79,6 +79,8 @@ The AST explorer provides following code parsers:
   - [solidity-parser-antlr][]
 - SQL:
   - [sqlite-parser][]
+- Svelte:
+  - [svelte][]
 - [WebIDL][]
 - YAML:
   - [yaml][]
