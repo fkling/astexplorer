@@ -117,9 +117,9 @@ export default function TreeVisualization({parseResult, position}) {
 
   let top = null
   let inRangeNodes = []
-  let treeVisualizationContainer = document.getElementById('treeVisualizationContainer')
   let width = document.documentElement.clientWidth/2
   let height = document.documentElement.clientHeight/2
+  let treeVisualizationContainer = document.getElementById('treeVisualizationContainer')
   if(treeVisualizationContainer) {
     width = document.getElementById('treeVisualizationContainer').clientWidth
     height = document.getElementById('treeVisualizationContainer').clientHeight
@@ -135,8 +135,26 @@ export default function TreeVisualization({parseResult, position}) {
       }
       item.nodeDatum.__rd3t.collapsed = false
     })
-    TreeRef && targetNode && TreeRef.current.centerNode(targetNode.hierarchyPointNode)
-    inRangeNodes.length === 0 && top !== null && TreeRef.current.centerNode(top.hierarchyPointNode)
+    setTimeout(() => {
+      if(targetNode) {
+        let [targetG,transform,position] = [null,'','']
+        targetG = document.getElementById(targetNode.nodeDatum.__rd3t.id)
+        targetG && (transform = targetG.getAttribute('transform') || '')
+        transform && (position = transform.replace(/^translate\(/,'').replace(/\)$/,''))
+        position = position.split(',').map(item=>Number(item))
+        targetNode.hierarchyPointNode.x = position[0]
+        targetNode.hierarchyPointNode.y = position[1]
+        TreeRef && targetNode && TreeRef.current.centerNode(targetNode.hierarchyPointNode)
+        inRangeNodes.length === 0 && top !== null && TreeRef.current.centerNode(top.hierarchyPointNode)
+      }
+    }, 100);
+    subscribe('PANEL_RESIZE', () => {
+      let treeVisualizationContainer = document.getElementById('treeVisualizationContainer')
+      if(treeVisualizationContainer) {
+        width = document.getElementById('treeVisualizationContainer').clientWidth
+        height = document.getElementById('treeVisualizationContainer').clientHeight
+      }
+    })
   })
   
   function renderNode(node){
