@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
-import {publish} from '../../utils/pubsub.js';
+import React, { cloneElement, Fragment } from 'react';
+import {publish, subscribe} from '../../utils/pubsub.js';
 import {logEvent} from '../../utils/logger';
 import {treeAdapterFromParseResult} from '../../core/TreeAdapter.js';
 import TreeD3 from 'react-d3-tree';
@@ -117,6 +117,14 @@ export default function TreeVisualization({parseResult, position}) {
 
   let top = null
   let inRangeNodes = []
+  let treeVisualizationContainer = document.getElementById('treeVisualizationContainer')
+  let width = document.documentElement.clientWidth/2
+  let height = document.documentElement.clientHeight/2
+  if(treeVisualizationContainer) {
+    width = document.getElementById('treeVisualizationContainer').clientWidth
+    height = document.getElementById('treeVisualizationContainer').clientHeight
+  }
+  
   useEffect(()=>{
     let targetNode = null
     inRangeNodes.forEach(item=>{
@@ -167,7 +175,7 @@ export default function TreeVisualization({parseResult, position}) {
   }
 
   return (
-    <div className="tree-visualization container">
+    <div className="tree-visualization container" id='treeVisualizationContainer'>
       <div className="toolbar">
         <label title="Auto open the node at the cursor in the source code">
           {makeCheckbox('autofocus', settings, updateSettings)}
@@ -193,7 +201,7 @@ export default function TreeVisualization({parseResult, position}) {
         separation={{nonSiblings:2,siblings:1.6}}
         renderCustomNodeElement={renderNode}
         zoom={0.5}
-        dimensions={{height: 700, width: 400}}
+        dimensions={{height: height, width: width}}
         initialDepth={1}
         />
       </div>
