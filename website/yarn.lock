@@ -1313,10 +1313,10 @@
     debug "^4.1.1"
     minimatch "^3.0.4"
 
-"@humanwhocodes/momoa@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@humanwhocodes/momoa/-/momoa-1.0.0.tgz#dda5d713eb2fc046162ed7ec6e3806031eed6415"
-  integrity sha512-aSqGcg9O0SCQPxBn0hFoNTIqFJ5Em12Y8+QjrfedKwZgwy+IocqXl6uIP5EREnHD3PR/0wlZelmTtWMvX+5/7Q==
+"@humanwhocodes/momoa@^2.0.0":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@humanwhocodes/momoa/-/momoa-2.0.4.tgz#8b9e7a629651d15009c3587d07a222deeb829385"
+  integrity sha512-RE815I4arJFtt+FVeU1Tgp9/Xvecacji8w/V6XtXsWWH/wz/eNkNbhb+ny/+PlVZjV0rxQpRSQKNKE3lcktHEA==
 
 "@humanwhocodes/object-schema@^1.2.1":
   version "1.2.1"
