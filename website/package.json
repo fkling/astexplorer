@@ -120,6 +120,7 @@
     "parse5": "^6.0.0",
     "parse5-htmlparser2-tree-adapter": "^6.0.0",
     "pbkit": "^0.0.38",
+    "pgsql-ast-parser": "^11.0.0",
     "php-parser": "^3.0.0",
     "postcss": "^8.0.0",
     "postcss-less": "^5.0.0",
