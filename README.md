@@ -104,6 +104,7 @@ developers who want to create AST transforms. In fact, following transformers
 are included so you can prototype your own plugins:
 
 - JavaScript
+  - [astx][]
   - [babel][] (v5, v6)
   - [ESLint][] (v1, v2, v3)
   - [jscodeshift][]
@@ -138,6 +139,7 @@ are included so you can prototype your own plugins:
 [acorn]: https://github.com/ternjs/acorn
 [@angular/compiler]: https://angular.io/
 [@angular-eslint/template-parser]: https://github.com/angular-eslint/angular-eslint/tree/master/packages/template-parser
+[astx]: https://github.com/codemodsquad/astx
 [babel-eslint]: https://github.com/babel/babel-eslint
 [babel]: https://babeljs.io/docs/advanced/plugins/
 [babylon]: https://babeljs.io/
@@ -183,7 +185,7 @@ are included so you can prototype your own plugins:
 [handlebars]: http://handlebarsjs.com/
 [icu]: https://formatjs.io/docs/intl-messageformat-parser/
 [json]: https://github.com/vtrushin/json-to-ast
-[Momoa]: https://github.com/humanwhocodes/momoa
+[momoa]: https://github.com/humanwhocodes/momoa
 [sqlite-parser]: https://github.com/codeschool/sqlite-parser
 [yaml]: https://github.com/eemeli/yaml
 [yaml-ast-parser]: https://github.com/mulesoft-labs/yaml-ast-parser

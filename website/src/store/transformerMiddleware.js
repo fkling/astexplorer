@@ -1,7 +1,13 @@
-import {getTransformer, getTransformCode, getCode, showTransformer} from './selectors';
-import {SourceMapConsumer} from 'source-map/lib/source-map-consumer';
+import {
+  getTransformer,
+  getTransformCode,
+  getCode,
+  showTransformer,
+} from './selectors';
+import { SourceMapConsumer } from 'source-map/lib/source-map-consumer';
+import isEqual from 'lodash.isequal';
 
-async function transform(transformer, transformCode, code) {
+async function transform(transformer, transformCode, code, options) {
   // Transforms may make use of Node's __filename global. See GitHub issue #420.
   // So we define a dummy one.
   if (!global.__filename) {
@@ -13,7 +19,12 @@ async function transform(transformer, transformCode, code) {
   let realTransformer;
   try {
     realTransformer = await transformer._promise;
-    let result = await transformer.transform(realTransformer, transformCode, code);
+    let result = await transformer.transform(
+      realTransformer,
+      transformCode,
+      code,
+      options
+    );
     let map = null;
     if (typeof result !== 'string') {
       if (result.map) {
@@ -22,7 +33,7 @@ async function transform(transformer, transformCode, code) {
       result = result.code;
     }
     return { result, map, version: realTransformer.version, error: null };
-  } catch(error) {
+  } catch (error) {
     return {
       error,
       version: realTransformer ? realTransformer.version : '',
@@ -30,7 +41,7 @@ async function transform(transformer, transformCode, code) {
   }
 }
 
-export default store => next => async (action) => {
+export default (store) => (next) => async (action) => {
   const oldState = store.getState();
   next(action);
   const newState = store.getState();
@@ -38,7 +49,7 @@ export default store => next => async (action) => {
   const show = showTransformer(newState);
 
   if (!show) {
-    return
+    return;
   }
 
   const newTransformer = getTransformer(newState);
@@ -50,7 +61,9 @@ export default store => next => async (action) => {
     show != showTransformer(oldState) ||
     getTransformer(oldState) !== newTransformer ||
     getTransformCode(oldState) !== newTransformCode ||
-    getCode(oldState) !== newCode
+    getCode(oldState) !== newCode ||
+    oldState.parser !== newState.parser ||
+    !isEqual(oldState.parserSettings, newState.parserSettings)
   ) {
     if (!newTransformer || newCode == null) {
       return;
@@ -60,11 +73,16 @@ export default store => next => async (action) => {
       console.clear();
     }
 
+    const { parser, parserSettings } = newState.workbench;
+
     let result;
-    try  {
-      result = await transform(newTransformer, newTransformCode, newCode);
+    try {
+      result = await transform(newTransformer, newTransformCode, newCode, {
+        parser,
+        parserSettings,
+      });
     } catch (error) {
-      result = {error}
+      result = { error };
     }
 
     // Did anything change in the meantime?
