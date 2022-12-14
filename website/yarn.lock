@@ -10606,10 +10606,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sql-parser-cst@^0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/sql-parser-cst/-/sql-parser-cst-0.8.2.tgz#861be4bae25ff1f1c59e25591d6655b9b74db64a"
-  integrity sha512-g3NLb+8I9/MsZpNKYfilf2o3t2krWixj9yr5+tSlx6wMnM1bmuDNPP18R200SDDCO1JpnOKk3afduLSjScoJ5Q==
+sql-parser-cst@^0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/sql-parser-cst/-/sql-parser-cst-0.9.2.tgz#e44527b36dc5ead49aaec2406f7359b9b2073e77"
+  integrity sha512-jKZri2JnVxc83KGalF6JzXBBIkPZJ0POXN3bOsDe9BG14pbq7Kj078HUhv4rC3sHwGDyt34l9xJhIZAdZgLTAg==
 
 sqlite-parser@^1.0.0-rc3:
   version "1.0.1"
