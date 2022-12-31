@@ -2,7 +2,7 @@ import React from 'react';
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'mdx2/package.json';
 
-const ID = 'mdx2-recma';
+const ID = 'mdx2-esast';
 
 export default {
   ...defaultParserInterface,
