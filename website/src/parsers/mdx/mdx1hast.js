@@ -1,14 +1,7 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
 import pkg from 'mdx1/package.json';
 
-const ID = 'mdxhast';
-
-function removeNewlines(node) {
-  if (node.children != null) {
-    node.children = node.children.filter(node => node.value !== '\n');
-    node.children.forEach(removeNewlines);
-  }
-}
+const ID = 'mdx1-hast';
 
 export default {
   ...defaultParserInterface,
@@ -20,16 +13,14 @@ export default {
   locationProps: new Set(['position']),
 
   loadParser(callback) {
-    require(['mdx1', 'mdx1/mdx-ast-to-mdx-hast'], (mdx, mdxAstToMdxHast) => callback({mdx, mdxAstToMdxHast}));
+    require(['mdx1'], (mdx) => callback({ mdx }));
   },
 
-  parse({mdx, mdxAstToMdxHast}, code) {
+  parse({ mdx }, code) {
     let result;
     mdx.sync(code, {
-      hastPlugins: [
-        mdxAstToMdxHast,
-        () => removeNewlines,
-        () => tree => {
+      rehypePlugins: [
+        () => (tree) => {
           result = tree;
         },
       ],

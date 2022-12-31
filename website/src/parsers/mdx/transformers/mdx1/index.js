@@ -1,7 +1,7 @@
 import compileModule from '../../../utils/compileModule';
 import pkg from 'mdx1/package.json';
 
-const ID = 'mdx';
+const ID = 'mdx1';
 
 export default {
   id: ID,
@@ -9,7 +9,7 @@ export default {
   version: pkg.version,
   homepage: pkg.homepage,
 
-  defaultParserID: 'mdxhast',
+  defaultParserID: 'mdx1-hast',
 
   loadTransformer(callback) {
     require([
