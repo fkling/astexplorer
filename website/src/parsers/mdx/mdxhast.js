@@ -1,5 +1,5 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
-import pkg from '@mdx-js/mdx/package.json';
+import pkg from 'mdx1/package.json';
 
 const ID = 'mdxhast';
 
@@ -16,11 +16,11 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: 'https://mdxjs.com',
+  homepage: pkg.homepage,
   locationProps: new Set(['position']),
 
   loadParser(callback) {
-    require(['@mdx-js/mdx', '@mdx-js/mdx/mdx-ast-to-mdx-hast'], (mdx, mdxAstToMdxHast) => callback({mdx, mdxAstToMdxHast}));
+    require(['mdx1', 'mdx1/mdx-ast-to-mdx-hast'], (mdx, mdxAstToMdxHast) => callback({mdx, mdxAstToMdxHast}));
   },
 
   parse({mdx, mdxAstToMdxHast}, code) {
