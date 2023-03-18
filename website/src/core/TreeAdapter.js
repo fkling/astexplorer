@@ -43,7 +43,10 @@ class TreeAdapter {
     return range;
   }
 
-  isInRange(node, position) {
+  isInRange(node, key, position) {
+    if (this.isLocationProp(key)) {
+      return false;
+    }
     if (!isValidPosition(position)) {
       return false;
     }
@@ -54,32 +57,39 @@ class TreeAdapter {
     return range[0] <= position && position <= range[1];
   }
 
-  hasChildrenInRange(node, position, seen=new Set()) {
+  hasChildrenInRange(node, key, position, seen=new Set()) {
+    if (this.isLocationProp(key)) {
+      return false;
+    }
     if (!isValidPosition(position)) {
       return false;
     }
     seen.add(node);
     const range = this.getRange(node);
-    if (range && !this.isInRange(node, position)) {
+    if (range && !this.isInRange(node, key, position)) {
       return false;
     }
     // Not everything that is rendered has location associated with it (most
     // commonly arrays). In such a case we are a looking whether the node
     // contains any other nodes with location data (recursively).
-    for (const {value: child} of this.walkNode(node)) {
-      if (this.isInRange(child, position)) {
+    for (const {value: child, key} of this.walkNode(node)) {
+      if (this.isInRange(child, key, position)) {
         return true;
       }
     }
-    for (const {value: child} of this.walkNode(node)) {
+    for (const {value: child, key} of this.walkNode(node)) {
       if (seen.has(child)) {
         continue;
       }
-      if (this.hasChildrenInRange(child, position, seen)) {
+      if (this.hasChildrenInRange(child, key, position, seen)) {
         return true;
       }
     }
     return false;
+  }
+
+  isLocationProp(key) {
+    return this._adapterOptions.locationProps && this._adapterOptions.locationProps.has(key);
   }
 
   /**
@@ -108,7 +118,7 @@ class TreeAdapter {
             if (filter.key && !this._filterValues[filter.key]) {
               return false;
             }
-            return filter.test(result.value, result.key);
+            return filter.test(result.value, result.key, Array.isArray(node));
           })
         ) {
           continue;
@@ -208,7 +218,7 @@ export function emptyKeysFilter() {
   return {
     key: 'hideEmptyKeys',
     label: 'Hide empty keys',
-    test(value) { return value == null; },
+    test(value, key, fromArray) { return value == null && !fromArray; },
   };
 }
 

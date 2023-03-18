@@ -1,0 +1,12 @@
+export default function transformer(code, { recast, parsers }) {
+  const ast = recast.parse(code, { parser: parsers.esprima });
+
+  recast.visit(ast, {
+    visitIdentifier(path) {
+      path.node.name = path.node.name.split("").reverse().join("");
+      return false;
+    }
+  });
+
+  return recast.print(ast).code;
+}

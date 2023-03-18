@@ -7,6 +7,7 @@ const initialState = {
 
   // UI related state
   showSettingsDialog: false,
+  showSettingsDrawer: false,
   showShareDialog: false,
   loadingSnippet: false,
   forking: false,
@@ -37,6 +38,7 @@ const initialState = {
       code: '',
       initialCode: '',
       transformer: null,
+      transformResult: null,
     },
   },
 
@@ -80,6 +82,7 @@ export function astexplorer(state=initialState, action) {
   return {
     // UI related state
     showSettingsDialog: showSettingsDialog(state.showSettingsDialog, action),
+    showSettingsDrawer: showSettingsDrawer(state.showSettingsDrawer, action),
     showShareDialog: showShareDialog(state.showShareDialog, action),
     loadingSnippet: loadSnippet(state.loadingSnippet, action),
     saving: saving(state.saving, action),
@@ -102,6 +105,19 @@ export function astexplorer(state=initialState, action) {
 function format(state=initialState.enableFormatting, action) {
   if (action.type === actions.TOGGLE_FORMATTING) return !state;
   return state;
+}
+
+function getDefaultTransform(transformer, workbenchState) {
+  if (typeof transformer.formatCodeExample === 'function') {
+    return transformer.formatCodeExample(
+      transformer.defaultTransform,
+      {
+        parser: workbenchState.parser,
+        parserSettings: workbenchState.parserSettings || {},
+      },
+    )
+  }
+  return transformer.defaultTransform
 }
 
 function workbench(state=initialState.workbench, action, fullState) {
@@ -140,6 +156,15 @@ function workbench(state=initialState.workbench, action, fullState) {
           // Update parser settings
           newState.parserSettings =
             fullState.parserSettings[action.parser.id] || null;
+
+          // Check if we might want to reformat the code example
+          const transformer = getTransformerByID(state.transform.transformer)
+          if (transformer && state.transform.code === getDefaultTransform(transformer, state)) {
+            newState.transform = {
+              ...state.transform,
+              code: getDefaultTransform(transformer, newState),
+            }
+          }
         }
         return newState;
       }
@@ -147,8 +172,10 @@ function workbench(state=initialState.workbench, action, fullState) {
       return {...state, code: action.code};
     case actions.SELECT_TRANSFORMER:
       {
+        const parserIsCompatible =
+          action.transformer.compatibleParserIDs && action.transformer.compatibleParserIDs.has(state.parser)
         const differentParser =
-          action.transformer.defaultParserID !== state.parser;
+          action.transformer.defaultParserID !== state.parser && !parserIsCompatible;
         const differentTransformer =
           action.transformer.id !== state.transform.transformer ;
 
@@ -170,12 +197,13 @@ function workbench(state=initialState.workbench, action, fullState) {
           newState.transform = {
             ...state.transform,
             transformer: action.transformer.id,
+            transformResult: null,
             code: snippetHasDifferentTransform ?
               state.transform.code :
-              action.transformer.defaultTransform,
+              getDefaultTransform(action.transformer, state),
             initialCode: snippetHasDifferentTransform ?
               fullState.activeRevision.getTransformCode() :
-              action.transformer.defaultTransform,
+              getDefaultTransform(action.transformer, state),
           };
         }
 
@@ -187,6 +215,14 @@ function workbench(state=initialState.workbench, action, fullState) {
         transform: {
           ...state.transform,
           code: action.code,
+        },
+      };
+    case actions.SET_TRANSFORM_RESULT:
+      return {
+        ...state,
+        transform: {
+          ...state.transform,
+          transformResult: action.result,
         },
       };
     case actions.SET_SNIPPET:
@@ -225,8 +261,8 @@ function workbench(state=initialState.workbench, action, fullState) {
           const transformer = getTransformerByID(state.transform.transformer);
           newState.transform = {
             ...state.transform,
-            code: transformer.defaultTransform,
-            initialCode: transformer.defaultTransform,
+            code: getDefaultTransform(transformer, state),
+            initialCode: getDefaultTransform(transformer, state),
           };
         }
         return newState;
@@ -269,6 +305,17 @@ function showSettingsDialog(state=initialState.showSettingsDialog, action) {
     case actions.OPEN_SETTINGS_DIALOG:
       return true;
     case actions.CLOSE_SETTINGS_DIALOG:
+      return false;
+    default:
+      return state;
+  }
+}
+
+function showSettingsDrawer(state=initialState.showSettingsDrawer, action) {
+  switch(action.type) {
+    case actions.EXPAND_SETTINGS_DRAWER:
+      return true;
+    case actions.COLLAPSE_SETTINGS_DRAWER:
       return false;
     default:
       return state;

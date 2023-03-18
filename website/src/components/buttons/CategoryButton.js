@@ -1,20 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import cx from 'classnames';
+import cx from '../../utils/classnames.js';
 import {getCategoryByID, categories} from '../../parsers';
 
 const categoryIcon = {
-  javascript: 'fa-jsfiddle',
+  'text/x-scala': 'icon-scala',
   css: 'fa-css3',
   graphql: 'icon-GraphQL_Logo',
   handlebars: 'icon-handlebars',
   htmlmixed: 'fa-html5',
   icu: 'icon-icu',
+  java: 'icon-java',
+  javascript: 'fa-jsfiddle',
   ocaml: 'icon-ocaml',
   reason: 'icon-reason',
   rust: 'icon-rust',
   sql: 'fa-database',
-  'text/x-scala': 'icon-scala',
   webidl: 'fa-th-list',
   yaml: 'fa-yc',
 };

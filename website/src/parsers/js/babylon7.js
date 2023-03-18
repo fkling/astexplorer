@@ -2,38 +2,34 @@ import defaultParserInterface from './utils/defaultESTreeParserInterface';
 import pkg from 'babylon7/package.json';
 
 const availablePlugins = [
-  // From https://babeljs.io/docs/en/next/babel-parser.html
-
   // Miscellaneous
+  // https://babeljs.io/docs/en/babel-parser.html#miscellaneous
   'estree',
 
   // Language extensions
+  // https://babeljs.io/docs/en/babel-parser.html#language-extensions
   'flow',
   'flowComments',
   'jsx',
   'typescript',
+  'v8intrinsic',
 
   // ECMAScript Proposals
-  'asyncGenerators',
-  'bigInt',
-  'classProperties',
-  'classPrivateProperties',
-  'classPrivateMethods',
+  // https://babeljs.io/docs/en/babel-parser.html#ecmascript-proposalshttpsgithubcombabelproposals
+  'asyncDoExpressions',
+  'decimal',
   'decorators',
+  'decoratorAutoAccessors',
+  'destructuringPrivate',
   'doExpressions',
-  'dynamicImport',
   'exportDefaultFrom',
-  'exportNamespaceFrom',
   'functionBind',
-  'functionSent',
-  'importMeta',
-  'logicalAssignment',
-  'nullishCoalescingOperator',
-  'numericSeparator',
-  'objectRestSpread',
-  'optionalCatchBinding',
-  'optionalChaining',
+  'importAssertions',
+  'moduleBlocks',
+  'partialApplication',
   'pipelineOperator',
+  'recordAndTuple',
+  'regexpUnicodeSets',
   'throwExpressions',
 ];
 
@@ -42,32 +38,32 @@ export const defaultOptions = {
   sourceType: 'module',
   allowImportExportEverywhere: false,
   allowReturnOutsideFunction: false,
+  createParenthesizedExpressions: false,
   ranges: false,
   tokens: false,
   plugins: [
-    'asyncGenerators',
-    'classProperties',
     'decorators',
+    'decoratorAutoAccessors',
     'doExpressions',
-    'exportExtensions',
+    'exportDefaultFrom',
     'flow',
-    'functionSent',
     'functionBind',
+    'importAssertions',
     'jsx',
-    'objectRestSpread',
-    'dynamicImport',
-    'nullishCoalescingOperator',
-    'numericSeparator',
-    'optionalChaining',
-    'optionalCatchBinding',
+    'regexpUnicodeSets',
   ],
+  decoratorOptions: { version: "2022-03", decoratorsBeforeExport: false, allowCallParenthesized: true },
+  pipelineOptions: { proposal: 'hack', hackTopicToken: '%' },
+  typescriptOptions: { dts: false, disallowAmbiguousJSXLike: false },
 };
 
 export const parserSettingsConfiguration = {
   fields: [
-    ['sourceType', ['module', 'script']],
+    ['sourceType', ['module', 'script', 'unambiguous']],
     'allowReturnOutsideFunction',
     'allowImportExportEverywhere',
+    'createParenthesizedExpressions',
+    'errorRecovery',
     'ranges',
     'tokens',
     {
@@ -80,6 +76,34 @@ export const parserSettingsConfiguration = {
         {},
       ),
     },
+    {
+      key: 'pipelineOptions',
+      title: 'Pipeline Operator Options',
+      fields: [
+        ['proposal', ['minimal', 'smart', 'hack', 'fsharp']],
+        ['hackTopicToken', ['%', '#', '^', '^^', '@@']],
+      ],
+      settings: settings => settings.pipelineOptions || defaultOptions.pipelineOptions,
+    },
+    {
+      key: 'decoratorOptions',
+      title: 'Decorator Options',
+      fields: [
+        "allowCallParenthesized",
+        "decoratorsBeforeExport",
+        ['version', ["2018-09", "2021-12", "2022-03"]],
+      ],
+      settings: settings => settings.decoratorOptions || defaultOptions.decoratorOptions,
+    },
+    {
+      key: 'typescriptOptions',
+      title: 'TypeScript Options',
+      fields: [
+        'dts',
+        'disallowAmbiguousJSXLike'
+      ],
+      settings: settings => settings.typescriptOptions || defaultOptions.typescriptOptions,
+    }
   ],
 };
 
@@ -87,7 +111,7 @@ export default {
   ...defaultParserInterface,
 
   id: ID,
-  displayName: ID,
+  displayName: '@babel/parser',
   version: pkg.version,
   homepage: pkg.homepage,
   locationProps: new Set(['range', 'loc', 'start', 'end']),
@@ -98,14 +122,20 @@ export default {
 
   parse(babylon, code, options) {
     options = {...options};
-    // TODO: Make decoratorsBeforeExport settable through settings somhow
-    // TODO: Make pipelineOperator.proposal settable through settings somhow
-    options.plugins = options.plugins.map(plugin => {
+    // Older versions didn't have the pipelineOptions setting, but
+    // only a pipelineProposal string option.
+    const { pipelineOptions = {proposal: options.pipelineProposal}, decoratorOptions, typescriptOptions } = options;
+    options.plugins = (options.plugins || []).map(plugin => {
       switch (plugin) {
         case 'decorators':
-          return ['decorators', {decoratorsBeforeExport: false}];
+          return ['decorators', decoratorOptions];
         case 'pipelineOperator':
-          return ['pipelineOperator', {proposal: 'minimal'}];
+          return ['pipelineOperator', {
+            proposal: pipelineOptions.proposal,
+            topicToken: pipelineOptions.hackTopicToken,
+          }];
+        case 'typescript':
+          return ['typescript', typescriptOptions];
         default:
           return plugin;
       }

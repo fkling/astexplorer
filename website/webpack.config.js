@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const fs = require('fs');
 const path = require('path');
@@ -44,24 +43,11 @@ const plugins = [
   // Shim ESLint stuff that's only relevant for Node.js
   new webpack.NormalModuleReplacementPlugin(
     /cli-engine/,
-    'node-libs-browser/mock/empty'
+    'node-libs-browser/mock/empty',
   ),
   new webpack.NormalModuleReplacementPlugin(
     /load-rules/,
-    __dirname + '/src/parsers/js/transformers/eslint1/loadRulesShim.js'
-  ),
-
-  // There seems to be a problem with webpack loading an index.js file that
-  // is executable. If we change that to explicitly reference index.js, it seems
-  // to work. The problem is in the csstree module and this is a really hacky
-  // solution.
-  new webpack.NormalModuleReplacementPlugin(
-    /\.\.\/data/,
-    module => {
-      if (/css-tree/.test(module.context)) {
-        module.request += '/index.js';
-      }
-    }
+    __dirname + '/src/parsers/js/transformers/eslint1/loadRulesShim.js',
   ),
 
   // More shims
@@ -69,7 +55,7 @@ const plugins = [
   // Doesn't look like jest-validate is useful in our case (prettier uses it)
   new webpack.NormalModuleReplacementPlugin(
     /jest-validate/,
-    __dirname + '/src/shims/jest-validate.js'
+    __dirname + '/src/shims/jest-validate.js',
   ),
 
   // Hack to disable Webpack dynamic requires in ESLint, so we don't end up
@@ -92,7 +78,11 @@ const plugins = [
 
   // Inline runtime and manifest into the HTML. It's small and changes after every build.
   new InlineManifestWebpackPlugin(),
-  new ProgressBarPlugin(),
+  new webpack.ProgressPlugin({
+    modules: false,
+    activeModules: false,
+    profile: false,
+  }),
 ];
 
 module.exports = Object.assign({
@@ -124,9 +114,62 @@ module.exports = Object.assign({
   module: {
     rules: [
       {
+        test: [
+          /\.d\.ts$/,
+        ],
+        use: 'null-loader',
+      },
+      // Without this rule weback is loading the ESM version of esquery, which
+      // causes an error since eslint uses `require('esquery')` (not
+      // `require('esquery').default`) to load the module.
+      {
+        issuer: /eslint4/,
+        resolve: {
+          alias: {
+            'esquery': 'esquery/dist/esquery.min.js',
+          },
+        },
+      },
+      {
+        issuer: /eslint8/,
+        resolve: {
+          mainFields: ["browser", "main", "module"]
+        },
+      },
+      {
+        test: [
+          /\/CLIEngine/,
+          /\/globby/,
+        ],
+        issuer: /\/@typescript-eslint\//,
+        use: 'null-loader',
+      },
+      {
         test: /\.txt$/,
         exclude: /node_modules/,
         loader: 'raw-loader',
+      },
+      // @swc/wasm-web uses a build target assumes to run _without_ bundler, in result
+      // contains incompatible syntax to webpack@4 (import.meta.url).
+      // in here, augment import.meta with custom loader, also provides path to wasm binary
+      // for its initializer to correctly import wasm binary.
+      {
+        test: /\wasm.js$/,
+        include: [path.join(__dirname, 'node_modules', '@swc', 'wasm-web')],
+        loader: require.resolve('@open-wc/webpack-import-meta-loader'),
+      },
+      {
+        test: /.wasm$/,
+        type: "javascript/auto",
+        include: [path.join(__dirname, 'node_modules', '@swc', 'wasm-web')],
+        loader: "file-loader"
+      },
+      // This rule is needed to make sure *.mjs files in node_modules are
+      // interpreted as modules.
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
       },
       {
         test: /\.(jsx?|mjs)$/,
@@ -142,6 +185,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', '@glimmer', 'util', 'dist'),
           path.join(__dirname, 'node_modules', '@glimmer', 'wire-format', 'dist'),
           path.join(__dirname, 'node_modules', 'ast-types'),
+          path.join(__dirname, 'node_modules', '@babel/eslint-parser'),
           path.join(__dirname, 'node_modules', 'babel-eslint'),
           path.join(__dirname, 'node_modules', 'babel-eslint8'),
           path.join(__dirname, 'node_modules', 'jsesc'),
@@ -163,8 +207,10 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'redux', 'es'),
           path.join(__dirname, 'node_modules', 'regexp-tree'),
           path.join(__dirname, 'node_modules', 'regjsparser'),
+          path.join(__dirname, 'node_modules', 'regexpp'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
           path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
+          path.join(__dirname, 'node_modules', '@swc', 'wasm-web'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'webidl2'),
           path.join(__dirname, 'node_modules', 'tslint'),
@@ -216,8 +262,6 @@ module.exports = Object.assign({
     noParse: [
       /traceur\/bin/,
       /typescript\/lib/,
-      /acorn\/dist\/acorn\.js/,
-      /acorn\/dist\/acorn\.mjs/,
       /esprima\/dist\/esprima\.js/,
       /esprima-fb\/esprima\.js/,
       // This is necessary because flow is trying to load the 'fs' module, but
@@ -249,9 +293,9 @@ module.exports = Object.assign({
   },
 },
 
-DEV ?
-  {
-    devtool: 'eval',
-  } :
-  {}
+  DEV ?
+    {
+      devtool: 'eval',
+    } :
+    {},
 );

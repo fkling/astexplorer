@@ -24,6 +24,9 @@ export default {
   },
 
   parse(parsers, code, options={}) {
+    if (Object.keys(options).length === 0) {
+      options = this.getDefaultOptions();
+    }
     let parser;
     if (options['plugins.jsx'] && !options.loose) {
       const cls = parsers.acorn.Parser.extend(parsers.acornJsx());
@@ -34,7 +37,11 @@ export default {
         parsers.acorn.parse;
     }
 
-    return parser(code, options);
+    return parser(code, {
+      ...options,
+      // Replace `false` with `null` to use the default value calculated from ecmaVersion.
+      allowAwaitOutsideFunction: options.allowAwaitOutsideFunction || null,
+    });
   },
 
   nodeToRange(node) {
@@ -45,7 +52,7 @@ export default {
 
   getDefaultOptions() {
     return {
-      ecmaVersion: 10,
+      ecmaVersion: 'latest',
       sourceType: 'module',
       allowReserved: false,
       allowReturnOutsideFunction: false,
@@ -63,11 +70,12 @@ export default {
   _getSettingsConfiguration() {
     return {
       fields: [
-        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10, 11], x => Number(x)],
+        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 'latest'], x => x === 'latest' ? x : Number(x)],
         ['sourceType', ['script', 'module']],
         'allowReserved',
         'allowReturnOutsideFunction',
         'allowImportExportEverywhere',
+        'allowAwaitOutsideFunction',
         'allowHashBang',
         'locations',
         'loose',

@@ -33,7 +33,7 @@ export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: pkg.homepage || 'https://flowtype.org/',
+  homepage: pkg.homepage || 'https://flow.org/',
   locationProps: new Set(['range', 'loc']),
 
   loadParser(callback) {

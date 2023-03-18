@@ -135,7 +135,7 @@ export default {
     }
   },
 
-  opensByDefault(node, key) {
+  opensByDefault(_, key) {
     return (
       key === 'statements' ||
       key === 'declarationList' ||
@@ -146,7 +146,6 @@ export default {
   getDefaultOptions() {
     return {
       experimentalDecorators: true,
-      experimentalAsyncFunctions: true,
       jsx: true,
     };
   },
