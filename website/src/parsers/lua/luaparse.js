@@ -50,7 +50,7 @@ export default {
       <div>
         <p>
           <a
-            href="https://oxyc.github.io/luaparse/#parser-interface"
+            href="https://fstirlitz.github.io/luaparse/#parser-interface"
             target="_blank" rel="noopener noreferrer">
             Option descriptions
           </a>
