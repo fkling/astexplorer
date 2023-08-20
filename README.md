@@ -153,7 +153,7 @@ are included so you can prototype your own plugins:
 [hermes-parser]: https://github.com/facebook/hermes/tree/master/tools/hermes-parser/js/hermes-parser
 [htmlparser2]: https://github.com/fb55/htmlparser2
 [jscodeshift]: https://github.com/facebook/jscodeshift
-[luaparse]: https://oxyc.github.io/luaparse/
+[luaparse]: https://fstirlitz.github.io/luaparse/
 [meriyah]: https://github.com/meriyah/meriyah/
 [parse5]: https://github.com/inikulin/parse5
 [pbkit]: https://github.com/pbkit/pbkit
