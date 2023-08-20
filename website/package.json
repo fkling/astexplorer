@@ -147,7 +147,7 @@
     "remark-gfm": "^2.0.0",
     "remark-math": "^5.0.0",
     "san": "^3.9.4",
-    "scalameta-parsers": "^4.7.0",
+    "scalameta-parsers": "^4.8.7",
     "seafox": "^1.6.9",
     "shift-parser": "^7.0.0",
     "solidity-parser-antlr": "^0.4.0",

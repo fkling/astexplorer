@@ -10155,10 +10155,10 @@ san@^3.9.4:
   resolved "https://registry.yarnpkg.com/san/-/san-3.9.4.tgz#95120241bd019cf0358135ac6fd3c44af475d789"
   integrity sha512-E9q/HOv5XWUz6TmoGZthbhbkXyHlzCBrUZFKMO42+JVRJsai0ie8n3jntgYUFRI5LdNHnlZWSg+XJfyJxpjIZg==
 
-scalameta-parsers@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-4.7.0.tgz#c14c4cba1bd1ba4c0989317d909e32f9f662673e"
-  integrity sha512-R3Q+pgLzw5UBdU9eWdZfzSmCtJqhWI4A+91i2KVcT6STmDTLpPUgcaHIuU+ktawefPI57V9XHkTzgv/nKhgN/w==
+scalameta-parsers@^4.8.7:
+  version "4.8.7"
+  resolved "https://registry.yarnpkg.com/scalameta-parsers/-/scalameta-parsers-4.8.7.tgz#296191f3a3ef32221b6f6833e49be31e15e463fa"
+  integrity sha512-gqSkVPbPXs7shH1XrVx0CwvJdytiprXAiEx7YHT/3XYjmJz4a6hbQHpEPbjvF7GvfPz3qIO1Y7hCuAlc0LFpXg==
 
 scheduler@^0.19.1:
   version "0.19.1"
