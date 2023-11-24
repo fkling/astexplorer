@@ -51,7 +51,7 @@ export default {
 
     return {
       fields: [
-        ['ecmaVersion', [3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], x => x === 'latest' ? x : Number(x)],
+        ['ecmaVersion', ['latest', 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], x => x === 'latest' ? x : Number(x)],
         ['sourceType', ['script', 'module', 'commonjs']],
         'range',
         'loc',
