@@ -3,7 +3,7 @@
 // A Web Worker that wraps methods from the hermes-parser package behind a
 // minimal request/response protocol.
 
-import hermesParser from 'hermes-parser';
+import * as hermesParser from 'hermes-parser';
 
 const handlers = {
   parse(code, options) {
