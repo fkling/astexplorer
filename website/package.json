@@ -79,7 +79,7 @@
     "babylon6": "npm:babylon@^6",
     "babylon7": "npm:@babel/parser@^7",
     "cherow": "^1.6.8",
-    "codemirror": "^5.22.0",
+    "codemirror": "^5.65.16",
     "codemirror-graphql": "^0.11.6",
     "css": "^2.2.1",
     "css-tree": "^2.0.0",
