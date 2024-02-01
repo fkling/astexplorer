@@ -10,7 +10,7 @@ export default {
   displayName: ID,
   version: pkg.version,
   homepage: pkg.homepage || 'https://github.com/fb55/htmlparser2',
-  locationProps: new Set(['startIndex']),
+  locationProps: new Set(['startIndex', 'endIndex']),
   typeProps: new Set(['type', 'name']),
 
   loadParser(callback) {
