@@ -211,7 +211,7 @@ as possible!
 #### How to add a new parser
 
 1. Go to `website/`.
-2. Install the new parser as dependency: `yarn add theParser` (or `npm install -S theParser`)
+2. Install the new parser as dependency: `yarn add theParser`
 3. Copy one of the existing examples in `src/parsers/{language}`.
 4. Adjust the code as necessary:
 
@@ -238,10 +238,13 @@ as possible!
 
 #### Build your own version for development
 
+**IMPORTANT:** For various reasons the project still requires Node.js version
+16 (see `.tools-versions`). If you use a tool like
+[`asdf`](https://asdf-vm.com/) switching versions will happen automatically.
+
 1. Clone the repository.
 2. Go to `website/`.
-3. Install all dependencies with `yarn install` (you can run `npm install` as
-   well).
+3. Install all dependencies with `yarn install`
 
 Run `yarn run build` for the final minimized version.
 Run `yarn run watch` for incremental builds.
