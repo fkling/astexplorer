@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="An online AST explorer.">
     <%= htmlWebpackPlugin.files.webpackManifest %>
+    <script defer data-domain="astexplorer.net" src="https://plausible.astexplorer.net/js/script.js"></script>
   </head>
   <body>
     <div id="page">
@@ -24,16 +25,5 @@
         <span>@@COMMIT@@</span>
       </div>
     </div>
-    <!-- Google Analytics -->
-    <script>
-    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-    var ID = location.hostname === 'astexplorer.net' ?
-      'UA-81889051-1' :
-      'UA-81889051-2';
-    ga('create', ID, 'auto');
-    ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
   </body>
 </html>
