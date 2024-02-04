@@ -6954,6 +6954,11 @@ jest-worker@^25.1.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jinx-rust@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/jinx-rust/-/jinx-rust-0.1.4.tgz#26203096050f09c1996221c12b0bbe274ace8900"
+  integrity sha512-Tp4TewXfwFi/OVlDz/uz5tRx11cPvgzD4nFgt+DtLCuICCGiQr8M8TY9xqtKQGHXB7ho115Zf3sxOYjJO9kwcA==
+
 js-tokens@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-1.0.1.tgz#cc435a5c8b94ad15acb7983140fc80182c89aeae"
