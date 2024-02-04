@@ -1,20 +1,20 @@
 import compileModule from '../../../utils/compileModule';
-import pkg from '@mdx-js/mdx/package.json';
+import pkg from 'mdx1/package.json';
 
-const ID = 'mdx';
+const ID = 'mdx1';
 
 export default {
   id: ID,
   displayName: ID,
   version: pkg.version,
-  homepage: 'https://mdxjs.com',
+  homepage: pkg.homepage,
 
-  defaultParserID: 'mdxhast',
+  defaultParserID: 'mdx1-hast',
 
   loadTransformer(callback) {
     require([
       '../../../transpilers/babel',
-      '@mdx-js/mdx',
+      'mdx1',
       'prettier/standalone',
       'prettier/parser-babel',
     ], (transpile, mdx, prettier, babel) => {
