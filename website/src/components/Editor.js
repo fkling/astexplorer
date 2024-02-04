@@ -79,6 +79,10 @@ export default class Editor extends React.Component {
     return (this.props.posFromIndex ? this.props : doc).posFromIndex(index);
   }
 
+  _scrollIntoView(doc, pos, margin=0) {
+    return (this.props.scrollIntoView ? this.props : doc).getEditor().scrollIntoView(pos, margin);
+  }
+
   componentDidMount() {
     this._CMHandlers = [];
     this._subscriptions = [];
@@ -166,6 +170,22 @@ export default class Editor extends React.Component {
         }),
       );
     }
+
+    this._subscriptions.push(subscribe('SCROLL_TO_NODE', ({range}) => {
+        if (!range) {
+          return;
+        }
+
+        let doc = this.codeMirror.getDoc();
+        let pos = typeof range[0] == 'number' ? this._posFromIndex(doc, range[0]) : range[0];
+
+        if (!pos) {
+          return;
+        }
+
+        this._scrollIntoView(doc, pos, 200);
+      }),
+    );
 
     if (this.props.error) {
       this._setError(this.props.error);

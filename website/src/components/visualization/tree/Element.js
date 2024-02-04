@@ -8,6 +8,7 @@ import focusNodes from '../focusNodes.js'
 
 import cx from '../../../utils/classnames.js';
 import stringify from '../../../utils/stringify';
+import GotoNode from './GotoNode';
 
 const {useState, useRef, useMemo, useCallback, useEffect} = React;
 
@@ -316,6 +317,7 @@ const Element = React.memo(function Element({
       {prefix ? <span className="prefix p">&nbsp;{prefix}</span> : null}
       {content}
       {suffix ? <div className="suffix p">{suffix}</div> : null}
+      <GotoNode treeAdapter={treeAdapter} value={value}></GotoNode>
     </li>
   );
 },
