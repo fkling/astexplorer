@@ -1,0 +1,14 @@
+// learn more at https://github.com/codemodsquad/astx
+
+exports.astx = ({astx}) => {
+  astx.find`
+    function $f($$args) {
+      $$body
+    }
+  `().replace`
+    function $f($$args) {
+      console.log('calling', $f, [$$args]);
+      $$body
+    }
+  `()
+}
