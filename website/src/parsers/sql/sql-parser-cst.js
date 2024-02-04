@@ -39,7 +39,7 @@ export default {
   _getSettingsConfiguration() {
     return {
       fields: [
-        ['dialect', ['sqlite', 'mysql']],
+        ['dialect', ['sqlite', 'mysql', 'bigquery']],
         'preserveComments',
         'preserveNewlines',
         'preserveSpaces',
