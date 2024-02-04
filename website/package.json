@@ -95,6 +95,7 @@
     "eslint8": "npm:eslint@^8",
     "espree": "^9.6.1",
     "esprima": "^4.0.1",
+    "esprima-next": "^5.8.3",
     "filbert": "^0.1.20",
     "flow-parser": "^0.144.0",
     "font-awesome": "^4.5.0",
