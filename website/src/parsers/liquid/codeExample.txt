@@ -1,0 +1,6 @@
+<h2>Introduction to Liquid</h2>
+<p>
+{% if username %}
+  {{ username | append: ", welcome to Liquid!" | capitalize }}
+{% endif %}
+</p>
