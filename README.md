@@ -53,6 +53,8 @@ The AST explorer provides following code parsers:
   - [typescript][]
   - [typescript-eslint-parser][]
   - [uglify-js][]
+- JSX:
+  - [dataformsjs][]
 - JSON:
   - [JSON][]
   - [Momoa][]

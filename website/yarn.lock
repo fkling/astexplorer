@@ -4214,6 +4214,11 @@ d@1, d@^1.0.1:
     es5-ext "^0.10.50"
     type "^1.0.1"
 
+dataformsjs@^5.10.6:
+  version "5.10.6"
+  resolved "https://registry.yarnpkg.com/dataformsjs/-/dataformsjs-5.10.6.tgz#caf9bb7593e9cd9e2190a4af6f557666e2d1a5f1"
+  integrity sha512-B8uQqKXpdcIAGIrdzrkL2IMelRu1spWDsOgDD3e+JzKEykRByV4K74IBZdbYSl+knFHtYoezCzn6Mf7P4qj2iA==
+
 date-fns@^2.16.1:
   version "2.23.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.23.0.tgz#4e886c941659af0cf7b30fafdd1eaa37e88788a9"

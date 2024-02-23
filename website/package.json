@@ -84,6 +84,7 @@
     "css": "^2.2.1",
     "css-tree": "^2.0.0",
     "cssom": "^0.4.4",
+    "dataformsjs": "^5.10.6",
     "domhandler": "^4.0.0",
     "ember-template-recast": "^6.1.3",
     "escodegen": "^1.14.1",
