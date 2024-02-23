@@ -78,6 +78,7 @@
     "babylon5": "npm:babylon@^5",
     "babylon6": "npm:babylon@^6",
     "babylon7": "npm:@babel/parser@^7",
+    "bigodon": "^1.4.0",
     "cherow": "^1.6.8",
     "codemirror": "^5.65.16",
     "codemirror-graphql": "^0.11.6",
