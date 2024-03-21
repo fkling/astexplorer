@@ -53,6 +53,7 @@
     "@glimmer/syntax": "^0.83.1",
     "@humanwhocodes/momoa": "^2.0.0",
     "@mdx-js/mdx": "^1.5.8",
+    "@pkl-ts/astexplorer": "^0.3.1-1",
     "@swc/wasm-web": "^1.2.146",
     "@typescript-eslint/parser": "^5.59.7",
     "@vue/compiler-dom": "^3.0.0-rc.10",
