@@ -216,6 +216,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'tslint'),
           path.join(__dirname, 'node_modules', 'tslib'),
           path.join(__dirname, 'node_modules', 'svelte'),
+          path.join(__dirname, 'node_modules', '@solidity-parser/parser'),
           path.join(__dirname, 'src'),
         ],
         loader: 'babel-loader',
@@ -235,6 +236,7 @@ module.exports = Object.assign({
           ],
           plugins: [
             require.resolve('@babel/plugin-transform-runtime'),
+            require.resolve('@babel/plugin-proposal-nullish-coalescing-operator'),
           ],
         },
       },

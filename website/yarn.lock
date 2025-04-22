@@ -1423,6 +1423,11 @@
   resolved "https://registry.yarnpkg.com/@simple-dom/interface/-/interface-1.4.0.tgz#e8feea579232017f89b0138e2726facda6fbb71f"
   integrity sha512-l5qumKFWU0S+4ZzMaLXFU8tQZsicHEMEyAxI5kDFGhJsRqDwe0a7/iPA/GdxlGyDKseQQAgIz5kzU7eXTrlSpA==
 
+"@solidity-parser/parser@^0.20.0":
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/@solidity-parser/parser/-/parser-0.20.0.tgz#e221b2f29a8c2fbeab56fea6d135e28b569b9ba9"
+  integrity sha512-eYOX1xI9ssc3AIZtKPdE2chG1OT9S74O16b8GhWGab63NS5g4jyQgW5OiwUiX9ACL0FR24rVDaHo+BB0bRSHhQ==
+
 "@swc/wasm-web@^1.2.146":
   version "1.2.146"
   resolved "https://registry.yarnpkg.com/@swc/wasm-web/-/wasm-web-1.2.146.tgz#f8c0bc7204b782d94beb6f99be2c776cd19455aa"
