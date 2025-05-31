@@ -17,6 +17,7 @@ export default {
     require([
       'remark',
       'remark-gfm',
+      'remark-definition-list',
       'remark-directive',
       'remark-footnotes',
       'remark-frontmatter',
@@ -24,20 +25,22 @@ export default {
     ], (
       { remark },
       { default: gfm },
+      { default: definitionList },
       { default: directive },
       { default: footnotes },
       { default: frontmatter },
       { default: math },
-    ) => callback({ remark, gfm, directive, footnotes, frontmatter, math }));
+    ) => callback({ remark, gfm, definitionList, directive, footnotes, frontmatter, math }));
   },
 
   parse(
-    { remark, gfm, directive, footnotes, frontmatter, math },
+    { remark, gfm, definitionList, directive, footnotes, frontmatter, math },
     code,
     options,
   ) {
     const plugins = [
       options['remark-gfm'] ? gfm : false,
+      options['remark-definition-list'] ? definitionList : false,
       options['remark-directive'] ? directive : false,
       options['remark-footnotes'] ? footnotes : false,
       options['remark-frontmatter'] ? [frontmatter, ['yaml', 'toml']] : false,
@@ -58,6 +61,7 @@ export default {
 
   getDefaultOptions() {
     return {
+      'remark-definition-list': false,
       'remark-directive': false,
       'remark-footnotes': false,
       'remark-frontmatter': false,
