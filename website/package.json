@@ -62,7 +62,7 @@
     "acorn-loose": "^8.1.0",
     "acorn-to-esprima": "^2.0.8",
     "astexplorer-go": "^1.0.0",
-    "astexplorer-refmt": "^1.0.1",
+    "astexplorer-refmt": "^2.0.0",
     "astexplorer-syn": "^1.0.48",
     "babel-core": "npm:babel-core@^6",
     "babel-eslint": "^7.2.3",
@@ -177,9 +177,9 @@
   "scripts": {
     "dev": "concurrently \"yarn start\" \"yarn build-dev\"",
     "start": "serve -l 8080 ../out",
-    "build": "rimraf ../out/* && cross-env NODE_ENV=production webpack --mode=production",
-    "build-dev": "rimraf ../out/* && cross-env NODE_ENV=development webpack -d --mode=development",
-    "watch": "webpack -dw --mode=development",
+    "build": "rimraf ../out/* && cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=production webpack --mode=production",
+    "build-dev": "rimraf ../out/* && cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=development webpack -d --mode=development",
+    "watch": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack -dw --mode=development",
     "lint": "node_modules/eslint/bin/eslint.js src/",
     "fontcustom": "fontcustom compile ./fontcustom/input-svg/ --config=./fontcustom/config.yml"
   }

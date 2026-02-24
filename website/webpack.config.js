@@ -264,6 +264,7 @@ module.exports = Object.assign({
       /typescript\/lib/,
       /esprima\/dist\/esprima\.js/,
       /esprima-fb\/esprima\.js/,
+      /astexplorer-refmt\/dist\/ast_explorer_refmt\.bc\.js/,
       // This is necessary because flow is trying to load the 'fs' module, but
       // dynamically. Without this webpack will throw an error at runtime.
       // I assume the `require(...)` call "succeeds" because 'fs' is shimmed to
@@ -271,7 +272,6 @@ module.exports = Object.assign({
       /flow-parser\/flow_parser\.js/,
     ],
   },
-
   node: {
     child_process: 'empty',
     fs: 'empty',

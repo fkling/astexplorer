@@ -1,5 +1,4 @@
 import defaultParserInterface from '../utils/defaultParserInterface';
-import esyPkg from 'astexplorer-refmt/esy.json';
 import CodeMirror from 'codemirror';
 import addCodeMirrorMode from './codeMirrorMode';
 
@@ -32,15 +31,14 @@ const locKeys = [
   'pval_loc',
   'pvb_loc',
 ];
-const parserVersion = esyPkg.dependencies['@esy-ocaml/reason'];
 
 export default {
   ...defaultParserInterface,
 
   id: ID,
   displayName: ID,
-  version: parserVersion,
-  homepage: `https://www.npmjs.com/package/@esy-ocaml/reason/v/${parserVersion}`,
+  version: '3.17.2',
+  homepage: `https://github.com/reasonml/reason`,
   locationProps: new Set(locKeys),
 
   loadParser(callback) {
@@ -48,7 +46,7 @@ export default {
   },
 
   parse(parser, code) {
-    return parser.parseReason(code);
+    return JSON.parse(parser.parseReason(code));
   },
 
   getNodeName(node) {
