@@ -159,9 +159,12 @@ module.exports = Object.assign({
         loader: require.resolve('@open-wc/webpack-import-meta-loader'),
       },
       {
-        test: /.wasm$/,
+        test: /\.wasm$/,
         type: "javascript/auto",
-        include: [path.join(__dirname, 'node_modules', '@swc', 'wasm-web')],
+        include: [
+          path.join(__dirname, 'node_modules', '@swc', 'wasm-web'),
+          path.join(__dirname, 'node_modules', '@ruby', 'prism'),
+        ],
         loader: "file-loader"
       },
       // This rule is needed to make sure *.mjs files in node_modules are
@@ -210,6 +213,7 @@ module.exports = Object.assign({
           path.join(__dirname, 'node_modules', 'regexpp'),
           path.join(__dirname, 'node_modules', 'simple-html-tokenizer'),
           path.join(__dirname, 'node_modules', 'symbol-observable', 'es'),
+          path.join(__dirname, 'node_modules', '@ruby', 'prism'),
           path.join(__dirname, 'node_modules', '@swc', 'wasm-web'),
           path.join(__dirname, 'node_modules', 'typescript-eslint-parser'),
           path.join(__dirname, 'node_modules', 'webidl2'),
@@ -235,6 +239,7 @@ module.exports = Object.assign({
           ],
           plugins: [
             require.resolve('@babel/plugin-transform-runtime'),
+            require.resolve('@babel/plugin-proposal-class-properties'),
           ],
         },
       },
